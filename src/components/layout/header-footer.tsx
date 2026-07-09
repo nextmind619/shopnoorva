@@ -1,33 +1,34 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { motion } from "motion/react";
-import { Star, ShoppingBag, Heart, Search, Menu, X, Globe } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Menu, X, ShoppingBag, Globe } from "lucide-react";
 import { useCartStore } from "@/lib/store/cart-store";
-import { Button } from "@/components/ui/button";
+import { CartDrawer } from "@/components/layout/cart-drawer";
 import { cn } from "@/lib/utils";
 import { locales, localeNames } from "@/i18n/config";
 
+const TRUST_TICKER = [
+  { key: "cod", icon: "💵" },
+  { key: "shipping", icon: "🚚" },
+  { key: "warranty", icon: "🛡️" },
+  { key: "morocco", icon: "🇲🇦" },
+  { key: "secure", icon: "🔒" },
+];
+
 export function AnnouncementBar() {
   const t = useTranslations("announcement");
-  const locale = useLocale();
-
   return (
-    <div className="bg-black text-white text-center py-2.5 px-4 text-xs sm:text-sm tracking-wide">
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex items-center justify-center gap-2 flex-wrap"
-      >
-        <span className="text-gold">✦</span>
-        {t("text")}
-        <Link href={`/${locale}/products`} className="underline underline-offset-4 hover:text-gold transition-colors ml-1">
-          {t("cta")}
-        </Link>
-      </motion.p>
+    <div className="bg-[#0B1B3A] text-cream text-center py-2 px-4 text-xs sm:text-sm overflow-hidden relative z-[60]">
+      <div className="flex animate-marquee whitespace-nowrap gap-12">
+        {[...TRUST_TICKER, ...TRUST_TICKER].map((item, i) => (
+          <span key={i} className="inline-flex items-center gap-2">
+            <span>{item.icon}</span>
+            {t(`ticker.${item.key}`)}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -35,122 +36,76 @@ export function AnnouncementBar() {
 export function Header() {
   const t = useTranslations("nav");
   const locale = useLocale();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const itemCount = useCartStore((s) => s.getItemCount());
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const setCartOpen = useCartStore((s) => s.setOpen);
 
   const navLinks = [
     { href: `/${locale}`, label: t("home") },
-    { href: `/${locale}/products`, label: t("shop") },
-    { href: `/${locale}/categories`, label: t("categories") },
+    { href: `/${locale}/products`, label: t("collection") },
     { href: `/${locale}/about`, label: t("about") },
+    { href: `/${locale}/track`, label: t("track") },
   ];
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 transition-all duration-500",
-        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-white"
-      )}
-    >
-      <div className="container-luxury flex items-center justify-between h-16 md:h-20 px-4 sm:px-6 lg:px-8">
-        <Link href={`/${locale}`} className="font-display text-2xl md:text-3xl font-semibold tracking-[0.2em]">
-          NOOR<span className="text-gold">VA</span>
-        </Link>
-
-        <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm tracking-wide uppercase hover:text-gold transition-colors duration-300"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3 md:gap-5">
-          <Link href={`/${locale}/products`} className="hidden sm:block p-2 hover:text-gold transition-colors">
-            <Search className="h-5 w-5" />
-          </Link>
-
-          <div className="relative">
-            <button
-              onClick={() => setLangOpen(!langOpen)}
-              className="p-2 hover:text-gold transition-colors flex items-center gap-1"
-              aria-label="Language"
-            >
-              <Globe className="h-5 w-5" />
-              <span className="text-xs uppercase hidden sm:inline">{locale}</span>
-            </button>
-            {langOpen && (
-              <div className="absolute top-full end-0 mt-2 bg-white border shadow-lg py-2 min-w-[120px] z-50">
-                {locales.map((l) => (
-                  <Link
-                    key={l}
-                    href={`/${l}`}
-                    className={cn(
-                      "block px-4 py-2 text-sm hover:bg-neutral-50 transition-colors",
-                      l === locale && "text-gold font-medium"
-                    )}
-                    onClick={() => setLangOpen(false)}
-                  >
-                    {localeNames[l]}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <Link href={`/${locale}/cart`} className="relative p-2 hover:text-gold transition-colors">
-            <ShoppingBag className="h-5 w-5" />
-            {itemCount > 0 && (
-              <span className="absolute -top-0.5 -end-0.5 bg-gold text-black text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
-                {itemCount}
-              </span>
-            )}
-          </Link>
-
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menu"
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+    <>
+      <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-black/5">
+        <div className="container-luxury px-4 h-[72px] flex items-center justify-between">
+          <button className="p-2 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-        </div>
-      </div>
 
-      {mobileOpen && (
-        <motion.nav
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden border-t bg-white"
-        >
-          <div className="container-luxury py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm tracking-wide uppercase py-2 hover:text-gold transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
+          <nav className="hidden lg:flex items-center gap-8">
+            {navLinks.slice(0, 2).map((link) => (
+              <Link key={link.href} href={link.href} className="text-xs tracking-[0.15em] uppercase hover:text-gold transition-colors">
                 {link.label}
               </Link>
             ))}
+          </nav>
+
+          <Link href={`/${locale}`} className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-center">
+            <span className="font-display text-2xl md:text-3xl font-semibold tracking-[0.15em]">
+              NOOR<span className="text-gold">VA</span>
+            </span>
+            <span className="text-[10px] text-muted tracking-widest hidden sm:block">{t("tagline")}</span>
+          </Link>
+
+          <div className="flex items-center gap-2">
+            <div className="relative hidden sm:block">
+              <button onClick={() => setLangOpen(!langOpen)} className="p-2 hover:text-gold flex items-center gap-1">
+                <Globe className="h-4 w-4" />
+                <span className="text-xs uppercase">{locale}</span>
+              </button>
+              {langOpen && (
+                <div className="absolute top-full end-0 mt-1 bg-white border shadow-lg py-2 min-w-[120px] rounded-xl z-50">
+                  {locales.map((l) => (
+                    <Link key={l} href={`/${l}`} className={cn("block px-4 py-2 text-sm hover:text-gold", l === locale && "text-gold font-medium")} onClick={() => setLangOpen(false)}>
+                      {localeNames[l]}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+            <button onClick={() => setCartOpen(true)} className="relative w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-gold hover:text-gold transition-colors" aria-label={t("cart")}>
+              <ShoppingBag className="h-5 w-5" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -end-1 bg-gold text-noir text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">{itemCount}</span>
+              )}
+            </button>
           </div>
-        </motion.nav>
-      )}
-    </header>
+        </div>
+
+        {menuOpen && (
+          <nav className="lg:hidden border-t bg-cream px-4 py-4 flex flex-col gap-3">
+            {navLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="text-sm py-2 hover:text-gold" onClick={() => setMenuOpen(false)}>{link.label}</Link>
+            ))}
+          </nav>
+        )}
+      </header>
+      <CartDrawer />
+    </>
   );
 }
 
@@ -159,74 +114,45 @@ export function Footer() {
   const tNav = useTranslations("nav");
   const locale = useLocale();
 
-  const shopLinks = [
-    { href: `/${locale}/products`, label: t("shop") },
-    { href: `/${locale}/categories`, label: tNav("categories") },
-    { href: `/${locale}/products?filter=bestseller`, label: locale === "ar" ? "الأكثر مبيعًا" : "Best-Sellers" },
-  ];
-
-  const supportLinks = [
-    { href: `/${locale}/shipping`, label: t("shipping") },
-    { href: `/${locale}/returns`, label: t("returns") },
-    { href: `/${locale}/faq`, label: t("faq") },
-  ];
-
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-[#0B1B3A] text-cream">
       <div className="container-luxury section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          <div>
-            <Link href={`/${locale}`} className="font-display text-2xl tracking-[0.2em]">
-              NOOR<span className="text-gold">VA</span>
-            </Link>
-            <p className="mt-4 text-neutral-400 text-sm leading-relaxed">{t("tagline")}</p>
-            <div className="mt-6 flex gap-4">
-              <a href="https://instagram.com/shopnoorva" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">Instagram</a>
-              <a href="https://tiktok.com/@shopnoorva" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">TikTok</a>
-              <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">{t("whatsapp")}</a>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="lg:col-span-1">
+            <p className="font-display text-2xl tracking-[0.15em]">NOOR<span className="text-gold">VA</span></p>
+            <p className="text-cream/60 text-sm mt-2">{tNav("tagline")}</p>
+            <p className="text-cream/50 text-sm mt-4 leading-relaxed">{t("tagline")}</p>
+            <div className="mt-5 flex gap-4">
+              <a href="https://instagram.com/shopnoorva" target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-gold text-sm">Instagram</a>
+              <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-gold text-sm">{t("whatsapp")}</a>
             </div>
           </div>
-
           <div>
-            <h4 className="text-sm font-medium tracking-widest uppercase mb-4">{t("shop")}</h4>
-            <ul className="space-y-3">
-              {shopLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-neutral-400 text-sm hover:text-gold transition-colors">{link.label}</Link>
-                </li>
-              ))}
+            <h4 className="text-sm font-medium mb-4 text-gold">{t("shop")}</h4>
+            <ul className="space-y-2 text-sm text-cream/60">
+              <li><Link href={`/${locale}`} className="hover:text-gold">{tNav("home")}</Link></li>
+              <li><Link href={`/${locale}/products`} className="hover:text-gold">{tNav("collection")}</Link></li>
+              <li><Link href={`/${locale}/about`} className="hover:text-gold">{t("about")}</Link></li>
             </ul>
           </div>
-
           <div>
-            <h4 className="text-sm font-medium tracking-widest uppercase mb-4">{t("support")}</h4>
-            <ul className="space-y-3">
-              {supportLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-neutral-400 text-sm hover:text-gold transition-colors">{link.label}</Link>
-                </li>
-              ))}
+            <h4 className="text-sm font-medium mb-4 text-gold">{t("support")}</h4>
+            <ul className="space-y-2 text-sm text-cream/60">
+              <li><Link href={`/${locale}/track`} className="hover:text-gold">{tNav("track")}</Link></li>
+              <li><a href="https://wa.me/212600000000" className="hover:text-gold">{t("contact")}</a></li>
             </ul>
           </div>
-
           <div>
-            <h4 className="text-sm font-medium tracking-widest uppercase mb-4">{t("company")}</h4>
-            <ul className="space-y-3">
-              <li><Link href={`/${locale}/about`} className="text-neutral-400 text-sm hover:text-gold transition-colors">{t("about")}</Link></li>
-              <li><Link href={`/${locale}/privacy`} className="text-neutral-400 text-sm hover:text-gold transition-colors">{t("privacy")}</Link></li>
-              <li><Link href={`/${locale}/terms`} className="text-neutral-400 text-sm hover:text-gold transition-colors">{t("terms")}</Link></li>
+            <h4 className="text-sm font-medium mb-4 text-gold">{t("legal")}</h4>
+            <ul className="space-y-2 text-sm text-cream/60">
+              <li><Link href={`/${locale}/about`} className="hover:text-gold">{t("privacy")}</Link></li>
+              <li><Link href={`/${locale}/about`} className="hover:text-gold">{t("terms")}</Link></li>
             </ul>
-            <p className="mt-6 text-neutral-400 text-sm">{t("phone")}</p>
           </div>
         </div>
-
-        <div className="mt-16 pt-8 border-t border-neutral-800 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-500 text-xs">{t("copyright")}</p>
-          <div className="flex items-center gap-4 text-neutral-500 text-xs">
-            <span>MAD</span>
-            <span>•</span>
-            <span>🇲🇦 Morocco</span>
-          </div>
+        <div className="mt-12 pt-6 border-t border-cream/10 text-center">
+          <p className="text-xs text-cream/40 mb-2">{t("trustLine")}</p>
+          <p className="text-xs text-cream/30">{t("copyright")}</p>
         </div>
       </div>
     </footer>

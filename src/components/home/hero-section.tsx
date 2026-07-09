@@ -4,81 +4,77 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "motion/react";
-import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const TRUST_PILLS = ["cod", "morocco", "quality", "warranty", "shipping"] as const;
 
 export function HeroSection() {
   const t = useTranslations("hero");
   const locale = useLocale();
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
-      <div className="absolute inset-0 luxury-gradient">
-        <Image
-          src="https://images.unsplash.com/photo-1534796636912-3b95b772fc48?w=1920&q=80"
-          alt="NOORVA Hero"
-          fill
-          priority
-          className="object-cover opacity-40"
-          sizes="100vw"
-        />
-      </div>
-
-      <div className="relative container-luxury section-padding w-full">
-        <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span className="inline-flex items-center gap-2 text-gold text-xs tracking-[0.3em] uppercase mb-6">
-              <span className="w-8 h-px bg-gold" />
-              {t("badge")}
-            </span>
-
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] tracking-tight">
+    <section className="relative bg-cream overflow-hidden">
+      <div className="container-luxury px-4 py-12 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-light leading-[1.15] text-noir">
               {t("title")}
             </h1>
-
-            <p className="mt-6 text-neutral-300 text-base md:text-lg leading-relaxed max-w-lg">
+            <p className="mt-6 text-muted text-base md:text-lg leading-relaxed max-w-xl">
               {t("subtitle")}
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button variant="gold" size="lg" asChild>
-                <Link href={`/${locale}/products`}>
-                  {t("cta")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black" asChild>
-                <Link href={`/${locale}/products?filter=bestseller`}>{t("secondary")}</Link>
-              </Button>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {TRUST_PILLS.map((key) => (
+                <span key={key} className="inline-flex flex-col items-center bg-white border border-black/5 rounded-2xl px-4 py-3 min-w-[90px] shadow-soft">
+                  <span className="text-[10px] font-bold text-gold tracking-wider">{t(`pills.${key}.label`)}</span>
+                  <span className="text-[10px] text-muted mt-0.5 text-center">{t(`pills.${key}.desc`)}</span>
+                </span>
+              ))}
             </div>
 
-            <div className="mt-12 flex items-center gap-3">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-black bg-neutral-600 overflow-hidden">
-                    <Image
-                      src={`https://i.pravatar.cc/32?img=${i + 10}`}
-                      alt=""
-                      width={32}
-                      height={32}
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="h-3.5 w-3.5 fill-gold text-gold" />
-                ))}
-              </div>
-              <span className="text-neutral-400 text-sm">{t("trust")}</span>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <Button variant="gold" size="lg" className="rounded-full px-8" asChild>
+                <Link href={`/${locale}/products`}>{t("cta")}</Link>
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-full px-8 border-black/15" asChild>
+                <a href="#problems">{t("secondary")}</a>
+              </Button>
             </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="relative aspect-square max-w-lg mx-auto lg:ms-auto"
+          >
+            <div className="absolute inset-0 bg-gold/10 rounded-full blur-3xl" />
+            <Image
+              src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80"
+              alt="NOORVA Galaxy"
+              fill
+              priority
+              className="object-cover rounded-3xl shadow-luxury"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </motion.div>
         </div>
+
+        {/* Stats bar like Jadeel */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+        >
+          {(["customers", "rating", "orders", "satisfaction"] as const).map((key) => (
+            <div key={key} className="text-center bg-white rounded-2xl p-5 shadow-soft border border-black/5">
+              <p className="font-display text-2xl md:text-3xl text-gold">{t(`stats.${key}.value`)}</p>
+              <p className="text-xs text-muted mt-1">{t(`stats.${key}.label`)}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

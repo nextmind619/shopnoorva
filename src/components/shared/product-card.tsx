@@ -5,11 +5,9 @@ import Link from "next/link";
 import { useLocale } from "next-intl";
 import { motion } from "motion/react";
 import { Star, ShoppingBag } from "lucide-react";
-import type { Product } from "@/types";
-import type { Locale } from "@/types";
+import type { Product, Locale } from "@/types";
 import { getLocalized, formatPrice, calculateDiscount, cn } from "@/lib/utils";
 import { useCartStore } from "@/lib/store/cart-store";
-import { Button } from "@/components/ui/button";
 
 interface ProductCardProps {
   product: Product;
@@ -26,11 +24,7 @@ export function ProductCard({ product, priority = false, className }: ProductCar
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem({
-      productId: product.id,
-      variantId: defaultVariant.id,
-      quantity: 1,
-    });
+    addItem({ productId: product.id, variantId: defaultVariant.id, quantity: 1 });
   };
 
   return (
@@ -38,11 +32,11 @@ export function ProductCard({ product, priority = false, className }: ProductCar
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5 }}
-      className={cn("group product-card-hover", className)}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={cn("group", className)}
     >
       <Link href={`/${locale}/products/${product.slug}`}>
-        <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-100 shadow-soft">
           <Image
             src={product.images[0]?.url || ""}
             alt={getLocalized(product.images[0]?.alt || product.name, locale)}
@@ -51,39 +45,34 @@ export function ProductCard({ product, priority = false, className }: ProductCar
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             priority={priority}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-noir/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           {discount > 0 && (
-            <span className="absolute top-3 start-3 bg-gold text-black text-xs font-semibold px-2.5 py-1">
-              -{discount}%
-            </span>
+            <span className="absolute top-4 start-4 bg-gold text-noir text-xs font-semibold px-3 py-1 rounded-full">-{discount}%</span>
           )}
           {product.isTikTokViral && (
-            <span className="absolute top-3 end-3 bg-black/80 text-white text-[10px] font-medium px-2 py-1 tracking-wider">
-              TIKTOK
-            </span>
+            <span className="absolute top-4 end-4 glass-dark text-cream text-[10px] font-medium px-2.5 py-1 rounded-full tracking-wider">TIKTOK</span>
           )}
           <button
             onClick={handleAddToCart}
-            className="absolute bottom-3 end-3 bg-white p-2.5 opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-gold hover:text-black shadow-lg"
+            className="absolute bottom-4 end-4 glass p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-gold shadow-luxury"
             aria-label="Add to cart"
           >
             <ShoppingBag className="h-4 w-4" />
           </button>
         </div>
 
-        <div className="mt-4 space-y-1">
+        <div className="mt-5 space-y-2">
           <div className="flex items-center gap-1">
             <Star className="h-3 w-3 fill-gold text-gold" />
-            <span className="text-xs text-neutral-500">{product.rating} ({product.reviewCount})</span>
+            <span className="text-xs text-muted">{product.rating} ({product.reviewCount})</span>
           </div>
-          <h3 className="text-sm font-medium line-clamp-2 group-hover:text-gold transition-colors">
+          <h3 className="text-sm font-medium line-clamp-2 group-hover:text-gold transition-colors duration-300">
             {getLocalized(product.name, locale)}
           </h3>
           <div className="flex items-center gap-2">
             <span className="text-sm font-semibold">{formatPrice(defaultVariant.price, locale)}</span>
             {defaultVariant.compareAtPrice && (
-              <span className="text-xs text-neutral-400 line-through">
-                {formatPrice(defaultVariant.compareAtPrice, locale)}
-              </span>
+              <span className="text-xs text-muted line-through">{formatPrice(defaultVariant.compareAtPrice, locale)}</span>
             )}
           </div>
         </div>

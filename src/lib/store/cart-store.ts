@@ -7,12 +7,14 @@ import type { CartItem } from "@/types";
 interface CartState {
   items: CartItem[];
   couponCode: string | null;
+  isOpen: boolean;
   addItem: (item: CartItem) => void;
   removeItem: (productId: string, variantId: string) => void;
   updateQuantity: (productId: string, variantId: string, quantity: number) => void;
   clearCart: () => void;
   setCoupon: (code: string | null) => void;
   getItemCount: () => number;
+  setOpen: (open: boolean) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -20,6 +22,8 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       couponCode: null,
+      isOpen: false,
+      setOpen: (open) => set({ isOpen: open }),
       addItem: (item) => {
         set((state) => {
           const existing = state.items.find(
@@ -27,6 +31,7 @@ export const useCartStore = create<CartState>()(
           );
           if (existing) {
             return {
+              isOpen: true,
               items: state.items.map((i) =>
                 i.productId === item.productId && i.variantId === item.variantId
                   ? { ...i, quantity: i.quantity + item.quantity }
@@ -34,7 +39,7 @@ export const useCartStore = create<CartState>()(
               ),
             };
           }
-          return { items: [...state.items, item] };
+          return { items: [...state.items, item], isOpen: true };
         });
       },
       removeItem: (productId, variantId) => {

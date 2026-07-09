@@ -3,7 +3,7 @@
 import Link from "next/link";
 import {
   LayoutDashboard, Package, ShoppingCart, Users, Warehouse,
-  Ticket, BarChart3, ArrowLeft,
+  Ticket, BarChart3, ArrowLeft, Megaphone,
 } from "lucide-react";
 
 const navItems = [
@@ -14,6 +14,7 @@ const navItems = [
   { href: "/admin/customers", label: "Customers", icon: Users },
   { href: "/admin/inventory", label: "Inventory", icon: Warehouse },
   { href: "/admin/coupons", label: "Coupons", icon: Ticket },
+  { href: "/admin/marketing", label: "Marketing", icon: Megaphone },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
 ];
 
@@ -23,7 +24,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-64 bg-black text-white shrink-0 hidden md:flex md:flex-col relative">
         <div className="p-6">
           <Link href="/admin" className="font-display text-xl tracking-[0.2em]">
-            LUX<span className="text-gold">MAR</span>
+            NOOR<span className="text-gold">VA</span>
           </Link>
           <p className="text-xs text-neutral-500 mt-1">Admin Panel</p>
         </div>
@@ -40,15 +41,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           ))}
         </nav>
         <div className="p-6">
-          <Link href="/fr" className="flex items-center gap-2 text-xs text-neutral-500 hover:text-gold transition-colors">
+          <Link href="/ar" className="flex items-center gap-2 text-xs text-neutral-500 hover:text-gold transition-colors">
             <ArrowLeft className="h-3 w-3" /> Back to Store
           </Link>
         </div>
       </aside>
       <main className="flex-1 overflow-auto">
         <div className="md:hidden bg-black text-white p-4 flex items-center justify-between">
-          <span className="font-display tracking-[0.2em]">LUX<span className="text-gold">MAR</span> Admin</span>
-          <Link href="/fr" className="text-xs text-neutral-400">Store</Link>
+          <span className="font-display tracking-[0.2em]">NOOR<span className="text-gold">VA</span> Admin</span>
+          <Link href="/ar" className="text-xs text-neutral-400">Store</Link>
         </div>
         {children}
       </main>

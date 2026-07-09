@@ -54,6 +54,11 @@ export interface ProductBundle {
   discount: number;
 }
 
+export interface ProductSpec {
+  label: LocalizedString;
+  value: LocalizedString;
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -72,6 +77,11 @@ export interface Product {
   stock: number;
   sku: string;
   benefits: LocalizedString[];
+  features?: LocalizedString[];
+  specifications?: ProductSpec[];
+  packageIncludes?: LocalizedString[];
+  videoUrl?: string;
+  warrantyMonths?: number;
   ingredients?: LocalizedString;
   howToUse?: LocalizedString;
   isBestSeller: boolean;
@@ -83,6 +93,12 @@ export interface Product {
   upsellIds?: string[];
   crossSellIds?: string[];
   beforeAfter?: { before: string; after: string };
+  lifestyleImages?: string[];
+  problem?: LocalizedString;
+  problemCause?: LocalizedString;
+  problemSolution?: LocalizedString;
+  problemEmoji?: string;
+  deepDescription?: LocalizedString;
   seo: {
     title: LocalizedString;
     description: LocalizedString;
@@ -95,18 +111,18 @@ export interface CartItem {
   quantity: number;
 }
 
-export type PaymentMethod = "cod" | "bank_transfer" | "cmi" | "stripe";
+export type PaymentMethod = "cod";
 
 export interface ShippingAddress {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   phone: string;
-  email: string;
+  email?: string;
   address: string;
   city: string;
-  region: string;
-  postalCode: string;
+  region?: string;
+  postalCode?: string;
   country: string;
+  notes?: string;
 }
 
 export interface Order {

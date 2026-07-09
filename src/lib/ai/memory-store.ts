@@ -134,7 +134,7 @@ class MemoryStore {
   inventory: Record<string, number> = {
     "NRV-CRYSTAL-01": 86,
     "NRV-CAROUSEL-01": 120,
-    "NRV-DIAMOND-01": 64,
+    "NRV-STAR-01": 64,
     "NRV-ASTRO-01": 72,
   };
 }

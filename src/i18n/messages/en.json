@@ -7,11 +7,15 @@
     "contact": "Contact",
     "cart": "Cart",
     "search": "Search",
-    "account": "Account"
+    "account": "Account",
+    "track": "Track Order",
+    "collection": "Collection",
+    "tagline": "Premium lighting from within"
   },
   "announcement": {
     "text": "FREE shipping over 500 MAD · Cash on Delivery available",
-    "cta": "Shop Now"
+    "cta": "Shop Now",
+    "ticker": { "cod": "Cash on Delivery", "shipping": "24-48h Delivery", "warranty": "12-Month Warranty", "morocco": "Morocco Only", "secure": "100% Secure" }
   },
   "hero": {
     "badge": "Premium Lighting 2026",
@@ -33,6 +37,8 @@
     "videoTestimonials": "Video Testimonials",
     "beforeAfter": "Before / After",
     "benefits": "Why NOORVA",
+    "whyNoorva": "Why NOORVA",
+    "lifestyle": "NOORVA Lifestyle",
     "howItWorks": "How It Works",
     "faq": "FAQ",
     "instagram": "Follow Us",
@@ -98,20 +104,39 @@
     "verified": "Verified purchase",
     "askQuestion": "Ask a question",
     "save": "Save",
-    "selectVariant": "Select size"
+    "selectVariant": "Select color",
+    "specifications": "Specifications",
+    "features": "Features",
+    "packageIncludes": "Package Includes",
+    "warranty": "Warranty",
+    "shipping": "Shipping",
+    "video": "Product Video",
+    "viewer360": "360° View",
+    "dragToRotate": "Drag to rotate"
+  },
+  "trust": {
+    "shipping": { "title": "Free Shipping", "desc": "Over 500 MAD" },
+    "cod": { "title": "Cash on Delivery", "desc": "Pay at your door" },
+    "returns": { "title": "Easy Returns", "desc": "14 days for defects" },
+    "delivery": { "title": "24-48h Delivery", "desc": "Across Morocco" }
   },
   "checkout": {
     "title": "Checkout",
-    "contact": "Contact",
+    "badge": "Secure Checkout",
+    "subtitle": "Complete your order in one step — COD only",
+    "contact": "Delivery Info",
     "shipping": "Shipping Address",
-    "payment": "Payment Method",
+    "payment": "Payment",
     "summary": "Order Summary",
+    "fullName": "Full Name",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "phone": "Phone",
+    "phone": "Phone Number",
     "email": "Email",
     "address": "Address",
     "city": "City",
+    "notes": "Order Notes",
+    "notesPlaceholder": "Delivery instructions (optional)",
     "region": "Region",
     "postalCode": "Postal Code",
     "country": "Country",
@@ -121,13 +146,45 @@
     "shippingCost": "Shipping",
     "discount": "Discount",
     "total": "Total",
+    "free": "Free",
     "placeOrder": "Place Order",
+    "processing": "Processing...",
     "cod": "Cash on Delivery",
-    "bankTransfer": "Bank Transfer",
-    "cmi": "Credit Card (CMI)",
+    "codDesc": "Pay cash when you receive your order",
+    "deliveryNote": "24-48h delivery · Morocco only",
     "orderSuccess": "Order confirmed!",
     "orderNumber": "Order number",
-    "emptyCart": "Your cart is empty"
+    "emptyCart": "Your cart is empty",
+    "shopNow": "Shop Now"
+  },
+  "thankYou": {
+    "badge": "Thank You",
+    "title": "Order Received",
+    "subtitle": "We'll call you shortly to confirm your address. Cash on delivery.",
+    "orderNumber": "Order Number",
+    "whatsapp": "Confirm via WhatsApp",
+    "track": "Track Order",
+    "continue": "Continue Shopping",
+    "whatsappMessage": "Hi NOORVA, I'd like to confirm my order"
+  },
+  "track": {
+    "badge": "Tracking",
+    "title": "Track Your Order",
+    "subtitle": "Enter your order number and phone to see delivery status",
+    "orderNumber": "Order Number",
+    "phone": "Phone Number",
+    "search": "Search",
+    "searching": "Searching...",
+    "notFound": "Order not found",
+    "error": "Something went wrong",
+    "current": "Current status",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered"
+    }
   },
   "cart": {
     "title": "Cart",

@@ -34,18 +34,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid order data" }, { status: 400 });
     }
 
+    const nameParts = (shippingAddress.fullName || "").trim().split(/\s+/);
+    const firstName = nameParts[0] || "Client";
+    const lastName = nameParts.slice(1).join(" ") || "";
+
     const result = await processIncomingOrder({
       phone: shippingAddress.phone,
       email: shippingAddress.email,
-      firstName: shippingAddress.firstName,
-      lastName: shippingAddress.lastName,
+      firstName,
+      lastName,
       city: shippingAddress.city,
       address: shippingAddress.address,
-      paymentMethod,
+      notes: shippingAddress.notes,
+      paymentMethod: "cod",
       items,
       discount,
       cartId,
-      locale: "fr",
+      locale: (body as { locale?: string }).locale || "ar",
     });
 
     if (!result.success || !result.order) {

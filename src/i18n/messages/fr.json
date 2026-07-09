@@ -7,11 +7,15 @@
     "contact": "Contact",
     "cart": "Panier",
     "search": "Rechercher",
-    "account": "Compte"
+    "account": "Compte",
+    "track": "Suivi commande",
+    "collection": "Collection",
+    "tagline": "Lumière premium de l'intérieur"
   },
   "announcement": {
-    "text": "Livraison GRATUITE dès 500 MAD · Paiement à la livraison disponible",
-    "cta": "Commander"
+    "text": "Livraison GRATUITE dès 500 MAD · Paiement à la livraison",
+    "cta": "Commander",
+    "ticker": { "cod": "Paiement à la livraison", "shipping": "Livraison 24-48h", "warranty": "Garantie 12 mois", "morocco": "Maroc uniquement", "secure": "100% Sécurisé" }
   },
   "hero": {
     "badge": "Éclairage Premium 2026",
@@ -33,6 +37,8 @@
     "videoTestimonials": "Témoignages Vidéo",
     "beforeAfter": "Avant / Après",
     "benefits": "Pourquoi NOORVA",
+    "whyNoorva": "Pourquoi NOORVA",
+    "lifestyle": "Lifestyle NOORVA",
     "howItWorks": "Comment ça marche",
     "faq": "Questions Fréquentes",
     "instagram": "Suivez-nous",
@@ -98,20 +104,39 @@
     "verified": "Achat vérifié",
     "askQuestion": "Poser une question",
     "save": "Économisez",
-    "selectVariant": "Choisir la taille"
+    "selectVariant": "Choisir la couleur",
+    "specifications": "Spécifications",
+    "features": "Caractéristiques",
+    "packageIncludes": "Contenu du colis",
+    "warranty": "Garantie",
+    "shipping": "Livraison",
+    "video": "Vidéo produit",
+    "viewer360": "Vue 360°",
+    "dragToRotate": "Glisser pour tourner"
+  },
+  "trust": {
+    "shipping": { "title": "Livraison gratuite", "desc": "Dès 500 MAD" },
+    "cod": { "title": "Paiement à la livraison", "desc": "Payez à la porte" },
+    "returns": { "title": "Retours faciles", "desc": "14 jours si défaut" },
+    "delivery": { "title": "Livraison 24-48h", "desc": "Partout au Maroc" }
   },
   "checkout": {
     "title": "Finaliser la commande",
-    "contact": "Coordonnées",
+    "badge": "Paiement sécurisé",
+    "subtitle": "Une seule étape — paiement à la livraison uniquement",
+    "contact": "Informations de livraison",
     "shipping": "Adresse de livraison",
-    "payment": "Mode de paiement",
+    "payment": "Paiement",
     "summary": "Récapitulatif",
+    "fullName": "Nom complet",
     "firstName": "Prénom",
     "lastName": "Nom",
     "phone": "Téléphone",
     "email": "Email",
     "address": "Adresse",
     "city": "Ville",
+    "notes": "Notes de commande",
+    "notesPlaceholder": "Instructions de livraison (optionnel)",
     "region": "Région",
     "postalCode": "Code postal",
     "country": "Pays",
@@ -121,13 +146,45 @@
     "shippingCost": "Livraison",
     "discount": "Réduction",
     "total": "Total",
+    "free": "Gratuit",
     "placeOrder": "Confirmer la commande",
+    "processing": "Traitement...",
     "cod": "Paiement à la livraison",
-    "bankTransfer": "Virement bancaire",
-    "cmi": "Carte bancaire (CMI)",
+    "codDesc": "Payez en espèces à la réception",
+    "deliveryNote": "Livraison 24-48h · Maroc uniquement",
     "orderSuccess": "Commande confirmée!",
     "orderNumber": "Numéro de commande",
-    "emptyCart": "Votre panier est vide"
+    "emptyCart": "Votre panier est vide",
+    "shopNow": "Commander"
+  },
+  "thankYou": {
+    "badge": "Merci",
+    "title": "Commande reçue",
+    "subtitle": "Nous vous appellerons pour confirmer l'adresse. Paiement à la livraison.",
+    "orderNumber": "Numéro de commande",
+    "whatsapp": "Confirmer via WhatsApp",
+    "track": "Suivre la commande",
+    "continue": "Continuer vos achats",
+    "whatsappMessage": "Bonjour NOORVA, je confirme ma commande"
+  },
+  "track": {
+    "badge": "Suivi",
+    "title": "Suivre votre commande",
+    "subtitle": "Entrez le numéro et le téléphone pour voir le statut",
+    "orderNumber": "Numéro de commande",
+    "phone": "Téléphone",
+    "search": "Rechercher",
+    "searching": "Recherche...",
+    "notFound": "Commande introuvable",
+    "error": "Erreur, réessayez",
+    "current": "Statut actuel",
+    "status": {
+      "pending": "En attente",
+      "confirmed": "Confirmée",
+      "processing": "En préparation",
+      "shipped": "Expédiée",
+      "delivered": "Livrée"
+    }
   },
   "cart": {
     "title": "Panier",

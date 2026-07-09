@@ -63,7 +63,7 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
 
   return (
     <>
-      <div className="container-luxury px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div className="container-luxury px-4 sm:px-6 lg:px-8 py-8 md:py-12 pt-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Gallery */}
           <div className="space-y-4">
@@ -197,7 +197,7 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
 
             {product.benefits.length > 0 && (
               <div>
-                <h3 className="text-sm font-medium mb-3">{t("benefits")}</h3>
+                <h3 className="text-sm font-medium mb-3 uppercase tracking-widest text-gold">{t("benefits")}</h3>
                 <ul className="space-y-2">
                   {product.benefits.map((b, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-neutral-600">
@@ -208,22 +208,87 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
                 </ul>
               </div>
             )}
+
+            {product.features && product.features.length > 0 && (
+              <div className="grid grid-cols-2 gap-3">
+                {product.features.map((f, i) => (
+                  <div key={i} className="glass rounded-xl p-3 text-sm text-center">{getLocalized(f, locale)}</div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Video & 360 */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="premium-card rounded-2xl overflow-hidden aspect-video relative bg-noir">
+            <Image src={product.images[1]?.url || product.images[0]?.url} alt="" fill className="object-cover opacity-60" sizes="50vw" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-cream">
+              <div className="w-16 h-16 rounded-full glass-dark flex items-center justify-center mb-4">
+                <div className="w-0 h-0 border-t-8 border-b-8 border-s-transparent border-e-[14px] border-e-cream ms-1" />
+              </div>
+              <p className="text-sm tracking-widest uppercase">{t("video")}</p>
+            </div>
+          </div>
+          <div className="premium-card rounded-2xl p-6">
+            <p className="text-sm tracking-widest uppercase text-gold mb-4">{t("viewer360")}</p>
+            <div className="relative aspect-square bg-neutral-100 rounded-xl overflow-hidden cursor-grab active:cursor-grabbing"
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const idx = Math.floor(x * product.images.length) % product.images.length;
+                setActiveImage(idx);
+              }}
+            >
+              <Image src={product.images[activeImage]?.url || ""} alt="" fill className="object-cover" sizes="50vw" />
+            </div>
+            <p className="text-xs text-muted text-center mt-3">{t("dragToRotate")}</p>
           </div>
         </div>
 
         {/* Tabs Content */}
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-10">
             <div>
               <h2 className="font-display text-2xl mb-4">{t("description")}</h2>
-              <p className="text-neutral-600 leading-relaxed">{getLocalized(product.description, locale)}</p>
+              <p className="text-neutral-600 leading-relaxed text-lg">{getLocalized(product.description, locale)}</p>
             </div>
-            {product.ingredients && (
+
+            {product.specifications && product.specifications.length > 0 && (
               <div>
-                <h2 className="font-display text-2xl mb-4">{t("ingredients")}</h2>
-                <p className="text-neutral-600">{getLocalized(product.ingredients, locale)}</p>
+                <h2 className="font-display text-2xl mb-4">{t("specifications")}</h2>
+                <div className="premium-card rounded-2xl divide-y divide-black/5">
+                  {product.specifications.map((spec, i) => (
+                    <div key={i} className="flex justify-between p-4 text-sm">
+                      <span className="text-muted">{getLocalized(spec.label, locale)}</span>
+                      <span className="font-medium">{getLocalized(spec.value, locale)}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
+
+            {product.packageIncludes && product.packageIncludes.length > 0 && (
+              <div>
+                <h2 className="font-display text-2xl mb-4">{t("packageIncludes")}</h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {product.packageIncludes.map((item, i) => (
+                    <li key={i} className="flex items-center gap-2 text-sm premium-card rounded-xl p-4">
+                      <Check className="h-4 w-4 text-gold" />
+                      {getLocalized(item, locale)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {product.warrantyMonths && (
+              <div className="premium-card rounded-2xl p-6 border-gold/20">
+                <h2 className="font-display text-xl mb-2">{t("warranty")}</h2>
+                <p className="text-muted text-sm">{product.warrantyMonths} {locale === "ar" ? "شهر ضمان" : locale === "fr" ? "mois de garantie" : "months warranty"}</p>
+              </div>
+            )}
+
             {product.howToUse && (
               <div>
                 <h2 className="font-display text-2xl mb-4">{t("howToUse")}</h2>
@@ -318,7 +383,7 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             exit={{ y: 100 }}
-            className="fixed bottom-0 inset-x-0 z-40 bg-white border-t shadow-lg p-4 lg:hidden"
+            className="fixed bottom-0 inset-x-0 z-40 glass border-t border-black/5 shadow-luxury p-4 lg:hidden"
           >
             <div className="flex items-center gap-4">
               <div className="flex-1 min-w-0">

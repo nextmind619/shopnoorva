@@ -21,6 +21,7 @@ export async function processIncomingOrder(input: {
   lastName?: string;
   city: string;
   address: string;
+  notes?: string;
   paymentMethod?: string;
   items: Array<{ productId: string; variantId: string; quantity: number }>;
   discount?: number;

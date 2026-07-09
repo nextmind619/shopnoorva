@@ -19,7 +19,7 @@ export function ReviewsSection() {
   const locale = useLocale() as Locale;
 
   return (
-    <section className="section-padding bg-neutral-50">
+    <section className="section-padding bg-cream">
       <div className="container-luxury">
         <SectionHeader title={t("reviews")} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -30,7 +30,7 @@ export function ReviewsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white p-6 border border-neutral-100"
+              className="premium-card rounded-2xl p-6 shadow-soft"
             >
               <div className="flex items-center gap-1 mb-3">
                 {Array.from({ length: review.rating }).map((_, j) => (
@@ -122,6 +122,38 @@ export function BeforeAfterSection() {
   );
 }
 
+export function LifestyleSection() {
+  const t = useTranslations("sections");
+  const images = [
+    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80",
+    "https://images.unsplash.com/photo-1522771739844-6a9f6d2fafa1?w=800&q=80",
+    "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80",
+  ];
+
+  return (
+    <section className="section-padding bg-noir text-cream overflow-hidden">
+      <div className="container-luxury">
+        <SectionHeader title={t("lifestyle")} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {images.map((src, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.7 }}
+              className="relative aspect-[4/5] rounded-2xl overflow-hidden group"
+            >
+              <Image src={src} alt="" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="33vw" />
+              <div className="absolute inset-0 bg-gradient-to-t from-noir/80 via-transparent to-transparent" />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function BenefitsSection() {
   const t = useTranslations("benefits");
   const tSection = useTranslations("sections");
@@ -136,8 +168,8 @@ export function BenefitsSection() {
   return (
     <section className="section-padding">
       <div className="container-luxury">
-        <SectionHeader title={tSection("benefits")} />
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <SectionHeader title={tSection("whyNoorva")} />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map(({ icon: Icon, key }, i) => (
             <motion.div
               key={key}
@@ -145,13 +177,13 @@ export function BenefitsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="text-center"
+              className="premium-card rounded-2xl p-6 text-center"
             >
-              <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-neutral-200">
+              <div className="w-14 h-14 mx-auto mb-4 flex items-center justify-center rounded-full bg-gold/10">
                 <Icon className="h-6 w-6 text-gold" />
               </div>
               <h3 className="text-sm font-medium mb-2">{t(`${key}.title`)}</h3>
-              <p className="text-xs text-neutral-500 leading-relaxed">{t(`${key}.desc`)}</p>
+              <p className="text-xs text-muted leading-relaxed">{t(`${key}.desc`)}</p>
             </motion.div>
           ))}
         </div>
@@ -221,7 +253,7 @@ export function InstagramSection() {
   return (
     <section className="section-padding bg-neutral-50">
       <div className="container-luxury">
-        <SectionHeader title={t("instagram")} subtitle="@luxmar" />
+        <SectionHeader title={t("instagram")} subtitle="@shopnoorva" />
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
           {instagramPosts.map((post) => (
             <a
@@ -229,7 +261,7 @@ export function InstagramSection() {
               href={post.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-square overflow-hidden"
+              className="group relative aspect-square overflow-hidden rounded-xl"
             >
               <Image src={post.image} alt="Instagram" fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="16vw" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center">
