@@ -8,6 +8,7 @@ import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCartStore } from "@/lib/store/cart-store";
 import { getProductById } from "@/data/products";
 import { formatPrice, getLocalized } from "@/lib/utils";
+import { PriceDisplay } from "@/components/shared/price-display";
 import type { Locale } from "@/types";
 import { Button } from "@/components/ui/button";
 
@@ -71,7 +72,7 @@ export function CartDrawer() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium line-clamp-2">{getLocalized(item.product!.name, locale)}</p>
-                        <p className="text-sm font-semibold text-gold mt-1">{formatPrice(item.lineTotal, locale)}</p>
+                        <div className="mt-1"><PriceDisplay amount={item.lineTotal} size="sm" /></div>
                         <div className="flex items-center gap-2 mt-2">
                           <button onClick={() => updateQuantity(item.productId, item.variantId, item.quantity - 1)} className="w-7 h-7 rounded-full border flex items-center justify-center hover:border-gold">
                             <Minus className="h-3 w-3" />
@@ -87,9 +88,9 @@ export function CartDrawer() {
                   ))}
                 </div>
                 <div className="p-5 border-t border-black/5 space-y-4">
-                  <div className="flex justify-between text-lg font-semibold">
-                    <span>{t("total")}</span>
-                    <span className="text-gold">{formatPrice(total, locale)}</span>
+                  <div className="flex justify-between items-end">
+                    <span className="font-semibold">{t("total")}</span>
+                    <PriceDisplay amount={total} size="md" />
                   </div>
                   <Button variant="gold" size="lg" className="w-full rounded-full" asChild>
                     <Link href={`/${locale}/checkout`} onClick={() => setOpen(false)}>{t("checkout")} 🚚</Link>

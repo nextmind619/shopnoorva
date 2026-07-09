@@ -6,12 +6,21 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatPrice(amount: number, locale: Locale = "fr"): string {
-  const formatted = new Intl.NumberFormat(
+export function formatPriceNumber(amount: number, locale: Locale = "ar"): string {
+  return new Intl.NumberFormat(
     locale === "ar" ? "ar-MA" : locale === "fr" ? "fr-MA" : "en-MA",
-    { style: "currency", currency: "MAD", minimumFractionDigits: 0, maximumFractionDigits: 2 }
+    { minimumFractionDigits: 0, maximumFractionDigits: 0 }
   ).format(amount);
-  return formatted;
+}
+
+export function getCurrencyLabel(locale: Locale): string {
+  if (locale === "ar") return "درهم مغربي";
+  if (locale === "fr") return "dirhams marocains";
+  return "Moroccan Dirham";
+}
+
+export function formatPrice(amount: number, locale: Locale = "ar"): string {
+  return `${formatPriceNumber(amount, locale)} ${getCurrencyLabel(locale)}`;
 }
 
 export function formatNumber(num: number, locale: Locale = "fr"): string {
@@ -31,7 +40,7 @@ export function calculateDiscount(price: number, compareAtPrice?: number): numbe
 }
 
 export function generateOrderNumber(): string {
-  const prefix = "LXM";
+  const prefix = "NRV";
   const timestamp = Date.now().toString(36).toUpperCase();
   const random = Math.random().toString(36).substring(2, 6).toUpperCase();
   return `${prefix}-${timestamp}-${random}`;

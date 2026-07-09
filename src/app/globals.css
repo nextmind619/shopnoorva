@@ -1,27 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --noir: #0b0b0b;
-  --cream: #f8f6f2;
-  --gold: #c8a96b;
-  --gold-light: #d4bc8a;
-  --gold-dark: #a88b4a;
-  --muted: #6b6b6b;
-  --border: rgba(11, 11, 11, 0.08);
-  --glass: rgba(248, 246, 242, 0.72);
-  --shadow-soft: 0 8px 32px rgba(11, 11, 11, 0.06);
-  --shadow-luxury: 0 24px 64px rgba(11, 11, 11, 0.12);
+  --bg: #fffdf8;
+  --surface: #ffffff;
+  --noir: #1a1612;
+  --cream: var(--bg);
+  --gold: #c8943c;
+  --gold-light: #e0b86a;
+  --gold-dark: #9a7328;
+  --navy: #1a2f4a;
+  --price: #166534;
+  --muted: #57534e;
+  --border: rgba(26, 22, 18, 0.1);
+  --glass: rgba(255, 253, 248, 0.85);
+  --shadow-soft: 0 8px 32px rgba(26, 22, 18, 0.07);
+  --shadow-luxury: 0 20px 56px rgba(26, 22, 18, 0.12);
 }
 
 @theme inline {
   --color-noir: var(--noir);
   --color-cream: var(--cream);
+  --color-surface: var(--surface);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);
+  --color-navy: var(--navy);
+  --color-price: var(--price);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-cairo);
   --font-display: var(--font-playfair);
   --animate-accordion-down: accordion-down 0.3s ease-out;
   --animate-accordion-up: accordion-up 0.3s ease-out;
@@ -53,15 +60,17 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--cream);
+  background: var(--bg);
   color: var(--noir);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-cairo), "Segoe UI", Tahoma, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .font-display {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-playfair), var(--font-cairo), Georgia, serif;
 }
 
 ::selection {
@@ -73,14 +82,14 @@ body {
   background: var(--glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .glass-dark {
-  background: rgba(11, 11, 11, 0.72);
+  background: rgba(26, 47, 74, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .shadow-soft { box-shadow: var(--shadow-soft); }
@@ -101,13 +110,17 @@ body {
 }
 
 .premium-card {
-  @apply bg-white/80 backdrop-blur-sm border border-black/5 transition-all duration-500;
+  @apply bg-white backdrop-blur-sm border border-black/8 transition-all duration-500;
 }
 
 .premium-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-luxury);
-  border-color: rgba(200, 169, 107, 0.2);
+  border-color: rgba(200, 148, 60, 0.35);
+}
+
+.price-display .text-price {
+  color: var(--price);
 }
 
 .line-clamp-2 {
@@ -139,7 +152,6 @@ body {
   animation-direction: reverse;
 }
 
-/* Premium scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }

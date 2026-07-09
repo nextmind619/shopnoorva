@@ -8,6 +8,7 @@ import { Star, ChevronLeft, ChevronRight, Play, Check, X } from "lucide-react";
 import { products, reviews, faqs } from "@/data/products";
 import type { Locale, Product } from "@/types";
 import { getLocalized, formatPrice } from "@/lib/utils";
+import { PriceDisplay } from "@/components/shared/price-display";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/lib/store/cart-store";
@@ -98,8 +99,7 @@ function ProductShowcase({ product, locale, reversed, onAdd }: { product: Produc
         <h3 className="font-display text-2xl md:text-3xl font-light mt-3">{getLocalized(product.name, locale)}</h3>
         <p className="text-muted mt-4 leading-relaxed">{getLocalized(product.deepDescription || product.description, locale)}</p>
         <div className="flex items-baseline gap-3 mt-6">
-          <span className="text-2xl font-semibold text-gold">{formatPrice(variant.price, locale)}</span>
-          {variant.compareAtPrice && <span className="text-muted line-through">{formatPrice(variant.compareAtPrice, locale)}</span>}
+          <PriceDisplay amount={variant.price} compareAt={variant.compareAtPrice} size="lg" />
         </div>
         <div className="flex gap-3 mt-6">
           <Button variant="gold" className="rounded-full" onClick={onAdd}>{t("addToCart")}</Button>
@@ -123,7 +123,7 @@ export function ComparisonSection() {
           <p className="text-muted mt-3">{t("subtitle")}</p>
         </div>
         <div className="bg-white rounded-3xl shadow-soft overflow-hidden border border-black/5">
-          <div className="grid grid-cols-3 bg-[#0B1B3A] text-cream text-sm font-medium p-4">
+          <div className="grid grid-cols-3 bg-navy text-cream text-sm font-medium p-4">
             <span>{t("feature")}</span>
             <span className="text-center text-gold">NOORVA</span>
             <span className="text-center">{t("cheap")}</span>
@@ -209,7 +209,7 @@ export function TikTokReviewsSection() {
   }));
 
   return (
-    <section className="section-padding bg-[#0B1B3A] text-cream">
+    <section className="section-padding bg-navy text-cream">
       <div className="container-luxury px-4">
         <div className="text-center mb-10">
           <h2 className="font-display text-3xl font-light">{t("tiktokReviews")}</h2>
@@ -301,7 +301,7 @@ export function FinalCTASection() {
   const t = useTranslations("finalCta");
   const locale = useLocale();
   return (
-    <section className="section-padding bg-[#0B1B3A] text-cream text-center">
+    <section className="section-padding bg-navy text-cream text-center">
       <div className="container-luxury px-4 max-w-xl mx-auto">
         <h2 className="font-display text-3xl font-light">{t("title")}</h2>
         <p className="text-cream/70 mt-4">{t("subtitle")}</p>

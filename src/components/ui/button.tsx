@@ -8,8 +8,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-black text-white hover:bg-neutral-800 active:scale-[0.98]",
-        gold: "bg-gold text-black hover:bg-gold-light active:scale-[0.98]",
+        default: "bg-noir text-cream hover:bg-navy active:scale-[0.98]",
+        gold: "bg-gold text-noir hover:bg-gold-light active:scale-[0.98] font-semibold",
         outline: "border border-black bg-transparent text-black hover:bg-black hover:text-white",
         ghost: "hover:bg-neutral-100 text-black",
         link: "text-black underline-offset-4 hover:underline",

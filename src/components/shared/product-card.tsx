@@ -6,7 +6,8 @@ import { useLocale } from "next-intl";
 import { motion } from "motion/react";
 import { Star, ShoppingBag } from "lucide-react";
 import type { Product, Locale } from "@/types";
-import { getLocalized, formatPrice, calculateDiscount, cn } from "@/lib/utils";
+import { getLocalized, calculateDiscount, cn } from "@/lib/utils";
+import { PriceDisplay } from "@/components/shared/price-display";
 import { useCartStore } from "@/lib/store/cart-store";
 
 interface ProductCardProps {
@@ -66,15 +67,10 @@ export function ProductCard({ product, priority = false, className }: ProductCar
             <Star className="h-3 w-3 fill-gold text-gold" />
             <span className="text-xs text-muted">{product.rating} ({product.reviewCount})</span>
           </div>
-          <h3 className="text-sm font-medium line-clamp-2 group-hover:text-gold transition-colors duration-300">
+          <h3 className="text-base font-semibold line-clamp-2 group-hover:text-gold transition-colors duration-300">
             {getLocalized(product.name, locale)}
           </h3>
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold">{formatPrice(defaultVariant.price, locale)}</span>
-            {defaultVariant.compareAtPrice && (
-              <span className="text-xs text-muted line-through">{formatPrice(defaultVariant.compareAtPrice, locale)}</span>
-            )}
-          </div>
+          <PriceDisplay amount={defaultVariant.price} compareAt={defaultVariant.compareAtPrice} size="sm" />
         </div>
       </Link>
     </motion.div>

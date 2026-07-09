@@ -20,7 +20,7 @@ const TRUST_TICKER = [
 export function AnnouncementBar() {
   const t = useTranslations("announcement");
   return (
-    <div className="bg-[#0B1B3A] text-cream text-center py-2 px-4 text-xs sm:text-sm overflow-hidden relative z-[60]">
+    <div className="bg-navy text-cream text-center py-2 px-4 text-xs sm:text-sm overflow-hidden relative z-[60]">
       <div className="flex animate-marquee whitespace-nowrap gap-12">
         {[...TRUST_TICKER, ...TRUST_TICKER].map((item, i) => (
           <span key={i} className="inline-flex items-center gap-2">
@@ -115,7 +115,7 @@ export function Footer() {
   const locale = useLocale();
 
   return (
-    <footer className="bg-[#0B1B3A] text-cream">
+    <footer className="bg-navy text-cream">
       <div className="container-luxury section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">

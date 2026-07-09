@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cairo, Playfair_Display } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -7,10 +7,11 @@ import { AnnouncementBar, Header, Footer } from "@/components/layout/header-foot
 import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
 import "../globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-cairo",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const playfair = Playfair_Display({
@@ -38,7 +39,7 @@ export default async function LocaleLayout({
   const dir = localeDirections[locale] || "ltr";
 
   return (
-    <html lang={locale} dir={dir} className={`${inter.variable} ${playfair.variable} h-full`}>
+    <html lang={locale} dir={dir} className={`${cairo.variable} ${playfair.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
         <NextIntlClientProvider messages={messages}>
           <AnalyticsScripts />

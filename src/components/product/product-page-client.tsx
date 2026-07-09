@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Star, Minus, Plus, ShoppingBag, Truck, Shield, ChevronLeft, ChevronRight, ZoomIn, Check } from "lucide-react";
 import type { Product, Locale } from "@/types";
 import { getLocalized, formatPrice, calculateDiscount, getShippingCost } from "@/lib/utils";
+import { PriceDisplay } from "@/components/shared/price-display";
 import { useCartStore } from "@/lib/store/cart-store";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
 import { Button } from "@/components/ui/button";
@@ -132,17 +133,17 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
               <p className="mt-3 text-neutral-600 leading-relaxed">{getLocalized(product.shortDescription, locale)}</p>
             </div>
 
-            <div className="flex items-baseline gap-3">
-              <span className="text-2xl font-semibold">{formatPrice(selectedVariant.price, locale)}</span>
-              {selectedVariant.compareAtPrice && (
-                <>
-                  <span className="text-lg text-neutral-400 line-through">{formatPrice(selectedVariant.compareAtPrice, locale)}</span>
-                  {discount > 0 && (
-                    <span className="text-sm bg-gold text-black px-2 py-0.5 font-medium">{t("save")} {discount}%</span>
-                  )}
-                </>
-              )}
-            </div>
+            <PriceDisplay
+              amount={selectedVariant.price}
+              compareAt={selectedVariant.compareAtPrice}
+              size="xl"
+              className="mt-2"
+            />
+            {discount > 0 && (
+              <span className="inline-block mt-3 text-sm bg-gold/15 text-gold-dark px-3 py-1 rounded-full font-semibold">
+                {t("save")} {discount}%
+              </span>
+            )}
 
             {product.variants.length > 1 && (
               <div>
@@ -388,7 +389,7 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
             <div className="flex items-center gap-4">
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium truncate">{getLocalized(product.name, locale)}</p>
-                <p className="text-sm font-semibold">{formatPrice(selectedVariant.price, locale)}</p>
+                <p className="text-sm font-semibold"><PriceDisplay amount={selectedVariant.price} size="sm" /></p>
               </div>
               <Button variant="gold" onClick={handleAddToCart}>{tSections("addToCart")}</Button>
             </div>

@@ -9,6 +9,7 @@ import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCartStore } from "@/lib/store/cart-store";
 import { getProductById } from "@/data/products";
 import { formatPrice, getLocalized } from "@/lib/utils";
+import { PriceDisplay } from "@/components/shared/price-display";
 import type { Locale } from "@/types";
 import { Button } from "@/components/ui/button";
 
@@ -67,7 +68,7 @@ export function CartPageClient() {
                     <button onClick={() => updateQuantity(item.productId, item.variantId, item.quantity + 1)} className="p-2"><Plus className="h-3 w-3" /></button>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="font-semibold">{formatPrice(item.lineTotal, locale)}</span>
+                    <PriceDisplay amount={item.lineTotal} size="sm" />
                     <button onClick={() => removeItem(item.productId, item.variantId)} className="text-neutral-400 hover:text-red-500 transition-colors">
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -89,9 +90,9 @@ export function CartPageClient() {
               <span className="text-neutral-500">{tCheckout("shippingCost")}</span>
               <span>{subtotal >= 500 ? "Gratuit" : formatPrice(25, locale)}</span>
             </div>
-            <div className="border-t pt-3 flex justify-between font-semibold text-base">
+            <div className="border-t pt-3 flex justify-between items-end font-semibold">
               <span>{tCheckout("total")}</span>
-              <span>{formatPrice(subtotal + (subtotal >= 500 ? 0 : 25), locale)}</span>
+              <PriceDisplay amount={subtotal + (subtotal >= 500 ? 0 : 25)} size="md" />
             </div>
           </div>
           <Button variant="gold" size="lg" className="w-full mt-6" asChild>

@@ -9,6 +9,7 @@ import { Check, Truck, Banknote, MessageCircle } from "lucide-react";
 import { useCartStore } from "@/lib/store/cart-store";
 import { getProductById, moroccanCities } from "@/data/products";
 import { formatPrice, getLocalized, getShippingCost } from "@/lib/utils";
+import { PriceDisplay } from "@/components/shared/price-display";
 import type { Locale, ShippingAddress } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -167,7 +168,7 @@ export function CheckoutPageClient() {
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium truncate">{getLocalized(item.product!.name, locale)}</p>
                           <p className="text-xs text-muted">{getLocalized(item.variant!.name, locale)}</p>
-                          <p className="text-sm font-semibold mt-1">{formatPrice(item.lineTotal, locale)}</p>
+                          <div className="mt-1"><PriceDisplay amount={item.lineTotal} size="sm" /></div>
                         </div>
                       </div>
                     ))}
@@ -175,7 +176,10 @@ export function CheckoutPageClient() {
                   <div className="space-y-2 text-sm border-t border-black/5 pt-4">
                     <div className="flex justify-between"><span className="text-muted">{t("subtotal")}</span><span>{formatPrice(subtotal, locale)}</span></div>
                     <div className="flex justify-between"><span className="text-muted">{t("shippingCost")}</span><span>{shipping === 0 ? t("free") : formatPrice(shipping, locale)}</span></div>
-                    <div className="flex justify-between font-semibold text-lg pt-3 border-t border-black/5"><span>{t("total")}</span><span className="text-gold">{formatPrice(total, locale)}</span></div>
+                    <div className="flex justify-between font-semibold text-lg pt-3 border-t border-black/5 items-end">
+                      <span>{t("total")}</span>
+                      <PriceDisplay amount={total} size="md" />
+                    </div>
                   </div>
                   <Button variant="gold" size="lg" type="submit" className="w-full mt-6 rounded-full" disabled={loading}>
                     {loading ? t("processing") : t("placeOrder")}
