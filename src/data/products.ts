@@ -150,10 +150,10 @@ export const products: Product[] = [
     ],
     howToUse: L("ضع في غرفة مظلمة، وجّه القبّة للسقف، استخدم الريموت لاختيار اللون والمؤقت.", "Pièce sombre, dôme vers plafond, télécommande.", "Dark room, aim at ceiling, use remote."),
     images: [
-      { id: "img-1", url: "/products/crystal-galaxy.svg", alt: L("كريستال أسود", "Cristal noir", "Black crystal"), type: "image" },
-      { id: "img-2", url: "/products/crystal-galaxy.svg", alt: L("تأثير المجرة", "Galaxie", "Galaxy effect"), type: "image" },
+      { id: "img-1", url: "/products/crystal-galaxy.jpg", alt: L("بروجيكتور كريستال مجرة — 10 ألوان + بلوتوث + ريموت", "Projecteur cristal — 10 couleurs, Bluetooth, télécommande", "Crystal galaxy projector — 10 colors, Bluetooth, remote"), type: "image" },
+      { id: "img-2", url: "/products/crystal-galaxy.jpg", alt: L("تأثير المجرة على السقف", "Effet galaxie au plafond", "Galaxy projection on ceiling"), type: "image" },
     ],
-    lifestyleImages: ["/products/crystal-galaxy.svg"],
+    lifestyleImages: ["/products/crystal-galaxy.jpg"],
     variants: [{ id: "var-crystal", name: L("أسود", "Noir", "Black"), price: 149, compareAtPrice: 229, sku: "NRV-CRYSTAL-01", stock: 86 }],
     upsellIds: ["prod-astronaut", "prod-star"],
     crossSellIds: ["prod-carousel"],
@@ -332,12 +332,12 @@ export const faqs: FAQ[] = [
 export const testimonials: Testimonial[] = [
   { id: "t1", name: "ليلى", city: "الدار البيضاء", videoThumbnail: "/products/astronaut-galaxy.svg", videoUrl: "#", quote: L("بروجيكتور رائد الفضاء بدّل أجواء غرفتي", "Astronaute a changé ma chambre", "Astronaut changed my room") },
   { id: "t2", name: "نادية", city: "مراكش", videoThumbnail: "/products/carousel-night.svg", videoUrl: "#", quote: L("الكاروسيل أحسن هدية", "Meilleur cadeau", "Best gift ever") },
-  { id: "t3", name: "إيمان", city: "الرباط", videoThumbnail: "/products/crystal-galaxy.svg", videoUrl: "#", quote: L("البروجيكتور الكريستال خرافي", "Le cristal est incroyable", "Crystal is amazing") },
+  { id: "t3", name: "إيمان", city: "الرباط", videoThumbnail: "/products/crystal-galaxy.jpg", videoUrl: "#", quote: L("البروجيكتور الكريستال خرافي", "Le cristal est incroyable", "Crystal is amazing") },
   { id: "t4", name: "يوسف", city: "طنجة", videoThumbnail: "/products/galaxy-star.svg", videoUrl: "#", quote: L("Galaxy Star كيشعل الغرفة", "Galaxy Star illumine tout", "Galaxy Star lights the room") },
 ];
 
 export const instagramPosts: InstagramPost[] = [
-  { id: "ig1", image: "/products/crystal-galaxy.svg", url: "https://instagram.com/shopnoorva", likes: 2847 },
+  { id: "ig1", image: "/products/crystal-galaxy.jpg", url: "https://instagram.com/shopnoorva", likes: 2847 },
   { id: "ig2", image: "/products/astronaut-galaxy.svg", url: "https://instagram.com/shopnoorva", likes: 1923 },
   { id: "ig3", image: "/products/galaxy-star.svg", url: "https://instagram.com/shopnoorva", likes: 3456 },
   { id: "ig4", image: "/products/carousel-night.svg", url: "https://instagram.com/shopnoorva", likes: 1567 },

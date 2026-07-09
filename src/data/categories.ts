@@ -10,7 +10,7 @@ export const categories: Category[] = [
       fr: "Astronaute, cristal et étoiles galaxy",
       en: "Astronaut, crystal and galaxy star projectors",
     },
-    image: "/products/crystal-galaxy.svg",
+    image: "/products/crystal-galaxy.jpg",
     productCount: 3,
   },
   {
