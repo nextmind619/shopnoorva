@@ -29,6 +29,7 @@ export interface ProductImage {
 
 export interface ProductReview {
   id: string;
+  productId?: string;
   author: string;
   city: string;
   rating: number;
@@ -37,6 +38,14 @@ export interface ProductReview {
   date: string;
   verified: boolean;
   images?: string[];
+  hasVideo?: boolean;
+}
+
+export interface LifestyleScene {
+  id: string;
+  emoji: string;
+  title: LocalizedString;
+  description: LocalizedString;
 }
 
 export interface ProductQuestion {
@@ -94,6 +103,7 @@ export interface Product {
   crossSellIds?: string[];
   beforeAfter?: { before: string; after: string };
   lifestyleImages?: string[];
+  lifestyleScenes?: LifestyleScene[];
   problem?: LocalizedString;
   problemCause?: LocalizedString;
   problemSolution?: LocalizedString;

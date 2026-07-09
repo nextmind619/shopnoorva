@@ -136,10 +136,18 @@ export const products: Product[] = [
       L("مؤقت إيقاف تلقائي", "Minuterie", "Auto-off timer"),
     ],
     specifications: [
-      { label: L("اللون", "Couleur", "Color"), value: L("أسود", "Noir", "Black") },
-      { label: L("الألوان", "Couleurs", "Colors"), value: L("10 أوضاع", "10 modes", "10 modes") },
-      { label: L("البلوتوث", "Bluetooth", "Bluetooth"), value: L("نعم + سبيكر", "Oui + speaker", "Yes + speaker") },
-      { label: L("الطاقة", "Alimentation", "Power"), value: L("USB 5V", "USB 5V", "USB 5V") },
+      { label: L("المادة", "Matériau", "Material"), value: L("ABS + قبّة كريستال", "ABS + dôme cristal", "ABS + crystal dome") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("USB 5V / DC Type-C", "USB 5V / DC Type-C", "USB 5V / DC Type-C") },
+      { label: L("نوع USB", "Type USB", "USB Type"), value: L("USB-A + Type-C IN", "USB-A + Type-C IN", "USB-A + Type-C IN") },
+      { label: L("نوع LED", "Type LED", "LED Type"), value: L("RGB متعدد الألوان", "RGB multicolore", "Multicolor RGB") },
+      { label: L("مسافة الإسقاط", "Distance projection", "Projection Distance"), value: L("2–5 متر", "2–5 m", "2–5 m") },
+      { label: L("أوضاع الإضاءة", "Modes lumière", "Light Modes"), value: L("10 ألوان + مجرة", "10 couleurs + galaxie", "10 colors + galaxy") },
+      { label: L("المؤقت", "Minuterie", "Timer"), value: L("نعم — إيقاف تلقائي", "Oui — arrêt auto", "Yes — auto-off") },
+      { label: L("الريموت", "Télécommande", "Remote"), value: L("ريموت IR كامل", "Télécommande IR", "Full IR remote") },
+      { label: L("البلوتوث", "Bluetooth", "Bluetooth"), value: L("5.0 + سبيكر مدمج", "5.0 + haut-parleur", "5.0 + built-in speaker") },
+      { label: L("وضع الموسيقى", "Mode musique", "Music Mode"), value: L("مزامنة مع الإيقاع", "Sync au rythme", "Rhythm sync") },
+      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("Ø 15 × 12 سم", "Ø 15 × 12 cm", "Ø 15 × 12 cm") },
+      { label: L("الوزن", "Poids", "Weight"), value: L("450 غ", "450 g", "450 g") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
     ],
     packageIncludes: [
@@ -151,9 +159,17 @@ export const products: Product[] = [
     howToUse: L("ضع في غرفة مظلمة، وجّه القبّة للسقف، استخدم الريموت لاختيار اللون والمؤقت.", "Pièce sombre, dôme vers plafond, télécommande.", "Dark room, aim at ceiling, use remote."),
     images: [
       { id: "img-1", url: "/products/crystal-galaxy.jpg", alt: L("بروجيكتور كريستال مجرة — 10 ألوان + بلوتوث + ريموت", "Projecteur cristal — 10 couleurs, Bluetooth, télécommande", "Crystal galaxy projector — 10 colors, Bluetooth, remote"), type: "image" },
-      { id: "img-2", url: "/products/crystal-galaxy.jpg", alt: L("تأثير المجرة على السقف", "Effet galaxie au plafond", "Galaxy projection on ceiling"), type: "image" },
+      { id: "img-2", url: "/products/crystal-galaxy.jpg", alt: L("تأثير المجرة على السقف والجدران", "Projection galaxie plafond et murs", "Galaxy projection on ceiling and walls"), type: "image" },
+      { id: "img-3", url: "/products/crystal-galaxy.jpg", alt: L("ريموت التحكم والميزات", "Télécommande et fonctionnalités", "Remote control and features"), type: "image" },
     ],
     lifestyleImages: ["/products/crystal-galaxy.jpg"],
+    lifestyleScenes: [
+      { id: "bedroom", emoji: "🛏️", title: L("غرفة النوم", "Chambre", "Bedroom"), description: L("حوّل غرفتك إلى كون ساحر قبل النوم", "Univers apaisant avant de dormir", "Turn your bedroom into a cosmic retreat") },
+      { id: "gaming", emoji: "🎮", title: L("غرفة الجيمنغ", "Gaming", "Gaming Room"), description: L("أجواء سينمائية للعب والبث المباشر", "Ambiance cinéma pour gaming et stream", "Cinematic vibe for gaming and streaming") },
+      { id: "kids", emoji: "🧸", title: L("غرفة الأطفال", "Enfants", "Kids Room"), description: L("إضاءة ناعمة تطمن وتساعد على النوم", "Lumière douce et rassurante", "Soft light that soothes and comforts") },
+      { id: "living", emoji: "🛋️", title: L("غرفة المعيشة", "Salon", "Living Room"), description: L("ديكور فاخر يبان فالتصوير والاستقبال", "Déco premium pour photos et soirées", "Premium decor for photos and evenings") },
+      { id: "romantic", emoji: "💫", title: L("أجواء رومانسية", "Romantique", "Romantic"), description: L("مجرة خاصة لأمسيات على قد الحب", "Galaxie intime pour soirées à deux", "Private galaxy for intimate evenings") },
+    ],
     variants: [{ id: "var-crystal", name: L("أسود", "Noir", "Black"), price: 149, compareAtPrice: 229, sku: "NRV-CRYSTAL-01", stock: 86 }],
     upsellIds: ["prod-astronaut", "prod-star"],
     crossSellIds: ["prod-carousel"],
@@ -313,12 +329,14 @@ export const products: Product[] = [
 ];
 
 export const reviews: ProductReview[] = [
-  { id: "r1", author: "سارة المنصوري", city: "الدار البيضاء", rating: 5, title: L("حولت غرفتي!", "Chambre transformée!", "Transformed my room!"), content: L("بروجيكتور رائد الفضاء رائع. التوصيل سريع والدفع عند الاستلام مريح.", "Projecteur astronaute génial. Livraison rapide.", "Astronaut projector amazing. Fast delivery."), date: "2026-06-20", verified: true },
-  { id: "r2", author: "يوسف العلوي", city: "الرباط", rating: 5, title: L("فيرال تيك توك", "Viral TikTok", "TikTok viral"), content: L("البروجيكتور الكريستال كيعطي تصوير خرافي للريلز.", "Le cristal est parfait pour les Reels.", "Crystal perfect for Reels."), date: "2026-06-18", verified: true },
-  { id: "r3", author: "إيمان بنجلون", city: "مراكش", rating: 5, title: L("هدية بنتي", "Cadeau fille", "Daughter gift"), content: L("الكاروسيل الوردي زوين بزاف. بنتي فرحات.", "Carrousel rose adorable.", "Pink carousel adorable."), date: "2026-06-12", verified: true },
-  { id: "r4", author: "أمين التازي", city: "طنجة", rating: 5, title: L("جودة عالية", "Haute qualité", "High quality"), content: L("بروجيكتور النجوم كيشعل الغرفة كاملة. أنصح بيه.", "Galaxy Star illumine toute la pièce.", "Galaxy Star lights whole room."), date: "2026-06-08", verified: true },
-  { id: "r5", author: "خديجة الفاسي", city: "فاس", rating: 5, title: L("خدمة ممتازة", "Service top", "Great service"), content: L("طلبت بالواتساب والدفع عند الاستلام. كلشي ساهل.", "Commande facile COD.", "Easy COD order."), date: "2026-06-01", verified: true },
-  { id: "r6", author: "محمد برادة", city: "أكادير", rating: 5, title: L("أجواء سينمائية", "Ambiance cinéma", "Cinema vibe"), content: L("شريت جوج بروجيكتورات. الغرفة ولاّت سينما.", "Deux projecteurs = ambiance cinéma.", "Two projectors = cinema."), date: "2026-05-25", verified: true },
+  { id: "r1", productId: "prod-astronaut", author: "سارة المنصوري", city: "الدار البيضاء", rating: 5, title: L("حولت غرفتي!", "Chambre transformée!", "Transformed my room!"), content: L("بروجيكتور رائد الفضاء رائع. التوصيل سريع والدفع عند الاستلام مريح.", "Projecteur astronaute génial. Livraison rapide.", "Astronaut projector amazing. Fast delivery."), date: "2026-06-20", verified: true, images: ["/products/astronaut-galaxy.svg"] },
+  { id: "r2", productId: "prod-crystal", author: "يوسف العلوي", city: "الرباط", rating: 5, title: L("فيرال تيك توك", "Viral TikTok", "TikTok viral"), content: L("البروجيكتور الكريستال كيعطي تصوير خرافي للريلز. البلوتوث والريموت زوينين بزاف.", "Le cristal est parfait pour les Reels. Bluetooth impeccable.", "Crystal perfect for Reels. Bluetooth and remote are great."), date: "2026-06-18", verified: true, images: ["/products/crystal-galaxy.jpg"], hasVideo: true },
+  { id: "r3", productId: "prod-carousel", author: "إيمان بنجلون", city: "مراكش", rating: 5, title: L("هدية بنتي", "Cadeau fille", "Daughter gift"), content: L("الكاروسيل الوردي زوين بزاف. بنتي فرحات.", "Carrousel rose adorable.", "Pink carousel adorable."), date: "2026-06-12", verified: true, images: ["/products/carousel-night.svg"] },
+  { id: "r4", productId: "prod-star", author: "أمين التازي", city: "طنجة", rating: 5, title: L("جودة عالية", "Haute qualité", "High quality"), content: L("بروجيكتور النجوم كيشعل الغرفة كاملة. أنصح بيه.", "Galaxy Star illumine toute la pièce.", "Galaxy Star lights whole room."), date: "2026-06-08", verified: true, images: ["/products/galaxy-star.svg"] },
+  { id: "r5", productId: "prod-crystal", author: "خديجة الفاسي", city: "فاس", rating: 5, title: L("خدمة ممتازة", "Service top", "Great service"), content: L("طلبت بالواتساب والدفع عند الاستلام. كلشي ساهل.", "Commande facile COD.", "Easy COD order."), date: "2026-06-01", verified: true, images: ["/products/crystal-galaxy.jpg"] },
+  { id: "r6", productId: "prod-crystal", author: "محمد برادة", city: "أكادير", rating: 5, title: L("أجواء سينمائية", "Ambiance cinéma", "Cinema vibe"), content: L("شريت جوج بروجيكتورات. الغرفة ولاّت سينما.", "Deux projecteurs = ambiance cinéma.", "Two projectors = cinema."), date: "2026-05-25", verified: true, hasVideo: true },
+  { id: "r7", productId: "prod-crystal", author: "نور الهدى", city: "الدار البيضاء", rating: 5, title: L("أحسن شراء", "Meilleur achat", "Best purchase"), content: L("10 ألوان ومجرة قوية. الريموت كيخدم مزيان.", "10 couleurs, galaxie puissante.", "10 colors, strong galaxy effect."), date: "2026-05-18", verified: true, images: ["/products/crystal-galaxy.jpg"] },
+  { id: "r8", productId: "prod-astronaut", author: "كريم بنعيسى", city: "الرباط", rating: 4, title: L("كيوت وفاخر", "Mignon et premium", "Cute and premium"), content: L("رائد الفضاء كيوت بزاف. الهدية ممتازة.", "Astronaute trop mignon.", "Super cute astronaut design."), date: "2026-05-10", verified: true },
 ];
 
 export const faqs: FAQ[] = [
@@ -350,8 +368,8 @@ export const coupons: Coupon[] = [
 
 export const moroccanCities = [
   "الدار البيضاء", "الرباط", "مراكش", "فاس", "طنجة", "أكادير", "مكناس", "وجدة",
-  "القنيطرة", "تطوان", "آسفي", "الجديدة", "الناظور", "بني ملال",
-  "Casablanca", "Rabat", "Marrakech", "Fès", "Tanger", "Agadir",
+  "القنيطرة", "تطوان", "آسفي", "الجديدة", "الناظور", "بني ملال", "سلا", "العيون",
+  "المحمدية", "خريبكة", "سطات", "تازة", "الحسيمة", "ورزازات",
 ];
 
 export function getProductBySlug(slug: string) { return products.find((p) => p.slug === slug); }
@@ -362,7 +380,10 @@ export function getTrending() { return products.filter((p) => p.isTrending); }
 export function getTikTokViral() { return products.filter((p) => p.isTikTokViral); }
 export function getFeatured() { return products.filter((p) => p.isFeatured); }
 export function getFlashSaleProducts() { return products.filter((p) => p.flashSaleEndsAt); }
-export function getReviewsForProduct(_id: string) { return reviews; }
+export function getReviewsForProduct(productId: string) {
+  const matched = reviews.filter((r) => r.productId === productId);
+  return matched.length > 0 ? matched : reviews.slice(0, 4);
+}
 
 export function validateCoupon(code: string, subtotal: number) {
   const coupon = coupons.find((c) => c.code.toUpperCase() === code.toUpperCase() && c.active);

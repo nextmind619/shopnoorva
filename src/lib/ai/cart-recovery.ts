@@ -60,7 +60,7 @@ export async function processAbandonedCarts(): Promise<{
     if (ageHours < stages[nextStage]) continue;
 
     const templateKey = nextStage === 0 ? "abandoned_cart_1" : "abandoned_cart_2";
-    const link = `https://shopnoorva.shop/fr/checkout?recover=${cart.id}`;
+    const link = `https://shopnoorva.shop/ar/checkout?recover=${cart.id}`;
     const productIds = cart.items.map((i) => i.productId);
     const upsell = await suggestUpsells({ productIds, locale: "fr" });
 

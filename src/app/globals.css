@@ -28,8 +28,13 @@
   --color-price: var(--price);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-luxury-black: #0b0b0b;
+  --color-luxury-bg: #f8f6f2;
+  --color-luxury-gold: #c8a96b;
+  --color-luxury-gold-dark: #9a8048;
+  --color-luxury-muted: #6b6560;
   --font-sans: var(--font-cairo);
-  --font-display: var(--font-playfair);
+  --font-display: var(--font-tajawal);
   --animate-accordion-down: accordion-down 0.3s ease-out;
   --animate-accordion-up: accordion-up 0.3s ease-out;
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -70,7 +75,11 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-playfair), var(--font-cairo), Georgia, serif;
+  font-family: var(--font-tajawal), var(--font-cairo), sans-serif;
+}
+
+.product-luxury {
+  font-family: var(--font-tajawal), var(--font-cairo), sans-serif;
 }
 
 ::selection {
@@ -118,6 +127,17 @@ body {
   box-shadow: var(--shadow-luxury);
   border-color: rgba(200, 148, 60, 0.35);
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
 
 .price-display .text-price {
   color: var(--price);

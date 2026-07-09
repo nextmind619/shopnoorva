@@ -2,8 +2,6 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { products, getProductBySlug, getProductById } from "@/data/products";
-import { getLocalized } from "@/lib/utils";
-import type { Locale } from "@/types";
 import { ProductPageClient } from "@/components/product/product-page-client";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL } from "@/lib/site";
@@ -22,12 +20,13 @@ export async function generateMetadata({
   if (!product) return {};
 
   return {
-    title: getLocalized(product.seo.title, locale as Locale),
-    description: getLocalized(product.seo.description, locale as Locale),
+    title: product.seo.title.ar,
+    description: product.seo.description.ar,
     openGraph: {
-      title: getLocalized(product.name, locale as Locale),
-      description: getLocalized(product.shortDescription, locale as Locale),
+      title: product.name.ar,
+      description: product.shortDescription.ar,
       images: [{ url: product.images[0]?.url || "" }],
+      locale: "ar_MA",
     },
   };
 }
@@ -37,8 +36,8 @@ export default async function ProductPage({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { locale, slug } = await params;
-  setRequestLocale(locale);
+  const { slug } = await params;
+  setRequestLocale("ar");
 
   const product = getProductBySlug(slug);
   if (!product) notFound();
@@ -53,8 +52,8 @@ export default async function ProductPage({
         data={{
           "@context": "https://schema.org",
           "@type": "Product",
-          name: getLocalized(product.name, locale as Locale),
-          description: getLocalized(product.description, locale as Locale),
+          name: product.name.ar,
+          description: product.description.ar,
           image: product.images.map((i) => i.url),
           sku: product.sku,
           brand: { "@type": "Brand", name: "NOORVA" },
@@ -63,7 +62,7 @@ export default async function ProductPage({
             price: defaultVariant.price,
             priceCurrency: "MAD",
             availability: defaultVariant.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-            url: `${SITE_URL}/${locale}/products/${product.slug}`,
+            url: `${SITE_URL}/ar/products/${product.slug}`,
           },
           aggregateRating: {
             "@type": "AggregateRating",

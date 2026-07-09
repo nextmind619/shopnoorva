@@ -1,11 +1,24 @@
 import createMiddleware from "next-intl/middleware";
-import { locales, defaultLocale } from "./i18n/config";
+import { NextRequest, NextResponse } from "next/server";
+import { defaultLocale } from "./i18n/config";
 
-export default createMiddleware({
-  locales,
-  defaultLocale,
+const intlMiddleware = createMiddleware({
+  locales: ["ar"],
+  defaultLocale: "ar",
   localePrefix: "always",
 });
+
+export default function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (/^\/(fr|en)(\/|$)/.test(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname.replace(/^\/(fr|en)/, `/${defaultLocale}`);
+    return NextResponse.redirect(url);
+  }
+
+  return intlMiddleware(request);
+}
 
 export const config = {
   matcher: ["/", "/(ar|fr|en)/:path*", "/((?!api|admin|_next|_vercel|.*\\..*).*)"],

@@ -10,7 +10,8 @@
     "account": "Compte",
     "track": "Suivi commande",
     "collection": "Collection",
-    "tagline": "Lumière premium de l'intérieur"
+    "tagline": "Lumière premium de l'intérieur",
+    "whatsapp": "WhatsApp"
   },
   "announcement": {
     "text": "Livraison GRATUITE dès 500 MAD · Paiement à la livraison",
@@ -54,6 +55,14 @@
     "delivery": { "title": "Livraison Rapide", "desc": "24-48h dans les grandes villes" },
     "cod": { "title": "Paiement à la Livraison", "desc": "Payez en espèces à réception" },
     "returns": { "title": "Garantie 12 Mois", "desc": "Achetez en toute confiance" }
+  },
+  "pillars": {
+    "title": "Éclairage premium · Pas du dropshipping",
+    "subtitle": "Qualité réelle · Design luxe · Service marocain.",
+    "quality": { "title": "Qualité réelle", "desc": "Projecteurs sélectionnés avec soin." },
+    "design": { "title": "Design premium", "desc": "Astronaute, cristal, diamant — photogénique." },
+    "service": { "title": "Service marocain", "desc": "Appel de confirmation. Support WhatsApp." },
+    "guarantee": { "title": "Garantie 12 mois", "desc": "Pas satisfait ? Contactez-nous." }
   },
   "howItWorks": {
     "step1": { "title": "Commandez", "desc": "Choisissez vos produits et validez" },
@@ -112,7 +121,33 @@
     "shipping": "Livraison",
     "video": "Vidéo produit",
     "viewer360": "Vue 360°",
-    "dragToRotate": "Glisser pour tourner"
+    "dragToRotate": "Glisser pour tourner",
+    "sku": "SKU",
+    "lowStock": "Plus que {count}",
+    "codBadge": "Paiement à la livraison",
+    "codOnly": "COD uniquement",
+    "deliveryTime": "Livraison 24-48h partout au Maroc",
+    "added": "Ajouté",
+    "wishlist": "Favoris",
+    "share": "Partager",
+    "benefitsTitle": "Pourquoi ce produit ?",
+    "storyTitle": "Plus qu'une lumière — une expérience",
+    "specsSubtitle": "Spécifications précises · Qualité NOORVA",
+    "lifestyle": "Lifestyle",
+    "lifestyleTitle": "Transformez chaque pièce",
+    "whyNoorva": "Pourquoi NOORVA ?",
+    "faqTitle": "Questions fréquentes",
+    "customerVideo": "Vidéo client",
+    "trust": {
+      "cod": { "title": "Paiement à la livraison", "desc": "Payez à la porte" },
+      "shipping": { "title": "Livraison gratuite", "desc": "Dès 500 MAD" },
+      "packaging": { "title": "Emballage sécurisé", "desc": "Protection totale" },
+      "delivery": { "title": "Livraison rapide", "desc": "24-48 heures" },
+      "returns": { "title": "Retours faciles", "desc": "14 jours si défaut" },
+      "warranty": { "title": "Garantie 12 mois", "desc": "Tranquillité assurée" }
+    },
+    "filter": { "all": "Tous", "5": "5 étoiles", "photos": "Avec photos", "video": "Vidéo" },
+    "sort": { "recent": "Récent", "rating": "Mieux notés" }
   },
   "trust": {
     "shipping": { "title": "Livraison gratuite", "desc": "Dès 500 MAD" },

@@ -1,8 +1,8 @@
-import { Cairo, Playfair_Display } from "next/font/google";
+import { Cairo, Tajawal } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { locales, localeDirections } from "@/i18n/config";
+import { locales } from "@/i18n/config";
 import { AnnouncementBar, Header, Footer } from "@/components/layout/header-footer";
 import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
 import "../globals.css";
@@ -14,10 +14,11 @@ const cairo = Cairo({
   weight: ["400", "500", "600", "700"],
 });
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
+const tajawal = Tajawal({
+  subsets: ["arabic"],
+  variable: "--font-tajawal",
   display: "swap",
+  weight: ["400", "500", "700", "800"],
 });
 
 export function generateStaticParams() {
@@ -36,10 +37,9 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
-  const dir = localeDirections[locale] || "ltr";
 
   return (
-    <html lang={locale} dir={dir} className={`${cairo.variable} ${playfair.variable} h-full`}>
+    <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
         <NextIntlClientProvider messages={messages}>
           <AnalyticsScripts />

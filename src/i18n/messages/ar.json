@@ -10,7 +10,8 @@
     "account": "حسابي",
     "track": "تتبع الطلب",
     "collection": "المجموعة",
-    "tagline": "إضاءة فاخرة من الداخل"
+    "tagline": "إضاءة فاخرة من الداخل",
+    "whatsapp": "واتساب"
   },
   "announcement": {
     "text": "توصيل مجاني فوق 500 درهم · الدفع عند الاستلام في جميع المدن",
@@ -31,7 +32,7 @@
     "secondary": "أي مشكلة عندك؟",
     "trust": "+3,200 عميل راضٍ",
     "pills": {
-      "cod": { "label": "COD", "desc": "دفع عند الاستلام" },
+      "cod": { "label": "كاش", "desc": "دفع عند الاستلام" },
       "morocco": { "label": "المغرب", "desc": "حصري في المغرب" },
       "quality": { "label": "جودة", "desc": "منتجات مختارة" },
       "warranty": { "label": "ضمان", "desc": "12 شهر" },
@@ -189,7 +190,41 @@
     "shipping": "التوصيل",
     "video": "فيديو المنتج",
     "viewer360": "عرض 360°",
-    "dragToRotate": "اسحب للدوران"
+    "dragToRotate": "اسحب للدوران",
+    "sku": "رمز المنتج",
+    "lowStock": "باقي {count} فقط",
+    "codBadge": "الدفع عند الاستلام",
+    "codOnly": "كاش عند الاستلام",
+    "deliveryTime": "توصيل 24-48 ساعة في جميع مدن المغرب",
+    "added": "تمت الإضافة",
+    "wishlist": "المفضلة",
+    "share": "مشاركة",
+    "benefitsTitle": "لماذا هذا المنتج؟",
+    "storyTitle": "أكثر من إضاءة — تجربة حياة",
+    "specsSubtitle": "مواصفات تقنية دقيقة · جودة NOORVA",
+    "lifestyle": "أسلوب الحياة",
+    "lifestyleTitle": "حوّل كل غرفة إلى عالمك الخاص",
+    "whyNoorva": "لماذا NOORVA؟",
+    "faqTitle": "أسئلة شائعة",
+    "customerVideo": "فيديو عميل",
+    "trust": {
+      "cod": { "title": "دفع عند الاستلام", "desc": "خلّص كاش عند الباب" },
+      "shipping": { "title": "توصيل مجاني", "desc": "فوق 500 درهم" },
+      "packaging": { "title": "تغليف آمن", "desc": "حماية كاملة للمنتج" },
+      "delivery": { "title": "توصيل سريع", "desc": "24-48 ساعة" },
+      "returns": { "title": "إرجاع سهل", "desc": "14 يوم للعيوب" },
+      "warranty": { "title": "ضمان 12 شهر", "desc": "راحة بال تامة" }
+    },
+    "filter": {
+      "all": "الكل",
+      "5": "5 نجوم",
+      "photos": "مع صور",
+      "video": "فيديو"
+    },
+    "sort": {
+      "recent": "الأحدث",
+      "rating": "الأعلى تقييماً"
+    }
   },
   "trust": {
     "shipping": { "title": "توصيل مجاني", "desc": "فوق 500 درهم" },

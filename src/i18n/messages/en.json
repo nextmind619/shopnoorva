@@ -10,7 +10,8 @@
     "account": "Account",
     "track": "Track Order",
     "collection": "Collection",
-    "tagline": "Premium lighting from within"
+    "tagline": "Premium lighting from within",
+    "whatsapp": "WhatsApp"
   },
   "announcement": {
     "text": "FREE shipping over 500 MAD · Cash on Delivery available",
@@ -54,6 +55,14 @@
     "delivery": { "title": "Fast Delivery", "desc": "24-48h in major cities" },
     "cod": { "title": "Cash on Delivery", "desc": "Pay cash upon receipt" },
     "returns": { "title": "12-Month Warranty", "desc": "Shop with confidence" }
+  },
+  "pillars": {
+    "title": "Premium lighting · Not dropshipping",
+    "subtitle": "Real quality · Luxury design · Moroccan service.",
+    "quality": { "title": "Real Quality", "desc": "Carefully selected projectors." },
+    "design": { "title": "Luxury Design", "desc": "Astronaut, crystal, diamond — photogenic." },
+    "service": { "title": "Moroccan Service", "desc": "Confirmation call. WhatsApp support." },
+    "guarantee": { "title": "12-Month Warranty", "desc": "Not happy? Contact us." }
   },
   "howItWorks": {
     "step1": { "title": "Order", "desc": "Choose products and checkout" },
@@ -112,7 +121,33 @@
     "shipping": "Shipping",
     "video": "Product Video",
     "viewer360": "360° View",
-    "dragToRotate": "Drag to rotate"
+    "dragToRotate": "Drag to rotate",
+    "sku": "SKU",
+    "lowStock": "Only {count} left",
+    "codBadge": "Cash on Delivery",
+    "codOnly": "COD only",
+    "deliveryTime": "24-48h delivery across Morocco",
+    "added": "Added",
+    "wishlist": "Wishlist",
+    "share": "Share",
+    "benefitsTitle": "Why this product?",
+    "storyTitle": "More than light — a lifestyle",
+    "specsSubtitle": "Precise specs · NOORVA quality",
+    "lifestyle": "Lifestyle",
+    "lifestyleTitle": "Transform every room",
+    "whyNoorva": "Why NOORVA?",
+    "faqTitle": "Frequently Asked Questions",
+    "customerVideo": "Customer video",
+    "trust": {
+      "cod": { "title": "Cash on Delivery", "desc": "Pay at your door" },
+      "shipping": { "title": "Free Shipping", "desc": "Over 500 MAD" },
+      "packaging": { "title": "Secure Packaging", "desc": "Full protection" },
+      "delivery": { "title": "Fast Delivery", "desc": "24-48 hours" },
+      "returns": { "title": "Easy Returns", "desc": "14 days for defects" },
+      "warranty": { "title": "12-Month Warranty", "desc": "Peace of mind" }
+    },
+    "filter": { "all": "All", "5": "5 stars", "photos": "With photos", "video": "Video" },
+    "sort": { "recent": "Recent", "rating": "Top rated" }
   },
   "trust": {
     "shipping": { "title": "Free Shipping", "desc": "Over 500 MAD" },

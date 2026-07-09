@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { Menu, X, ShoppingBag, Globe } from "lucide-react";
+import { Menu, X, ShoppingBag, Search, MessageCircle } from "lucide-react";
 import { useCartStore } from "@/lib/store/cart-store";
 import { CartDrawer } from "@/components/layout/cart-drawer";
-import { cn } from "@/lib/utils";
-import { locales, localeNames } from "@/i18n/config";
+import { WHATSAPP_URL } from "@/lib/site";
+
+const LOCALE = "ar";
 
 const TRUST_TICKER = [
   { key: "cod", icon: "💵" },
@@ -35,17 +37,28 @@ export function AnnouncementBar() {
 
 export function Header() {
   const t = useTranslations("nav");
-  const locale = useLocale();
+  const tCommon = useTranslations("common");
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const itemCount = useCartStore((s) => s.getItemCount());
   const setCartOpen = useCartStore((s) => s.setOpen);
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/${LOCALE}/products?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchOpen(false);
+      setSearchQuery("");
+    }
+  };
+
   const navLinks = [
-    { href: `/${locale}`, label: t("home") },
-    { href: `/${locale}/products`, label: t("collection") },
-    { href: `/${locale}/about`, label: t("about") },
-    { href: `/${locale}/track`, label: t("track") },
+    { href: `/${LOCALE}`, label: t("home") },
+    { href: `/${LOCALE}/products`, label: t("collection") },
+    { href: `/${LOCALE}/about`, label: t("about") },
+    { href: `/${LOCALE}/track`, label: t("track") },
   ];
 
   return (
@@ -64,29 +77,20 @@ export function Header() {
             ))}
           </nav>
 
-          <Link href={`/${locale}`} className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-center">
+          <Link href={`/${LOCALE}`} className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center text-center">
             <span className="font-display text-2xl md:text-3xl font-semibold tracking-[0.15em]">
               NOOR<span className="text-gold">VA</span>
             </span>
             <span className="text-[10px] text-muted tracking-widest hidden sm:block">{t("tagline")}</span>
           </Link>
 
-          <div className="flex items-center gap-2">
-            <div className="relative hidden sm:block">
-              <button onClick={() => setLangOpen(!langOpen)} className="p-2 hover:text-gold flex items-center gap-1">
-                <Globe className="h-4 w-4" />
-                <span className="text-xs uppercase">{locale}</span>
-              </button>
-              {langOpen && (
-                <div className="absolute top-full end-0 mt-1 bg-white border shadow-lg py-2 min-w-[120px] rounded-xl z-50">
-                  {locales.map((l) => (
-                    <Link key={l} href={`/${l}`} className={cn("block px-4 py-2 text-sm hover:text-gold", l === locale && "text-gold font-medium")} onClick={() => setLangOpen(false)}>
-                      {localeNames[l]}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <button type="button" onClick={() => setSearchOpen(!searchOpen)} className="p-2 hover:text-gold hidden sm:flex" aria-label={t("search")}>
+              <Search className="h-4 w-4" />
+            </button>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="p-2 hover:text-gold" aria-label={t("whatsapp")}>
+              <MessageCircle className="h-4 w-4" />
+            </a>
             <button onClick={() => setCartOpen(true)} className="relative w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-gold hover:text-gold transition-colors" aria-label={t("cart")}>
               <ShoppingBag className="h-5 w-5" />
               {itemCount > 0 && (
@@ -95,6 +99,24 @@ export function Header() {
             </button>
           </div>
         </div>
+
+        {searchOpen && (
+          <form onSubmit={handleSearch} className="border-t bg-cream px-4 py-3">
+            <div className="container-luxury flex gap-2">
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={tCommon("search")}
+                className="flex-1 h-11 px-4 rounded-full border border-black/10 bg-white text-sm focus:outline-none focus:border-gold"
+                autoFocus
+              />
+              <button type="submit" className="h-11 px-5 rounded-full bg-noir text-cream text-sm font-medium hover:bg-noir/90">
+                {t("search")}
+              </button>
+            </div>
+          </form>
+        )}
 
         {menuOpen && (
           <nav className="lg:hidden border-t bg-cream px-4 py-4 flex flex-col gap-3">
@@ -112,7 +134,6 @@ export function Header() {
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
-  const locale = useLocale();
 
   return (
     <footer className="bg-navy text-cream">
@@ -123,30 +144,30 @@ export function Footer() {
             <p className="text-cream/60 text-sm mt-2">{tNav("tagline")}</p>
             <p className="text-cream/50 text-sm mt-4 leading-relaxed">{t("tagline")}</p>
             <div className="mt-5 flex gap-4">
-              <a href="https://instagram.com/shopnoorva" target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-gold text-sm">Instagram</a>
+              <a href="https://instagram.com/shopnoorva" target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-gold text-sm">إنستغرام</a>
               <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-gold text-sm">{t("whatsapp")}</a>
             </div>
           </div>
           <div>
             <h4 className="text-sm font-medium mb-4 text-gold">{t("shop")}</h4>
             <ul className="space-y-2 text-sm text-cream/60">
-              <li><Link href={`/${locale}`} className="hover:text-gold">{tNav("home")}</Link></li>
-              <li><Link href={`/${locale}/products`} className="hover:text-gold">{tNav("collection")}</Link></li>
-              <li><Link href={`/${locale}/about`} className="hover:text-gold">{t("about")}</Link></li>
+              <li><Link href={`/${LOCALE}`} className="hover:text-gold">{tNav("home")}</Link></li>
+              <li><Link href={`/${LOCALE}/products`} className="hover:text-gold">{tNav("collection")}</Link></li>
+              <li><Link href={`/${LOCALE}/about`} className="hover:text-gold">{t("about")}</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="text-sm font-medium mb-4 text-gold">{t("support")}</h4>
             <ul className="space-y-2 text-sm text-cream/60">
-              <li><Link href={`/${locale}/track`} className="hover:text-gold">{tNav("track")}</Link></li>
+              <li><Link href={`/${LOCALE}/track`} className="hover:text-gold">{tNav("track")}</Link></li>
               <li><a href="https://wa.me/212600000000" className="hover:text-gold">{t("contact")}</a></li>
             </ul>
           </div>
           <div>
             <h4 className="text-sm font-medium mb-4 text-gold">{t("legal")}</h4>
             <ul className="space-y-2 text-sm text-cream/60">
-              <li><Link href={`/${locale}/about`} className="hover:text-gold">{t("privacy")}</Link></li>
-              <li><Link href={`/${locale}/about`} className="hover:text-gold">{t("terms")}</Link></li>
+              <li><Link href={`/${LOCALE}/about`} className="hover:text-gold">{t("privacy")}</Link></li>
+              <li><Link href={`/${LOCALE}/about`} className="hover:text-gold">{t("terms")}</Link></li>
             </ul>
           </div>
         </div>

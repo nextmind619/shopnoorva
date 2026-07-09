@@ -263,7 +263,7 @@ export function InstagramSection() {
               rel="noopener noreferrer"
               className="group relative aspect-square overflow-hidden rounded-xl"
             >
-              <Image src={post.image} alt="Instagram" fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="16vw" />
+              <Image src={post.image} alt="منشور إنستغرام" fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="16vw" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center">
                 <span className="text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">♥ {post.likes}</span>
               </div>

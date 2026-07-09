@@ -51,7 +51,7 @@ export function ProductCard({ product, priority = false, className }: ProductCar
             <span className="absolute top-4 start-4 bg-gold text-noir text-xs font-semibold px-3 py-1 rounded-full">-{discount}%</span>
           )}
           {product.isTikTokViral && (
-            <span className="absolute top-4 end-4 glass-dark text-cream text-[10px] font-medium px-2.5 py-1 rounded-full tracking-wider">TIKTOK</span>
+            <span className="absolute top-4 end-4 glass-dark text-cream text-[10px] font-medium px-2.5 py-1 rounded-full tracking-wider">تيك توك</span>
           )}
           <button
             onClick={handleAddToCart}
