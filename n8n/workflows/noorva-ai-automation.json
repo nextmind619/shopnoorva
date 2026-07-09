@@ -1,0 +1,109 @@
+{
+  "name": "NOORVA AI Automation Hub",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "order-processed",
+        "httpMethod": "POST",
+        "responseMode": "onReceived"
+      },
+      "name": "Order Processed Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [260, 300]
+    },
+    {
+      "parameters": {
+        "path": "daily-analytics",
+        "httpMethod": "POST",
+        "responseMode": "onReceived"
+      },
+      "name": "Daily Analytics Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [260, 520]
+    },
+    {
+      "parameters": {
+        "path": "google-sheets-sync",
+        "httpMethod": "POST",
+        "responseMode": "onReceived"
+      },
+      "name": "Google Sheets Sync",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [260, 740]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "hours", "hoursInterval": 1 }]
+        }
+      },
+      "name": "Hourly Cron",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [260, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.NOORVA_APP_URL}}/api/ai/cron",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "x-cron-secret", "value": "={{$env.CRON_SECRET}}" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [{ "name": "task", "value": "tick" }]
+        }
+      },
+      "name": "Run NOORVA Automation Tick",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [540, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.NOORVA_APP_URL}}/api/ai/cart",
+        "sendBody": false
+      },
+      "name": "Force Cart Recovery",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [540, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "={{$env.GOOGLE_SHEETS_ID}}" },
+        "sheetName": { "__rl": true, "value": "DailyAnalytics" },
+        "columns": {
+          "mappingMode": "autoMapInputData"
+        }
+      },
+      "name": "Append Daily Analytics Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [540, 740]
+    }
+  ],
+  "connections": {
+    "Hourly Cron": {
+      "main": [[{ "node": "Run NOORVA Automation Tick", "type": "main", "index": 0 }]]
+    },
+    "Order Processed Webhook": {
+      "main": [[{ "node": "Force Cart Recovery", "type": "main", "index": 0 }]]
+    },
+    "Google Sheets Sync": {
+      "main": [[{ "node": "Append Daily Analytics Sheet", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "timezone": "Africa/Casablanca"
+  }
+}
