@@ -51,7 +51,7 @@ export function HeroSection() {
           >
             <div className="absolute inset-0 bg-gold/10 rounded-full blur-3xl" />
             <Image
-              src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80"
+              src="/products/crystal-galaxy.svg"
               alt="NOORVA Galaxy"
               fill
               priority

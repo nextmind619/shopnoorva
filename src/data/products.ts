@@ -10,9 +10,9 @@ export const products: Product[] = [
     slug: "astronaut-galaxy-projector",
     name: L("بروجيكتور رائد الفضاء", "Projecteur Astronaute Galaxy", "Astronaut Galaxy Projector"),
     shortDescription: L(
-      "رائد فضاء أبيض يعرض مجرة من الخوذة مع ريموت — الأكثر مبيعًا",
-      "Astronaute blanc projetant une galaxie depuis le casque avec télécommande",
-      "White astronaut projecting galaxy from helmet with remote"
+      "رائد فضاء أبيض بسبيكر + مجرة من الخوذة + ريموت أسود",
+      "Astronaute blanc avec haut-parleur, galaxie et télécommande",
+      "White astronaut with speaker, galaxy projection and remote"
     ),
     description: L(
       "بروجيكتور رائد الفضاء من NOORVA يحوّل غرفتك إلى عالم فضائي ساحر. تصميم كيوت فاخر، إضاءة مجرة قوية، ريموت للتحكم، ومثالي كهدية أو ديكور غرفة النوم والجيمنغ. الدفع عند الاستلام في جميع مدن المغرب.",
@@ -50,9 +50,9 @@ export const products: Product[] = [
       L("هدية مثالية", "Cadeau parfait", "Perfect gift"),
     ],
     features: [
-      L("10 ألوان إضاءة", "10 couleurs", "10 light colors"),
-      L("تأثير نجوم + سديم", "Étoiles + nébuleuse", "Stars + nebula"),
-      L("ريموت تحكم كامل", "Télécommande complète", "Full remote control"),
+      L("مجرة من الخوذة", "Galaxie depuis casque", "Galaxy from helmet"),
+      L("سبيكر مدمج في الصدر", "Haut-parleur intégré", "Built-in chest speaker"),
+      L("ريموت تحكم أسود", "Télécommande noire", "Black remote control"),
       L("تشغيل USB", "Alimentation USB", "USB powered"),
     ],
     specifications: [
@@ -73,14 +73,10 @@ export const products: Product[] = [
       "Remove protective film, place on stable surface, power on in dark room."
     ),
     images: [
-      { id: "img-1", url: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80", alt: L("رائد الفضاء", "Astronaute", "Astronaut"), type: "image" },
-      { id: "img-2", url: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80", alt: L("تأثير المجرة", "Galaxie", "Galaxy"), type: "image" },
-      { id: "img-3", url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80", alt: L("فضاء", "Espace", "Space"), type: "image" },
+      { id: "img-1", url: "/products/astronaut-galaxy.svg", alt: L("رائد الفضاء", "Astronaute", "Astronaut"), type: "image" },
+      { id: "img-2", url: "/products/astronaut-galaxy.svg", alt: L("تأثير المجرة", "Galaxie", "Galaxy"), type: "image" },
     ],
-    lifestyleImages: [
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d2fafa1?w=1200&q=80",
-    ],
+    lifestyleImages: ["/products/astronaut-galaxy.svg"],
     variants: [{ id: "var-astro", name: L("أبيض", "Blanc", "White"), price: 179, compareAtPrice: 269, sku: "NRV-ASTRO-01", stock: 72 }],
     upsellIds: ["prod-crystal", "prod-star"],
     crossSellIds: ["prod-carousel"],
@@ -94,9 +90,9 @@ export const products: Product[] = [
     slug: "crystal-galaxy-projector",
     name: L("بروجيكتور كريستال مجرة", "Projecteur Cristal Galaxy", "Crystal Galaxy Projector"),
     shortDescription: L(
-      "بروجيكتور أسود بقبّة كريستال — 10 ألوان + بلوتوث + ريموت",
-      "Projecteur noir dôme cristal — 10 couleurs + Bluetooth + télécommande",
-      "Black crystal dome — 10 colors + Bluetooth + remote"
+      "أسود بقبّة كريستال — 10 ألوان + بلوتوث + مؤقت + ريموت",
+      "Noir dôme cristal — 10 couleurs, Bluetooth, minuterie",
+      "Black crystal dome — 10 colors, Bluetooth, timer, remote"
     ),
     description: L(
       "بروجيكتور كريستال NOORVA بتصميم فاخر. يعرض نجوم ومجرة بألوان متعددة على السقف والجدران. يدعم البلوتوث للموسيقى، ريموت تحكم، ومؤقت إيقاف تلقائي. مثالي للغرف، التصوير، والهدايا.",
@@ -134,15 +130,16 @@ export const products: Product[] = [
       L("تأثير مجرة قوي", "Galaxie puissante", "Strong galaxy effect"),
     ],
     features: [
-      L("قبّة كريستال فاخرة", "Dôme cristal premium", "Premium crystal dome"),
-      L("مكبر صوت بلوتوث", "Haut-parleur Bluetooth", "Bluetooth speaker"),
-      L("مؤقت إيقاف تلقائي", "Minuterie auto", "Auto-off timer"),
-      L("USB للشحن", "Charge USB", "USB charging"),
+      L("10 أوضاع ألوان", "10 modes couleur", "10 color modes"),
+      L("بلوتوث + سبيكر", "Bluetooth + speaker", "Bluetooth speaker"),
+      L("مزامنة مع الموسيقى", "Sync musique", "Music sync"),
+      L("مؤقت إيقاف تلقائي", "Minuterie", "Auto-off timer"),
     ],
     specifications: [
       { label: L("اللون", "Couleur", "Color"), value: L("أسود", "Noir", "Black") },
       { label: L("الألوان", "Couleurs", "Colors"), value: L("10 أوضاع", "10 modes", "10 modes") },
-      { label: L("البلوتوث", "Bluetooth", "Bluetooth"), value: L("نعم", "Oui", "Yes") },
+      { label: L("البلوتوث", "Bluetooth", "Bluetooth"), value: L("نعم + سبيكر", "Oui + speaker", "Yes + speaker") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("USB 5V", "USB 5V", "USB 5V") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
     ],
     packageIncludes: [
@@ -153,10 +150,10 @@ export const products: Product[] = [
     ],
     howToUse: L("ضع في غرفة مظلمة، وجّه القبّة للسقف، استخدم الريموت لاختيار اللون والمؤقت.", "Pièce sombre, dôme vers plafond, télécommande.", "Dark room, aim at ceiling, use remote."),
     images: [
-      { id: "img-1", url: "https://images.unsplash.com/photo-1534796636912-3b95b772fc48?w=1200&q=80", alt: L("كريستال", "Cristal", "Crystal"), type: "image" },
-      { id: "img-2", url: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1200&q=80", alt: L("مجرة", "Galaxie", "Galaxy"), type: "image" },
+      { id: "img-1", url: "/products/crystal-galaxy.svg", alt: L("كريستال أسود", "Cristal noir", "Black crystal"), type: "image" },
+      { id: "img-2", url: "/products/crystal-galaxy.svg", alt: L("تأثير المجرة", "Galaxie", "Galaxy effect"), type: "image" },
     ],
-    lifestyleImages: ["https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=80"],
+    lifestyleImages: ["/products/crystal-galaxy.svg"],
     variants: [{ id: "var-crystal", name: L("أسود", "Noir", "Black"), price: 149, compareAtPrice: 229, sku: "NRV-CRYSTAL-01", stock: 86 }],
     upsellIds: ["prod-astronaut", "prod-star"],
     crossSellIds: ["prod-carousel"],
@@ -170,9 +167,9 @@ export const products: Product[] = [
     slug: "galaxy-star-projector",
     name: L("بروجيكتور نجوم المجرة", "Projecteur Galaxy Star", "Galaxy Star Projector"),
     shortDescription: L(
-      "بروجيكتور أبيض هندسي بشكل ألماس — ليزر مجرة + ريموت",
-      "Projecteur blanc géométrique — laser galaxie + télécommande",
-      "White geometric diamond — galaxy laser + remote"
+      "أبيض Style 2 — شكل ألماسي + أورورا + ريموت + Type-C",
+      "Blanc Style 2 — forme diamant, aurora, Type-C",
+      "White Style 2 — diamond shape, aurora, remote, Type-C"
     ),
     description: L(
       "بروجيكتور نجوم المجرة بتصميم ألماسي أبيض أنيق. يعرض نجوم وليزر مجرة بجودة سينمائية. مثالي للغرف الشبابية، الـ gaming، والتصوير على تيك توك وإنستغرام.",
@@ -227,9 +224,10 @@ export const products: Product[] = [
       L("دليل", "Manuel", "Manual"),
     ],
     images: [
-      { id: "img-1", url: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1200&q=80", alt: L("نجوم المجرة", "Galaxy Star", "Galaxy Star"), type: "image" },
-      { id: "img-2", url: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1200&q=80", alt: L("سديم", "Nébuleuse", "Nebula"), type: "image" },
+      { id: "img-1", url: "/products/galaxy-star.svg", alt: L("نجوم المجرة أبيض", "Galaxy Star blanc", "White Galaxy Star"), type: "image" },
+      { id: "img-2", url: "/products/galaxy-star.svg", alt: L("تأثير الأورورا", "Aurora", "Aurora effect"), type: "image" },
     ],
+    lifestyleImages: ["/products/galaxy-star.svg"],
     variants: [{ id: "var-star", name: L("أبيض", "Blanc", "White"), price: 169, compareAtPrice: 249, sku: "NRV-STAR-01", stock: 64 }],
     upsellIds: ["prod-astronaut", "prod-crystal"],
     crossSellIds: ["prod-carousel"],
@@ -243,9 +241,9 @@ export const products: Product[] = [
     slug: "carousel-night-light",
     name: L("مصباح كاروسيل ليلي", "Veilleuse Carrousel", "Carousel Night Light"),
     shortDescription: L(
-      "كاروسيل وردي وذهبي مع أرانب — إضاءة ناعمة + ريموت + USB",
-      "Carrousel rose et or avec lapins — lumière douce + télécommande",
-      "Pink gold carousel with bunnies — soft light + remote"
+      "كاروسيل وردي وذهبي مع أرانب — دوران + موسيقى + ريموت 16 زر",
+      "Carrousel rose et or — rotation, musique, télécommande",
+      "Pink gold carousel — rotation, music, 16-button remote"
     ),
     description: L(
       "مصباح كاروسيل NOORVA بتصميم فاخر وردي وذهبي. إضاءة ناعمة للأطفال والغرف، ألوان متعددة، موسيقى، وريموت تحكم. هدية مثالية للبنات والعائلات.",
@@ -300,9 +298,10 @@ export const products: Product[] = [
       L("دليل الاستخدام", "Manuel", "Manual"),
     ],
     images: [
-      { id: "img-1", url: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=1200&q=80", alt: L("كاروسيل", "Carrousel", "Carousel"), type: "image" },
-      { id: "img-2", url: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=1200&q=80", alt: L("إضاءة ليلية", "Veilleuse", "Night light"), type: "image" },
+      { id: "img-1", url: "/products/carousel-night.svg", alt: L("كاروسيل وردي", "Carrousel rose", "Pink carousel"), type: "image" },
+      { id: "img-2", url: "/products/carousel-night.svg", alt: L("إضاءة ليلية", "Veilleuse", "Night light"), type: "image" },
     ],
+    lifestyleImages: ["/products/carousel-night.svg"],
     variants: [{ id: "var-carousel", name: L("وردي", "Rose", "Pink"), price: 129, compareAtPrice: 189, sku: "NRV-CAROUSEL-01", stock: 120 }],
     upsellIds: ["prod-astronaut", "prod-crystal"],
     crossSellIds: ["prod-star"],
@@ -312,9 +311,6 @@ export const products: Product[] = [
     },
   },
 ];
-
-// Map old prod-diamond references
-products.find((p) => p.id === "prod-star");
 
 export const reviews: ProductReview[] = [
   { id: "r1", author: "سارة المنصوري", city: "الدار البيضاء", rating: 5, title: L("حولت غرفتي!", "Chambre transformée!", "Transformed my room!"), content: L("بروجيكتور رائد الفضاء رائع. التوصيل سريع والدفع عند الاستلام مريح.", "Projecteur astronaute génial. Livraison rapide.", "Astronaut projector amazing. Fast delivery."), date: "2026-06-20", verified: true },
@@ -334,18 +330,17 @@ export const faqs: FAQ[] = [
 ];
 
 export const testimonials: Testimonial[] = [
-  { id: "t1", name: "ليلى", city: "الدار البيضاء", videoThumbnail: "https://images.unsplash.com/photo-1534796636912-3b95b772fc48?w=600&q=80", videoUrl: "#", quote: L("بروجيكتور رائد الفضاء بدّل أجواء غرفتي", "Astronaute a changé ma chambre", "Astronaut changed my room") },
-  { id: "t2", name: "نادية", city: "مراكش", videoThumbnail: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80", videoUrl: "#", quote: L("الكاروسيل أحسن هدية", "Meilleur cadeau", "Best gift ever") },
-  { id: "t3", name: "إيمان", city: "الرباط", videoThumbnail: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80", videoUrl: "#", quote: L("جودة فاخرة بثمن معقول", "Qualité premium accessible", "Premium quality fair price") },
+  { id: "t1", name: "ليلى", city: "الدار البيضاء", videoThumbnail: "/products/astronaut-galaxy.svg", videoUrl: "#", quote: L("بروجيكتور رائد الفضاء بدّل أجواء غرفتي", "Astronaute a changé ma chambre", "Astronaut changed my room") },
+  { id: "t2", name: "نادية", city: "مراكش", videoThumbnail: "/products/carousel-night.svg", videoUrl: "#", quote: L("الكاروسيل أحسن هدية", "Meilleur cadeau", "Best gift ever") },
+  { id: "t3", name: "إيمان", city: "الرباط", videoThumbnail: "/products/crystal-galaxy.svg", videoUrl: "#", quote: L("البروجيكتور الكريستال خرافي", "Le cristal est incroyable", "Crystal is amazing") },
+  { id: "t4", name: "يوسف", city: "طنجة", videoThumbnail: "/products/galaxy-star.svg", videoUrl: "#", quote: L("Galaxy Star كيشعل الغرفة", "Galaxy Star illumine tout", "Galaxy Star lights the room") },
 ];
 
 export const instagramPosts: InstagramPost[] = [
-  { id: "ig1", image: "https://images.unsplash.com/photo-1534796636912-3b95b772fc48?w=400&q=80", url: "https://instagram.com/shopnoorva", likes: 2847 },
-  { id: "ig2", image: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80", url: "https://instagram.com/shopnoorva", likes: 1923 },
-  { id: "ig3", image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80", url: "https://instagram.com/shopnoorva", likes: 3456 },
-  { id: "ig4", image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&q=80", url: "https://instagram.com/shopnoorva", likes: 1567 },
-  { id: "ig5", image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400&q=80", url: "https://instagram.com/shopnoorva", likes: 2134 },
-  { id: "ig6", image: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=400&q=80", url: "https://instagram.com/shopnoorva", likes: 987 },
+  { id: "ig1", image: "/products/crystal-galaxy.svg", url: "https://instagram.com/shopnoorva", likes: 2847 },
+  { id: "ig2", image: "/products/astronaut-galaxy.svg", url: "https://instagram.com/shopnoorva", likes: 1923 },
+  { id: "ig3", image: "/products/galaxy-star.svg", url: "https://instagram.com/shopnoorva", likes: 3456 },
+  { id: "ig4", image: "/products/carousel-night.svg", url: "https://instagram.com/shopnoorva", likes: 1567 },
 ];
 
 export const coupons: Coupon[] = [

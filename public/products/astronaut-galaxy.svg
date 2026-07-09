@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#0B1B3A"/>
+  <circle cx="400" cy="320" r="120" fill="#F8F6F2" opacity="0.9"/>
+  <rect x="340" y="420" width="120" height="180" rx="20" fill="#F8F6F2" opacity="0.85"/>
+  <text x="400" y="680" text-anchor="middle" fill="#C8A96B" font-family="Georgia,serif" font-size="28">Astronaut Galaxy</text>
+</svg>

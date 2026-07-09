@@ -201,12 +201,12 @@ export function ReviewsCarouselSection() {
 export function TikTokReviewsSection() {
   const t = useTranslations("sections");
   const locale = useLocale() as Locale;
-  const videos = [
-    { name: "سارة", city: "الدار البيضاء", quote: "حولت غرفتي كاملة! 🔥", img: "https://images.unsplash.com/photo-1534796636912-3b95b772fc48?w=400&q=80" },
-    { name: "نورة", city: "الرباط", quote: "وصل بسرعة والتغليف فخم! ✨", img: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&q=80" },
-    { name: "إيمان", city: "مراكش", quote: "أحسن بروجيكتور جربت! 💯", img: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80" },
-    { name: "ريم", city: "طنجة", quote: "خدمة ممتازة والمنتج رائع! 👌", img: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&q=80" },
-  ];
+  const videos = products.map((p) => ({
+    name: getLocalized(p.name, locale).split(" ")[0],
+    city: "المغرب",
+    quote: getLocalized(p.shortDescription, locale).slice(0, 60) + " ✨",
+    img: p.images[0]?.url || "",
+  }));
 
   return (
     <section className="section-padding bg-[#0B1B3A] text-cream">
