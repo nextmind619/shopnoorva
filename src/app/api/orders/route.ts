@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getOrders } from "@/data/products";
+import { getAdminOrders } from "@/lib/orders-admin";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { processIncomingOrder } from "@/lib/ai/orchestrator";
 import type { PaymentMethod, ShippingAddress } from "@/types";
@@ -80,5 +80,5 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
-  return NextResponse.json({ orders: getOrders() });
+  return NextResponse.json({ orders: getAdminOrders() });
 }

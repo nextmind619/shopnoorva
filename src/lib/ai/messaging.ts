@@ -45,6 +45,11 @@ const TEMPLATES: Record<string, Record<string, string>> = {
     ar: "{{message}}",
     en: "{{message}}",
   },
+  admin_new_order: {
+    ar: "🛒 *طلب جديد — NOORVA*\n\n📦 رقم الطلب: {{order}}\n👤 الاسم: {{name}}\n📱 الهاتف: {{phone}}\n📍 {{city}}\n🏠 {{address}}\n🛍 المنتج: {{products}}\n💰 المجموع: {{total}} درهم\n💵 الدفع عند الاستلام\n\n✅ اتصل بالعميل الآن لتأكيد الطلب",
+    fr: "🛒 *Nouvelle commande — NOORVA*\n\n📦 {{order}}\n👤 {{name}}\n📱 {{phone}}\n📍 {{city}} — {{address}}\n🛍 {{products}}\n💰 {{total}} MAD\n💵 COD\n\n✅ Appelez le client pour confirmer",
+    en: "🛒 *New order — NOORVA*\n\n📦 {{order}}\n👤 {{name}}\n📱 {{phone}}\n📍 {{city}} — {{address}}\n🛍 {{products}}\n💰 {{total}} MAD\n💵 COD\n\n✅ Call customer to confirm",
+  },
 };
 
 function renderTemplate(template: string, vars: Record<string, string | number> = {}): string {

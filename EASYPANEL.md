@@ -38,6 +38,10 @@ MINIO_USE_SSL=false
 N8N_WEBHOOK_BASE=https://n8n.shopnoorva.shop/webhook
 EMAIL_FROM=NOORVA <orders@shopnoorva.shop>
 SUPPORT_WHATSAPP=+212600000000
+ADMIN_WHATSAPP=+212693428013
+EVOLUTION_API_URL=https://your-evolution-api-host
+EVOLUTION_API_KEY=your_evolution_api_key
+EVOLUTION_INSTANCE=noorva
 ```
 
 ## 3) Add Postgres

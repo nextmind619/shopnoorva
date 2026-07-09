@@ -11,6 +11,7 @@ import { appendOrderToSheets } from "./integrations/google-sheets";
 import { sendMetaConversion } from "./integrations/meta";
 import { sendTikTokEvent } from "./integrations/tiktok";
 import { triggerN8n } from "./integrations/n8n";
+import { notifyAdminNewOrder } from "./admin-notify";
 import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
 
@@ -71,6 +72,8 @@ export async function processIncomingOrder(input: {
   let order: StoredOrder = {
     id: uid("ord"),
     orderNumber: generateOrderNumber(),
+    firstName: input.firstName,
+    lastName: input.lastName,
     phone: input.phone,
     email: input.email,
     city: input.city,
@@ -104,6 +107,12 @@ export async function processIncomingOrder(input: {
   if (input.cartId) markCartRecovered(input.cartId, order.id);
 
   const invoice = await generateInvoice(order);
+
+  const customerName = [input.firstName, input.lastName].filter(Boolean).join(" ") || "عميل";
+
+  await notifyAdminNewOrder(order, customerName).catch(() => {
+    /* لا تعطّل الطلب إذا فشل إشعار المسؤول */
+  });
 
   await sendMessage({
     channel: "whatsapp",

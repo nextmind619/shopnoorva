@@ -20,6 +20,8 @@ export interface AiJob {
 export interface StoredOrder {
   id: string;
   orderNumber: string;
+  firstName?: string;
+  lastName?: string;
   phone: string;
   email?: string;
   city: string;
