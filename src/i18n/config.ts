@@ -1,5 +1,5 @@
 export const locales = ["ar", "fr", "en"] as const;
-export const defaultLocale = "fr";
+export const defaultLocale = "ar";
 
 export const localeNames: Record<string, string> = {
   ar: "العربية",

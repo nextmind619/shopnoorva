@@ -22,7 +22,7 @@ export async function generateMetadata({
   const category = getCategoryBySlug(slug);
   if (!category) return {};
   return {
-    title: `${getLocalized(category.name, locale as Locale)} | LUXMAR`,
+    title: `${getLocalized(category.name, locale as Locale)} | NOORVA`,
     description: getLocalized(category.description, locale as Locale),
   };
 }

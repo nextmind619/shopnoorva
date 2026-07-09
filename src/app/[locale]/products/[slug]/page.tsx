@@ -57,7 +57,7 @@ export default async function ProductPage({
           description: getLocalized(product.description, locale as Locale),
           image: product.images.map((i) => i.url),
           sku: product.sku,
-          brand: { "@type": "Brand", name: "LUXMAR" },
+          brand: { "@type": "Brand", name: "NOORVA" },
           offers: {
             "@type": "Offer",
             price: defaultVariant.price,

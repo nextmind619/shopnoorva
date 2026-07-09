@@ -5,8 +5,8 @@ import { products } from "@/data/products";
 import { ProductCard, SectionHeader } from "@/components/shared/product-card";
 
 export const metadata: Metadata = {
-  title: "Shop | LUXMAR",
-  description: "Browse our premium Moroccan beauty and skincare collection",
+  title: "المتجر | NOORVA",
+  description: "بروجيكتور مجرة، رائد فضاء، كاروسيل ليلي وإضاءة ديكور",
 };
 
 export default async function ProductsPage({
@@ -37,7 +37,7 @@ export default async function ProductsPage({
 
   return (
     <div className="container-luxury section-padding">
-      <SectionHeader title={t("bestSellers")} subtitle="LUXMAR Collection" />
+      <SectionHeader title={t("bestSellers")} subtitle="NOORVA" />
       <p className="text-neutral-500 text-sm mb-8">{filtered.length} products</p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {filtered.map((product) => (

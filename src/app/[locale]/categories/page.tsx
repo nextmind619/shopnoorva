@@ -16,7 +16,7 @@ export default async function CategoriesPage({
 
   return (
     <div className="container-luxury section-padding">
-      <SectionHeader title="Categories" subtitle="LUXMAR" />
+      <SectionHeader title={locale === "ar" ? "الفئات" : "Categories"} subtitle="NOORVA" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {categories.map((cat) => (
           <Link key={cat.id} href={`/${locale}/categories/${cat.slug}`} className="group">

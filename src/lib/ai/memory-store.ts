@@ -132,18 +132,10 @@ class MemoryStore {
   stockAlerts: StockAlert[] = [];
   purchaseOrders: PurchaseOrder[] = [];
   inventory: Record<string, number> = {
-    "LXM-ARG-50": 847,
-    "LXM-VTC-30": 523,
-    "LXM-GHS-200": 1200,
-    "LXM-HRO-100": 678,
-    "LXM-NCR-50": 234,
-    "LXM-SBL-200": 2000,
-    "LXM-PAR-50": 89,
-    "LXM-KIT-FULL": 156,
-    "NRV-GAL-PRO": 42,
-    "NRV-ASTRO": 67,
-    "NRV-SUNSET": 120,
-    "NRV-RGB-BAR": 35,
+    "NRV-CRYSTAL-01": 86,
+    "NRV-CAROUSEL-01": 120,
+    "NRV-DIAMOND-01": 64,
+    "NRV-ASTRO-01": 72,
   };
 }
 

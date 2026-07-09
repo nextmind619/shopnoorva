@@ -62,7 +62,7 @@ export function Header() {
     >
       <div className="container-luxury flex items-center justify-between h-16 md:h-20 px-4 sm:px-6 lg:px-8">
         <Link href={`/${locale}`} className="font-display text-2xl md:text-3xl font-semibold tracking-[0.2em]">
-          LUX<span className="text-gold">MAR</span>
+          NOOR<span className="text-gold">VA</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -156,12 +156,13 @@ export function Header() {
 
 export function Footer() {
   const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
   const locale = useLocale();
 
   const shopLinks = [
     { href: `/${locale}/products`, label: t("shop") },
-    { href: `/${locale}/categories`, label: "Categories" },
-    { href: `/${locale}/products?filter=bestseller`, label: "Best-Sellers" },
+    { href: `/${locale}/categories`, label: tNav("categories") },
+    { href: `/${locale}/products?filter=bestseller`, label: locale === "ar" ? "الأكثر مبيعًا" : "Best-Sellers" },
   ];
 
   const supportLinks = [
@@ -176,13 +177,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <Link href={`/${locale}`} className="font-display text-2xl tracking-[0.2em]">
-              LUX<span className="text-gold">MAR</span>
+              NOOR<span className="text-gold">VA</span>
             </Link>
             <p className="mt-4 text-neutral-400 text-sm leading-relaxed">{t("tagline")}</p>
             <div className="mt-6 flex gap-4">
-              <a href="https://instagram.com/luxmar" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">Instagram</a>
-              <a href="https://tiktok.com/@luxmar" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">TikTok</a>
-              <a href="https://wa.me/212522000000" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">{t("whatsapp")}</a>
+              <a href="https://instagram.com/shopnoorva" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">Instagram</a>
+              <a href="https://tiktok.com/@shopnoorva" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">TikTok</a>
+              <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-gold transition-colors text-sm">{t("whatsapp")}</a>
             </div>
           </div>
 

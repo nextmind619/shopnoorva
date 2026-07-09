@@ -14,12 +14,12 @@
     "cta": "Commander"
   },
   "hero": {
-    "badge": "Nouvelle Collection 2026",
-    "title": "L'Essence du Luxe Marocain",
-    "subtitle": "Huile d'argan bio, soins premium et rituels de beauté authentiques du Maroc. Livraison rapide, paiement à la livraison.",
-    "cta": "Découvrir la Collection",
-    "secondary": "Voir les Best-Sellers",
-    "trust": "12 450+ clients satisfaits"
+    "badge": "Éclairage Premium 2026",
+    "title": "Transformez votre chambre en ciel étoilé",
+    "subtitle": "Projecteurs galaxie, astronaute, carrousel et déco lumière. Livraison rapide au Maroc, paiement à la livraison.",
+    "cta": "Acheter maintenant",
+    "secondary": "Best-Sellers",
+    "trust": "3 200+ clients satisfaits"
   },
   "sections": {
     "limitedOffers": "Offres Limitées",
@@ -32,7 +32,7 @@
     "reviews": "Avis Clients",
     "videoTestimonials": "Témoignages Vidéo",
     "beforeAfter": "Avant / Après",
-    "benefits": "Pourquoi LUXMAR",
+    "benefits": "Pourquoi NOORVA",
     "howItWorks": "Comment ça marche",
     "faq": "Questions Fréquentes",
     "instagram": "Suivez-nous",
@@ -44,10 +44,10 @@
     "reviews_count": "avis"
   },
   "benefits": {
-    "authentic": { "title": "100% Authentique", "desc": "Produits marocains certifiés BIO" },
+    "authentic": { "title": "Qualité Testée", "desc": "Éclairage sélectionné avec soin" },
     "delivery": { "title": "Livraison Rapide", "desc": "24-48h dans les grandes villes" },
     "cod": { "title": "Paiement à la Livraison", "desc": "Payez en espèces à réception" },
-    "returns": { "title": "Retours 14 Jours", "desc": "Satisfait ou remboursé" }
+    "returns": { "title": "Garantie 12 Mois", "desc": "Achetez en toute confiance" }
   },
   "howItWorks": {
     "step1": { "title": "Commandez", "desc": "Choisissez vos produits et validez" },
@@ -55,14 +55,14 @@
     "step3": { "title": "Livraison", "desc": "Recevez et payez à la livraison" }
   },
   "newsletter": {
-    "title": "Rejoignez LUXMAR",
-    "subtitle": "Recevez -20% sur votre première commande",
+    "title": "Rejoignez NOORVA",
+    "subtitle": "Recevez -15% sur votre première commande",
     "placeholder": "Votre email",
     "cta": "S'inscrire",
     "success": "Merci! Vérifiez votre email."
   },
   "footer": {
-    "tagline": "Luxe marocain authentique",
+    "tagline": "Éclairage premium pour votre espace",
     "shop": "Boutique",
     "support": "Support",
     "company": "Entreprise",
@@ -74,7 +74,7 @@
     "careers": "Carrières",
     "privacy": "Confidentialité",
     "terms": "Conditions",
-    "copyright": "© 2026 LUXMAR. Tous droits réservés.",
+    "copyright": "© 2026 NOORVA. Tous droits réservés.",
     "whatsapp": "WhatsApp",
     "phone": "+212 5 22 00 00 00"
   },

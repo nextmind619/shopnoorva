@@ -15,8 +15,8 @@ export function HeroSection() {
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       <div className="absolute inset-0 luxury-gradient">
         <Image
-          src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=1920&q=80"
-          alt="LUXMAR Hero"
+          src="https://images.unsplash.com/photo-1534796636912-3b95b772fc48?w=1920&q=80"
+          alt="NOORVA Hero"
           fill
           priority
           className="object-cover opacity-40"

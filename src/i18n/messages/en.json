@@ -14,12 +14,12 @@
     "cta": "Shop Now"
   },
   "hero": {
-    "badge": "New Collection 2026",
-    "title": "The Essence of Moroccan Luxury",
-    "subtitle": "Organic argan oil, premium skincare and authentic beauty rituals from Morocco. Fast delivery, cash on delivery.",
-    "cta": "Explore Collection",
-    "secondary": "View Best-Sellers",
-    "trust": "12,450+ satisfied customers"
+    "badge": "Premium Lighting 2026",
+    "title": "Turn your room into a starry sky",
+    "subtitle": "Galaxy projectors, astronaut lights, carousel night lights and room decor. Fast delivery in Morocco, cash on delivery.",
+    "cta": "Shop Now",
+    "secondary": "Best Sellers",
+    "trust": "3,200+ happy customers"
   },
   "sections": {
     "limitedOffers": "Limited Offers",
@@ -32,7 +32,7 @@
     "reviews": "Customer Reviews",
     "videoTestimonials": "Video Testimonials",
     "beforeAfter": "Before / After",
-    "benefits": "Why LUXMAR",
+    "benefits": "Why NOORVA",
     "howItWorks": "How It Works",
     "faq": "FAQ",
     "instagram": "Follow Us",
@@ -44,10 +44,10 @@
     "reviews_count": "reviews"
   },
   "benefits": {
-    "authentic": { "title": "100% Authentic", "desc": "BIO certified Moroccan products" },
+    "authentic": { "title": "Tested Quality", "desc": "Carefully selected lighting products" },
     "delivery": { "title": "Fast Delivery", "desc": "24-48h in major cities" },
     "cod": { "title": "Cash on Delivery", "desc": "Pay cash upon receipt" },
-    "returns": { "title": "14-Day Returns", "desc": "Satisfied or refunded" }
+    "returns": { "title": "12-Month Warranty", "desc": "Shop with confidence" }
   },
   "howItWorks": {
     "step1": { "title": "Order", "desc": "Choose products and checkout" },
@@ -55,14 +55,14 @@
     "step3": { "title": "Delivery", "desc": "Receive and pay on delivery" }
   },
   "newsletter": {
-    "title": "Join LUXMAR",
-    "subtitle": "Get 20% off your first order",
+    "title": "Join NOORVA",
+    "subtitle": "Get 15% off your first order",
     "placeholder": "Your email",
     "cta": "Subscribe",
     "success": "Thank you! Check your email."
   },
   "footer": {
-    "tagline": "Authentic Moroccan luxury",
+    "tagline": "Premium lighting for your space",
     "shop": "Shop",
     "support": "Support",
     "company": "Company",
@@ -74,7 +74,7 @@
     "careers": "Careers",
     "privacy": "Privacy",
     "terms": "Terms",
-    "copyright": "© 2026 LUXMAR. All rights reserved.",
+    "copyright": "© 2026 NOORVA. All rights reserved.",
     "whatsapp": "WhatsApp",
     "phone": "+212 5 22 00 00 00"
   },
