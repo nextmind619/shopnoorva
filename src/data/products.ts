@@ -240,10 +240,10 @@ export const products: Product[] = [
       L("دليل", "Manuel", "Manual"),
     ],
     images: [
-      { id: "img-1", url: "/products/galaxy-star.svg", alt: L("نجوم المجرة أبيض", "Galaxy Star blanc", "White Galaxy Star"), type: "image" },
-      { id: "img-2", url: "/products/galaxy-star.svg", alt: L("تأثير الأورورا", "Aurora", "Aurora effect"), type: "image" },
+      { id: "img-1", url: "/products/galaxy-star.jpg", alt: L("بروجيكتور نجوم المجرة Style 2 أبيض + ريموت + Type-C", "Galaxy Star Style 2 blanc — télécommande et Type-C", "Galaxy Star Style 2 white — remote and Type-C"), type: "image" },
+      { id: "img-2", url: "/products/galaxy-star.jpg", alt: L("تأثير ليزر المجرة والأورورا", "Effet laser galaxie et aurora", "Galaxy laser and aurora effect"), type: "image" },
     ],
-    lifestyleImages: ["/products/galaxy-star.svg"],
+    lifestyleImages: ["/products/galaxy-star.jpg"],
     variants: [{ id: "var-star", name: L("أبيض", "Blanc", "White"), price: 169, compareAtPrice: 249, sku: "NRV-STAR-01", stock: 64 }],
     upsellIds: ["prod-astronaut", "prod-crystal"],
     crossSellIds: ["prod-carousel"],
@@ -332,7 +332,7 @@ export const reviews: ProductReview[] = [
   { id: "r1", productId: "prod-astronaut", author: "سارة المنصوري", city: "الدار البيضاء", rating: 5, title: L("حولت غرفتي!", "Chambre transformée!", "Transformed my room!"), content: L("بروجيكتور رائد الفضاء رائع. التوصيل سريع والدفع عند الاستلام مريح.", "Projecteur astronaute génial. Livraison rapide.", "Astronaut projector amazing. Fast delivery."), date: "2026-06-20", verified: true, images: ["/products/astronaut-galaxy.jpg"] },
   { id: "r2", productId: "prod-crystal", author: "يوسف العلوي", city: "الرباط", rating: 5, title: L("فيرال تيك توك", "Viral TikTok", "TikTok viral"), content: L("البروجيكتور الكريستال كيعطي تصوير خرافي للريلز. البلوتوث والريموت زوينين بزاف.", "Le cristal est parfait pour les Reels. Bluetooth impeccable.", "Crystal perfect for Reels. Bluetooth and remote are great."), date: "2026-06-18", verified: true, images: ["/products/crystal-galaxy.jpg"], hasVideo: true },
   { id: "r3", productId: "prod-carousel", author: "إيمان بنجلون", city: "مراكش", rating: 5, title: L("هدية بنتي", "Cadeau fille", "Daughter gift"), content: L("الكاروسيل الوردي زوين بزاف. بنتي فرحات.", "Carrousel rose adorable.", "Pink carousel adorable."), date: "2026-06-12", verified: true, images: ["/products/carousel-night.svg"] },
-  { id: "r4", productId: "prod-star", author: "أمين التازي", city: "طنجة", rating: 5, title: L("جودة عالية", "Haute qualité", "High quality"), content: L("بروجيكتور النجوم كيشعل الغرفة كاملة. أنصح بيه.", "Galaxy Star illumine toute la pièce.", "Galaxy Star lights whole room."), date: "2026-06-08", verified: true, images: ["/products/galaxy-star.svg"] },
+  { id: "r4", productId: "prod-star", author: "أمين التازي", city: "طنجة", rating: 5, title: L("جودة عالية", "Haute qualité", "High quality"), content: L("بروجيكتور النجوم كيشعل الغرفة كاملة. أنصح بيه.", "Galaxy Star illumine toute la pièce.", "Galaxy Star lights whole room."), date: "2026-06-08", verified: true, images: ["/products/galaxy-star.jpg"] },
   { id: "r5", productId: "prod-crystal", author: "خديجة الفاسي", city: "فاس", rating: 5, title: L("خدمة ممتازة", "Service top", "Great service"), content: L("طلبت بالواتساب والدفع عند الاستلام. كلشي ساهل.", "Commande facile COD.", "Easy COD order."), date: "2026-06-01", verified: true, images: ["/products/crystal-galaxy.jpg"] },
   { id: "r6", productId: "prod-crystal", author: "محمد برادة", city: "أكادير", rating: 5, title: L("أجواء سينمائية", "Ambiance cinéma", "Cinema vibe"), content: L("شريت جوج بروجيكتورات. الغرفة ولاّت سينما.", "Deux projecteurs = ambiance cinéma.", "Two projectors = cinema."), date: "2026-05-25", verified: true, hasVideo: true },
   { id: "r7", productId: "prod-crystal", author: "نور الهدى", city: "الدار البيضاء", rating: 5, title: L("أحسن شراء", "Meilleur achat", "Best purchase"), content: L("10 ألوان ومجرة قوية. الريموت كيخدم مزيان.", "10 couleurs, galaxie puissante.", "10 colors, strong galaxy effect."), date: "2026-05-18", verified: true, images: ["/products/crystal-galaxy.jpg"] },
@@ -351,13 +351,13 @@ export const testimonials: Testimonial[] = [
   { id: "t1", name: "ليلى", city: "الدار البيضاء", videoThumbnail: "/products/astronaut-galaxy.jpg", videoUrl: "#", quote: L("بروجيكتور رائد الفضاء بدّل أجواء غرفتي", "Astronaute a changé ma chambre", "Astronaut changed my room") },
   { id: "t2", name: "نادية", city: "مراكش", videoThumbnail: "/products/carousel-night.svg", videoUrl: "#", quote: L("الكاروسيل أحسن هدية", "Meilleur cadeau", "Best gift ever") },
   { id: "t3", name: "إيمان", city: "الرباط", videoThumbnail: "/products/crystal-galaxy.jpg", videoUrl: "#", quote: L("البروجيكتور الكريستال خرافي", "Le cristal est incroyable", "Crystal is amazing") },
-  { id: "t4", name: "يوسف", city: "طنجة", videoThumbnail: "/products/galaxy-star.svg", videoUrl: "#", quote: L("Galaxy Star كيشعل الغرفة", "Galaxy Star illumine tout", "Galaxy Star lights the room") },
+  { id: "t4", name: "يوسف", city: "طنجة", videoThumbnail: "/products/galaxy-star.jpg", videoUrl: "#", quote: L("Galaxy Star كيشعل الغرفة", "Galaxy Star illumine tout", "Galaxy Star lights the room") },
 ];
 
 export const instagramPosts: InstagramPost[] = [
   { id: "ig1", image: "/products/crystal-galaxy.jpg", url: "https://instagram.com/shopnoorva", likes: 2847 },
   { id: "ig2", image: "/products/astronaut-galaxy.jpg", url: "https://instagram.com/shopnoorva", likes: 1923 },
-  { id: "ig3", image: "/products/galaxy-star.svg", url: "https://instagram.com/shopnoorva", likes: 3456 },
+  { id: "ig3", image: "/products/galaxy-star.jpg", url: "https://instagram.com/shopnoorva", likes: 3456 },
   { id: "ig4", image: "/products/carousel-night.svg", url: "https://instagram.com/shopnoorva", likes: 1567 },
 ];
 
