@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Star, Minus, Plus, ShoppingBag, Check, Heart, Share2, ZoomIn, X,
-  ChevronLeft, ChevronRight, Play, Loader2, Shield, Truck, Package,
+  Star, Minus, Plus, ShoppingBag, Check, Heart, Share2,
+  ChevronLeft, ChevronRight, Play, Shield, Truck, Package,
   RotateCcw, MessageCircle, Banknote,
 } from "lucide-react";
 import type { Product } from "@/types";
@@ -16,6 +16,7 @@ import { trackEvent } from "@/components/analytics/analytics-scripts";
 import { products, getReviewsForProduct } from "@/data/products";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { ProductOrderForm } from "@/components/product/product-order-form";
+import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
 
 const BENEFIT_CARDS = [
   { emoji: "✨", text: "يحوّل الغرفة إلى مجرة مذهلة" },
@@ -53,9 +54,6 @@ export function ProductPageAr({ product }: ProductPageArProps) {
 
   const [variant, setVariant] = useState(product.variants[0]);
   const [qty, setQty] = useState(1);
-  const [imgIdx, setImgIdx] = useState(0);
-  const [zoom, setZoom] = useState(false);
-  const [loaded, setLoaded] = useState<Record<string, boolean>>({});
   const [sticky, setSticky] = useState(false);
   const [wishlist, setWishlist] = useState(false);
   const [added, setAdded] = useState(false);
@@ -67,8 +65,6 @@ export function ProductPageAr({ product }: ProductPageArProps) {
   const subtotal = variant.price * qty;
   const reviews = getReviewsForProduct(product.id);
   const lowStock = variant.stock > 0 && variant.stock <= 15;
-  const images = product.images;
-  const currentImg = images[imgIdx];
 
   const related = useMemo(
     () => products.filter((p) => p.id !== product.id),
@@ -130,35 +126,7 @@ export function ProductPageAr({ product }: ProductPageArProps) {
 
         {/* المعرض + معلومات الشراء */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14">
-          {/* معرض الصور */}
-          <div className="space-y-3">
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-luxury group border border-black/5">
-              <AnimatePresence mode="wait">
-                <motion.div key={imgIdx} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} className="relative w-full h-full cursor-zoom-in" onClick={() => setZoom(true)}>
-                  {!loaded[currentImg?.id] && (
-                    <div className="absolute inset-0 flex items-center justify-center"><Loader2 className="h-8 w-8 text-luxury-gold animate-spin" /></div>
-                  )}
-                  {currentImg && (
-                    <Image src={currentImg.url} alt={currentImg.alt.ar} fill sizes="(max-width:1024px) 100vw, 50vw" priority className={cn("object-cover transition-opacity duration-500", loaded[currentImg.id] ? "opacity-100" : "opacity-0")} onLoad={() => setLoaded((s) => ({ ...s, [currentImg.id]: true }))} />
-                  )}
-                </motion.div>
-              </AnimatePresence>
-              {images.length > 1 && (
-                <>
-                  <button type="button" onClick={() => setImgIdx((i) => (i - 1 + images.length) % images.length)} className="absolute start-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-soft"><ChevronRight className="h-5 w-5" /></button>
-                  <button type="button" onClick={() => setImgIdx((i) => (i + 1) % images.length)} className="absolute end-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-soft"><ChevronLeft className="h-5 w-5" /></button>
-                </>
-              )}
-              <button type="button" onClick={() => setZoom(true)} className="absolute bottom-3 end-3 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"><ZoomIn className="h-4 w-4" /></button>
-            </div>
-            <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-              {images.map((img, i) => (
-                <button key={img.id} type="button" onClick={() => setImgIdx(i)} className={cn("relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl overflow-hidden border-2 transition-all", i === imgIdx ? "border-luxury-gold scale-105" : "border-transparent opacity-70")}>
-                  <Image src={img.url} alt="" fill sizes="80px" className="object-cover" />
-                </button>
-              ))}
-            </div>
-          </div>
+          <PremiumProductGallery product={product} />
 
           {/* معلومات المنتج */}
           <div className="lg:sticky lg:top-6 lg:self-start space-y-5">
@@ -369,18 +337,6 @@ export function ProductPageAr({ product }: ProductPageArProps) {
               <button type="button" onClick={scrollToOrder} className="h-12 px-8 rounded-full bg-luxury-black text-luxury-bg font-bold text-sm active:scale-95 transition-transform">
                 اطلب الآن
               </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* تكبير الصورة */}
-      <AnimatePresence>
-        {zoom && currentImg && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4" onClick={() => setZoom(false)}>
-            <button type="button" className="absolute top-5 end-5 text-white" onClick={() => setZoom(false)}><X className="h-6 w-6" /></button>
-            <div className="relative w-full max-w-4xl aspect-square" onClick={(e) => e.stopPropagation()}>
-              <Image src={currentImg.url} alt={currentImg.alt.ar} fill className="object-contain" sizes="100vw" />
             </div>
           </motion.div>
         )}
