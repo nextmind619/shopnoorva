@@ -4,11 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import { motion } from "motion/react";
-import { Star, ShoppingBag } from "lucide-react";
+import { Star, ArrowLeft } from "lucide-react";
 import type { Product, Locale } from "@/types";
 import { getLocalized, calculateDiscount, cn } from "@/lib/utils";
 import { PriceDisplay } from "@/components/shared/price-display";
-import { useCartStore } from "@/lib/store/cart-store";
 
 interface ProductCardProps {
   product: Product;
@@ -18,15 +17,8 @@ interface ProductCardProps {
 
 export function ProductCard({ product, priority = false, className }: ProductCardProps) {
   const locale = useLocale() as Locale;
-  const addItem = useCartStore((s) => s.addItem);
   const defaultVariant = product.variants[0];
   const discount = calculateDiscount(defaultVariant.price, defaultVariant.compareAtPrice);
-
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addItem({ productId: product.id, variantId: defaultVariant.id, quantity: 1 });
-  };
 
   return (
     <motion.div
@@ -53,13 +45,12 @@ export function ProductCard({ product, priority = false, className }: ProductCar
           {product.isTikTokViral && (
             <span className="absolute top-4 end-4 glass-dark text-cream text-[10px] font-medium px-2.5 py-1 rounded-full tracking-wider">تيك توك</span>
           )}
-          <button
-            onClick={handleAddToCart}
-            className="absolute bottom-4 end-4 glass p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-gold shadow-luxury"
-            aria-label="Add to cart"
+          <span
+            className="absolute bottom-4 end-4 glass p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-gold shadow-luxury"
+            aria-hidden
           >
-            <ShoppingBag className="h-4 w-4" />
-          </button>
+            <ArrowLeft className="h-4 w-4" />
+          </span>
         </div>
 
         <div className="mt-5 space-y-2">

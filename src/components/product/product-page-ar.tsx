@@ -1,19 +1,18 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Star, Minus, Plus, ShoppingBag, Check, Heart, Share2,
-  ChevronLeft, ChevronRight, Play, Shield, Truck, Package,
+  Star, Minus, Plus, Check, Heart, Share2, Clock,
+  ChevronLeft, Play, Shield, Truck, Package,
   RotateCcw, MessageCircle, Banknote,
 } from "lucide-react";
 import type { Product } from "@/types";
-import { useCartStore } from "@/lib/store/cart-store";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
 import { trackEvent } from "@/components/analytics/analytics-scripts";
-import { products, getReviewsForProduct } from "@/data/products";
+import { products, getReviewsForProduct, getProductById, faqs } from "@/data/products";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { ProductOrderForm } from "@/components/product/product-order-form";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
@@ -37,38 +36,39 @@ const WHY_NOORVA = [
   { icon: MessageCircle, title: "خدمة عبر واتساب", desc: "دعم سريع ومباشر" },
 ];
 
-const PRODUCT_FAQS = [
-  { q: "كم مدة التوصيل؟", a: "24-48 ساعة للمدن الكبرى (الدار البيضاء، الرباط، مراكش، فاس، طنجة). 2-4 أيام لباقي المدن." },
-  { q: "هل يوجد دفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
-  { q: "هل يمكن الاستبدال؟", a: "نعم، استبدال خلال 7 أيام عند وجود عيب. تواصل معنا على واتساب." },
-  { q: "هل المنتج مضمون؟", a: "نعم، ضمان 12 شهر على جميع منتجات NOORVA." },
-];
-
 interface ProductPageArProps {
   product: Product;
 }
 
 export function ProductPageAr({ product }: ProductPageArProps) {
-  const addItem = useCartStore((s) => s.addItem);
+  const recentlyViewedIds = useRecentlyViewedStore((s) => s.productIds);
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
 
-  const [variant, setVariant] = useState(product.variants[0]);
+  const [variant] = useState(product.variants[0]);
   const [qty, setQty] = useState(1);
   const [sticky, setSticky] = useState(false);
   const [wishlist, setWishlist] = useState(false);
-  const [added, setAdded] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const ar = (obj: { ar: string }) => obj.ar;
   const name = ar(product.name);
   const discount = calculateDiscount(variant.price, variant.compareAtPrice);
-  const subtotal = variant.price * qty;
   const reviews = getReviewsForProduct(product.id);
   const lowStock = variant.stock > 0 && variant.stock <= 15;
 
   const related = useMemo(
     () => products.filter((p) => p.id !== product.id),
     [product.id]
+  );
+
+  const recentlyViewed = useMemo(
+    () =>
+      recentlyViewedIds
+        .filter((id) => id !== product.id)
+        .map((id) => getProductById(id))
+        .filter((p): p is Product => Boolean(p))
+        .slice(0, 8),
+    [recentlyViewedIds, product.id]
   );
 
   useEffect(() => {
@@ -81,13 +81,6 @@ export function ProductPageAr({ product }: ProductPageArProps) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const addToCart = useCallback(() => {
-    addItem({ productId: product.id, variantId: variant.id, quantity: qty });
-    setAdded(true);
-    trackEvent("AddToCart", { content_ids: [product.id], value: subtotal, currency: "MAD" });
-    setTimeout(() => setAdded(false), 2000);
-  }, [addItem, product.id, variant.id, qty, subtotal]);
 
   const share = async () => {
     const url = window.location.href;
@@ -179,9 +172,6 @@ export function ProductPageAr({ product }: ProductPageArProps) {
             <div className="flex flex-col gap-3">
               <button type="button" onClick={scrollToOrder} className="w-full h-14 rounded-full bg-luxury-black text-luxury-bg font-bold text-base hover:bg-luxury-black/90 transition-all shadow-luxury active:scale-[0.98]">
                 اطلب الآن — الدفع عند الاستلام
-              </button>
-              <button type="button" onClick={addToCart} className="w-full h-14 rounded-full border-2 border-luxury-black font-bold text-base hover:bg-luxury-black hover:text-luxury-bg transition-all active:scale-[0.98] flex items-center justify-center gap-2">
-                {added ? <><Check className="h-5 w-5" />تمت الإضافة</> : <><ShoppingBag className="h-5 w-5" />أضف إلى السلة</>}
               </button>
             </div>
 
@@ -293,13 +283,13 @@ export function ProductPageAr({ product }: ProductPageArProps) {
         <section className="mt-16 sm:mt-20 max-w-2xl mx-auto">
           <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">الأسئلة الشائعة</h2>
           <div className="space-y-3">
-            {PRODUCT_FAQS.map((faq, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-black/5 overflow-hidden">
+            {faqs.map((faq, i) => (
+              <div key={faq.id} className="bg-white rounded-2xl border border-black/5 overflow-hidden">
                 <button type="button" onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex justify-between items-center px-5 py-4 text-start font-medium text-sm hover:text-luxury-gold transition-colors">
-                  {faq.q}
+                  {faq.question.ar}
                   <ChevronLeft className={cn("h-4 w-4 shrink-0 transition-transform", openFaq === i && "rotate-90")} />
                 </button>
-                {openFaq === i && <p className="px-5 pb-4 text-sm text-luxury-muted leading-relaxed">{faq.a}</p>}
+                {openFaq === i && <p className="px-5 pb-4 text-sm text-luxury-muted leading-relaxed">{faq.answer.ar}</p>}
               </div>
             ))}
           </div>
@@ -322,6 +312,30 @@ export function ProductPageAr({ product }: ProductPageArProps) {
             ))}
           </div>
         </section>
+
+        {/* شاهدت مؤخراً */}
+        {recentlyViewed.length > 0 && (
+          <section className="mt-16 sm:mt-20">
+            <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 flex items-center justify-center gap-2">
+              <Clock className="h-5 w-5 text-luxury-gold" />
+              شاهدت مؤخراً
+            </h2>
+            <p className="text-center text-luxury-muted text-sm mb-8">المنتجات التي زرتها سابقاً</p>
+            <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 snap-x -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-4">
+              {recentlyViewed.map((p) => (
+                <Link key={p.id} href={`/ar/products/${p.slug}`} className="group shrink-0 w-36 sm:w-auto snap-start bg-white rounded-2xl overflow-hidden border border-black/5 hover:border-luxury-gold/30 hover:shadow-luxury transition-all duration-300">
+                  <div className="relative aspect-square">
+                    <Image src={p.images[0]?.url || ""} alt={p.name.ar} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="20vw" />
+                  </div>
+                  <div className="p-3">
+                    <p className="text-xs font-bold line-clamp-2 group-hover:text-luxury-gold transition-colors">{p.name.ar}</p>
+                    <p className="text-xs font-bold mt-1.5 tabular-nums">{formatPriceNumber(p.price, "ar")} <span className="text-[10px] text-luxury-gold font-semibold">درهم</span></p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         <ProductOrderForm product={product} variant={variant} quantity={qty} />
       </div>

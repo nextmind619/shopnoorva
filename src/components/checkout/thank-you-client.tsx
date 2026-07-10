@@ -7,11 +7,11 @@ import { Check, Home, ShoppingBag, Phone } from "lucide-react";
 import { formatPriceNumber, cn } from "@/lib/utils";
 
 const STEPS = [
-  { num: "①", title: "مراجعة الطلب" },
-  { num: "②", title: "الاتصال بك لتأكيد الطلب" },
-  { num: "③", title: "تجهيز الطلب" },
-  { num: "④", title: "الشحن" },
-  { num: "⑤", title: "التوصيل والدفع عند الاستلام" },
+  { title: "تم استلام الطلب" },
+  { title: "سيتم الاتصال بك" },
+  { title: "تجهيز الطلب" },
+  { title: "الشحن" },
+  { title: "التوصيل" },
 ];
 
 export function ThankYouClient() {
@@ -52,9 +52,9 @@ export function ThankYouClient() {
             🎉 تم استلام طلبك بنجاح
           </h1>
           <p className="text-luxury-muted mt-4 leading-relaxed text-sm sm:text-base">
-            شكراً لثقتك في <span className="font-bold text-luxury-black">NOORVA</span>.
+            شكراً لاختيارك <span className="font-bold text-luxury-black">NOORVA</span>.
             <br />
-            لقد توصلنا بطلبك وسيتم التواصل معك هاتفياً خلال وقت قصير لتأكيد الطلب.
+            سيقوم فريقنا بالاتصال بك قريباً لتأكيد الطلب.
           </p>
         </motion.div>
 
@@ -67,14 +67,14 @@ export function ThankYouClient() {
           <p className="text-xs font-bold text-luxury-gold tracking-wider mb-4">مراحل طلبك</p>
           <div className="space-y-3">
             {STEPS.map((step, i) => (
-              <div key={step.num} className="flex items-center gap-3">
+              <div key={step.title} className="flex items-center gap-3">
                 <span
                   className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0",
+                    "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
                     i === 0 ? "bg-luxury-gold text-luxury-black" : "bg-luxury-bg text-luxury-muted"
                   )}
                 >
-                  {step.num}
+                  <Check className="h-4 w-4" />
                 </span>
                 <span className={cn("text-sm", i === 0 ? "font-bold" : "text-luxury-muted")}>{step.title}</span>
               </div>
@@ -101,6 +101,13 @@ export function ThankYouClient() {
             <span className="text-luxury-muted">طريقة الدفع</span>
             <span className="font-bold text-sm">الدفع عند الاستلام</span>
           </div>
+          <div className="flex justify-between items-center pt-3 border-t border-black/8">
+            <span className="text-luxury-muted">حالة الطلب</span>
+            <span className="inline-flex items-center gap-1.5 font-bold text-sm text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              بانتظار التأكيد
+            </span>
+          </div>
         </motion.div>
 
         <motion.div
@@ -126,7 +133,7 @@ export function ThankYouClient() {
             className="flex-1 h-13 rounded-full bg-luxury-black text-luxury-bg font-bold text-sm flex items-center justify-center gap-2 hover:bg-luxury-black/90 transition-all active:scale-[0.98]"
           >
             <Home className="h-4 w-4" />
-            العودة إلى الصفحة الرئيسية
+            العودة للرئيسية
           </Link>
           <Link
             href="/ar/products"

@@ -11,7 +11,6 @@ import { getLocalized, formatPrice } from "@/lib/utils";
 import { PriceDisplay } from "@/components/shared/price-display";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/lib/store/cart-store";
 import { useState } from "react";
 
 export function TrustGridSection() {
@@ -67,7 +66,6 @@ export function ProblemSection() {
 export function ProductDeepDiveSection() {
   const t = useTranslations("products");
   const locale = useLocale() as Locale;
-  const addItem = useCartStore((s) => s.addItem);
 
   return (
     <section className="section-padding bg-white">
@@ -78,7 +76,7 @@ export function ProductDeepDiveSection() {
         </div>
         <div className="space-y-20">
           {products.map((product, i) => (
-            <ProductShowcase key={product.id} product={product} locale={locale} reversed={i % 2 === 1} onAdd={() => addItem({ productId: product.id, variantId: product.variants[0].id, quantity: 1 })} />
+            <ProductShowcase key={product.id} product={product} locale={locale} reversed={i % 2 === 1} />
           ))}
         </div>
       </div>
@@ -86,7 +84,7 @@ export function ProductDeepDiveSection() {
   );
 }
 
-function ProductShowcase({ product, locale, reversed, onAdd }: { product: Product; locale: Locale; reversed: boolean; onAdd: () => void }) {
+function ProductShowcase({ product, locale, reversed }: { product: Product; locale: Locale; reversed: boolean }) {
   const t = useTranslations("products");
   const variant = product.variants[0];
   return (
@@ -102,7 +100,9 @@ function ProductShowcase({ product, locale, reversed, onAdd }: { product: Produc
           <PriceDisplay amount={variant.price} compareAt={variant.compareAtPrice} size="lg" />
         </div>
         <div className="flex gap-3 mt-6">
-          <Button variant="gold" className="rounded-full" onClick={onAdd}>{t("addToCart")}</Button>
+          <Button variant="gold" className="rounded-full" asChild>
+            <Link href={`/${locale}/products/${product.slug}#order-form`}>{t("orderNow")}</Link>
+          </Button>
           <Button variant="outline" className="rounded-full" asChild>
             <Link href={`/${locale}/products/${product.slug}`}>{t("details")}</Link>
           </Button>
@@ -255,7 +255,7 @@ export function HowItWorksSection() {
           ))}
         </div>
         <Button variant="gold" size="lg" className="mt-12 rounded-full" asChild>
-          <Link href={`/${locale}/checkout`}>{t("ctaButton")}</Link>
+          <Link href={`/${locale}/products`}>{t("ctaButton")}</Link>
         </Button>
       </div>
     </section>

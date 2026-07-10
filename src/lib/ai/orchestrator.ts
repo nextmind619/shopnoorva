@@ -11,6 +11,7 @@ import { appendOrderToSheets } from "./integrations/google-sheets";
 import { sendMetaConversion } from "./integrations/meta";
 import { sendTikTokEvent } from "./integrations/tiktok";
 import { triggerN8n } from "./integrations/n8n";
+import { persistOrderToDb } from "./integrations/db-orders";
 import { notifyAdminNewOrder } from "./admin-notify";
 import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
@@ -99,6 +100,10 @@ export async function processIncomingOrder(input: {
 
   order = applyFraudToOrder(order, fraud);
   store.orders.push(order);
+
+  await persistOrderToDb(order).catch(() => {
+    /* لا تعطّل الطلب إذا فشلت قاعدة البيانات — memory-store يبقى مصدر الحقيقة للوحة التحكم */
+  });
 
   for (const item of lineItems) {
     decrementStock(item.sku, item.quantity);

@@ -394,7 +394,7 @@ export function validateCoupon(code: string, subtotal: number) {
   return { valid: true, discount: Math.min(discount, subtotal) };
 }
 
-let ordersStore: Order[] = [];
+const ordersStore: Order[] = [];
 export function createOrder(order: Order) { ordersStore.push(order); return order; }
 export function getOrders() { return [...ordersStore]; }
 export function getOrderById(id: string) { return ordersStore.find((o) => o.id === id); }

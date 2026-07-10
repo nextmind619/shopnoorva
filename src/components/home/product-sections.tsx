@@ -2,26 +2,27 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { motion } from "motion/react";
 import { getFlashSaleProducts } from "@/data/products";
 import { ProductCard, SectionHeader } from "@/components/shared/product-card";
 
+const FALLBACK_FLASH_SALE_END = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
+
+function calculateTimeLeft(endDate: string) {
+  const diff = new Date(endDate).getTime() - Date.now();
+  if (diff <= 0) return { hours: 0, minutes: 0, seconds: 0 };
+  return {
+    hours: Math.floor(diff / (1000 * 60 * 60)),
+    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((diff % (1000 * 60)) / 1000),
+  };
+}
+
 function FlashTimer({ endDate }: { endDate: string }) {
   const t = useTranslations("sections");
-  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(endDate));
 
   useEffect(() => {
-    const calculate = () => {
-      const diff = new Date(endDate).getTime() - Date.now();
-      if (diff <= 0) return { hours: 0, minutes: 0, seconds: 0 };
-      return {
-        hours: Math.floor(diff / (1000 * 60 * 60)),
-        minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((diff % (1000 * 60)) / 1000),
-      };
-    };
-    setTimeLeft(calculate());
-    const interval = setInterval(() => setTimeLeft(calculate()), 1000);
+    const interval = setInterval(() => setTimeLeft(calculateTimeLeft(endDate)), 1000);
     return () => clearInterval(interval);
   }, [endDate]);
 
@@ -48,9 +49,8 @@ function FlashTimer({ endDate }: { endDate: string }) {
 
 export function FlashSaleSection() {
   const t = useTranslations("sections");
-  const locale = useLocale();
   const flashProducts = getFlashSaleProducts();
-  const endDate = flashProducts[0]?.flashSaleEndsAt || new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
+  const endDate = flashProducts[0]?.flashSaleEndsAt || FALLBACK_FLASH_SALE_END;
 
   return (
     <section className="section-padding bg-neutral-50">
