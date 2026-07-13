@@ -27,11 +27,11 @@ const SCENE_BG: Record<GalleryScene, string> = {
   hero: "bg-white",
   lifestyle: "bg-gradient-to-br from-[#1a1520] via-[#2d2438] to-[#1a1520]",
   environment: "bg-gradient-to-b from-[#0a0e1a] via-[#151b35] to-[#0a0e1a]",
-  features: "bg-gradient-to-b from-white to-luxury-bg",
+  features: "bg-gradient-to-b from-white to-[#f2eee6]",
   closeup: "bg-gradient-to-b from-neutral-100 to-white",
-  package: "bg-gradient-to-b from-luxury-bg to-white",
+  package: "bg-gradient-to-b from-[#f2eee6] to-white",
   dimensions: "bg-white",
-  benefits: "bg-gradient-to-br from-neutral-50 via-white to-luxury-bg",
+  benefits: "bg-gradient-to-br from-neutral-50 via-white to-[#f2eee6]",
   "before-after": "bg-neutral-900",
   packaging: "bg-gradient-to-b from-neutral-50 to-white",
 };
@@ -130,11 +130,11 @@ function SlideContent({ slide, priority }: { slide: GallerySlide; priority?: boo
       {slide.scene === "closeup" && (
         <div className="absolute inset-x-6 bottom-20 sm:bottom-24 z-20 flex gap-3 justify-center">
           <div className="flex items-center gap-2 bg-white/95 backdrop-blur-md rounded-2xl px-5 py-3 border border-black/5 shadow-soft">
-            <Bluetooth className="h-5 w-5 text-luxury-black" />
+            <Bluetooth className="h-5 w-5 text-neutral-900" />
             <span className="text-xs font-bold">بلوتوث</span>
           </div>
           <div className="flex items-center gap-2 bg-white/95 backdrop-blur-md rounded-2xl px-5 py-3 border border-black/5 shadow-soft">
-            <Usb className="h-5 w-5 text-luxury-black" />
+            <Usb className="h-5 w-5 text-neutral-900" />
             <span className="text-xs font-bold">USB Type-C</span>
           </div>
         </div>
@@ -142,7 +142,7 @@ function SlideContent({ slide, priority }: { slide: GallerySlide; priority?: boo
 
       {slide.scene === "dimensions" && (
         <div className="absolute inset-x-6 bottom-20 z-20 flex justify-center">
-          <div className="flex items-center gap-3 bg-luxury-black/90 text-white backdrop-blur-md rounded-2xl px-6 py-4">
+          <div className="flex items-center gap-3 bg-neutral-900/90 text-white backdrop-blur-md rounded-2xl px-6 py-4">
             <Ruler className="h-5 w-5 text-luxury-gold" />
             <span className="text-sm font-bold">{slide.subtitle}</span>
           </div>
@@ -237,7 +237,7 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative aspect-square rounded-[1.75rem] overflow-hidden bg-white shadow-luxury border border-black/5 group touch-pan-y">
+        <div className="relative aspect-square rounded-[1.75rem] overflow-hidden bg-luxury-surface shadow-luxury border border-luxury-border group touch-pan-y">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
@@ -260,7 +260,7 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
           </AnimatePresence>
 
           {product.isTikTokViral && (
-            <span className="absolute top-4 start-4 z-20 glass text-luxury-black text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide flex items-center gap-1.5">
+            <span className="absolute top-4 start-4 z-20 glass text-neutral-900 text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide flex items-center gap-1.5">
               <Sparkles className="h-3 w-3 text-luxury-gold" />
               فيرال تيك توك
             </span>
@@ -305,7 +305,7 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
               <div className={cn("absolute inset-0", SCENE_BG[slide.scene])}>
                 <Image src={slide.imageUrl} alt="" fill sizes="80px" loading="lazy" className="object-cover opacity-80" />
               </div>
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-luxury-black/80 to-transparent pt-4 pb-1 px-1">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent pt-4 pb-1 px-1">
                 <span className="text-[8px] sm:text-[9px] text-white font-bold leading-none line-clamp-2 text-center block">
                   {slide.heading.split(" ").slice(0, 2).join(" ")}
                 </span>
@@ -353,7 +353,7 @@ function GalleryOverlay({
       exit={{ opacity: 0 }}
       className={cn(
         "fixed inset-0 z-[100] flex flex-col",
-        mode === "zoom" ? "bg-luxury-black/96 backdrop-blur-sm p-4 sm:p-8" : "bg-black"
+        mode === "zoom" ? "bg-black/96 backdrop-blur-sm p-4 sm:p-8" : "bg-black"
       )}
       onClick={onClose}
     >

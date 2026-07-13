@@ -15,6 +15,16 @@
   --glass: rgba(255, 253, 248, 0.85);
   --shadow-soft: 0 8px 32px rgba(26, 22, 18, 0.07);
   --shadow-luxury: 0 20px 56px rgba(26, 22, 18, 0.12);
+
+  /* Plain (non-@theme) custom properties so descendant scopes — e.g. .product-luxury —
+     can override them and have Tailwind utilities below pick up the new value via var(). */
+  --luxury-black: #0b0b0b;
+  --luxury-bg: #f8f6f2;
+  --luxury-gold: #c8a96b;
+  --luxury-gold-dark: #9a8048;
+  --luxury-muted: #6b6560;
+  --luxury-surface: #ffffff;
+  --luxury-border: rgba(11, 11, 11, 0.06);
 }
 
 @theme inline {
@@ -28,11 +38,13 @@
   --color-price: var(--price);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --color-luxury-black: #0b0b0b;
-  --color-luxury-bg: #f8f6f2;
-  --color-luxury-gold: #c8a96b;
-  --color-luxury-gold-dark: #9a8048;
-  --color-luxury-muted: #6b6560;
+  --color-luxury-black: var(--luxury-black);
+  --color-luxury-bg: var(--luxury-bg);
+  --color-luxury-gold: var(--luxury-gold);
+  --color-luxury-gold-dark: var(--luxury-gold-dark);
+  --color-luxury-muted: var(--luxury-muted);
+  --color-luxury-surface: var(--luxury-surface);
+  --color-luxury-border: var(--luxury-border);
   --font-sans: var(--font-cairo);
   --font-display: var(--font-tajawal);
   --animate-accordion-down: accordion-down 0.3s ease-out;
@@ -80,6 +92,76 @@ body {
 
 .product-luxury {
   font-family: var(--font-tajawal), var(--font-cairo), sans-serif;
+
+  /* Dark cosmic re-skin — scoped only to product pages, homepage stays untouched.
+     These override the plain custom properties (not the @theme names directly), which
+     Tailwind's generated utilities reference via var(), so the cascade applies correctly. */
+  --luxury-bg: #0a0916;
+  --luxury-black: #f4f1fb;
+  --luxury-gold: #e7c273;
+  --luxury-gold-dark: #f6d78e;
+  --luxury-muted: #a8a2c4;
+  --luxury-surface: #14122a;
+  --luxury-border: rgba(255, 255, 255, 0.08);
+  --shadow-soft: 0 8px 32px rgba(76, 41, 199, 0.12);
+  --shadow-luxury: 0 24px 64px rgba(76, 41, 199, 0.28), 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+
+.cosmic-glow-bg {
+  position: relative;
+  isolation: isolate;
+  background: radial-gradient(120% 100% at 100% 0%, rgba(109, 40, 217, 0.35), transparent 55%),
+    radial-gradient(100% 90% at 0% 100%, rgba(37, 99, 235, 0.28), transparent 55%),
+    linear-gradient(160deg, #16112f 0%, #0c0a1c 55%, #0a0916 100%);
+  border: 1px solid var(--color-luxury-border);
+}
+
+.cosmic-page-bg {
+  background:
+    radial-gradient(60% 45% at 85% 0%, rgba(109, 40, 217, 0.22), transparent 60%),
+    radial-gradient(50% 40% at 5% 15%, rgba(37, 99, 235, 0.16), transparent 60%),
+    var(--color-luxury-bg);
+}
+
+.btn-cosmic {
+  background: linear-gradient(90deg, #6d28d9, #4f46e5, #2563eb);
+  background-size: 160% 100%;
+  color: #fff;
+  box-shadow: 0 16px 40px rgba(79, 70, 229, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  transition: background-position 0.5s ease, transform 0.15s ease, box-shadow 0.3s ease;
+}
+
+.btn-cosmic:hover {
+  background-position: 100% 0;
+  box-shadow: 0 20px 48px rgba(79, 70, 229, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.btn-cosmic:active {
+  transform: scale(0.98);
+}
+
+.btn-cosmic:disabled {
+  opacity: 0.7;
+}
+
+.badge-urgency {
+  background: linear-gradient(90deg, #f43f5e, #e11d48);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 8px 20px rgba(225, 29, 72, 0.4);
+}
+
+.countdown-box {
+  background: linear-gradient(180deg, #1b1030, #120a24);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px rgba(244, 63, 94, 0.25) inset, 0 8px 20px rgba(244, 63, 94, 0.12);
+}
+
+.scarcity-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.scarcity-fill {
+  background: linear-gradient(90deg, #fb923c, #f43f5e);
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.5);
 }
 
 ::selection {

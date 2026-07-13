@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import {
   Star, Minus, Plus, Check, Heart, Share2, Clock,
   ChevronLeft, Play, Shield, Truck, Package,
-  RotateCcw, MessageCircle, Banknote,
+  RotateCcw, MessageCircle, Banknote, ShieldCheck,
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
@@ -16,6 +16,16 @@ import { products, getReviewsForProduct, getProductById, faqs } from "@/data/pro
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { ProductOrderForm } from "@/components/product/product-order-form";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
+import { FlashCountdown, StockScarcityBar } from "@/components/product/flash-countdown";
+
+const TOP_BADGES = [
+  { icon: Truck, text: "توصيل مجاني لجميع أنحاء المغرب" },
+  { icon: Banknote, text: "الدفع عند الاستلام" },
+  { icon: RotateCcw, text: "استرداد خلال 7 أيام" },
+  { icon: ShieldCheck, text: "طلب آمن 100%" },
+];
+
+const WHY_ICON_COLORS = ["text-luxury-gold", "text-sky-400", "text-rose-400", "text-emerald-400", "text-violet-400", "text-orange-400"];
 
 const BENEFIT_CARDS = [
   { emoji: "✨", text: "يحوّل الغرفة إلى مجرة مذهلة" },
@@ -49,6 +59,11 @@ export function ProductPageAr({ product }: ProductPageArProps) {
   const [sticky, setSticky] = useState(false);
   const [wishlist, setWishlist] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  // recentlyViewedIds is persisted to localStorage (unavailable during SSR), so we only
+  // render that section after mount to avoid a hydration mismatch.
+  const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time client-mount flag, mirrors pattern used elsewhere in this codebase
+  useEffect(() => setMounted(true), []);
 
   const ar = (obj: { ar: string }) => obj.ar;
   const name = ar(product.name);
@@ -63,12 +78,14 @@ export function ProductPageAr({ product }: ProductPageArProps) {
 
   const recentlyViewed = useMemo(
     () =>
-      recentlyViewedIds
-        .filter((id) => id !== product.id)
-        .map((id) => getProductById(id))
-        .filter((p): p is Product => Boolean(p))
-        .slice(0, 8),
-    [recentlyViewedIds, product.id]
+      mounted
+        ? recentlyViewedIds
+            .filter((id) => id !== product.id)
+            .map((id) => getProductById(id))
+            .filter((p): p is Product => Boolean(p))
+            .slice(0, 8)
+        : [],
+    [mounted, recentlyViewedIds, product.id]
   );
 
   useEffect(() => {
@@ -95,15 +112,16 @@ export function ProductPageAr({ product }: ProductPageArProps) {
   const storyText = product.deepDescription?.ar || product.description.ar;
 
   return (
-    <div className="product-luxury bg-luxury-bg text-luxury-black min-h-screen" dir="rtl">
+    <div className="product-luxury cosmic-page-bg text-luxury-black min-h-screen" dir="rtl">
       {/* شريط علوي */}
-      <div className="bg-luxury-black text-luxury-bg text-xs sm:text-sm py-2.5 px-4">
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-1 text-center">
-          <span>🚚 توصيل سريع إلى جميع مدن المغرب</span>
-          <span className="hidden sm:inline text-luxury-gold/40">|</span>
-          <span>💰 الدفع عند الاستلام</span>
-          <span className="hidden sm:inline text-luxury-gold/40">|</span>
-          <span>🔒 طلب آمن 100%</span>
+      <div className="bg-luxury-surface/60 border-b border-luxury-border text-[11px] sm:text-xs py-2.5 px-4">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-center text-luxury-muted">
+          {TOP_BADGES.map((b) => (
+            <span key={b.text} className="flex items-center gap-1.5 font-medium">
+              <b.icon className="h-3.5 w-3.5 text-luxury-gold shrink-0" />
+              {b.text}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -118,68 +136,77 @@ export function ProductPageAr({ product }: ProductPageArProps) {
         </nav>
 
         {/* المعرض + معلومات الشراء */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6">
           <PremiumProductGallery product={product} />
 
           {/* معلومات المنتج */}
-          <div className="lg:sticky lg:top-6 lg:self-start space-y-5">
-            <div className="flex items-center gap-2 text-sm">
+          <div className="cosmic-glow-bg rounded-[1.75rem] p-5 sm:p-7 lg:sticky lg:top-6 lg:self-start space-y-5">
+            <div className="flex items-center gap-2 text-sm flex-wrap">
               <div className="flex">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className={cn("h-4 w-4", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-neutral-200")} />
+                  <Star key={i} className={cn("h-4 w-4", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/15")} />
                 ))}
               </div>
               <span className="font-bold">{product.rating}</span>
               <span className="text-luxury-muted">·</span>
               <span className="text-luxury-muted">{product.soldCount.toLocaleString("ar-MA")}+ طلب</span>
+              {product.isTikTokViral && (
+                <span className="inline-flex items-center gap-1 bg-luxury-gold/15 text-luxury-gold text-[11px] font-bold px-2.5 py-1 rounded-full">
+                  فيرال تيك توك 🔥
+                </span>
+              )}
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">{name}</h1>
             <p className="text-luxury-muted leading-relaxed">{product.shortDescription.ar}</p>
 
-            <div className="py-4 border-y border-black/8">
+            <div className="py-4 border-y border-luxury-border">
               <div className="flex flex-wrap items-baseline gap-3">
                 <span className="text-3xl sm:text-4xl font-bold tabular-nums">{formatPriceNumber(variant.price, "ar")}</span>
                 <span className="text-base font-semibold text-luxury-gold">درهم مغربي</span>
                 {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
                   <span className="text-lg text-luxury-muted line-through tabular-nums">{formatPriceNumber(variant.compareAtPrice, "ar")} درهم</span>
                 )}
+                {discount > 0 && (
+                  <span className="badge-urgency text-white text-sm font-bold px-3.5 py-1.5 rounded-full">
+                    خصم {discount}%
+                  </span>
+                )}
               </div>
-              {discount > 0 && (
-                <span className="inline-block mt-3 bg-luxury-gold/15 text-luxury-gold-dark text-sm font-bold px-4 py-1.5 rounded-full">
-                  وفّر {discount}%
-                </span>
-              )}
             </div>
 
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 text-sm font-medium px-4 py-2 rounded-full">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            {product.flashSaleEndsAt && <FlashCountdown endDate={product.flashSaleEndsAt} />}
+
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-300 text-sm font-medium px-4 py-2 rounded-full border border-emerald-500/20">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 متوفر الآن
               </span>
-              {lowStock && <span className="text-amber-700 text-xs font-medium">باقي {variant.stock} فقط!</span>}
             </div>
+
+            <StockScarcityBar stock={variant.stock} originalStock={product.stock} />
 
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium">الكمية</span>
-              <div className="flex items-center rounded-full border border-black/10 overflow-hidden">
-                <button type="button" onClick={() => setQty(Math.max(1, qty - 1))} className="p-3 hover:bg-white transition-colors"><Minus className="h-4 w-4" /></button>
+              <div className="flex items-center rounded-full border border-luxury-border overflow-hidden">
+                <button type="button" onClick={() => setQty(Math.max(1, qty - 1))} className="p-3 hover:bg-white/5 transition-colors"><Minus className="h-4 w-4" /></button>
                 <span className="px-5 font-bold tabular-nums">{qty}</span>
-                <button type="button" onClick={() => setQty(qty + 1)} className="p-3 hover:bg-white transition-colors"><Plus className="h-4 w-4" /></button>
+                <button type="button" onClick={() => setQty(qty + 1)} className="p-3 hover:bg-white/5 transition-colors"><Plus className="h-4 w-4" /></button>
               </div>
+              {lowStock && <span className="text-orange-300 text-xs font-medium">باقي {variant.stock} فقط!</span>}
             </div>
 
             <div className="flex flex-col gap-3">
-              <button type="button" onClick={scrollToOrder} className="w-full h-14 rounded-full bg-luxury-black text-luxury-bg font-bold text-base hover:bg-luxury-black/90 transition-all shadow-luxury active:scale-[0.98]">
+              <button type="button" onClick={scrollToOrder} className="btn-cosmic w-full h-14 rounded-full font-bold text-base active:scale-[0.98] transition-all">
                 اطلب الآن — الدفع عند الاستلام
               </button>
             </div>
 
             <div className="flex gap-2">
-              <button type="button" onClick={() => setWishlist(!wishlist)} className={cn("flex-1 flex items-center justify-center gap-2 py-3 rounded-full border text-sm transition-all", wishlist ? "border-luxury-gold text-luxury-gold bg-luxury-gold/5" : "border-black/10")}>
+              <button type="button" onClick={() => setWishlist(!wishlist)} className={cn("flex-1 flex items-center justify-center gap-2 py-3 rounded-full border text-sm transition-all", wishlist ? "border-luxury-gold text-luxury-gold bg-luxury-gold/5" : "border-luxury-border hover:border-white/20")}>
                 <Heart className={cn("h-4 w-4", wishlist && "fill-luxury-gold")} />المفضلة
               </button>
-              <button type="button" onClick={share} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border border-black/10 text-sm hover:border-luxury-gold/40 transition-all">
+              <button type="button" onClick={share} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border border-luxury-border text-sm hover:border-luxury-gold/40 transition-all">
                 <Share2 className="h-4 w-4" />مشاركة
               </button>
             </div>
@@ -194,7 +221,7 @@ export function ProductPageAr({ product }: ProductPageArProps) {
               ? product.benefits.map((b, i) => ({ emoji: BENEFIT_CARDS[i]?.emoji || "✨", text: b.ar }))
               : BENEFIT_CARDS
             ).map((card, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }} className="bg-white rounded-2xl p-4 sm:p-5 border border-black/5 shadow-soft hover:shadow-luxury hover:-translate-y-1 transition-all duration-300">
+              <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }} className="bg-luxury-surface rounded-2xl p-4 sm:p-5 border border-luxury-border shadow-soft hover:shadow-luxury hover:-translate-y-1 hover:border-luxury-gold/25 transition-all duration-300">
                 <span className="text-2xl">{card.emoji}</span>
                 <p className="text-sm font-medium mt-3 leading-snug">{card.text}</p>
               </motion.div>
@@ -215,7 +242,7 @@ export function ProductPageAr({ product }: ProductPageArProps) {
         {product.specifications && (
           <section className="mt-16 sm:mt-20">
             <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">المواصفات التقنية</h2>
-            <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-black/5 overflow-hidden divide-y divide-black/5 shadow-soft">
+            <div className="max-w-2xl mx-auto bg-luxury-surface rounded-2xl border border-luxury-border overflow-hidden divide-y divide-luxury-border shadow-soft">
               {product.specifications.map((spec, i) => (
                 <div key={i} className="flex justify-between items-center gap-4 px-5 py-4 text-sm">
                   <span className="text-luxury-muted">{spec.label.ar}</span>
@@ -226,7 +253,7 @@ export function ProductPageAr({ product }: ProductPageArProps) {
             {product.packageIncludes && (
               <div className="mt-6 grid grid-cols-2 gap-3 max-w-2xl mx-auto">
                 {product.packageIncludes.map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm bg-white rounded-xl p-4 border border-black/5">
+                  <div key={i} className="flex items-center gap-2 text-sm bg-luxury-surface rounded-xl p-4 border border-luxury-border">
                     <Check className="h-4 w-4 text-luxury-gold shrink-0" />{item.ar}
                   </div>
                 ))}
@@ -240,8 +267,8 @@ export function ProductPageAr({ product }: ProductPageArProps) {
           <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">لماذا تختار نورڤا؟</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
             {WHY_NOORVA.map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl p-5 border border-black/5 text-center hover:border-luxury-gold/30 transition-colors">
-                <item.icon className="h-6 w-6 text-luxury-gold mx-auto mb-3" />
+              <div key={i} className="bg-luxury-surface rounded-2xl p-5 border border-luxury-border text-center hover:border-luxury-gold/30 transition-colors">
+                <item.icon className={cn("h-6 w-6 mx-auto mb-3", WHY_ICON_COLORS[i % WHY_ICON_COLORS.length])} />
                 <p className="text-sm font-bold">{item.title}</p>
                 <p className="text-xs text-luxury-muted mt-1">{item.desc}</p>
               </div>
@@ -255,10 +282,10 @@ export function ProductPageAr({ product }: ProductPageArProps) {
           <p className="text-center text-luxury-muted text-sm mb-8">مراجعات حقيقية من زبناء نورڤا</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {reviews.map((r) => (
-              <div key={r.id} className="bg-white rounded-2xl p-5 border border-black/5">
+              <div key={r.id} className="bg-luxury-surface rounded-2xl p-5 border border-luxury-border">
                 <div className="flex gap-0.5 mb-2">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={cn("h-3.5 w-3.5", i < r.rating ? "fill-luxury-gold text-luxury-gold" : "text-neutral-200")} />
+                    <Star key={i} className={cn("h-3.5 w-3.5", i < r.rating ? "fill-luxury-gold text-luxury-gold" : "text-white/15")} />
                   ))}
                 </div>
                 <p className="font-bold text-sm">{r.title.ar}</p>
@@ -273,7 +300,7 @@ export function ProductPageAr({ product }: ProductPageArProps) {
                 {r.hasVideo && (
                   <div className="flex items-center gap-1.5 text-xs text-luxury-gold mt-3"><Play className="h-3 w-3 fill-luxury-gold" />فيديو عميل</div>
                 )}
-                <p className="text-xs text-luxury-muted mt-3 pt-3 border-t border-black/5">{r.author} · {r.city} {r.verified && "· ✓ شراء موثق"}</p>
+                <p className="text-xs text-luxury-muted mt-3 pt-3 border-t border-luxury-border">{r.author} · {r.city} {r.verified && "· ✓ شراء موثق"}</p>
               </div>
             ))}
           </div>
@@ -284,7 +311,7 @@ export function ProductPageAr({ product }: ProductPageArProps) {
           <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">الأسئلة الشائعة</h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
-              <div key={faq.id} className="bg-white rounded-2xl border border-black/5 overflow-hidden">
+              <div key={faq.id} className="bg-luxury-surface rounded-2xl border border-luxury-border overflow-hidden">
                 <button type="button" onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex justify-between items-center px-5 py-4 text-start font-medium text-sm hover:text-luxury-gold transition-colors">
                   {faq.question.ar}
                   <ChevronLeft className={cn("h-4 w-4 shrink-0 transition-transform", openFaq === i && "rotate-90")} />
@@ -300,7 +327,7 @@ export function ProductPageAr({ product }: ProductPageArProps) {
           <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">منتجات قد تعجبك</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {related.map((p) => (
-              <Link key={p.id} href={`/ar/products/${p.slug}`} className="group bg-white rounded-2xl overflow-hidden border border-black/5 hover:border-luxury-gold/30 hover:shadow-luxury transition-all duration-300">
+              <Link key={p.id} href={`/ar/products/${p.slug}`} className="group bg-luxury-surface rounded-2xl overflow-hidden border border-luxury-border hover:border-luxury-gold/30 hover:shadow-luxury transition-all duration-300">
                 <div className="relative aspect-square">
                   <Image src={p.images[0]?.url || ""} alt={p.name.ar} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="25vw" />
                 </div>
@@ -323,7 +350,7 @@ export function ProductPageAr({ product }: ProductPageArProps) {
             <p className="text-center text-luxury-muted text-sm mb-8">المنتجات التي زرتها سابقاً</p>
             <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 snap-x -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-4">
               {recentlyViewed.map((p) => (
-                <Link key={p.id} href={`/ar/products/${p.slug}`} className="group shrink-0 w-36 sm:w-auto snap-start bg-white rounded-2xl overflow-hidden border border-black/5 hover:border-luxury-gold/30 hover:shadow-luxury transition-all duration-300">
+                <Link key={p.id} href={`/ar/products/${p.slug}`} className="group shrink-0 w-36 sm:w-auto snap-start bg-luxury-surface rounded-2xl overflow-hidden border border-luxury-border hover:border-luxury-gold/30 hover:shadow-luxury transition-all duration-300">
                   <div className="relative aspect-square">
                     <Image src={p.images[0]?.url || ""} alt={p.name.ar} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="20vw" />
                   </div>
@@ -343,12 +370,12 @@ export function ProductPageAr({ product }: ProductPageArProps) {
       {/* شريط شراء ثابت — موبايل */}
       <AnimatePresence>
         {sticky && (
-          <motion.div initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }} className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-white/95 backdrop-blur-md border-t border-black/8 shadow-luxury safe-area-pb">
+          <motion.div initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }} className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-luxury-surface/95 backdrop-blur-md border-t border-luxury-border shadow-luxury safe-area-pb">
             <div className="flex items-center gap-3 px-4 py-3 max-w-lg mx-auto">
               <div className="flex-1 min-w-0">
                 <p className="text-lg font-bold tabular-nums">{formatPriceNumber(variant.price, "ar")} <span className="text-xs text-luxury-gold">درهم</span></p>
               </div>
-              <button type="button" onClick={scrollToOrder} className="h-12 px-8 rounded-full bg-luxury-black text-luxury-bg font-bold text-sm active:scale-95 transition-transform">
+              <button type="button" onClick={scrollToOrder} className="btn-cosmic h-12 px-8 rounded-full font-bold text-sm active:scale-95 transition-transform">
                 اطلب الآن
               </button>
             </div>

@@ -123,18 +123,18 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="rounded-[1.75rem] border border-black/5 bg-white/80 backdrop-blur-xl shadow-luxury overflow-hidden"
+          className="rounded-[1.75rem] border border-black/5 bg-white text-neutral-900 shadow-luxury overflow-hidden"
         >
-          <div className="px-6 sm:px-8 pt-8 pb-6 text-center border-b border-black/5 bg-gradient-to-b from-luxury-bg to-white">
+          <div className="px-6 sm:px-8 pt-8 pb-6 text-center border-b border-black/5 bg-gradient-to-b from-neutral-50 to-white">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">أكمل طلبك الآن</h2>
-            <p className="text-sm sm:text-base text-luxury-muted mt-3 leading-relaxed max-w-md mx-auto">
+            <p className="text-sm sm:text-base text-neutral-500 mt-3 leading-relaxed max-w-md mx-auto">
               املأ المعلومات التالية وسيتم تأكيد طلبك في أقل من دقيقة.
             </p>
           </div>
 
           <div className="p-6 sm:p-8">
-            <div className="rounded-2xl bg-luxury-bg/80 border border-black/5 p-4 sm:p-5 mb-8">
-              <p className="text-xs font-bold text-luxury-gold tracking-wider mb-4">ملخص الطلب</p>
+            <div className="rounded-2xl bg-neutral-50 border border-black/5 p-4 sm:p-5 mb-8">
+              <p className="text-xs font-bold text-amber-700 tracking-wider mb-4">ملخص الطلب</p>
               <div className="flex gap-4">
                 {productImage && (
                   <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden shrink-0 border border-black/5">
@@ -143,28 +143,28 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                 )}
                 <div className="flex-1 min-w-0 space-y-2 text-sm">
                   <p className="font-bold leading-snug">{productName}</p>
-                  <div className="flex justify-between text-luxury-muted">
+                  <div className="flex justify-between text-neutral-500">
                     <span>السعر</span>
-                    <span className="font-semibold text-luxury-black tabular-nums">{formatPriceNumber(variant.price, "ar")} درهم</span>
+                    <span className="font-semibold text-neutral-900 tabular-nums">{formatPriceNumber(variant.price, "ar")} درهم</span>
                   </div>
-                  <div className="flex justify-between text-luxury-muted">
+                  <div className="flex justify-between text-neutral-500">
                     <span>الكمية</span>
                     <span className="font-semibold">{quantity}</span>
                   </div>
-                  <div className="flex justify-between text-luxury-muted">
+                  <div className="flex justify-between text-neutral-500">
                     <span>التوصيل</span>
                     <span className="font-semibold text-emerald-600">مجاني</span>
                   </div>
                   <div className="flex justify-between items-center pt-2 border-t border-black/8">
-                    <span className="text-luxury-muted">طريقة الدفع</span>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-luxury-black text-luxury-bg px-3 py-1.5 rounded-full">
+                    <span className="text-neutral-500">طريقة الدفع</span>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-indigo-600 text-white px-3 py-1.5 rounded-full">
                       <Banknote className="h-3.5 w-3.5" />
                       الدفع عند الاستلام
                     </span>
                   </div>
                   <div className="flex justify-between items-baseline pt-2">
                     <span className="font-bold">الإجمالي النهائي</span>
-                    <span className="text-xl font-bold text-luxury-gold tabular-nums">{formatPriceNumber(total, "ar")} درهم</span>
+                    <span className="text-xl font-bold text-amber-700 tabular-nums">{formatPriceNumber(total, "ar")} درهم</span>
                   </div>
                 </div>
               </div>
@@ -231,7 +231,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-14 sm:h-16 rounded-full bg-luxury-black text-luxury-bg font-bold text-base sm:text-lg hover:bg-luxury-black/90 transition-all active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-2 shadow-luxury"
+                className="btn-cosmic w-full h-14 sm:h-16 rounded-full font-bold text-base sm:text-lg transition-all active:scale-[0.98] disabled:pointer-events-none flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>
@@ -246,7 +246,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
 
             <div className="mt-8 pt-6 border-t border-black/5 space-y-3">
               {TRUST_BADGES.map((badge) => (
-                <div key={badge.text} className="flex items-center gap-3 text-sm text-luxury-muted">
+                <div key={badge.text} className="flex items-center gap-3 text-sm text-neutral-500">
                   <span className="text-base">{badge.emoji}</span>
                   <span>{badge.text}</span>
                 </div>
