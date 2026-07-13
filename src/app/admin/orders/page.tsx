@@ -56,7 +56,7 @@ export default function AdminOrdersPage() {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- initial fetch-on-mount, refreshed every 30s
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- initial orders fetch on mount
     load();
     const interval = setInterval(load, 30000);
     return () => clearInterval(interval);

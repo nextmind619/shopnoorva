@@ -16,7 +16,7 @@
   "announcement": {
     "text": "Livraison GRATUITE dès 500 MAD · Paiement à la livraison",
     "cta": "Commander",
-    "ticker": { "cod": "Paiement à la livraison", "shipping": "Livraison 24-48h", "warranty": "Garantie 12 mois", "morocco": "Maroc uniquement", "secure": "100% Sécurisé" }
+    "ticker": { "cod": "Paiement à la livraison", "shipping": "Livraison rapide partout au Maroc", "warranty": "Garantie 12 mois", "morocco": "Maroc uniquement", "secure": "Commande 100% sécurisée", "returns": "Échange sous 7 jours" }
   },
   "hero": {
     "badge": "Éclairage Premium 2026",

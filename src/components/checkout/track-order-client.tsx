@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { Search, Package, Truck, CheckCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,6 @@ const STATUS_STEPS = ["pending", "confirmed", "processing", "shipped", "delivere
 
 export function TrackOrderClient() {
   const t = useTranslations("track");
-  const locale = useLocale();
   const searchParams = useSearchParams();
   const [orderNumber, setOrderNumber] = useState(searchParams.get("order") || "");
   const [phone, setPhone] = useState(searchParams.get("phone") || "");

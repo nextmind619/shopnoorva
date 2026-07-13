@@ -1,31 +1,23 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Star, Minus, Plus, Check, Heart, Share2, Clock,
+  Star, Minus, Plus, Check, Heart, Share2,
   ChevronLeft, Play, Shield, Truck, Package,
-  RotateCcw, MessageCircle, Banknote, ShieldCheck,
+  RotateCcw, MessageCircle, Banknote, Users, ShoppingBag,
+  Flame, Sparkles, Zap, Gamepad2, Timer, Palette, Bluetooth, Ruler,
+  ArrowLeft, BadgeCheck, Clock,
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
 import { trackEvent } from "@/components/analytics/analytics-scripts";
-import { products, getReviewsForProduct, getProductById, faqs } from "@/data/products";
+import { products, getProductById, getReviewsForProduct } from "@/data/products";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { ProductOrderForm } from "@/components/product/product-order-form";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
-import { FlashCountdown, StockScarcityBar } from "@/components/product/flash-countdown";
-
-const TOP_BADGES = [
-  { icon: Truck, text: "توصيل مجاني لجميع أنحاء المغرب" },
-  { icon: Banknote, text: "الدفع عند الاستلام" },
-  { icon: RotateCcw, text: "استرداد خلال 7 أيام" },
-  { icon: ShieldCheck, text: "طلب آمن 100%" },
-];
-
-const WHY_ICON_COLORS = ["text-luxury-gold", "text-sky-400", "text-rose-400", "text-emerald-400", "text-violet-400", "text-orange-400"];
 
 const BENEFIT_CARDS = [
   { emoji: "✨", text: "يحوّل الغرفة إلى مجرة مذهلة" },
@@ -37,56 +29,63 @@ const BENEFIT_CARDS = [
   { emoji: "🌈", text: "أكثر من 10 أوضاع إضاءة" },
 ];
 
+const FEATURE_ICONS = [Sparkles, Zap, Bluetooth, Gamepad2, Timer, Palette, Ruler];
+
 const WHY_NOORVA = [
-  { icon: Shield, title: "جودة عالية", desc: "منتجات مختارة بعناية" },
+  { icon: Shield, title: "جودة ممتازة", desc: "منتجات مختارة بعناية" },
   { icon: Banknote, title: "الدفع عند الاستلام", desc: "خلّص كاش عند الباب" },
-  { icon: Truck, title: "توصيل سريع", desc: "24-48 ساعة للمدن الكبرى" },
-  { icon: Package, title: "تغليف آمن", desc: "حماية كاملة للمنتج" },
+  { icon: Truck, title: "شحن سريع", desc: "24-48 ساعة للمدن الكبرى" },
+  { icon: Package, title: "تغليف فاخر", desc: "حماية كاملة وتجربة أنيقة" },
+  { icon: MessageCircle, title: "خدمة عملاء", desc: "دعم سريع عبر واتساب" },
   { icon: RotateCcw, title: "استبدال خلال 7 أيام", desc: "عند وجود عيب" },
-  { icon: MessageCircle, title: "خدمة عبر واتساب", desc: "دعم سريع ومباشر" },
 ];
 
 interface ProductPageArProps {
   product: Product;
+  related?: Product[];
 }
 
-export function ProductPageAr({ product }: ProductPageArProps) {
-  const recentlyViewedIds = useRecentlyViewedStore((s) => s.productIds);
+import { resolveProductImage, resolveProductHero, resolveLifestyleImage } from "@/lib/product-images/resolve";
+
+export function ProductPageAr({ product, related: relatedProp }: ProductPageArProps) {
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
+  const recentlyViewedIds = useRecentlyViewedStore((s) => s.productIds);
 
   const [variant] = useState(product.variants[0]);
   const [qty, setQty] = useState(1);
   const [sticky, setSticky] = useState(false);
   const [wishlist, setWishlist] = useState(false);
+  const [shared, setShared] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  // recentlyViewedIds is persisted to localStorage (unavailable during SSR), so we only
-  // render that section after mount to avoid a hydration mismatch.
-  const [mounted, setMounted] = useState(false);
-  // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time client-mount flag, mirrors pattern used elsewhere in this codebase
-  useEffect(() => setMounted(true), []);
 
   const ar = (obj: { ar: string }) => obj.ar;
   const name = ar(product.name);
   const discount = calculateDiscount(variant.price, variant.compareAtPrice);
+  const subtotal = variant.price * qty;
   const reviews = getReviewsForProduct(product.id);
   const lowStock = variant.stock > 0 && variant.stock <= 15;
 
   const related = useMemo(
-    () => products.filter((p) => p.id !== product.id),
-    [product.id]
+    () => (relatedProp && relatedProp.length > 0 ? relatedProp : products.filter((p) => p.id !== product.id)).slice(0, 4),
+    [relatedProp, product.id]
   );
 
   const recentlyViewed = useMemo(
     () =>
-      mounted
-        ? recentlyViewedIds
-            .filter((id) => id !== product.id)
-            .map((id) => getProductById(id))
-            .filter((p): p is Product => Boolean(p))
-            .slice(0, 8)
-        : [],
-    [mounted, recentlyViewedIds, product.id]
+      recentlyViewedIds
+        .filter((id) => id !== product.id)
+        .map((id) => getProductById(id))
+        .filter((p): p is Product => Boolean(p))
+        .slice(0, 8),
+    [recentlyViewedIds, product.id]
   );
+
+  const productFaqs = [
+    { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
+    { q: "كم مدة التوصيل؟", a: "24-48 ساعة للمدن الكبرى (الدار البيضاء، الرباط، مراكش، فاس، طنجة). 2-4 أيام لباقي المدن." },
+    { q: "هل يمكن الاستبدال؟", a: "نعم، استبدال خلال 7 أيام عند وجود عيب. تواصل معنا على واتساب." },
+    { q: "هل المنتج مضمون؟", a: `نعم، ضمان ${product.warrantyMonths || 12} شهر على جميع منتجات NOORVA.` },
+  ];
 
   useEffect(() => {
     addRecentlyViewed(product.id);
@@ -94,289 +93,494 @@ export function ProductPageAr({ product }: ProductPageArProps) {
   }, [product.id, variant.price, addRecentlyViewed]);
 
   useEffect(() => {
-    const onScroll = () => setSticky(window.scrollY > 480);
+    const onScroll = () => setSticky(window.scrollY > 420);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const share = async () => {
+  const share = useCallback(async () => {
     const url = window.location.href;
-    if (navigator.share) await navigator.share({ title: name, url });
-    else await navigator.clipboard.writeText(url);
-  };
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: name, url });
+        return;
+      } catch {
+        /* user cancelled */
+      }
+    }
+    await navigator.clipboard.writeText(url);
+    setShared(true);
+    setTimeout(() => setShared(false), 2000);
+  }, [name]);
 
-  const scrollToOrder = () => {
-    document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollToOrder = useCallback(() => {
+    document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
 
-  const storyText = product.deepDescription?.ar || product.description.ar;
+  const lifestyleImage = resolveLifestyleImage(product);
+  const features = product.features || product.benefits;
 
   return (
-    <div className="product-luxury cosmic-page-bg text-luxury-black min-h-screen" dir="rtl">
-      {/* شريط علوي */}
-      <div className="bg-luxury-surface/60 border-b border-luxury-border text-[11px] sm:text-xs py-2.5 px-4">
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-1.5 text-center text-luxury-muted">
-          {TOP_BADGES.map((b) => (
-            <span key={b.text} className="flex items-center gap-1.5 font-medium">
-              <b.icon className="h-3.5 w-3.5 text-luxury-gold shrink-0" />
-              {b.text}
-            </span>
-          ))}
+    <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans" dir="rtl">
+      {/* شريط الثقة العلوي */}
+      <div className="bg-[#12121a] border-b border-white/10 text-white/80 text-xs sm:text-sm py-2.5 px-4">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-1 text-center">
+          <span className="flex items-center gap-1.5"><Truck className="h-3.5 w-3.5" /> توصيل سريع إلى جميع مدن المغرب</span>
+          <span className="hidden sm:inline text-white/20">|</span>
+          <span className="flex items-center gap-1.5"><Banknote className="h-3.5 w-3.5" /> الدفع عند الاستلام</span>
+          <span className="hidden sm:inline text-white/20">|</span>
+          <span className="flex items-center gap-1.5"><RotateCcw className="h-3.5 w-3.5" /> استبدال خلال 7 أيام</span>
+          <span className="hidden sm:inline text-white/20">|</span>
+          <span className="flex items-center gap-1.5"><Shield className="h-3.5 w-3.5" /> طلب آمن 100%</span>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 pb-28 lg:pb-16 pt-4">
         {/* مسار التنقل */}
-        <nav className="flex items-center gap-2 text-xs text-luxury-muted mb-6">
-          <Link href="/ar" className="hover:text-luxury-gold transition-colors">نورڤا</Link>
+        <nav className="flex items-center gap-2 text-xs text-white/50 mb-6">
+          <Link href="/ar" className="hover:text-[#6366f1] transition-colors">نورڤا</Link>
           <ChevronLeft className="h-3 w-3" />
-          <Link href="/ar/products" className="hover:text-luxury-gold transition-colors">المجموعة</Link>
+          <Link href="/ar/products" className="hover:text-[#6366f1] transition-colors">المجموعة</Link>
           <ChevronLeft className="h-3 w-3" />
-          <span className="font-medium truncate">{name}</span>
+          <span className="font-medium truncate text-white/80">{name}</span>
         </nav>
 
         {/* المعرض + معلومات الشراء */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6">
-          <PremiumProductGallery product={product} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6">
+          <div className="lg:col-span-8 space-y-6">
+            <PremiumProductGallery product={product} />
+
+            {/* العنوان العاطفي */}
+            {product.problem && product.problemSolution && (
+              <section className="text-center bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10 shadow-luxury">
+                <h2 className="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-white mb-4">
+                  {product.problemSolution.ar.split(" ").slice(0, 3).join(" ")} <span className="text-[#6366f1]">{product.problemSolution.ar.split(" ").slice(3).join(" ")}</span>
+                </h2>
+                <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
+                  {product.problem.ar}
+                </p>
+              </section>
+            )}
+          </div>
 
           {/* معلومات المنتج */}
-          <div className="cosmic-glow-bg rounded-[1.75rem] p-5 sm:p-7 lg:sticky lg:top-6 lg:self-start space-y-5">
-            <div className="flex items-center gap-2 text-sm flex-wrap">
-              <div className="flex">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className={cn("h-4 w-4", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/15")} />
-                ))}
+          <div className="lg:col-span-4 space-y-5 lg:sticky lg:top-6 lg:self-start">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
+              <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
+                <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
               </div>
-              <span className="font-bold">{product.rating}</span>
-              <span className="text-luxury-muted">·</span>
-              <span className="text-luxury-muted">{product.soldCount.toLocaleString("ar-MA")}+ طلب</span>
-              {product.isTikTokViral && (
-                <span className="inline-flex items-center gap-1 bg-luxury-gold/15 text-luxury-gold text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  فيرال تيك توك 🔥
+              <div className="flex items-center gap-1.5">
+                <div className="flex">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className={cn("h-3.5 w-3.5", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
+                  ))}
+                </div>
+                <span className="font-bold text-white text-xs">({product.rating})</span>
+              </div>
+              <span className="inline-flex items-center gap-1.5 text-white/60 text-xs">
+                {product.reviewCount.toLocaleString("ar-MA")}+ تقييم
+              </span>
+            </div>
+
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-white">{name}</h1>
+            <p className="text-white/70 leading-relaxed">{product.shortDescription.ar}</p>
+
+            <div className="flex flex-wrap items-center gap-3 mb-4 hidden">
+              <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 text-sm font-medium px-4 py-2 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                متوفر في المخزون
+              </span>
+              {lowStock && (
+                <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 text-xs font-bold px-3 py-1.5 rounded-full animate-pulse">
+                  <Flame className="h-3.5 w-3.5" />
+                  كمية محدودة — باقي {variant.stock} فقط!
                 </span>
               )}
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">{name}</h1>
-            <p className="text-luxury-muted leading-relaxed">{product.shortDescription.ar}</p>
-
-            <div className="py-4 border-y border-luxury-border">
-              <div className="flex flex-wrap items-baseline gap-3">
-                <span className="text-3xl sm:text-4xl font-bold tabular-nums">{formatPriceNumber(variant.price, "ar")}</span>
-                <span className="text-base font-semibold text-luxury-gold">درهم مغربي</span>
+            <div className="py-4 border-y border-white/10">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-4xl sm:text-5xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
+                <div className="flex flex-col justify-center">
+                  <span className="text-xs font-bold text-white/60 leading-none mb-1">مغربي</span>
+                  <span className="text-xs font-bold text-white/60 leading-none">درهم</span>
+                </div>
                 {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
-                  <span className="text-lg text-luxury-muted line-through tabular-nums">{formatPriceNumber(variant.compareAtPrice, "ar")} درهم</span>
+                  <div className="flex flex-col justify-center ms-4 border-s border-white/10 ps-4">
+                    <span className="text-lg text-white/40 line-through tabular-nums leading-none mb-1">{formatPriceNumber(variant.compareAtPrice || 0, "ar")}</span>
+                    <span className="text-[10px] text-white/40 leading-none">السعر الأصلي</span>
+                  </div>
                 )}
                 {discount > 0 && (
-                  <span className="badge-urgency text-white text-sm font-bold px-3.5 py-1.5 rounded-full">
+                  <span className="ms-auto bg-red-600 text-white text-sm font-bold px-4 py-1.5 rounded-full">
                     خصم {discount}%
                   </span>
                 )}
               </div>
             </div>
 
-            {product.flashSaleEndsAt && <FlashCountdown endDate={product.flashSaleEndsAt} />}
-
-            <div className="flex items-center gap-3 flex-wrap">
-              <span className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-300 text-sm font-medium px-4 py-2 rounded-full border border-emerald-500/20">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                متوفر الآن
-              </span>
-            </div>
-
-            <StockScarcityBar stock={variant.stock} originalStock={product.stock} />
-
-            <div className="flex items-center gap-4">
-              <span className="text-sm font-medium">الكمية</span>
-              <div className="flex items-center rounded-full border border-luxury-border overflow-hidden">
-                <button type="button" onClick={() => setQty(Math.max(1, qty - 1))} className="p-3 hover:bg-white/5 transition-colors"><Minus className="h-4 w-4" /></button>
-                <span className="px-5 font-bold tabular-nums">{qty}</span>
-                <button type="button" onClick={() => setQty(qty + 1)} className="p-3 hover:bg-white/5 transition-colors"><Plus className="h-4 w-4" /></button>
+            {/* عرض محدود */}
+            <div className="bg-[#1a1a24] border border-white/10 text-white rounded-2xl p-5 text-center shadow-luxury">
+              <p className="text-sm font-bold text-white/80 mb-4">عرض محدود! السعر سيرتفع خلال:</p>
+              <div className="flex justify-center gap-6 mb-5">
+                <div className="flex flex-col items-center">
+                  <span className="text-3xl font-bold">18</span>
+                  <span className="text-[11px] text-white/50 mt-1">ثانية</span>
+                </div>
+                <span className="text-3xl font-bold text-white/20">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-3xl font-bold">35</span>
+                  <span className="text-[11px] text-white/50 mt-1">دقيقة</span>
+                </div>
+                <span className="text-3xl font-bold text-white/20">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-3xl font-bold">02</span>
+                  <span className="text-[11px] text-white/50 mt-1">ساعة</span>
+                </div>
               </div>
-              {lowStock && <span className="text-orange-300 text-xs font-medium">باقي {variant.stock} فقط!</span>}
+              <div className="flex items-center justify-center gap-2 text-sm text-red-500 font-bold mb-3">
+                <Flame className="h-4 w-4" />
+                متبقي 12 قطعة فقط!
+              </div>
+              <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full bg-red-600 w-[85%]" />
+              </div>
             </div>
 
-            <div className="flex flex-col gap-3">
-              <button type="button" onClick={scrollToOrder} className="btn-cosmic w-full h-14 rounded-full font-bold text-base active:scale-[0.98] transition-all">
-                اطلب الآن — الدفع عند الاستلام
-              </button>
+            <ProductOrderForm product={product} variant={variant} quantity={qty} />
+
+            <div className="flex items-center gap-4 hidden">
+              <span className="text-sm font-medium">الكمية</span>
+              <div className="flex items-center rounded-full border border-black/10 overflow-hidden">
+                <button type="button" onClick={() => setQty(Math.max(1, qty - 1))} className="p-3 hover:bg-white transition-colors" aria-label="تقليل الكمية"><Minus className="h-4 w-4" /></button>
+                <span className="px-5 font-bold tabular-nums">{qty}</span>
+                <button type="button" onClick={() => setQty(qty + 1)} className="p-3 hover:bg-white transition-colors" aria-label="زيادة الكمية"><Plus className="h-4 w-4" /></button>
+              </div>
+              <span className="text-sm text-white/60 tabular-nums">= {formatPriceNumber(subtotal, "ar")} درهم</span>
             </div>
 
-            <div className="flex gap-2">
-              <button type="button" onClick={() => setWishlist(!wishlist)} className={cn("flex-1 flex items-center justify-center gap-2 py-3 rounded-full border text-sm transition-all", wishlist ? "border-luxury-gold text-luxury-gold bg-luxury-gold/5" : "border-luxury-border hover:border-white/20")}>
+            <button
+              type="button"
+              onClick={scrollToOrder}
+              className="w-full h-14 sm:h-16 rounded-full bg-white text-black font-bold text-base sm:text-lg hover:bg-white/90 transition-all shadow-luxury active:scale-[0.98] flex items-center justify-center gap-2 hidden"
+            >
+              <Banknote className="h-5 w-5" />
+              اطلب الآن — الدفع عند الاستلام
+            </button>
+
+            <div className="flex gap-2 hidden">
+              <button type="button" onClick={() => setWishlist(!wishlist)} className={cn("flex-1 flex items-center justify-center gap-2 py-3 rounded-full border text-sm transition-all", wishlist ? "border-luxury-gold text-luxury-gold bg-luxury-gold/5" : "border-white/10")}>
                 <Heart className={cn("h-4 w-4", wishlist && "fill-luxury-gold")} />المفضلة
               </button>
-              <button type="button" onClick={share} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border border-luxury-border text-sm hover:border-luxury-gold/40 transition-all">
-                <Share2 className="h-4 w-4" />مشاركة
+              <button type="button" onClick={share} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border border-white/10 text-sm hover:border-luxury-gold/40 transition-all">
+                {shared ? <><Check className="h-4 w-4" />تم النسخ</> : <><Share2 className="h-4 w-4" />مشاركة</>}
               </button>
             </div>
           </div>
-        </div>
+          <div className="lg:col-span-4 lg:sticky lg:top-6 lg:self-start">
+            <ProductOrderForm product={product} variant={variant} quantity={qty} />
 
-        {/* مميزات المنتج */}
-        <section className="mt-16 sm:mt-20">
-          <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">لماذا هذا المنتج؟</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {(product.benefits.length >= 4
-              ? product.benefits.map((b, i) => ({ emoji: BENEFIT_CARDS[i]?.emoji || "✨", text: b.ar }))
-              : BENEFIT_CARDS
-            ).map((card, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }} className="bg-luxury-surface rounded-2xl p-4 sm:p-5 border border-luxury-border shadow-soft hover:shadow-luxury hover:-translate-y-1 hover:border-luxury-gold/25 transition-all duration-300">
-                <span className="text-2xl">{card.emoji}</span>
-                <p className="text-sm font-medium mt-3 leading-snug">{card.text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* وصف تسويقي */}
-        <section className="mt-16 sm:mt-20 max-w-3xl mx-auto text-center">
-          <h2 className="text-xl sm:text-2xl font-bold mb-6">تجربة تستحقها</h2>
-          <p className="text-base sm:text-lg text-luxury-muted leading-[1.9]">{storyText}</p>
-          <p className="text-base sm:text-lg text-luxury-muted leading-[1.9] mt-4">
-            تخيّل غرفتك وهي تتحوّل لعالم من النجوم والألوان — بلا عناء، بلا تعقيد. تشغّل البروجيكتور، تختار الأجواء اللي بغيتي، وتستمتع بلحظة ديالك. هادشي اللي كيخلّي آلاف المغاربة يختارو نورڤا كل يوم.
-          </p>
-        </section>
-
-        {/* المواصفات */}
-        {product.specifications && (
-          <section className="mt-16 sm:mt-20">
-            <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">المواصفات التقنية</h2>
-            <div className="max-w-2xl mx-auto bg-luxury-surface rounded-2xl border border-luxury-border overflow-hidden divide-y divide-luxury-border shadow-soft">
-              {product.specifications.map((spec, i) => (
-                <div key={i} className="flex justify-between items-center gap-4 px-5 py-4 text-sm">
-                  <span className="text-luxury-muted">{spec.label.ar}</span>
-                  <span className="font-semibold text-end">{spec.value.ar}</span>
-                </div>
-              ))}
-            </div>
-            {product.packageIncludes && (
-              <div className="mt-6 grid grid-cols-2 gap-3 max-w-2xl mx-auto">
-                {product.packageIncludes.map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm bg-luxury-surface rounded-xl p-4 border border-luxury-border">
-                    <Check className="h-4 w-4 text-luxury-gold shrink-0" />{item.ar}
+        {/* لماذا NOORVA */}
+        <section className="mt-8">
+          <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">لماذا تختار جهازنا؟</h2>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {WHY_NOORVA.map((item, i) => (
+                  <div key={i} className="bg-[#1a1a24] rounded-2xl p-4 border border-white/10 flex items-center text-start gap-4 hover:border-[#6366f1]/50 transition-colors">
+                    <div className="shrink-0 bg-white/5 p-3 rounded-xl">
+                      <item.icon className="h-6 w-6 text-emerald-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white">{item.title}</p>
+                      <p className="text-xs text-white/60 mt-1">{item.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
+        </section>
+          </div>
+        </div>
+
+            {/* لماذا ستحبه */}
+            <section className="mt-8">
+              <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+                <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">لماذا ستحبه؟</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                  {(product.benefits.length >= 4
+                    ? product.benefits.map((b, i) => ({ emoji: BENEFIT_CARDS[i % BENEFIT_CARDS.length]?.emoji || "✨", text: b.ar }))
+                    : BENEFIT_CARDS
+                  ).map((card, i) => (
+                    <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }} className="bg-[#12121a] rounded-2xl p-4 sm:p-5 border border-white/10 shadow-soft hover:shadow-luxury hover:-translate-y-1 transition-all duration-300 text-center">
+                      <span className="text-2xl">{card.emoji}</span>
+                      <p className="text-sm font-medium text-white mt-3 leading-snug">{card.text}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* أسلوب الحياة */}
+            <section>
+              <div className="relative aspect-[21/9] rounded-[2rem] overflow-hidden border border-white/10 shadow-luxury">
+                <Image src={lifestyleImage} alt={name} fill className="object-cover" sizes="100vw" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/90 via-[#0a0a0f]/50 to-transparent" />
+                <div className="absolute inset-y-0 start-0 w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                  <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                    {product.deepDescription?.ar?.split("—")[0] || name}
+                  </h2>
+                  <p className="text-white/70 text-base md:text-lg leading-relaxed mb-6">
+                    {product.deepDescription?.ar || product.description.ar}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* قبل / بعد */}
+            {product.problemCause && product.problemSolution && (
+              <section>
+                <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+                  <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 text-white">قبل / بعد</h2>
+                  <div className="relative max-w-4xl mx-auto grid grid-cols-2 gap-4">
+                    <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10">
+                      <Image src={resolveProductImage(product, "04-bedroom")} alt="Before" fill className="object-cover opacity-50 grayscale" />
+                      <div className="absolute top-4 start-4 z-10">
+                        <span className="inline-block text-xs font-bold tracking-widest uppercase text-white bg-black/50 backdrop-blur-md px-3 py-1 rounded-full">قبل</span>
+                      </div>
+                      <div className="absolute bottom-4 inset-x-4 z-10 text-center">
+                        <p className="text-sm font-bold text-white/90 drop-shadow-md">{product.problemCause.ar}</p>
+                      </div>
+                    </div>
+                    <div className="relative aspect-video rounded-2xl overflow-hidden border border-[#6366f1]/50">
+                      <Image src={resolveProductImage(product, "14-product-in-use")} alt="After" fill className="object-cover" />
+                      <div className="absolute top-4 start-4 z-10">
+                        <span className="inline-block text-xs font-bold tracking-widest uppercase text-white bg-[#6366f1]/80 backdrop-blur-md px-3 py-1 rounded-full">بعد</span>
+                      </div>
+                      <div className="absolute bottom-4 inset-x-4 z-10 text-center">
+                        <p className="text-sm font-bold text-white drop-shadow-md">{product.problemSolution.ar}</p>
+                      </div>
+                    </div>
+                    <span className="absolute inset-y-0 start-1/2 -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-[#12121a] border border-white/10 text-white shadow-luxury z-10 top-1/2 -translate-y-1/2">
+                      <ArrowLeft className="h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
+              </section>
             )}
+
+        {/* المميزات */}
+        {features && features.length > 0 && (
+          <section>
+            <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+              <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">مميزات المنتج</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                {features.map((f, i) => {
+                  const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length];
+                  return (
+                    <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="bg-[#12121a] rounded-2xl p-4 border border-white/10 text-center group hover:border-[#6366f1]/50 transition-colors">
+                      <div className="w-12 h-12 rounded-xl bg-[#6366f1]/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-[#6366f1]/20 transition-colors">
+                        <Icon className="h-6 w-6 text-[#6366f1]" />
+                      </div>
+                      <p className="text-sm font-bold text-white leading-snug">{f.ar}</p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
           </section>
         )}
 
-        {/* لماذا NOORVA */}
-        <section className="mt-16 sm:mt-20">
-          <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">لماذا تختار نورڤا؟</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-            {WHY_NOORVA.map((item, i) => (
-              <div key={i} className="bg-luxury-surface rounded-2xl p-5 border border-luxury-border text-center hover:border-luxury-gold/30 transition-colors">
-                <item.icon className={cn("h-6 w-6 mx-auto mb-3", WHY_ICON_COLORS[i % WHY_ICON_COLORS.length])} />
-                <p className="text-sm font-bold">{item.title}</p>
-                <p className="text-xs text-luxury-muted mt-1">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* آراء العملاء */}
-        <section className="mt-16 sm:mt-20" id="reviews">
-          <h2 className="text-xl sm:text-2xl font-bold text-center mb-2">آراء العملاء</h2>
-          <p className="text-center text-luxury-muted text-sm mb-8">مراجعات حقيقية من زبناء نورڤا</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {reviews.map((r) => (
-              <div key={r.id} className="bg-luxury-surface rounded-2xl p-5 border border-luxury-border">
-                <div className="flex gap-0.5 mb-2">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={cn("h-3.5 w-3.5", i < r.rating ? "fill-luxury-gold text-luxury-gold" : "text-white/15")} />
+        {/* المواصفات */}
+        {product.specifications && (
+          <section>
+            <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+              <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">المواصفات التقنية</h2>
+              <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 bg-[#12121a] rounded-[2rem] border border-white/10 p-8">
+                <div className="flex-1 w-full space-y-4">
+                  {product.specifications.map((spec, i) => (
+                    <div key={i} className="flex justify-between items-center pb-4 border-b border-white/5 last:border-0 last:pb-0">
+                      <span className="text-white/60 text-sm">{spec.label.ar}</span>
+                      <span className="font-bold text-white text-sm text-end">{spec.value.ar}</span>
+                    </div>
                   ))}
                 </div>
-                <p className="font-bold text-sm">{r.title.ar}</p>
-                <p className="text-sm text-luxury-muted mt-2 leading-relaxed">{r.content.ar}</p>
-                {r.images && (
-                  <div className="flex gap-2 mt-3">
-                    {r.images.map((img, i) => (
-                      <div key={i} className="relative w-14 h-14 rounded-lg overflow-hidden"><Image src={img} alt="" fill className="object-cover" sizes="56px" /></div>
-                    ))}
-                  </div>
-                )}
-                {r.hasVideo && (
-                  <div className="flex items-center gap-1.5 text-xs text-luxury-gold mt-3"><Play className="h-3 w-3 fill-luxury-gold" />فيديو عميل</div>
-                )}
-                <p className="text-xs text-luxury-muted mt-3 pt-3 border-t border-luxury-border">{r.author} · {r.city} {r.verified && "· ✓ شراء موثق"}</p>
+                <div className="relative w-full md:w-1/2 aspect-square rounded-2xl overflow-hidden border border-white/10">
+                  <Image src={resolveProductImage(product, "12-dimensions")} alt="Dimensions" fill className="object-cover" />
+                </div>
               </div>
-            ))}
+            </div>
+          </section>
+        )}
+
+        {/* محتويات العلبة */}
+        {product.packageIncludes && (
+          <section>
+            <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+              <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">محتويات العلبة</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                {product.packageIncludes.map((item, i) => (
+                  <div key={i} className="bg-[#12121a] rounded-2xl p-4 border border-white/10 text-center flex flex-col items-center justify-center gap-3">
+                    <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-white/5">
+                      <Image src={resolveProductImage(product, "11-package-contents")} alt={item.ar} fill className="object-cover" />
+                    </div>
+                    <span className="text-xs font-bold text-white">{item.ar}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* آراء العملاء */}
+        <section id="reviews">
+          <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+            <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 text-white">آراء العملاء</h2>
+            <div className="flex items-center justify-center gap-2 mb-8">
+              <div className="flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className={cn("h-4 w-4", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
+                ))}
+              </div>
+              <p className="text-white/60 text-sm">{product.rating} من 5 · {product.reviewCount.toLocaleString("ar-MA")} تقييم موثّق</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {reviews.slice(0, 3).map((r) => (
+                <div key={r.id} className="bg-[#12121a] rounded-2xl p-5 border border-white/10 flex flex-col h-full">
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <div className="flex gap-0.5">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className={cn("h-3.5 w-3.5", i < r.rating ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
+                      ))}
+                    </div>
+                    {r.verified && (
+                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full shrink-0">
+                        <BadgeCheck className="h-3 w-3" />شراء موثق
+                      </span>
+                    )}
+                  </div>
+                  <p className="font-bold text-sm text-white mb-2">{r.title.ar}</p>
+                  <p className="text-sm text-white/70 leading-relaxed flex-1">{r.content.ar}</p>
+                  {r.images && (
+                    <div className="flex gap-2 mt-4">
+                      {r.images.map((img, i) => (
+                        <div key={i} className="relative w-12 h-12 rounded-lg overflow-hidden border border-white/10"><Image src={img} alt="" fill className="object-cover" sizes="48px" /></div>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/10">
+                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                      {r.author.charAt(0)}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold text-white truncate">{r.author}</p>
+                      <p className="text-[10px] text-white/50 truncate">{r.city}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* الأسئلة الشائعة */}
-        <section className="mt-16 sm:mt-20 max-w-2xl mx-auto">
-          <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">الأسئلة الشائعة</h2>
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <div key={faq.id} className="bg-luxury-surface rounded-2xl border border-luxury-border overflow-hidden">
-                <button type="button" onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex justify-between items-center px-5 py-4 text-start font-medium text-sm hover:text-luxury-gold transition-colors">
-                  {faq.question.ar}
-                  <ChevronLeft className={cn("h-4 w-4 shrink-0 transition-transform", openFaq === i && "rotate-90")} />
-                </button>
-                {openFaq === i && <p className="px-5 pb-4 text-sm text-luxury-muted leading-relaxed">{faq.answer.ar}</p>}
-              </div>
-            ))}
+        <section className="max-w-4xl mx-auto">
+          <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+            <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">الأسئلة الشائعة</h2>
+            <div className="space-y-3">
+              {productFaqs.map((faq, i) => (
+                <div key={i} className="bg-[#12121a] rounded-2xl border border-white/10 overflow-hidden">
+                  <button type="button" onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex justify-between items-center px-5 py-4 text-start font-medium text-sm text-white hover:text-[#6366f1] transition-colors">
+                    <span className="flex items-center gap-3">
+                      <span className="text-[#6366f1]">+</span>
+                      {faq.q}
+                    </span>
+                    <ChevronLeft className={cn("h-4 w-4 shrink-0 transition-transform", openFaq === i && "-rotate-90")} />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openFaq === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="px-5 pb-4 text-sm text-white/60 leading-relaxed ps-10">{faq.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* منتجات قد تعجبك */}
-        <section className="mt-16 sm:mt-20">
-          <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">منتجات قد تعجبك</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {related.map((p) => (
-              <Link key={p.id} href={`/ar/products/${p.slug}`} className="group bg-luxury-surface rounded-2xl overflow-hidden border border-luxury-border hover:border-luxury-gold/30 hover:shadow-luxury transition-all duration-300">
-                <div className="relative aspect-square">
-                  <Image src={p.images[0]?.url || ""} alt={p.name.ar} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="25vw" />
-                </div>
-                <div className="p-3 sm:p-4">
-                  <p className="text-sm font-bold line-clamp-2 group-hover:text-luxury-gold transition-colors">{p.name.ar}</p>
-                  <p className="text-sm font-bold mt-2 tabular-nums">{formatPriceNumber(p.price, "ar")} <span className="text-xs text-luxury-gold font-semibold">درهم</span></p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* شاهدت مؤخراً */}
-        {recentlyViewed.length > 0 && (
-          <section className="mt-16 sm:mt-20">
-            <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 flex items-center justify-center gap-2">
-              <Clock className="h-5 w-5 text-luxury-gold" />
-              شاهدت مؤخراً
-            </h2>
-            <p className="text-center text-luxury-muted text-sm mb-8">المنتجات التي زرتها سابقاً</p>
-            <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 snap-x -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-4">
-              {recentlyViewed.map((p) => (
-                <Link key={p.id} href={`/ar/products/${p.slug}`} className="group shrink-0 w-36 sm:w-auto snap-start bg-luxury-surface rounded-2xl overflow-hidden border border-luxury-border hover:border-luxury-gold/30 hover:shadow-luxury transition-all duration-300">
-                  <div className="relative aspect-square">
-                    <Image src={p.images[0]?.url || ""} alt={p.name.ar} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="20vw" />
-                  </div>
-                  <div className="p-3">
-                    <p className="text-xs font-bold line-clamp-2 group-hover:text-luxury-gold transition-colors">{p.name.ar}</p>
-                    <p className="text-xs font-bold mt-1.5 tabular-nums">{formatPriceNumber(p.price, "ar")} <span className="text-[10px] text-luxury-gold font-semibold">درهم</span></p>
-                  </div>
-                </Link>
-              ))}
+        {related.length > 0 && (
+          <section>
+            <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+              <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">منتجات قد تعجبك</h2>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {related.map((p) => (
+                  <Link key={p.id} href={`/ar/products/${p.slug}`} className="group bg-[#12121a] rounded-2xl overflow-hidden border border-white/10 hover:border-[#6366f1]/50 hover:shadow-luxury transition-all duration-300 flex flex-col">
+                    <div className="relative aspect-square">
+                      <Image src={resolveProductHero(p)} alt={p.name.ar} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="25vw" />
+                    </div>
+                    <div className="p-4 text-center flex flex-col flex-1">
+                      <p className="text-sm font-bold line-clamp-2 text-white group-hover:text-[#6366f1] transition-colors mb-2">{p.name.ar}</p>
+                      <p className="text-sm font-bold tabular-nums text-[#6366f1] mt-auto">{formatPriceNumber(p.price, "ar")} درهم</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </section>
         )}
 
-        <ProductOrderForm product={product} variant={variant} quantity={qty} />
+        {/* شوهد مؤخرًا */}
+        {recentlyViewed.length > 0 && (
+          <section>
+            <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
+              <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 flex items-center justify-center gap-2 text-white">
+                <Clock className="h-5 w-5 text-white/50" />
+                شوهد مؤخرًا
+              </h2>
+              <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-4">
+                {recentlyViewed.map((p) => (
+                  <Link key={p.id} href={`/ar/products/${p.slug}`} className="group shrink-0 w-36 sm:w-auto bg-[#12121a] rounded-2xl overflow-hidden border border-white/10 hover:border-[#6366f1]/50 hover:shadow-luxury transition-all duration-300 flex flex-col">
+                    <div className="relative aspect-square">
+                      <Image src={resolveProductHero(p)} alt={p.name.ar} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="144px" />
+                    </div>
+                    <div className="p-4 text-center flex flex-col flex-1">
+                      <p className="text-xs font-bold line-clamp-2 text-white group-hover:text-[#6366f1] transition-colors mb-2">{p.name.ar}</p>
+                      <p className="text-xs font-bold tabular-nums text-[#6366f1] mt-auto">{formatPriceNumber(p.price, "ar")} درهم</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* شريط الثقة السفلي */}
+        <div className="pt-8 border-t border-white/10 flex flex-wrap justify-center gap-x-8 gap-y-4 text-center text-sm text-white/60 mb-8">
+          <span className="flex items-center gap-2"><Shield className="h-4 w-4 text-[#6366f1]" /> طلب آمن 100%</span>
+          <span className="flex items-center gap-2"><Banknote className="h-4 w-4 text-[#6366f1]" /> دفع عند الاستلام</span>
+          <span className="flex items-center gap-2"><Truck className="h-4 w-4 text-[#6366f1]" /> توصيل سريع ومجاني</span>
+          <span className="flex items-center gap-2"><RotateCcw className="h-4 w-4 text-[#6366f1]" /> ضمان استبدال 7 أيام</span>
+        </div>
       </div>
 
       {/* شريط شراء ثابت — موبايل */}
       <AnimatePresence>
         {sticky && (
-          <motion.div initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }} className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-luxury-surface/95 backdrop-blur-md border-t border-luxury-border shadow-luxury safe-area-pb">
+          <motion.div initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }} className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[#12121a]/95 backdrop-blur-md border-t border-white/10 shadow-luxury safe-area-pb">
             <div className="flex items-center gap-3 px-4 py-3 max-w-lg mx-auto">
               <div className="flex-1 min-w-0">
-                <p className="text-lg font-bold tabular-nums">{formatPriceNumber(variant.price, "ar")} <span className="text-xs text-luxury-gold">درهم</span></p>
+                <p className="text-lg font-bold tabular-nums leading-tight text-[#6366f1]">{formatPriceNumber(variant.price, "ar")} <span className="text-xs">درهم</span></p>
+                <p className="text-[11px] text-white/60">الدفع عند الاستلام</p>
               </div>
-              <button type="button" onClick={scrollToOrder} className="btn-cosmic h-12 px-8 rounded-full font-bold text-sm active:scale-95 transition-transform">
-                اطلب الآن
+              <button type="button" onClick={scrollToOrder} className="h-12 px-6 sm:px-8 rounded-xl bg-[#6366f1] text-white font-bold text-sm active:scale-95 transition-transform flex items-center gap-2 shrink-0 shadow-lg shadow-indigo-500/25 hover:bg-[#4f46e5]">
+                <ShoppingBag className="h-4 w-4" />
+                تأكيد الطلب
               </button>
             </div>
           </motion.div>

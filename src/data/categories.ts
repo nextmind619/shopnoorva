@@ -1,4 +1,5 @@
 import type { Category } from "@/types";
+import { getProductHeroUrl } from "@/lib/product-images/assets";
 
 export const categories: Category[] = [
   {
@@ -10,7 +11,7 @@ export const categories: Category[] = [
       fr: "Astronaute, cristal et étoiles galaxy",
       en: "Astronaut, crystal and galaxy star projectors",
     },
-    image: "/products/crystal-galaxy.jpg",
+    image: getProductHeroUrl("crystal-galaxy-projector"),
     productCount: 3,
   },
   {
@@ -22,7 +23,7 @@ export const categories: Category[] = [
       fr: "Veilleuse carrousel premium",
       en: "Premium carousel night light",
     },
-    image: "/products/carousel-night.svg",
+    image: getProductHeroUrl("carousel-night-light"),
     productCount: 1,
   },
 ];

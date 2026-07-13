@@ -9,7 +9,9 @@
     "lint": "eslint",
     "ai:infra": "docker compose up -d",
     "ai:infra:down": "docker compose down",
-    "ai:tick": "curl -s -X POST http://localhost:3000/api/ai/cron -H \"Content-Type: application/json\" -d \"{\\\"task\\\":\\\"tick\\\"}\""
+    "ai:tick": "curl -s -X POST http://localhost:3000/api/ai/cron -H \"Content-Type: application/json\" -d \"{\\\"task\\\":\\\"tick\\\"}\"",
+    "images:generate": "node scripts/generate-product-images.mjs",
+    "images:force": "node scripts/generate-product-images.mjs --force"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1083.0",
@@ -55,6 +57,7 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

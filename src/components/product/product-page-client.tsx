@@ -9,6 +9,7 @@ interface ProductPageClientProps {
   crossSells: Product[];
 }
 
-export function ProductPageClient({ product }: ProductPageClientProps) {
-  return <ProductPageAr product={product} />;
+export function ProductPageClient({ product, upsells, crossSells }: ProductPageClientProps) {
+  const related = [...upsells, ...crossSells];
+  return <ProductPageAr product={product} related={related.length > 0 ? related : undefined} />;
 }

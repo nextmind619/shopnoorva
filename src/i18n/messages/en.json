@@ -16,7 +16,7 @@
   "announcement": {
     "text": "FREE shipping over 500 MAD · Cash on Delivery available",
     "cta": "Shop Now",
-    "ticker": { "cod": "Cash on Delivery", "shipping": "24-48h Delivery", "warranty": "12-Month Warranty", "morocco": "Morocco Only", "secure": "100% Secure" }
+    "ticker": { "cod": "Cash on Delivery", "shipping": "Fast Delivery Nationwide", "warranty": "12-Month Warranty", "morocco": "Morocco Only", "secure": "100% Secure Order", "returns": "7-Day Exchange" }
   },
   "hero": {
     "badge": "Premium Lighting 2026",

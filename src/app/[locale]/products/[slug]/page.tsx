@@ -6,6 +6,8 @@ import { ProductPageClient } from "@/components/product/product-page-client";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL } from "@/lib/site";
 
+import { resolveProductHero } from "@/lib/product-images/resolve";
+
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
 }
@@ -15,7 +17,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return {};
 
@@ -25,7 +27,7 @@ export async function generateMetadata({
     openGraph: {
       title: product.name.ar,
       description: product.shortDescription.ar,
-      images: [{ url: product.images[0]?.url || "" }],
+      images: [{ url: resolveProductHero(product) }],
       locale: "ar_MA",
     },
   };
@@ -54,7 +56,7 @@ export default async function ProductPage({
           "@type": "Product",
           name: product.name.ar,
           description: product.description.ar,
-          image: product.images.map((i) => i.url),
+          image: [resolveProductHero(product)],
           sku: product.sku,
           brand: { "@type": "Brand", name: "NOORVA" },
           offers: {

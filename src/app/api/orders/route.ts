@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
     const {
       items,
       shippingAddress,
-      paymentMethod,
       couponCode,
       discount,
       cartId,

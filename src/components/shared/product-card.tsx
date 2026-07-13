@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { Star, ArrowLeft } from "lucide-react";
 import type { Product, Locale } from "@/types";
 import { getLocalized, calculateDiscount, cn } from "@/lib/utils";
+import { resolveProductHero } from "@/lib/product-images/resolve";
 import { PriceDisplay } from "@/components/shared/price-display";
 
 interface ProductCardProps {
@@ -19,6 +20,7 @@ export function ProductCard({ product, priority = false, className }: ProductCar
   const locale = useLocale() as Locale;
   const defaultVariant = product.variants[0];
   const discount = calculateDiscount(defaultVariant.price, defaultVariant.compareAtPrice);
+  const imageUrl = product.images[0]?.url || resolveProductHero(product);
 
   return (
     <motion.div
@@ -31,7 +33,7 @@ export function ProductCard({ product, priority = false, className }: ProductCar
       <Link href={`/${locale}/products/${product.slug}`}>
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-100 shadow-soft">
           <Image
-            src={product.images[0]?.url || ""}
+            src={imageUrl}
             alt={getLocalized(product.images[0]?.alt || product.name, locale)}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -45,10 +47,7 @@ export function ProductCard({ product, priority = false, className }: ProductCar
           {product.isTikTokViral && (
             <span className="absolute top-4 end-4 glass-dark text-cream text-[10px] font-medium px-2.5 py-1 rounded-full tracking-wider">تيك توك</span>
           )}
-          <span
-            className="absolute bottom-4 end-4 glass p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-gold shadow-luxury"
-            aria-hidden
-          >
+          <span className="absolute bottom-4 end-4 glass w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bg-gold shadow-luxury">
             <ArrowLeft className="h-4 w-4" />
           </span>
         </div>

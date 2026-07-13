@@ -10,7 +10,6 @@ import {
   X,
   Maximize2,
   Bluetooth,
-  Usb,
   Package,
   Ruler,
   Sparkles,
@@ -25,19 +24,19 @@ interface PremiumProductGalleryProps {
 
 const SCENE_BG: Record<GalleryScene, string> = {
   hero: "bg-white",
-  lifestyle: "bg-gradient-to-br from-[#1a1520] via-[#2d2438] to-[#1a1520]",
-  environment: "bg-gradient-to-b from-[#0a0e1a] via-[#151b35] to-[#0a0e1a]",
-  features: "bg-gradient-to-b from-white to-[#f2eee6]",
-  closeup: "bg-gradient-to-b from-neutral-100 to-white",
-  package: "bg-gradient-to-b from-[#f2eee6] to-white",
+  ceiling: "bg-gradient-to-b from-[#0a0e1a] via-[#151b35] to-[#0a0e1a]",
+  bedroom: "bg-gradient-to-br from-[#1e1a24] via-[#2a2438] to-[#15121c]",
+  gaming: "bg-gradient-to-br from-[#0a0f18] via-[#151d2e] to-[#0a1018]",
+  "night-room": "bg-gradient-to-b from-[#050810] via-[#0d1220] to-[#050810]",
+  "remote-bluetooth": "bg-gradient-to-br from-neutral-50 via-white to-luxury-bg",
   dimensions: "bg-white",
-  benefits: "bg-gradient-to-br from-neutral-50 via-white to-[#f2eee6]",
+  package: "bg-gradient-to-b from-luxury-bg to-white",
+  features: "bg-gradient-to-b from-white to-luxury-bg",
   "before-after": "bg-neutral-900",
-  packaging: "bg-gradient-to-b from-neutral-50 to-white",
 };
 
 function SceneDecor({ scene }: { scene: GalleryScene }) {
-  if (scene === "environment") {
+  if (scene === "ceiling") {
     return (
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 40 }).map((_, i) => (
@@ -55,8 +54,6 @@ function SceneDecor({ scene }: { scene: GalleryScene }) {
           />
         ))}
         <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-indigo-500/20 via-purple-500/10 to-transparent blur-2xl" />
-        <div className="absolute inset-y-0 start-0 w-1/3 bg-gradient-to-e from-cyan-500/15 to-transparent blur-xl" />
-        <div className="absolute inset-y-0 end-0 w-1/3 bg-gradient-to-s from-violet-500/15 to-transparent blur-xl" />
       </div>
     );
   }
@@ -69,30 +66,38 @@ function SceneDecor({ scene }: { scene: GalleryScene }) {
       </div>
     );
   }
-  if (scene === "lifestyle") {
-    return <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(200,100,120,0.15),transparent_70%)] pointer-events-none" />;
+  if (scene === "gaming") {
+    return <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(0,255,200,0.08),transparent_60%)] pointer-events-none" />;
+  }
+  if (scene === "night-room") {
+    return (
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(100,120,255,0.12),transparent_60%)]" />
+        {Array.from({ length: 25 }).map((_, i) => (
+          <span
+            key={i}
+            className="absolute rounded-full bg-white/60"
+            style={{
+              width: "1px",
+              height: "1px",
+              top: `${(i * 13) % 80}%`,
+              left: `${(i * 19) % 100}%`,
+              opacity: 0.4,
+            }}
+          />
+        ))}
+      </div>
+    );
+  }
+  if (scene === "bedroom") {
+    return <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(180,160,200,0.08),transparent_70%)] pointer-events-none" />;
   }
   return null;
 }
 
 function SlideContent({ slide, priority }: { slide: GallerySlide; priority?: boolean }) {
-  const isDark = !["hero", "closeup", "package", "dimensions", "features", "benefits", "packaging"].includes(slide.scene);
+  const isDark = !["hero", "remote-bluetooth", "package", "dimensions", "features"].includes(slide.scene);
   const scale = slide.imageScale ?? 1;
-
-  if (slide.isVideo && slide.videoUrl) {
-    return (
-      <div className="relative w-full h-full overflow-hidden bg-black">
-        <video
-          src={slide.videoUrl}
-          poster={slide.imageUrl}
-          controls
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
-    );
-  }
 
   return (
     <div className={cn("relative w-full h-full overflow-hidden", SCENE_BG[slide.scene])}>
@@ -105,7 +110,7 @@ function SlideContent({ slide, priority }: { slide: GallerySlide; priority?: boo
         </>
       )}
 
-      {(slide.scene === "features" || slide.scene === "benefits") && slide.icons && (
+      {slide.scene === "features" && slide.icons && (
         <div className="absolute inset-x-4 bottom-20 sm:bottom-24 z-20 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
           {slide.icons.map((icon) => (
             <div key={icon.label} className="flex items-center gap-2 bg-white/90 backdrop-blur-md rounded-xl px-3 py-2.5 border border-black/5 shadow-soft">
@@ -127,22 +132,22 @@ function SlideContent({ slide, priority }: { slide: GallerySlide; priority?: boo
         </div>
       )}
 
-      {slide.scene === "closeup" && (
-        <div className="absolute inset-x-6 bottom-20 sm:bottom-24 z-20 flex gap-3 justify-center">
+      {slide.scene === "remote-bluetooth" && (
+        <div className="absolute inset-x-6 bottom-20 sm:bottom-24 z-20 flex gap-3 justify-center flex-wrap">
           <div className="flex items-center gap-2 bg-white/95 backdrop-blur-md rounded-2xl px-5 py-3 border border-black/5 shadow-soft">
-            <Bluetooth className="h-5 w-5 text-neutral-900" />
-            <span className="text-xs font-bold">بلوتوث</span>
+            <span className="text-lg">🎛️</span>
+            <span className="text-xs font-bold">ريموت تحكم</span>
           </div>
           <div className="flex items-center gap-2 bg-white/95 backdrop-blur-md rounded-2xl px-5 py-3 border border-black/5 shadow-soft">
-            <Usb className="h-5 w-5 text-neutral-900" />
-            <span className="text-xs font-bold">USB Type-C</span>
+            <Bluetooth className="h-5 w-5 text-luxury-black" />
+            <span className="text-xs font-bold">بلوتوث</span>
           </div>
         </div>
       )}
 
       {slide.scene === "dimensions" && (
         <div className="absolute inset-x-6 bottom-20 z-20 flex justify-center">
-          <div className="flex items-center gap-3 bg-neutral-900/90 text-white backdrop-blur-md rounded-2xl px-6 py-4">
+          <div className="flex items-center gap-3 bg-luxury-black/90 text-white backdrop-blur-md rounded-2xl px-6 py-4">
             <Ruler className="h-5 w-5 text-luxury-gold" />
             <span className="text-sm font-bold">{slide.subtitle}</span>
           </div>
@@ -152,8 +157,9 @@ function SlideContent({ slide, priority }: { slide: GallerySlide; priority?: boo
       <div
         className={cn(
           "absolute inset-0 flex items-center justify-center transition-transform duration-700",
-          slide.scene === "lifestyle" && "items-end pb-8",
-          slide.scene === "environment" && "items-start pt-6",
+          slide.scene === "bedroom" && "items-end pb-8",
+          slide.scene === "night-room" && "items-end pb-6",
+          slide.scene === "ceiling" && "items-start pt-6",
           slide.scene === "hero" && "p-8 sm:p-12"
         )}
         style={{ transform: `scale(${scale})` }}
@@ -175,10 +181,56 @@ function SlideContent({ slide, priority }: { slide: GallerySlide; priority?: boo
         </div>
       </div>
 
-      {slide.scene === "closeup" && (
-        <div className="absolute top-1/3 end-8 w-16 h-28 bg-neutral-800 rounded-2xl shadow-luxury opacity-80 blur-[1px] hidden sm:block" aria-hidden />
+      {slide.scene === "remote-bluetooth" && (
+        <div className="absolute top-1/4 end-6 sm:end-10 w-14 h-24 bg-neutral-800 rounded-2xl shadow-luxury opacity-70 hidden sm:block" aria-hidden />
       )}
     </div>
+  );
+}
+
+interface GalleryOverlayProps {
+  mode: "zoom" | "fullscreen";
+  current: GallerySlide;
+  active: number;
+  total: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}
+
+function GalleryOverlay({ mode, current, active, total, onClose, onPrev, onNext }: GalleryOverlayProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={cn(
+        "fixed inset-0 z-[100] flex flex-col",
+        mode === "zoom" ? "bg-luxury-black/96 backdrop-blur-sm p-4 sm:p-8" : "bg-black"
+      )}
+      onClick={onClose}
+    >
+      <div className="flex items-center justify-between mb-4 px-2" onClick={(e) => e.stopPropagation()}>
+        <div>
+          <p className="text-luxury-gold text-[10px] font-bold tracking-[0.2em] uppercase">
+            <span className="me-1.5" aria-hidden>{current.emoji}</span>
+            {current.heading}
+          </p>
+          {current.subtitle && <p className="text-white/60 text-xs mt-1">{current.subtitle}</p>}
+        </div>
+        <button type="button" onClick={onClose} className="text-white p-2 rounded-full hover:bg-white/10" aria-label="إغلاق">
+          <X className="h-6 w-6" />
+        </button>
+      </div>
+      <div className="relative flex-1 min-h-0 rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+        <SlideContent slide={current} priority />
+      </div>
+      <div className="flex items-center justify-center gap-4 mt-4" onClick={(e) => e.stopPropagation()}>
+        <button type="button" onClick={onPrev} className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20"><ChevronRight className="h-5 w-5" /></button>
+        <span className="text-white/70 text-sm tabular-nums">{active + 1} / {total}</span>
+        <button type="button" onClick={onNext} className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20"><ChevronLeft className="h-5 w-5" /></button>
+      </div>
+    </motion.div>
   );
 }
 
@@ -227,17 +279,20 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="text-center sm:text-start"
           >
-            <p className="text-[10px] font-bold tracking-[0.25em] text-luxury-gold uppercase mb-1" dir="ltr">
+            <p className="text-[10px] font-bold tracking-[0.25em] text-luxury-gold uppercase mb-1">
               {String(active + 1).padStart(2, "0")} — {String(total).padStart(2, "0")}
             </p>
-            <h2 className="text-lg sm:text-xl font-bold tracking-tight">{current.heading}</h2>
+            <h2 className="text-lg sm:text-xl font-bold tracking-tight">
+              <span className="me-2" aria-hidden>{current.emoji}</span>
+              {current.heading}
+            </h2>
             {current.subtitle && (
               <p className="text-sm text-luxury-muted mt-1 leading-relaxed">{current.subtitle}</p>
             )}
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative aspect-square rounded-[1.75rem] overflow-hidden bg-luxury-surface shadow-luxury border border-luxury-border group touch-pan-y">
+        <div className="relative aspect-square rounded-[1.75rem] overflow-hidden bg-white shadow-luxury border border-black/5 group">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
@@ -246,21 +301,14 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0 cursor-zoom-in"
-              drag={current.isVideo ? false : "x"}
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.6}
-              onClick={() => !current.isVideo && setZoomOpen(true)}
-              onDragEnd={(_, info) => {
-                if (info.offset.x < -60) next();
-                else if (info.offset.x > 60) prev();
-              }}
+              onClick={() => setZoomOpen(true)}
             >
               <SlideContent slide={current} priority={active <= 1} />
             </motion.div>
           </AnimatePresence>
 
           {product.isTikTokViral && (
-            <span className="absolute top-4 start-4 z-20 glass text-neutral-900 text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide flex items-center gap-1.5">
+            <span className="absolute top-4 start-4 z-20 glass text-luxury-black text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide flex items-center gap-1.5">
               <Sparkles className="h-3 w-3 text-luxury-gold" />
               فيرال تيك توك
             </span>
@@ -283,7 +331,7 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
           </div>
 
           <div className="absolute bottom-4 start-4 z-20 glass rounded-full px-3 py-1.5 text-[11px] font-semibold tabular-nums">
-            <span dir="ltr">{active + 1} / {total}</span>
+            {active + 1} / {total}
           </div>
         </div>
 
@@ -305,8 +353,9 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
               <div className={cn("absolute inset-0", SCENE_BG[slide.scene])}>
                 <Image src={slide.imageUrl} alt="" fill sizes="80px" loading="lazy" className="object-cover opacity-80" />
               </div>
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent pt-4 pb-1 px-1">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-luxury-black/80 to-transparent pt-4 pb-1 px-1">
                 <span className="text-[8px] sm:text-[9px] text-white font-bold leading-none line-clamp-2 text-center block">
+                  <span className="me-0.5" aria-hidden>{slide.emoji}</span>
                   {slide.heading.split(" ").slice(0, 2).join(" ")}
                 </span>
               </div>
@@ -317,63 +366,14 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
 
       <AnimatePresence>
         {zoomOpen && (
-          <GalleryOverlay mode="zoom" slide={current} active={active} total={total} onClose={() => setZoomOpen(false)} onPrev={prev} onNext={next} />
+          <GalleryOverlay mode="zoom" current={current} active={active} total={total} onClose={() => setZoomOpen(false)} onPrev={prev} onNext={next} />
         )}
       </AnimatePresence>
       <AnimatePresence>
         {fullscreen && (
-          <GalleryOverlay mode="fullscreen" slide={current} active={active} total={total} onClose={() => setFullscreen(false)} onPrev={prev} onNext={next} />
+          <GalleryOverlay mode="fullscreen" current={current} active={active} total={total} onClose={() => setFullscreen(false)} onPrev={prev} onNext={next} />
         )}
       </AnimatePresence>
     </>
-  );
-}
-
-function GalleryOverlay({
-  mode,
-  slide,
-  active,
-  total,
-  onClose,
-  onPrev,
-  onNext,
-}: {
-  mode: "zoom" | "fullscreen";
-  slide: GallerySlide;
-  active: number;
-  total: number;
-  onClose: () => void;
-  onPrev: () => void;
-  onNext: () => void;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className={cn(
-        "fixed inset-0 z-[100] flex flex-col",
-        mode === "zoom" ? "bg-black/96 backdrop-blur-sm p-4 sm:p-8" : "bg-black"
-      )}
-      onClick={onClose}
-    >
-      <div className="flex items-center justify-between mb-4 px-2" onClick={(e) => e.stopPropagation()}>
-        <div>
-          <p className="text-luxury-gold text-[10px] font-bold tracking-[0.2em] uppercase">{slide.heading}</p>
-          {slide.subtitle && <p className="text-white/60 text-xs mt-1">{slide.subtitle}</p>}
-        </div>
-        <button type="button" onClick={onClose} className="text-white p-2 rounded-full hover:bg-white/10" aria-label="إغلاق">
-          <X className="h-6 w-6" />
-        </button>
-      </div>
-      <div className="relative flex-1 min-h-0 rounded-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
-        <SlideContent slide={slide} priority />
-      </div>
-      <div className="flex items-center justify-center gap-4 mt-4" onClick={(e) => e.stopPropagation()}>
-        <button type="button" onClick={onPrev} className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20"><ChevronRight className="h-5 w-5" /></button>
-        <span className="text-white/70 text-sm tabular-nums" dir="ltr">{active + 1} / {total}</span>
-        <button type="button" onClick={onNext} className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20"><ChevronLeft className="h-5 w-5" /></button>
-      </div>
-    </motion.div>
   );
 }

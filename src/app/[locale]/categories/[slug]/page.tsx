@@ -2,12 +2,11 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { categories, getCategoryBySlug } from "@/data/categories";
 import { getProductsByCategory } from "@/data/products";
 import { getLocalized } from "@/lib/utils";
 import type { Locale } from "@/types";
-import { ProductCard, SectionHeader } from "@/components/shared/product-card";
+import { ProductCard } from "@/components/shared/product-card";
 
 export async function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }));

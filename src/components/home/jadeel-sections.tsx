@@ -6,8 +6,9 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion } from "motion/react";
 import { Star, ChevronLeft, ChevronRight, Play, Check, X } from "lucide-react";
 import { products, reviews, faqs } from "@/data/products";
+import { resolveProductHero } from "@/lib/product-images/resolve";
 import type { Locale, Product } from "@/types";
-import { getLocalized, formatPrice } from "@/lib/utils";
+import { getLocalized } from "@/lib/utils";
 import { PriceDisplay } from "@/components/shared/price-display";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -90,7 +91,7 @@ function ProductShowcase({ product, locale, reversed }: { product: Product; loca
   return (
     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${reversed ? "lg:[direction:rtl]" : ""}`}>
       <div className={`relative aspect-square rounded-3xl overflow-hidden shadow-luxury ${reversed ? "lg:[direction:ltr]" : ""}`}>
-        <Image src={product.images[0]?.url || ""} alt="" fill className="object-cover" sizes="50vw" />
+        <Image src={product.images[0]?.url || resolveProductHero(product)} alt="" fill className="object-cover" sizes="50vw" />
       </div>
       <div className={reversed ? "lg:[direction:ltr]" : ""}>
         <span className="text-2xl">{product.problemEmoji}</span>
@@ -101,7 +102,7 @@ function ProductShowcase({ product, locale, reversed }: { product: Product; loca
         </div>
         <div className="flex gap-3 mt-6">
           <Button variant="gold" className="rounded-full" asChild>
-            <Link href={`/${locale}/products/${product.slug}#order-form`}>{t("orderNow")}</Link>
+            <Link href={`/${locale}/products/${product.slug}#order-form`}>{t("addToCart")}</Link>
           </Button>
           <Button variant="outline" className="rounded-full" asChild>
             <Link href={`/${locale}/products/${product.slug}`}>{t("details")}</Link>
