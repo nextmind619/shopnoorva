@@ -28,6 +28,19 @@ export interface GallerySlide {
   items?: string[];
 }
 
+/** Real commercial photos for the bear-ear astronaut model */
+const ASTRONAUT_SCENE_TYPES: Partial<Record<GalleryScene, ImageType>> = {
+  hero: "02-premium-hero",
+  ceiling: "14-product-in-use",
+  bedroom: "04-bedroom",
+  gaming: "14-product-in-use",
+  "night-room": "04-bedroom",
+  "remote-bluetooth": "09-close-up",
+  dimensions: "12-dimensions",
+  package: "11-package-contents",
+  features: "10-features",
+};
+
 const GALLERY_SCENES: Array<{
   scene: GalleryScene;
   emoji: string;
@@ -56,20 +69,30 @@ export function buildProductGallerySlides(product: Product): GallerySlide[] {
   const isAstronaut = product.slug === "astronaut-galaxy-projector";
 
   return GALLERY_SCENES.map((cfg, i) => {
-    // Astronaut: use premium marketing hero as first slide (matches supplier image)
-    const imageType = isAstronaut && cfg.scene === "hero"
-      ? "02-premium-hero" as ImageType
-      : cfg.aiType;
+    const astronautType = isAstronaut ? ASTRONAUT_SCENE_TYPES[cfg.scene] : undefined;
+    const imageType = (astronautType ?? cfg.aiType) as ImageType;
     const imageUrl = resolveProductImage(product, imageType);
+
+    const astronautHeadings: Partial<Record<GalleryScene, { heading: string; subtitle: string }>> = {
+      hero: { heading: "رائد فضاء أبيض — المنتج الحقيقي", subtitle: "آذان دب · سبيكر بلوتوث · 8 أوضاع مجرة" },
+      ceiling: { heading: "المنتج يعمل — مجرة على السقف", subtitle: "8 أوضاع ألوان مع هلال من الخوذة" },
+      bedroom: { heading: "داخل غرفة نوم", subtitle: "أجواء سينمائية كما في تيك توك" },
+      "remote-bluetooth": { heading: "الريموت والبلوتوث", subtitle: "ريموت أسود + سبيكر بلوتوث 5.0" },
+      dimensions: { heading: "المقاسات", subtitle: dims ?? "24×12 سم — قاعدة قمرية" },
+      package: { heading: "محتويات العلبة", subtitle: "بروجيكتور + ريموت + كابل USB + دليل" },
+      features: { heading: "تفاصيل التصميم", subtitle: "رأس مغناطيسي 360° · أزرار خلفية · USB" },
+    };
+
+    const astroCopy = isAstronaut ? astronautHeadings[cfg.scene] : undefined;
 
     const slide: GallerySlide = {
       id: `slide-${product.id}-${i}`,
       scene: cfg.scene,
       emoji: cfg.emoji,
-      heading: isAstronaut && cfg.scene === "hero" ? "بروجيكتور + سبيكر بلوتوث" : cfg.heading,
-      subtitle: isAstronaut && cfg.scene === "hero" ? "10 أوضاع مجرة · ريموت · بلوتوث 5.0" : (cfg.scene === "dimensions" && dims ? dims : cfg.subtitle),
+      heading: astroCopy?.heading ?? cfg.heading,
+      subtitle: astroCopy?.subtitle ?? (cfg.scene === "dimensions" && dims ? dims : cfg.subtitle),
       imageUrl,
-      objectFit: "cover", // AI generated images are usually best as cover
+      objectFit: isAstronaut && (cfg.scene === "hero" || cfg.scene === "features" || cfg.scene === "dimensions") ? "contain" : "cover",
       objectPosition: "center",
       imageScale: 1,
     };

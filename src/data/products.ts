@@ -12,14 +12,14 @@ export const products: Product[] = [
     slug: "astronaut-galaxy-projector",
     name: L("بروجيكتور رائد الفضاء", "Projecteur Astronaute Galaxy", "Astronaut Galaxy Projector"),
     shortDescription: L(
-      "رائد فضاء أبيض — بلوتوث + سبيكر + 10 أوضاع إضاءة + ريموت",
-      "Astronaute blanc — Bluetooth, haut-parleur, 10 modes, télécommande",
-      "White astronaut — Bluetooth speaker, 10 light modes, remote"
+      "رائد فضاء أبيض — آذان دب + سبيكر بلوتوث + 8 أوضاع مجرة + ريموت",
+      "Astronaute blanc — oreilles, Bluetooth, 8 modes, télécommande",
+      "White astronaut — bear ears, Bluetooth, 8 modes, remote"
     ),
     description: L(
-      "بروجيكتور رائد الفضاء من NOORVA — بروجيكتور مجرة + سبيكر بلوتوث في جهاز واحد. يعرض نجوم ومجرة بـ 10 أوضاع ألوان على السقف والجدران. ربط بلوتوث مع الهاتف لتشغيل الموسيقى، ريموت تحكم كامل، ورأس قابل للتعديل 360°. مثالي لغرف النوم والأطفال والهدايا. الدفع عند الاستلام في جميع مدن المغرب.",
-      "Projecteur astronaute NOORVA — galaxie + haut-parleur Bluetooth. 10 modes couleur, télécommande, tête 360°. Paiement à la livraison au Maroc.",
-      "NOORVA astronaut projector — galaxy + Bluetooth speaker in one. 10 color modes, full remote, 360° adjustable head. Cash on delivery across Morocco."
+      "بروجيكتور رائد الفضاء من NOORVA — بروجيكتور مجرة + سبيكر بلوتوث. تصميم رائد فضاء أبيض بآذان دب، قاعدة قمرية، 8 أوضاع مجرة مع هلال. ربط بلوتوث، ريموت، رأس مغناطيسي 360°. الدفع عند الاستلام في جميع مدن المغرب.",
+      "Projecteur astronaute NOORVA — galaxie + Bluetooth. 8 modes, télécommande, tête magnétique 360°. Paiement à la livraison au Maroc.",
+      "NOORVA astronaut projector — galaxy + Bluetooth speaker. Bear-ear design, 8 nebula modes, 360° magnetic head. Cash on delivery."
     ),
     categoryId: "cat-projectors",
     price: 179,
@@ -40,21 +40,21 @@ export const products: Product[] = [
     problemCause: L("الإضاءة العادية ما تعطيش الأجواء اللي كتشوفها فتيك توك", "L'éclairage classique ne crée pas l'ambiance TikTok", "Regular lights don't create that TikTok vibe"),
     problemSolution: L("بروجيكتور رائد الفضاء + بلوتوث + مجرة من الخوذة", "Astronaute + Bluetooth + galaxie", "Astronaut + Bluetooth + galaxy"),
     deepDescription: L(
-      "بروجيكتور + سبيكر بلوتوث في جهاز واحد. يعرض مجرة سينمائية من الخوذة بـ 10 أوضاع ألوان. ربط بلوتوث مع هاتفك لتشغيل الموسيقى، ريموت كامل، ورأس قابل للتعديل. الأكثر مبيعًا على تيك توك.",
-      "Projecteur + haut-parleur Bluetooth. 10 modes galaxie depuis le casque. Télécommande, tête 360°.",
-      "Projector + Bluetooth speaker in one. 10 galaxy modes from helmet. Full remote, 360° adjustable head."
+      "بروجيكتور + سبيكر بلوتوث. رائد فضاء أبيض بآذان دب وقاعدة قمرية. 8 أوضاع مجرة مع هلال من الخوذة. رأس مغناطيسي 360°. الأكثر مبيعًا على تيك توك.",
+      "Projecteur + Bluetooth. 8 modes galaxie + croissant de lune. Tête magnétique 360°.",
+      "Projector + Bluetooth speaker. Bear-ear astronaut, lunar base. 8 nebula modes with crescent moon. 360° magnetic head."
     ),
     tags: ["astronaut", "galaxy", "bluetooth", "bestseller", "tiktok"],
     benefits: [
       L("بروجيكتور + سبيكر بلوتوث", "Projecteur + Bluetooth", "Projector + Bluetooth speaker"),
-      L("10 أوضاع إضاءة مجرة", "10 modes galaxie", "10 galaxy light modes"),
+      L("8 أوضاع مجرة + هلال", "8 modes + croissant", "8 nebula modes + moon"),
       L("مجرة من الخوذة", "Galaxie depuis casque", "Galaxy from helmet"),
       L("ريموت + تحكم بالهاتف", "Télécommande + téléphone", "Remote + phone control"),
       L("هدية مثالية", "Cadeau parfait", "Perfect gift"),
     ],
     features: [
       L("سبيكر بلوتوث 5.0 مدمج", "Haut-parleur Bluetooth 5.0", "Built-in Bluetooth 5.0 speaker"),
-      L("10 أوضاع إضاءة مجرة", "10 modes lumière galaxie", "10 galaxy light modes"),
+      L("8 أوضاع مجرة + هلال", "8 modes lumière", "8 nebula light modes"),
       L("مجرة + نجوم من الخوذة", "Galaxie + étoiles casque", "Galaxy + stars from helmet"),
       L("ريموت تحكم أسود", "Télécommande noire", "Black remote control"),
       L("رأس قابل للتعديل 360°", "Tête ajustable 360°", "360° adjustable head"),
@@ -63,10 +63,10 @@ export const products: Product[] = [
     specifications: [
       { label: L("اللون", "Couleur", "Color"), value: L("أبيض", "Blanc", "White") },
       { label: L("البلوتوث", "Bluetooth", "Bluetooth"), value: L("5.0 + سبيكر مدمج", "5.0 + haut-parleur", "5.0 + built-in speaker") },
-      { label: L("أوضاع الإضاءة", "Modes lumière", "Light Modes"), value: L("10 أوضاع مجرة", "10 modes galaxie", "10 galaxy modes") },
+      { label: L("أوضاع الإضاءة", "Modes lumière", "Light Modes"), value: L("8 أوضاع مجرة + هلال", "8 modes + croissant", "8 nebula + crescent") },
       { label: L("الطاقة", "Alimentation", "Power"), value: L("USB 5V", "USB 5V", "USB 5V") },
-      { label: L("التحكم", "Contrôle", "Control"), value: L("ريموت + بلوتوث + أزرار", "Télécommande + Bluetooth", "Remote + Bluetooth + buttons") },
-      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("12×11×23 سم", "12×11×23 cm", "12×11×23 cm") },
+      { label: L("التحكم", "Contrôle", "Control"), value: L("ريموت + بلوتوث + أزرار خلفية", "Télécommande + Bluetooth", "Remote + Bluetooth + back buttons") },
+      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("24×12 سم", "24×12 cm", "24×12 cm") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
     ],
     packageIncludes: [
@@ -94,7 +94,7 @@ export const products: Product[] = [
     crossSellIds: ["prod-carousel"],
     seo: {
       title: L("بروجيكتور رائد الفضاء | NOORVA", "Projecteur Astronaute | NOORVA", "Astronaut Galaxy Projector | NOORVA"),
-      description: L("بروجيكتور رائد الفضاء بلوتوث + سبيكر + 10 أوضاع مجرة — الدفع عند الاستلام", "Projecteur astronaute Bluetooth + 10 modes — COD", "Astronaut Bluetooth projector + 10 modes — COD"),
+      description: L("بروجيكتور رائد الفضاء بلوتوث + سبيكر + 8 أوضاع مجرة — الدفع عند الاستلام", "Projecteur astronaute Bluetooth + 8 modes — COD", "Astronaut Bluetooth projector + 8 modes — COD"),
     },
   },
   {
