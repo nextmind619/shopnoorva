@@ -12,14 +12,14 @@ export const products: Product[] = [
     slug: "astronaut-galaxy-projector",
     name: L("بروجيكتور رائد الفضاء", "Projecteur Astronaute Galaxy", "Astronaut Galaxy Projector"),
     shortDescription: L(
-      "رائد فضاء أبيض بسبيكر + مجرة من الخوذة + ريموت أسود",
-      "Astronaute blanc avec haut-parleur, galaxie et télécommande",
-      "White astronaut with speaker, galaxy projection and remote"
+      "رائد فضاء أبيض — بلوتوث + سبيكر + 10 أوضاع إضاءة + ريموت",
+      "Astronaute blanc — Bluetooth, haut-parleur, 10 modes, télécommande",
+      "White astronaut — Bluetooth speaker, 10 light modes, remote"
     ),
     description: L(
-      "بروجيكتور رائد الفضاء من NOORVA يحوّل غرفتك إلى عالم فضائي ساحر. تصميم كيوت فاخر، إضاءة مجرة قوية، ريموت للتحكم، ومثالي كهدية أو ديكور غرفة النوم والجيمنغ. الدفع عند الاستلام في جميع مدن المغرب.",
-      "Le projecteur astronaute NOORVA transforme votre chambre en univers spatial. Design premium, galaxie immersive, télécommande incluse. Paiement à la livraison partout au Maroc.",
-      "NOORVA astronaut projector turns your room into a cosmic universe. Premium design, immersive galaxy, remote included. Cash on delivery across Morocco."
+      "بروجيكتور رائد الفضاء من NOORVA — بروجيكتور مجرة + سبيكر بلوتوث في جهاز واحد. يعرض نجوم ومجرة بـ 10 أوضاع ألوان على السقف والجدران. ربط بلوتوث مع الهاتف لتشغيل الموسيقى، ريموت تحكم كامل، ورأس قابل للتعديل 360°. مثالي لغرف النوم والأطفال والهدايا. الدفع عند الاستلام في جميع مدن المغرب.",
+      "Projecteur astronaute NOORVA — galaxie + haut-parleur Bluetooth. 10 modes couleur, télécommande, tête 360°. Paiement à la livraison au Maroc.",
+      "NOORVA astronaut projector — galaxy + Bluetooth speaker in one. 10 color modes, full remote, 360° adjustable head. Cash on delivery across Morocco."
     ),
     categoryId: "cat-projectors",
     price: 179,
@@ -38,29 +38,35 @@ export const products: Product[] = [
     problemEmoji: "🚀",
     problem: L("غرفتك مظلمة ومملة؟", "Chambre sombre et ennuyeuse?", "Room feels dull?"),
     problemCause: L("الإضاءة العادية ما تعطيش الأجواء اللي كتشوفها فتيك توك", "L'éclairage classique ne crée pas l'ambiance TikTok", "Regular lights don't create that TikTok vibe"),
-    problemSolution: L("بروجيكتور رائد الفضاء + مجرة من الخوذة", "Projecteur astronaute + galaxie", "Astronaut projector + galaxy from helmet"),
+    problemSolution: L("بروجيكتور رائد الفضاء + بلوتوث + مجرة من الخوذة", "Astronaute + Bluetooth + galaxie", "Astronaut + Bluetooth + galaxy"),
     deepDescription: L(
-      "تصميم كيوت فاخر يعرض مجرة سينمائية من الخوذة — مو إضاءة عادية. ريموت كامل، 10 ألوان، ومثالي للغرف والجيمنغ والهدايا. الأكثر مبيعًا على تيك توك.",
-      "Design premium projetant une galaxie cinématique depuis le casque. Télécommande, 10 couleurs.",
-      "Premium cute design projecting cinematic galaxy from helmet. Full remote, 10 colors."
+      "بروجيكتور + سبيكر بلوتوث في جهاز واحد. يعرض مجرة سينمائية من الخوذة بـ 10 أوضاع ألوان. ربط بلوتوث مع هاتفك لتشغيل الموسيقى، ريموت كامل، ورأس قابل للتعديل. الأكثر مبيعًا على تيك توك.",
+      "Projecteur + haut-parleur Bluetooth. 10 modes galaxie depuis le casque. Télécommande, tête 360°.",
+      "Projector + Bluetooth speaker in one. 10 galaxy modes from helmet. Full remote, 360° adjustable head."
     ),
-    tags: ["astronaut", "galaxy", "bestseller", "tiktok"],
+    tags: ["astronaut", "galaxy", "bluetooth", "bestseller", "tiktok"],
     benefits: [
-      L("تأثير مجرة من الخوذة", "Galaxie depuis le casque", "Galaxy from helmet"),
-      L("ريموت للتحكم عن بعد", "Télécommande incluse", "Remote included"),
-      L("ديكور + إضاءة معًا", "Déco + ambiance", "Decor + ambiance"),
+      L("بروجيكتور + سبيكر بلوتوث", "Projecteur + Bluetooth", "Projector + Bluetooth speaker"),
+      L("10 أوضاع إضاءة مجرة", "10 modes galaxie", "10 galaxy light modes"),
+      L("مجرة من الخوذة", "Galaxie depuis casque", "Galaxy from helmet"),
+      L("ريموت + تحكم بالهاتف", "Télécommande + téléphone", "Remote + phone control"),
       L("هدية مثالية", "Cadeau parfait", "Perfect gift"),
     ],
     features: [
-      L("مجرة من الخوذة", "Galaxie depuis casque", "Galaxy from helmet"),
-      L("سبيكر مدمج في الصدر", "Haut-parleur intégré", "Built-in chest speaker"),
+      L("سبيكر بلوتوث 5.0 مدمج", "Haut-parleur Bluetooth 5.0", "Built-in Bluetooth 5.0 speaker"),
+      L("10 أوضاع إضاءة مجرة", "10 modes lumière galaxie", "10 galaxy light modes"),
+      L("مجرة + نجوم من الخوذة", "Galaxie + étoiles casque", "Galaxy + stars from helmet"),
       L("ريموت تحكم أسود", "Télécommande noire", "Black remote control"),
+      L("رأس قابل للتعديل 360°", "Tête ajustable 360°", "360° adjustable head"),
       L("تشغيل USB", "Alimentation USB", "USB powered"),
     ],
     specifications: [
       { label: L("اللون", "Couleur", "Color"), value: L("أبيض", "Blanc", "White") },
+      { label: L("البلوتوث", "Bluetooth", "Bluetooth"), value: L("5.0 + سبيكر مدمج", "5.0 + haut-parleur", "5.0 + built-in speaker") },
+      { label: L("أوضاع الإضاءة", "Modes lumière", "Light Modes"), value: L("10 أوضاع مجرة", "10 modes galaxie", "10 galaxy modes") },
       { label: L("الطاقة", "Alimentation", "Power"), value: L("USB 5V", "USB 5V", "USB 5V") },
-      { label: L("التحكم", "Contrôle", "Control"), value: L("ريموت + أزرار", "Télécommande + boutons", "Remote + buttons") },
+      { label: L("التحكم", "Contrôle", "Control"), value: L("ريموت + بلوتوث + أزرار", "Télécommande + Bluetooth", "Remote + Bluetooth + buttons") },
+      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("12×11×23 سم", "12×11×23 cm", "12×11×23 cm") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
     ],
     packageIncludes: [
@@ -74,6 +80,13 @@ export const products: Product[] = [
       "Retirez le film protecteur, placez sur surface stable, allumez dans le noir.",
       "Remove protective film, place on stable surface, power on in dark room."
     ),
+    lifestyleScenes: [
+      { id: "bedroom", emoji: "🛏️", title: L("غرفة النوم", "Chambre", "Bedroom"), description: L("مجرة هادئة قبل النوم مع موسيقى بلوتوث", "Galaxie apaisante + musique Bluetooth", "Calm galaxy + Bluetooth music") },
+      { id: "kids", emoji: "🧸", title: L("غرفة الأطفال", "Enfants", "Kids Room"), description: L("إضاءة ناعمة تطمن الأطفال", "Lumière douce et rassurante", "Soft soothing light") },
+      { id: "gaming", emoji: "🎮", title: L("غرفة الجيمنغ", "Gaming", "Gaming Room"), description: L("أجواء سينمائية للعب والبث", "Ambiance cinéma gaming", "Cinematic gaming vibe") },
+      { id: "music", emoji: "🎵", title: L("موسيقى بلوتوث", "Musique Bluetooth", "Bluetooth Music"), description: L("شغّل موسيقاك واستمتع بالمجرة", "Jouez votre musique avec la galaxie", "Play music with galaxy lights") },
+      { id: "gift", emoji: "🎁", title: L("هدية مثالية", "Cadeau", "Gift"), description: L("الهدية الأكثر طلبًا على تيك توك", "Cadeau viral TikTok", "Viral TikTok gift") },
+    ],
     images: [],
     lifestyleImages: [],
     variants: [{ id: "var-astro", name: L("أبيض", "Blanc", "White"), price: 179, compareAtPrice: 269, sku: "NRV-ASTRO-01", stock: 72 }],
@@ -81,7 +94,7 @@ export const products: Product[] = [
     crossSellIds: ["prod-carousel"],
     seo: {
       title: L("بروجيكتور رائد الفضاء | NOORVA", "Projecteur Astronaute | NOORVA", "Astronaut Galaxy Projector | NOORVA"),
-      description: L("اشترِ بروجيكتور رائد الفضاء بالدفع عند الاستلام — توصيل 24-48 ساعة", "Projecteur astronaute COD — livraison 24-48h", "Astronaut projector COD — 24-48h delivery"),
+      description: L("بروجيكتور رائد الفضاء بلوتوث + سبيكر + 10 أوضاع مجرة — الدفع عند الاستلام", "Projecteur astronaute Bluetooth + 10 modes — COD", "Astronaut Bluetooth projector + 10 modes — COD"),
     },
   },
   {

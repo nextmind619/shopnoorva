@@ -50,15 +50,24 @@ const IMAGE_TYPE_CONFIGS = {
 const PRODUCT_PROFILES = [
   {
     id: "prod-astronaut", slug: "astronaut-galaxy-projector", sku: "NRV-ASTRO-01",
-    name: "Astronaut Galaxy Projector",
-    visualIdentity: "Exact product: cute chubby white astronaut figure night light projector. Large white helmet with dark tinted glossy spherical visor. Small raised circular lens on top, two bear-ear protrusions. Thick rounded white torso, perforated speaker grille on chest. White lunar crater base. Black slim remote. Matte white ABS, glossy dark visor. DO NOT redesign.",
+    name: "Astronaut Galaxy Projector with Bluetooth Speaker",
+    visualIdentity: "White cute astronaut galaxy projector with Bluetooth 5.0 speaker built-in. Helmet projects multicolor nebula light. Circular speaker grille on chest. Black IR remote. iPhone paired via Bluetooth showing music app. Dark bedroom with blue purple nebula on walls ceiling. 10 color mode circles. 360° magnetic head. DO NOT redesign.",
+    customPrompts: {
+      "02-premium-hero": "Premium e-commerce marketing composite: white astronaut galaxy Bluetooth projector in center, helmet emitting colorful nebula light rays, chest speaker grille with musical notes, black remote control and iPhone with music player in foreground, dark bedroom background with vivid blue purple nebula on walls and ceiling, 10 circular color mode icons on right side showing nebula combinations, professional product advertisement layout, 8K photorealistic, no watermark, no text",
+      "01-hero-white-bg": "White astronaut galaxy projector with Bluetooth speaker on pure white background, helmet visor, chest speaker grille visible, black remote beside it, studio product photography, 8K, no watermark",
+      "09-close-up": "Close-up of white astronaut projector chest speaker grille and black remote control, Bluetooth pairing icon, macro product photography, 8K",
+      "10-features": "Infographic layout: white astronaut Bluetooth galaxy projector center, icons for Bluetooth speaker, 10 light modes, remote control, 360° head, USB power, Apple-style feature callout, 8K",
+      "14-product-in-use": "Dark cozy bedroom at night, white astronaut projector on nightstand projecting vivid blue purple nebula galaxy on ceiling and walls, cinematic atmosphere, 8K photorealistic",
+      "17-infographic": "Product infographic: white astronaut galaxy projector with 10 circular color mode thumbnails on right (red green blue purple orange nebula combinations), Bluetooth speaker icon, remote control, professional e-commerce style, 8K",
+    },
     sourceUrls: {
-      "01-hero-white-bg": "https://aryanca.com/cdn/shop/files/HR_Astro_WG_6eb9b6bc-ca7b-4c46-b6bf-ccb766f6a1fc.jpg?v=1710958860&width=1946",
-      "02-premium-hero": "https://aryanca.com/cdn/shop/files/81Kba32QfqL._AC_SX679.jpg?v=1710958720&width=1946",
+      "01-hero-white-bg": "https://m.media-amazon.com/images/I/71rBbFOVaEL._AC_SL1500_.jpg",
+      "02-premium-hero": "https://aryanca.com/cdn/shop/files/HR_Astro_Action_8757581b-4422-48f5-b370-bfb2663ea108.webp?v=1710958720&width=1946",
       "09-close-up": "https://aryanca.com/cdn/shop/files/81gRORu5X7L._AC_SX679.jpg?v=1710958720&width=1946",
+      "10-features": "https://aryanca.com/cdn/shop/files/HR_Astro_Options_dd932ae5-d4f5-4ad8-9939-7794423df691.jpg?v=1710958720&width=1946",
       "11-package-contents": "https://aryanca.com/cdn/shop/files/HR_Astro_BS_4122fe55-863e-4fb4-a20e-8c89922d4209.jpg?v=1710958860&width=1946",
-      "14-product-in-use": "https://aryanca.com/cdn/shop/files/HR_Astro_Action_8757581b-4422-48f5-b370-bfb2663ea108.webp?v=1710958720&width=1946",
-      "04-bedroom": "https://aryanca.com/cdn/shop/files/HR_Astro_BG_3aa0e288-fac6-49ca-84a5-fd1ebfc4dbff.jpg?v=1710958720&width=1946",
+      "14-product-in-use": "https://aryanca.com/cdn/shop/files/HR_Astro_BG_3aa0e288-fac6-49ca-84a5-fd1ebfc4dbff.jpg?v=1710958720&width=1946",
+      "17-infographic": "https://aryanca.com/cdn/shop/files/HR_Astro_Options_dd932ae5-d4f5-4ad8-9939-7794423df691.jpg?v=1710958720&width=1946",
     },
   },
   {
@@ -86,6 +95,9 @@ const PRODUCT_PROFILES = [
 const BASE_QUALITY = "commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica";
 
 function buildPrompt(profile, imageType, config) {
+  if (profile.customPrompts?.[imageType]) {
+    return profile.customPrompts[imageType];
+  }
   const scenes = {
     "01-hero-white-bg": `${profile.name} on pure white background, studio lighting. ${profile.visualIdentity}. ${BASE_QUALITY}`,
     "02-premium-hero": `${profile.name} premium hero, dramatic studio lighting. ${profile.visualIdentity}. ${BASE_QUALITY}`,
@@ -288,16 +300,18 @@ async function main() {
   console.log("🚀 NOORVA Premium Product Image Pipeline");
   console.log(`   Products: ${profiles.length} | Force: ${force}`);
 
-  const manifest = {
-    generatedAt: new Date().toISOString(),
-    products: {},
-  };
+  const manifestPath = path.join(ROOT, "src/lib/product-images/manifest.json");
+  let manifest = { generatedAt: new Date().toISOString(), products: {} };
+  try {
+    const existing = JSON.parse(await fs.readFile(manifestPath, "utf-8"));
+    manifest.products = existing.products || {};
+  } catch { /* fresh manifest */ }
 
   for (const profile of profiles) {
     manifest.products[profile.slug] = await processProduct(profile, { force });
   }
+  manifest.generatedAt = new Date().toISOString();
 
-  const manifestPath = path.join(ROOT, "src/lib/product-images/manifest.json");
   await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));
   console.log(`\n✅ Manifest written: ${manifestPath}`);
 

@@ -53,16 +53,21 @@ export function buildProductGallerySlides(product: Product): GallerySlide[] {
   const dims = product.specifications?.find((s) => s.label.ar.includes("أبعاد"))?.value.ar;
   const features = (product.features || product.benefits).slice(0, 6);
   const pkg = product.packageIncludes || [];
+  const isAstronaut = product.slug === "astronaut-galaxy-projector";
 
   return GALLERY_SCENES.map((cfg, i) => {
-    const imageUrl = resolveProductImage(product, cfg.aiType);
+    // Astronaut: use premium marketing hero as first slide (matches supplier image)
+    const imageType = isAstronaut && cfg.scene === "hero"
+      ? "02-premium-hero" as ImageType
+      : cfg.aiType;
+    const imageUrl = resolveProductImage(product, imageType);
 
     const slide: GallerySlide = {
       id: `slide-${product.id}-${i}`,
       scene: cfg.scene,
       emoji: cfg.emoji,
-      heading: cfg.heading,
-      subtitle: cfg.scene === "dimensions" && dims ? dims : cfg.subtitle,
+      heading: isAstronaut && cfg.scene === "hero" ? "بروجيكتور + سبيكر بلوتوث" : cfg.heading,
+      subtitle: isAstronaut && cfg.scene === "hero" ? "10 أوضاع مجرة · ريموت · بلوتوث 5.0" : (cfg.scene === "dimensions" && dims ? dims : cfg.subtitle),
       imageUrl,
       objectFit: "cover", // AI generated images are usually best as cover
       objectPosition: "center",

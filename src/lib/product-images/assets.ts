@@ -67,6 +67,14 @@ export function getProductImageUrl(
 }
 
 export function getProductHeroUrl(slug: string): string {
+  // Astronaut uses premium marketing composite as hero
+  if (slug === "astronaut-galaxy-projector") {
+    return (
+      getProductImageUrl(slug, "02-premium-hero", "webp") ||
+      getProductImageUrl(slug, "01-hero-white-bg", "webp") ||
+      `/products/${slug.replace(/-projector$|-night-light$/, "")}.svg`
+    );
+  }
   return (
     getProductImageUrl(slug, "01-hero-white-bg", "webp") ||
     getProductImageUrl(slug, "02-premium-hero", "webp") ||
