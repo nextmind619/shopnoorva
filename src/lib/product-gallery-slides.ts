@@ -28,17 +28,18 @@ export interface GallerySlide {
   items?: string[];
 }
 
-/** Real commercial photos for the bear-ear astronaut model */
+/** MAKTUL B0D8JQNKVP — official Amazon commercial photos */
 const ASTRONAUT_SCENE_TYPES: Partial<Record<GalleryScene, ImageType>> = {
   hero: "02-premium-hero",
   ceiling: "14-product-in-use",
   bedroom: "04-bedroom",
-  gaming: "14-product-in-use",
+  gaming: "06-gaming-room",
   "night-room": "04-bedroom",
   "remote-bluetooth": "09-close-up",
   dimensions: "12-dimensions",
   package: "11-package-contents",
   features: "10-features",
+  "before-after": "13-before-after",
 };
 
 const GALLERY_SCENES: Array<{
@@ -74,13 +75,14 @@ export function buildProductGallerySlides(product: Product): GallerySlide[] {
     const imageUrl = resolveProductImage(product, imageType);
 
     const astronautHeadings: Partial<Record<GalleryScene, { heading: string; subtitle: string }>> = {
-      hero: { heading: "رائد فضاء أبيض — المنتج الحقيقي", subtitle: "آذان دب · سبيكر بلوتوث · 8 أوضاع مجرة" },
-      ceiling: { heading: "المنتج يعمل — مجرة على السقف", subtitle: "8 أوضاع ألوان مع هلال من الخوذة" },
-      bedroom: { heading: "داخل غرفة نوم", subtitle: "أجواء سينمائية كما في تيك توك" },
-      "remote-bluetooth": { heading: "الريموت والبلوتوث", subtitle: "ريموت أسود + سبيكر بلوتوث 5.0" },
-      dimensions: { heading: "المقاسات", subtitle: dims ?? "24×12 سم — قاعدة قمرية" },
+      hero: { heading: "MAKTUL — المنتج الأصلي", subtitle: "سبيكر صدر · بلوتوث · 8 أوضاع مجرة" },
+      ceiling: { heading: "مجرة على السقف بالكامل", subtitle: "8 أوضاع ألوان + نجوم خضراء" },
+      bedroom: { heading: "داخل غرفة نوم", subtitle: "أجواء فضائية هادئة قبل النوم" },
+      gaming: { heading: "داخل غرفة Gaming", subtitle: "إضاءة سينمائية للعب والبث" },
+      "remote-bluetooth": { heading: "الريموت والبلوتوث", subtitle: "ريموت أسود + سبيكر صدر + USB" },
+      dimensions: { heading: "المقاسات", subtitle: dims ?? "23.5×12×12 سم — قاعدة قمرية" },
       package: { heading: "محتويات العلبة", subtitle: "بروجيكتور + ريموت + كابل USB + دليل" },
-      features: { heading: "تفاصيل التصميم", subtitle: "رأس مغناطيسي 360° · أزرار خلفية · USB" },
+      features: { heading: "8 أوضاع إضاءة", subtitle: "مجرة · نجوم · شدة قابلة للتعديل" },
     };
 
     const astroCopy = isAstronaut ? astronautHeadings[cfg.scene] : undefined;
