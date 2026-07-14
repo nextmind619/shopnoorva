@@ -17,37 +17,46 @@ const AMZ = (id) =>
 const VISUAL =
   "EXACT white chibi astronaut galaxy projector Bluetooth speaker. Two small rounded bear-ear protrusions on top of white helmet. Large dark glossy black visor with nebula projection lens inside. Small circular lens on top of helmet between ears. Large circular perforated chest speaker grille with concentric holes. White lunar crater textured circular base. Grey braided cable connecting head to body. Rectangular white backpack with buttons ON OFF Model Light Music Sound and USB port. Black slim vertical remote red power button R G B W S+ S- NEBULA buttons. 360 magnetic rotating head. Standing pose NOT sitting NOT holding star. Matte white ABS plastic. DO NOT redesign.";
 
-const REAL_SOURCES = {
-  "02-premium-hero": [AMZ("71icsbrywBL"), AMZ("51JstmLGBSL")],
-  "01-hero-white-bg": [AMZ("416l9BGn6uL"), AMZ("71icsbrywBL")],
-  "09-close-up": [AMZ("71icsbrywBL"), AMZ("51JstmLGBSL")],
-  "10-features": [AMZ("61ypnZIj6hL"), AMZ("51rpNoYsiQL")],
-  "17-infographic": [AMZ("51JstmLGBSL"), AMZ("71icsbrywBL")],
-  "14-product-in-use": [AMZ("416l9BGn6uL"), AMZ("71PeLNrt6dL")],
-  "03-lifestyle": [AMZ("51KPG-WwiLL"), AMZ("71+NgcPTK9L")],
-  "04-bedroom": [AMZ("51KPG-WwiLL"), AMZ("61DhnH8r-yL")],
-  "05-living-room": [AMZ("51KPG-WwiLL")],
-  "06-gaming-room": [AMZ("51KPG-WwiLL")],
-  "08-kids-room": [AMZ("51KPG-WwiLL")],
-  "07-romantic-room": [AMZ("61DhnH8r-yL")],
-  "11-package-contents": [AMZ("416l9BGn6uL")],
-  "12-dimensions": [AMZ("416l9BGn6uL")],
-  "13-before-after": [AMZ("61DhnH8r-yL")],
-  "15-banner": [AMZ("71PeLNrt6dL"), AMZ("51JprJ589QL")],
-  "16-packaging": [AMZ("416l9BGn6uL")],
-  "18-mobile-banner": [AMZ("71PeLNrt6dL")],
-  "19-desktop-banner": [AMZ("51KPG-WwiLL")],
-  "20-social-media-banner": [AMZ("51JprJ589QL"), AMZ("71PeLNrt6dL")],
-};
+/** MXS003 / B09SYLY3KZ — verified bear-ear chest-speaker standing model (user reference images) */
+const MXS003_SUPPLIER =
+  "https://f.fcdn.app/imgs/33966c/universobinario.com/ubinuy/05d3/webp/catalogo/0035066712581-001_1/1024-1024/proyector-de-luces-estrellas-astronauta-mxs003-001.jpg";
 
-const AI_ONLY = new Set([
-  "02-premium-hero",
-  "01-hero-white-bg",
-  "10-features",
-  "17-infographic",
-  "12-dimensions",
-  "11-package-contents",
-]);
+/**
+ * User reference image → slot mapping:
+ * 360° rotation infographic → 10-features
+ * 8 white noises / kids sleep → 08-kids-room
+ * amazing gift collage → 20-social-media-banner
+ * brightness 30/70/100% → 17-infographic
+ * bear-ear hero + remote → 02-premium-hero
+ * 9 nebula effects grid → 06-gaming-room
+ * built-in speaker bluetooth → 14-product-in-use
+ * back view controls → 09-close-up
+ * white-bg kit front+remote → 01-hero-white-bg
+ * flat-lay package → 11-package-contents
+ * dimensions + back panel → 12-dimensions
+ */
+const REAL_SOURCES = {
+  "02-premium-hero": [AMZ("81lMBseNL3L"), AMZ("615aqHTTdAL"), AMZ("416l9BGn6uL")],
+  "01-hero-white-bg": [AMZ("615aqHTTdAL"), AMZ("71XZWhwsgnL"), AMZ("416l9BGn6uL")],
+  "09-close-up": [AMZ("5179at37mtL"), AMZ("61ypnZIj6hL"), AMZ("51rpNoYsiQL")],
+  "10-features": [AMZ("71iKLXMppKL"), AMZ("51MxppVPa6L"), AMZ("71icsbrywBL")],
+  "17-infographic": [AMZ("71as8FtEaHL"), AMZ("71Mve3yslKL")],
+  "14-product-in-use": [MXS003_SUPPLIER, AMZ("71PeLNrt6dL"), AMZ("51JprJ589QL")],
+  "03-lifestyle": [AMZ("51dSnZ510qL"), AMZ("712tgsgzByL"), AMZ("51KPG-WwiLL")],
+  "04-bedroom": [AMZ("51bwe4RlSeL"), AMZ("61v31LAZPbL"), AMZ("61DhnH8r-yL")],
+  "05-living-room": [AMZ("81lMBseNL3L"), AMZ("71Jn-vB8tTL")],
+  "06-gaming-room": [AMZ("71L6lBJGnaL"), AMZ("71Z0Pn6k6gL")],
+  "08-kids-room": [AMZ("71as8FtEaHL"), AMZ("71GHZN7Tn8L"), AMZ("51dSnZ510qL")],
+  "07-romantic-room": [AMZ("51uui8NeEbL"), AMZ("61DhnH8r-yL")],
+  "11-package-contents": [AMZ("615aqHTTdAL"), AMZ("71XZWhwsgnL")],
+  "12-dimensions": [AMZ("5179at37mtL")],
+  "13-before-after": [AMZ("61v31LAZPbL"), AMZ("61DhnH8r-yL")],
+  "15-banner": [AMZ("712tgsgzByL"), AMZ("81lMBseNL3L")],
+  "16-packaging": [AMZ("5179at37mtL"), AMZ("71icsbrywBL")],
+  "18-mobile-banner": [AMZ("416l9BGn6uL"), AMZ("615aqHTTdAL")],
+  "19-desktop-banner": [AMZ("51KPG-WwiLL"), AMZ("71+NgcPTK9L")],
+  "20-social-media-banner": [AMZ("51JHfsVXWoL"), AMZ("71B9Q7y6rzL"), AMZ("51KPG-WwiLL")],
+};
 
 const AI_PROMPTS = {
   "02-premium-hero": `${VISUAL} Exact marketing composite photo: astronaut left side chest speaker with green pink musical notes, black remote and smartphone with music player app bottom right, dark bedroom background blue purple nebula on ceiling walls, 8 circular nebula color mode thumbnails right side with crescent moon, photorealistic advertisement 8K no watermark no text`,
@@ -201,14 +210,16 @@ async function main() {
     let buffer = null;
     let source = "ai-generated";
 
-    if (!AI_ONLY.has(imageType) && REAL_SOURCES[imageType]) {
+    if (REAL_SOURCES[imageType]) {
       console.log("  ↓ Commercial...");
       buffer = await downloadFromUrls(REAL_SOURCES[imageType]);
       if (buffer) source = "commercial";
     }
 
     if (!buffer && AI_PROMPTS[imageType]) {
+      console.log("  ↓ AI fallback...");
       buffer = await generateAI(AI_PROMPTS[imageType], imageType);
+      if (buffer) source = "ai-generated";
     }
 
     if (!buffer) {
@@ -219,7 +230,7 @@ async function main() {
     product.images[imageType] = await optimize(buffer, outDir, imageType);
     product.sources[imageType] = source;
     console.log(`  ✓ ${source}\n`);
-    await new Promise((r) => setTimeout(r, AI_ONLY.has(imageType) ? 2000 : 600));
+    await new Promise((r) => setTimeout(r, source === "ai-generated" ? 2000 : 600));
   }
 
   manifest.products[SLUG] = product;

@@ -146,9 +146,46 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         </nav>
 
         {/* المعرض + معلومات الشراء */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6">
-          <div className="lg:col-span-8 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
+          {/* المعرض — موبايل أولاً، يسار سطح المكتب */}
+          <div className="lg:col-span-8 order-1 lg:order-2 space-y-6">
             <PremiumProductGallery product={product} />
+
+            {/* نموذج الطلب — موبايل: مباشرة تحت المعرض */}
+            <div className="lg:hidden">
+              <ProductOrderForm product={product} variant={variant} quantity={qty} />
+            </div>
+
+            {/* عنوان وسعر مختصر — موبايل */}
+            <div className="lg:hidden space-y-4">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
+                <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
+                  <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="flex">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className={cn("h-3.5 w-3.5", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
+                    ))}
+                  </div>
+                  <span className="font-bold text-white text-xs">({product.rating})</span>
+                </div>
+              </div>
+              <h1 className="text-2xl font-bold leading-tight tracking-tight text-white">{name}</h1>
+              <p className="text-white/70 leading-relaxed text-base">{product.shortDescription.ar}</p>
+              <div className="flex flex-wrap items-center gap-3 py-3 border-y border-white/10">
+                <span className="text-3xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
+                <span className="text-sm font-bold text-white/60">درهم مغربي</span>
+                {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
+                  <span className="text-base text-white/40 line-through tabular-nums">{formatPriceNumber(variant.compareAtPrice, "ar")}</span>
+                )}
+                {discount > 0 && (
+                  <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    خصم {discount}%
+                  </span>
+                )}
+              </div>
+            </div>
 
             {/* العنوان العاطفي */}
             {product.problem && product.problemSolution && (
@@ -163,8 +200,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             )}
           </div>
 
-          {/* معلومات المنتج */}
-          <div className="lg:col-span-4 space-y-5 lg:sticky lg:top-6 lg:self-start">
+          {/* العمود الأيمن — معلومات المنتج + نموذج الطلب (ثابت) */}
+          <div className="hidden lg:block lg:col-span-4 lg:order-1 space-y-5 lg:sticky lg:top-6 lg:self-start">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
               <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
                 <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
@@ -247,7 +284,10 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </div>
             </div>
 
-            <ProductOrderForm product={product} variant={variant} quantity={qty} />
+            {/* نموذج الطلب — سطح المكتب فقط */}
+            <div className="hidden lg:block">
+              <ProductOrderForm product={product} variant={variant} quantity={qty} />
+            </div>
 
             <div className="flex items-center gap-4 hidden">
               <span className="text-sm font-medium">الكمية</span>
@@ -277,8 +317,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </button>
             </div>
           </div>
-          <div className="lg:col-span-4 lg:sticky lg:top-6 lg:self-start">
-            <ProductOrderForm product={product} variant={variant} quantity={qty} />
+        </div>
 
         {/* لماذا NOORVA */}
         <section className="mt-8">
@@ -297,8 +336,6 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 ))}
               </div>
         </section>
-          </div>
-        </div>
 
             {/* لماذا ستحبه */}
             <section className="mt-8">

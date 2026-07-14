@@ -3,21 +3,24 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { motion } from "motion/react";
-import { Loader2, Banknote, Users, MessageCircle, Package, ShoppingBag } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { Loader2, Lock, MapPin, Phone, User } from "lucide-react";
 import type { Product, ProductVariant } from "@/types";
 import { formatPriceNumber, cn } from "@/lib/utils";
-import { isValidMoroccanPhone, normalizeMoroccanPhone } from "@/lib/validate-phone";
+import {
+  isValidMoroccanPhone,
+  isValidAddress,
+  normalizeMoroccanPhone,
+  formatMoroccanPhoneInput,
+} from "@/lib/validate-phone";
 import { trackEvent } from "@/components/analytics/analytics-scripts";
-
 import { resolveProductHero } from "@/lib/product-images/resolve";
 
-const TRUST_BADGES = [
-  { emoji: "🚚", text: "توصيل سريع إلى جميع مدن المغرب" },
-  { emoji: "💵", text: "الدفع عند الاستلام" },
+const TRUST_ITEMS = [
   { emoji: "🔒", text: "معلوماتك محمية وآمنة" },
-  { emoji: "🔄", text: "استبدال خلال 7 أيام" },
-  { emoji: "⭐", text: "آلاف العملاء يثقون بنا" },
+  { emoji: "🚚", text: "توصيل سريع إلى جميع مدن المغرب" },
+  { emoji: "💵", text: "الدفع عند الاستلام فقط" },
+  { emoji: "↩️", text: "استبدال خلال 7 أيام" },
 ];
 
 interface ProductOrderFormProps {
@@ -29,12 +32,31 @@ interface ProductOrderFormProps {
 type FormFields = { fullName: string; phone: string; address: string };
 type FormErrors = Partial<Record<keyof FormFields, string>>;
 
+function FieldError({ message }: { message: string }) {
+  return (
+    <AnimatePresence>
+      <motion.p
+        initial={{ opacity: 0, y: -4, height: 0 }}
+        animate={{ opacity: 1, y: 0, height: "auto" }}
+        exit={{ opacity: 0, y: -4, height: 0 }}
+        transition={{ duration: 0.2 }}
+        className="flex items-center gap-1.5 text-sm text-red-400 mt-2 pe-1"
+        role="alert"
+      >
+        <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-red-400" aria-hidden />
+        {message}
+      </motion.p>
+    </AnimatePresence>
+  );
+}
+
 export function ProductOrderForm({ product, variant, quantity }: ProductOrderFormProps) {
   const router = useRouter();
   const submitting = useRef(false);
 
   const [form, setForm] = useState<FormFields>({ fullName: "", phone: "", address: "" });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Partial<Record<keyof FormFields, boolean>>>({});
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState("");
 
@@ -43,14 +65,47 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
   const subtotal = variant.price * quantity;
   const total = subtotal;
 
+  const validateField = (key: keyof FormFields, value: string): string | undefined => {
+    switch (key) {
+      case "fullName":
+        if (!value.trim()) return "الاسم الكامل مطلوب لإتمام طلبك";
+        if (value.trim().length < 3) return "يرجى إدخال اسمك الكامل (3 أحرف على الأقل)";
+        return undefined;
+      case "phone":
+        if (!value.trim()) return "رقم الهاتف مطلوب للتواصل معك";
+        if (!isValidMoroccanPhone(value)) return "يرجى إدخال رقم مغربي صحيح (مثال: 06 12 34 56 78)";
+        return undefined;
+      case "address":
+        if (!value.trim()) return "العنوان مطلوب لتوصيل طلبك";
+        if (!isValidAddress(value)) return "يرجى إدخال عنوان تفصيلي (المدينة، الحي، الشارع، رقم المنزل)";
+        return undefined;
+    }
+  };
+
   const validate = (): boolean => {
     const next: FormErrors = {};
-    if (!form.fullName.trim()) next.fullName = "يرجى إدخال الاسم الكامل";
-    if (!form.phone.trim()) next.phone = "يرجى إدخال رقم هاتف صحيح";
-    else if (!isValidMoroccanPhone(form.phone)) next.phone = "يرجى إدخال رقم هاتف صحيح";
-    if (!form.address.trim()) next.address = "يرجى إدخال عنوانك الكامل";
+    (["fullName", "phone", "address"] as const).forEach((key) => {
+      const err = validateField(key, form[key]);
+      if (err) next[key] = err;
+    });
     setErrors(next);
+    setTouched({ fullName: true, phone: true, address: true });
     return Object.keys(next).length === 0;
+  };
+
+  const updateField = (key: keyof FormFields, raw: string) => {
+    const value = key === "phone" ? formatMoroccanPhoneInput(raw) : raw;
+    setForm((prev) => ({ ...prev, [key]: value }));
+    if (touched[key]) {
+      setErrors((prev) => ({ ...prev, [key]: validateField(key, value) }));
+    } else {
+      setErrors((prev) => ({ ...prev, [key]: undefined }));
+    }
+  };
+
+  const blurField = (key: keyof FormFields) => {
+    setTouched((prev) => ({ ...prev, [key]: true }));
+    setErrors((prev) => ({ ...prev, [key]: validateField(key, form[key]) }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -101,7 +156,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
         return;
       }
 
-      setFormError("تعذر إتمام الطلب. يرجى المحاولة مرة أخرى أو التواصل معنا عبر واتساب.");
+      setFormError("تعذر إتمام الطلب. يرجى المحاولة مرة أخرى.");
     } catch {
       setFormError("تعذر إتمام الطلب. تحقق من اتصالك وحاول مجدداً.");
     } finally {
@@ -110,153 +165,210 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
     }
   };
 
-  const fieldClass = (key: keyof FormFields) =>
+  const inputClass = (key: keyof FormFields) =>
     cn(
-      "w-full h-13 px-4 rounded-2xl border bg-white text-sm transition-all duration-200",
-      "focus:outline-none focus:ring-2 focus:ring-luxury-gold/30 focus:border-luxury-gold",
-      errors[key] ? "border-red-400" : "border-black/10"
+      "cod-field w-full rounded-2xl border bg-white/[0.04] text-base sm:text-lg text-white",
+      "placeholder:text-white/30 transition-all duration-300",
+      "focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-violet-400/50 focus:bg-white/[0.06]",
+      errors[key] && touched[key]
+        ? "border-red-400/60 ring-1 ring-red-400/20"
+        : "border-white/10 hover:border-white/20"
     );
 
   return (
     <section className="mt-0" id="order-form">
-      <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="rounded-[1.5rem] border border-[#2a2a35] bg-[#12121a] text-white shadow-luxury overflow-hidden"
-        >
-          <div className="px-6 sm:px-8 pt-8 pb-6 text-center border-b border-white/10 bg-[#1a1a24]">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">اطلب الآن وادفع عند الاستلام</h2>
-            <p className="text-sm sm:text-base text-white/60 mt-3 leading-relaxed max-w-md mx-auto">
-              لن تدفع أي مبلغ الآن. ستدفع فقط عند استلام المنتج
-            </p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="cod-form-glass rounded-[1.75rem] overflow-hidden"
+      >
+        {/* Header */}
+        <div className="relative px-6 sm:px-8 pt-8 pb-6 text-center border-b border-white/[0.08]">
+          <div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-violet-500/[0.08] to-transparent"
+            aria-hidden
+          />
+          <h2 className="relative font-display text-2xl sm:text-[1.65rem] font-bold tracking-tight text-white leading-snug">
+            اطلب الآن وادفع عند الاستلام
+          </h2>
+          <p className="relative text-base sm:text-lg text-white/55 mt-3 leading-relaxed max-w-sm mx-auto">
+            لن تدفع أي شيء الآن.
+            <br />
+            ادفع فقط عند استلام طلبك.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6" noValidate>
+          {/* Fields */}
+          <div className="space-y-5">
+            {/* Full name */}
+            <div>
+              <label htmlFor="fullName" className="cod-label flex items-center gap-2 mb-2.5">
+                <span aria-hidden>👤</span>
+                <span>الاسم الكامل</span>
+              </label>
+              <div className="relative">
+                <User
+                  className="absolute top-1/2 -translate-y-1/2 start-4 h-5 w-5 text-white/25 pointer-events-none"
+                  aria-hidden
+                />
+                <input
+                  id="fullName"
+                  value={form.fullName}
+                  onChange={(e) => updateField("fullName", e.target.value)}
+                  onBlur={() => blurField("fullName")}
+                  className={cn(inputClass("fullName"), "h-14 ps-12 pe-4")}
+                  placeholder="أدخل اسمك الكامل"
+                  autoComplete="name"
+                  disabled={loading}
+                />
+              </div>
+              {touched.fullName && errors.fullName && <FieldError message={errors.fullName} />}
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label htmlFor="phone" className="cod-label flex items-center gap-2 mb-2.5">
+                <span aria-hidden>📞</span>
+                <span>رقم الهاتف</span>
+              </label>
+              <div className="relative">
+                <Phone
+                  className="absolute top-1/2 -translate-y-1/2 start-4 h-5 w-5 text-white/25 pointer-events-none"
+                  aria-hidden
+                />
+                <input
+                  id="phone"
+                  type="tel"
+                  inputMode="numeric"
+                  value={form.phone}
+                  onChange={(e) => updateField("phone", e.target.value)}
+                  onBlur={() => blurField("phone")}
+                  className={cn(inputClass("phone"), "h-14 ps-12 pe-4 tabular-nums tracking-wide")}
+                  placeholder="06XXXXXXXX"
+                  dir="ltr"
+                  autoComplete="tel"
+                  disabled={loading}
+                />
+              </div>
+              {touched.phone && errors.phone && <FieldError message={errors.phone} />}
+            </div>
+
+            {/* Address */}
+            <div>
+              <label htmlFor="address" className="cod-label flex items-center gap-2 mb-2.5">
+                <span aria-hidden>📍</span>
+                <span>العنوان الكامل</span>
+              </label>
+              <div className="relative">
+                <MapPin
+                  className="absolute top-4 start-4 h-5 w-5 text-white/25 pointer-events-none"
+                  aria-hidden
+                />
+                <textarea
+                  id="address"
+                  value={form.address}
+                  onChange={(e) => updateField("address", e.target.value)}
+                  onBlur={() => blurField("address")}
+                  rows={4}
+                  className={cn(inputClass("address"), "min-h-[120px] ps-12 pe-4 pt-4 pb-4 resize-none leading-relaxed")}
+                  placeholder="المدينة - الحي - الشارع - رقم المنزل"
+                  autoComplete="street-address"
+                  disabled={loading}
+                />
+              </div>
+              {touched.address && errors.address && <FieldError message={errors.address} />}
+            </div>
           </div>
 
-          <div className="p-6 sm:p-8">
-            <form onSubmit={handleSubmit} className="space-y-4 mb-8" noValidate>
-              <div>
-                <div className="relative">
-                  <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none text-white/40">
-                    <Users className="h-5 w-5" />
+          {/* Order summary */}
+          <div className="cod-summary rounded-2xl border border-white/[0.08] overflow-hidden">
+            <div className="px-5 py-3.5 border-b border-white/[0.06] bg-white/[0.03]">
+              <p className="text-sm font-bold text-white/70 tracking-wide text-center">ملخص الطلب</p>
+            </div>
+            <div className="p-5 space-y-4">
+              <div className="flex gap-4 items-center">
+                {productImage && (
+                  <div className="relative w-[72px] h-[72px] rounded-xl overflow-hidden shrink-0 border border-white/10 bg-white/5 shadow-lg">
+                    <Image src={productImage} alt={productName} fill className="object-cover" sizes="72px" />
                   </div>
-                  <input
-                    id="fullName"
-                    value={form.fullName}
-                    onChange={(e) => { setForm({ ...form, fullName: e.target.value }); setErrors((er) => ({ ...er, fullName: undefined })); }}
-                    className={cn(fieldClass("fullName"), "ps-12 bg-[#1a1a24] border-white/10 text-white placeholder:text-white/30 focus:border-[#6366f1] focus:ring-[#6366f1]/30")}
-                    placeholder="الاسم الكامل"
-                    autoComplete="name"
-                    disabled={loading}
-                  />
+                )}
+                <div className="flex-1 min-w-0 space-y-1">
+                  <p className="text-xs text-white/45 font-medium">اسم المنتج</p>
+                  <p className="font-bold text-base text-white leading-snug line-clamp-2">{productName}</p>
                 </div>
-                {errors.fullName && <p className="text-red-400 text-xs mt-1.5">{errors.fullName}</p>}
               </div>
 
-              <div>
-                <div className="relative">
-                  <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none text-white/40">
-                    <MessageCircle className="h-5 w-5" />
-                  </div>
-                  <input
-                    id="phone"
-                    type="tel"
-                    value={form.phone}
-                    onChange={(e) => { setForm({ ...form, phone: e.target.value }); setErrors((er) => ({ ...er, phone: undefined })); }}
-                    className={cn(fieldClass("phone"), "ps-12 bg-[#1a1a24] border-white/10 text-white placeholder:text-white/30 focus:border-[#6366f1] focus:ring-[#6366f1]/30")}
-                    placeholder="رقم الهاتف"
-                    dir="rtl"
-                    autoComplete="tel"
-                    disabled={loading}
-                  />
+              <div className="space-y-3 pt-1">
+                <div className="flex justify-between items-center text-base">
+                  <span className="text-white/50">الكمية</span>
+                  <span className="font-semibold text-white tabular-nums">{quantity}</span>
                 </div>
-                {errors.phone && <p className="text-red-400 text-xs mt-1.5">{errors.phone}</p>}
-              </div>
-
-              <div>
-                <div className="relative">
-                  <div className="absolute top-4 start-0 flex items-center ps-4 pointer-events-none text-white/40">
-                    <Package className="h-5 w-5" />
-                  </div>
-                  <textarea
-                    id="address"
-                    value={form.address}
-                    onChange={(e) => { setForm({ ...form, address: e.target.value }); setErrors((er) => ({ ...er, address: undefined })); }}
-                    rows={2}
-                    className={cn(fieldClass("address"), "ps-12 pt-4 h-auto resize-none bg-[#1a1a24] border-white/10 text-white placeholder:text-white/30 focus:border-[#6366f1] focus:ring-[#6366f1]/30")}
-                    placeholder="العنوان الكامل"
-                    autoComplete="street-address"
-                    disabled={loading}
-                  />
+                <div className="flex justify-between items-center text-base">
+                  <span className="text-white/50">السعر</span>
+                  <span className="font-semibold text-white tabular-nums">
+                    {formatPriceNumber(subtotal, "ar")} <span className="text-sm text-white/60">درهم</span>
+                  </span>
                 </div>
-                {errors.address && <p className="text-red-400 text-xs mt-1.5">{errors.address}</p>}
-              </div>
-
-              {formError && (
-                <div className="rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-400 text-center">
-                  {formError}
+                <div className="flex justify-between items-center text-base">
+                  <span className="text-white/50">التوصيل</span>
+                  <span className="font-bold text-emerald-400">مجاني</span>
                 </div>
-              )}
-            </form>
-
-            <div className="rounded-2xl border border-white/10 p-0 mb-6 overflow-hidden">
-              <div className="flex items-center justify-center gap-2 py-3 border-b border-white/10 bg-white/5">
-                <p className="text-sm font-bold text-white tracking-wider">ملخص الطلب</p>
-              </div>
-              <div className="p-5">
-                <div className="flex gap-4 mb-5">
-                  {productImage && (
-                    <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-white">
-                      <Image src={productImage} alt={productName} fill className="object-cover" sizes="64px" />
-                    </div>
-                  )}
-                  <div className="flex-1 min-w-0 flex flex-col justify-center">
-                    <p className="font-bold text-sm leading-snug text-white mb-1">{productName}</p>
-                    <p className="text-xs text-white/60">الكمية: {quantity}</p>
-                    <p className="text-xs text-[#6366f1] mt-1">{formatPriceNumber(variant.price, "ar")} درهم</p>
-                  </div>
+                <div className="h-px bg-white/[0.06] my-1" />
+                <div className="flex justify-between items-center">
+                  <span className="text-lg font-bold text-white">الإجمالي</span>
+                  <span className="text-xl sm:text-2xl font-bold text-violet-300 tabular-nums">
+                    {formatPriceNumber(total, "ar")}{" "}
+                    <span className="text-sm font-semibold text-white/50">درهم</span>
+                  </span>
                 </div>
-                
-                <div className="flex gap-2 mb-6">
-                  <div className="flex-1 bg-[#1a1a24] border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center gap-1">
-                    <span className="text-emerald-400 font-bold text-[11px]">مجاني</span>
-                    <span className="text-white/60 text-[10px]">التوصيل</span>
-                  </div>
-                  <div className="flex-1 bg-[#1a1a24] border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center gap-1">
-                    <span className="text-white font-bold text-[11px] text-center leading-tight">عند الاستلام</span>
-                    <span className="text-white/60 text-[10px]">طريقة الدفع</span>
-                  </div>
-                  <div className="flex-1 bg-[#1a1a24] border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center gap-1">
-                    <span className="text-[#6366f1] font-bold text-[11px] tabular-nums">{formatPriceNumber(total, "ar")} درهم</span>
-                    <span className="text-white/60 text-[10px]">الإجمالي</span>
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className="w-full h-14 sm:h-16 rounded-xl bg-[#6366f1] text-white font-bold text-base sm:text-lg hover:bg-[#4f46e5] transition-all active:scale-[0.98] disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/25"
-                >
-                  {loading ? (
-                    <>
-                      <Loader2 className="h-5 w-5 animate-spin" />
-                      جاري إرسال الطلب...
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingBag className="h-5 w-5" />
-                      تأكيد الطلب
-                    </>
-                  )}
-                </button>
-                <p className="text-center text-xs text-white/50 mt-3">يتم تأكيد طلبك فوراً</p>
               </div>
             </div>
           </div>
-        </motion.div>
-      </div>
+
+          {formError && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="rounded-xl bg-red-500/10 border border-red-500/25 px-4 py-3.5 text-sm text-red-300 text-center leading-relaxed"
+              role="alert"
+            >
+              {formError}
+            </motion.div>
+          )}
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="cod-submit-btn btn-cosmic w-full h-[3.75rem] sm:h-16 rounded-2xl font-bold text-lg sm:text-xl disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-3 relative overflow-hidden"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="h-6 w-6 animate-spin" aria-hidden />
+                <span>جاري تأكيد طلبك...</span>
+              </>
+            ) : (
+              <>
+                <Lock className="h-5 w-5 opacity-90" aria-hidden />
+                <span>تأكيد الطلب</span>
+              </>
+            )}
+          </button>
+
+          {/* Trust badges */}
+          <ul className="space-y-3 pt-1">
+            {TRUST_ITEMS.map((item) => (
+              <li key={item.text} className="flex items-center gap-3 text-sm sm:text-base text-white/55">
+                <span className="text-lg shrink-0" aria-hidden>{item.emoji}</span>
+                <span>{item.text}</span>
+              </li>
+            ))}
+          </ul>
+        </form>
+      </motion.div>
     </section>
   );
 }

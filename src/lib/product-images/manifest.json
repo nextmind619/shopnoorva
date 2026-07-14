@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T01:18:47.416Z",
+  "generatedAt": "2026-07-14T02:20:27.446Z",
   "products": {
     "astronaut-galaxy-projector": {
       "slug": "astronaut-galaxy-projector",
@@ -390,8 +390,8 @@
         }
       },
       "sources": {
-        "01-hero-white-bg": "ai-generated",
-        "02-premium-hero": "ai-generated",
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
         "03-lifestyle": "commercial",
         "04-bedroom": "commercial",
         "05-living-room": "commercial",
@@ -399,14 +399,14 @@
         "07-romantic-room": "commercial",
         "08-kids-room": "commercial",
         "09-close-up": "commercial",
-        "10-features": "ai-generated",
-        "11-package-contents": "ai-generated",
-        "12-dimensions": "ai-generated",
+        "10-features": "commercial",
+        "11-package-contents": "commercial",
+        "12-dimensions": "commercial",
         "13-before-after": "commercial",
         "14-product-in-use": "commercial",
         "15-banner": "commercial",
         "16-packaging": "commercial",
-        "17-infographic": "ai-generated",
+        "17-infographic": "commercial",
         "18-mobile-banner": "commercial",
         "19-desktop-banner": "commercial",
         "20-social-media-banner": "commercial"

@@ -75,14 +75,16 @@ export function buildProductGallerySlides(product: Product): GallerySlide[] {
     const imageUrl = resolveProductImage(product, imageType);
 
     const astronautHeadings: Partial<Record<GalleryScene, { heading: string; subtitle: string }>> = {
-      hero: { heading: "رائد فضاء أبيض — المنتج الحقيقي", subtitle: "آذان دب · سبيكر صدر · بلوتوث · 8 أوضاع مجرة" },
-      ceiling: { heading: "المنتج يعمل — مجرة على السقف", subtitle: "8 أوضاع ألوان مع هلال من الخوذة" },
-      bedroom: { heading: "داخل غرفة نوم", subtitle: "أجواء سينمائية كما في تيك توك" },
-      gaming: { heading: "داخل غرفة Gaming", subtitle: "إضاءة سينمائية للعب والبث" },
-      "remote-bluetooth": { heading: "الريموت والبلوتوث", subtitle: "ريموت أسود + سبيكر صدر + USB" },
-      dimensions: { heading: "المقاسات", subtitle: dims ?? "24×12 سم — قاعدة قمرية" },
-      package: { heading: "محتويات العلبة", subtitle: "بروجيكتور + ريموت + كابل USB + دليل" },
-      features: { heading: "تفاصيل التصميم", subtitle: "رأس مغناطيسي 360° · أزرار خلفية · USB" },
+      hero: { heading: "رائد فضاء أبيض — صورة المنتج الحقيقية", subtitle: "آذان دب · سبيكر صدر · ريموت · بلوتوث MXS003" },
+      ceiling: { heading: "المنتج يعمل — مجرة وهلال على السقف", subtitle: "8 أوضاع ألوان + نجوم خضراء ليزر" },
+      bedroom: { heading: "داخل غرفة نوم — إضاءة هادئة", subtitle: "هلال ملون · مجرة · أجواء نوم مريحة" },
+      gaming: { heading: "8 أوضاع إضاءة + ريموت", subtitle: "ألوان مجرة متعددة · تحكم كامل عن بعد" },
+      "night-room": { heading: "سطوع قابل للتعديل 30% / 60% / 100%", subtitle: "مؤقت تلقائي · إضاءة مثالية للنوم" },
+      "remote-bluetooth": { heading: "الريموت · الأزرار الخلفية · البلوتوث", subtitle: "ON/OFF · Model · Light · Music/Sound" },
+      dimensions: { heading: "المقاسات والتفاصيل التقنية", subtitle: dims ?? "9.97×4.72 بوصة · قاعدة قمرية" },
+      package: { heading: "محتويات العلبة الكاملة", subtitle: "بروجيكتور + ريموت أسود + كابل USB + دليل" },
+      features: { heading: "رأس مغناطيسي 360° قابل للتعديل", subtitle: "ذراع متحرك · قاعدة ثابتة · عدسة HD" },
+      "before-after": { heading: "قبل وبعد — تحوّل الغرفة", subtitle: "من إضاءة عادية إلى سماء نجوم حية" },
     };
 
     const astroCopy = isAstronaut ? astronautHeadings[cfg.scene] : undefined;
