@@ -28,7 +28,7 @@ export interface GallerySlide {
   items?: string[];
 }
 
-/** MAKTUL B0D8JQNKVP — official Amazon commercial photos */
+/** Bear-ear chest-speaker Bluetooth astronaut — user reference product */
 const ASTRONAUT_SCENE_TYPES: Partial<Record<GalleryScene, ImageType>> = {
   hero: "02-premium-hero",
   ceiling: "14-product-in-use",
@@ -75,14 +75,14 @@ export function buildProductGallerySlides(product: Product): GallerySlide[] {
     const imageUrl = resolveProductImage(product, imageType);
 
     const astronautHeadings: Partial<Record<GalleryScene, { heading: string; subtitle: string }>> = {
-      hero: { heading: "MAKTUL — المنتج الأصلي", subtitle: "سبيكر صدر · بلوتوث · 8 أوضاع مجرة" },
-      ceiling: { heading: "مجرة على السقف بالكامل", subtitle: "8 أوضاع ألوان + نجوم خضراء" },
-      bedroom: { heading: "داخل غرفة نوم", subtitle: "أجواء فضائية هادئة قبل النوم" },
+      hero: { heading: "رائد فضاء أبيض — المنتج الحقيقي", subtitle: "آذان دب · سبيكر صدر · بلوتوث · 8 أوضاع مجرة" },
+      ceiling: { heading: "المنتج يعمل — مجرة على السقف", subtitle: "8 أوضاع ألوان مع هلال من الخوذة" },
+      bedroom: { heading: "داخل غرفة نوم", subtitle: "أجواء سينمائية كما في تيك توك" },
       gaming: { heading: "داخل غرفة Gaming", subtitle: "إضاءة سينمائية للعب والبث" },
       "remote-bluetooth": { heading: "الريموت والبلوتوث", subtitle: "ريموت أسود + سبيكر صدر + USB" },
-      dimensions: { heading: "المقاسات", subtitle: dims ?? "23.5×12×12 سم — قاعدة قمرية" },
+      dimensions: { heading: "المقاسات", subtitle: dims ?? "24×12 سم — قاعدة قمرية" },
       package: { heading: "محتويات العلبة", subtitle: "بروجيكتور + ريموت + كابل USB + دليل" },
-      features: { heading: "8 أوضاع إضاءة", subtitle: "مجرة · نجوم · شدة قابلة للتعديل" },
+      features: { heading: "تفاصيل التصميم", subtitle: "رأس مغناطيسي 360° · أزرار خلفية · USB" },
     };
 
     const astroCopy = isAstronaut ? astronautHeadings[cfg.scene] : undefined;

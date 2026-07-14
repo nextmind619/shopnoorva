@@ -12,14 +12,14 @@ export const products: Product[] = [
     slug: "astronaut-galaxy-projector",
     name: L("بروجيكتور رائد الفضاء", "Projecteur Astronaute Galaxy", "Astronaut Galaxy Projector"),
     shortDescription: L(
-      "رائد فضاء MAKTUL — سبيكر صدر + بلوتوث + 8 أوضاع مجرة + ريموت",
-      "Astronaute MAKTUL — speaker poitrine, Bluetooth, 8 modes",
-      "MAKTUL astronaut — chest speaker, Bluetooth, 8 modes, remote"
+      "رائد فضاء أبيض — آذان دب + سبيكر صدر + بلوتوث + 8 أوضاع مجرة",
+      "Astronaute blanc — oreilles, speaker poitrine, Bluetooth",
+      "White bear-ear astronaut — chest speaker, Bluetooth, 8 modes"
     ),
     description: L(
-      "بروجيكتور رائد الفضاء MAKTUL من NOORVA — بروجيكتور مجرة + سبيكر بلوتوث مدمج في الصدر. رائد فضاء أبيض واقف، قاعدة قمرية مربعة، كابل مضفر، 8 أوضاع إضاءة + 8 أصوات مريحة. ربط بلوتوث، ريموت، رأس مغناطيسي 360°، مؤقت 90 دقيقة. الدفع عند الاستلام في جميع مدن المغرب.",
-      "Projecteur astronaute MAKTUL NOORVA — galaxie + Bluetooth speaker poitrine. 8 modes lumière + sons relaxants, tête 360°, minuterie. Paiement à la livraison au Maroc.",
-      "NOORVA MAKTUL astronaut projector — galaxy + chest Bluetooth speaker. Standing white design, 8 light modes + 8 relaxing sounds, 360° magnetic head, 90-min timer. Cash on delivery."
+      "بروجيكتور رائد الفضاء من NOORVA — بروجيكتور مجرة + سبيكر بلوتوث في الصدر. تصميم رائد فضاء أبيض بآذان دب، قاعدة قمرية، 8 أوضاع مجرة مع هلال. ربط بلوتوث، ريموت، رأس مغناطيسي 360°. الدفع عند الاستلام في جميع مدن المغرب.",
+      "Projecteur astronaute NOORVA — galaxie + Bluetooth poitrine. 8 modes, tête magnétique 360°. Paiement à la livraison au Maroc.",
+      "NOORVA astronaut projector — galaxy + chest Bluetooth speaker. Bear-ear design, 8 nebula modes, 360° magnetic head. Cash on delivery."
     ),
     categoryId: "cat-projectors",
     price: 179,
@@ -38,25 +38,25 @@ export const products: Product[] = [
     problemEmoji: "🚀",
     problem: L("غرفتك مظلمة ومملة؟", "Chambre sombre et ennuyeuse?", "Room feels dull?"),
     problemCause: L("الإضاءة العادية ما تعطيش الأجواء اللي كتشوفها فتيك توك", "L'éclairage classique ne crée pas l'ambiance TikTok", "Regular lights don't create that TikTok vibe"),
-    problemSolution: L("بروجيكتور MAKTUL + بلوتوث + مجرة من الصدر", "MAKTUL + Bluetooth + galaxie", "MAKTUL + Bluetooth + galaxy"),
+    problemSolution: L("بروجيكتور رائد الفضاء + بلوتوث + مجرة من الخوذة", "Astronaute + Bluetooth + galaxie", "Astronaut + Bluetooth + galaxy"),
     deepDescription: L(
-      "بروجيكتور + سبيكر بلوتوث في الصدر. رائد فضاء MAKTUL أبيض واقف بقاعدة قمرية مربعة. 8 أوضاع مجرة + 8 أصوات مريحة. رأس مغناطيسي 360°. مؤقت حتى 90 دقيقة.",
-      "Projecteur + Bluetooth poitrine. 8 modes galaxie + sons relaxants. Tête magnétique 360°, minuterie 90 min.",
-      "Projector + chest Bluetooth speaker. MAKTUL standing astronaut, square lunar base. 8 nebula modes + 8 relaxing sounds. 360° magnetic head, 90-min timer."
+      "بروجيكتور + سبيكر بلوتوث في الصدر. رائد فضاء أبيض بآذان دب وقاعدة قمرية. 8 أوضاع مجرة مع هلال من الخوذة. رأس مغناطيسي 360°. الأكثر مبيعًا على تيك توك.",
+      "Projecteur + Bluetooth poitrine. 8 modes galaxie + croissant. Tête magnétique 360°.",
+      "Projector + chest Bluetooth speaker. Bear-ear astronaut, lunar base. 8 nebula modes with crescent moon. 360° magnetic head."
     ),
     tags: ["astronaut", "galaxy", "bluetooth", "bestseller", "tiktok"],
     benefits: [
       L("بروجيكتور + سبيكر بلوتوث", "Projecteur + Bluetooth", "Projector + Bluetooth speaker"),
-      L("8 أوضاع مجرة + نجوم", "8 modes galaxie", "8 nebula light modes"),
-      L("8 أصوات مريحة + بلوتوث", "8 sons + Bluetooth", "8 relaxing sounds + Bluetooth"),
-      L("سبيكر مدمج في الصدر", "Speaker poitrine", "Chest-mounted speaker"),
+      L("8 أوضاع مجرة + هلال", "8 modes + croissant", "8 nebula modes + moon"),
+      L("مجرة من الخوذة", "Galaxie depuis casque", "Galaxy from helmet"),
+      L("سبيكر بلوتوث في الصدر", "Speaker Bluetooth poitrine", "Chest Bluetooth speaker"),
       L("ريموت + تحكم بالهاتف", "Télécommande + téléphone", "Remote + phone control"),
       L("هدية مثالية", "Cadeau parfait", "Perfect gift"),
     ],
     features: [
       L("سبيكر بلوتوث 5.0 مدمج", "Haut-parleur Bluetooth 5.0", "Built-in Bluetooth 5.0 speaker"),
-      L("8 أوضاع إضاءة مجرة", "8 modes lumière", "8 nebula light modes"),
-      L("8 أصوات مريحة مدمجة", "8 sons relaxants", "8 built-in relaxing sounds"),
+      L("8 أوضاع مجرة + هلال", "8 modes lumière", "8 nebula light modes"),
+      L("مجرة + نجوم من الخوذة", "Galaxie + étoiles casque", "Galaxy + stars from helmet"),
       L("سبيكر بلوتوث في الصدر", "Speaker Bluetooth poitrine", "Chest Bluetooth speaker"),
       L("ريموت تحكم أسود", "Télécommande noire", "Black remote control"),
       L("رأس قابل للتعديل 360°", "Tête ajustable 360°", "360° adjustable head"),
@@ -65,11 +65,10 @@ export const products: Product[] = [
     specifications: [
       { label: L("اللون", "Couleur", "Color"), value: L("أبيض", "Blanc", "White") },
       { label: L("البلوتوث", "Bluetooth", "Bluetooth"), value: L("5.0 + سبيكر مدمج", "5.0 + haut-parleur", "5.0 + built-in speaker") },
-      { label: L("أوضاع الإضاءة", "Modes lumière", "Light Modes"), value: L("8 أوضاع مجرة", "8 modes galaxie", "8 nebula modes") },
-      { label: L("الأصوات", "Sons", "Sounds"), value: L("8 أصوات مريحة + بلوتوث", "8 sons + Bluetooth", "8 relaxing sounds + Bluetooth") },
+      { label: L("أوضاع الإضاءة", "Modes lumière", "Light Modes"), value: L("8 أوضاع مجرة + هلال", "8 modes + croissant", "8 nebula + crescent") },
       { label: L("الطاقة", "Alimentation", "Power"), value: L("USB 5V", "USB 5V", "USB 5V") },
       { label: L("التحكم", "Contrôle", "Control"), value: L("ريموت + بلوتوث + أزرار خلفية", "Télécommande + Bluetooth", "Remote + Bluetooth + back buttons") },
-      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("23.5×12×12 سم", "23.5×12×12 cm", "23.5×12×12 cm") },
+      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("24×12 سم", "24×12 cm", "24×12 cm") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
     ],
     packageIncludes: [

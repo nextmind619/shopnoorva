@@ -12,7 +12,7 @@
     "ai:tick": "curl -s -X POST http://localhost:3000/api/ai/cron -H \"Content-Type: application/json\" -d \"{\\\"task\\\":\\\"tick\\\"}\"",
     "images:generate": "node scripts/generate-product-images.mjs",
     "images:force": "node scripts/generate-product-images.mjs --force",
-    "images:astronaut": "node scripts/import-maktul-astronaut-images.mjs"
+    "images:astronaut": "node scripts/import-bear-ear-astronaut-images.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1083.0",
