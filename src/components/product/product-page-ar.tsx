@@ -5,11 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Star, Minus, Plus, Check, Heart, Share2,
-  ChevronLeft, Play, Shield, Truck, Package,
-  RotateCcw, MessageCircle, Banknote, Users, ShoppingBag,
-  Flame, Sparkles, Zap, Gamepad2, Timer, Palette, Bluetooth, Ruler,
-  ArrowLeft, BadgeCheck, Clock,
+  Star, Check, ChevronLeft, Shield, Truck, Package,
+  RotateCcw, MessageCircle, Banknote, ShoppingBag,
+  Flame, BadgeCheck, Clock,
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
@@ -18,6 +16,7 @@ import { products, getProductById, getReviewsForProduct } from "@/data/products"
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { ProductOrderForm } from "@/components/product/product-order-form";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
+import { ProductLandingSections } from "@/components/product/product-landing-sections";
 
 const BENEFIT_CARDS = [
   { emoji: "✨", text: "يحوّل الغرفة إلى مجرة مذهلة" },
@@ -28,8 +27,6 @@ const BENEFIT_CARDS = [
   { emoji: "⏰", text: "مؤقت ذكي للإيقاف التلقائي" },
   { emoji: "🌈", text: "أكثر من 10 أوضاع إضاءة" },
 ];
-
-const FEATURE_ICONS = [Sparkles, Zap, Bluetooth, Gamepad2, Timer, Palette, Ruler];
 
 const WHY_NOORVA = [
   { icon: Shield, title: "جودة ممتازة", desc: "منتجات مختارة بعناية" },
@@ -45,7 +42,7 @@ interface ProductPageArProps {
   related?: Product[];
 }
 
-import { resolveProductImage, resolveProductHero, resolveLifestyleImage } from "@/lib/product-images/resolve";
+import { resolveProductHero } from "@/lib/product-images/resolve";
 
 export function ProductPageAr({ product, related: relatedProp }: ProductPageArProps) {
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
@@ -54,8 +51,6 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const [variant] = useState(product.variants[0]);
   const [qty, setQty] = useState(1);
   const [sticky, setSticky] = useState(false);
-  const [wishlist, setWishlist] = useState(false);
-  const [shared, setShared] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const ar = (obj: { ar: string }) => obj.ar;
@@ -98,27 +93,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const share = useCallback(async () => {
-    const url = window.location.href;
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: name, url });
-        return;
-      } catch {
-        /* user cancelled */
-      }
-    }
-    await navigator.clipboard.writeText(url);
-    setShared(true);
-    setTimeout(() => setShared(false), 2000);
-  }, [name]);
-
   const scrollToOrder = useCallback(() => {
     document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
-
-  const lifestyleImage = resolveLifestyleImage(product);
-  const features = product.features || product.benefits;
 
   return (
     <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans" dir="rtl">
@@ -152,7 +129,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             <PremiumProductGallery product={product} />
 
             {/* نموذج الطلب — موبايل: مباشرة تحت المعرض */}
-            <div className="lg:hidden">
+            <div className="lg:hidden flex justify-center">
               <ProductOrderForm product={product} variant={variant} quantity={qty} />
             </div>
 
@@ -200,8 +177,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             )}
           </div>
 
-          {/* العمود الأيمن — معلومات المنتج + نموذج الطلب (ثابت) */}
-          <div className="hidden lg:block lg:col-span-4 lg:order-1 space-y-5 lg:sticky lg:top-6 lg:self-start">
+          {/* العمود الأيمن — معلومات المنتج + نموذج الطلب */}
+          <div className="hidden lg:block lg:col-span-4 lg:order-1 space-y-5">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
               <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
                 <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
@@ -256,6 +233,11 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </div>
             </div>
 
+            {/* نموذج الطلب — سطح المكتب، ثابت أثناء التمرير */}
+            <div className="hidden lg:block lg:sticky lg:top-6 lg:self-start">
+              <ProductOrderForm product={product} variant={variant} quantity={qty} />
+            </div>
+
             {/* عرض محدود */}
             <div className="bg-[#1a1a24] border border-white/10 text-white rounded-2xl p-5 text-center shadow-luxury">
               <p className="text-sm font-bold text-white/80 mb-4">عرض محدود! السعر سيرتفع خلال:</p>
@@ -282,11 +264,6 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                 <div className="h-full bg-red-600 w-[85%]" />
               </div>
-            </div>
-
-            {/* نموذج الطلب — سطح المكتب فقط */}
-            <div className="hidden lg:block">
-              <ProductOrderForm product={product} variant={variant} quantity={qty} />
             </div>
 
             <div className="flex items-center gap-4 hidden">
@@ -319,8 +296,11 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           </div>
         </div>
 
+        {/* أقسام الصفحة — Lifestyle → Features → Bluetooth → Projection → Gift → Package → Accessories → Dimensions → Specifications */}
+        <ProductLandingSections product={product} />
+
         {/* لماذا NOORVA */}
-        <section className="mt-8">
+        <section className="mt-12">
           <h2 className="text-xl sm:text-2xl font-bold text-center mb-8">لماذا تختار جهازنا؟</h2>
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {WHY_NOORVA.map((item, i) => (
@@ -355,110 +335,16 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </div>
             </section>
 
-            {/* أسلوب الحياة */}
-            <section>
-              <div className="relative aspect-[21/9] rounded-[2rem] overflow-hidden border border-white/10 shadow-luxury">
-                <Image src={lifestyleImage} alt={name} fill className="object-cover" sizes="100vw" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/90 via-[#0a0a0f]/50 to-transparent" />
-                <div className="absolute inset-y-0 start-0 w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                  <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
-                    {product.deepDescription?.ar?.split("—")[0] || name}
-                  </h2>
-                  <p className="text-white/70 text-base md:text-lg leading-relaxed mb-6">
-                    {product.deepDescription?.ar || product.description.ar}
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* قبل / بعد */}
-            {product.problemCause && product.problemSolution && (
-              <section>
-                <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
-                  <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 text-white">قبل / بعد</h2>
-                  <div className="relative max-w-4xl mx-auto grid grid-cols-2 gap-4">
-                    <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10">
-                      <Image src={resolveProductImage(product, "04-bedroom")} alt="Before" fill className="object-cover opacity-50 grayscale" />
-                      <div className="absolute top-4 start-4 z-10">
-                        <span className="inline-block text-xs font-bold tracking-widest uppercase text-white bg-black/50 backdrop-blur-md px-3 py-1 rounded-full">قبل</span>
-                      </div>
-                      <div className="absolute bottom-4 inset-x-4 z-10 text-center">
-                        <p className="text-sm font-bold text-white/90 drop-shadow-md">{product.problemCause.ar}</p>
-                      </div>
-                    </div>
-                    <div className="relative aspect-video rounded-2xl overflow-hidden border border-[#6366f1]/50">
-                      <Image src={resolveProductImage(product, "14-product-in-use")} alt="After" fill className="object-cover" />
-                      <div className="absolute top-4 start-4 z-10">
-                        <span className="inline-block text-xs font-bold tracking-widest uppercase text-white bg-[#6366f1]/80 backdrop-blur-md px-3 py-1 rounded-full">بعد</span>
-                      </div>
-                      <div className="absolute bottom-4 inset-x-4 z-10 text-center">
-                        <p className="text-sm font-bold text-white drop-shadow-md">{product.problemSolution.ar}</p>
-                      </div>
-                    </div>
-                    <span className="absolute inset-y-0 start-1/2 -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-[#12121a] border border-white/10 text-white shadow-luxury z-10 top-1/2 -translate-y-1/2">
-                      <ArrowLeft className="h-4 w-4" />
-                    </span>
-                  </div>
-                </div>
-              </section>
-            )}
-
-        {/* المميزات */}
-        {features && features.length > 0 && (
-          <section>
-            <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
-              <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">مميزات المنتج</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                {features.map((f, i) => {
-                  const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length];
-                  return (
-                    <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="bg-[#12121a] rounded-2xl p-4 border border-white/10 text-center group hover:border-[#6366f1]/50 transition-colors">
-                      <div className="w-12 h-12 rounded-xl bg-[#6366f1]/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-[#6366f1]/20 transition-colors">
-                        <Icon className="h-6 w-6 text-[#6366f1]" />
-                      </div>
-                      <p className="text-sm font-bold text-white leading-snug">{f.ar}</p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* المواصفات */}
-        {product.specifications && (
-          <section>
+        {/* المواصفات التقنية — جدول */}
+        {product.specifications && product.specifications.length > 0 && (
+          <section className="mt-12">
             <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
               <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">المواصفات التقنية</h2>
-              <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 bg-[#12121a] rounded-[2rem] border border-white/10 p-8">
-                <div className="flex-1 w-full space-y-4">
-                  {product.specifications.map((spec, i) => (
-                    <div key={i} className="flex justify-between items-center pb-4 border-b border-white/5 last:border-0 last:pb-0">
-                      <span className="text-white/60 text-sm">{spec.label.ar}</span>
-                      <span className="font-bold text-white text-sm text-end">{spec.value.ar}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="relative w-full md:w-1/2 aspect-square rounded-2xl overflow-hidden border border-white/10">
-                  <Image src={resolveProductImage(product, "12-dimensions")} alt="Dimensions" fill className="object-cover" />
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* محتويات العلبة */}
-        {product.packageIncludes && (
-          <section>
-            <div className="bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10">
-              <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">محتويات العلبة</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                {product.packageIncludes.map((item, i) => (
-                  <div key={i} className="bg-[#12121a] rounded-2xl p-4 border border-white/10 text-center flex flex-col items-center justify-center gap-3">
-                    <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-white/5">
-                      <Image src={resolveProductImage(product, "11-package-contents")} alt={item.ar} fill className="object-cover" />
-                    </div>
-                    <span className="text-xs font-bold text-white">{item.ar}</span>
+              <div className="max-w-2xl mx-auto bg-[#12121a] rounded-2xl border border-white/10 divide-y divide-white/5">
+                {product.specifications.map((spec, i) => (
+                  <div key={i} className="flex justify-between items-center gap-4 px-6 py-4">
+                    <span className="text-white/60 text-sm">{spec.label.ar}</span>
+                    <span className="font-bold text-white text-sm text-end">{spec.value.ar}</span>
                   </div>
                 ))}
               </div>

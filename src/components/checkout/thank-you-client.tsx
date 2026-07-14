@@ -49,12 +49,10 @@ export function ThankYouClient() {
           className="text-center"
         >
           <h1 className="text-2xl sm:text-3xl font-bold leading-tight">
-            🎉 تم استلام طلبك بنجاح
+            تم استلام طلبك بنجاح
           </h1>
           <p className="text-luxury-muted mt-4 leading-relaxed text-sm sm:text-base">
-            شكراً لاختيارك <span className="font-bold text-luxury-black">NOORVA</span>.
-            <br />
-            سيقوم فريقنا بالاتصال بك قريباً لتأكيد الطلب.
+            سيتم الاتصال بك خلال ساعات لتأكيد الطلب.
           </p>
         </motion.div>
 

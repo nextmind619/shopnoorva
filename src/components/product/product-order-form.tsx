@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { Loader2, Lock, MapPin, Phone, User } from "lucide-react";
+import { Loader2, MapPin, Phone, Shield, User } from "lucide-react";
 import type { Product, ProductVariant } from "@/types";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import {
@@ -16,11 +16,10 @@ import {
 import { trackEvent } from "@/components/analytics/analytics-scripts";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 
-const TRUST_ITEMS = [
-  { emoji: "🔒", text: "معلوماتك محمية وآمنة" },
-  { emoji: "🚚", text: "توصيل سريع إلى جميع مدن المغرب" },
-  { emoji: "💵", text: "الدفع عند الاستلام فقط" },
-  { emoji: "↩️", text: "استبدال خلال 7 أيام" },
+const TRUST_PILLS = [
+  "الدفع عند الاستلام",
+  "توصيل سريع",
+  "تأكيد خلال ساعات",
 ];
 
 interface ProductOrderFormProps {
@@ -36,14 +35,13 @@ function FieldError({ message }: { message: string }) {
   return (
     <AnimatePresence>
       <motion.p
-        initial={{ opacity: 0, y: -4, height: 0 }}
-        animate={{ opacity: 1, y: 0, height: "auto" }}
-        exit={{ opacity: 0, y: -4, height: 0 }}
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -6 }}
         transition={{ duration: 0.2 }}
-        className="flex items-center gap-1.5 text-sm text-red-400 mt-2 pe-1"
+        className="text-sm font-medium text-red-600 mt-2"
         role="alert"
       >
-        <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-red-400" aria-hidden />
         {message}
       </motion.p>
     </AnimatePresence>
@@ -68,16 +66,15 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
   const validateField = (key: keyof FormFields, value: string): string | undefined => {
     switch (key) {
       case "fullName":
-        if (!value.trim()) return "الاسم الكامل مطلوب لإتمام طلبك";
-        if (value.trim().length < 3) return "يرجى إدخال اسمك الكامل (3 أحرف على الأقل)";
+        if (!value.trim()) return "الرجاء إدخال الاسم الكامل";
         return undefined;
       case "phone":
-        if (!value.trim()) return "رقم الهاتف مطلوب للتواصل معك";
-        if (!isValidMoroccanPhone(value)) return "يرجى إدخال رقم مغربي صحيح (مثال: 06 12 34 56 78)";
+        if (!value.trim()) return "الرجاء إدخال رقم الهاتف";
+        if (!isValidMoroccanPhone(value)) return "الرجاء إدخال رقم هاتف مغربي صحيح";
         return undefined;
       case "address":
-        if (!value.trim()) return "العنوان مطلوب لتوصيل طلبك";
-        if (!isValidAddress(value)) return "يرجى إدخال عنوان تفصيلي (المدينة، الحي، الشارع، رقم المنزل)";
+        if (!value.trim()) return "الرجاء إدخال العنوان";
+        if (!isValidAddress(value)) return "الرجاء إدخال عنوان تفصيلي كامل";
         return undefined;
     }
   };
@@ -165,53 +162,53 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
     }
   };
 
-  const inputClass = (key: keyof FormFields) =>
-    cn(
-      "cod-field w-full rounded-2xl border bg-white/[0.04] text-base sm:text-lg text-white",
-      "placeholder:text-white/30 transition-all duration-300",
-      "focus:outline-none focus:ring-2 focus:ring-violet-500/40 focus:border-violet-400/50 focus:bg-white/[0.06]",
-      errors[key] && touched[key]
-        ? "border-red-400/60 ring-1 ring-red-400/20"
-        : "border-white/10 hover:border-white/20"
-    );
+  const fieldBorder = (key: keyof FormFields) =>
+    errors[key] && touched[key]
+      ? "border-red-400 focus:border-red-500 focus:ring-red-500/15"
+      : "border-[#E5E7EB] focus:border-blue-500 focus:ring-blue-500/15";
 
   return (
-    <section className="mt-0" id="order-form">
+    <section className="mt-0 w-full" id="order-form">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="cod-form-glass rounded-[1.75rem] overflow-hidden"
+        viewport={{ once: true, margin: "-32px" }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="premium-checkout-card mx-auto w-full max-w-[520px] rounded-[24px] bg-white p-5 sm:p-8"
       >
         {/* Header */}
-        <div className="relative px-6 sm:px-8 pt-8 pb-6 text-center border-b border-white/[0.08]">
-          <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-violet-500/[0.08] to-transparent"
-            aria-hidden
-          />
-          <h2 className="relative font-display text-2xl sm:text-[1.65rem] font-bold tracking-tight text-white leading-snug">
+        <header className="text-center mb-8">
+          <div className="mx-auto mb-5 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-indigo-100 shadow-inner">
+            <Shield className="h-9 w-9 text-blue-600" strokeWidth={1.75} aria-hidden />
+          </div>
+          <h2 className="text-[1.35rem] sm:text-2xl font-bold tracking-tight text-[#111827] leading-snug">
             اطلب الآن وادفع عند الاستلام
           </h2>
-          <p className="relative text-base sm:text-lg text-white/55 mt-3 leading-relaxed max-w-sm mx-auto">
-            لن تدفع أي شيء الآن.
+          <p className="mt-3 text-base sm:text-[17px] text-[#6B7280] leading-relaxed">
+            لن تدفع أي مبلغ الآن.
             <br />
-            ادفع فقط عند استلام طلبك.
+            سيتم الدفع فقط عند استلام المنتج.
           </p>
-        </div>
+          <ul className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-2">
+            {TRUST_PILLS.map((text) => (
+              <li key={text} className="flex items-center justify-center gap-2 text-sm font-semibold text-[#374151]">
+                <span className="text-emerald-500 text-base leading-none" aria-hidden>✅</span>
+                {text}
+              </li>
+            ))}
+          </ul>
+        </header>
 
-        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6" noValidate>
+        <form onSubmit={handleSubmit} className="space-y-6" noValidate>
           {/* Fields */}
           <div className="space-y-5">
-            {/* Full name */}
             <div>
-              <label htmlFor="fullName" className="cod-label flex items-center gap-2 mb-2.5">
-                <span aria-hidden>👤</span>
-                <span>الاسم الكامل</span>
+              <label htmlFor="fullName" className="premium-field-label">
+                الاسم الكامل
               </label>
               <div className="relative">
                 <User
-                  className="absolute top-1/2 -translate-y-1/2 start-4 h-5 w-5 text-white/25 pointer-events-none"
+                  className="pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5 text-[#9CA3AF]"
                   aria-hidden
                 />
                 <input
@@ -219,8 +216,8 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                   value={form.fullName}
                   onChange={(e) => updateField("fullName", e.target.value)}
                   onBlur={() => blurField("fullName")}
-                  className={cn(inputClass("fullName"), "h-14 ps-12 pe-4")}
-                  placeholder="أدخل اسمك الكامل"
+                  className={cn("premium-checkout-input ps-14", fieldBorder("fullName"))}
+                  placeholder="مثال: محمد أحمد"
                   autoComplete="name"
                   disabled={loading}
                 />
@@ -228,15 +225,13 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
               {touched.fullName && errors.fullName && <FieldError message={errors.fullName} />}
             </div>
 
-            {/* Phone */}
             <div>
-              <label htmlFor="phone" className="cod-label flex items-center gap-2 mb-2.5">
-                <span aria-hidden>📞</span>
-                <span>رقم الهاتف</span>
+              <label htmlFor="phone" className="premium-field-label">
+                رقم الهاتف
               </label>
               <div className="relative">
                 <Phone
-                  className="absolute top-1/2 -translate-y-1/2 start-4 h-5 w-5 text-white/25 pointer-events-none"
+                  className="pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5 text-[#9CA3AF]"
                   aria-hidden
                 />
                 <input
@@ -246,8 +241,8 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                   value={form.phone}
                   onChange={(e) => updateField("phone", e.target.value)}
                   onBlur={() => blurField("phone")}
-                  className={cn(inputClass("phone"), "h-14 ps-12 pe-4 tabular-nums tracking-wide")}
-                  placeholder="06XXXXXXXX"
+                  className={cn("premium-checkout-input ps-14 tabular-nums", fieldBorder("phone"))}
+                  placeholder="06 12 34 56 78"
                   dir="ltr"
                   autoComplete="tel"
                   disabled={loading}
@@ -256,15 +251,13 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
               {touched.phone && errors.phone && <FieldError message={errors.phone} />}
             </div>
 
-            {/* Address */}
             <div>
-              <label htmlFor="address" className="cod-label flex items-center gap-2 mb-2.5">
-                <span aria-hidden>📍</span>
-                <span>العنوان الكامل</span>
+              <label htmlFor="address" className="premium-field-label">
+                العنوان الكامل
               </label>
               <div className="relative">
                 <MapPin
-                  className="absolute top-4 start-4 h-5 w-5 text-white/25 pointer-events-none"
+                  className="pointer-events-none absolute top-5 start-5 h-5 w-5 text-[#9CA3AF]"
                   aria-hidden
                 />
                 <textarea
@@ -273,7 +266,10 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                   onChange={(e) => updateField("address", e.target.value)}
                   onBlur={() => blurField("address")}
                   rows={4}
-                  className={cn(inputClass("address"), "min-h-[120px] ps-12 pe-4 pt-4 pb-4 resize-none leading-relaxed")}
+                  className={cn(
+                    "premium-checkout-textarea ps-14 pt-[18px] min-h-[140px] resize-none leading-relaxed",
+                    fieldBorder("address")
+                  )}
                   placeholder="المدينة - الحي - الشارع - رقم المنزل"
                   autoComplete="street-address"
                   disabled={loading}
@@ -284,89 +280,88 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           </div>
 
           {/* Order summary */}
-          <div className="cod-summary rounded-2xl border border-white/[0.08] overflow-hidden">
-            <div className="px-5 py-3.5 border-b border-white/[0.06] bg-white/[0.03]">
-              <p className="text-sm font-bold text-white/70 tracking-wide text-center">ملخص الطلب</p>
-            </div>
-            <div className="p-5 space-y-4">
-              <div className="flex gap-4 items-center">
-                {productImage && (
-                  <div className="relative w-[72px] h-[72px] rounded-xl overflow-hidden shrink-0 border border-white/10 bg-white/5 shadow-lg">
-                    <Image src={productImage} alt={productName} fill className="object-cover" sizes="72px" />
-                  </div>
-                )}
-                <div className="flex-1 min-w-0 space-y-1">
-                  <p className="text-xs text-white/45 font-medium">اسم المنتج</p>
-                  <p className="font-bold text-base text-white leading-snug line-clamp-2">{productName}</p>
-                </div>
-              </div>
+          <div className="premium-summary-card rounded-[20px] border border-[#E5E7EB] bg-[#F9FAFB] p-5 sm:p-6">
+            <p className="text-sm font-bold uppercase tracking-wider text-[#6B7280] mb-5 text-center">
+              ملخص الطلب
+            </p>
 
-              <div className="space-y-3 pt-1">
-                <div className="flex justify-between items-center text-base">
-                  <span className="text-white/50">الكمية</span>
-                  <span className="font-semibold text-white tabular-nums">{quantity}</span>
+            <div className="flex gap-4 items-start mb-6 pb-6 border-b border-[#E5E7EB]">
+              {productImage && (
+                <div className="relative h-[88px] w-[88px] sm:h-[96px] sm:w-[96px] shrink-0 overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-sm">
+                  <Image
+                    src={productImage}
+                    alt={productName}
+                    fill
+                    className="object-cover"
+                    sizes="96px"
+                  />
                 </div>
-                <div className="flex justify-between items-center text-base">
-                  <span className="text-white/50">السعر</span>
-                  <span className="font-semibold text-white tabular-nums">
-                    {formatPriceNumber(subtotal, "ar")} <span className="text-sm text-white/60">درهم</span>
-                  </span>
-                </div>
-                <div className="flex justify-between items-center text-base">
-                  <span className="text-white/50">التوصيل</span>
-                  <span className="font-bold text-emerald-400">مجاني</span>
-                </div>
-                <div className="h-px bg-white/[0.06] my-1" />
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold text-white">الإجمالي</span>
-                  <span className="text-xl sm:text-2xl font-bold text-violet-300 tabular-nums">
-                    {formatPriceNumber(total, "ar")}{" "}
-                    <span className="text-sm font-semibold text-white/50">درهم</span>
-                  </span>
-                </div>
+              )}
+              <div className="flex-1 min-w-0 pt-1">
+                <p className="text-lg sm:text-xl font-bold text-[#111827] leading-snug line-clamp-2">
+                  {productName}
+                </p>
               </div>
             </div>
+
+            <dl className="space-y-4">
+              <div className="flex justify-between items-center gap-4">
+                <dt className="text-base text-[#6B7280]">الكمية</dt>
+                <dd className="text-lg font-semibold text-[#111827] tabular-nums">{quantity}</dd>
+              </div>
+              <div className="flex justify-between items-center gap-4">
+                <dt className="text-base text-[#6B7280]">السعر</dt>
+                <dd className="text-lg font-semibold text-[#111827] tabular-nums">
+                  {formatPriceNumber(subtotal, "ar")} درهم
+                </dd>
+              </div>
+              <div className="flex justify-between items-center gap-4">
+                <dt className="text-base text-[#6B7280]">التوصيل</dt>
+                <dd className="text-lg font-bold text-emerald-600">مجاني</dd>
+              </div>
+              <div className="flex justify-between items-center gap-4">
+                <dt className="text-base text-[#6B7280]">طريقة الدفع</dt>
+                <dd className="text-lg font-semibold text-[#111827]">عند الاستلام</dd>
+              </div>
+              <div className="h-px bg-[#E5E7EB] my-2" />
+              <div className="flex justify-between items-center gap-4 pt-1">
+                <dt className="text-xl font-bold text-[#111827]">الإجمالي</dt>
+                <dd className="text-2xl sm:text-[1.75rem] font-bold text-[#111827] tabular-nums">
+                  {formatPriceNumber(total, "ar")}{" "}
+                  <span className="text-base font-semibold text-[#6B7280]">درهم</span>
+                </dd>
+              </div>
+            </dl>
           </div>
 
           {formError && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="rounded-xl bg-red-500/10 border border-red-500/25 px-4 py-3.5 text-sm text-red-300 text-center leading-relaxed"
+            <div
+              className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3.5 text-sm font-medium text-red-700 text-center"
               role="alert"
             >
               {formError}
-            </motion.div>
+            </div>
           )}
 
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="cod-submit-btn btn-cosmic w-full h-[3.75rem] sm:h-16 rounded-2xl font-bold text-lg sm:text-xl disabled:opacity-70 disabled:pointer-events-none flex items-center justify-center gap-3 relative overflow-hidden"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="h-6 w-6 animate-spin" aria-hidden />
-                <span>جاري تأكيد طلبك...</span>
-              </>
-            ) : (
-              <>
-                <Lock className="h-5 w-5 opacity-90" aria-hidden />
-                <span>تأكيد الطلب</span>
-              </>
-            )}
-          </button>
-
-          {/* Trust badges */}
-          <ul className="space-y-3 pt-1">
-            {TRUST_ITEMS.map((item) => (
-              <li key={item.text} className="flex items-center gap-3 text-sm sm:text-base text-white/55">
-                <span className="text-lg shrink-0" aria-hidden>{item.emoji}</span>
-                <span>{item.text}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="space-y-3 pt-1">
+            <button
+              type="submit"
+              disabled={loading}
+              className="premium-checkout-cta w-full h-[4.25rem] sm:h-[4.5rem] rounded-2xl text-xl font-bold text-white disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3 transition-all duration-200 active:scale-[0.99] shadow-lg shadow-indigo-500/30"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="h-7 w-7 animate-spin" aria-hidden />
+                  <span>جاري إنشاء الطلب...</span>
+                </>
+              ) : (
+                <span>اطلب الآن — الدفع عند الاستلام</span>
+              )}
+            </button>
+            <p className="flex items-center justify-center gap-2 text-sm font-medium text-[#6B7280]">
+              🔒 معلوماتك آمنة 100%
+            </p>
+          </div>
         </form>
       </motion.div>
     </section>
