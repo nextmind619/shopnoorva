@@ -266,33 +266,6 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </div>
             </div>
 
-            <div className="flex items-center gap-4 hidden">
-              <span className="text-sm font-medium">الكمية</span>
-              <div className="flex items-center rounded-full border border-black/10 overflow-hidden">
-                <button type="button" onClick={() => setQty(Math.max(1, qty - 1))} className="p-3 hover:bg-white transition-colors" aria-label="تقليل الكمية"><Minus className="h-4 w-4" /></button>
-                <span className="px-5 font-bold tabular-nums">{qty}</span>
-                <button type="button" onClick={() => setQty(qty + 1)} className="p-3 hover:bg-white transition-colors" aria-label="زيادة الكمية"><Plus className="h-4 w-4" /></button>
-              </div>
-              <span className="text-sm text-white/60 tabular-nums">= {formatPriceNumber(subtotal, "ar")} درهم</span>
-            </div>
-
-            <button
-              type="button"
-              onClick={scrollToOrder}
-              className="w-full h-14 sm:h-16 rounded-full bg-white text-black font-bold text-base sm:text-lg hover:bg-white/90 transition-all shadow-luxury active:scale-[0.98] flex items-center justify-center gap-2 hidden"
-            >
-              <Banknote className="h-5 w-5" />
-              اطلب الآن — الدفع عند الاستلام
-            </button>
-
-            <div className="flex gap-2 hidden">
-              <button type="button" onClick={() => setWishlist(!wishlist)} className={cn("flex-1 flex items-center justify-center gap-2 py-3 rounded-full border text-sm transition-all", wishlist ? "border-luxury-gold text-luxury-gold bg-luxury-gold/5" : "border-white/10")}>
-                <Heart className={cn("h-4 w-4", wishlist && "fill-luxury-gold")} />المفضلة
-              </button>
-              <button type="button" onClick={share} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border border-white/10 text-sm hover:border-luxury-gold/40 transition-all">
-                {shared ? <><Check className="h-4 w-4" />تم النسخ</> : <><Share2 className="h-4 w-4" />مشاركة</>}
-              </button>
-            </div>
           </div>
         </div>
 
