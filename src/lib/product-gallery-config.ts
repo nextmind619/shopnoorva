@@ -41,7 +41,7 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
     imageType: "02-premium-hero",
     emoji: "🚀",
     heading: "الصورة الرئيسية — رائد الفضاء",
-    subtitle: "إسقاط مجرة حية · ريموت تحكم · سبيكر صدر · بلوتوث MXS003",
+    subtitle: "إسقاط مجرة حية · ريموت تحكم · 8 أصوات مهدئة · سبيكر بلوتوث",
     objectFit: "contain",
   },
   {
@@ -49,7 +49,7 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
     imageType: "01-hero-white-bg",
     emoji: "📷",
     heading: "منظر أمامي — المنتج الأصلي",
-    subtitle: "آذان دب · عدسة HD · قاعدة قمرية · خلفية بيضاء احترافية",
+    subtitle: "قبة سوداء عاكسة · عدسة HD · قاعدة ثابتة · خلفية احترافية",
     objectFit: "contain",
   },
   {
@@ -137,7 +137,7 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
     imageType: "12-dimensions",
     emoji: "📏",
     heading: "المقاسات والأبعاد",
-    subtitle: "24×12 سم · قاعدة قمرية · حجم مثالي لأي غرفة",
+    subtitle: "23×12×12 سم · قاعدة ثابتة · حجم مثالي لأي غرفة",
     objectFit: "contain",
   },
   {
@@ -145,7 +145,7 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
     imageType: "17-infographic",
     emoji: "💡",
     heading: "السطوع وسرعة الدوران",
-    subtitle: "قابل للتعديل 30% / 70% / 100% · 4 مستويات سرعة",
+    subtitle: "سطوع قابل للتعديل 5%–100% · 4 مستويات سرعة الدوران",
     objectFit: "cover",
   },
   {
