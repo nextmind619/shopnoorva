@@ -3,7 +3,7 @@
  * Steps 2-5: Search → Generate → Optimize → Manifest
  *
  * Usage: node scripts/generate-product-images.mjs
- *        node scripts/generate-product-images.mjs --product astronaut-galaxy-projector
+ *        node scripts/generate-product-images.mjs --product astronaut-bt-speaker-projector
  *        node scripts/generate-product-images.mjs --force
  */
 
