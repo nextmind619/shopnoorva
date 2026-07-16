@@ -164,20 +164,20 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
       : "border-[#D1D5DB] focus:border-[#6366F1] focus:ring-[#6366F1]/20";
 
   return (
-    <section className="mt-0 w-full relative z-10" id="order-form">
+    <section className="cod-checkout-isolated mt-0 w-full relative z-10" id="order-form">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-32px" }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="premium-checkout-card mx-auto w-full max-w-[520px] rounded-[24px] bg-[#FFFFFF] p-5 sm:p-8 ring-1 ring-black/5"
+        className="premium-checkout-card mx-auto w-full max-w-[520px] rounded-[24px] p-5 sm:p-8"
       >
         {/* ── العنوان ── */}
-        <header className="text-center mb-7 pb-6 border-b-2 border-[#F3F4F6]">
-          <h2 className="text-[1.5rem] sm:text-[1.75rem] font-extrabold tracking-tight text-[#0F172A] leading-tight">
+        <header className="text-center mb-7 pb-6 border-b-2 border-[#E5E7EB]">
+          <h2 className="text-[1.625rem] sm:text-[1.875rem] font-black tracking-tight text-black leading-tight">
             اطلب الآن وادفع عند الاستلام
           </h2>
-          <p className="mt-3 text-[1.05rem] sm:text-lg font-medium text-[#475569] leading-relaxed">
+          <p className="mt-3 text-[1.125rem] sm:text-xl font-semibold text-[#334155] leading-relaxed">
             لن تدفع أي مبلغ الآن. ستدفع فقط عند استلام المنتج
           </p>
         </header>
@@ -254,9 +254,9 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           </div>
 
           {/* ── ملخص الطلب ── */}
-          <div className="rounded-[20px] border-2 border-[#E5E7EB] bg-[#F8FAFC] overflow-hidden">
-            <div className="px-5 py-4 bg-[#EEF2FF] border-b-2 border-[#E0E7FF]">
-              <p className="text-lg font-extrabold text-[#3730A3] text-center tracking-tight">
+            <div className="rounded-[20px] border-2 border-[#CBD5E1] bg-[#F1F5F9] overflow-hidden">
+            <div className="px-5 py-4 bg-[#4F46E5] border-b-2 border-[#4338CA]">
+              <p className="text-xl font-black text-white text-center tracking-tight">
                 ملخص الطلب
               </p>
             </div>
@@ -270,13 +270,13 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                   </div>
                 )}
                 <div className="flex-1 min-w-0 space-y-2">
-                  <p className="text-lg sm:text-xl font-extrabold text-[#0F172A] leading-snug">
+                  <p className="text-xl sm:text-2xl font-black text-black leading-snug">
                     {productName}
                   </p>
-                  <p className="text-base font-semibold text-[#64748B]">
-                    الكمية: <span className="text-[#0F172A] font-bold tabular-nums">{quantity}</span>
+                  <p className="text-lg font-bold text-[#475569]">
+                    الكمية: <span className="text-black font-black tabular-nums">{quantity}</span>
                   </p>
-                  <p className="text-lg font-extrabold text-[#6366F1] tabular-nums">
+                  <p className="text-xl font-black text-[#4F46E5] tabular-nums">
                     {priceFormatted} درهم
                   </p>
                 </div>
@@ -284,17 +284,17 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
 
               {/* شبكة التوصيل / الدفع / الإجمالي */}
               <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                <div className="flex flex-col items-center justify-center gap-1 rounded-2xl bg-white border-2 border-[#E5E7EB] p-3 sm:p-4 text-center min-h-[80px]">
-                  <span className="text-base sm:text-lg font-extrabold text-[#059669]">مجاني</span>
-                  <span className="text-xs sm:text-sm font-semibold text-[#64748B]">التوصيل</span>
+                <div className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white border-2 border-[#10B981] p-3 sm:p-4 text-center min-h-[88px]">
+                  <span className="text-lg sm:text-xl font-black text-[#059669]">مجاني</span>
+                  <span className="text-sm font-bold text-[#475569]">التوصيل</span>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-1 rounded-2xl bg-white border-2 border-[#E5E7EB] p-3 sm:p-4 text-center min-h-[80px]">
-                  <span className="text-sm sm:text-base font-extrabold text-[#0F172A] leading-tight">عند الاستلام</span>
-                  <span className="text-xs sm:text-sm font-semibold text-[#64748B]">طريقة الدفع</span>
+                <div className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white border-2 border-[#CBD5E1] p-3 sm:p-4 text-center min-h-[88px]">
+                  <span className="text-base sm:text-lg font-black text-black leading-tight">عند الاستلام</span>
+                  <span className="text-sm font-bold text-[#475569]">طريقة الدفع</span>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-1 rounded-2xl bg-white border-2 border-[#C7D2FE] p-3 sm:p-4 text-center min-h-[80px]">
-                  <span className="text-base sm:text-lg font-extrabold text-[#6366F1] tabular-nums">{totalFormatted} درهم</span>
-                  <span className="text-xs sm:text-sm font-semibold text-[#64748B]">الإجمالي</span>
+                <div className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-[#EEF2FF] border-2 border-[#6366F1] p-3 sm:p-4 text-center min-h-[88px]">
+                  <span className="text-lg sm:text-xl font-black text-[#4F46E5] tabular-nums">{totalFormatted} درهم</span>
+                  <span className="text-sm font-bold text-[#475569]">الإجمالي</span>
                 </div>
               </div>
             </div>
@@ -311,7 +311,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
             <button
               type="submit"
               disabled={loading}
-              className="premium-checkout-cta w-full h-16 rounded-2xl text-xl font-bold text-white disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3 transition-all duration-200 active:scale-[0.99]"
+              className="premium-checkout-cta w-full h-[4.25rem] rounded-2xl text-[1.375rem] font-black text-white disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3 transition-all duration-200 active:scale-[0.99]"
             >
               {loading ? (
                 <>
@@ -325,7 +325,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                 </>
               )}
             </button>
-            <p className="text-center text-base font-semibold text-[#64748B]">
+            <p className="text-center text-lg font-bold text-[#475569]">
               يتم تأكيد طلبك فوراً
             </p>
           </div>

@@ -141,7 +141,7 @@ export default function AdminAiPage() {
                     firstName: "Sara",
                     city: "Casablanca",
                     address: "Maarif, Rue 12 N°4",
-                    items: [{ productId: "prod-astronaut", variantId: "var-astro", quantity: 1 }],
+                    items: [{ productId: "prod-mx003", variantId: "var-mx003", quantity: 1 }],
                     locale: "fr",
                   }),
                 });

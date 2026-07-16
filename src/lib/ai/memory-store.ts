@@ -134,10 +134,10 @@ class MemoryStore {
   stockAlerts: StockAlert[] = [];
   purchaseOrders: PurchaseOrder[] = [];
   inventory: Record<string, number> = {
-    "NRV-CRYSTAL-01": 86,
-    "NRV-CAROUSEL-01": 120,
-    "NRV-STAR-01": 64,
-    "NRV-ASTRO-01": 72,
+    "NRV-MX003-01": 90,
+    "NRV-STARBT-01": 75,
+    "NRV-AURORA-01": 68,
+    "NRV-RABBIT-01": 110,
   };
 }
 

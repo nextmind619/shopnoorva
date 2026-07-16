@@ -49,45 +49,34 @@ const IMAGE_TYPE_CONFIGS = {
 
 const PRODUCT_PROFILES = [
   {
-    id: "prod-astronaut", slug: "astronaut-galaxy-projector", sku: "NRV-ASTRO-01",
-    name: "Astronaut Galaxy Projector with Bluetooth Speaker",
-    visualIdentity: "White cute astronaut galaxy projector with Bluetooth 5.0 speaker built-in. Helmet projects multicolor nebula light. Circular speaker grille on chest. Black IR remote. iPhone paired via Bluetooth showing music app. Dark bedroom with blue purple nebula on walls ceiling. 10 color mode circles. 360° magnetic head. DO NOT redesign.",
+    id: "prod-mx003", slug: "astronaut-bt-speaker-projector", sku: "NRV-MX003-01",
+    name: "Astronaut Bluetooth Speaker Galaxy Projector",
+    visualIdentity: "White chibi astronaut-shaped galaxy projector with built-in Bluetooth 5.0 speaker (model MXS003). Rounded white helmet, large dark glossy visor projecting colorful nebula light. Circular perforated speaker grille on chest. Black IR remote. TF card + AUX playback, built-in mic. Compact standing pose, 16x10x10cm. DO NOT redesign.",
     customPrompts: {
-      "02-premium-hero": "Premium e-commerce marketing composite: white astronaut galaxy Bluetooth projector in center, helmet emitting colorful nebula light rays, chest speaker grille with musical notes, black remote control and iPhone with music player in foreground, dark bedroom background with vivid blue purple nebula on walls and ceiling, 10 circular color mode icons on right side showing nebula combinations, professional product advertisement layout, 8K photorealistic, no watermark, no text",
+      "02-premium-hero": "Premium e-commerce marketing composite: white astronaut Bluetooth galaxy projector in center, helmet emitting colorful nebula light rays, chest speaker grille, black remote control in foreground, dark bedroom background with vivid blue purple nebula on walls and ceiling, professional product advertisement layout, 8K photorealistic, no watermark, no text",
       "01-hero-white-bg": "White astronaut galaxy projector with Bluetooth speaker on pure white background, helmet visor, chest speaker grille visible, black remote beside it, studio product photography, 8K, no watermark",
-      "09-close-up": "Close-up of white astronaut projector chest speaker grille and black remote control, Bluetooth pairing icon, macro product photography, 8K",
-      "10-features": "Infographic layout: white astronaut Bluetooth galaxy projector center, icons for Bluetooth speaker, 10 light modes, remote control, 360° head, USB power, Apple-style feature callout, 8K",
+      "09-close-up": "Close-up of white astronaut projector chest speaker grille and black remote control, macro product photography, 8K",
+      "10-features": "Infographic layout: white astronaut Bluetooth galaxy projector center, icons for Bluetooth speaker, nebula modes, remote control, USB-C power, Apple-style feature callout, 8K",
       "14-product-in-use": "Dark cozy bedroom at night, white astronaut projector on nightstand projecting vivid blue purple nebula galaxy on ceiling and walls, cinematic atmosphere, 8K photorealistic",
-      "17-infographic": "Product infographic: white astronaut galaxy projector with 10 circular color mode thumbnails on right (red green blue purple orange nebula combinations), Bluetooth speaker icon, remote control, professional e-commerce style, 8K",
     },
-    sourceUrls: {
-      "01-hero-white-bg": "https://m.media-amazon.com/images/I/71rBbFOVaEL._AC_SL1500_.jpg",
-      "02-premium-hero": "https://aryanca.com/cdn/shop/files/HR_Astro_Action_8757581b-4422-48f5-b370-bfb2663ea108.webp?v=1710958720&width=1946",
-      "09-close-up": "https://aryanca.com/cdn/shop/files/81gRORu5X7L._AC_SX679.jpg?v=1710958720&width=1946",
-      "10-features": "https://aryanca.com/cdn/shop/files/HR_Astro_Options_dd932ae5-d4f5-4ad8-9939-7794423df691.jpg?v=1710958720&width=1946",
-      "11-package-contents": "https://aryanca.com/cdn/shop/files/HR_Astro_BS_4122fe55-863e-4fb4-a20e-8c89922d4209.jpg?v=1710958860&width=1946",
-      "14-product-in-use": "https://aryanca.com/cdn/shop/files/HR_Astro_BG_3aa0e288-fac6-49ca-84a5-fd1ebfc4dbff.jpg?v=1710958720&width=1946",
-      "17-infographic": "https://aryanca.com/cdn/shop/files/HR_Astro_Options_dd932ae5-d4f5-4ad8-9939-7794423df691.jpg?v=1710958720&width=1946",
-    },
-  },
-  {
-    id: "prod-crystal", slug: "crystal-galaxy-projector", sku: "NRV-CRYSTAL-01",
-    name: "Crystal Galaxy Projector",
-    visualIdentity: "Exact product: black matte bowl-shaped galaxy projector with faceted crystal disco-ball dome glowing blue purple. Front USB DC ports MODE VOL LED buttons. Black IR remote 20 buttons. DO NOT redesign.",
-    sourceUrls: {
-      "01-hero-white-bg": "https://m.media-amazon.com/images/I/61YvJhKqJBL._AC_SL1500_.jpg",
-    },
-  },
-  {
-    id: "prod-star", slug: "galaxy-star-projector", sku: "NRV-STAR-01",
-    name: "Galaxy Star Projector",
-    visualIdentity: "Exact product: Style 2-White geometric diamond angular white body, large iridescent spherical lens glowing purple green blue aurora, smaller secondary aperture, white remote, Type-C cable. 16x9x10.5cm. DO NOT redesign.",
     sourceUrls: {},
   },
   {
-    id: "prod-carousel", slug: "carousel-night-light", sku: "NRV-CAROUSEL-01",
-    name: "Carousel Night Light",
-    visualIdentity: "Exact product: pink gold carousel night light, domed pink canopy gold trim, transparent cylinder with pink bunnies on gold rods, pink hemispherical base gold rim, 4 cabriole gold legs, white remote. DO NOT redesign.",
+    id: "prod-starbt", slug: "bluetooth-star-projector", sku: "NRV-STARBT-01",
+    name: "Aluminium Bluetooth Star Projector",
+    visualIdentity: "Exact product: sleek brushed-aluminium cylindrical galaxy star projector with built-in Bluetooth speaker (model R-ILED05). Matte black top cap emitting sharp green red laser star points plus soft blue purple RGB nebula. Front power/mode buttons and small speaker mesh. Slim black remote with timer buttons. USB-C power. 13x13x14cm. DO NOT redesign.",
+    sourceUrls: {},
+  },
+  {
+    id: "prod-aurora", slug: "northern-lights-galaxy-projector", sku: "NRV-AURORA-01",
+    name: "Northern Lights Aurora Galaxy Projector",
+    visualIdentity: "Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.",
+    sourceUrls: {},
+  },
+  {
+    id: "prod-rabbit", slug: "rabbit-carousel-night-light", sku: "NRV-RABBIT-01",
+    name: "Rabbit Carousel Music Box Night Light",
+    visualIdentity: "Exact product: pink gold carousel-shaped musical night light, rabbit-themed music box. Domed pastel pink canopy gold trim, transparent cylinder with pink bunny figurines spinning on gold rods, pink hemispherical base gold rim, 4 cabriole gold legs, built-in sound machine plays lullaby music, white remote. DO NOT redesign.",
     sourceUrls: {},
   },
 ];

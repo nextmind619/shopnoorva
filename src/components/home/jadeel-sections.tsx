@@ -206,7 +206,7 @@ export function TikTokReviewsSection() {
     name: getLocalized(p.name, locale).split(" ")[0],
     city: "المغرب",
     quote: getLocalized(p.shortDescription, locale).slice(0, 60) + " ✨",
-    img: p.images[0]?.url || "",
+    img: p.images[0]?.url || resolveProductHero(p),
   }));
 
   return (

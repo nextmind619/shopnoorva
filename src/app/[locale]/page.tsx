@@ -25,9 +25,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     en: "NOORVA — Premium Galaxy Projectors | Morocco",
   };
   const descriptions: Record<string, string> = {
-    ar: "٤ بروجيكتورات فاخرة لتحويل غرفتك: رائد فضاء، كريستال، نجوم المجرة، كاروسيل. توصيل 24-48 ساعة · دفع عند الاستلام في المغرب.",
-    fr: "4 projecteurs premium. Livraison 24-48h, paiement à la livraison au Maroc.",
-    en: "4 premium projectors. 24-48h delivery, cash on delivery in Morocco.",
+    ar: "٤ بروجيكتورات فاخرة لتحويل غرفتك: رائد فضاء بلوتوث، ليزر الألمنيوم، الأورورا الشمالية، كاروسيل الأرانب. توصيل 24-48 ساعة · دفع عند الاستلام في المغرب.",
+    fr: "4 projecteurs premium : astronaute Bluetooth, laser aluminium, aurores boréales, carrousel lapin. Livraison 24-48h, paiement à la livraison au Maroc.",
+    en: "4 premium projectors: astronaut Bluetooth, aluminium laser, northern lights aurora, rabbit carousel. 24-48h delivery, cash on delivery in Morocco.",
   };
   return {
     title: titles[locale] || titles.ar,

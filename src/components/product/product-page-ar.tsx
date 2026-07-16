@@ -128,42 +128,6 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           <div className="lg:col-span-8 order-1 lg:order-2 space-y-6">
             <PremiumProductGallery product={product} />
 
-            {/* نموذج الطلب — موبايل: مباشرة تحت المعرض */}
-            <div className="lg:hidden flex justify-center">
-              <ProductOrderForm product={product} variant={variant} quantity={qty} />
-            </div>
-
-            {/* عنوان وسعر مختصر — موبايل */}
-            <div className="lg:hidden space-y-4">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
-                <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-                  <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="flex">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className={cn("h-3.5 w-3.5", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
-                    ))}
-                  </div>
-                  <span className="font-bold text-white text-xs">({product.rating})</span>
-                </div>
-              </div>
-              <h1 className="text-2xl font-bold leading-tight tracking-tight text-white">{name}</h1>
-              <p className="text-white/70 leading-relaxed text-base">{product.shortDescription.ar}</p>
-              <div className="flex flex-wrap items-center gap-3 py-3 border-y border-white/10">
-                <span className="text-3xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
-                <span className="text-sm font-bold text-white/60">درهم مغربي</span>
-                {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
-                  <span className="text-base text-white/40 line-through tabular-nums">{formatPriceNumber(variant.compareAtPrice, "ar")}</span>
-                )}
-                {discount > 0 && (
-                  <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    خصم {discount}%
-                  </span>
-                )}
-              </div>
-            </div>
-
             {/* العنوان العاطفي */}
             {product.problem && product.problemSolution && (
               <section className="text-center bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10 shadow-luxury">
@@ -177,69 +141,57 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             )}
           </div>
 
-          {/* العمود الأيمن — معلومات المنتج + نموذج الطلب */}
-          <div className="hidden lg:block lg:col-span-4 lg:order-1 space-y-5">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
-              <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-                <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="flex">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={cn("h-3.5 w-3.5", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
-                  ))}
+          {/* العمود الأيمن — معلومات المنتج + نموذج الطلب (نسخة واحدة) */}
+          <div className="order-2 lg:order-1 lg:col-span-4 space-y-5 lg:sticky lg:top-6 lg:self-start">
+            {/* معلومات المنتج — سطح المكتب فقط */}
+            <div className="hidden lg:block space-y-5">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
+                <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
+                  <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
                 </div>
-                <span className="font-bold text-white text-xs">({product.rating})</span>
-              </div>
-              <span className="inline-flex items-center gap-1.5 text-white/60 text-xs">
-                {product.reviewCount.toLocaleString("ar-MA")}+ تقييم
-              </span>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-white">{name}</h1>
-            <p className="text-white/70 leading-relaxed">{product.shortDescription.ar}</p>
-
-            <div className="flex flex-wrap items-center gap-3 mb-4 hidden">
-              <span className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 text-sm font-medium px-4 py-2 rounded-full">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                متوفر في المخزون
-              </span>
-              {lowStock && (
-                <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-600 text-xs font-bold px-3 py-1.5 rounded-full animate-pulse">
-                  <Flame className="h-3.5 w-3.5" />
-                  كمية محدودة — باقي {variant.stock} فقط!
-                </span>
-              )}
-            </div>
-
-            <div className="py-4 border-y border-white/10">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-4xl sm:text-5xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
-                <div className="flex flex-col justify-center">
-                  <span className="text-xs font-bold text-white/60 leading-none mb-1">مغربي</span>
-                  <span className="text-xs font-bold text-white/60 leading-none">درهم</span>
-                </div>
-                {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
-                  <div className="flex flex-col justify-center ms-4 border-s border-white/10 ps-4">
-                    <span className="text-lg text-white/40 line-through tabular-nums leading-none mb-1">{formatPriceNumber(variant.compareAtPrice || 0, "ar")}</span>
-                    <span className="text-[10px] text-white/40 leading-none">السعر الأصلي</span>
+                <div className="flex items-center gap-1.5">
+                  <div className="flex">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className={cn("h-3.5 w-3.5", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
+                    ))}
                   </div>
-                )}
-                {discount > 0 && (
-                  <span className="ms-auto bg-red-600 text-white text-sm font-bold px-4 py-1.5 rounded-full">
-                    خصم {discount}%
-                  </span>
-                )}
+                  <span className="font-bold text-white text-xs">({product.rating})</span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-white/60 text-xs">
+                  {product.reviewCount.toLocaleString("ar-MA")}+ تقييم
+                </span>
+              </div>
+
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-white">{name}</h1>
+              <p className="text-white/70 leading-relaxed">{product.shortDescription.ar}</p>
+
+              <div className="py-4 border-y border-white/10">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-4xl sm:text-5xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
+                  <div className="flex flex-col justify-center">
+                    <span className="text-xs font-bold text-white/60 leading-none mb-1">مغربي</span>
+                    <span className="text-xs font-bold text-white/60 leading-none">درهم</span>
+                  </div>
+                  {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
+                    <div className="flex flex-col justify-center ms-4 border-s border-white/10 ps-4">
+                      <span className="text-lg text-white/40 line-through tabular-nums leading-none mb-1">{formatPriceNumber(variant.compareAtPrice || 0, "ar")}</span>
+                      <span className="text-[10px] text-white/40 leading-none">السعر الأصلي</span>
+                    </div>
+                  )}
+                  {discount > 0 && (
+                    <span className="ms-auto bg-red-600 text-white text-sm font-bold px-4 py-1.5 rounded-full">
+                      خصم {discount}%
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* نموذج الطلب — سطح المكتب، ثابت أثناء التمرير */}
-            <div className="hidden lg:block lg:sticky lg:top-6 lg:self-start">
-              <ProductOrderForm product={product} variant={variant} quantity={qty} />
-            </div>
+            {/* نموذج الطلب — واحد فقط */}
+            <ProductOrderForm product={product} variant={variant} quantity={qty} />
 
-            {/* عرض محدود */}
-            <div className="bg-[#1a1a24] border border-white/10 text-white rounded-2xl p-5 text-center shadow-luxury">
+            {/* عرض محدود — سطح المكتب */}
+            <div className="hidden lg:block bg-[#1a1a24] border border-white/10 text-white rounded-2xl p-5 text-center shadow-luxury">
               <p className="text-sm font-bold text-white/80 mb-4">عرض محدود! السعر سيرتفع خلال:</p>
               <div className="flex justify-center gap-6 mb-5">
                 <div className="flex flex-col items-center">
@@ -265,33 +217,36 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 <div className="h-full bg-red-600 w-[85%]" />
               </div>
             </div>
+          </div>
 
-            <div className="flex items-center gap-4 hidden">
-              <span className="text-sm font-medium">الكمية</span>
-              <div className="flex items-center rounded-full border border-black/10 overflow-hidden">
-                <button type="button" onClick={() => setQty(Math.max(1, qty - 1))} className="p-3 hover:bg-white transition-colors" aria-label="تقليل الكمية"><Minus className="h-4 w-4" /></button>
-                <span className="px-5 font-bold tabular-nums">{qty}</span>
-                <button type="button" onClick={() => setQty(qty + 1)} className="p-3 hover:bg-white transition-colors" aria-label="زيادة الكمية"><Plus className="h-4 w-4" /></button>
+          {/* عنوان وسعر — موبايل فقط، بعد النموذج */}
+          <div className="order-3 lg:hidden lg:col-span-8 space-y-4">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
+              <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
+                <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
               </div>
-              <span className="text-sm text-white/60 tabular-nums">= {formatPriceNumber(subtotal, "ar")} درهم</span>
+              <div className="flex items-center gap-1.5">
+                <div className="flex">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className={cn("h-3.5 w-3.5", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
+                  ))}
+                </div>
+                <span className="font-bold text-white text-xs">({product.rating})</span>
+              </div>
             </div>
-
-            <button
-              type="button"
-              onClick={scrollToOrder}
-              className="w-full h-14 sm:h-16 rounded-full bg-white text-black font-bold text-base sm:text-lg hover:bg-white/90 transition-all shadow-luxury active:scale-[0.98] flex items-center justify-center gap-2 hidden"
-            >
-              <Banknote className="h-5 w-5" />
-              اطلب الآن — الدفع عند الاستلام
-            </button>
-
-            <div className="flex gap-2 hidden">
-              <button type="button" onClick={() => setWishlist(!wishlist)} className={cn("flex-1 flex items-center justify-center gap-2 py-3 rounded-full border text-sm transition-all", wishlist ? "border-luxury-gold text-luxury-gold bg-luxury-gold/5" : "border-white/10")}>
-                <Heart className={cn("h-4 w-4", wishlist && "fill-luxury-gold")} />المفضلة
-              </button>
-              <button type="button" onClick={share} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border border-white/10 text-sm hover:border-luxury-gold/40 transition-all">
-                {shared ? <><Check className="h-4 w-4" />تم النسخ</> : <><Share2 className="h-4 w-4" />مشاركة</>}
-              </button>
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-white">{name}</h1>
+            <p className="text-white/70 leading-relaxed text-base">{product.shortDescription.ar}</p>
+            <div className="flex flex-wrap items-center gap-3 py-3 border-y border-white/10">
+              <span className="text-3xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
+              <span className="text-sm font-bold text-white/60">درهم مغربي</span>
+              {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
+                <span className="text-base text-white/40 line-through tabular-nums">{formatPriceNumber(variant.compareAtPrice, "ar")}</span>
+              )}
+              {discount > 0 && (
+                <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  خصم {discount}%
+                </span>
+              )}
             </div>
           </div>
         </div>

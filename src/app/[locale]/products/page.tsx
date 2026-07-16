@@ -7,7 +7,7 @@ import { ProductCard, SectionHeader } from "@/components/shared/product-card";
 
 export const metadata: Metadata = {
   title: "المتجر | NOORVA",
-  description: "بروجيكتور مجرة، رائد فضاء، كاروسيل ليلي وإضاءة ديكور",
+  description: "بروجيكتور رائد الفضاء بلوتوث، ليزر الألمنيوم، الأورورا الشمالية، وكاروسيل الأرانب الموسيقي",
 };
 
 export default async function ProductsPage({

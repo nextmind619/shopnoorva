@@ -34,7 +34,7 @@ export const GALLERY_SECTION_LABELS: Record<GallerySection, string> = {
   specifications: "المواصفات",
 };
 
-/** Astronaut Galaxy Projector — exact manufacturer reference images */
+/** Astronaut Bluetooth Speaker Projector (MX003) — exact manufacturer reference images */
 const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
@@ -160,7 +160,7 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
 
 /** Generic slide builder for products without custom config */
 function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
-  const hasBluetooth = productSlug !== "carousel-night-light";
+  const hasBluetooth = productSlug !== "rabbit-carousel-night-light";
 
   const slides: GallerySlideConfig[] = [
     {
@@ -295,7 +295,7 @@ function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
 }
 
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
-  "astronaut-galaxy-projector": ASTRONAUT_SLIDES,
+  "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

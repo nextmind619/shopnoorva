@@ -10,7 +10,7 @@ const content: Record<string, { title: string; paragraphs: string[] }> = {
   ar: {
     title: "قصتنا",
     paragraphs: [
-      "NOORVA علامة مغربية لإضاءة الأجواء: بروجيكتور مجرة، رائد فضاء، كاروسيل ليلي وديكور الغرف.",
+      "NOORVA علامة مغربية لإضاءة الأجواء: بروجيكتور رائد الفضاء بلوتوث MX003، بروجيكتور ليزر الألمنيوم، بروجيكتور الأورورا الشمالية، وكاروسيل الأرانب الموسيقي.",
       "هدفنا نوصلّك منتجات تراند بجودة محترمة، تغليف أنيق، وتوصيل سريع مع الدفع عند الاستلام في جميع المدن.",
       "كنركّزو على تجربة الزبون: طلب ساهل، تأكيد سريع، وضمان 12 شهر على المنتجات.",
     ],
@@ -18,7 +18,7 @@ const content: Record<string, { title: string; paragraphs: string[] }> = {
   fr: {
     title: "Notre Histoire",
     paragraphs: [
-      "NOORVA est une marque marocaine d'éclairage d'ambiance: projecteurs galaxie, astronaute, carrousel et déco.",
+      "NOORVA est une marque marocaine d'éclairage d'ambiance: projecteur astronaute Bluetooth MX003, projecteur laser aluminium, projecteur aurores boréales et carrousel musical lapin.",
       "Nous livrons des produits tendance avec une qualité soignée et le paiement à la livraison.",
       "Notre priorité: commande simple, confirmation rapide et garantie 12 mois.",
     ],
@@ -26,7 +26,7 @@ const content: Record<string, { title: string; paragraphs: string[] }> = {
   en: {
     title: "Our Story",
     paragraphs: [
-      "NOORVA is a Moroccan ambient lighting brand: galaxy projectors, astronaut lights, carousel night lights and room decor.",
+      "NOORVA is a Moroccan ambient lighting brand: the MX003 astronaut Bluetooth speaker projector, the aluminium laser star projector, the northern lights aurora projector and the rabbit carousel music-box night light.",
       "We deliver trending products with solid quality and cash on delivery nationwide.",
       "Our focus: easy ordering, fast confirmation and 12-month warranty.",
     ],

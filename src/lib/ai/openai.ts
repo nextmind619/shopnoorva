@@ -47,11 +47,11 @@ function fallbackGenerate(system: string, user: string): string {
 
   if (lower.includes("upsell") || lower.includes("cross")) {
     return JSON.stringify({
-      upsells: ["NRV-SUNSET", "NRV-RGB-BAR"],
-      crossSells: ["NRV-ASTRO"],
-      message_fr: "Complétez votre ambiance avec la Sunset Lamp — -10% aujourd'hui.",
-      message_ar: "أكمل أجواء غرفتك مع مصباح Sunset — خصم 10% اليوم.",
-      message_en: "Complete your room vibe with the Sunset Lamp — 10% off today.",
+      upsells: ["NRV-STARBT-01", "NRV-AURORA-01"],
+      crossSells: ["NRV-RABBIT-01"],
+      message_fr: "Complétez votre ambiance avec le projecteur aurores boréales — -10% aujourd'hui.",
+      message_ar: "أكمل أجواء غرفتك مع بروجيكتور الأورورا الشمالية — خصم 10% اليوم.",
+      message_en: "Complete your room vibe with the Northern Lights projector — 10% off today.",
     });
   }
 
