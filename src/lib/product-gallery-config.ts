@@ -297,19 +297,19 @@ function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
 const STAR_PROJECTOR_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
-    imageType: "02-premium-hero",
+    imageType: "01-hero-white-bg",
     emoji: "🌌",
     heading: "بروجيكتور المجرة والنجوم",
-    subtitle: "21 وضع إضاءة · بلوتوث · ريموت بمؤقت",
-    objectFit: "contain",
+    subtitle: "قبة كريستال · بلوتوث · ريموت بمؤقت",
+    objectFit: "cover",
   },
   {
     section: "hero",
-    imageType: "01-hero-white-bg",
+    imageType: "02-premium-hero",
     emoji: "📷",
-    heading: "المنتج الأصلي — قبة كريستال",
-    subtitle: "جسم أسود مطفي · صورة احترافية",
-    objectFit: "contain",
+    heading: "أجواء الغرفة مع الإسقاط",
+    subtitle: "سديم ملون + نجوم + موسيقى بلوتوث",
+    objectFit: "cover",
   },
   {
     section: "lifestyle",
