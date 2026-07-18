@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T16:17:44.747Z",
+  "generatedAt": "2026-07-18T13:28:05.502Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -415,7 +415,7 @@
     "bluetooth-star-projector": {
       "slug": "bluetooth-star-projector",
       "sku": "NRV-STARBT-01",
-      "name": "Aluminium Bluetooth Star Projector",
+      "name": "Bluetooth Crystal Dome Star Projector",
       "images": {
         "01-hero-white-bg": {
           "original": "/products/bluetooth-star-projector/01-hero-white-bg.jpg",
@@ -801,26 +801,26 @@
         }
       },
       "sources": {
-        "01-hero-white-bg": "ai-generated",
-        "02-premium-hero": "ai-generated",
-        "03-lifestyle": "ai-generated",
-        "04-bedroom": "ai-generated",
-        "05-living-room": "ai-generated",
-        "06-gaming-room": "ai-generated",
-        "07-romantic-room": "ai-generated",
-        "08-kids-room": "ai-generated",
-        "09-close-up": "ai-generated",
-        "10-features": "ai-generated",
-        "11-package-contents": "ai-generated",
-        "12-dimensions": "ai-generated",
-        "13-before-after": "ai-generated",
-        "14-product-in-use": "ai-generated",
-        "15-banner": "ai-generated",
-        "16-packaging": "ai-generated",
-        "17-infographic": "ai-generated",
-        "18-mobile-banner": "ai-generated",
-        "19-desktop-banner": "ai-generated",
-        "20-social-media-banner": "ai-generated"
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
+        "03-lifestyle": "commercial",
+        "04-bedroom": "commercial",
+        "05-living-room": "commercial",
+        "06-gaming-room": "commercial",
+        "07-romantic-room": "commercial",
+        "08-kids-room": "commercial",
+        "09-close-up": "commercial",
+        "10-features": "commercial",
+        "11-package-contents": "commercial",
+        "12-dimensions": "commercial",
+        "13-before-after": "commercial",
+        "14-product-in-use": "commercial",
+        "15-banner": "commercial",
+        "16-packaging": "commercial",
+        "17-infographic": "commercial",
+        "18-mobile-banner": "commercial",
+        "19-desktop-banner": "commercial",
+        "20-social-media-banner": "commercial"
       }
     },
     "northern-lights-galaxy-projector": {

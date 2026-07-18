@@ -7,9 +7,9 @@ export const categories: Category[] = [
     slug: "projecteurs",
     name: { ar: "بروجيكتور المجرة", fr: "Projecteurs Galaxy", en: "Galaxy Projectors" },
     description: {
-      ar: "بروجيكتور رائد الفضاء بلوتوث، بروجيكتور الألمنيوم بالليزر، وبروجيكتور الأورورا الشمالية",
-      fr: "Astronaute Bluetooth, laser aluminium et aurores boréales",
-      en: "Astronaut Bluetooth, aluminium laser and northern lights projectors",
+      ar: "بروجيكتور رائد الفضاء بلوتوث، بروجيكتور قبة الكريستال، وبروجيكتور الأورورا الشمالية",
+      fr: "Astronaute Bluetooth, dôme cristal et aurores boréales",
+      en: "Astronaut Bluetooth, crystal dome and northern lights projectors",
     },
     image: getProductHeroUrl("astronaut-bt-speaker-projector"),
     productCount: 3,
