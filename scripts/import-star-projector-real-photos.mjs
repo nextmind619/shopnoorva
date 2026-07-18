@@ -16,6 +16,8 @@ const SLUG = "bluetooth-star-projector";
 const PRODUCT_NAME = "Multi-Color Galaxy Projector Night Light with Speaker";
 
 const SRC_DIR =
+  "C:/Users/admin/AppData/Roaming/Cursor/User/workspaceStorage/34b8a3bfa23a10a0c587fc1401d2b25e/images";
+const FALLBACK_SRC_DIR =
   "C:/Users/admin/AppData/Roaming/Cursor/User/workspaceStorage/1783604483934/images";
 const JUMIA_DIR = path.join(ROOT, "tmp/jumia-starbt");
 
@@ -57,6 +59,8 @@ async function resolveByPrefix(dir, prefixes) {
 async function resolveSource(keys) {
   const local = await resolveByPrefix(SRC_DIR, keys);
   if (local) return local;
+  const fallback = await resolveByPrefix(FALLBACK_SRC_DIR, keys);
+  if (fallback) return fallback;
   for (const key of keys) {
     const jumia = path.join(JUMIA_DIR, key);
     try {
@@ -69,27 +73,28 @@ async function resolveSource(keys) {
   throw new Error(`Missing source for keys: ${keys.join(", ")}`);
 }
 
+/** Client reference photos (Cosmic Voyager / galaxy BT projector). */
 const SOURCE_KEYS = {
-  "01-hero-white-bg": ["b3d96d89", "j1.jpg"],
-  "02-premium-hero": ["1 (2)", "ccadd2cb", "j2.jpg"],
-  "03-lifestyle": ["ccadd2cb", "1 (2)", "j3.jpg"],
-  "04-bedroom": ["1 (2)", "e4ec83a9", "j2.jpg"],
-  "05-living-room": ["ccadd2cb", "6-", "j3.jpg"],
-  "06-gaming-room": ["6-", "ccadd2cb", "j4.jpg"],
-  "07-romantic-room": ["2 (2)", "1 (2)", "j5.jpg"],
-  "08-kids-room": ["3 (2)", "e4ec83a9", "j5.jpg"],
-  "09-close-up": ["1000074233", "b3d96d89", "j1.jpg"],
-  "10-features": ["4 (2)", "6-", "j4.jpg"],
-  "11-package-contents": ["8-", "8-186c98ad", "j6.jpg"],
-  "12-dimensions": ["b3d96d89", "j1.jpg"],
-  "13-before-after": ["1 (2)", "ccadd2cb", "j2.jpg"],
-  "14-product-in-use": ["ccadd2cb", "1 (2)", "j3.jpg"],
-  "15-banner": ["1 (2)", "2 (2)", "j2.jpg"],
-  "16-packaging": ["8-", "j6.jpg", "b3d96d89"],
-  "17-infographic": ["e4ec83a9", "4 (2)", "j4.jpg"],
-  "18-mobile-banner": ["1 (2)", "3 (2)", "j2.jpg"],
-  "19-desktop-banner": ["ccadd2cb", "1 (2)", "j3.jpg"],
-  "20-social-media-banner": ["4 (2)", "2 (2)", "j5.jpg"],
+  "01-hero-white-bg": ["8-", "1000074233"],
+  "02-premium-hero": ["f0a96503", "1 (2)"],
+  "03-lifestyle": ["7-", "1 (2)"],
+  "04-bedroom": ["1 (2)", "7-"],
+  "05-living-room": ["6-", "7-"],
+  "06-gaming-room": ["6-", "1 (2)"],
+  "07-romantic-room": ["2 (2)", "1 (2)"],
+  "08-kids-room": ["3 (2)", "1 (2)"],
+  "09-close-up": ["1000074233", "8-"],
+  "10-features": ["4 (2)", "5-"],
+  "11-package-contents": ["8-", "5-"],
+  "12-dimensions": ["8-", "1000074233"],
+  "13-before-after": ["1 (2)", "7-"],
+  "14-product-in-use": ["7-", "1 (2)"],
+  "15-banner": ["1 (2)", "2 (2)"],
+  "16-packaging": ["8-", "5-"],
+  "17-infographic": ["5-", "4 (2)"],
+  "18-mobile-banner": ["3 (2)", "1 (2)"],
+  "19-desktop-banner": ["7-", "1 (2)"],
+  "20-social-media-banner": ["4 (2)", "f0a96503"],
 };
 
 async function optimizeImage(canvasBuffer, outDir, baseName, isBanner) {
