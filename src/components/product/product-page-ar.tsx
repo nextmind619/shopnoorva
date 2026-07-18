@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Star, Check, ChevronLeft, Shield, Truck, Package,
+  Star, ChevronLeft, Shield, Truck, Package,
   RotateCcw, MessageCircle, Banknote, ShoppingBag,
-  Flame, BadgeCheck, Clock,
+  BadgeCheck, Clock,
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
@@ -17,6 +17,8 @@ import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { ProductOrderForm } from "@/components/product/product-order-form";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
 import { ProductLandingSections } from "@/components/product/product-landing-sections";
+import { ProductTrustBlocks } from "@/components/product/product-trust-blocks";
+import { FlashCountdown, StockScarcityBar } from "@/components/product/flash-countdown";
 
 const BENEFIT_CARDS_DEFAULT = [
   { emoji: "✨", text: "يحوّل الغرفة إلى مجرة مذهلة" },
@@ -76,9 +78,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const ar = (obj: { ar: string }) => obj.ar;
   const name = ar(product.name);
   const discount = calculateDiscount(variant.price, variant.compareAtPrice);
-  const subtotal = variant.price * qty;
   const reviews = getReviewsForProduct(product.id);
-  const lowStock = variant.stock > 0 && variant.stock <= 15;
 
   const related = useMemo(
     () => (relatedProp && relatedProp.length > 0 ? relatedProp : products.filter((p) => p.id !== product.id)).slice(0, 4),
@@ -170,15 +170,15 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
         {/* المعرض + معلومات الشراء */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
-          {/* المعرض — موبايل أولاً، يسار سطح المكتب */}
+          {/* المعرض — موبايل أولاً */}
           <div className="lg:col-span-8 order-1 lg:order-2 space-y-6">
             <PremiumProductGallery product={product} />
 
-            {/* العنوان العاطفي */}
             {product.problem && product.problemSolution && (
-              <section className="text-center bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10 shadow-luxury">
+              <section className="hidden lg:block text-center bg-[#1a1a24] rounded-[2rem] p-8 border border-white/10 shadow-luxury">
                 <h2 className="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-white mb-4">
-                  {product.problemSolution.ar.split(" ").slice(0, 3).join(" ")} <span className="text-[#6366f1]">{product.problemSolution.ar.split(" ").slice(3).join(" ")}</span>
+                  {product.problemSolution.ar.split(" ").slice(0, 3).join(" ")}{" "}
+                  <span className="text-[#6366f1]">{product.problemSolution.ar.split(" ").slice(3).join(" ")}</span>
                 </h2>
                 <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
                   {product.problem.ar}
@@ -187,9 +187,47 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             )}
           </div>
 
-          {/* العمود الأيمن — معلومات المنتج + نموذج الطلب (نسخة واحدة) */}
-          <div className="order-2 lg:order-1 lg:col-span-4 space-y-5 lg:sticky lg:top-6 lg:self-start">
-            {/* معلومات المنتج — سطح المكتب فقط */}
+          {/* عنوان وسعر — موبايل قبل نموذج الطلب (CRO) */}
+          <div className="order-2 lg:hidden space-y-4">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
+              <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
+                <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="flex">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className={cn("h-3.5 w-3.5", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
+                  ))}
+                </div>
+                <span className="font-bold text-white text-xs">({product.rating})</span>
+                <span className="text-white/60 text-xs">{product.reviewCount.toLocaleString("ar-MA")}+ تقييم</span>
+              </div>
+            </div>
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-white">{name}</h1>
+            <p className="text-white/70 leading-relaxed text-base">{product.shortDescription.ar}</p>
+            <div className="flex flex-wrap items-center gap-3 py-3 border-y border-white/10">
+              <span className="text-3xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
+              <span className="text-sm font-bold text-white/60">درهم مغربي</span>
+              {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
+                <span className="text-base text-white/40 line-through tabular-nums">{formatPriceNumber(variant.compareAtPrice, "ar")}</span>
+              )}
+              {discount > 0 && (
+                <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  خصم {discount}%
+                </span>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {["بلوتوث", "ريموت", "مؤقت 1س/2س", "USB", "أورورا RGB"].map((chip) => (
+                <span key={chip} className="text-[11px] font-medium text-white/80 bg-white/5 border border-white/10 rounded-full px-3 py-1">
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* العمود — معلومات المنتج + نموذج الطلب */}
+          <div className="order-3 lg:order-1 lg:col-span-4 space-y-5 lg:sticky lg:top-6 lg:self-start">
             <div className="hidden lg:block space-y-5">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
                 <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
@@ -208,8 +246,16 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-white">{name}</h1>
+              <h1 className="text-2xl sm:text-3xl lg:text-[1.75rem] font-bold leading-tight tracking-tight text-white">{name}</h1>
               <p className="text-white/70 leading-relaxed">{product.shortDescription.ar}</p>
+
+              <div className="flex flex-wrap gap-2">
+                {["بلوتوث", "ريموت", "مؤقت", "USB", "أورورا"].map((chip) => (
+                  <span key={chip} className="text-[11px] font-medium text-white/80 bg-white/5 border border-white/10 rounded-full px-3 py-1">
+                    {chip}
+                  </span>
+                ))}
+              </div>
 
               <div className="py-4 border-y border-white/10">
                 <div className="flex flex-wrap items-center gap-3">
@@ -233,72 +279,32 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </div>
             </div>
 
-            {/* نموذج الطلب — واحد فقط */}
             <ProductOrderForm product={product} variant={variant} quantity={qty} />
 
-            {/* عرض محدود — سطح المكتب */}
-            <div className="hidden lg:block bg-[#1a1a24] border border-white/10 text-white rounded-2xl p-5 text-center shadow-luxury">
-              <p className="text-sm font-bold text-white/80 mb-4">عرض محدود! السعر سيرتفع خلال:</p>
-              <div className="flex justify-center gap-6 mb-5">
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl font-bold">18</span>
-                  <span className="text-[11px] text-white/50 mt-1">ثانية</span>
+            <div className="grid grid-cols-3 gap-2 text-center">
+              {[
+                { icon: Banknote, label: "دفع عند الباب" },
+                { icon: Truck, label: "توصيل سريع" },
+                { icon: Shield, label: "ضمان 12 شهر" },
+              ].map((t) => (
+                <div key={t.label} className="bg-[#1a1a24] border border-white/10 rounded-xl px-2 py-3">
+                  <t.icon className="h-4 w-4 text-emerald-400 mx-auto mb-1.5" />
+                  <p className="text-[10px] font-medium text-white/70 leading-tight">{t.label}</p>
                 </div>
-                <span className="text-3xl font-bold text-white/20">:</span>
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl font-bold">35</span>
-                  <span className="text-[11px] text-white/50 mt-1">دقيقة</span>
-                </div>
-                <span className="text-3xl font-bold text-white/20">:</span>
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl font-bold">02</span>
-                  <span className="text-[11px] text-white/50 mt-1">ساعة</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-center gap-2 text-sm text-red-500 font-bold mb-3">
-                <Flame className="h-4 w-4" />
-                متبقي 12 قطعة فقط!
-              </div>
-              <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                <div className="h-full bg-red-600 w-[85%]" />
-              </div>
+              ))}
             </div>
-          </div>
 
-          {/* عنوان وسعر — موبايل فقط، بعد النموذج */}
-          <div className="order-3 lg:hidden lg:col-span-8 space-y-4">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
-              <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-                <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
+            {product.flashSaleEndsAt && (
+              <div className="space-y-3">
+                <FlashCountdown endDate={product.flashSaleEndsAt} />
+                <StockScarcityBar stock={variant.stock} originalStock={Math.max(variant.stock, 100)} />
               </div>
-              <div className="flex items-center gap-1.5">
-                <div className="flex">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={cn("h-3.5 w-3.5", i < Math.floor(product.rating) ? "fill-luxury-gold text-luxury-gold" : "text-white/20")} />
-                  ))}
-                </div>
-                <span className="font-bold text-white text-xs">({product.rating})</span>
-              </div>
-            </div>
-            <h1 className="text-2xl font-bold leading-tight tracking-tight text-white">{name}</h1>
-            <p className="text-white/70 leading-relaxed text-base">{product.shortDescription.ar}</p>
-            <div className="flex flex-wrap items-center gap-3 py-3 border-y border-white/10">
-              <span className="text-3xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
-              <span className="text-sm font-bold text-white/60">درهم مغربي</span>
-              {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
-                <span className="text-base text-white/40 line-through tabular-nums">{formatPriceNumber(variant.compareAtPrice, "ar")}</span>
-              )}
-              {discount > 0 && (
-                <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                  خصم {discount}%
-                </span>
-              )}
-            </div>
+            )}
           </div>
         </div>
 
-        {/* أقسام الصفحة — Lifestyle → Features → Bluetooth → Projection → Gift → Package → Accessories → Dimensions → Specifications */}
         <ProductLandingSections product={product} />
+        <ProductTrustBlocks product={product} />
 
         {/* لماذا NOORVA */}
         <section className="mt-12">

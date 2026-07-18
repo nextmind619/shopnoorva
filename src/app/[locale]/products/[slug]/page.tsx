@@ -61,6 +61,38 @@ export default async function ProductPage({
   const upsells = (product.upsellIds || []).map((id) => getProductById(id)).filter(Boolean) as typeof products;
   const crossSells = (product.crossSellIds || []).map((id) => getProductById(id)).filter(Boolean) as typeof products;
   const defaultVariant = product.variants[0];
+  const hero = resolveProductHero(product);
+  const productUrl = `${SITE_URL}/ar/products/${product.slug}`;
+
+  const auroraFaqs =
+    product.slug === "northern-lights-galaxy-projector"
+      ? [
+          {
+            q: "هل يوجد الدفع عند الاستلام؟",
+            a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب.",
+          },
+          {
+            q: "شنو الفرق ديال هاد البروجيكتور؟",
+            a: "جسم أبيض هندسي متعدد الأوجه يعرض أورورا شمالية مع نجوم وقمر هلالي، مع سبيكر بلوتوث وريموت أبيض.",
+          },
+          {
+            q: "واش فيه بلوتوث؟",
+            a: "نعم، سبيكر بلوتوث مدمج لتشغيل الموسيقى من الهاتف.",
+          },
+          {
+            q: "كيفاش كيخدم المؤقت؟",
+            a: "من الريموت الأبيض تقدّر تختار مؤقت إيقاف 1 ساعة أو 2 ساعة.",
+          },
+          {
+            q: "شنو كاين في العلبة؟",
+            a: "البروجيكتور، الريموت الأبيض، كابل USB/Type-C، ودليل الاستخدام.",
+          },
+          {
+            q: "كم مدة التوصيل وهل فيه ضمان؟",
+            a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${product.warrantyMonths || 12} شهر واستبدال خلال 7 أيام عند وجود عيب.`,
+          },
+        ]
+      : [];
 
   return (
     <>
@@ -70,7 +102,7 @@ export default async function ProductPage({
           "@type": "Product",
           name: product.name.ar,
           description: product.description.ar,
-          image: [resolveProductHero(product)],
+          image: [hero],
           sku: product.sku,
           brand: { "@type": "Brand", name: "NOORVA" },
           offers: {
@@ -78,7 +110,9 @@ export default async function ProductPage({
             price: defaultVariant.price,
             priceCurrency: "MAD",
             availability: defaultVariant.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-            url: `${SITE_URL}/ar/products/${product.slug}`,
+            url: productUrl,
+            priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
+            itemCondition: "https://schema.org/NewCondition",
           },
           aggregateRating: {
             "@type": "AggregateRating",
@@ -87,6 +121,22 @@ export default async function ProductPage({
           },
         }}
       />
+      {auroraFaqs.length > 0 && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: auroraFaqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.a,
+              },
+            })),
+          }}
+        />
+      )}
       <ProductPageClient product={product} upsells={upsells} crossSells={crossSells} />
     </>
   );

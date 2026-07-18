@@ -219,17 +219,17 @@ export const products: Product[] = [
     id: "prod-aurora",
     slug: "northern-lights-galaxy-projector",
     name: L(
-      "بروجيكتور الأورورا والنجوم الأبيض الهندسي بلوتوث",
+      "بروجيكتور الأورورا الهندسي — غرفتك تصير مجرة",
       "Projecteur Aurore Géométrique Blanc Bluetooth",
       "White Geometric Dream Aurora Star Projector with Bluetooth"
     ),
     shortDescription: L(
-      "جسم أبيض هندسي · أورورا + نجوم + قمر · سبيكر بلوتوث · ريموت بمؤقت 1س/2س",
-      "Corps blanc géométrique · aurore + étoiles + lune · Bluetooth · minuterie 1h/2h",
-      "White geometric body · aurora + stars + moon · Bluetooth speaker · 1h/2h timer remote"
+      "أورورا متحركة + قمر هلالي ونجوم + سبيكر بلوتوث + ريموت بمؤقت — والدفع غير ملي يوصلك الطلب",
+      "Aurore animée + lune et étoiles + Bluetooth + minuterie — paiement à la livraison",
+      "Moving aurora + moon & stars + Bluetooth + timer remote — cash on delivery"
     ),
     description: L(
-      "بروجيكتور Dream Aurora من NOORVA بجسم أبيض مطفي بتصميم هندسي متعدد الأوجه (low-poly) وقبة شفافة للإسقاط. يعرض أورورا شمالية متحركة مع نجوم وقمر هلالي على السقف والجدران. سبيكر بلوتوث مدمج لتشغيل الموسيقى من هاتفك، وريموت أبيض للتحكم في الألوان والسطوع والسرعة ومؤقت الإيقاف 1 ساعة أو 2 ساعة. مثالي لغرفة النوم، الصالون، والحفلات. الدفع عند الاستلام في المغرب.",
+      "حوّل سقف غرفتك لمجرة حقيقية مع بروجيكتور الأورورا من NOORVA. جسم أبيض مطفي بتصميم هندسي أنيق وقبة شفافة كتعرض أورورا شمالية متحركة مع نجوم وقمر هلالي. وصّل هاتفك بالبلوتوث وعيش الأجواء مع موسيقاك، وتحكّم من الريموت الأبيض فالألوان والسطوع والسرعة ومؤقت الإيقاف 1 ساعة أو 2 ساعة. مثالي للنوم، الديكور، والهدايا. خلّص كاش عند الباب فجميع مدن المغرب.",
       "Projecteur Dream Aurora NOORVA, corps blanc mat géométrique facetté et dôme transparent. Aurores boréales animées, étoiles et lune. Haut-parleur Bluetooth, télécommande blanche avec minuterie 1h/2h. Idéal chambre et salon. Paiement à la livraison au Maroc.",
       "NOORVA Dream Aurora projector with matte white faceted geometric body and clear projection dome. Moving northern-lights aurora with stars and crescent moon. Built-in Bluetooth speaker, white remote with color/brightness/speed and 1h/2h timer. Perfect for bedroom and living room. Cash on delivery in Morocco."
     ),
@@ -248,11 +248,11 @@ export const products: Product[] = [
     flashSaleEndsAt: flashEnd,
     warrantyMonths: 12,
     problemEmoji: "🌌",
-    problem: L("بغيتي أجواء أورورا وقمر فبيتك؟", "Envie d'aurore et de lune chez toi?", "Want aurora and moon ambiance at home?"),
-    problemCause: L("الإضاءة العادية ما كتحوّلش الغرفة لمجرة كاملة", "La lumière classique ne transforme pas la pièce en galaxie", "Normal lights don’t turn a room into a full galaxy"),
-    problemSolution: L("أورورا + نجوم + قمر + بلوتوث + ريموت", "Aurore + étoiles + lune + Bluetooth + télécommande", "Aurora + stars + moon + Bluetooth + remote"),
+    problem: L("بغيتي غرفة تبان سينمائية بلا ما تبدّل الديكور؟", "Envie d'une pièce cinématique sans changer la déco?", "Want a cinematic room without redecorating?"),
+    problemCause: L("الضو العادي كيبان بارد وما كيعطي حتى إحساس بالاسترخاء", "La lumière classique reste froide et peu relaxante", "Ordinary light feels cold and rarely helps you unwind"),
+    problemSolution: L("أورورا + قمر ونجوم + بلوتوث من الريموت", "Aurore + lune/étoiles + Bluetooth via télécommande", "Aurora + moon/stars + Bluetooth from the remote"),
     deepDescription: L(
-      "جسم ABS أبيض هندسي متعدد الأوجه مع قبة شفافة وفتحتين علويتين للإسقاط. أورورا ملونة، نجوم، وقمر هلالي. سبيكر بلوتوث، ريموت أبيض بمؤقت 1س/2س، طاقة USB. الأبعاد الظاهرة على المرجع ≈ 16 × 9 × 10.5 سم. اللون: أبيض.",
+      "جسم ABS أبيض هندسي متعدد الأوجه مع قبة شفافة وفتحتين علويتين للإسقاط. أورورا ملونة، نجوم، وقمر هلالي. سبيكر بلوتوث، ريموت أبيض بمؤقت 1س/2س، طاقة USB. الأبعاد ≈ 16 × 9 × 10.5 سم. اللون: أبيض.",
       "Corps ABS blanc géométrique facetté, dôme transparent. Aurore, étoiles, lune. Bluetooth, télécommande 1h/2h, USB. Dimensions ≈ 16 × 9 × 10,5 cm. Couleur: blanc.",
       "Matte white faceted ABS geometric body with clear dome and top apertures. Aurora, stars, crescent moon. Bluetooth speaker, white remote with 1h/2h timer, USB power. Dimensions from reference ≈ 16 × 9 × 10.5 cm. Color: white."
     ),
@@ -306,14 +306,14 @@ export const products: Product[] = [
     crossSellIds: ["prod-rabbit"],
     seo: {
       title: L(
-        "بروجيكتور أورورا أبيض هندسي بلوتوث + قمر ونجوم | NOORVA",
+        "بروجيكتور الأورورا الهندسي الأبيض | بلوتوث وقمر ونجوم | NOORVA",
         "Projecteur Aurore Blanc Géométrique Bluetooth | NOORVA",
         "White Geometric Aurora Star Projector Bluetooth + Moon | NOORVA"
       ),
       description: L(
-        "بروجيكتور أورورا شمالية بجسم أبيض هندسي، نجوم وقمر، سبيكر بلوتوث وريموت بمؤقت — الدفع عند الاستلام في المغرب",
-        "Projecteur aurore corps blanc géométrique, étoiles et lune, Bluetooth et minuterie — COD Maroc",
-        "White geometric northern-lights aurora projector with stars, moon, Bluetooth speaker and timer remote — COD Morocco"
+        "حوّل غرفتك لمجرة حقيقية: أورورا متحركة، قمر هلالي ونجوم، سبيكر بلوتوث وريموت بمؤقت. تصميم أبيض هندسي. الدفع عند الاستلام في المغرب.",
+        "Transformez votre pièce: aurore animée, lune et étoiles, Bluetooth et minuterie. Design blanc géométrique. Paiement à la livraison au Maroc.",
+        "Turn your room into a galaxy: moving aurora, moon and stars, Bluetooth speaker and timer remote. White geometric design. Cash on delivery in Morocco."
       ),
     },
   },
