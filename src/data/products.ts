@@ -218,16 +218,20 @@ export const products: Product[] = [
   {
     id: "prod-aurora",
     slug: "northern-lights-galaxy-projector",
-    name: L("بروجيكتور الأورورا الشمالية", "Projecteur Aurores Boréales", "Northern Lights Aurora Galaxy Projector"),
+    name: L(
+      "بروجيكتور الأورورا والنجوم الأبيض الهندسي بلوتوث",
+      "Projecteur Aurore Géométrique Blanc Bluetooth",
+      "White Geometric Dream Aurora Star Projector with Bluetooth"
+    ),
     shortDescription: L(
-      "قبّة سوداء غامقة — أورورا وموج مائي + ليزر نجوم + تحكم بالتطبيق والريموت",
-      "Dôme noir mat — aurores et vagues, laser étoiles, app + télécommande",
-      "Matte black dome — aurora + water ripple, laser stars, app + remote control"
+      "جسم أبيض هندسي · أورورا + نجوم + قمر · سبيكر بلوتوث · ريموت بمؤقت 1س/2س",
+      "Corps blanc géométrique · aurore + étoiles + lune · Bluetooth · minuterie 1h/2h",
+      "White geometric body · aurora + stars + moon · Bluetooth speaker · 1h/2h timer remote"
     ),
     description: L(
-      "بروجيكتور الأورورا الشمالية من NOORVA (موديل WS-AL22276) بشكل قبّة سوداء أنيقة. يعرض تأثير موج مائي حالم مع أورورا شمالية ملونة وليزر نجوم على السقف والجدران. تحكم عبر تطبيق البلوتوث والريموت، سبيكر مدمج. مثالي للاسترخاء والنوم العميق.",
-      "Projecteur aurores boréales NOORVA (WS-AL22276), dôme noir élégant. Effet vagues d'eau oniriques avec aurores colorées et laser étoiles. Contrôle via app Bluetooth et télécommande, haut-parleur intégré. Idéal relaxation et sommeil profond.",
-      "NOORVA Northern Lights projector (model WS-AL22276), elegant matte-black dome. Dreamy water-ripple effect combined with colorful aurora borealis and laser stars on ceiling and walls. Bluetooth app + remote control, built-in speaker. Perfect for relaxation and deep sleep."
+      "بروجيكتور Dream Aurora من NOORVA بجسم أبيض مطفي بتصميم هندسي متعدد الأوجه (low-poly) وقبة شفافة للإسقاط. يعرض أورورا شمالية متحركة مع نجوم وقمر هلالي على السقف والجدران. سبيكر بلوتوث مدمج لتشغيل الموسيقى من هاتفك، وريموت أبيض للتحكم في الألوان والسطوع والسرعة ومؤقت الإيقاف 1 ساعة أو 2 ساعة. مثالي لغرفة النوم، الصالون، والحفلات. الدفع عند الاستلام في المغرب.",
+      "Projecteur Dream Aurora NOORVA, corps blanc mat géométrique facetté et dôme transparent. Aurores boréales animées, étoiles et lune. Haut-parleur Bluetooth, télécommande blanche avec minuterie 1h/2h. Idéal chambre et salon. Paiement à la livraison au Maroc.",
+      "NOORVA Dream Aurora projector with matte white faceted geometric body and clear projection dome. Moving northern-lights aurora with stars and crescent moon. Built-in Bluetooth speaker, white remote with color/brightness/speed and 1h/2h timer. Perfect for bedroom and living room. Cash on delivery in Morocco."
     ),
     categoryId: "cat-projectors",
     price: 189,
@@ -244,59 +248,73 @@ export const products: Product[] = [
     flashSaleEndsAt: flashEnd,
     warrantyMonths: 12,
     problemEmoji: "🌌",
-    problem: L("بغيتي أجواء أورورا حقيقية فبيتك؟", "Envie d'une vraie ambiance aurore boréale?", "Want a real aurora ambiance at home?"),
-    problemCause: L("البروجيكتورات العادية ما كتعطيش تأثير موج مائي وأورورا حقيقي", "Les projecteurs classiques n'ont pas de vagues d'eau ni d'aurore réelle", "Regular projectors lack real water-ripple and aurora effects"),
-    problemSolution: L("قبّة سوداء + موج مائي + أورورا + تحكم بالتطبيق", "Dôme noir + vagues + aurore + app", "Black dome + water ripple + aurora + app control"),
+    problem: L("بغيتي أجواء أورورا وقمر فبيتك؟", "Envie d'aurore et de lune chez toi?", "Want aurora and moon ambiance at home?"),
+    problemCause: L("الإضاءة العادية ما كتحوّلش الغرفة لمجرة كاملة", "La lumière classique ne transforme pas la pièce en galaxie", "Normal lights don’t turn a room into a full galaxy"),
+    problemSolution: L("أورورا + نجوم + قمر + بلوتوث + ريموت", "Aurore + étoiles + lune + Bluetooth + télécommande", "Aurora + stars + moon + Bluetooth + remote"),
     deepDescription: L(
-      "قبّة سوداء أنيقة (WS-AL22276) تعرض موج مائي حالم مع أورورا شمالية وليزر نجوم. تحكم بالتطبيق والريموت، سبيكر مدمج — تجربة استرخاء كاملة.",
-      "Dôme noir (WS-AL22276), vagues d'eau, aurore boréale, laser étoiles. App + télécommande, haut-parleur.",
-      "Black dome (WS-AL22276), water ripple, aurora borealis, laser stars. App + remote, built-in speaker."
+      "جسم ABS أبيض هندسي متعدد الأوجه مع قبة شفافة وفتحتين علويتين للإسقاط. أورورا ملونة، نجوم، وقمر هلالي. سبيكر بلوتوث، ريموت أبيض بمؤقت 1س/2س، طاقة USB. الأبعاد الظاهرة على المرجع ≈ 16 × 9 × 10.5 سم. اللون: أبيض.",
+      "Corps ABS blanc géométrique facetté, dôme transparent. Aurore, étoiles, lune. Bluetooth, télécommande 1h/2h, USB. Dimensions ≈ 16 × 9 × 10,5 cm. Couleur: blanc.",
+      "Matte white faceted ABS geometric body with clear dome and top apertures. Aurora, stars, crescent moon. Bluetooth speaker, white remote with 1h/2h timer, USB power. Dimensions from reference ≈ 16 × 9 × 10.5 cm. Color: white."
     ),
-    tags: ["aurora", "northernlights", "laser", "app", "bluetooth", "galaxy", "bedroom", "decor", "gift", "relaxation"],
+    tags: ["aurora", "northernlights", "moon", "stars", "bluetooth", "speaker", "remote", "timer", "geometric", "white", "bedroom", "gift"],
     benefits: [
-      L("تأثير موج مائي حالم", "Effet vagues d'eau onirique", "Dreamy water-ripple effect"),
-      L("أورورا شمالية ملونة", "Aurores boréales colorées", "Colorful northern lights"),
-      L("تحكم بالتطبيق والريموت", "Contrôle app + télécommande", "App + remote control"),
-      L("مثالي للاسترخاء والنوم", "Idéal relaxation et sommeil", "Perfect for relaxation and sleep"),
+      L("أورورا + نجوم + قمر هلالي", "Aurore + étoiles + lune", "Aurora + stars + crescent moon"),
+      L("تصميم أبيض هندسي أنيق", "Design blanc géométrique", "Elegant white geometric design"),
+      L("سبيكر بلوتوث مدمج", "Haut-parleur Bluetooth", "Built-in Bluetooth speaker"),
+      L("ريموت بمؤقت 1س / 2س", "Télécommande 1h / 2h", "Remote with 1h / 2h timer"),
     ],
     features: [
-      L("موج مائي + أورورا + ليزر نجوم", "Vagues + aurore + laser étoiles", "Water ripple + aurora + laser stars"),
-      L("تحكم عبر تطبيق بلوتوث", "Contrôle via app Bluetooth", "Bluetooth app control"),
-      L("سبيكر مدمج", "Haut-parleur intégré", "Built-in speaker"),
-      L("+10 تركيبات ألوان", "+10 combinaisons de couleurs", "10+ color combinations"),
+      L("إسقاط أورورا شمالية متحركة", "Projection aurore boréale animée", "Moving northern-lights aurora projection"),
+      L("نجوم + قمر هلالي", "Étoiles + lune croissant", "Stars + crescent moon"),
+      L("بلوتوث وموسيقى", "Bluetooth et musique", "Bluetooth music playback"),
+      L("ريموت أبيض + أزرار على الجهاز", "Télécommande blanche + boutons", "White remote + on-device buttons"),
     ],
     specifications: [
-      { label: L("الموديل", "Modèle", "Model"), value: L("WS-AL22276", "WS-AL22276", "WS-AL22276") },
-      { label: L("المادة", "Matériau", "Material"), value: L("ABS أسود مطفي", "ABS noir mat", "Matte black ABS") },
-      { label: L("الطاقة", "Alimentation", "Power"), value: L("USB-C DC 5V", "USB-C DC 5V", "USB-C DC 5V") },
-      { label: L("التحكم", "Contrôle", "Control"), value: L("تطبيق بلوتوث + ريموت", "App Bluetooth + télécommande", "Bluetooth app + remote") },
-      { label: L("التأثيرات", "Effets", "Effects"), value: L("موج مائي + أورورا + ليزر", "Vagues + aurore + laser", "Water ripple + aurora + laser") },
-      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("15×11×12 سم", "15×11×12 cm", "15×11×12 cm") },
-      { label: L("الوزن", "Poids", "Weight"), value: L("490 غ", "490 g", "490 g") },
+      { label: L("التصميم", "Design", "Design"), value: L("أبيض هندسي متعدد الأوجه + قبة شفافة", "Blanc géométrique facetté + dôme", "White faceted geometric + clear dome") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أبيض", "Blanc", "White") },
+      { label: L("المادة", "Matériau", "Material"), value: L("بلاستيك ABS مطفي", "Plastique ABS mat", "Matte ABS plastic") },
+      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("≈ 16 × 9 × 10.5 سم", "≈ 16 × 9 × 10,5 cm", "≈ 16 × 9 × 10.5 cm") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("USB (كابل Type-C في العلبة)", "USB (câble Type-C inclus)", "USB (Type-C cable in box)") },
+      { label: L("الإسقاط", "Projection", "Projection"), value: L("أورورا + نجوم + قمر", "Aurore + étoiles + lune", "Aurora + stars + moon") },
+      { label: L("الألوان", "Couleurs", "Colors"), value: L("تركيبات RGBW متعددة", "Combinaisons RGBW multiples", "Multiple RGBW combinations") },
+      { label: L("الصوت", "Audio", "Audio"), value: L("سبيكر بلوتوث مدمج", "Haut-parleur Bluetooth", "Built-in Bluetooth speaker") },
+      { label: L("المؤقت", "Minuterie", "Timer"), value: L("1 ساعة / 2 ساعة (على الريموت)", "1 h / 2 h (télécommande)", "1 hour / 2 hours (on remote)") },
+      { label: L("التحكم", "Contrôle", "Control"), value: L("ريموت أبيض + أزرار الجهاز", "Télécommande + boutons", "White remote + device buttons") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
     ],
     packageIncludes: [
-      L("بروجيكتور الأورورا الشمالية", "Projecteur aurores boréales", "Northern Lights projector"),
-      L("ريموت تحكم", "Télécommande", "Remote control"),
-      L("كابل USB-C", "Câble USB-C", "USB-C cable"),
+      L("بروجيكتور الأورورا الأبيض الهندسي", "Projecteur aurore géométrique blanc", "White geometric aurora projector"),
+      L("ريموت تحكم أبيض", "Télécommande blanche", "White remote control"),
+      L("كابل USB / Type-C", "Câble USB / Type-C", "USB / Type-C cable"),
       L("دليل الاستخدام", "Manuel", "User manual"),
     ],
-    howToUse: L("ضعه في غرفة مظلمة، حمّل التطبيق أو استخدم الريموت، اختر تركيبة الألوان والمؤقت المفضلة لديك.", "Pièce sombre, app ou télécommande, choisissez couleur et minuterie.", "Dark room, use app or remote, pick your favorite color combo and timer."),
+    howToUse: L(
+      "ضع الجهاز في غرفة مظلمة ووجّهه نحو السقف. وصّل الطاقة عبر USB. شغّل من الأزرار أو الريموت الأبيض، اختر لون الأورورا والسطوع، وصِل هاتفك بالبلوتوث للموسيقى، وفعّل المؤقت 1س أو 2س عند النوم.",
+      "Pièce sombre, orienter vers le plafond. Brancher en USB. Allumer via boutons ou télécommande, choisir aurore/intensité, Bluetooth pour la musique, minuterie 1h/2h.",
+      "Place in a dark room aimed at the ceiling. Power via USB. Use buttons or white remote for aurora/brightness, connect Bluetooth for music, set 1h/2h timer for sleep."
+    ),
     images: [],
     lifestyleImages: [],
     lifestyleScenes: [
-      { id: "bedroom", emoji: "🛏️", title: L("غرفة النوم", "Chambre", "Bedroom"), description: L("أورورا هادئة قبل النوم", "Aurore apaisante avant de dormir", "Calm aurora before sleep") },
-      { id: "relax", emoji: "🧘", title: L("الاسترخاء", "Relaxation", "Relaxation"), description: L("موج مائي وأورورا يساعدان على التأمل", "Vagues et aurore pour méditer", "Water ripple and aurora for meditation") },
-      { id: "living", emoji: "🛋️", title: L("غرفة المعيشة", "Salon", "Living Room"), description: L("ديكور فاخر يبان فالتصوير والاستقبال", "Déco premium pour photos et soirées", "Premium decor for photos and evenings") },
-      { id: "gaming", emoji: "🎮", title: L("غرفة الجيمنغ", "Gaming", "Gaming Room"), description: L("أجواء سينمائية للعب والبث", "Ambiance cinéma gaming", "Cinematic gaming vibe") },
-      { id: "gift", emoji: "🎁", title: L("هدية مثالية", "Cadeau", "Gift"), description: L("هدية أصلية لعشاق الاسترخاء", "Cadeau original pour amateurs de détente", "Original gift for relaxation lovers") },
+      { id: "bedroom", emoji: "🛏️", title: L("غرفة النوم", "Chambre", "Bedroom"), description: L("أورورا وقمر هادئان قبل النوم", "Aurore et lune apaisantes", "Calm aurora and moon before sleep") },
+      { id: "living", emoji: "🛋️", title: L("غرفة المعيشة", "Salon", "Living Room"), description: L("مجرة كاملة مع موسيقى بلوتوث", "Galaxie immersive + Bluetooth", "Immersive galaxy + Bluetooth music") },
+      { id: "romantic", emoji: "💫", title: L("أجواء رومانسية", "Romantique", "Romantic"), description: L("ألوان ناعمة وقمر هلالي", "Couleurs douces et lune", "Soft colors and crescent moon") },
+      { id: "gift", emoji: "🎁", title: L("هدية مثالية", "Cadeau", "Gift"), description: L("هدية أصلية لعشاق الديكور", "Cadeau original déco", "Original gift for décor lovers") },
     ],
-    variants: [{ id: "var-aurora", name: L("أسود", "Noir", "Black"), price: 189, compareAtPrice: 279, sku: "NRV-AURORA-01", stock: 68 }],
+    variants: [{ id: "var-aurora", name: L("أبيض", "Blanc", "White"), price: 189, compareAtPrice: 279, sku: "NRV-AURORA-01", stock: 68 }],
     upsellIds: ["prod-mx003", "prod-starbt"],
     crossSellIds: ["prod-rabbit"],
     seo: {
-      title: L("بروجيكتور الأورورا الشمالية | NOORVA", "Projecteur Aurores Boréales | NOORVA", "Northern Lights Aurora Galaxy Projector | NOORVA"),
-      description: L("بروجيكتور أورورا وموج مائي مع تحكم بالتطبيق — الدفع عند الاستلام", "Projecteur aurore et vagues avec app — COD", "Aurora and water-ripple projector with app control — COD"),
+      title: L(
+        "بروجيكتور أورورا أبيض هندسي بلوتوث + قمر ونجوم | NOORVA",
+        "Projecteur Aurore Blanc Géométrique Bluetooth | NOORVA",
+        "White Geometric Aurora Star Projector Bluetooth + Moon | NOORVA"
+      ),
+      description: L(
+        "بروجيكتور أورورا شمالية بجسم أبيض هندسي، نجوم وقمر، سبيكر بلوتوث وريموت بمؤقت — الدفع عند الاستلام في المغرب",
+        "Projecteur aurore corps blanc géométrique, étoiles et lune, Bluetooth et minuterie — COD Maroc",
+        "White geometric northern-lights aurora projector with stars, moon, Bluetooth speaker and timer remote — COD Morocco"
+      ),
     },
   },
   {
@@ -385,10 +403,10 @@ export const products: Product[] = [
 
 export const reviews: ProductReview[] = [
   { id: "r1", productId: "prod-mx003", author: "سارة المنصوري", city: "الدار البيضاء", rating: 5, title: L("حولت غرفتي!", "Chambre transformée!", "Transformed my room!"), content: L("بروجيكتور MX003 رائع، والبلوتوث كيخدم مزيان بزاف. التوصيل سريع والدفع عند الاستلام مريح.", "Projecteur MX003 génial, le Bluetooth fonctionne super bien. Livraison rapide.", "MX003 projector is amazing, Bluetooth works great. Fast delivery."), date: "2026-06-20", verified: true, images: [resolveProductImage("astronaut-bt-speaker-projector", "04-bedroom", "thumbnail")] },
-  { id: "r2", productId: "prod-aurora", author: "يوسف العلوي", city: "الرباط", rating: 5, title: L("فيرال تيك توك", "Viral TikTok", "TikTok viral"), content: L("بروجيكتور الأورورا كيعطي تصوير خرافي للريلز. تأثير الموج المائي زوين بزاف.", "Le projecteur aurore est parfait pour les Reels. L'effet vagues est superbe.", "Aurora projector is perfect for Reels. The water-ripple effect is amazing."), date: "2026-06-18", verified: true, images: [resolveProductImage("northern-lights-galaxy-projector", "06-gaming-room", "thumbnail")], hasVideo: true },
+  { id: "r2", productId: "prod-aurora", author: "يوسف العلوي", city: "الرباط", rating: 5, title: L("فيرال تيك توك", "Viral TikTok", "TikTok viral"), content: L("بروجيكتور الأورورا الأبيض كيعطي تصوير خرافي. القمر والنجوم والبلوتوث زوينين بزاف.", "Le projecteur aurore blanc est parfait pour les Reels. Lune, étoiles et Bluetooth au top.", "The white aurora projector is perfect for Reels. Moon, stars and Bluetooth are amazing."), date: "2026-06-18", verified: true, images: [resolveProductImage("northern-lights-galaxy-projector", "06-gaming-room", "thumbnail")], hasVideo: true },
   { id: "r3", productId: "prod-rabbit", author: "إيمان بنجلون", city: "مراكش", rating: 5, title: L("هدية بنتي", "Cadeau fille", "Daughter gift"), content: L("كاروسيل الأرانب زوين بزاف وجهاز الصوت كيهدّئ بنتي بسرعة.", "Le carrousel lapin est adorable et le sound machine calme ma fille rapidement.", "The rabbit carousel is adorable and the sound machine calms my daughter fast."), date: "2026-06-12", verified: true, images: [resolveProductImage("rabbit-carousel-night-light", "04-bedroom", "thumbnail")] },
   { id: "r4", productId: "prod-starbt", author: "أمين التازي", city: "طنجة", rating: 5, title: L("جودة عالية", "Haute qualité", "High quality"), content: L("بروجيكتور المجرة كيشعل الغرفة كاملة، البلوتوث زوين والمؤقت 1س/2س مفيد بزاف.", "Le projecteur galaxie illumine toute la pièce, Bluetooth top et minuterie 1h/2h très utile.", "Galaxy projector lights the whole room, Bluetooth is great and the 1h/2h timer is very useful."), date: "2026-06-08", verified: true, images: [resolveProductImage("bluetooth-star-projector", "05-living-room", "thumbnail")] },
-  { id: "r5", productId: "prod-aurora", author: "خديجة الفاسي", city: "فاس", rating: 5, title: L("خدمة ممتازة", "Service top", "Great service"), content: L("طلبت بالواتساب والدفع عند الاستلام. كلشي ساهل والتطبيق كيخدم مزيان.", "Commande facile COD, l'app fonctionne très bien.", "Easy COD order, the app works very well."), date: "2026-06-01", verified: true, images: [resolveProductImage("northern-lights-galaxy-projector", "04-bedroom", "thumbnail")] },
+  { id: "r5", productId: "prod-aurora", author: "خديجة الفاسي", city: "فاس", rating: 5, title: L("خدمة ممتازة", "Service top", "Great service"), content: L("طلبت بالواتساب والدفع عند الاستلام. الريموت ساهل والأورورا كتهنّي قبل النوم.", "Commande COD facile, télécommande simple, aurore parfaite avant de dormir.", "Easy COD order, simple remote, perfect aurora before sleep."), date: "2026-06-01", verified: true, images: [resolveProductImage("northern-lights-galaxy-projector", "04-bedroom", "thumbnail")] },
   { id: "r6", productId: "prod-mx003", author: "محمد برادة", city: "أكادير", rating: 5, title: L("أجواء سينمائية", "Ambiance cinéma", "Cinema vibe"), content: L("شريت جوج بروجيكتورات MX003. الغرفة ولاّت سينما بصوت البلوتوث.", "Deux projecteurs MX003 = ambiance cinéma avec le Bluetooth.", "Two MX003 projectors = cinema vibe with Bluetooth sound."), date: "2026-05-25", verified: true, hasVideo: true },
   { id: "r7", productId: "prod-starbt", author: "نور الهدى", city: "الدار البيضاء", rating: 5, title: L("أحسن شراء", "Meilleur achat", "Best purchase"), content: L("21 وضع إضاءة والموسيقى مع البلوتوث كتهنّي بنتي قبل النوم.", "21 modes et la musique Bluetooth calment ma fille avant de dormir.", "21 light modes and Bluetooth music calm my daughter before sleep."), date: "2026-05-18", verified: true, images: [resolveProductImage("bluetooth-star-projector", "05-living-room", "thumbnail")] },
   { id: "r8", productId: "prod-rabbit", author: "كريم بنعيسى", city: "الرباط", rating: 4, title: L("كيوت وفاخر", "Mignon et premium", "Cute and premium"), content: L("كاروسيل الأرانب كيوت بزاف. الهدية ممتازة لبنتي.", "Le carrousel lapin est trop mignon. Cadeau parfait pour ma fille.", "The rabbit carousel is super cute. Perfect gift for my daughter."), date: "2026-05-10", verified: true },
@@ -405,7 +423,7 @@ export const faqs: FAQ[] = [
 export const testimonials: Testimonial[] = [
   { id: "t1", name: "ليلى", city: "الدار البيضاء", videoThumbnail: resolveProductImage("astronaut-bt-speaker-projector", "04-bedroom", "thumbnail"), videoUrl: "#", quote: L("بروجيكتور MX003 بدّل أجواء غرفتي", "MX003 a changé ma chambre", "MX003 changed my room") },
   { id: "t2", name: "نادية", city: "مراكش", videoThumbnail: resolveProductImage("rabbit-carousel-night-light", "08-kids-room", "thumbnail"), videoUrl: "#", quote: L("كاروسيل الأرانب أحسن هدية", "Le carrousel lapin, meilleur cadeau", "The rabbit carousel is the best gift") },
-  { id: "t3", name: "إيمان", city: "الرباط", videoThumbnail: resolveProductImage("northern-lights-galaxy-projector", "06-gaming-room", "thumbnail"), videoUrl: "#", quote: L("بروجيكتور الأورورا خرافي", "Le projecteur aurore est incroyable", "The aurora projector is amazing") },
+  { id: "t3", name: "إيمان", city: "الرباط", videoThumbnail: resolveProductImage("northern-lights-galaxy-projector", "06-gaming-room", "thumbnail"), videoUrl: "#", quote: L("الأورورا البيضاء والقمر خرافيين", "Aurore blanche et lune incroyables", "White aurora and moon are amazing") },
   { id: "t4", name: "يوسف", city: "طنجة", videoThumbnail: resolveProductImage("bluetooth-star-projector", "05-living-room", "thumbnail"), videoUrl: "#", quote: L("بروجيكتور المجرة كيشعل الغرفة", "Le projecteur galaxie illumine tout", "The galaxy projector lights the room") },
 ];
 

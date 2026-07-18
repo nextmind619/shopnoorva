@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T14:13:04.439Z",
+  "generatedAt": "2026-07-18T14:33:04.355Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -665,7 +665,7 @@
     "northern-lights-galaxy-projector": {
       "slug": "northern-lights-galaxy-projector",
       "sku": "NRV-AURORA-01",
-      "name": "Northern Lights Aurora Galaxy Projector",
+      "name": "White Geometric Dream Aurora Star Projector with Bluetooth",
       "images": {
         "01-hero-white-bg": {
           "original": "/products/northern-lights-galaxy-projector/01-hero-white-bg.jpg",
@@ -888,27 +888,28 @@
           }
         }
       },
-      "prompts": {
-        "09-close-up": {
-          "pollinations": "Macro close-up Northern Lights Aurora Galaxy Projector, buttons textures ports. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "gpt-image": "[GPT Image] Macro close-up Northern Lights Aurora Galaxy Projector, buttons textures ports. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "gemini": "[Gemini Image] Macro close-up Northern Lights Aurora Galaxy Projector, buttons textures ports. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "flux": "[FLUX] Macro close-up Northern Lights Aurora Galaxy Projector, buttons textures ports. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "ideogram": "[Ideogram] Macro close-up Northern Lights Aurora Galaxy Projector, buttons textures ports. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "midjourney": "[Midjourney] Macro close-up Northern Lights Aurora Galaxy Projector, buttons textures ports. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica --style raw --v 6.1"
-        },
-        "19-desktop-banner": {
-          "pollinations": "Ultra-wide desktop banner Northern Lights Aurora Galaxy Projector. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "gpt-image": "[GPT Image] Ultra-wide desktop banner Northern Lights Aurora Galaxy Projector. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "gemini": "[Gemini Image] Ultra-wide desktop banner Northern Lights Aurora Galaxy Projector. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "flux": "[FLUX] Ultra-wide desktop banner Northern Lights Aurora Galaxy Projector. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "ideogram": "[Ideogram] Ultra-wide desktop banner Northern Lights Aurora Galaxy Projector. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica",
-          "midjourney": "[Midjourney] Ultra-wide desktop banner Northern Lights Aurora Galaxy Projector. Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.. commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica --style raw --v 6.1"
-        }
-      },
+      "prompts": {},
       "sources": {
-        "09-close-up": "ai-generated",
-        "19-desktop-banner": "ai-generated"
+        "09-close-up": "commercial",
+        "19-desktop-banner": "commercial",
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
+        "03-lifestyle": "commercial",
+        "04-bedroom": "commercial",
+        "05-living-room": "commercial",
+        "06-gaming-room": "commercial",
+        "07-romantic-room": "commercial",
+        "08-kids-room": "commercial",
+        "10-features": "commercial",
+        "11-package-contents": "commercial",
+        "12-dimensions": "commercial",
+        "13-before-after": "commercial",
+        "14-product-in-use": "commercial",
+        "15-banner": "commercial",
+        "16-packaging": "commercial",
+        "17-infographic": "commercial",
+        "18-mobile-banner": "commercial",
+        "20-social-media-banner": "commercial"
       }
     },
     "rabbit-carousel-night-light": {

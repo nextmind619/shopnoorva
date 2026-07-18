@@ -69,8 +69,8 @@ const PRODUCT_PROFILES = [
   },
   {
     id: "prod-aurora", slug: "northern-lights-galaxy-projector", sku: "NRV-AURORA-01",
-    name: "Northern Lights Aurora Galaxy Projector",
-    visualIdentity: "Exact product: dark UFO-shaped USB aurora galaxy projector (model WS-AL22276). Matte black dome over glossy black base. Projects rippling water patterns combined with colorful aurora borealis light and laser stars. Front touch panel with circular Bluetooth speaker grille. Remote with 10+ color buttons, app control. 15x11x12cm. DO NOT redesign.",
+    name: "White Geometric Dream Aurora Star Projector with Bluetooth",
+    visualIdentity: "Use uploaded reference as strict identity. Exact matte white faceted geometric low-poly Dream Aurora projector, clear crystal dome + side apertures, four grey front buttons, white remote with red power and 1H/2H. Aurora + stars + crescent moon. Bluetooth speaker. NEVER black UFO dome, astronaut, or rabbit lamp.",
     sourceUrls: {},
   },
   {
