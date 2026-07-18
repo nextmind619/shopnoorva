@@ -63,8 +63,8 @@ const PRODUCT_PROFILES = [
   },
   {
     id: "prod-starbt", slug: "bluetooth-star-projector", sku: "NRV-STARBT-01",
-    name: "Bluetooth Crystal Dome Star Projector",
-    visualIdentity: "Exact product: matte black UFO/saucer Bluetooth star projector with faceted crystal dome, wide flat top rim, tapered bowl body, control buttons + USB/DC ports + OFF-ON switch, speaker mesh, slim black remote with red power button. Nebula + laser stars. DO NOT redesign into aluminium cylinder.",
+    name: "Multi-Color Galaxy Star Projector Night Light with Speaker & Remote",
+    visualIdentity: "Use the uploaded reference as strict visual identity. Exact matte black Cosmic Voyager bowl galaxy projector with faceted transparent crystal dome, USB/TF/DC 5V ports, OFF-ON, slim black remote with red LED/LASER buttons and 1H/2H timer. Up to 21 light modes, Bluetooth speaker. NEVER aluminium cylinder, astronaut, or rabbit lamp.",
     sourceUrls: {},
   },
   {

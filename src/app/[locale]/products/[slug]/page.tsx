@@ -21,14 +21,28 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
   if (!product) return {};
 
+  const hero = resolveProductHero(product);
+  const canonical = `${SITE_URL}/ar/products/${product.slug}`;
+
   return {
     title: product.seo.title.ar,
     description: product.seo.description.ar,
+    keywords: product.tags,
+    alternates: { canonical },
     openGraph: {
-      title: product.name.ar,
-      description: product.shortDescription.ar,
-      images: [{ url: resolveProductHero(product) }],
+      title: product.seo.title.ar,
+      description: product.seo.description.ar,
+      images: [{ url: hero, alt: product.name.ar }],
       locale: "ar_MA",
+      type: "website",
+      url: canonical,
+      siteName: "NOORVA",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.seo.title.ar,
+      description: product.seo.description.ar,
+      images: [hero],
     },
   };
 }

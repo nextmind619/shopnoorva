@@ -18,7 +18,7 @@ import { ProductOrderForm } from "@/components/product/product-order-form";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
 import { ProductLandingSections } from "@/components/product/product-landing-sections";
 
-const BENEFIT_CARDS = [
+const BENEFIT_CARDS_DEFAULT = [
   { emoji: "✨", text: "يحوّل الغرفة إلى مجرة مذهلة" },
   { emoji: "🌙", text: "يساعد على الاسترخاء قبل النوم" },
   { emoji: "🎁", text: "هدية مثالية لأي مناسبة" },
@@ -26,6 +26,16 @@ const BENEFIT_CARDS = [
   { emoji: "🎮", text: "ريموت للتحكم عن بعد" },
   { emoji: "⏰", text: "مؤقت ذكي للإيقاف التلقائي" },
   { emoji: "🌈", text: "أكثر من 10 أوضاع إضاءة" },
+];
+
+const BENEFIT_CARDS_STARBT = [
+  { emoji: "🌌", text: "حتى 21 وضع إضاءة ملونة" },
+  { emoji: "💎", text: "قبة كريستال شفافة متعددة الأوجه" },
+  { emoji: "🎵", text: "سبيكر بلوتوث + USB/TF" },
+  { emoji: "🎮", text: "ريموت كامل للتحكم عن بعد" },
+  { emoji: "⏰", text: "مؤقت إيقاف 1 ساعة / 2 ساعة" },
+  { emoji: "🌙", text: "مثالي للنوم والاسترخاء" },
+  { emoji: "🎁", text: "هدية مثالية للعائلة والأطفال" },
 ];
 
 const WHY_NOORVA = [
@@ -75,12 +85,25 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
     [recentlyViewedIds, product.id]
   );
 
-  const productFaqs = [
-    { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
-    { q: "كم مدة التوصيل؟", a: "24-48 ساعة للمدن الكبرى (الدار البيضاء، الرباط، مراكش، فاس، طنجة). 2-4 أيام لباقي المدن." },
-    { q: "هل يمكن الاستبدال؟", a: "نعم، استبدال خلال 7 أيام عند وجود عيب. تواصل معنا على واتساب." },
-    { q: "هل المنتج مضمون؟", a: `نعم، ضمان ${product.warrantyMonths || 12} شهر على جميع منتجات NOORVA.` },
-  ];
+  const benefitCards =
+    product.slug === "bluetooth-star-projector" ? BENEFIT_CARDS_STARBT : BENEFIT_CARDS_DEFAULT;
+
+  const productFaqs =
+    product.slug === "bluetooth-star-projector"
+      ? [
+          { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
+          { q: "كم وضع إضاءة فيه؟", a: "حتى 21 وضع إسقاط مع ألوان LED أحمر/أخضر/أزرق/أبيض وتركيبات موجات ونجوم." },
+          { q: "واش فيه بلوتوث وموسيقى؟", a: "نعم، سبيكر بلوتوث مدمج. تقدّر توصل الهاتف أو تستعمل USB / بطاقة TF حسب الجهاز." },
+          { q: "كيفاش كيخدم المؤقت؟", a: "من الريموت تقدّر تختار مؤقت إيقاف تلقائي 1 ساعة أو 2 ساعة — مناسب قبل النوم." },
+          { q: "شنو الطاقة وشنو في العلبة؟", a: "الطاقة عبر USB DC 5V (6W تقريباً). العلبة فيها البروجيكتور، الريموت، كابل USB، ودليل. بطاريات الريموت 2×AAA غير مشمولة." },
+          { q: "كم مدة التوصيل وهل فيه ضمان؟", a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${product.warrantyMonths || 12} شهر واستبدال خلال 7 أيام عند وجود عيب.` },
+        ]
+      : [
+          { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
+          { q: "كم مدة التوصيل؟", a: "24-48 ساعة للمدن الكبرى (الدار البيضاء، الرباط، مراكش، فاس، طنجة). 2-4 أيام لباقي المدن." },
+          { q: "هل يمكن الاستبدال؟", a: "نعم، استبدال خلال 7 أيام عند وجود عيب. تواصل معنا على واتساب." },
+          { q: "هل المنتج مضمون؟", a: `نعم، ضمان ${product.warrantyMonths || 12} شهر على جميع منتجات NOORVA.` },
+        ];
 
   useEffect(() => {
     addRecentlyViewed(product.id);
@@ -278,8 +301,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 <h2 className="text-xl sm:text-2xl font-bold text-center mb-8 text-white">لماذا ستحبه؟</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                   {(product.benefits.length >= 4
-                    ? product.benefits.map((b, i) => ({ emoji: BENEFIT_CARDS[i % BENEFIT_CARDS.length]?.emoji || "✨", text: b.ar }))
-                    : BENEFIT_CARDS
+                    ? product.benefits.map((b, i) => ({ emoji: benefitCards[i % benefitCards.length]?.emoji || "✨", text: b.ar }))
+                    : benefitCards
                   ).map((card, i) => (
                     <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }} className="bg-[#12121a] rounded-2xl p-4 sm:p-5 border border-white/10 shadow-soft hover:shadow-luxury hover:-translate-y-1 transition-all duration-300 text-center">
                       <span className="text-2xl">{card.emoji}</span>

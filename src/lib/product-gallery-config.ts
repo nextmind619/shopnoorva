@@ -294,8 +294,124 @@ function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
   return slides;
 }
 
+const STAR_PROJECTOR_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🌌",
+    heading: "بروجيكتور المجرة والنجوم",
+    subtitle: "21 وضع إضاءة · بلوتوث · ريموت بمؤقت",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "📷",
+    heading: "المنتج الأصلي — قبة كريستال",
+    subtitle: "جسم أسود مطفي · صورة احترافية",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "04-bedroom",
+    emoji: "🛏️",
+    heading: "غرفة نوم هادئة",
+    subtitle: "مجرة ناعمة قبل النوم",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "07-romantic-room",
+    emoji: "💫",
+    heading: "أمسية رومانسية",
+    subtitle: "ألوان ناعمة لتاريخ مثالي",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "⭐",
+    heading: "حتى 21 وضع إضاءة",
+    subtitle: "RGBW · تعتيم · تحكم كامل",
+    objectFit: "contain",
+  },
+  {
+    section: "bluetooth",
+    imageType: "05-living-room",
+    emoji: "🎵",
+    heading: "سبيكر بلوتوث مدمج",
+    subtitle: "موسيقى من الهاتف أو USB/TF",
+    objectFit: "cover",
+  },
+  {
+    section: "projection",
+    imageType: "14-product-in-use",
+    emoji: "✨",
+    heading: "إسقاط مجرة ونجوم",
+    subtitle: "موجات ضوئية + نقاط نجوم",
+    objectFit: "cover",
+  },
+  {
+    section: "projection",
+    imageType: "08-kids-room",
+    emoji: "👶",
+    heading: "مثالي لغرفة الأطفال",
+    subtitle: "إضاءة مهدّئة وموسيقى للنوم",
+    objectFit: "cover",
+  },
+  {
+    section: "gift",
+    imageType: "20-social-media-banner",
+    emoji: "🎁",
+    heading: "هدية مثالية",
+    subtitle: "للعائلة والأصدقاء",
+    objectFit: "cover",
+  },
+  {
+    section: "package",
+    imageType: "16-packaging",
+    emoji: "📦",
+    heading: "العلبة ومحتويات الشحنة",
+    subtitle: "بروجيكتور + ريموت + كابل USB + دليل",
+    objectFit: "contain",
+  },
+  {
+    section: "accessories",
+    imageType: "11-package-contents",
+    emoji: "🎮",
+    heading: "الريموت والملحقات",
+    subtitle: "تحكم كامل من السرير",
+    objectFit: "contain",
+  },
+  {
+    section: "dimensions",
+    imageType: "12-dimensions",
+    emoji: "📏",
+    heading: "الحجم المدمج",
+    subtitle: "≈ 13.5 × 13.5 × 10 سم",
+    objectFit: "contain",
+  },
+  {
+    section: "specifications",
+    imageType: "17-infographic",
+    emoji: "⏰",
+    heading: "مؤقت وخصائص ذكية",
+    subtitle: "1س / 2س · تعتيم · DC 5V 6W",
+    objectFit: "cover",
+  },
+  {
+    section: "specifications",
+    imageType: "09-close-up",
+    emoji: "🔍",
+    heading: "تفاصيل القبة والجسم",
+    subtitle: "قبة كريستال متعددة الأوجه",
+    objectFit: "contain",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
+  "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {
