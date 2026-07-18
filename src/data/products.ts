@@ -430,7 +430,7 @@ export const testimonials: Testimonial[] = [
 export const instagramPosts: InstagramPost[] = [
   { id: "ig1", image: resolveProductImage("northern-lights-galaxy-projector", "20-social-media-banner", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 2847 },
   { id: "ig2", image: resolveProductImage("astronaut-bt-speaker-projector", "20-social-media-banner", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 1923 },
-  { id: "ig3", image: resolveProductImage("bluetooth-star-projector", "20-social-media-banner", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 3456 },
+  { id: "ig3", image: resolveProductImage("bluetooth-star-projector", "02-premium-hero", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 3456 },
   { id: "ig4", image: resolveProductImage("rabbit-carousel-night-light", "20-social-media-banner", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 1567 },
 ];
 
