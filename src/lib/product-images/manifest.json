@@ -527,17 +527,6 @@
             "lg": "/generated/bluetooth-star-projector/responsive/10-features-2000.webp"
           }
         },
-        "11-package-contents": {
-          "original": "/products/bluetooth-star-projector/11-package-contents.jpg",
-          "webp": "/products/bluetooth-star-projector/11-package-contents.webp",
-          "avif": "/products/bluetooth-star-projector/11-package-contents.avif",
-          "thumbnail": "/products/bluetooth-star-projector/thumbs/11-package-contents-400.webp",
-          "responsive": {
-            "sm": "/products/bluetooth-star-projector/responsive/11-package-contents-640.webp",
-            "md": "/products/bluetooth-star-projector/responsive/11-package-contents-1280.webp",
-            "lg": "/products/bluetooth-star-projector/responsive/11-package-contents-2000.webp"
-          }
-        },
         "12-dimensions": {
           "original": "/specifications/bluetooth-star-projector/12-dimensions.jpg",
           "webp": "/specifications/bluetooth-star-projector/12-dimensions.webp",
@@ -582,17 +571,6 @@
             "lg": "/banners/bluetooth-star-projector/responsive/15-banner-2000.webp"
           }
         },
-        "16-packaging": {
-          "original": "/products/bluetooth-star-projector/16-packaging.jpg",
-          "webp": "/products/bluetooth-star-projector/16-packaging.webp",
-          "avif": "/products/bluetooth-star-projector/16-packaging.avif",
-          "thumbnail": "/products/bluetooth-star-projector/thumbs/16-packaging-400.webp",
-          "responsive": {
-            "sm": "/products/bluetooth-star-projector/responsive/16-packaging-640.webp",
-            "md": "/products/bluetooth-star-projector/responsive/16-packaging-1280.webp",
-            "lg": "/products/bluetooth-star-projector/responsive/16-packaging-2000.webp"
-          }
-        },
         "17-infographic": {
           "original": "/generated/bluetooth-star-projector/17-infographic.jpg",
           "webp": "/generated/bluetooth-star-projector/17-infographic.webp",
@@ -625,17 +603,6 @@
             "md": "/banners/bluetooth-star-projector/responsive/19-desktop-banner-1280.webp",
             "lg": "/banners/bluetooth-star-projector/responsive/19-desktop-banner-2000.webp"
           }
-        },
-        "20-social-media-banner": {
-          "original": "/banners/bluetooth-star-projector/20-social-media-banner.jpg",
-          "webp": "/banners/bluetooth-star-projector/20-social-media-banner.webp",
-          "avif": "/banners/bluetooth-star-projector/20-social-media-banner.avif",
-          "thumbnail": "/banners/bluetooth-star-projector/thumbs/20-social-media-banner-400.webp",
-          "responsive": {
-            "sm": "/banners/bluetooth-star-projector/responsive/20-social-media-banner-640.webp",
-            "md": "/banners/bluetooth-star-projector/responsive/20-social-media-banner-1280.webp",
-            "lg": "/banners/bluetooth-star-projector/responsive/20-social-media-banner-2000.webp"
-          }
         }
       },
       "prompts": {},
@@ -650,16 +617,13 @@
         "08-kids-room": "commercial",
         "09-close-up": "commercial",
         "10-features": "commercial",
-        "11-package-contents": "commercial",
         "12-dimensions": "commercial",
         "13-before-after": "commercial",
         "14-product-in-use": "commercial",
         "15-banner": "commercial",
-        "16-packaging": "commercial",
         "17-infographic": "commercial",
         "18-mobile-banner": "commercial",
-        "19-desktop-banner": "commercial",
-        "20-social-media-banner": "commercial"
+        "19-desktop-banner": "commercial"
       }
     },
     "northern-lights-galaxy-projector": {
