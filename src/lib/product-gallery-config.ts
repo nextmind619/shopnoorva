@@ -359,8 +359,30 @@ const STAR_PROJECTOR_SLIDES: GallerySlideConfig[] = [
     subtitle: "إضاءة مهدّئة وموسيقى للنوم",
     objectFit: "cover",
   },
-  // gift / package / accessories slides removed — old aluminium-cylinder
-  // marketing assets must not appear on this product page.
+  {
+    section: "gift",
+    imageType: "20-social-media-banner",
+    emoji: "🎁",
+    heading: "هدية مثالية",
+    subtitle: "للعائلة والأصدقاء",
+    objectFit: "contain",
+  },
+  {
+    section: "package",
+    imageType: "16-packaging",
+    emoji: "📦",
+    heading: "العلبة ومحتويات الشحنة",
+    subtitle: "بروجيكتور + ريموت + كابل USB + دليل",
+    objectFit: "contain",
+  },
+  {
+    section: "accessories",
+    imageType: "11-package-contents",
+    emoji: "🎮",
+    heading: "الريموت والملحقات",
+    subtitle: "تحكم كامل من السرير",
+    objectFit: "contain",
+  },
   {
     section: "dimensions",
     imageType: "12-dimensions",

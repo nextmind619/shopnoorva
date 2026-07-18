@@ -46,7 +46,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
     categoryId: "cat-projectors",
     shortDescription: "Matte black Cosmic Voyager bowl — faceted crystal dome, up to 21 light modes, Bluetooth speaker, remote with 1h/2h timer, USB DC 5V 6W",
     visualIdentity:
-      "Use the uploaded reference image as the strict visual reference for the exact physical product. Reproduce the same matte black Cosmic Voyager-style galaxy/star projector without changing its shape, proportions, body design, faceted transparent crystal dome, buttons, ports (USB-A, TF, DC 5V, AUDIO IN when visible), speaker area, OFF-ON switch, or exact slim black remote control layout. NEVER aluminium cylinder, astronaut, rabbit lamp, white projector, or any redesign.",
+      "MASTER REAL PRODUCT (client-confirmed): matte black bowl/saucer galaxy star projector with faceted transparent crystal dome glowing cyan/blue, circular speaker mesh on the body, front panel with four rectangular buttons + USB/TF + dual DC 5V 2A ports, slim black remote with red power button and 1H/2H. Marketing composite may show nebula projection strip and 10 color-mode spheres. NEVER aluminium cylinder, astronaut, white geometric aurora, rabbit lamp, or any redesign.",
     dimensions: "≈13.5 × 13.5 × 10 cm",
     accessories: ["Remote control (2×AAA not included)", "USB power cable", "User manual"],
     packageItems: ["Galaxy star projector", "Remote control", "USB cable", "Instruction manual"],
