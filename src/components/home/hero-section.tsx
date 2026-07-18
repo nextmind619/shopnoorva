@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { getProductHeroUrl } from "@/lib/product-images/assets";
 
 const TRUST_PILLS = ["cod", "morocco", "quality", "warranty", "shipping"] as const;
+const HERO_IMAGE = "/hero/collection-banner.png";
 
 export function HeroSection() {
   const t = useTranslations("hero");
@@ -48,12 +48,12 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="relative w-full aspect-square max-w-lg mx-auto lg:ms-auto"
+            className="relative w-full aspect-[3/2] max-w-xl mx-auto lg:ms-auto"
           >
             <div className="absolute inset-0 bg-gold/10 rounded-full blur-3xl" />
             <Image
-              src={getProductHeroUrl("northern-lights-galaxy-projector")}
-              alt="بروجيكتور الأورورا الشمالية NOORVA"
+              src={HERO_IMAGE}
+              alt="مجموعة بروجيكتور النجوم والمجرة NOORVA"
               fill
               priority
               className="object-cover rounded-3xl shadow-luxury"
