@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T15:43:44.477Z",
+  "generatedAt": "2026-07-19T13:01:12.892Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -415,7 +415,7 @@
     "bluetooth-star-projector": {
       "slug": "bluetooth-star-projector",
       "sku": "NRV-STARBT-01",
-      "name": "Multi-Color Galaxy Projector Night Light with Speaker",
+      "name": "Multi-Color Galaxy Star Projector Night Light with Speaker & Remote",
       "images": {
         "01-hero-white-bg": {
           "original": "/products/bluetooth-star-projector/01-hero-white-bg.jpg",
@@ -915,7 +915,7 @@
     "rabbit-carousel-night-light": {
       "slug": "rabbit-carousel-night-light",
       "sku": "NRV-RABBIT-01",
-      "name": "Rabbit Carousel Music Box Night Light",
+      "name": "DORVOL Pink Rabbit Carousel Night Light (Amazon B0H65HJYPN)",
       "images": {
         "01-hero-white-bg": {
           "original": "/products/rabbit-carousel-night-light/01-hero-white-bg.jpg",
@@ -1157,9 +1157,28 @@
         }
       },
       "sources": {
-        "04-bedroom": "ai-generated",
-        "12-dimensions": "ai-generated"
-      }
+        "04-bedroom": "amazon-commercial",
+        "12-dimensions": "amazon-commercial",
+        "01-hero-white-bg": "amazon-commercial",
+        "02-premium-hero": "amazon-commercial",
+        "09-close-up": "amazon-commercial",
+        "10-features": "amazon-commercial",
+        "11-package-contents": "amazon-commercial",
+        "16-packaging": "amazon-commercial",
+        "17-infographic": "amazon-commercial",
+        "20-social-media-banner": "amazon-commercial",
+        "03-lifestyle": "amazon-commercial",
+        "05-living-room": "amazon-commercial",
+        "08-kids-room": "amazon-commercial",
+        "14-product-in-use": "amazon-commercial",
+        "06-gaming-room": "amazon-commercial",
+        "07-romantic-room": "amazon-commercial",
+        "13-before-after": "amazon-commercial",
+        "15-banner": "amazon-commercial",
+        "18-mobile-banner": "amazon-commercial",
+        "19-desktop-banner": "amazon-commercial"
+      },
+      "cardImage": "/products/rabbit-carousel-night-light/01-hero-white-bg.webp"
     }
   }
 }

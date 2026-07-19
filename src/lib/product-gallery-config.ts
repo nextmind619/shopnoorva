@@ -214,6 +214,15 @@ function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
       subtitle: "تشغيل الموسيقى عبر الهاتف بجودة عالية",
       objectFit: "cover",
     });
+  } else {
+    slides.push({
+      section: "projection",
+      imageType: "14-product-in-use",
+      emoji: "🌌",
+      heading: "إسقاط ليلي سحري",
+      subtitle: "6 أفلام قابلة للتبديل · دوران 360°",
+      objectFit: "cover",
+    });
   }
 
   slides.push(
@@ -221,8 +230,11 @@ function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
       section: "projection",
       imageType: "06-gaming-room",
       emoji: "🌌",
-      heading: "تأثيرات إسقاط متعددة",
-      subtitle: "ألوان مجرة متعددة · تحكم كامل",
+      heading: productSlug === "rabbit-carousel-night-light" ? "6 أفلام إسقاط قابلة للتبديل" : "تأثيرات إسقاط متعددة",
+      subtitle:
+        productSlug === "rabbit-carousel-night-light"
+          ? "نجوم · محيط · ديناصورات · عيد ميلاد · تحت الماء · غابة"
+          : "ألوان مجرة متعددة · تحكم كامل",
       objectFit: "cover",
     },
     {
@@ -230,7 +242,10 @@ function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
       imageType: "08-kids-room",
       emoji: "👶",
       heading: "مثالي لغرفة الأطفال",
-      subtitle: "أجواء هادئة ومريحة للنوم",
+      subtitle:
+        productSlug === "rabbit-carousel-night-light"
+          ? "5 ألوان LED ناعمة لأجواء قبل النوم"
+          : "أجواء هادئة ومريحة للنوم",
       objectFit: "cover",
     },
     {
@@ -254,7 +269,10 @@ function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
       imageType: "11-package-contents",
       emoji: "🧰",
       heading: "محتويات العلبة",
-      subtitle: "ريموت + كابل + دليل الاستخدام",
+      subtitle:
+        productSlug === "rabbit-carousel-night-light"
+          ? "المصباح · 6 أفلام إسقاط · دليل الاستخدام"
+          : "ريموت + كابل + دليل الاستخدام",
       objectFit: "contain",
     },
     {
