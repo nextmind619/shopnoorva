@@ -320,14 +320,18 @@ export const products: Product[] = [
   {
     id: "prod-rabbit",
     slug: "rabbit-carousel-night-light",
-    name: L("مصباح كاروسيل الأرانب الموسيقي", "Veilleuse Carrousel Lapin Musicale", "Rabbit Carousel Music Box Night Light"),
+    name: L(
+      "كاروسيل الأرانب — نوم هادئ بإضاءة ناعمة",
+      "Veilleuse Carrousel Lapin Musicale",
+      "Rabbit Carousel Music Box Night Light"
+    ),
     shortDescription: L(
-      "كاروسيل وردي وذهبي بأرانب دوّارة — جهاز صوت للنوم + ريموت + شحن USB-C",
-      "Carrousel rose et or avec lapins — sound machine, télécommande, USB-C",
-      "Pink gold carousel with spinning bunnies — sound machine, remote, USB-C"
+      "أرانب دوّارة + موسيقى مهدّئة + إسقاط نجوم + ريموت — والدفع غير ملي يوصلك الطلب",
+      "Lapins rotatifs + musique douce + projection + télécommande — paiement à la livraison",
+      "Rotating bunnies + lullaby + star projection + remote — cash on delivery"
     ),
     description: L(
-      "مصباح كاروسيل الأرانب من NOORVA بتصميم فاخر وردي وذهبي. أرانب صغيرة دوّارة على أعمدة ذهبية، جهاز صوت مدمج يشغّل موسيقى هادئة للنوم، ألوان متعددة، وريموت تحكم. هدية مثالية للبنات والعائلات. شحن USB-C.",
+      "خلي ليلة طفلك تبدا بهدوء. كاروسيل الأرانب من NOORVA بتصميم وردي وذهبي فاخر: أرانب صغيرة دوّارة على أعمدة ذهبية، إضاءة ناعمة مع إسقاط نجوم، وجهاز صوت يشغّل موسيقى مهدّئة. تحكّمي من الريموت الأبيض أو من الأزرار، وشحّني بسهولة عبر USB-C. هدية مثالية للبنات والعائلات — خلّصي كاش عند الباب فجميع مدن المغرب.",
       "Veilleuse carrousel lapin NOORVA rose et or. Petits lapins rotatifs sur tiges dorées, sound machine intégré avec musique douce, couleurs multiples, télécommande. Cadeau parfait. Chargement USB-C.",
       "NOORVA rabbit carousel night light in pink and gold. Small spinning bunny figurines on gold rods, built-in sound machine with soft lullaby music, multiple colors, remote control. Perfect gift. USB-C rechargeable."
     ),
@@ -346,43 +350,54 @@ export const products: Product[] = [
     flashSaleEndsAt: flashEnd,
     warrantyMonths: 12,
     problemEmoji: "🐰",
-    problem: L("بنتك خايفة من الظلام أو ما كتنعسش بسهولة؟", "Enfant qui a peur du noir ou dort difficilement?", "Child afraid of the dark or struggling to fall asleep?"),
-    problemCause: L("المصابيح العادية قاسية أو مملة وما فيهاش صوت مهدئ", "Les veilleuses classiques sont dures ou sans son apaisant", "Regular night lights are harsh and have no soothing sound"),
-    problemSolution: L("كاروسيل الأرانب + جهاز صوت + إضاءة ناعمة", "Carrousel lapin + sound machine + lumière douce", "Rabbit carousel + sound machine + soft light"),
+    problem: L("بغيتي طفلك ينعس بهدوء بلا خوف من الظلام؟", "Envie que votre enfant s'endorme sans peur du noir?", "Want your child to fall asleep calmly without fear of the dark?"),
+    problemCause: L("الضو القاسي أو الغرفة المظلمة كيزيدو القلق قبل النوم", "Lumière dure ou pièce noire = anxiété au coucher", "Harsh light or a dark room raises bedtime anxiety"),
+    problemSolution: L("كاروسيل دوّار + موسيقى + إضاءة ناعمة", "Carrousel + musique + lumière douce", "Rotating carousel + music + soft light"),
     deepDescription: L(
-      "كاروسيل فاخر وردي وذهبي مع أرانب دوّارة وجهاز صوت مدمج يشغّل موسيقى هادئة. إضاءة ناعمة، ألوان متعددة، وريموت — هدية مثالية للبنات والعائلات.",
-      "Carrousel rose et or avec lapins rotatifs et sound machine intégré. Lumière douce, musique, télécommande.",
-      "Luxury pink gold carousel with rotating bunnies and built-in sound machine. Soft glow, lullaby music, remote."
+      "كاروسيل فاخر وردي مطفي مع لمسات ذهبية/روز غولد: سقف مموّج، أرانب على أعمدة، قبة شفافة للإسقاط، أرجل منحنية، منفذ USB-C وأزرار أمامية، ريموت أبيض. مناسب لغرفة الأطفال والهدايا.",
+      "Carrousel rose mat et or/rose gold: toit festonné, lapins sur tiges, dôme projection, pieds courbes, USB-C, télécommande blanche.",
+      "Matte pink carousel with gold accents: scalloped canopy, bunnies on rods, projection cylinder, scroll legs, USB-C, white remote."
     ),
-    tags: ["carousel", "rabbit", "nightlight", "music", "kids", "gift", "bedroom", "decor", "relaxation"],
+    tags: ["carousel", "rabbit", "nightlight", "music", "kids", "gift", "bedroom", "nursery", "projector", "usb-c", "remote"],
     benefits: [
-      L("تصميم كاروسيل فاخر بأرانب", "Design carrousel lapin luxe", "Luxury rabbit carousel design"),
-      L("جهاز صوت لموسيقى هادئة", "Sound machine musique douce", "Sound machine with soft music"),
-      L("شحن USB-C", "Charge USB-C", "USB-C charging"),
-      L("هدية مثالية", "Cadeau idéal", "Ideal gift"),
+      L("أرانب دوّارة بهدوء 360°", "Rotation douce 360°", "Gentle 360° bunny rotation"),
+      L("موسيقى مهدّئة للنوم", "Musique douce pour dormir", "Soothing bedtime music"),
+      L("إسقاط نجوم ناعم على الغرفة", "Projection d'étoiles douce", "Soft star projection in the room"),
+      L("ريموت أبيض + شحن USB-C", "Télécommande + USB-C", "White remote + USB-C charging"),
+      L("هدية فاخرة للبنات والعائلات", "Cadeau premium", "Premium gift for girls & families"),
+      L("تصميم وردي وذهبي أنيق", "Design rose et or", "Elegant pink & gold design"),
     ],
     features: [
-      L("دوران أرانب على أعمدة ذهبية", "Lapins rotatifs sur tiges dorées", "Rotating bunnies on gold rods"),
+      L("دوران صامت للأرانب على أعمدة ذهبية", "Rotation silencieuse des lapins", "Silent bunny rotation on gold rods"),
       L("جهاز صوت وموسيقى هادئة", "Sound machine et musique douce", "Sound machine and soft music"),
-      L("ألوان متعددة", "Couleurs multiples", "Multiple colors"),
-      L("ريموت تحكم", "Télécommande", "Remote control"),
+      L("إسقاط نجوم / أجواء سحرية", "Projection étoiles / ambiance", "Star projection / magical ambiance"),
+      L("ريموت تحكم + أزرار على القاعدة", "Télécommande + boutons", "Remote + base buttons"),
+      L("شحن USB-C عملي", "Charge USB-C pratique", "Convenient USB-C charging"),
     ],
     specifications: [
-      { label: L("اللون", "Couleur", "Color"), value: L("وردي + ذهبي", "Rose + or", "Pink + gold") },
+      { label: L("التصميم", "Design", "Design"), value: L("كاروسيل وردي مطفي + لمسات ذهبية", "Carrousel rose mat + or", "Matte pink carousel + gold accents") },
+      { label: L("اللون", "Couleur", "Color"), value: L("وردي باستيل + ذهبي / روز غولد", "Rose pastel + or / rose gold", "Pastel pink + gold / rose gold") },
+      { label: L("المادة", "Matériau", "Material"), value: L("بلاستيك ABS مطفي + لمسات معدنية", "ABS mat + accents métal", "Matte ABS + metal accents") },
+      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("≈ 12 × 12 × 19 سم", "≈ 12 × 12 × 19 cm", "≈ 12 × 12 × 19 cm") },
+      { label: L("الوزن", "Poids", "Weight"), value: L("≈ 600 غ", "≈ 600 g", "≈ 600 g") },
       { label: L("الشحن", "Charge", "Charging"), value: L("USB-C", "USB-C", "USB-C") },
       { label: L("الصوت", "Son", "Sound"), value: L("جهاز صوت + موسيقى هادئة", "Sound machine + musique", "Sound machine + lullaby music") },
-      { label: L("التحكم", "Contrôle", "Control"), value: L("ريموت + أزرار", "Télécommande + boutons", "Remote + buttons") },
-      { label: L("الأبعاد", "Dimensions", "Dimensions"), value: L("12×12×19 سم", "12×12×19 cm", "12×12×19 cm") },
-      { label: L("الوزن", "Poids", "Weight"), value: L("600 غ", "600 g", "600 g") },
+      { label: L("الإسقاط", "Projection", "Projection"), value: L("نجوم / أجواء ناعمة قابلة للتغيير", "Étoiles / ambiances douces", "Stars / soft interchangeable ambiances") },
+      { label: L("الدوران", "Rotation", "Rotation"), value: L("دوران كاروسيل لطيف (صامت)", "Rotation douce silencieuse", "Gentle silent carousel rotation") },
+      { label: L("التحكم", "Contrôle", "Control"), value: L("ريموت أبيض + أزرار القاعدة", "Télécommande + boutons", "White remote + base buttons") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
     ],
     packageIncludes: [
       L("مصباح كاروسيل الأرانب", "Veilleuse carrousel lapin", "Rabbit carousel light"),
-      L("ريموت تحكم", "Télécommande", "Remote control"),
-      L("كابل USB-C", "Câble USB-C", "USB-C cable"),
-      L("دليل الاستخدام", "Manuel", "Manual"),
+      L("ريموت تحكم أبيض", "Télécommande blanche", "White remote control"),
+      L("كابل شحن USB-C", "Câble USB-C", "USB-C charging cable"),
+      L("دليل الاستخدام", "Manuel", "User manual"),
     ],
-    howToUse: L("اشحن الجهاز، اضغط الزر الأمامي أو استخدم الريموت لاختيار اللون والموسيقى، وضعه قرب سرير طفلك.", "Chargez l'appareil, utilisez les boutons ou la télécommande pour choisir couleur et musique.", "Charge the device, use buttons or remote to pick color and music, place near your child's bed."),
+    howToUse: L(
+      "اشحني الجهاز عبر USB-C، ضعيه قرب السرير في غرفة هادئة، شغّلي من الأزرار أو الريموت، اختاري الإضاءة والموسيقى والدوران، وفعّلي المؤقت قبل النوم.",
+      "Chargez en USB-C, placez près du lit, allumez via boutons ou télécommande, choisissez lumière/musique/rotation, activez la minuterie.",
+      "Charge via USB-C, place near the bed, power on via buttons or remote, choose light/music/rotation, set the timer for bedtime."
+    ),
     images: [],
     lifestyleImages: [],
     lifestyleScenes: [
@@ -395,8 +410,16 @@ export const products: Product[] = [
     upsellIds: ["prod-mx003", "prod-aurora"],
     crossSellIds: ["prod-starbt"],
     seo: {
-      title: L("مصباح كاروسيل الأرانب الموسيقي | NOORVA", "Veilleuse Carrousel Lapin Musicale | NOORVA", "Rabbit Carousel Music Box Night Light | NOORVA"),
-      description: L("مصباح كاروسيل وردي بجهاز صوت وريموت — الدفع عند الاستلام", "Veilleuse carrousel rose avec sound machine — COD", "Pink carousel night light with sound machine — COD"),
+      title: L(
+        "كاروسيل الأرانب الوردي | موسيقى وإسقاط نجوم وريموت | NOORVA",
+        "Veilleuse Carrousel Lapin Rose Musicale | NOORVA",
+        "Pink Rabbit Carousel Night Light Music + Projection | NOORVA"
+      ),
+      description: L(
+        "كاروسيل أرانب وردي وذهبي: دوران لطيف، موسيقى مهدّئة، إسقاط نجوم، ريموت وشحن USB-C. هدية مثالية لغرفة الأطفال. الدفع عند الاستلام في المغرب.",
+        "Carrousel lapin rose et or: rotation, musique douce, projection, télécommande, USB-C. Cadeau chambre enfant. Paiement à la livraison au Maroc.",
+        "Pink gold rabbit carousel: gentle rotation, lullaby music, star projection, remote, USB-C. Perfect kids gift. Cash on delivery in Morocco."
+      ),
     },
   },
 ];

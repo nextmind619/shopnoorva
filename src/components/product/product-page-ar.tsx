@@ -50,6 +50,29 @@ const BENEFIT_CARDS_AURORA = [
   { emoji: "🎁", text: "هدية مثالية للديكور والحفلات" },
 ];
 
+const BENEFIT_CARDS_RABBIT = [
+  { emoji: "🐰", text: "أرانب دوّارة بهدوء 360°" },
+  { emoji: "🎵", text: "موسيقى مهدّئة للنوم" },
+  { emoji: "✨", text: "إسقاط نجوم ناعم" },
+  { emoji: "🎮", text: "ريموت أبيض سهل" },
+  { emoji: "🔌", text: "شحن USB-C عملي" },
+  { emoji: "🎀", text: "تصميم وردي وذهبي فاخر" },
+  { emoji: "🎁", text: "هدية مثالية للبنات" },
+];
+
+function getFeatureChips(slug: string): string[] {
+  if (slug === "rabbit-carousel-night-light") {
+    return ["دوران 360°", "موسيقى", "إسقاط نجوم", "ريموت", "USB-C"];
+  }
+  if (slug === "northern-lights-galaxy-projector") {
+    return ["بلوتوث", "ريموت", "مؤقت", "USB", "أورورا"];
+  }
+  if (slug === "bluetooth-star-projector") {
+    return ["بلوتوث", "21 وضع", "ريموت", "مؤقت", "USB"];
+  }
+  return ["ريموت", "إضاءة", "هدية", "USB", "ضمان"];
+}
+
 const WHY_NOORVA = [
   { icon: Shield, title: "جودة ممتازة", desc: "منتجات مختارة بعناية" },
   { icon: Banknote, title: "الدفع عند الاستلام", desc: "خلّص كاش عند الباب" },
@@ -100,7 +123,11 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
       ? BENEFIT_CARDS_STARBT
       : product.slug === "northern-lights-galaxy-projector"
         ? BENEFIT_CARDS_AURORA
-        : BENEFIT_CARDS_DEFAULT;
+        : product.slug === "rabbit-carousel-night-light"
+          ? BENEFIT_CARDS_RABBIT
+          : BENEFIT_CARDS_DEFAULT;
+
+  const featureChips = getFeatureChips(product.slug);
 
   const productFaqs =
     product.slug === "bluetooth-star-projector"
@@ -121,6 +148,15 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             { q: "شنو كاين في العلبة؟", a: "البروجيكتور، الريموت الأبيض، كابل USB/Type-C، ودليل الاستخدام." },
             { q: "كم مدة التوصيل وهل فيه ضمان؟", a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${product.warrantyMonths || 12} شهر واستبدال خلال 7 أيام عند وجود عيب.` },
           ]
+        : product.slug === "rabbit-carousel-night-light"
+          ? [
+              { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلبين بلا بطاقة بنكية وتخلّصي كاش ملي يوصلك الطلب." },
+              { q: "واش الأرانب كيدورو بصوت؟", a: "الدوران لطيف وصامت تقريباً باش ما يقلقش الطفل وهو كينعس." },
+              { q: "واش فيه موسيقى؟", a: "نعم، جهاز صوت مدمج كيشغّل موسيقى مهدّئة — تقدري تتحكمي من الريموت أو الأزرار." },
+              { q: "كيفاش كيشحن؟", a: "عبر منفذ USB-C فقاعدة المصباح. الكابل كاين فالعلبة." },
+              { q: "شنو كاين فالعلبة؟", a: "كاروسيل الأرانب، الريموت الأبيض، كابل USB-C، ودليل الاستخدام." },
+              { q: "كم مدة التوصيل وهل فيه ضمان؟", a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${product.warrantyMonths || 12} شهر واستبدال خلال 7 أيام عند وجود عيب.` },
+            ]
         : [
             { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
             { q: "كم مدة التوصيل؟", a: "24-48 ساعة للمدن الكبرى (الدار البيضاء، الرباط، مراكش، فاس، طنجة). 2-4 أيام لباقي المدن." },
@@ -218,7 +254,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               )}
             </div>
             <div className="flex flex-wrap gap-2">
-              {["بلوتوث", "ريموت", "مؤقت 1س/2س", "USB", "أورورا RGB"].map((chip) => (
+              {featureChips.map((chip) => (
                 <span key={chip} className="text-[11px] font-medium text-white/80 bg-white/5 border border-white/10 rounded-full px-3 py-1">
                   {chip}
                 </span>
@@ -250,7 +286,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               <p className="text-white/70 leading-relaxed">{product.shortDescription.ar}</p>
 
               <div className="flex flex-wrap gap-2">
-                {["بلوتوث", "ريموت", "مؤقت", "USB", "أورورا"].map((chip) => (
+                {featureChips.map((chip) => (
                   <span key={chip} className="text-[11px] font-medium text-white/80 bg-white/5 border border-white/10 rounded-full px-3 py-1">
                     {chip}
                   </span>

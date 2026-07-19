@@ -16,10 +16,52 @@ interface ProductTrustBlocksProps {
   product: Product;
 }
 
+function getStory(slug: string) {
+  if (slug === "rabbit-carousel-night-light") {
+    return {
+      eyebrow: "قبل النوم",
+      title: "ليلة هادئة… بلا خوف من الظلام",
+      paragraphs: [
+        "كاروسيل الأرانب كيجمع بين إضاءة ناعمة، دوران لطيف، وموسيقى مهدّئة — باش طفلك ينعس براحة وأنتِ مرتاحة البال.",
+        "التصميم الوردي والذهبي كيبان هدية فاخرة فوق الكومودينو، والريموت كيعطيك التحكم من بعيد: الإضاءة، الصوت، والدوران — بلا ما توقفي من السرير.",
+      ],
+    };
+  }
+  if (slug === "northern-lights-galaxy-projector") {
+    return {
+      eyebrow: "التجربة",
+      title: "سقف غرفتك… يتحوّل لمجرة هادئة",
+      paragraphs: [
+        "بدل إضاءة عادية تضيّع الأجواء، هاد البروجيكتور كيملأ السقف والجدران بأورورا متحركة، نجوم دقيقة، وقمر هلالي واضح — مثالي قبل النوم، للديكور، أو لسهرة هادئة مع موسيقى من هاتفك.",
+        "التصميم الأبيض الهندسي كيبان أنيق فوق الطاولة أو الكومودينو، والريموت كيعطيك التحكم من السرير: الألوان، السطوع، السرعة، ومؤقت الإيقاف التلقائي.",
+      ],
+    };
+  }
+  return {
+    eyebrow: "التجربة",
+    title: "أجواء فاخرة من أول تشغيل",
+    paragraphs: [
+      productDeepFallback(productNameHint(slug)),
+      "الريموت والتحكم السهل كيعطيك تجربة مريحة كل مساء — مع توصيل سريع والدفع عند الاستلام في المغرب.",
+    ],
+  };
+}
+
+function productNameHint(slug: string) {
+  if (slug.includes("astronaut")) return "بروجيكتور رائد الفضاء";
+  if (slug.includes("star")) return "بروجيكتور النجوم";
+  return "هاد المنتج";
+}
+
+function productDeepFallback(name: string) {
+  return `${name} من NOORVA مصمّم باش يحوّل غرفتك لأجواء هادئة وفاخرة — مثالي للنوم، الديكور، والهدايا.`;
+}
+
 export function ProductTrustBlocks({ product }: ProductTrustBlocksProps) {
   const boxItems = product.packageIncludes?.length
     ? product.packageIncludes
     : [];
+  const story = getStory(product.slug);
 
   return (
     <div className="space-y-8 mt-12">
@@ -32,20 +74,15 @@ export function ProductTrustBlocks({ product }: ProductTrustBlocksProps) {
         className="bg-[#1a1a24] rounded-[2rem] border border-white/10 p-8 sm:p-10"
       >
         <p className="text-[10px] font-bold tracking-[0.25em] text-[#6366f1] uppercase mb-3">
-          التجربة
+          {story.eyebrow}
         </p>
         <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight mb-4">
-          سقف غرفتك… يتحوّل لمجرة هادئة
+          {story.title}
         </h2>
         <div className="space-y-4 text-white/70 leading-relaxed text-base max-w-3xl">
-          <p>
-            بدل إضاءة عادية تضيّع الأجواء، هاد البروجيكتور كيملأ السقف والجدران بأورورا متحركة،
-            نجوم دقيقة، وقمر هلالي واضح — مثالي قبل النوم، للديكور، أو لسهرة هادئة مع موسيقى من هاتفك.
-          </p>
-          <p>
-            التصميم الأبيض الهندسي كيبان أنيق فوق الطاولة أو الكومودينو، والريموت كيعطيك التحكم من السرير:
-            الألوان، السطوع، السرعة، ومؤقت الإيقاف التلقائي.
-          </p>
+          {story.paragraphs.map((p) => (
+            <p key={p.slice(0, 24)}>{p}</p>
+          ))}
         </div>
       </motion.section>
 
