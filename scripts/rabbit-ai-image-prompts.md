@@ -1,10 +1,14 @@
 # NOORVA Rabbit Carousel — AI Image Prompt Pack
 
+**SOURCE OF TRUTH:** Client-confirmed real product photos in  
+`public/products/rabbit-carousel-night-light/master-refs/master-01.png` … `master-04.png`  
+Use those images as the ONLY visual reference. Never invent a different lamp.
+
 Master product lock (append to EVERY prompt):
 
-> Exact Pink Rabbit Carousel Night Light: matte pastel pink scalloped canopy with metallic rose-gold/gold trim and round gold finial; transparent/frosted central cylinder; small pink sleeping/leaping rabbit figurines on thin vertical gold rods; rounded matte pink bowl base with gold scalloped rim; three/four ornate scroll-style metallic gold cabriole legs; front control row with USB-C port + circular buttons + speaker pinholes; include slim white remote with black icons when scene requires accessories. Preserve exact shape, proportions, materials, colors, buttons, ports. Do NOT redesign. Photoreal commercial photography.
+> CLIENT REAL PRODUCT LOCK: matte blush/pastel pink rabbit carousel with metallic rose-gold/gold accents. Exact scalloped umbrella canopy + gold trim + round gold ball finial. Exact frosted/clear central cylinder (warm glow and/or blue star projection). Exact small pink rabbits on thin gold/silver rods. Exact rounded pink bowl base + gold scalloped rim. Exact ornate scroll gold legs. Exact front: USB-C left, then circular buttons (power/M/light/rotation) + speaker pinholes. Slim white remote when accessories shown. Photoreal. Do NOT redesign.
 
-Negative (all): different products, ocean-wave lamp redesign, wrong legs, missing rabbits, cartoon, CGI, blurry, watermark, fake buttons, oversaturated, SAIFENLAN logos, Alibaba watermarks.
+Negative (all): different products, yellow body, ocean-wave redesign, wrong legs, missing rabbits, cartoon, CGI, blurry, watermark, fake buttons, oversaturated, SAIFENLAN logos, Alibaba watermarks.
 
 ---
 

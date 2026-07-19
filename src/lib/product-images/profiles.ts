@@ -84,11 +84,13 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
     categoryId: "cat-nightlights",
     shortDescription: "Pink and gold carousel-shaped music box with rotating bunny figurines, built-in sound machine, USB-C rechargeable, white remote",
     visualIdentity:
-      "Exact product: whimsical pink-and-gold carousel-shaped musical night light shaped like a rabbit-themed music box. Domed pastel-pink canopy roof with scalloped edge and metallic gold trim, small round gold finial knob on top. Transparent cylindrical chamber with small cute pink bunny/rabbit figurines mounted on thin gold rods that spin when powered on. Rounded pink hemispherical base with metallic gold rim and four slim ornate gold cabriole legs. Row of soft-touch control buttons on the front plus a USB-C charging port. Built-in sound machine plays soft lullaby music while the figurines rotate and project warm star patterns. Includes a small white remote control. Soft pastel-pink and metallic-gold color palette with a warm cozy glow. DO NOT redesign — exact replica of commercial product photography.",
+      "CLIENT-CONFIRMED REAL MASTER PRODUCT (locked): matte blush/pastel pink rabbit carousel night light with metallic rose-gold/gold accents ONLY. Exact scalloped umbrella canopy + gold trim + round gold ball finial. Exact frosted/clear central cylinder (warm glow and/or blue star projection modes). Exact small pink rabbit figurines on thin vertical gold/silver rods around the cylinder. Exact rounded pink bowl base with matching gold scalloped rim. Exact ornate scroll/cabriole gold legs (typically 3–4). Exact front interface: USB-C port on the left, then a horizontal row of circular buttons (power / M / light / rotation), plus speaker pinholes. Includes slim white remote when accessories are shown. NEVER yellow body, never different animal, never ocean-wave lamp redesign, never SAIFENLAN/other brand logos, never simplify legs/buttons/rabbits. Preserve exact shape, proportions, materials, colors from master-refs in public/products/rabbit-carousel-night-light/master-refs/.",
     dimensions: "12 × 12 × 19 سم",
     accessories: ["White remote control", "USB-C charging cable", "User manual"],
     packageItems: ["Rabbit carousel night light", "Remote control", "USB-C cable", "Instruction manual"],
-    sourceUrls: {},
+    sourceUrls: {
+      masterRefs: "/products/rabbit-carousel-night-light/master-refs/",
+    },
   },
 ];
 
