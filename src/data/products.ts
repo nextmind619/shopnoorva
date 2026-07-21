@@ -23,9 +23,9 @@ export const products: Product[] = [
     slug: "astronaut-bt-speaker-projector",
     name: L("بروجيكتور رائد الفضاء بلوتوث MX003", "Projecteur Astronaute Bluetooth MX003", "Astronaut Bluetooth Speaker Projector MX003"),
     shortDescription: L(
-      "رائد فضاء أبيض — سبيكر بلوتوث 5.0 + إسقاط مجرة + ريموت + Type-C",
-      "Astronaute blanc — haut-parleur Bluetooth 5.0, projection galaxie, télécommande",
-      "White astronaut — Bluetooth 5.0 speaker, galaxy projection, remote, USB-C"
+      "حوّل غرفتك لمجرة حية مع موسيقى بلوتوث — ريموت + Type-C والدفع عند الاستلام",
+      "Transformez votre chambre en galaxie avec Bluetooth — télécommande + Type-C, paiement à la livraison",
+      "Turn your room into a galaxy with Bluetooth music — remote + USB-C, cash on delivery"
     ),
     description: L(
       "بروجيكتور رائد الفضاء MX003 من NOORVA — بروجيكتور مجرة مع سبيكر بلوتوث 5.0 مدمج في الصدر. تصميم رائد فضاء أبيض أنيق، عدسة HD تعرض نجوم وسديم بألوان متعددة على السقف والجدران. يدعم بطاقة TF وكابل AUX لتشغيل الموسيقى، مع مايكروفون مدمج للمكالمات. ريموت تحكم أسود وكابل Type-C. الدفع عند الاستلام في جميع مدن المغرب.",
@@ -57,12 +57,12 @@ export const products: Product[] = [
     ),
     tags: ["astronaut", "bluetooth", "galaxy", "speaker", "bestseller", "tiktok", "kids", "bedroom", "decor", "gift"],
     benefits: [
-      L("بروجيكتور + سبيكر بلوتوث 5.0", "Projecteur + Bluetooth 5.0", "Projector + Bluetooth 5.0 speaker"),
-      L("إسقاط مجرة ونجوم HD", "Projection galaxie HD", "HD galaxy & star projection"),
-      L("تشغيل موسيقى TF / AUX", "Musique TF / AUX", "TF card / AUX music playback"),
-      L("مايكروفون مدمج للمكالمات", "Micro intégré pour appels", "Built-in mic for calls"),
-      L("ريموت + كابل Type-C", "Télécommande + câble Type-C", "Remote + USB-C cable"),
-      L("هدية مثالية", "Cadeau parfait", "Perfect gift"),
+      L("سقفك يتحوّل لمجرة ملونة من أول تشغيل", "Plafond transformé en galaxie dès l'allumage", "Ceiling becomes a colorful galaxy instantly"),
+      L("شغّل موسيقاك من الهاتف عبر البلوتوث بلا أسلاك", "Musique Bluetooth sans fil depuis le téléphone", "Play phone music wirelessly via Bluetooth"),
+      L("أجواء تهدّئ قبل النوم للكبار والأطفال", "Ambiance apaisante avant le sommeil", "Calming bedtime atmosphere for adults and kids"),
+      L("تحكم كامل من السرير بالريموت", "Contrôle total depuis le lit", "Full control from bed with the remote"),
+      L("تصميم أنيق يزيّن الغرفة حتى وهو مطفي", "Design élégant même éteint", "Elegant look even when powered off"),
+      L("هدية جاهزة تُبهر من فتح العلبة", "Cadeau prêt à offrir", "Gift-ready unboxing wow moment"),
     ],
     features: [
       L("سبيكر بلوتوث 5.0 مدمج", "Haut-parleur Bluetooth 5.0", "Built-in Bluetooth 5.0 speaker"),
@@ -121,9 +121,9 @@ export const products: Product[] = [
       "Multi-Color Galaxy Star Projector Night Light with Speaker & Remote"
     ),
     shortDescription: L(
-      "قبة كريستال · 21 وضع إضاءة · بلوتوث وموسيقى · ريموت بمؤقت 1س/2س · USB DC 5V",
-      "Dôme cristal · 21 modes · Bluetooth musique · télécommande 1h/2h · USB DC 5V",
-      "Crystal dome · 21 light modes · Bluetooth speaker · remote timer 1h/2h · USB DC 5V"
+      "حوّل غرفتك لمجرة بـ21 وضع إضاءة وموسيقى بلوتوث — ريموت بمؤقت والدفع عند الاستلام",
+      "Transformez votre chambre avec 21 modes et Bluetooth — télécommande avec minuterie, paiement à la livraison",
+      "Turn your room into a galaxy with 21 modes and Bluetooth music — timer remote, cash on delivery"
     ),
     description: L(
       "بروجيكتور مجرة ونجوم من NOORVA بجسم أسود مطفي وقبة شفافة متعددة الأوجه. يعرض سماء مرصّعة بالنجوم مع موجات ضوئية ملوّنة حتى 21 وضع إسقاط (أحمر/أخضر/أزرق/أبيض وتركيبات). سبيكر بلوتوث مدمج — وصّل هاتفك أو USB/TF واستمتع بالموسيقى مع إضاءة تتفاعل مع الإيقاع. ريموت للتحكم في الألوان، السطوع، الموسيقى، ومؤقت الإيقاف التلقائي 1 ساعة أو 2 ساعة. مثالي لغرفة النوم، الأطفال، الحفلات، والديكور الرومانسي. الدفع عند الاستلام في المغرب.",
@@ -155,10 +155,10 @@ export const products: Product[] = [
     ),
     tags: ["star", "galaxy", "bluetooth", "speaker", "remote", "timer", "rgb", "night-light", "bedroom", "kids", "gift", "dimmable"],
     benefits: [
-      L("حتى 21 وضع إضاءة ملونة", "Jusqu’à 21 modes d’éclairage", "Up to 21 colorful lighting modes"),
-      L("سبيكر بلوتوث مدمج", "Haut-parleur Bluetooth intégré", "Built-in Bluetooth speaker"),
-      L("ريموت + مؤقت 1س / 2س", "Télécommande + minuterie 1h/2h", "Remote + 1h / 2h timer"),
-      L("قبة كريستال وإسقاط مجرة", "Dôme cristal et projection galaxie", "Crystal dome & galaxy projection"),
+      L("غيّر مزاج الغرفة فوراً حتى 21 وضع إضاءة", "Changez l'ambiance avec jusqu'à 21 modes", "Change the room mood with up to 21 lighting modes"),
+      L("موسيقى من هاتفك عبر البلوتوث بلا أسلاك", "Musique Bluetooth sans fil", "Wireless Bluetooth music from your phone"),
+      L("نعس مرتاح مع مؤقت إيقاف 1س أو 2س", "Endormez-vous avec minuterie 1h/2h", "Fall asleep with 1h/2h auto-off timer"),
+      L("قبة كريستال وإسقاط نجوم يبان فاخر", "Dôme cristal et projection premium", "Crystal dome with premium star projection"),
     ],
     features: [
       L("إسقاط نجوم وموجات ضوئية متعددة الألوان", "Projection étoiles + vagues multicolores", "Star projection + multicolor wave lighting"),
@@ -258,10 +258,10 @@ export const products: Product[] = [
     ),
     tags: ["aurora", "northernlights", "moon", "stars", "bluetooth", "speaker", "remote", "timer", "geometric", "white", "bedroom", "gift"],
     benefits: [
-      L("أورورا + نجوم + قمر هلالي", "Aurore + étoiles + lune", "Aurora + stars + crescent moon"),
-      L("تصميم أبيض هندسي أنيق", "Design blanc géométrique", "Elegant white geometric design"),
-      L("سبيكر بلوتوث مدمج", "Haut-parleur Bluetooth", "Built-in Bluetooth speaker"),
-      L("ريموت بمؤقت 1س / 2س", "Télécommande 1h / 2h", "Remote with 1h / 2h timer"),
+      L("سقفك يتحوّل لأورورا متحركة حقيقية", "Plafond transformé en aurore animée", "Ceiling becomes a real moving aurora"),
+      L("قمر هلالي ونجوم دقيقة تهدّئ قبل النوم", "Lune et étoiles apaisantes", "Crescent moon and stars for calm nights"),
+      L("موسيقى بلوتوث وأنت مسترخٍ في السرير", "Musique Bluetooth depuis le lit", "Bluetooth music from bed"),
+      L("تصميم أبيض هندسي يزيّن الغرفة حتى مطفي", "Design blanc élégant même éteint", "Elegant white design even when off"),
     ],
     features: [
       L("إسقاط أورورا شمالية متحركة", "Projection aurore boréale animée", "Moving northern-lights aurora projection"),
@@ -326,9 +326,9 @@ export const products: Product[] = [
       "Pink Rabbit Carousel Night Light — 6 Films and 360° Rotation"
     ),
     shortDescription: L(
-      "6 أفلام قابلة للتبديل + دوران كاروسيل 360° + 5 ألوان LED — تشغيل عبر USB — والدفع غير ملي يوصلك الطلب",
-      "6 films interchangeables + carrousel 360° + 5 couleurs LED — alimentation USB — paiement à la livraison",
-      "6 interchangeable films + 360° carousel + 5 LED colours — USB powered — cash on delivery"
+      "خلي طفلك ينعس بهدوء: أرانب دوّارة + 6 أفلام إسقاط + 5 ألوان — والدفع عند الاستلام",
+      "Endormissement serein: carrousel + 6 films + 5 couleurs — paiement à la livraison",
+      "Calm bedtime: rotating bunnies + 6 films + 5 colours — cash on delivery"
     ),
     description: L(
       "خلّي غرفة طفلك تتحول لعالم سحري كل ليلة. كاروسيل الأرانب الوردي من NOORVA: أرانب صغيرة دوّارة 360°، إضاءة LED بـ 5 ألوان، و6 أفلام إسقاط قابلة للتبديل (سماء نجوم، عالم المحيط، أرض الديناصورات، عيد ميلاد سعيد، خيال تحت الماء، وغابة الحيوانات). شغّليه عبر USB من الشاحن أو باور بانك أو اللابتوب. هدية أنيقة لغرفة الأطفال — خلّصي كاش عند الباب فجميع مدن المغرب.",

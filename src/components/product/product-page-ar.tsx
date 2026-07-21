@@ -18,7 +18,18 @@ import { ProductOrderForm } from "@/components/product/product-order-form";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
 import { ProductLandingSections } from "@/components/product/product-landing-sections";
 import { ProductTrustBlocks } from "@/components/product/product-trust-blocks";
+import { ProductCroSections } from "@/components/product/product-cro-sections";
 import { FlashCountdown, StockScarcityBar } from "@/components/product/flash-countdown";
+
+const BENEFIT_CARDS_ASTRONAUT = [
+  { emoji: "🌌", text: "سقفك يتحوّل لمجرة حية خلال ثوانٍ" },
+  { emoji: "🎵", text: "موسيقى بلوتوث من هاتفك بلا أسلاك" },
+  { emoji: "🌙", text: "أجواء تهدّئ قبل النوم" },
+  { emoji: "🎮", text: "تحكم كامل من السرير بالريموت" },
+  { emoji: "🚀", text: "تصميم أنيق يزيّن الغرفة نهاراً وليلاً" },
+  { emoji: "🎁", text: "هدية تُبهر من أول فتح للعلبة" },
+  { emoji: "📦", text: "جاهز للتشغيل — كابل وريموت مع الطلب" },
+];
 
 const BENEFIT_CARDS_DEFAULT = [
   { emoji: "✨", text: "يحوّل الغرفة إلى مجرة مذهلة" },
@@ -31,33 +42,33 @@ const BENEFIT_CARDS_DEFAULT = [
 ];
 
 const BENEFIT_CARDS_STARBT = [
-  { emoji: "🌌", text: "حتى 21 وضع إضاءة ملونة" },
-  { emoji: "💎", text: "قبة كريستال شفافة متعددة الأوجه" },
-  { emoji: "🎵", text: "سبيكر بلوتوث + USB/TF" },
-  { emoji: "🎮", text: "ريموت كامل للتحكم عن بعد" },
-  { emoji: "⏰", text: "مؤقت إيقاف 1 ساعة / 2 ساعة" },
-  { emoji: "🌙", text: "مثالي للنوم والاسترخاء" },
-  { emoji: "🎁", text: "هدية مثالية للعائلة والأطفال" },
+  { emoji: "🌌", text: "حتى 21 وضع… غيّر مزاج الغرفة فوراً" },
+  { emoji: "💎", text: "قبة كريستال وإسقاط يبان فاخر" },
+  { emoji: "🎵", text: "موسيقى بلوتوث بلا سبيكر إضافي" },
+  { emoji: "🎮", text: "ريموت كامل من السرير" },
+  { emoji: "⏰", text: "مؤقت 1س/2س ينطفي وأنت ناعس" },
+  { emoji: "🌙", text: "أجواء تهدّئ قبل النوم" },
+  { emoji: "🎁", text: "هدية عملية للعائلة والأطفال" },
 ];
 
 const BENEFIT_CARDS_AURORA = [
-  { emoji: "🌌", text: "أورورا شمالية متحركة" },
-  { emoji: "🌙", text: "قمر هلالي + نجوم" },
-  { emoji: "⬜", text: "تصميم أبيض هندسي أنيق" },
-  { emoji: "🎵", text: "سبيكر بلوتوث مدمج" },
+  { emoji: "🌌", text: "أورورا متحركة على سقف غرفتك" },
+  { emoji: "🌙", text: "قمر هلالي ونجوم دقيقة" },
+  { emoji: "⬜", text: "تصميم أبيض هندسي يزيّن الغرفة" },
+  { emoji: "🎵", text: "سبيكر بلوتوث مع الأورورا" },
   { emoji: "🎮", text: "ريموت أبيض بتحكم كامل" },
-  { emoji: "⏰", text: "مؤقت إيقاف 1 ساعة / 2 ساعة" },
-  { emoji: "🎁", text: "هدية مثالية للديكور والحفلات" },
+  { emoji: "⏰", text: "مؤقت إيقاف تلقائي قبل النوم" },
+  { emoji: "🎁", text: "هدية فاخرة لعشاق الديكور" },
 ];
 
 const BENEFIT_CARDS_RABBIT = [
-  { emoji: "🐰", text: "أرانب دوّارة 360°" },
-  { emoji: "🎞️", text: "6 أفلام إسقاط قابلة للتبديل" },
-  { emoji: "🎨", text: "5 ألوان LED ناعمة" },
+  { emoji: "🐰", text: "أرانب دوّارة تهدّئ قبل النوم" },
+  { emoji: "🎞️", text: "6 أفلام… كل ليلة عالم جديد" },
+  { emoji: "🎨", text: "5 ألوان LED ناعمة ومريحة" },
   { emoji: "✨", text: "إسقاط سحري على الجدران" },
-  { emoji: "🔌", text: "تشغيل USB مرن" },
-  { emoji: "🎀", text: "تصميم وردي فاخر" },
-  { emoji: "🎁", text: "هدية مثالية للأطفال" },
+  { emoji: "🔌", text: "تشغيل USB مرن في أي مكان" },
+  { emoji: "🎀", text: "تصميم وردي أنيق كهدية" },
+  { emoji: "🎁", text: "مثالي لغرفة الأطفال" },
 ];
 
 function getFeatureChips(slug: string): string[] {
@@ -70,7 +81,19 @@ function getFeatureChips(slug: string): string[] {
   if (slug === "bluetooth-star-projector") {
     return ["بلوتوث", "21 وضع", "ريموت", "مؤقت", "USB"];
   }
+  if (slug === "astronaut-bt-speaker-projector") {
+    return ["مجرة HD", "بلوتوث 5.0", "ريموت", "Type-C", "دفع عند الاستلام"];
+  }
   return ["ريموت", "إضاءة", "هدية", "USB", "ضمان"];
+}
+
+function getBenefitHeadline(product: Product): { title: string; subtitle: string } {
+  const cro = getProductCroContent(product.slug);
+  if (cro?.headline) return cro.headline;
+  if (product.problemSolution) {
+    return { title: product.problemSolution.ar, subtitle: product.shortDescription.ar };
+  }
+  return { title: product.name.ar, subtitle: product.shortDescription.ar };
 }
 
 const WHY_NOORVA = [
@@ -88,6 +111,7 @@ interface ProductPageArProps {
 }
 
 import { resolveProductHero } from "@/lib/product-images/resolve";
+import { getProductCroContent } from "@/lib/product-cro-content";
 
 export function ProductPageAr({ product, related: relatedProp }: ProductPageArProps) {
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
@@ -125,9 +149,16 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         ? BENEFIT_CARDS_AURORA
         : product.slug === "rabbit-carousel-night-light"
           ? BENEFIT_CARDS_RABBIT
-          : BENEFIT_CARDS_DEFAULT;
+          : product.slug === "astronaut-bt-speaker-projector"
+            ? BENEFIT_CARDS_ASTRONAUT
+            : BENEFIT_CARDS_DEFAULT;
 
   const featureChips = getFeatureChips(product.slug);
+  const headline = getBenefitHeadline(product);
+  const savedAmount =
+    variant.compareAtPrice && variant.compareAtPrice > variant.price
+      ? variant.compareAtPrice - variant.price
+      : 0;
 
   const productFaqs =
     product.slug === "bluetooth-star-projector"
@@ -160,9 +191,11 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             ]
         : [
             { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
-            { q: "كم مدة التوصيل؟", a: "24-48 ساعة للمدن الكبرى (الدار البيضاء، الرباط، مراكش، فاس، طنجة). 2-4 أيام لباقي المدن." },
-            { q: "هل يمكن الاستبدال؟", a: "نعم، استبدال خلال 7 أيام عند وجود عيب. تواصل معنا على واتساب." },
-            { q: "هل المنتج مضمون؟", a: `نعم، ضمان ${product.warrantyMonths || 12} شهر على جميع منتجات NOORVA.` },
+            { q: "شنو كيعطي هاد البروجيكتور؟", a: "إسقاط مجرة ونجوم HD من خوذة رائد الفضاء، مع سبيكر بلوتوث 5.0 مدمج باش تشغّل موسيقاك من الهاتف في نفس الوقت." },
+            { q: "واش صعيب التشغيل؟", a: "لا. وصّل Type-C، شغّل الجهاز، اربط البلوتوث، وتحكّم بالريموت. أغلب العملاء كيشغّلوه في أقل من دقيقتين." },
+            { q: "مناسب لغرفة الأطفال؟", a: "نعم — إضاءة ناعمة وأجواء مهدّئة قبل النوم، مع تصميم لطيف كيعجب الأطفال." },
+            { q: "شنو كاين فالعلبة؟", a: "بروجيكتور رائد الفضاء MX003، ريموت تحكم، كابل Type-C، ودليل الاستخدام." },
+            { q: "كم مدة التوصيل وهل فيه ضمان؟", a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${product.warrantyMonths || 12} شهر واستبدال خلال 7 أيام عند وجود عيب.` },
           ];
 
   useEffect(() => {
@@ -228,7 +261,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           <div className="order-2 lg:hidden space-y-4">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
               <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-                <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
+                <span className="text-emerald-400 text-xs font-bold">متوفر — الدفع عند الاستلام</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="flex">
@@ -237,23 +270,51 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                   ))}
                 </div>
                 <span className="font-bold text-white text-xs">({product.rating})</span>
-                <span className="text-white/60 text-xs">{product.reviewCount.toLocaleString("ar-MA")}+ تقييم</span>
+                <span className="text-white/60 text-xs">{product.reviewCount.toLocaleString("ar-MA")}+ تقييم · {product.soldCount.toLocaleString("ar-MA")}+ طلب</span>
               </div>
             </div>
-            <h1 className="text-2xl font-bold leading-tight tracking-tight text-white">{name}</h1>
-            <p className="text-white/70 leading-relaxed text-base">{product.shortDescription.ar}</p>
-            <div className="flex flex-wrap items-center gap-3 py-3 border-y border-white/10">
-              <span className="text-3xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
-              <span className="text-sm font-bold text-white/60">درهم مغربي</span>
-              {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
-                <span className="text-base text-white/40 line-through tabular-nums">{formatPriceNumber(variant.compareAtPrice, "ar")}</span>
-              )}
-              {discount > 0 && (
-                <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                  خصم {discount}%
-                </span>
+            <p className="text-xs font-bold tracking-wide text-[#818cf8]">{name}</p>
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-white">{headline.title}</h1>
+            <p className="text-white/70 leading-relaxed text-base">{headline.subtitle}</p>
+            <div className="rounded-2xl border border-white/10 bg-[#12121a] p-4 space-y-2">
+              <div className="flex flex-wrap items-end gap-3">
+                <span className="text-4xl font-black tabular-nums text-white leading-none">{formatPriceNumber(variant.price, "ar")}</span>
+                <span className="text-sm font-bold text-white/60 pb-1">درهم</span>
+                {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
+                  <span className="text-base text-white/40 line-through tabular-nums pb-1">{formatPriceNumber(variant.compareAtPrice, "ar")}</span>
+                )}
+                {discount > 0 && (
+                  <span className="bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full">
+                    خصم {discount}%
+                  </span>
+                )}
+              </div>
+              {savedAmount > 0 && (
+                <p className="text-sm font-bold text-emerald-400">
+                  توفّر {formatPriceNumber(savedAmount, "ar")} درهم الآن
+                </p>
               )}
             </div>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { icon: Banknote, t: "دفع عند الاستلام" },
+                { icon: Truck, t: "شحن سريع" },
+                { icon: Shield, t: "ضمان الجودة" },
+              ].map((b) => (
+                <span key={b.t} className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300/90 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1.5">
+                  <b.icon className="h-3.5 w-3.5" />
+                  {b.t}
+                </span>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={scrollToOrder}
+              className="w-full h-12 rounded-xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/25"
+            >
+              <ShoppingBag className="h-4 w-4" />
+              اطلب الآن
+            </button>
             <div className="flex flex-wrap gap-2">
               {featureChips.map((chip) => (
                 <span key={chip} className="text-[11px] font-medium text-white/80 bg-white/5 border border-white/10 rounded-full px-3 py-1">
@@ -268,7 +329,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             <div className="hidden lg:block space-y-5">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm">
                 <div className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-                  <span className="text-emerald-400 text-xs font-bold">متوفر في المخزون</span>
+                  <span className="text-emerald-400 text-xs font-bold">متوفر — الدفع عند الاستلام</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="flex">
@@ -279,12 +340,15 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                   <span className="font-bold text-white text-xs">({product.rating})</span>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-white/60 text-xs">
-                  {product.reviewCount.toLocaleString("ar-MA")}+ تقييم
+                  {product.reviewCount.toLocaleString("ar-MA")}+ تقييم · {product.soldCount.toLocaleString("ar-MA")}+ طلب
                 </span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl lg:text-[1.75rem] font-bold leading-tight tracking-tight text-white">{name}</h1>
-              <p className="text-white/70 leading-relaxed">{product.shortDescription.ar}</p>
+              <p className="text-xs font-bold tracking-wide text-[#818cf8]">{name}</p>
+              <h1 className="text-2xl sm:text-3xl lg:text-[1.85rem] font-bold leading-tight tracking-tight text-white">
+                {headline.title}
+              </h1>
+              <p className="text-white/70 leading-relaxed">{headline.subtitle}</p>
 
               <div className="flex flex-wrap gap-2">
                 {featureChips.map((chip) => (
@@ -294,29 +358,52 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 ))}
               </div>
 
-              <div className="py-4 border-y border-white/10">
+              <div className="py-4 border-y border-white/10 space-y-2">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="text-4xl sm:text-5xl font-bold tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
+                  <span className="text-4xl sm:text-5xl font-black tabular-nums text-white">{formatPriceNumber(variant.price, "ar")}</span>
                   <div className="flex flex-col justify-center">
-                    <span className="text-xs font-bold text-white/60 leading-none mb-1">مغربي</span>
-                    <span className="text-xs font-bold text-white/60 leading-none">درهم</span>
+                    <span className="text-xs font-bold text-white/60 leading-none mb-1">درهم</span>
+                    <span className="text-xs font-bold text-white/60 leading-none">مغربي</span>
                   </div>
                   {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
                     <div className="flex flex-col justify-center ms-4 border-s border-white/10 ps-4">
                       <span className="text-lg text-white/40 line-through tabular-nums leading-none mb-1">{formatPriceNumber(variant.compareAtPrice || 0, "ar")}</span>
-                      <span className="text-[10px] text-white/40 leading-none">السعر الأصلي</span>
+                      <span className="text-[10px] text-white/40 leading-none">قبل الخصم</span>
                     </div>
                   )}
                   {discount > 0 && (
-                    <span className="ms-auto bg-red-600 text-white text-sm font-bold px-4 py-1.5 rounded-full">
+                    <span className="ms-auto bg-red-600 text-white text-sm font-black px-4 py-1.5 rounded-full">
                       خصم {discount}%
                     </span>
                   )}
                 </div>
+                {savedAmount > 0 && (
+                  <p className="text-sm font-bold text-emerald-400">
+                    توفّر {formatPriceNumber(savedAmount, "ar")} درهم في هذا العرض
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { icon: Banknote, t: "دفع عند الاستلام" },
+                  { icon: Truck, t: "شحن سريع" },
+                  { icon: Shield, t: "ضمان الجودة" },
+                ].map((b) => (
+                  <span key={b.t} className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300/90 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1.5">
+                    <b.icon className="h-3.5 w-3.5" />
+                    {b.t}
+                  </span>
+                ))}
               </div>
             </div>
 
-            <ProductOrderForm product={product} variant={variant} quantity={qty} />
+            <ProductOrderForm
+              product={product}
+              variant={variant}
+              quantity={qty}
+              onQuantityChange={setQty}
+            />
 
             <div className="grid grid-cols-3 gap-2 text-center">
               {[
@@ -340,6 +427,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           </div>
         </div>
 
+        <ProductCroSections product={product} onOrderClick={scrollToOrder} />
         <ProductLandingSections product={product} />
         <ProductTrustBlocks product={product} />
 
@@ -547,7 +635,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </div>
               <button type="button" onClick={scrollToOrder} className="h-12 px-6 sm:px-8 rounded-xl bg-[#6366f1] text-white font-bold text-sm active:scale-95 transition-transform flex items-center gap-2 shrink-0 shadow-lg shadow-indigo-500/25 hover:bg-[#4f46e5]">
                 <ShoppingBag className="h-4 w-4" />
-                تأكيد الطلب
+                اطلب الآن
               </button>
             </div>
           </motion.div>

@@ -4,7 +4,19 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { Loader2, Lock, MapPin, Phone, User } from "lucide-react";
+import {
+  Loader2,
+  Lock,
+  MapPin,
+  Phone,
+  User,
+  Building2,
+  Minus,
+  Plus,
+  CheckCircle2,
+  Banknote,
+  Shield,
+} from "lucide-react";
 import type { Product, ProductVariant } from "@/types";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import {
@@ -15,14 +27,16 @@ import {
 } from "@/lib/validate-phone";
 import { trackEvent } from "@/components/analytics/analytics-scripts";
 import { resolveProductHero } from "@/lib/product-images/resolve";
+import { moroccanCities } from "@/data/products";
 
 interface ProductOrderFormProps {
   product: Product;
   variant: ProductVariant;
   quantity: number;
+  onQuantityChange?: (qty: number) => void;
 }
 
-type FormFields = { fullName: string; phone: string; address: string };
+type FormFields = { fullName: string; phone: string; city: string; address: string };
 type FormErrors = Partial<Record<keyof FormFields, string>>;
 
 function FieldError({ message }: { message: string }) {
@@ -42,11 +56,21 @@ function FieldError({ message }: { message: string }) {
   );
 }
 
-export function ProductOrderForm({ product, variant, quantity }: ProductOrderFormProps) {
+export function ProductOrderForm({
+  product,
+  variant,
+  quantity,
+  onQuantityChange,
+}: ProductOrderFormProps) {
   const router = useRouter();
   const submitting = useRef(false);
 
-  const [form, setForm] = useState<FormFields>({ fullName: "", phone: "", address: "" });
+  const [form, setForm] = useState<FormFields>({
+    fullName: "",
+    phone: "",
+    city: "",
+    address: "",
+  });
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof FormFields, boolean>>>({});
   const [loading, setLoading] = useState(false);
@@ -54,10 +78,17 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
 
   const productName = product.name.ar;
   const productImage = resolveProductHero(product);
+  const shipping = 0;
   const subtotal = variant.price * quantity;
-  const total = subtotal;
+  const total = subtotal + shipping;
   const priceFormatted = formatPriceNumber(variant.price, "ar");
   const totalFormatted = formatPriceNumber(total, "ar");
+  const shippingFormatted = shipping === 0 ? "مجاني" : `${formatPriceNumber(shipping, "ar")} درهم`;
+
+  const setQty = (next: number) => {
+    const q = Math.max(1, Math.min(10, next));
+    onQuantityChange?.(q);
+  };
 
   const validateField = (key: keyof FormFields, value: string): string | undefined => {
     switch (key) {
@@ -68,6 +99,9 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
         if (!value.trim()) return "الرجاء إدخال رقم الهاتف";
         if (!isValidMoroccanPhone(value)) return "الرجاء إدخال رقم هاتف مغربي صحيح";
         return undefined;
+      case "city":
+        if (!value.trim()) return "الرجاء اختيار المدينة";
+        return undefined;
       case "address":
         if (!value.trim()) return "الرجاء إدخال العنوان";
         if (!isValidAddress(value)) return "الرجاء إدخال عنوان تفصيلي كامل";
@@ -77,12 +111,12 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
 
   const validate = (): boolean => {
     const next: FormErrors = {};
-    (["fullName", "phone", "address"] as const).forEach((key) => {
+    (["fullName", "phone", "city", "address"] as const).forEach((key) => {
       const err = validateField(key, form[key]);
       if (err) next[key] = err;
     });
     setErrors(next);
-    setTouched({ fullName: true, phone: true, address: true });
+    setTouched({ fullName: true, phone: true, city: true, address: true });
     return Object.keys(next).length === 0;
   };
 
@@ -120,7 +154,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
             fullName: form.fullName.trim(),
             phone: normalizeMoroccanPhone(form.phone),
             address: form.address.trim(),
-            city: "المغرب",
+            city: form.city.trim(),
             country: "Morocco",
           },
           paymentMethod: "cod",
@@ -141,7 +175,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           order: data.orderNumber,
           name: form.fullName.trim(),
           phone: normalizeMoroccanPhone(form.phone),
-          address: form.address.trim(),
+          address: `${form.city.trim()} - ${form.address.trim()}`,
           product: productName,
           total: String(total),
         });
@@ -172,19 +206,30 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="premium-checkout-card mx-auto w-full max-w-[520px] rounded-[24px] p-5 sm:p-8"
       >
-        {/* ── العنوان ── */}
-        <header className="text-center mb-7 pb-6 border-b-2 border-[#E5E7EB]">
-          <h2 className="text-[1.625rem] sm:text-[1.875rem] font-black tracking-tight text-black leading-tight">
+        <header className="text-center mb-5 pb-5 border-b-2 border-[#E5E7EB]">
+          <h2 className="text-[1.5rem] sm:text-[1.75rem] font-black tracking-tight text-black leading-tight">
             اطلب الآن وادفع عند الاستلام
           </h2>
-          <p className="mt-3 text-[1.125rem] sm:text-xl font-semibold text-[#334155] leading-relaxed">
-            لن تدفع أي مبلغ الآن. ستدفع فقط عند استلام المنتج
+          <p className="mt-2 text-base sm:text-lg font-semibold text-[#334155] leading-relaxed">
+            عبّئ بياناتك في أقل من دقيقة — والتوصيل لباب دارك
           </p>
         </header>
 
-        <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-          {/* ── الحقول ── */}
-          <div className="space-y-5">
+        <ul className="mb-6 space-y-2.5 rounded-2xl bg-[#ECFDF5] border border-emerald-200 px-4 py-3.5">
+          {[
+            "الدفع عند الاستلام",
+            "لن تدفع أي مبلغ الآن",
+            "ادفع فقط عند استلام الطلب",
+          ].map((line) => (
+            <li key={line} className="flex items-center gap-2.5 text-sm sm:text-base font-bold text-[#065F46]">
+              <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" aria-hidden />
+              <span>{line}</span>
+            </li>
+          ))}
+        </ul>
+
+        <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+          <div className="space-y-4">
             <div>
               <label htmlFor="fullName" className="premium-field-label text-[#0F172A]">
                 الاسم الكامل
@@ -229,6 +274,35 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
             </div>
 
             <div>
+              <label htmlFor="city" className="premium-field-label text-[#0F172A]">
+                المدينة
+              </label>
+              <div className="relative">
+                <Building2 className="pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5 text-[#6366F1] z-10" aria-hidden />
+                <select
+                  id="city"
+                  value={form.city}
+                  onChange={(e) => updateField("city", e.target.value)}
+                  onBlur={() => blurField("city")}
+                  className={cn(
+                    "premium-checkout-input ps-14 pe-10 text-[#0F172A] appearance-none bg-white",
+                    fieldBorder("city"),
+                    !form.city && "text-[#94A3B8]",
+                  )}
+                  disabled={loading}
+                >
+                  <option value="">اختر مدينتك</option>
+                  {moroccanCities.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {touched.city && errors.city && <FieldError message={errors.city} />}
+            </div>
+
+            <div>
               <label htmlFor="address" className="premium-field-label text-[#0F172A]">
                 العنوان الكامل
               </label>
@@ -239,79 +313,112 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                   value={form.address}
                   onChange={(e) => updateField("address", e.target.value)}
                   onBlur={() => blurField("address")}
-                  rows={4}
+                  rows={3}
                   className={cn(
-                    "premium-checkout-textarea ps-14 pt-[18px] min-h-[140px] resize-none leading-relaxed text-[#0F172A]",
-                    fieldBorder("address")
+                    "premium-checkout-textarea ps-14 pt-[18px] min-h-[110px] resize-none leading-relaxed text-[#0F172A]",
+                    fieldBorder("address"),
                   )}
-                  placeholder="المدينة - الحي - الشارع - رقم المنزل"
+                  placeholder="الحي - الشارع - رقم المنزل / الطابق"
                   autoComplete="street-address"
                   disabled={loading}
                 />
               </div>
               {touched.address && errors.address && <FieldError message={errors.address} />}
             </div>
+
+            <div>
+              <span className="premium-field-label text-[#0F172A]">الكمية</span>
+              <div className="flex items-center gap-3 mt-1">
+                <button
+                  type="button"
+                  onClick={() => setQty(quantity - 1)}
+                  disabled={loading || quantity <= 1}
+                  className="h-12 w-12 rounded-xl border-2 border-[#CBD5E1] bg-white text-[#0F172A] font-bold disabled:opacity-40 flex items-center justify-center"
+                  aria-label="إنقاص الكمية"
+                >
+                  <Minus className="h-4 w-4" />
+                </button>
+                <span className="min-w-[3rem] text-center text-2xl font-black tabular-nums text-black">
+                  {quantity}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setQty(quantity + 1)}
+                  disabled={loading || quantity >= 10}
+                  className="h-12 w-12 rounded-xl border-2 border-[#CBD5E1] bg-white text-[#0F172A] font-bold disabled:opacity-40 flex items-center justify-center"
+                  aria-label="زيادة الكمية"
+                >
+                  <Plus className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* ── ملخص الطلب ── */}
-            <div className="rounded-[20px] border-2 border-[#CBD5E1] bg-[#F1F5F9] overflow-hidden">
-            <div className="px-5 py-4 bg-[#4F46E5] border-b-2 border-[#4338CA]">
-              <p className="text-xl font-black text-white text-center tracking-tight">
-                ملخص الطلب
-              </p>
+          <div className="rounded-[20px] border-2 border-[#CBD5E1] bg-[#F8FAFC] overflow-hidden">
+            <div className="px-5 py-3.5 bg-[#4F46E5] border-b-2 border-[#4338CA]">
+              <p className="text-lg font-black text-white text-center tracking-tight">ملخص الطلب</p>
             </div>
 
             <div className="p-5 space-y-4">
-              {/* المنتج */}
               <div className="flex gap-4 items-center pb-4 border-b border-[#E5E7EB]">
                 {productImage && (
-                  <div className="relative h-20 w-20 sm:h-[88px] sm:w-[88px] shrink-0 overflow-hidden rounded-2xl border-2 border-[#E5E7EB] bg-white">
-                    <Image src={productImage} alt={productName} fill className="object-cover" sizes="88px" />
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-[#E5E7EB] bg-white">
+                    <Image src={productImage} alt={productName} fill className="object-cover" sizes="80px" />
                   </div>
                 )}
-                <div className="flex-1 min-w-0 space-y-2">
-                  <p className="text-xl sm:text-2xl font-black text-black leading-snug">
+                <div className="flex-1 min-w-0 space-y-1">
+                  <p className="text-base sm:text-lg font-black text-black leading-snug line-clamp-2">
                     {productName}
                   </p>
-                  <p className="text-lg font-bold text-[#475569]">
-                    الكمية: <span className="text-black font-black tabular-nums">{quantity}</span>
-                  </p>
-                  <p className="text-xl font-black text-[#4F46E5] tabular-nums">
-                    {priceFormatted} درهم
+                  <p className="text-sm font-bold text-[#475569]">
+                    سعر الوحدة:{" "}
+                    <span className="text-[#4F46E5] font-black tabular-nums">{priceFormatted} درهم</span>
                   </p>
                 </div>
               </div>
 
-              {/* شبكة التوصيل / الدفع / الإجمالي */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                <div className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white border-2 border-[#10B981] p-3 sm:p-4 text-center min-h-[88px]">
-                  <span className="text-lg sm:text-xl font-black text-[#059669]">مجاني</span>
-                  <span className="text-sm font-bold text-[#475569]">التوصيل</span>
+              <div className="space-y-2.5 text-sm sm:text-base">
+                <div className="flex justify-between gap-3 font-bold text-[#334155]">
+                  <span>سعر المنتج × {quantity}</span>
+                  <span className="tabular-nums text-black">{formatPriceNumber(subtotal, "ar")} درهم</span>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white border-2 border-[#CBD5E1] p-3 sm:p-4 text-center min-h-[88px]">
-                  <span className="text-base sm:text-lg font-black text-black leading-tight">عند الاستلام</span>
-                  <span className="text-sm font-bold text-[#475569]">طريقة الدفع</span>
+                <div className="flex justify-between gap-3 font-bold text-[#334155]">
+                  <span>تكلفة الشحن</span>
+                  <span className="text-emerald-600 font-black">{shippingFormatted}</span>
                 </div>
-                <div className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-[#EEF2FF] border-2 border-[#6366F1] p-3 sm:p-4 text-center min-h-[88px]">
-                  <span className="text-lg sm:text-xl font-black text-[#4F46E5] tabular-nums">{totalFormatted} درهم</span>
-                  <span className="text-sm font-bold text-[#475569]">الإجمالي</span>
-                </div>
+              </div>
+
+              <div className="rounded-2xl bg-[#EEF2FF] border-2 border-[#6366F1] px-4 py-4 text-center">
+                <p className="text-sm font-bold text-[#4338CA] mb-1 flex items-center justify-center gap-1.5">
+                  <Banknote className="h-4 w-4" />
+                  الإجمالي النهائي عند الاستلام
+                </p>
+                <p className="text-3xl sm:text-4xl font-black text-[#4F46E5] tabular-nums leading-none">
+                  {totalFormatted}
+                  <span className="text-base ms-1">درهم</span>
+                </p>
+                <p className="mt-2 text-xs font-semibold text-[#64748B] flex items-center justify-center gap-1">
+                  <Shield className="h-3.5 w-3.5" />
+                  بلا دفع مسبق — خلاص كاش عند الباب
+                </p>
               </div>
             </div>
           </div>
 
           {formError && (
-            <div className="rounded-2xl border-2 border-red-300 bg-red-50 px-4 py-3.5 text-sm font-semibold text-red-700 text-center" role="alert">
+            <div
+              className="rounded-2xl border-2 border-red-300 bg-red-50 px-4 py-3.5 text-sm font-semibold text-red-700 text-center"
+              role="alert"
+            >
               {formError}
             </div>
           )}
 
-          {/* ── زر التأكيد ── */}
           <div className="space-y-3">
             <button
               type="submit"
               disabled={loading}
-              className="premium-checkout-cta w-full h-[4.25rem] rounded-2xl text-[1.375rem] font-black text-white disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3 transition-all duration-200 active:scale-[0.99]"
+              className="premium-checkout-cta w-full h-[4.25rem] rounded-2xl text-[1.25rem] sm:text-[1.375rem] font-black text-white disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3 transition-all duration-200 active:scale-[0.99]"
             >
               {loading ? (
                 <>
@@ -321,12 +428,12 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
               ) : (
                 <>
                   <Lock className="h-5 w-5" aria-hidden />
-                  <span>تأكيد الطلب</span>
+                  <span>تأكيد الطلب الآن</span>
                 </>
               )}
             </button>
-            <p className="text-center text-lg font-bold text-[#475569]">
-              يتم تأكيد طلبك فوراً
+            <p className="text-center text-base font-bold text-[#475569]">
+              يتم تأكيد طلبك فوراً — ونتواصل معك عبر الهاتف
             </p>
           </div>
         </form>

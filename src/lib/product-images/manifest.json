@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T13:01:12.892Z",
+  "generatedAt": "2026-07-20T14:25:47.733Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -1159,8 +1159,8 @@
       "sources": {
         "04-bedroom": "amazon-commercial",
         "12-dimensions": "amazon-commercial",
-        "01-hero-white-bg": "amazon-commercial",
-        "02-premium-hero": "amazon-commercial",
+        "01-hero-white-bg": "user-download-jfif",
+        "02-premium-hero": "user-download-jfif",
         "09-close-up": "amazon-commercial",
         "10-features": "amazon-commercial",
         "11-package-contents": "amazon-commercial",
