@@ -131,7 +131,7 @@ export const products: Product[] = [
       "NOORVA galaxy star projector with matte black body and faceted crystal dome. Starry sky plus colorful wave lighting up to 21 modes (R/G/B/W). Built-in Bluetooth speaker, USB/TF playback, remote with 1h/2h auto-off. Perfect for bedrooms, kids rooms, parties. Cash on delivery in Morocco."
     ),
     categoryId: "cat-projectors",
-    price: 149,
+    price: 169,
     compareAtPrice: 219,
     sku: "NRV-STARBT-01",
     stock: 75,
@@ -199,7 +199,7 @@ export const products: Product[] = [
       { id: "living", emoji: "🛋️", title: L("غرفة المعيشة", "Salon", "Living Room"), description: L("أجواء حفلات وموسيقى بلوتوث", "Ambiance soirée + Bluetooth", "Party vibe + Bluetooth music") },
       { id: "romantic", emoji: "💫", title: L("أمسية رومانسية", "Romantique", "Romantic"), description: L("ألوان ناعمة لتاريخ مثالي في الدار", "Couleurs douces pour une soirée à deux", "Soft colors for date night at home") },
     ],
-    variants: [{ id: "var-starbt", name: L("أسود", "Noir", "Black"), price: 149, compareAtPrice: 219, sku: "NRV-STARBT-01", stock: 75 }],
+    variants: [{ id: "var-starbt", name: L("أسود", "Noir", "Black"), price: 169, compareAtPrice: 219, sku: "NRV-STARBT-01", stock: 75 }],
     upsellIds: ["prod-mx003", "prod-aurora"],
     crossSellIds: ["prod-rabbit"],
     seo: {
