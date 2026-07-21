@@ -119,7 +119,7 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         desc: "تصميم رائد فضاء أبيض أنيق يبهر من أول نظرة — هدية جاهزة للعائلة أو الأصدقاء.",
       },
     ],
-    videoSrc: "/videos/astronaut-ugc-tiktok-ad.mp4",
+    videoSrc: "/videos/astronaut-product-demo.mp4",
   },
 
   "bluetooth-star-projector": {

@@ -11,7 +11,8 @@
     "ai:infra:down": "docker compose down",
     "ai:tick": "curl -s -X POST http://localhost:3000/api/ai/cron -H \"Content-Type: application/json\" -d \"{\\\"task\\\":\\\"tick\\\"}\"",
     "images:generate": "node scripts/generate-product-images.mjs",
-    "images:force": "node scripts/generate-product-images.mjs --force"
+    "images:force": "node scripts/generate-product-images.mjs --force",
+    "video:astronaut-watch-result": "node scripts/generate-astronaut-watch-result.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1083.0",
