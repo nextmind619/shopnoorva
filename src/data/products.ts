@@ -33,7 +33,7 @@ export const products: Product[] = [
       "NOORVA MX003 astronaut projector — galaxy effect with a built-in Bluetooth 5.0 chest speaker. Elegant white astronaut design, HD lens projecting multicolor stars and nebula on ceiling and walls. TF card and AUX playback, built-in mic. Black remote, USB-C cable. Cash on delivery."
     ),
     categoryId: "cat-projectors",
-    price: 179,
+    price: 189,
     compareAtPrice: 259,
     sku: "NRV-MX003-01",
     stock: 90,
@@ -104,7 +104,7 @@ export const products: Product[] = [
     ],
     images: [],
     lifestyleImages: [],
-    variants: [{ id: "var-mx003", name: L("أبيض", "Blanc", "White"), price: 179, compareAtPrice: 259, sku: "NRV-MX003-01", stock: 90 }],
+    variants: [{ id: "var-mx003", name: L("أبيض", "Blanc", "White"), price: 189, compareAtPrice: 259, sku: "NRV-MX003-01", stock: 90 }],
     upsellIds: ["prod-aurora", "prod-starbt"],
     crossSellIds: ["prod-rabbit"],
     seo: {
@@ -234,7 +234,7 @@ export const products: Product[] = [
       "NOORVA Dream Aurora projector with matte white faceted geometric body and clear projection dome. Moving northern-lights aurora with stars and crescent moon. Built-in Bluetooth speaker, white remote with color/brightness/speed and 1h/2h timer. Perfect for bedroom and living room. Cash on delivery in Morocco."
     ),
     categoryId: "cat-projectors",
-    price: 189,
+    price: 249,
     compareAtPrice: 279,
     sku: "NRV-AURORA-01",
     stock: 68,
@@ -301,7 +301,7 @@ export const products: Product[] = [
       { id: "romantic", emoji: "💫", title: L("أجواء رومانسية", "Romantique", "Romantic"), description: L("ألوان ناعمة وقمر هلالي", "Couleurs douces et lune", "Soft colors and crescent moon") },
       { id: "gift", emoji: "🎁", title: L("هدية مثالية", "Cadeau", "Gift"), description: L("هدية أصلية لعشاق الديكور", "Cadeau original déco", "Original gift for décor lovers") },
     ],
-    variants: [{ id: "var-aurora", name: L("أبيض", "Blanc", "White"), price: 189, compareAtPrice: 279, sku: "NRV-AURORA-01", stock: 68 }],
+    variants: [{ id: "var-aurora", name: L("أبيض", "Blanc", "White"), price: 249, compareAtPrice: 279, sku: "NRV-AURORA-01", stock: 68 }],
     upsellIds: ["prod-mx003", "prod-starbt"],
     crossSellIds: ["prod-rabbit"],
     seo: {
@@ -336,8 +336,8 @@ export const products: Product[] = [
       "NOORVA pink rabbit carousel night light: 360° rotating bunny figurines, 5 LED colour modes, and 6 interchangeable projection films (Starry Sky, Ocean World, Dinosaur Land, Happy Birthday, Underwater Fantasy, Animal Forest). USB powered via adaptor, power bank, or laptop. Perfect kids gift. Cash on delivery in Morocco."
     ),
     categoryId: "cat-nightlights",
-    price: 139,
-    compareAtPrice: 199,
+    price: 249,
+    compareAtPrice: 349,
     sku: "NRV-RABBIT-01",
     stock: 110,
     rating: 4.9,
@@ -410,7 +410,7 @@ export const products: Product[] = [
       { id: "gift", emoji: "🎁", title: L("هدية للأطفال", "Cadeau enfants", "Kids gift"), description: L("6 ثيمات إسقاط لعيد الميلاد وكل مناسبة", "6 thèmes pour chaque occasion", "6 projection themes for every occasion") },
       { id: "living", emoji: "🛋️", title: L("ديكور الغرفة", "Décor", "Room decor"), description: L("تصميم كاروسيل وردي يزيّن الطاولة", "Design carrousel rose décoratif", "Pink carousel design for tabletop decor") },
     ],
-    variants: [{ id: "var-rabbit", name: L("وردي", "Rose", "Pink"), price: 139, compareAtPrice: 199, sku: "NRV-RABBIT-01", stock: 110 }],
+    variants: [{ id: "var-rabbit", name: L("وردي", "Rose", "Pink"), price: 249, compareAtPrice: 349, sku: "NRV-RABBIT-01", stock: 110 }],
     upsellIds: ["prod-mx003", "prod-aurora"],
     crossSellIds: ["prod-starbt"],
     seo: {
