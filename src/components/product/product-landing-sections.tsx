@@ -10,16 +10,11 @@ import {
 } from "@/lib/product-gallery-slides";
 import { cn } from "@/lib/utils";
 
+/** Illustrative blocks only — keep gallery clean (max 3 sections) */
 const LANDING_SECTIONS: GallerySection[] = [
   "lifestyle",
   "features",
-  "bluetooth",
   "projection",
-  "gift",
-  "package",
-  "accessories",
-  "dimensions",
-  "specifications",
 ];
 
 interface ProductLandingSectionsProps {

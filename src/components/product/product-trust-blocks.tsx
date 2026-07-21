@@ -14,6 +14,8 @@ import { motion } from "motion/react";
 
 interface ProductTrustBlocksProps {
   product: Product;
+  /** When true, skip guarantee block (rendered separately on the page). */
+  hideGuarantee?: boolean;
 }
 
 function getStory(slug: string) {
@@ -77,7 +79,7 @@ function productDeepFallback(name: string) {
   return `${name} من NOORVA مصمّم باش يحوّل غرفتك لأجواء هادئة وفاخرة — مثالي للنوم، الديكور، والهدايا.`;
 }
 
-export function ProductTrustBlocks({ product }: ProductTrustBlocksProps) {
+export function ProductTrustBlocks({ product, hideGuarantee = false }: ProductTrustBlocksProps) {
   const boxItems = product.packageIncludes?.length
     ? product.packageIncludes
     : [];
@@ -172,61 +174,63 @@ export function ProductTrustBlocks({ product }: ProductTrustBlocksProps) {
       </motion.section>
 
       {/* الضمان */}
-      <motion.section
-        id="guarantee"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-48px" }}
-        transition={{ duration: 0.5 }}
-        className="bg-[#1a1a24] rounded-[2rem] border border-white/10 p-8 sm:p-10"
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <div className="bg-white/5 p-3 rounded-xl">
-            <ShieldCheck className="h-6 w-6 text-emerald-400" />
-          </div>
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white">ضمان راحتك</h2>
-            <p className="text-sm text-white/55 mt-1">طلب آمن — بلا مخاطرة</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {[
-            {
-              icon: RotateCcw,
-              title: "استبدال خلال 7 أيام",
-              desc: "إلا كان عيب مصنعي، كنبدّلوه بسرعة عبر واتساب.",
-            },
-            {
-              icon: ShieldCheck,
-              title: `ضمان ${product.warrantyMonths || 12} شهر`,
-              desc: "تغطية على عيوب التصنيع طيلة مدة الضمان.",
-            },
-            {
-              icon: BadgeCheck,
-              title: "الدفع عند الاستلام",
-              desc: "ما كتدفع والو دابا. خلّص كاش ملي تشوف الطلب قدامك.",
-            },
-            {
-              icon: Package,
-              title: "تغليف محمي",
-              desc: "شحنة مؤمّنة باش يوصلك المنتج سليم 100%.",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="flex items-start gap-4 bg-[#12121a] rounded-2xl border border-white/10 p-5"
-            >
-              <div className="shrink-0 bg-emerald-500/10 p-2.5 rounded-xl">
-                <item.icon className="h-5 w-5 text-emerald-400" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-white">{item.title}</p>
-                <p className="text-xs text-white/55 mt-1.5 leading-relaxed">{item.desc}</p>
-              </div>
+      {!hideGuarantee && (
+        <motion.section
+          id="guarantee"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-48px" }}
+          transition={{ duration: 0.5 }}
+          className="bg-[#1a1a24] rounded-[2rem] border border-white/10 p-8 sm:p-10"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="bg-white/5 p-3 rounded-xl">
+              <ShieldCheck className="h-6 w-6 text-emerald-400" />
             </div>
-          ))}
-        </div>
-      </motion.section>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white">ضمان راحتك</h2>
+              <p className="text-sm text-white/55 mt-1">طلب آمن — بلا مخاطرة</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              {
+                icon: RotateCcw,
+                title: "استبدال خلال 7 أيام",
+                desc: "إلا كان عيب مصنعي، كنبدّلوه بسرعة عبر واتساب.",
+              },
+              {
+                icon: ShieldCheck,
+                title: `ضمان ${product.warrantyMonths || 12} شهر`,
+                desc: "تغطية على عيوب التصنيع طيلة مدة الضمان.",
+              },
+              {
+                icon: BadgeCheck,
+                title: "الدفع عند الاستلام",
+                desc: "ما كتدفع والو دابا. خلّص كاش ملي تشوف الطلب قدامك.",
+              },
+              {
+                icon: Package,
+                title: "تغليف محمي",
+                desc: "شحنة مؤمّنة باش يوصلك المنتج سليم 100%.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="flex items-start gap-4 bg-[#12121a] rounded-2xl border border-white/10 p-5"
+              >
+                <div className="shrink-0 bg-emerald-500/10 p-2.5 rounded-xl">
+                  <item.icon className="h-5 w-5 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-white">{item.title}</p>
+                  <p className="text-xs text-white/55 mt-1.5 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+      )}
     </div>
   );
 }

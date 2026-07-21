@@ -9,11 +9,10 @@ import {
   ZoomIn,
   X,
   Maximize2,
-  Sparkles,
 } from "lucide-react";
 import type { Product } from "@/types";
 import {
-  buildProductGallerySlides,
+  buildPrimaryGallerySlides,
   type GallerySlide,
   type GallerySection,
 } from "@/lib/product-gallery-slides";
@@ -165,7 +164,7 @@ function GalleryOverlay({ mode, current, active, total, onClose, onPrev, onNext 
 }
 
 export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
-  const slides = useMemo(() => buildProductGallerySlides(product), [product]);
+  const slides = useMemo(() => buildPrimaryGallerySlides(product, 6), [product]);
   const [active, setActive] = useState(0);
   const [zoomOpen, setZoomOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
@@ -244,13 +243,6 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
               <SlideImage slide={current} priority={active <= 1} />
             </motion.div>
           </AnimatePresence>
-
-          {product.isTikTokViral && (
-            <span className="absolute top-4 start-4 z-20 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide flex items-center gap-1.5">
-              <Sparkles className="h-3 w-3 text-[#6366f1]" />
-              فيرال تيك توك
-            </span>
-          )}
 
           <button
             type="button"

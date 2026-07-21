@@ -200,7 +200,10 @@ body {
 
 .premium-checkout-input::placeholder,
 .premium-checkout-textarea::placeholder {
-  color: #9ca3af;
+  color: #d1d5db !important;
+  -webkit-text-fill-color: #d1d5db !important;
+  opacity: 1;
+  font-weight: 400;
 }
 
 .premium-checkout-input:focus,
