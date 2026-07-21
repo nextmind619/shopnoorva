@@ -12,7 +12,18 @@ import { getLocalized } from "@/lib/utils";
 import { PriceDisplay } from "@/components/shared/price-display";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
+
+const HOME_UGC_VIDEOS: Record<string, { src: string; poster: string }> = {
+  "prod-mx003": {
+    src: "/videos/astronaut-ugc-review.mp4",
+    poster: "/videos/posters/astronaut-ugc-review.jpg",
+  },
+  "prod-starbt": {
+    src: "/videos/star-projector-review.mp4",
+    poster: "/videos/posters/star-projector-review.jpg",
+  },
+};
 
 export function TrustGridSection() {
   const t = useTranslations("trustGrid");
@@ -202,12 +213,33 @@ export function ReviewsCarouselSection() {
 export function TikTokReviewsSection() {
   const t = useTranslations("sections");
   const locale = useLocale() as Locale;
-  const videos = products.map((p) => ({
-    name: getLocalized(p.name, locale).split(" ")[0],
-    city: "المغرب",
-    quote: getLocalized(p.shortDescription, locale).slice(0, 60) + " ✨",
-    img: p.images[0]?.url || resolveProductHero(p),
-  }));
+  const [playingId, setPlayingId] = useState<string | null>(null);
+  const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+
+  const videos = products.map((p) => {
+    const ugc = HOME_UGC_VIDEOS[p.id];
+    return {
+      id: p.id,
+      name: getLocalized(p.name, locale).split(" ")[0],
+      city: "المغرب",
+      quote: getLocalized(p.shortDescription, locale).slice(0, 60) + " ✨",
+      img: ugc?.poster || p.images[0]?.url || resolveProductHero(p),
+      src: ugc?.src,
+    };
+  });
+
+  const playVideo = (id: string) => {
+    Object.entries(videoRefs.current).forEach(([key, el]) => {
+      if (key !== id && el) {
+        el.pause();
+        el.currentTime = 0;
+      }
+    });
+    const el = videoRefs.current[id];
+    if (!el) return;
+    void el.play();
+    setPlayingId(id);
+  };
 
   return (
     <section className="section-padding bg-navy text-cream">
@@ -217,21 +249,55 @@ export function TikTokReviewsSection() {
           <p className="text-cream/60 mt-2">{t("tiktokSubtitle")}</p>
         </div>
         <div className="flex gap-4 overflow-x-auto pb-4 snap-x">
-          {videos.map((v, i) => (
-            <div key={i} className="snap-center shrink-0 w-[200px] md:w-[240px] relative aspect-[9/16] rounded-2xl overflow-hidden group">
-              <Image src={v.img} alt="" fill className="object-cover" sizes="240px" />
-              <div className="absolute inset-0 bg-gradient-to-t from-noir/90 via-noir/20 to-transparent" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur flex items-center justify-center group-hover:bg-gold/80 transition-colors">
-                  <Play className="h-5 w-5 fill-white text-white ms-0.5" />
-                </div>
+          {videos.map((v) => {
+            const isPlaying = playingId === v.id;
+            return (
+              <div
+                key={v.id}
+                role={v.src ? "button" : undefined}
+                tabIndex={v.src ? 0 : undefined}
+                onClick={() => v.src && !isPlaying && playVideo(v.id)}
+                onKeyDown={(e) => {
+                  if (v.src && !isPlaying && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault();
+                    playVideo(v.id);
+                  }
+                }}
+                className="snap-center shrink-0 w-[200px] md:w-[240px] relative aspect-[9/16] rounded-2xl overflow-hidden group text-start cursor-pointer"
+              >
+                {v.src ? (
+                  <video
+                    ref={(el) => {
+                      videoRefs.current[v.id] = el;
+                    }}
+                    src={v.src}
+                    poster={v.img}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    playsInline
+                    preload="metadata"
+                    controls={isPlaying}
+                    onEnded={() => setPlayingId(null)}
+                  />
+                ) : (
+                  <Image src={v.img} alt="" fill className="object-cover" sizes="240px" />
+                )}
+                {!isPlaying && (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-t from-noir/90 via-noir/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur flex items-center justify-center group-hover:bg-gold/80 transition-colors">
+                        <Play className="h-5 w-5 fill-white text-white ms-0.5" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-0 inset-x-0 p-4 pointer-events-none">
+                      <p className="text-sm">{v.quote}</p>
+                      <p className="text-xs text-cream/60 mt-1">{v.name} · {v.city}</p>
+                    </div>
+                  </>
+                )}
               </div>
-              <div className="absolute bottom-0 inset-x-0 p-4">
-                <p className="text-sm">{v.quote}</p>
-                <p className="text-xs text-cream/60 mt-1">{v.name} · {v.city}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
