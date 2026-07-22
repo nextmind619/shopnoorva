@@ -23,6 +23,14 @@ const HOME_UGC_VIDEOS: Record<string, { src: string; poster: string }> = {
     src: "/videos/star-projector-review.mp4",
     poster: "/videos/posters/star-projector-review.jpg",
   },
+  "prod-aurora": {
+    src: "/videos/aurora-ugc-review.mp4",
+    poster: "/videos/posters/aurora-ugc-review.jpg",
+  },
+  "prod-rabbit": {
+    src: "/videos/rabbit-carousel-review.mp4",
+    poster: "/videos/posters/rabbit-carousel-review.jpg",
+  },
 };
 
 export function TrustGridSection() {
