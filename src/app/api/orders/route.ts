@@ -1,16 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminOrders } from "@/lib/orders-admin";
-import { rateLimit, getClientIp } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/rate-limit";
 import { processIncomingOrder } from "@/lib/ai/orchestrator";
+import { normalizeMoroccanPhoneLocal, validateMoroccanPhone } from "@/lib/fraud";
+import type { DeviceSignals } from "@/lib/fraud";
 import type { PaymentMethod, ShippingAddress } from "@/types";
+
+function collectHeaders(request: NextRequest): Record<string, string | null | undefined> {
+  return {
+    "user-agent": request.headers.get("user-agent"),
+    "accept-language": request.headers.get("accept-language"),
+    "sec-ch-ua": request.headers.get("sec-ch-ua"),
+    "sec-ch-ua-mobile": request.headers.get("sec-ch-ua-mobile"),
+    "sec-ch-ua-platform": request.headers.get("sec-ch-ua-platform"),
+    via: request.headers.get("via"),
+    forwarded: request.headers.get("forwarded"),
+    "x-forwarded-for": request.headers.get("x-forwarded-for"),
+    "x-real-ip": request.headers.get("x-real-ip"),
+  };
+}
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  const { success } = rateLimit(`order:${ip}`, 5, 60000);
-
-  if (!success) {
-    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-  }
 
   try {
     const body = await request.json();
@@ -20,6 +31,9 @@ export async function POST(request: NextRequest) {
       couponCode,
       discount,
       cartId,
+      device,
+      honeypot,
+      formFillMs,
     } = body as {
       items: { productId: string; variantId: string; quantity: number }[];
       shippingAddress: ShippingAddress;
@@ -27,18 +41,42 @@ export async function POST(request: NextRequest) {
       couponCode?: string;
       discount?: number;
       cartId?: string;
+      device?: DeviceSignals;
+      honeypot?: string;
+      formFillMs?: number;
     };
 
     if (!items?.length || !shippingAddress?.phone || !shippingAddress?.address) {
       return NextResponse.json({ error: "Invalid order data" }, { status: 400 });
     }
 
-    const nameParts = (shippingAddress.fullName || "").trim().split(/\s+/);
+    if (!shippingAddress.fullName?.trim()) {
+      return NextResponse.json({ error: "Full name is required" }, { status: 400 });
+    }
+
+    const phoneCheck = validateMoroccanPhone(shippingAddress.phone);
+    if (!phoneCheck.valid) {
+      return NextResponse.json(
+        {
+          success: false,
+          blocked: true,
+          error: "Invalid Moroccan phone number",
+          reasons: phoneCheck.reasons,
+        },
+        { status: 422 }
+      );
+    }
+
+    const normalizedPhone =
+      normalizeMoroccanPhoneLocal(shippingAddress.phone) || phoneCheck.normalized;
+
+    const nameParts = shippingAddress.fullName.trim().split(/\s+/);
     const firstName = nameParts[0] || "Client";
     const lastName = nameParts.slice(1).join(" ") || "";
+    const headers = collectHeaders(request);
 
     const result = await processIncomingOrder({
-      phone: shippingAddress.phone,
+      phone: normalizedPhone,
       email: shippingAddress.email,
       firstName,
       lastName,
@@ -50,6 +88,13 @@ export async function POST(request: NextRequest) {
       discount,
       cartId,
       locale: (body as { locale?: string }).locale || "ar",
+      ip,
+      userAgent: headers["user-agent"] || undefined,
+      acceptLanguage: headers["accept-language"] || undefined,
+      honeypot,
+      formFillMs,
+      device,
+      headers,
     });
 
     if (!result.success || !result.order) {
@@ -57,7 +102,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           blocked: result.blocked,
-          error: result.reason || "Order blocked by AI fraud system",
+          error: result.reason || "Order blocked by anti-fraud system",
         },
         { status: 422 }
       );

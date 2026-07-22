@@ -1,0 +1,76 @@
+{
+  "name": "NOORVA store anti-spy Cloudflare rules",
+  "description": "Import-compatible expressions for Cloudflare WAF Custom Rules / Rate Limiting. Adjust domain as needed.",
+  "custom_waf_rules": [
+    {
+      "name": "Block Facebook Ad Library referrers",
+      "action": "managed_challenge",
+      "expression": "(http.referer contains \"facebook.com/ads/library\") or (http.referer contains \"facebook.com/ads/ad_archive\") or (http.referer contains \"adsmanager\") or (http.referer contains \"transparency.fb.com\")"
+    },
+    {
+      "name": "Block known ad-spy / scraper referrers",
+      "action": "block",
+      "expression": "(http.referer contains \"similarweb\") or (http.referer contains \"semrush\") or (http.referer contains \"ahrefs\") or (http.referer contains \"bigspy\") or (http.referer contains \"pipiads\") or (http.referer contains \"foreplay\") or (http.referer contains \"adspy\") or (http.referer contains \"web.archive.org\")"
+    },
+    {
+      "name": "Challenge datacenter ASNs without Morocco country",
+      "action": "managed_challenge",
+      "expression": "(not ip.geoip.country in {\"MA\"}) and (cf.threat_score gt 14) and (not http.request.uri.query contains \"fbclid\")"
+    },
+    {
+      "name": "Allow Moroccan customers with Meta click ids",
+      "action": "skip",
+      "products": ["waf"],
+      "expression": "(ip.geoip.country eq \"MA\") and ((http.request.uri.query contains \"fbclid\") or (http.request.uri.query contains \"utm_source=facebook\") or (http.request.uri.query contains \"utm_source=instagram\"))"
+    },
+    {
+      "name": "Block obvious automation user-agents",
+      "action": "block",
+      "expression": "(http.user_agent contains \"HeadlessChrome\") or (http.user_agent contains \"Puppeteer\") or (http.user_agent contains \"Playwright\") or (http.user_agent contains \"Selenium\") or (http.user_agent contains \"scrapy\") or (http.user_agent eq \"\")"
+    },
+    {
+      "name": "Hotlink protection for product images",
+      "action": "block",
+      "expression": "(http.request.uri.path.extension in {\"jpg\" \"jpeg\" \"png\" \"webp\" \"avif\" \"gif\"}) and (http.request.full_uri ne \"\") and (not http.referer contains \"shopnoorva.shop\") and (http.referer ne \"\") and (http.request.headers[\"sec-fetch-site\"][0] eq \"cross-site\")"
+    },
+    {
+      "name": "Tor / anonymous exit challenge",
+      "action": "block",
+      "expression": "(ip.geoip.continent eq \"T1\") or (cf.bot_management.score lt 30 and not ip.geoip.country in {\"MA\"})"
+    }
+  ],
+  "rate_limiting_rules": [
+    {
+      "name": "Aggressive crawl rate limit",
+      "characteristics": ["ip.src"],
+      "period": 60,
+      "requests_per_period": 60,
+      "mitigation_timeout": 600,
+      "action": "managed_challenge",
+      "expression": "(not ip.geoip.country in {\"MA\"}) or (cf.threat_score gt 10)"
+    },
+    {
+      "name": "Image harvest rate limit",
+      "characteristics": ["ip.src"],
+      "period": 60,
+      "requests_per_period": 40,
+      "mitigation_timeout": 300,
+      "action": "block",
+      "expression": "(http.request.uri.path.extension in {\"jpg\" \"jpeg\" \"png\" \"webp\" \"avif\"})"
+    }
+  ],
+  "recommended_settings": {
+    "security_level": "medium",
+    "browser_integrity_check": true,
+    "bot_fight_mode": true,
+    "email_obfuscation": true,
+    "hotlink_protection": true,
+    "notes": [
+      "Enable Cloudflare Hotlink Protection in Scrape Shield.",
+      "Keep Bot Fight Mode on; Super Bot Fight Mode if on Pro+.",
+      "Do NOT block all missing referrers — Facebook in-app browsers often strip them.",
+      "Prefer Managed Challenge over Block for ambiguous traffic so Moroccan shoppers recover.",
+      "Set SECURITY_CHALLENGE_SECRET in the app env to a long random string."
+    ]
+  }
+}

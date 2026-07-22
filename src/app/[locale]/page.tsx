@@ -1,21 +1,18 @@
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/home/hero-section";
-import {
-  TrustGridSection,
-  ProblemSection,
-  ProductDeepDiveSection,
-  ComparisonSection,
-  PillarsSection,
-  ReviewsCarouselSection,
-  TikTokReviewsSection,
-  HowItWorksSection,
-  GuaranteeSection,
-  FAQSection,
-  FinalCTASection,
-} from "@/components/home/jadeel-sections";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
+
+/** Below-fold sections: separate chunk — not in First Load JS */
+const HomeBelowFold = dynamic(
+  () => import("@/components/home/home-below-fold").then((m) => m.HomeBelowFold),
+  {
+    loading: () => <div className="min-h-[60vh]" aria-hidden />,
+    ssr: true,
+  }
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -46,17 +43,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: SITE_URL }} />
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Store", name: SITE_NAME, url: SITE_URL, paymentAccepted: "Cash", currenciesAccepted: "MAD", areaServed: "MA" }} />
       <HeroSection />
-      <TrustGridSection />
-      <ProblemSection />
-      <ProductDeepDiveSection />
-      <ComparisonSection />
-      <PillarsSection />
-      <ReviewsCarouselSection />
-      <TikTokReviewsSection />
-      <HowItWorksSection />
-      <GuaranteeSection />
-      <FAQSection />
-      <FinalCTASection />
+      <HomeBelowFold />
     </>
   );
 }

@@ -1,18 +1,29 @@
+/**
+ * Client-facing Moroccan phone helpers.
+ * Canonical fraud normalization lives in `@/lib/fraud/phone`.
+ */
+
+import {
+  normalizeMoroccanPhoneLocal,
+  toInternationalMoroccan,
+  validateMoroccanPhone,
+} from "@/lib/fraud/phone";
+
 const MIN_ADDRESS_LENGTH = 15;
 
-/** Validates Moroccan mobile numbers (06, 07, 05 + 8 digits). */
+/** Validates Moroccan mobile numbers (05/06/07) and rejects obvious fakes. */
 export function isValidMoroccanPhone(phone: string): boolean {
-  const cleaned = phone.replace(/[\s\-().]/g, "");
-  return /^(\+212|00212|212)?[5-7]\d{8}$/.test(cleaned) || /^0[5-7]\d{8}$/.test(cleaned);
+  return validateMoroccanPhone(phone).valid;
 }
 
+/** Normalize to +212… for display / thank-you URLs. */
 export function normalizeMoroccanPhone(phone: string): string {
-  const cleaned = phone.replace(/[\s\-().]/g, "");
-  if (cleaned.startsWith("+212")) return cleaned;
-  if (cleaned.startsWith("00212")) return `+${cleaned.slice(2)}`;
-  if (cleaned.startsWith("212")) return `+${cleaned}`;
-  if (cleaned.startsWith("0")) return `+212${cleaned.slice(1)}`;
-  return `+212${cleaned}`;
+  return toInternationalMoroccan(phone) || normalizeMoroccanPhoneLocal(phone) || phone.replace(/\D/g, "");
+}
+
+/** Local COD format 06XXXXXXXX for storage / dedup */
+export function normalizeMoroccanPhoneLocalFormat(phone: string): string | null {
+  return normalizeMoroccanPhoneLocal(phone);
 }
 
 /** Auto-format Moroccan phone as user types (06 XX XX XX XX). */

@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { WHATSAPP_URL } from "@/lib/site";
 
 const TRUST_PILLS = ["cod", "morocco", "quality", "warranty", "shipping"] as const;
-const HERO_IMAGE = "/hero/collection-banner.png";
+/** Pre-converted WebP source — Next also serves AVIF via image optimizer */
+const HERO_IMAGE = "/hero/collection-banner.webp";
 const WA_HREF = `${WHATSAPP_URL}?text=${encodeURIComponent("مرحباً NOORVA، أريد الاستفسار عن المنتجات")}`;
 
 export function HeroSection() {
@@ -19,6 +20,7 @@ export function HeroSection() {
     <section className="relative bg-cream overflow-hidden">
       <div className="container-luxury px-4 py-12 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          {/* Text can fade in — must NOT hide LCP image with opacity:0 */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-light leading-[1.15] text-noir">
               {t("title")}
@@ -52,22 +54,20 @@ export function HeroSection() {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="relative w-full aspect-[3/2] max-w-xl mx-auto lg:ms-auto"
-          >
-            <div className="absolute inset-0 bg-gold/10 rounded-full blur-3xl" />
+          {/* LCP element: visible immediately (no opacity:0). Final look unchanged. */}
+          <div className="relative w-full aspect-[3/2] max-w-xl mx-auto lg:ms-auto">
+            <div className="absolute inset-0 bg-gold/10 rounded-full blur-3xl" aria-hidden />
             <Image
               src={HERO_IMAGE}
               alt="مجموعة بروجيكتور النجوم والمجرة NOORVA"
               fill
               priority
+              fetchPriority="high"
+              quality={80}
               className="object-cover rounded-3xl shadow-luxury"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-          </motion.div>
+          </div>
         </div>
 
         <motion.div

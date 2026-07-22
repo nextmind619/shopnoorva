@@ -4,15 +4,18 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales } from "@/i18n/config";
 import { AnnouncementBar, Header, Footer } from "@/components/layout/header-footer";
-import { WhatsAppFloat } from "@/components/layout/whatsapp-float";
+import { DeferredClientChrome } from "@/components/layout/deferred-client-chrome";
 import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
 import "../globals.css";
 
+/** Critical display + body fonts — Tajawal not preloaded so hero wins the network */
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   variable: "--font-cairo",
   display: "swap",
   weight: ["400", "500", "600", "700"],
+  preload: true,
+  adjustFontFallback: true,
 });
 
 const tajawal = Tajawal({
@@ -20,6 +23,8 @@ const tajawal = Tajawal({
   variable: "--font-tajawal",
   display: "swap",
   weight: ["400", "500", "700", "800"],
+  preload: false,
+  adjustFontFallback: true,
 });
 
 export function generateStaticParams() {
@@ -41,6 +46,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable} h-full`}>
+      <head>
+        <link rel="preload" as="image" href="/hero/collection-banner.webp" type="image/webp" fetchPriority="high" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://analytics.tiktok.com" />
+      </head>
       <body className="min-h-full flex flex-col antialiased">
         <NextIntlClientProvider messages={messages}>
           <AnalyticsScripts />
@@ -48,7 +59,7 @@ export default async function LocaleLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
-          <WhatsAppFloat />
+          <DeferredClientChrome />
         </NextIntlClientProvider>
       </body>
     </html>

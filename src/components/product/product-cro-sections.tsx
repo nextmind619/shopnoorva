@@ -110,7 +110,7 @@ export function ProductVideoSection({ product }: SectionProps) {
           className="absolute inset-0 h-full w-full object-cover"
           controls
           playsInline
-          preload="metadata"
+          preload="none"
           poster={resolveProductImage(product.slug, "02-premium-hero", "webp") || undefined}
         >
           <source src={videoSrc} type="video/mp4" />

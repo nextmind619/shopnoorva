@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
@@ -24,17 +25,36 @@ import { products, getProductById, getReviewsForProduct } from "@/data/products"
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
-import { ProductOrderForm } from "@/components/product/product-order-form";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
-import { ProductLandingSections } from "@/components/product/product-landing-sections";
-import { ProductTrustBlocks } from "@/components/product/product-trust-blocks";
-import {
-  ProductBenefitsSection,
-  ProductVideoSection,
-  ProductComparisonSection,
-  ProductHowToSection,
-} from "@/components/product/product-cro-sections";
 
+const ProductOrderForm = dynamic(
+  () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
+  { ssr: true, loading: () => <div className="min-h-[420px]" aria-hidden /> }
+);
+const ProductLandingSections = dynamic(
+  () => import("@/components/product/product-landing-sections").then((m) => m.ProductLandingSections),
+  { ssr: true }
+);
+const ProductTrustBlocks = dynamic(
+  () => import("@/components/product/product-trust-blocks").then((m) => m.ProductTrustBlocks),
+  { ssr: true }
+);
+const ProductBenefitsSection = dynamic(
+  () => import("@/components/product/product-cro-sections").then((m) => m.ProductBenefitsSection),
+  { ssr: true }
+);
+const ProductVideoSection = dynamic(
+  () => import("@/components/product/product-cro-sections").then((m) => m.ProductVideoSection),
+  { ssr: true }
+);
+const ProductComparisonSection = dynamic(
+  () => import("@/components/product/product-cro-sections").then((m) => m.ProductComparisonSection),
+  { ssr: true }
+);
+const ProductHowToSection = dynamic(
+  () => import("@/components/product/product-cro-sections").then((m) => m.ProductHowToSection),
+  { ssr: true }
+);
 const TRUST_BADGES = [
   { icon: Banknote, label: "الدفع عند الاستلام" },
   { icon: Truck, label: "شحن سريع" },
@@ -474,7 +494,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                   className="group rounded-2xl overflow-hidden border border-white/8 bg-[#12121a] hover:border-[#6366f1]/40 transition-colors"
                 >
                   <div className="relative aspect-square">
-                    <Image src={resolveProductHero(p)} alt={p.name.ar} fill className="object-cover" sizes="40vw" />
+                    <Image src={resolveProductHero(p)} alt={p.name.ar} fill className="object-cover" sizes="40vw" loading="lazy" />
                   </div>
                   <div className="p-3 text-center">
                     <p className="text-xs font-bold line-clamp-2 text-white mb-1">{p.name.ar}</p>

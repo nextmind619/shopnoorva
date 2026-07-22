@@ -29,6 +29,14 @@ export async function processIncomingOrder(input: {
   discount?: number;
   cartId?: string;
   locale?: string;
+  /** Anti-fraud context from checkout */
+  ip?: string;
+  userAgent?: string;
+  acceptLanguage?: string;
+  honeypot?: string;
+  formFillMs?: number;
+  device?: import("@/lib/fraud").DeviceSignals;
+  headers?: Record<string, string | null | undefined>;
 }): Promise<{
   success: boolean;
   blocked?: boolean;
@@ -62,13 +70,23 @@ export async function processIncomingOrder(input: {
   const discount = input.discount || 0;
   const total = Math.max(0, subtotal + shipping - discount);
 
+  const fullName = [input.firstName, input.lastName].filter(Boolean).join(" ").trim();
+
   const fraud = await analyzeOrderFraud({
     phone: input.phone,
     email: input.email,
     city: input.city,
     address: input.address,
+    fullName,
     total,
     items: lineItems.map((i) => ({ sku: i.sku, quantity: i.quantity, name: i.name })),
+    ip: input.ip,
+    userAgent: input.userAgent,
+    acceptLanguage: input.acceptLanguage,
+    honeypot: input.honeypot,
+    formFillMs: input.formFillMs,
+    device: input.device,
+    headers: input.headers,
   });
 
   if (fraud.decision === "block") {
@@ -81,7 +99,7 @@ export async function processIncomingOrder(input: {
     orderNumber: generateOrderNumber(),
     firstName: input.firstName,
     lastName: input.lastName,
-    phone: input.phone,
+    phone: fraud.phoneNormalized || input.phone,
     email: input.email,
     city: input.city,
     address: input.address,

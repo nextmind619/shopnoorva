@@ -17,19 +17,19 @@ import { useRef, useState } from "react";
 const HOME_UGC_VIDEOS: Record<string, { src: string; poster: string }> = {
   "prod-mx003": {
     src: "/videos/astronaut-ugc-review.mp4",
-    poster: "/videos/posters/astronaut-ugc-review.jpg",
+    poster: "/videos/posters/astronaut-ugc-review.webp",
   },
   "prod-starbt": {
     src: "/videos/star-projector-review.mp4",
-    poster: "/videos/posters/star-projector-review.jpg",
+    poster: "/videos/posters/star-projector-review.webp",
   },
   "prod-aurora": {
     src: "/videos/aurora-ugc-review.mp4",
-    poster: "/videos/posters/aurora-ugc-review.jpg",
+    poster: "/videos/posters/aurora-ugc-review.webp",
   },
   "prod-rabbit": {
     src: "/videos/rabbit-carousel-review.mp4",
-    poster: "/videos/posters/rabbit-carousel-review.jpg",
+    poster: "/videos/posters/rabbit-carousel-review.webp",
   },
 };
 
@@ -110,7 +110,7 @@ function ProductShowcase({ product, locale, reversed }: { product: Product; loca
   return (
     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${reversed ? "lg:[direction:rtl]" : ""}`}>
       <div className={`relative aspect-square rounded-3xl overflow-hidden shadow-luxury ${reversed ? "lg:[direction:ltr]" : ""}`}>
-        <Image src={product.images[0]?.url || resolveProductHero(product)} alt="" fill className="object-cover" sizes="50vw" />
+        <Image src={product.images[0]?.url || resolveProductHero(product)} alt="" fill className="object-cover" sizes="50vw" loading="lazy" />
       </div>
       <div className={reversed ? "lg:[direction:ltr]" : ""}>
         <span className="text-2xl">{product.problemEmoji}</span>
@@ -244,7 +244,12 @@ export function TikTokReviewsSection() {
       }
     });
     const el = videoRefs.current[id];
-    if (!el) return;
+    const meta = videos.find((v) => v.id === id);
+    if (!el || !meta?.src) return;
+    if (!el.getAttribute("src")) {
+      el.src = meta.src;
+      el.load();
+    }
     void el.play();
     setPlayingId(id);
   };
@@ -278,16 +283,16 @@ export function TikTokReviewsSection() {
                     ref={(el) => {
                       videoRefs.current[v.id] = el;
                     }}
-                    src={v.src}
+                    src={isPlaying ? v.src : undefined}
                     poster={v.img}
                     className="absolute inset-0 h-full w-full object-cover"
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     controls={isPlaying}
                     onEnded={() => setPlayingId(null)}
                   />
                 ) : (
-                  <Image src={v.img} alt="" fill className="object-cover" sizes="240px" />
+                  <Image src={v.img} alt="" fill className="object-cover" sizes="240px" loading="lazy" />
                 )}
                 {!isPlaying && (
                   <>

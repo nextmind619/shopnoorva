@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { processIncomingOrder, getAiDashboard } from "@/lib/ai/orchestrator";
-import { rateLimit, getClientIp } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/rate-limit";
+import { normalizeMoroccanPhoneLocal, validateMoroccanPhone } from "@/lib/fraud";
 
 const schema = z.object({
   phone: z.string().min(8),
@@ -14,6 +15,9 @@ const schema = z.object({
   discount: z.number().optional(),
   cartId: z.string().optional(),
   locale: z.enum(["ar", "fr", "en"]).optional(),
+  honeypot: z.string().optional(),
+  formFillMs: z.number().optional(),
+  device: z.record(z.string(), z.unknown()).optional(),
   items: z
     .array(
       z.object({
@@ -27,13 +31,37 @@ const schema = z.object({
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  if (!rateLimit(`ai-orders:${ip}`, 10, 60000).success) {
-    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-  }
 
   try {
     const body = schema.parse(await request.json());
-    const result = await processIncomingOrder(body);
+    const phoneCheck = validateMoroccanPhone(body.phone);
+    if (!phoneCheck.valid) {
+      return NextResponse.json(
+        { success: false, blocked: true, reason: "Invalid Moroccan phone", reasons: phoneCheck.reasons },
+        { status: 422 }
+      );
+    }
+
+    const headers: Record<string, string | null | undefined> = {
+      "user-agent": request.headers.get("user-agent"),
+      "accept-language": request.headers.get("accept-language"),
+      "sec-ch-ua": request.headers.get("sec-ch-ua"),
+      via: request.headers.get("via"),
+      forwarded: request.headers.get("forwarded"),
+      "x-forwarded-for": request.headers.get("x-forwarded-for"),
+    };
+
+    const result = await processIncomingOrder({
+      ...body,
+      phone: normalizeMoroccanPhoneLocal(body.phone) || phoneCheck.normalized,
+      ip,
+      userAgent: headers["user-agent"] || undefined,
+      acceptLanguage: headers["accept-language"] || undefined,
+      honeypot: body.honeypot,
+      formFillMs: body.formFillMs,
+      device: body.device as import("@/lib/fraud").DeviceSignals | undefined,
+      headers,
+    });
     if (!result.success) {
       return NextResponse.json(result, { status: 422 });
     }

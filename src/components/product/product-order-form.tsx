@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
@@ -15,6 +15,8 @@ import {
 } from "@/lib/validate-phone";
 import { trackEvent } from "@/components/analytics/analytics-scripts";
 import { resolveProductHero } from "@/lib/product-images/resolve";
+import { collectDeviceSignals, type CollectedDeviceSignals } from "@/components/fraud/collect-device";
+import { FraudHoneypotFields, readHoneypotFromForm } from "@/components/fraud/honeypot-fields";
 
 interface ProductOrderFormProps {
   product: Product;
@@ -36,12 +38,44 @@ function FieldError({ message }: { message: string }) {
 export function ProductOrderForm({ product, variant, quantity }: ProductOrderFormProps) {
   const router = useRouter();
   const submitting = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const pageLoadedAt = useRef(Date.now());
+  const deviceRef = useRef<CollectedDeviceSignals | null>(null);
 
   const [form, setForm] = useState<FormFields>({ fullName: "", phone: "", address: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof FormFields, boolean>>>({});
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState("");
+
+  useEffect(() => {
+    pageLoadedAt.current = Date.now();
+    let cancelled = false;
+    const run = () => {
+      collectDeviceSignals()
+        .then((signals) => {
+          if (!cancelled) deviceRef.current = signals;
+        })
+        .catch(() => {
+          /* collector best-effort */
+        });
+    };
+    // Defer fingerprinting until idle so it never blocks LCP/INP
+    let idleId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(run, { timeout: 4000 });
+    } else {
+      timeoutId = setTimeout(run, 2500);
+    }
+    return () => {
+      cancelled = true;
+      if (idleId !== undefined && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
 
   const productName = product.name.ar;
   const productImage = resolveProductHero(product);
@@ -100,6 +134,10 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
     setLoading(true);
 
     try {
+      const device = deviceRef.current || (await collectDeviceSignals().catch(() => null));
+      const honeypot = formRef.current ? readHoneypotFromForm(formRef.current) : "";
+      const formFillMs = Date.now() - pageLoadedAt.current;
+
       const res = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -114,6 +152,9 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           },
           paymentMethod: "cod",
           locale: "ar",
+          device: device || undefined,
+          honeypot,
+          formFillMs,
         }),
       });
 
@@ -138,7 +179,11 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
         return;
       }
 
-      setFormError("تعذر إتمام الطلب. يرجى المحاولة مرة أخرى.");
+      if (data.blocked) {
+        setFormError("تعذر إتمام الطلب حالياً. يرجى التحقق من معلوماتك أو المحاولة لاحقاً.");
+      } else {
+        setFormError("تعذر إتمام الطلب. يرجى المحاولة مرة أخرى.");
+      }
     } catch {
       setFormError("تعذر إتمام الطلب. تحقق من اتصالك وحاول مجدداً.");
     } finally {
@@ -181,7 +226,9 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           </ul>
         </header>
 
-        <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 relative" noValidate>
+          <FraudHoneypotFields />
+
           <div>
             <label htmlFor="fullName" className="premium-field-label">
               الاسم الكامل

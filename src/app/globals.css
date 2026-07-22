@@ -334,3 +334,22 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* Content shield — product images & body text (inputs remain usable via JS exceptions) */
+html.nv-content-shield img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: auto;
+}
+html.nv-content-shield body {
+  -webkit-user-select: none;
+  user-select: none;
+}
+html.nv-content-shield input,
+html.nv-content-shield textarea,
+html.nv-content-shield [contenteditable="true"],
+html.nv-content-shield [data-allow-select] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+

@@ -3,12 +3,14 @@
 import Link from "next/link";
 import {
   LayoutDashboard, Package, ShoppingCart, Users, Warehouse,
-  Ticket, BarChart3, ArrowLeft, Megaphone,
+  Ticket, BarChart3, ArrowLeft, Megaphone, ShieldAlert, Shield,
 } from "lucide-react";
 import "../globals.css";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/fraud", label: "Fraud", icon: ShieldAlert },
+  { href: "/admin/security", label: "Security", icon: Shield },
   { href: "/admin/ai", label: "AI System", icon: BarChart3 },
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { href: "/admin/products", label: "Products", icon: Package },
