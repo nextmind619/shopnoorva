@@ -14,7 +14,7 @@
     "whatsapp": "WhatsApp"
   },
   "announcement": {
-    "text": "FREE shipping over 500 MAD · Cash on Delivery available",
+    "text": "FREE shipping nationwide · Cash on Delivery available",
     "cta": "Shop Now",
     "ticker": { "cod": "Cash on Delivery", "shipping": "Fast Delivery Nationwide", "warranty": "12-Month Warranty", "morocco": "Morocco Only", "secure": "100% Secure Order", "returns": "7-Day Exchange" }
   },
@@ -140,7 +140,7 @@
     "customerVideo": "Customer video",
     "trust": {
       "cod": { "title": "Cash on Delivery", "desc": "Pay at your door" },
-      "shipping": { "title": "Free Shipping", "desc": "Over 500 MAD" },
+      "shipping": { "title": "Free Shipping", "desc": "All Morocco" },
       "packaging": { "title": "Secure Packaging", "desc": "Full protection" },
       "delivery": { "title": "Fast Delivery", "desc": "24-48 hours" },
       "returns": { "title": "Easy Returns", "desc": "14 days for defects" },
@@ -150,7 +150,7 @@
     "sort": { "recent": "Recent", "rating": "Top rated" }
   },
   "trust": {
-    "shipping": { "title": "Free Shipping", "desc": "Over 500 MAD" },
+    "shipping": { "title": "Free Shipping", "desc": "All Morocco" },
     "cod": { "title": "Cash on Delivery", "desc": "Pay at your door" },
     "returns": { "title": "Easy Returns", "desc": "14 days for defects" },
     "delivery": { "title": "24-48h Delivery", "desc": "Across Morocco" }

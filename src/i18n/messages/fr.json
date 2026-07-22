@@ -14,7 +14,7 @@
     "whatsapp": "WhatsApp"
   },
   "announcement": {
-    "text": "Livraison GRATUITE dès 500 MAD · Paiement à la livraison",
+    "text": "Livraison GRATUITE partout au Maroc · Paiement à la livraison",
     "cta": "Commander",
     "ticker": { "cod": "Paiement à la livraison", "shipping": "Livraison rapide partout au Maroc", "warranty": "Garantie 12 mois", "morocco": "Maroc uniquement", "secure": "Commande 100% sécurisée", "returns": "Échange sous 7 jours" }
   },
@@ -140,7 +140,7 @@
     "customerVideo": "Vidéo client",
     "trust": {
       "cod": { "title": "Paiement à la livraison", "desc": "Payez à la porte" },
-      "shipping": { "title": "Livraison gratuite", "desc": "Dès 500 MAD" },
+      "shipping": { "title": "Livraison gratuite", "desc": "Tout le Maroc" },
       "packaging": { "title": "Emballage sécurisé", "desc": "Protection totale" },
       "delivery": { "title": "Livraison rapide", "desc": "24-48 heures" },
       "returns": { "title": "Retours faciles", "desc": "14 jours si défaut" },
@@ -150,7 +150,7 @@
     "sort": { "recent": "Récent", "rating": "Mieux notés" }
   },
   "trust": {
-    "shipping": { "title": "Livraison gratuite", "desc": "Dès 500 MAD" },
+    "shipping": { "title": "Livraison gratuite", "desc": "Tout le Maroc" },
     "cod": { "title": "Paiement à la livraison", "desc": "Payez à la porte" },
     "returns": { "title": "Retours faciles", "desc": "14 jours si défaut" },
     "delivery": { "title": "Livraison 24-48h", "desc": "Partout au Maroc" }

@@ -59,10 +59,7 @@ export function getDirection(locale: Locale): "rtl" | "ltr" {
   return locale === "ar" ? "rtl" : "ltr";
 }
 
-export function getShippingCost(city: string, subtotal: number): number {
-  const freeShippingThreshold = 500;
-  if (subtotal >= freeShippingThreshold) return 0;
-  const majorCities = ["casablanca", "rabat", "marrakech", "fes", "tanger", "agadir"];
-  const normalized = city.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  return majorCities.some((c) => normalized.includes(c)) ? 25 : 35;
+export function getShippingCost(_city: string, _subtotal: number): number {
+  // NOORVA: shipping is always free nationwide
+  return 0;
 }

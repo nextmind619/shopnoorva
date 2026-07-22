@@ -1,5 +1,5 @@
 import { generateText } from "./openai";
-import { aiConfig, isConfigured } from "./config";
+import { aiConfig, isConfigured, isEvolutionReady } from "./config";
 import { store, uid, type NotificationRecord } from "./memory-store";
 import { logIntegration } from "./integrations/logger";
 
@@ -133,23 +133,47 @@ export async function sendMessage(payload: MessagePayload): Promise<Notification
 
 async function sendWhatsApp(to: string, body: string): Promise<void> {
   const { evolution } = aiConfig;
-  if (!isConfigured(evolution.apiKey)) {
-    await logIntegration("evolution", "whatsapp_send_dry_run", "ok", { to, body });
+  if (!isEvolutionReady()) {
+    await logIntegration("evolution", "whatsapp_send_dry_run", "ok", {
+      to,
+      body,
+      reason: "evolution_not_configured",
+      baseUrl: evolution.baseUrl,
+      instance: evolution.instance,
+    });
     return;
   }
 
-  const res = await fetch(`${evolution.baseUrl}/message/sendText/${evolution.instance}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      apikey: evolution.apiKey,
-    },
-    body: JSON.stringify({ number: normalizeWhatsApp(to), text: body }),
-  });
+  const number = normalizeWhatsApp(to);
+  const url = `${evolution.baseUrl.replace(/\/$/, "")}/message/sendText/${evolution.instance}`;
+
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: evolution.apiKey,
+      },
+      body: JSON.stringify({ number, text: body }),
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "fetch_failed";
+    await logIntegration("evolution", "whatsapp_send", "error", { to: number, url }, { message });
+    throw new Error(`Evolution API unreachable: ${message}`);
+  }
 
   const data = await res.json().catch(() => ({}));
-  await logIntegration("evolution", "whatsapp_send", res.ok ? "ok" : "error", { to }, data);
-  if (!res.ok) throw new Error("Evolution API WhatsApp send failed");
+  await logIntegration("evolution", "whatsapp_send", res.ok ? "ok" : "error", { to: number, url }, data);
+  if (!res.ok) {
+    const detail =
+      (data as { response?: { message?: unknown }; error?: string; message?: string })?.response
+        ?.message ??
+      (data as { error?: string }).error ??
+      (data as { message?: string }).message ??
+      res.statusText;
+    throw new Error(`Evolution API WhatsApp send failed (${res.status}): ${JSON.stringify(detail)}`);
+  }
 }
 
 async function sendSms(to: string, body: string): Promise<void> {

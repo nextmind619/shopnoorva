@@ -60,7 +60,7 @@ function fallbackGenerate(system: string, user: string): string {
       return "Votre commande est en préparation. Livraison estimée 24–48h dans les grandes villes. Besoin du numéro de suivi ?";
     }
     if (lower.includes("prix") || lower.includes("price") || lower.includes("سعر")) {
-      return "Tous nos prix sont en MAD, livraison gratuite dès 500 MAD. Paiement à la livraison disponible partout au Maroc.";
+      return "Tous nos prix sont en MAD, livraison gratuite partout au Maroc. Paiement à la livraison disponible.";
     }
     return "Merci de contacter NOORVA. Je peux vous aider pour le suivi, le paiement COD, les retours ou le choix d'un projecteur. Que souhaitez-vous ?";
   }

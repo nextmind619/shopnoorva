@@ -8,7 +8,7 @@ Products: astronaut Bluetooth speaker projector (MX003), multi-color galaxy star
 Policies:
 - Currency MAD
 - Cash on Delivery available nationwide
-- Free shipping over 500 MAD
+- Free shipping nationwide in Morocco
 - Delivery 24-48h major cities, 2-4 days elsewhere
 - 14-day returns for unopened products
 - 12-month warranty

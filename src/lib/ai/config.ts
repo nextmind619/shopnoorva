@@ -72,3 +72,11 @@ export const aiConfig = {
 export function isConfigured(value: string): boolean {
   return Boolean(value && value.trim().length > 0);
 }
+
+/** Reject empty / placeholder Evolution settings that silently break WhatsApp. */
+export function isEvolutionReady(): boolean {
+  const { baseUrl, apiKey, instance } = aiConfig.evolution;
+  if (!isConfigured(apiKey) || !isConfigured(baseUrl) || !isConfigured(instance)) return false;
+  const bad = /your[-_]?evolution|example\.com|change[_-]?me|CHANGE_EVOLUTION/i;
+  return !bad.test(baseUrl) && !bad.test(apiKey);
+}
