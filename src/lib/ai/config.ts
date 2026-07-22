@@ -56,7 +56,7 @@ export const aiConfig = {
     name: "NOORVA",
     domain: "shopnoorva.shop",
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://shopnoorva.shop",
-    supportWhatsApp: process.env.SUPPORT_WHATSAPP || "+212600000000",
+    supportWhatsApp: process.env.SUPPORT_WHATSAPP || process.env.ADMIN_WHATSAPP || "+212693428013",
     adminWhatsApp: process.env.ADMIN_WHATSAPP || "+212693428013",
     currency: "MAD",
     timezone: "Africa/Casablanca",

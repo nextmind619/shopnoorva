@@ -4,6 +4,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales } from "@/i18n/config";
 import { AnnouncementBar, Header, Footer } from "@/components/layout/header-footer";
+import { WhatsAppFloat } from "@/components/layout/whatsapp-float";
 import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
 import "../globals.css";
 
@@ -47,6 +48,7 @@ export default async function LocaleLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <WhatsAppFloat />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -8,6 +8,7 @@ import { Menu, X, PackageSearch, Search, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/site";
 
 const LOCALE = "ar";
+const WA_HREF = `${WHATSAPP_URL}?text=${encodeURIComponent("مرحباً NOORVA، أريد الاستفسار عن المنتجات")}`;
 
 const TRUST_TICKER = [
   { key: "shipping", icon: "🚚" },
@@ -83,7 +84,7 @@ export function Header() {
             <button type="button" onClick={() => setSearchOpen(!searchOpen)} className="p-2 hover:text-gold hidden sm:flex" aria-label={t("search")}>
               <Search className="h-4 w-4" />
             </button>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="p-2 hover:text-gold" aria-label={t("whatsapp")}>
+            <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="p-2 hover:text-gold" aria-label={t("whatsapp")}>
               <MessageCircle className="h-4 w-4" />
             </a>
             <Link href={`/${LOCALE}/track`} className="w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-gold hover:text-gold transition-colors" aria-label={t("track")}>
@@ -136,7 +137,7 @@ export function Footer() {
             <p className="text-cream/50 text-sm mt-4 leading-relaxed">{t("tagline")}</p>
             <div className="mt-5 flex gap-4">
               <a href="https://instagram.com/shopnoorva" target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-gold text-sm">إنستغرام</a>
-              <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-gold text-sm">{t("whatsapp")}</a>
+              <a href={WA_HREF} target="_blank" rel="noopener noreferrer" className="text-cream/50 hover:text-gold text-sm">{t("whatsapp")}</a>
             </div>
           </div>
           <div>
@@ -151,7 +152,7 @@ export function Footer() {
             <h4 className="text-sm font-medium mb-4 text-gold">{t("support")}</h4>
             <ul className="space-y-2 text-sm text-cream/60">
               <li><Link href={`/${LOCALE}/track`} className="hover:text-gold">{tNav("track")}</Link></li>
-              <li><a href="https://wa.me/212600000000" className="hover:text-gold">{t("contact")}</a></li>
+              <li><a href={WA_HREF} className="hover:text-gold">{t("contact")}</a></li>
             </ul>
           </div>
           <div>
