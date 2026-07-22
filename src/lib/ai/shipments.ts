@@ -27,7 +27,7 @@ export async function createShipment(order: StoredOrder): Promise<{
       tracking: trackingNumber,
       city: order.city,
     },
-    locale: "fr",
+    locale: "ar",
   });
 
   if (order.email) {

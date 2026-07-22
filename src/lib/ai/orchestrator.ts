@@ -43,13 +43,19 @@ export async function processIncomingOrder(input: {
     if (!product || !variant) throw new Error(`Invalid product ${item.productId}`);
     return {
       sku: variant.sku,
-      name: product.name.fr,
+      name: product.name.ar || product.name.fr,
       quantity: item.quantity,
       unitPrice: variant.price,
       lineTotal: variant.price * item.quantity,
       productId: product.id,
     };
   });
+
+  const locale = input.locale || "ar";
+  const paymentLabel =
+    locale === "ar" ? "الدفع عند الاستلام" : locale === "en" ? "Cash on delivery" : "Paiement à la livraison";
+  const etaLabel = locale === "ar" ? "24-48 ساعة" : "24-48h";
+  const customerFirst = input.firstName || (locale === "ar" ? "عميل" : "Client");
 
   const subtotal = lineItems.reduce((s, i) => s + i.lineTotal, 0);
   const shipping = getShippingCost(input.city, subtotal);
@@ -124,13 +130,13 @@ export async function processIncomingOrder(input: {
     recipient: order.phone,
     templateKey: "order_confirmed",
     variables: {
-      name: input.firstName || "Client",
+      name: customerFirst,
       order: order.orderNumber,
       total: order.total,
-      eta: "24-48h",
-      payment: order.paymentMethod.toUpperCase(),
+      eta: etaLabel,
+      payment: paymentLabel,
     },
-    locale: input.locale || "fr",
+    locale: "ar",
   });
 
   if (order.email) {
@@ -138,15 +144,15 @@ export async function processIncomingOrder(input: {
       channel: "email",
       recipient: order.email,
       templateKey: "order_confirmed",
-      subject: `Commande ${order.orderNumber} confirmée`,
+      subject: locale === "ar" ? `تأكيد الطلب ${order.orderNumber}` : `Commande ${order.orderNumber} confirmée`,
       variables: {
-        name: input.firstName || "Client",
+        name: customerFirst,
         order: order.orderNumber,
         total: order.total,
-        eta: "24-48h",
-        payment: order.paymentMethod.toUpperCase(),
+        eta: etaLabel,
+        payment: paymentLabel,
       },
-      locale: input.locale || "fr",
+      locale,
       generateWithAi: true,
       intent: "order confirmation email with invoice link",
     });
@@ -157,18 +163,18 @@ export async function processIncomingOrder(input: {
     recipient: order.phone,
     templateKey: "order_confirmed",
     variables: {
-      name: input.firstName || "Client",
+      name: customerFirst,
       order: order.orderNumber,
       total: order.total,
-      eta: "24-48h",
-      payment: "COD",
+      eta: etaLabel,
+      payment: paymentLabel,
     },
-    locale: "fr",
+    locale: "ar",
   });
 
   const upsell = await suggestUpsells({
     productIds: lineItems.map((i) => i.productId),
-    locale: input.locale || "fr",
+    locale: "ar",
   });
 
   if (upsell.message && order.status === "confirmed") {
@@ -177,7 +183,7 @@ export async function processIncomingOrder(input: {
       recipient: order.phone,
       templateKey: "upsell",
       variables: { message: upsell.message },
-      locale: input.locale || "fr",
+      locale: "ar",
     });
   }
 

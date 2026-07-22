@@ -22,7 +22,7 @@ export interface MessagePayload {
 const TEMPLATES: Record<string, Record<string, string>> = {
   order_confirmed: {
     fr: "Bonjour {{name}}, commande {{order}} confirmée ({{total}} MAD). Livraison estimée {{eta}}. Paiement: {{payment}}.",
-    ar: "مرحباً {{name}}، تم تأكيد طلب {{order}} ({{total}} درهم). التوصيل المتوقع {{eta}}. الدفع: {{payment}}.",
+    ar: "مرحباً {{name}}، تم تأكيد طلبك {{order}} بنجاح.\n💰 المجموع: {{total}} درهم\n🚚 التوصيل المتوقع: {{eta}}\n💵 {{payment}}",
     en: "Hi {{name}}, order {{order}} confirmed ({{total}} MAD). ETA {{eta}}. Payment: {{payment}}.",
   },
   abandoned_cart_1: {
@@ -37,7 +37,7 @@ const TEMPLATES: Record<string, Record<string, string>> = {
   },
   shipped: {
     fr: "Colis {{order}} expédié. Suivi: {{tracking}}. Destination: {{city}}.",
-    ar: "تم شحن الطلب {{order}}. التتبع: {{tracking}}. الوجهة: {{city}}.",
+    ar: "📦 تم شحن طلبك {{order}}\n🔢 رقم التتبع: {{tracking}}\n📍 الوجهة: {{city}}",
     en: "Order {{order}} shipped. Tracking: {{tracking}}. City: {{city}}.",
   },
   upsell: {
@@ -46,7 +46,7 @@ const TEMPLATES: Record<string, Record<string, string>> = {
     en: "{{message}}",
   },
   admin_new_order: {
-    ar: "🛒 *طلب جديد — NOORVA*\n\n📦 رقم الطلب: {{order}}\n👤 الاسم: {{name}}\n📱 الهاتف: {{phone}}\n📍 {{city}}\n🏠 {{address}}\n🛍 المنتج: {{products}}\n💰 المجموع: {{total}} درهم\n💵 الدفع عند الاستلام\n\n✅ اتصل بالعميل الآن لتأكيد الطلب",
+    ar: "🛒 *طلب جديد — NOORVA*\n\n📦 رقم الطلب: {{order}}\n👤 الاسم: {{name}}\n📱 الهاتف: {{phone}}\n📍 المدينة: {{city}}\n🏠 العنوان: {{address}}\n🛍 المنتج: {{products}}\n💰 المجموع: {{total}} درهم\n💵 الدفع عند الاستلام\n\n✅ اتصل بالعميل الآن لتأكيد الطلب",
     fr: "🛒 *Nouvelle commande — NOORVA*\n\n📦 {{order}}\n👤 {{name}}\n📱 {{phone}}\n📍 {{city}} — {{address}}\n🛍 {{products}}\n💰 {{total}} MAD\n💵 COD\n\n✅ Appelez le client pour confirmer",
     en: "🛒 *New order — NOORVA*\n\n📦 {{order}}\n👤 {{name}}\n📱 {{phone}}\n📍 {{city}} — {{address}}\n🛍 {{products}}\n💰 {{total}} MAD\n💵 COD\n\n✅ Call customer to confirm",
   },
@@ -57,7 +57,7 @@ function renderTemplate(template: string, vars: Record<string, string | number> 
 }
 
 export async function generateMessageBody(payload: MessagePayload): Promise<{ subject?: string; body: string }> {
-  const locale = payload.locale || "fr";
+  const locale = payload.locale || "ar";
   if (payload.body && !payload.generateWithAi) {
     return { subject: payload.subject, body: payload.body };
   }
