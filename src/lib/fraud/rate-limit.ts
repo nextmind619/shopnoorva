@@ -123,3 +123,27 @@ export function getAttemptCount(kind: "ip" | "phone" | "fingerprint" | "device",
   prune(entry, windowMs, now);
   return entry.timestamps.length;
 }
+
+/** Clear sliding-window counters (admin / ops). */
+export function clearOrderRateLimits(filter?: {
+  phone?: string;
+  ip?: string;
+  fingerprint?: string;
+  deviceId?: string;
+}): number {
+  if (!filter || Object.values(filter).every((v) => !v)) {
+    const n = buckets.size;
+    buckets.clear();
+    return n;
+  }
+  let removed = 0;
+  const targets: string[] = [];
+  if (filter.phone) targets.push(`fraud:phone:${filter.phone}`);
+  if (filter.ip) targets.push(`fraud:ip:${filter.ip}`);
+  if (filter.fingerprint) targets.push(`fraud:fp:${filter.fingerprint}`);
+  if (filter.deviceId) targets.push(`fraud:dev:${filter.deviceId}`);
+  for (const key of targets) {
+    if (buckets.delete(key)) removed += 1;
+  }
+  return removed;
+}

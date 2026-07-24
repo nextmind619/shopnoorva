@@ -86,10 +86,23 @@ export function autoBlacklistOnReject(input: {
   deviceId: string;
 }): void {
   if (input.decision !== "reject") return;
+
+  // Never permanently ban on honeypot alone (common Chrome autofill false positive).
+  const nonHoneypotReasons = input.reasons.filter((r) => r !== "honeypot" && !r.startsWith("honeypot"));
+  if (nonHoneypotReasons.length === 0) return;
+
   const should =
-    input.reasons.some((r) =>
+    nonHoneypotReasons.some((r) =>
       (FRAUD_CONFIG.blacklist.autoReasons as readonly string[]).some((a) => r.includes(a))
-    ) || input.reasons.some((r) => r.includes("bot") || r.includes("fake_phone") || r.includes("tor"));
+    ) ||
+    nonHoneypotReasons.some(
+      (r) =>
+        r.includes("automation") ||
+        r.includes("headless") ||
+        r.includes("webdriver") ||
+        r.includes("fake_phone") ||
+        r.includes("tor")
+    );
 
   if (!should) return;
 

@@ -214,13 +214,16 @@ export async function evaluateOrderFraud(ctx: FraudRequestContext): Promise<Frau
         ? `Manual review: ${uniqueReasons.slice(0, 3).join(", ") || "elevated risk"}`
         : `Rejected: ${uniqueReasons.slice(0, 3).join(", ") || "high fraud risk"}`;
 
-  // Persist attempt + rate limit for ALL evaluations (including rejects) to stop farms
-  recordOrderAttempt({
-    ip: ctx.ip,
-    phone: phoneNormalized || ctx.phone,
-    fingerprint,
-    deviceId,
-  });
+  // Persist attempt history for velocity; rate-limit counters only for
+  // non-reject paths so honeypot/autofill false positives don't lock buyers out.
+  if (decision !== "reject") {
+    recordOrderAttempt({
+      ip: ctx.ip,
+      phone: phoneNormalized || ctx.phone,
+      fingerprint,
+      deviceId,
+    });
+  }
   recordAttempt({
     phone: phoneNormalized || ctx.phone,
     fullName: ctx.fullName,

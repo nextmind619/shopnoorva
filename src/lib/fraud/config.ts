@@ -50,12 +50,14 @@ export const FRAUD_CONFIG = {
   },
 
   blacklist: {
-    /** Auto-blacklist when rejecting for these reason keys */
+    /**
+     * Auto-blacklist when rejecting for these reason keys.
+     * Note: honeypot alone is intentionally excluded — browser autofill
+     * commonly fills hidden fields and would permanently ban real buyers.
+     */
     autoReasons: [
       "blacklisted",
-      "bot_detected",
       "headless_browser",
-      "honeypot",
       "fake_phone_pattern",
       "tor",
       "repeated_phone_abuse",

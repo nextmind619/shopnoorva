@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   addToBlacklist,
+  clearOrderRateLimits,
   getBlacklist,
   getFraudDashboardStats,
   getFraudLogs,
@@ -38,6 +39,16 @@ export async function POST(request: NextRequest) {
     if (action === "unblacklist") {
       const ok = removeFromBlacklist(body.id);
       return NextResponse.json({ success: ok });
+    }
+
+    if (action === "clear-rate-limit") {
+      const removed = clearOrderRateLimits({
+        phone: body.phone,
+        ip: body.ip,
+        fingerprint: body.fingerprint,
+        deviceId: body.deviceId,
+      });
+      return NextResponse.json({ success: true, removed });
     }
 
     return NextResponse.json({ error: "Unknown action" }, { status: 400 });

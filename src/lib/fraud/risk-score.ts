@@ -108,8 +108,20 @@ export function calculateRiskScore(input: ScoreInput): {
     decision = "reject";
   }
 
-  // Rate-limit alone → review if otherwise decent, reject if already low
-  if (input.rateLimited && decision === "accept") {
+  // Rate-limit alone → review (still create order for manual check), never hard-reject
+  // a valid Moroccan residential buyer solely for retrying after a false positive.
+  if (
+    input.rateLimited &&
+    input.validPhone &&
+    !input.blacklisted &&
+    !input.bot &&
+    !input.honeypot &&
+    !input.fakePhone &&
+    input.ipRisk !== "tor"
+  ) {
+    decision = "review";
+    score = Math.max(score, FRAUD_CONFIG.scoreBands.reviewMin);
+  } else if (input.rateLimited && decision === "accept") {
     decision = "review";
   }
 

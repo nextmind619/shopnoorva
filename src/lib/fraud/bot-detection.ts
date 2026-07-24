@@ -25,9 +25,9 @@ export function detectBot(input: {
   let automationTool: string | undefined;
   const ua = input.userAgent || input.device?.userAgent || input.headers?.["user-agent"] || "";
 
-  if (input.honeypot && input.honeypot.trim().length > 0) {
-    reasons.push("honeypot");
-  }
+  // Honeypot is evaluated separately in the engine (hard reject).
+  // Do NOT fold it into isBot here — browser autofill often fills hidden
+  // fields, and pairing honeypot with bot_detected auto-blacklists real buyers.
 
   if (AUTOMATION_UA.test(ua)) {
     reasons.push("automation_ua");
@@ -90,7 +90,6 @@ export function detectBot(input: {
     ["headless_ua", "webdriver_flag", "zero_screen", "devtools_emulation"].includes(r)
   );
   const isBot =
-    reasons.includes("honeypot") ||
     reasons.includes("automation_ua") ||
     isHeadless ||
     (reasons.includes("missing_device_payload") && reasons.includes("missing_canvas_webgl"));

@@ -21,6 +21,7 @@ export {
   removeFromBlacklist,
   fraudStore,
 } from "./store";
+export { clearOrderRateLimits } from "./rate-limit";
 export type {
   FraudEvaluation,
   FraudRequestContext,
