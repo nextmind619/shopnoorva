@@ -4,6 +4,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Access Denied | NOORVA",
   robots: { index: false, follow: false },
+  verification: {
+    other: {
+      "facebook-domain-verification": "gsg759rql91jkxu1wywq1fibppl2tl",
+    },
+  },
 };
 
 export default function AccessDeniedPage() {

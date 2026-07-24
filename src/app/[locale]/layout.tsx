@@ -47,6 +47,7 @@ export default async function LocaleLayout({
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable} h-full`}>
       <head>
+        <meta name="facebook-domain-verification" content="gsg759rql91jkxu1wywq1fibppl2tl" />
         <link rel="preload" as="image" href="/hero/collection-banner.webp" type="image/webp" fetchPriority="high" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />

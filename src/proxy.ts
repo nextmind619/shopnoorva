@@ -14,6 +14,10 @@ const intlMiddleware = createMiddleware({
 const IMAGE_EXT = /\.(png|jpe?g|webp|gif|avif|svg|ico)$/i;
 const STATIC_EXT = /\.(css|js|mjs|map|woff2?|ttf|eot|txt|xml|json|webmanifest)$/i;
 
+/** Meta domain verification + Pixel/OG crawlers must reach the real homepage meta tag. */
+const META_CRAWLER_UA =
+  /facebookexternalhit|Facebot|meta-externalagent|meta-externalads|FacebookBot/i;
+
 function clientIp(request: NextRequest): string {
   return (
     request.headers.get("cf-connecting-ip") ||
@@ -57,6 +61,19 @@ export default function proxy(request: NextRequest) {
     pathname.startsWith("/admin")
   ) {
     return applySecurityHeaders(NextResponse.next());
+  }
+
+  // Let Meta verify the domain / scrape OG without anti-spy blocking
+  if (META_CRAWLER_UA.test(request.headers.get("user-agent") || "")) {
+    if (/^\/(fr|en)(\/|$)/.test(pathname)) {
+      const url = request.nextUrl.clone();
+      url.pathname = pathname.replace(/^\/(fr|en)/, `/${defaultLocale}`);
+      return applySecurityHeaders(NextResponse.redirect(url));
+    }
+    if (pathname.startsWith("/api")) {
+      return applySecurityHeaders(NextResponse.next());
+    }
+    return applySecurityHeaders(intlMiddleware(request));
   }
 
   // --- Hotlink protection for images ---
