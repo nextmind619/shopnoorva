@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
       device,
       honeypot,
       formFillMs,
+      meta,
     } = body as {
       items: { productId: string; variantId: string; quantity: number }[];
       shippingAddress: ShippingAddress;
@@ -44,6 +45,12 @@ export async function POST(request: NextRequest) {
       device?: DeviceSignals;
       honeypot?: string;
       formFillMs?: number;
+      meta?: {
+        fbp?: string;
+        fbc?: string;
+        eventSourceUrl?: string;
+        referrerUrl?: string;
+      };
     };
 
     if (!items?.length || !shippingAddress?.phone || !shippingAddress?.address) {
@@ -95,6 +102,7 @@ export async function POST(request: NextRequest) {
       formFillMs,
       device,
       headers,
+      meta,
     });
 
     if (!result.success || !result.order) {

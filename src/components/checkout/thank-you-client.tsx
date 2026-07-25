@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Check, Home, ShoppingBag, Phone } from "lucide-react";
 import { formatPriceNumber, cn } from "@/lib/utils";
+import { FacebookThankYouTracker } from "@/components/facebook/facebook-trackers";
 
 const STEPS = [
   { title: "تم استلام الطلب" },
@@ -23,9 +24,18 @@ export function ThankYouClient() {
   const address = searchParams.get("address") || "—";
   const product = searchParams.get("product") || "—";
   const total = searchParams.get("total") ? Number(searchParams.get("total")) : null;
+  const productId = searchParams.get("productId") || undefined;
+  const firstName = customerName !== "—" ? customerName.split(/\s+/)[0] : undefined;
 
   return (
     <div className="min-h-screen bg-luxury-bg text-luxury-black pt-24 pb-16 px-4" dir="rtl">
+      <FacebookThankYouTracker
+        orderNumber={orderNumber !== "—" ? orderNumber : undefined}
+        value={total ?? undefined}
+        contentIds={productId ? [productId] : undefined}
+        phone={phone !== "—" ? phone : undefined}
+        firstName={firstName}
+      />
       <div className="max-w-lg mx-auto">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}

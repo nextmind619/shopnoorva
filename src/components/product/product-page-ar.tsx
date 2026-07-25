@@ -20,8 +20,8 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
-import { trackEvent } from "@/components/analytics/analytics-scripts";
 import { products, getProductById, getReviewsForProduct } from "@/data/products";
+import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
@@ -158,13 +158,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
   useEffect(() => {
     addRecentlyViewed(product.id);
-    trackEvent("ViewContent", {
-      content_ids: [product.id],
-      content_type: "product",
-      value: variant.price,
-      currency: "MAD",
-    });
-  }, [product.id, variant.price, addRecentlyViewed]);
+  }, [product.id, addRecentlyViewed]);
 
   useEffect(() => {
     const onScroll = () => setSticky(window.scrollY > 480);
@@ -180,6 +174,13 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
   return (
     <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans" dir="rtl">
+      <FacebookProductTracker
+        productId={product.id}
+        contentName={product.name.ar}
+        value={variant.price}
+        currency="MAD"
+        quantity={qty}
+      />
       {/* شريط ثقة علوي */}
       <div className="bg-[#12121a] border-b border-white/10 text-white/80 text-xs sm:text-sm py-2.5 px-4">
         <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-1 text-center">

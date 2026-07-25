@@ -1,56 +1,78 @@
-import { aiConfig, isConfigured } from "../config";
+/**
+ * Legacy AI integration wrapper — delegates to the professional CAPI module.
+ * Keeps orchestrator imports stable while guaranteeing SHA-256 hashing,
+ * event_id dedup, IP/UA/fbp/fbc, and Graph API v25.
+ */
+
 import { logIntegration } from "./logger";
+import { sendFacebookConversion } from "@/lib/facebook/conversions";
+import type { FacebookStandardEvent } from "@/lib/facebook/types";
 
 export async function sendMetaConversion(event: {
-  eventName: "Purchase" | "AddToCart" | "InitiateCheckout" | "Lead";
+  eventName: "Purchase" | "AddToCart" | "InitiateCheckout" | "Lead" | "Contact" | "ViewContent" | "PageView";
+  eventId?: string;
   value?: number;
   currency?: string;
   contentIds?: string[];
+  orderId?: string;
   phone?: string;
   email?: string;
+  firstName?: string;
+  lastName?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  clientIpAddress?: string;
+  clientUserAgent?: string;
+  fbp?: string;
+  fbc?: string;
+  eventSourceUrl?: string;
+  referrerUrl?: string;
 }): Promise<void> {
-  if (!isConfigured(aiConfig.meta.accessToken) || !isConfigured(aiConfig.meta.pixelId)) {
-    await logIntegration("meta", event.eventName, "ok", event, { dryRun: true });
-    return;
-  }
-
-  const url = `https://graph.facebook.com/v19.0/${aiConfig.meta.pixelId}/events`;
-  const payload = {
-    data: [
-      {
-        event_name: event.eventName,
-        event_time: Math.floor(Date.now() / 1000),
-        action_source: "website",
-        user_data: {
-          ph: event.phone ? [hashHint(event.phone)] : undefined,
-          em: event.email ? [hashHint(event.email)] : undefined,
-        },
-        custom_data: {
-          value: event.value,
-          currency: event.currency || "MAD",
-          content_ids: event.contentIds,
-        },
-      },
-    ],
-    access_token: aiConfig.meta.accessToken,
-  };
+  const eventId =
+    event.eventId ||
+    (event.orderId ? `purchase_${event.orderId}` : `meta_${event.eventName}_${Date.now()}`);
 
   try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+    const result = await sendFacebookConversion({
+      eventName: event.eventName as FacebookStandardEvent,
+      eventId,
+      eventSourceUrl: event.eventSourceUrl,
+      referrerUrl: event.referrerUrl,
+      customData: {
+        value: event.value,
+        currency: event.currency || "MAD",
+        content_ids: event.contentIds,
+        content_type: "product",
+        order_id: event.orderId,
+        payment_method: "cod",
+      },
+      userData: {
+        phone: event.phone,
+        email: event.email,
+        firstName: event.firstName,
+        lastName: event.lastName,
+        city: event.city,
+        state: event.state,
+        country: event.country || "ma",
+        clientIpAddress: event.clientIpAddress,
+        clientUserAgent: event.clientUserAgent,
+        fbp: event.fbp,
+        fbc: event.fbc,
+        externalId: event.phone || event.email,
+      },
     });
-    const data = await res.json().catch(() => ({}));
-    await logIntegration("meta", event.eventName, res.ok ? "ok" : "error", event, data);
+
+    await logIntegration(
+      "meta",
+      event.eventName,
+      result.ok ? "ok" : "error",
+      { ...event, eventId },
+      result,
+    );
   } catch (error) {
     await logIntegration("meta", event.eventName, "error", event, {
       error: error instanceof Error ? error.message : "meta_failed",
     });
   }
-}
-
-function hashHint(value: string): string {
-  // Placeholder normalized value; production should SHA-256 hash before send.
-  return value.trim().toLowerCase();
 }

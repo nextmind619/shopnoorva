@@ -1,14 +1,17 @@
 import Script from "next/script";
+import { FacebookPixelScript } from "@/components/facebook/facebook-pixel-script";
 
 /**
- * Third-party pixels load after the page is idle (`lazyOnload`)
+ * Third-party pixels load after the page is interactive / idle
  * so they never compete with LCP / FCP / INP.
  * If GTM is configured, skip raw GA to avoid double-loading analytics.
+ *
+ * Meta Pixel lives in FacebookPixelScript (single PageView on init).
+ * Ecommerce Meta events use `@/lib/facebook/events` with shared event_id.
  */
 export function AnalyticsScripts() {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  const fbPixelId = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
   const tiktokPixelId = process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID;
   const loadGa = Boolean(gaId) && !gtmId;
 
@@ -44,16 +47,8 @@ export function AnalyticsScripts() {
         </>
       )}
 
-      {fbPixelId && (
-        <Script id="fb-pixel" strategy="lazyOnload">
-          {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-          document,'script','https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init','${fbPixelId}');fbq('track','PageView');`}
-        </Script>
-      )}
+      {/* Meta Pixel + PageView — dedicated module (no duplicate fbq init here) */}
+      <FacebookPixelScript />
 
       {tiktokPixelId && (
         <Script id="tiktok-pixel" strategy="lazyOnload">
@@ -65,11 +60,16 @@ export function AnalyticsScripts() {
   );
 }
 
+/**
+ * Generic multi-pixel helper for GTM / TikTok.
+ * Prefer `@/lib/facebook/events` (fbViewContent, fbPurchase, …) for Meta so
+ * event_id deduplication and CAPI mirroring stay correct.
+ */
 export function trackEvent(event: string, data?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const w = window as any;
   w.dataLayer?.push({ event, ...data });
-  w.fbq?.("track", event, data);
+  // Meta ecommerce events are owned by lib/facebook — skip fbq here to avoid duplicates
   w.ttq?.track(event, data);
 }

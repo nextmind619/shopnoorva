@@ -17,6 +17,13 @@ import { trackEvent } from "@/components/analytics/analytics-scripts";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { collectDeviceSignals, type CollectedDeviceSignals } from "@/components/fraud/collect-device";
 import { FraudHoneypotFields, readHoneypotFromForm } from "@/components/fraud/honeypot-fields";
+import { FacebookCheckoutTracker } from "@/components/facebook/facebook-trackers";
+import {
+  fbPurchase,
+  getEventSourceUrl,
+  getFacebookClickIds,
+  getReferrerUrl,
+} from "@/lib/facebook/events";
 
 interface ProductOrderFormProps {
   product: Product;
@@ -138,6 +145,12 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
       const honeypot = formRef.current ? readHoneypotFromForm(formRef.current) : "";
       const formFillMs = Date.now() - pageLoadedAt.current;
 
+      const clickIds = getFacebookClickIds();
+      const nameParts = form.fullName.trim().split(/\s+/);
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ") || "";
+      const phone = normalizeMoroccanPhone(form.phone);
+
       const res = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -145,7 +158,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           items: [{ productId: product.id, variantId: variant.id, quantity }],
           shippingAddress: {
             fullName: form.fullName.trim(),
-            phone: normalizeMoroccanPhone(form.phone),
+            phone,
             address: form.address.trim(),
             city: "المغرب",
             country: "Morocco",
@@ -155,25 +168,58 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           device: device || undefined,
           honeypot,
           formFillMs,
+          // Meta CAPI enrichment — never send the access token from the browser
+          meta: {
+            fbp: clickIds.fbp,
+            fbc: clickIds.fbc,
+            eventSourceUrl: getEventSourceUrl(),
+            referrerUrl: getReferrerUrl(),
+          },
         }),
       });
 
       const data = await res.json();
 
       if (data.success && data.orderNumber) {
+        // Shared event_id with server CAPI → Meta dedupes Pixel + Conversions API
+        const purchaseEventId = `purchase_${data.orderNumber}`;
+
+        // Pixel only here; CAPI Purchase is sent after the order is persisted server-side
+        fbPurchase({
+          eventId: purchaseEventId,
+          contentIds: [product.id],
+          value: total,
+          currency: "MAD",
+          orderId: data.orderNumber,
+          numItems: quantity,
+          userData: {
+            phone,
+            firstName,
+            lastName,
+            city: "المغرب",
+            country: "ma",
+            fbp: clickIds.fbp,
+            fbc: clickIds.fbc,
+          },
+          sendToServer: false,
+        });
+
+        // Keep TikTok / dataLayer purchase signal (Meta handled above)
         trackEvent("Purchase", {
           content_ids: [product.id],
           value: total,
           currency: "MAD",
+          order_id: data.orderNumber,
         });
 
         const params = new URLSearchParams({
           order: data.orderNumber,
           name: form.fullName.trim(),
-          phone: normalizeMoroccanPhone(form.phone),
+          phone,
           address: form.address.trim(),
           product: productName,
           total: String(total),
+          productId: product.id,
         });
         router.push(`/ar/thank-you?${params.toString()}`);
         return;
@@ -199,6 +245,12 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
 
   return (
     <section className="cod-checkout-isolated mt-0 w-full relative z-10" id="order-form">
+      <FacebookCheckoutTracker
+        productId={product.id}
+        value={total}
+        currency="MAD"
+        numItems={quantity}
+      />
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}

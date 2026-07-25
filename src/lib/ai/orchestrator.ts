@@ -37,6 +37,13 @@ export async function processIncomingOrder(input: {
   formFillMs?: number;
   device?: import("@/lib/fraud").DeviceSignals;
   headers?: Record<string, string | null | undefined>;
+  /** Meta Pixel cookies + URLs for CAPI Event Match Quality */
+  meta?: {
+    fbp?: string;
+    fbc?: string;
+    eventSourceUrl?: string;
+    referrerUrl?: string;
+  };
 }): Promise<{
   success: boolean;
   blocked?: boolean;
@@ -219,11 +226,25 @@ export async function processIncomingOrder(input: {
 
   await sendMetaConversion({
     eventName: "Purchase",
+    // Must match browser fbPurchase eventID for Meta deduplication
+    eventId: `purchase_${order.orderNumber}`,
+    orderId: order.orderNumber,
     value: order.total,
     currency: "MAD",
-    contentIds: lineItems.map((i) => i.sku),
+    // Align with Pixel content_ids (product.id) — catalog consistency
+    contentIds: lineItems.map((i) => i.productId),
     phone: order.phone,
     email: order.email,
+    firstName: order.firstName,
+    lastName: order.lastName,
+    city: order.city,
+    country: "ma",
+    clientIpAddress: input.ip,
+    clientUserAgent: input.userAgent,
+    fbp: input.meta?.fbp,
+    fbc: input.meta?.fbc,
+    eventSourceUrl: input.meta?.eventSourceUrl,
+    referrerUrl: input.meta?.referrerUrl,
   });
 
   await sendTikTokEvent({
