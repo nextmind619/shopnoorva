@@ -9,11 +9,7 @@
  * so Meta deduplicates the redundant setup.
  */
 
-import {
-  FACEBOOK_DEFAULT_CURRENCY,
-  getFacebookPixelId,
-  isFacebookPixelConfigured,
-} from "./config";
+import { FACEBOOK_DEFAULT_CURRENCY } from "./config";
 import {
   generateEventId,
   getEventSourceUrl,
@@ -77,9 +73,8 @@ function withBrowserCookies(userData?: FacebookUserDataInput): FacebookUserDataI
 function trackDual(eventName: FacebookStandardEvent, options: FbTrackOptions = {}): string {
   const eventId = options.eventId || generateEventId(eventName.toLowerCase());
 
-  if (isFacebookPixelConfigured() || getFacebookPixelId()) {
-    trackPixelEvent(eventName, options.customData, eventId);
-  }
+  // Always attempt Pixel — no-ops until runtime bootstrap attaches window.fbq
+  trackPixelEvent(eventName, options.customData, eventId);
 
   if (options.sendToServer !== false) {
     void mirrorToCapi({

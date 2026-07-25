@@ -14,13 +14,17 @@ function firstNonEmpty(...values: Array<string | undefined | null>): string {
   return "";
 }
 
-/** Public Pixel / Dataset ID (safe for the browser). */
+/**
+ * Public Pixel / Dataset ID (safe for the browser).
+ * Prefer runtime server names (EasyPanel) — NEXT_PUBLIC_* are often empty
+ * because Docker builds before those env vars exist.
+ */
 export function getFacebookPixelId(): string {
   return firstNonEmpty(
+    process.env.FACEBOOK_PIXEL_ID,
+    process.env.FACEBOOK_DATASET_ID,
     process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
     process.env.NEXT_PUBLIC_FB_PIXEL_ID,
-    // Dataset ID can equal Pixel ID for web events
-    process.env.FACEBOOK_DATASET_ID,
   );
 }
 

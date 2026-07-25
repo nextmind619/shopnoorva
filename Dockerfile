@@ -9,6 +9,11 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+# Optional: bake public Pixel ID at build time (runtime /api/facebook/pixel also works)
+ARG NEXT_PUBLIC_FACEBOOK_PIXEL_ID=
+ARG NEXT_PUBLIC_FB_PIXEL_ID=
+ENV NEXT_PUBLIC_FACEBOOK_PIXEL_ID=$NEXT_PUBLIC_FACEBOOK_PIXEL_ID
+ENV NEXT_PUBLIC_FB_PIXEL_ID=$NEXT_PUBLIC_FB_PIXEL_ID
 RUN npm run build
 
 FROM node:20-alpine AS runner
