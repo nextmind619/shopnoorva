@@ -9,6 +9,14 @@ import {
   Baby,
   Palette,
   Timer,
+  Zap,
+  Crosshair,
+  Shield,
+  BatteryCharging,
+  Feather,
+  Heart,
+  Thermometer,
+  Activity,
 } from "lucide-react";
 import type { PremiumImageType } from "@/lib/product-images/types";
 
@@ -348,6 +356,161 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         icon: Gift,
         title: "هدية تُفتح وتُحبّ",
         desc: "تصميم وردي فاخر جاهز كهدية لغرفة الأطفال أو لأي مناسبة عائلية.",
+      },
+    ],
+  },
+
+  "green-laser-pointer-303": {
+    headline: {
+      title: "شعاع أخضر فائق القوة… دقة ومدى بعيد في يدك",
+      subtitle:
+        "ليزر 303 بجسم ألومنيوم أسود، بطارية 18650 قابلة للشحن، وحزام أمان — مثالي للفلك، التخييم، العروض والاستخدام المهني.",
+    },
+    midCtaLabels: [
+      "بغيتي ليزر احترافي اليوم؟",
+      "199 درهم بدل 299 — والعرض محدود",
+      "خلص كاش عند الباب — بلا مخاطرة",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "اشحن البطارية",
+        desc: "وصّل كابل USB وشحن بطارية 18650 حتى تمتلئ قبل أول استخدام.",
+        imageKey: "09-close-up",
+      },
+      {
+        step: "2",
+        title: "ركّب وفعّل الأمان",
+        desc: "أدخل البطارية، وفعّل مفتاح الأمان إن وُجد، وثبّت حزام اليد.",
+        imageKey: "11-package-contents",
+      },
+      {
+        step: "3",
+        title: "فعّل الشعاع الأخضر",
+        desc: "اضغط الزر اللمسي للحصول على نقطة خضراء دقيقة بمدى بعيد.",
+        imageKey: "02-premium-hero",
+      },
+      {
+        step: "4",
+        title: "جرّب غطاء النجوم",
+        desc: "ثبّت غطاء النجوم لإنشاء أنماط سماء مرصّعة — مثالي للّيل والتخييم.",
+        imageKey: "14-product-in-use",
+      },
+    ],
+    comparison: {
+      oursLabel: "ليزر أخضر 303 NOORVA",
+      rows: [
+        { label: "شعاع أخضر قوي بمدى بعيد", us: true, them: "ضعيف" },
+        { label: "جسم ألومنيوم احترافي", us: true, them: "بلاستيك" },
+        { label: "بطارية 18650 قابلة للشحن USB", us: true, them: false },
+        { label: "حزام يد + مفاتيح أمان + غطاء نجوم", us: true, them: false },
+        { label: "تصميم أسود فاخر وقبضة مضلّعة", us: true, them: false },
+        ...SHARED_TRUST_ROWS,
+      ],
+    },
+    benefits: [
+      {
+        icon: Zap,
+        title: "شعاع أخضر فائق القوة",
+        desc: "نقطة خضراء واضحة وحيّة تظهر بقوة حتى من مسافات بعيدة — مثالية للّيل والعروض.",
+      },
+      {
+        icon: Crosshair,
+        title: "دقة عالية ومدى بعيد",
+        desc: "وجّه النجوم، الشرائح، أو نقاط الميدان بدقة احترافية بلا أدوات ثقيلة.",
+      },
+      {
+        icon: Shield,
+        title: "جسم ألومنيوم قوي",
+        desc: "سبيكة ألومنيوم سوداء مطفية مع قبضة مضلّعة مانعة للانزلاق للاستخدام اليومي.",
+      },
+      {
+        icon: BatteryCharging,
+        title: "شحن USB بلا متاعب",
+        desc: "بطارية 18650 قابلة للشحن — وداعًا للبطاريات المستهلكة في كل خروج.",
+      },
+      {
+        icon: Feather,
+        title: "خفيف ومحمول",
+        desc: "تصميم قلم أنيق مع حزام يد — خذه معك للفلك، التخييم، أو الاجتماعات بسهولة.",
+      },
+    ],
+  },
+  // French content for Shiatsu FR page (self-contained UI; CRO kept for completeness)
+  "shiatsu-neck-shoulder-massager": {
+    headline: {
+      title: "Soulagez vos douleurs en quelques minutes",
+      subtitle:
+        "Massage Shiatsu 3D avec chauffage intégré — détente profonde pour le cou, les épaules et le dos, à la maison.",
+    },
+    midCtaLabels: [
+      "Prêt à vous détendre ce soir ?",
+      "249 MAD au lieu de 349 — stock limité",
+      "Paiement uniquement à la livraison",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "Placez l’appareil",
+        desc: "Posez le masseur autour du cou ou sur la zone tendue (épaules, dos, taille).",
+        imageKey: "03-lifestyle",
+      },
+      {
+        step: "2",
+        title: "Ajustez les sangles",
+        desc: "Serrez confortablement les sangles réglables pour un maintien stable.",
+        imageKey: "09-close-up",
+      },
+      {
+        step: "3",
+        title: "Lancez le massage",
+        desc: "Activez le Shiatsu 3D et la rotation automatique pour dénouer les tensions.",
+        imageKey: "14-product-in-use",
+      },
+      {
+        step: "4",
+        title: "Activez le chauffage",
+        desc: "Ajoutez la chaleur douce 10–15 minutes pour une détente encore plus profonde.",
+        imageKey: "10-features",
+      },
+    ],
+    comparison: {
+      oursLabel: "Massage Shiatsu NOORVA",
+      rows: [
+        { label: "Massage Shiatsu 3D", us: true, them: "Vibration simple" },
+        { label: "Chauffage intégré", us: true, them: false },
+        { label: "Sangles réglables", us: true, them: "Limité" },
+        { label: "Silencieux & portable", us: true, them: false },
+        { label: "Qualité premium", us: true, them: "Basique" },
+        { label: "Paiement à la livraison au Maroc", us: true, them: "Rare" },
+        { label: "Garantie + remplacement", us: true, them: "Limité" },
+      ],
+    },
+    benefits: [
+      {
+        icon: Heart,
+        title: "Détente profonde",
+        desc: "Relâchez les tensions du cou et des épaules en quelques minutes après une longue journée.",
+      },
+      {
+        icon: Activity,
+        title: "Soulagement des douleurs",
+        desc: "Le pétrissage Shiatsu 3D cible les zones contractées pour un confort durable.",
+      },
+      {
+        icon: Thermometer,
+        title: "Chaleur réconfortante",
+        desc: "Le chauffage intégré améliore la sensation de bien-être et la circulation locale.",
+      },
+      {
+        icon: Zap,
+        title: "Rituel quotidien",
+        desc: "10–15 minutes le soir suffisent pour retrouver calme et légèreté.",
+      },
+      {
+        icon: Gift,
+        title: "Cadeau premium",
+        desc: "Idéal pour parents, partenaires et collègues — bien-être prêt à offrir.",
       },
     ],
   },

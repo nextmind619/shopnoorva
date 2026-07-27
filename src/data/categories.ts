@@ -3,6 +3,18 @@ import { getProductHeroUrl } from "@/lib/product-images/assets";
 
 export const categories: Category[] = [
   {
+    id: "cat-laser-pointers",
+    slug: "pointeurs-laser",
+    name: { ar: "مؤشرات الليزر", fr: "Pointeurs Laser", en: "Laser Pointers" },
+    description: {
+      ar: "ليزر أخضر احترافي 303 بمدى بعيد وشحن USB للفلك والتخييم والعروض",
+      fr: "Pointeur laser vert 303 professionnel longue portée et charge USB pour astronomie, camping et présentations",
+      en: "Professional green laser 303 with long range and USB charging for astronomy, camping and presentations",
+    },
+    image: getProductHeroUrl("green-laser-pointer-303"),
+    productCount: 1,
+  },
+  {
     id: "cat-projectors",
     slug: "projecteurs",
     name: { ar: "بروجيكتور المجرة", fr: "Projecteurs Galaxy", en: "Galaxy Projectors" },
@@ -48,7 +60,7 @@ export const categories: Category[] = [
       en: "Premium lighting pieces to decorate any room",
     },
     image: getProductHeroUrl("bluetooth-star-projector"),
-    productCount: 4,
+    productCount: 5,
   },
   {
     id: "cat-bedroom-lighting",
@@ -84,7 +96,7 @@ export const categories: Category[] = [
       en: "Lights, timers and soft music that help you sleep deeply",
     },
     image: getProductHeroUrl("northern-lights-galaxy-projector"),
-    productCount: 3,
+    productCount: 4,
   },
   {
     id: "cat-gift-ideas",
@@ -96,7 +108,7 @@ export const categories: Category[] = [
       en: "Premium, original gifts for every occasion",
     },
     image: getProductHeroUrl("rabbit-carousel-night-light"),
-    productCount: 4,
+    productCount: 5,
   },
 ];
 

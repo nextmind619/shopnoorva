@@ -160,7 +160,8 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
 
 /** Generic slide builder for products without custom config */
 function buildDefaultSlides(productSlug: string): GallerySlideConfig[] {
-  const hasBluetooth = productSlug !== "rabbit-carousel-night-light";
+  const hasBluetooth =
+    productSlug !== "rabbit-carousel-night-light" && productSlug !== "green-laser-pointer-303";
 
   const slides: GallerySlideConfig[] = [
     {
@@ -542,10 +543,163 @@ const AURORA_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+/** Green Laser Pointer 303 — black & green premium gallery */
+const LASER_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🟢",
+    heading: "الصورة الرئيسية — ليزر أخضر 303",
+    subtitle: "شعاع أخضر قوي · خلفية سوداء فاخرة · تصميم احترافي",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "📷",
+    heading: "منظر استوديو أبيض",
+    subtitle: "جسم ألومنيوم أسود · قبضة مضلّعة · حزام ومفاتيح أمان",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "03-lifestyle",
+    emoji: "🌌",
+    heading: "رصد النجوم ليلاً",
+    subtitle: "أشر إلى السماء بدقة في ليالي المغرب الصافية",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "⛺",
+    heading: "التخييم والاستخدام الخارجي",
+    subtitle: "خفيف · محمول · شعاع واضح في الظلام",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "⭐",
+    heading: "نقطة خضراء + نمط نجوم",
+    subtitle: "غطاء النجوم يحوّل الشعاع إلى سماء مرصّعة",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🔍",
+    heading: "تفاصيل الألومنيوم",
+    subtitle: "قبضة مضلّعة · زر لمسي · جودة فاخرة",
+    objectFit: "contain",
+  },
+  {
+    section: "package",
+    imageType: "11-package-contents",
+    emoji: "📦",
+    heading: "محتويات العلبة",
+    subtitle: "ليزر · بطارية · USB · حزام · مفاتيح · غطاء نجوم",
+    objectFit: "contain",
+  },
+  {
+    section: "package",
+    imageType: "16-packaging",
+    emoji: "✨",
+    heading: "عرض فاخر",
+    subtitle: "أسود وأخضر — إحساس منتج احترافي",
+    objectFit: "cover",
+  },
+  {
+    section: "accessories",
+    imageType: "09-close-up",
+    emoji: "🔋",
+    heading: "شحن USB",
+    subtitle: "بطارية 18650 قابلة للشحن بلا متاعب",
+    objectFit: "contain",
+  },
+];
+
+const SHIATSU_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "💆",
+    heading: "Produit premium — fond blanc",
+    subtitle: "Vert forêt · sangle cuir brun · nœuds Shiatsu silicone",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "✨",
+    heading: "Hero luxe — fond noir",
+    subtitle: "Éclairage studio · look wellness premium",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "😌",
+    heading: "Femme en relaxation",
+    subtitle: "Soulagement immédiat du cou et des épaules",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "07-romantic-room",
+    emoji: "🧘",
+    heading: "Homme en détente",
+    subtitle: "Massage Shiatsu mains libres après une longue journée",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "05-living-room",
+    emoji: "🏠",
+    heading: "Dans le salon",
+    subtitle: "Design élégant qui s’intègre à votre intérieur",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "✋",
+    heading: "Têtes de massage 3D",
+    subtitle: "8 nœuds silicone qui imitent le mouvement des doigts",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "06-gaming-room",
+    emoji: "🌿",
+    heading: "Style wellness / santé",
+    subtitle: "Atmosphère spa moderne à la maison",
+    objectFit: "cover",
+  },
+  {
+    section: "package",
+    imageType: "16-packaging",
+    emoji: "📦",
+    heading: "Emballage premium",
+    subtitle: "Prêt à offrir · livraison soignée partout au Maroc",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "03-lifestyle",
+    emoji: "🛏️",
+    heading: "Lifestyle bien-être",
+    subtitle: "Rituel du soir pour détendre le corps et l’esprit",
+    objectFit: "cover",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
   "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
   "northern-lights-galaxy-projector": AURORA_SLIDES,
+  "green-laser-pointer-303": LASER_SLIDES,
+  "shiatsu-neck-shoulder-massager": SHIATSU_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

@@ -29,10 +29,68 @@ interface ProductOrderFormProps {
   product: Product;
   variant: ProductVariant;
   quantity: number;
+  locale?: "ar" | "fr";
 }
 
 type FormFields = { fullName: string; phone: string; address: string };
 type FormErrors = Partial<Record<keyof FormFields, string>>;
+
+const COPY = {
+  ar: {
+    title: "اطلب الآن وادفع عند الاستلام",
+    bullets: ["الدفع عند الاستلام", "لن تدفع أي مبلغ الآن", "ادفع فقط عند استلام الطلب"],
+    fullName: "الاسم الكامل",
+    fullNamePh: "محمد محمد",
+    phone: "رقم الهاتف",
+    phonePh: "06XXXXXXXX",
+    address: "العنوان الكامل",
+    addressPh: "الحي - الشارع - رقم المنزل - الطابق",
+    qty: "الكمية",
+    shipping: "الشحن",
+    free: "مجاني",
+    totalLabel: "الإجمالي عند الاستلام",
+    currency: "درهم",
+    noPrepay: "بلا دفع مسبق",
+    submit: "تأكيد الطلب",
+    submitting: "جاري إنشاء الطلب...",
+    errName: "الرجاء إدخال الاسم الكامل",
+    errPhoneRequired: "الرجاء إدخال رقم الهاتف",
+    errPhoneInvalid: "الرجاء إدخال رقم هاتف مغربي صحيح",
+    errAddressRequired: "الرجاء إدخال العنوان",
+    errAddressInvalid: "الرجاء إدخال عنوان تفصيلي كامل",
+    errBlocked: "تعذر إتمام الطلب حالياً. يرجى التحقق من معلوماتك أو المحاولة لاحقاً.",
+    errGeneric: "تعذر إتمام الطلب. يرجى المحاولة مرة أخرى.",
+    errNetwork: "تعذر إتمام الطلب. تحقق من اتصالك وحاول مجدداً.",
+    city: "المغرب",
+  },
+  fr: {
+    title: "Commandez maintenant — payez à la livraison",
+    bullets: ["Paiement à la livraison", "Aucun paiement en ligne", "Payez uniquement à la réception"],
+    fullName: "Nom complet",
+    fullNamePh: "Mohamed Alaoui",
+    phone: "Téléphone",
+    phonePh: "06XXXXXXXX",
+    address: "Adresse complète",
+    addressPh: "Quartier — rue — n° — étage",
+    qty: "Quantité",
+    shipping: "Livraison",
+    free: "Gratuite",
+    totalLabel: "Total à la livraison",
+    currency: "MAD",
+    noPrepay: "Sans paiement anticipé",
+    submit: "Confirmer la commande",
+    submitting: "Création de la commande...",
+    errName: "Veuillez entrer votre nom complet",
+    errPhoneRequired: "Veuillez entrer votre numéro de téléphone",
+    errPhoneInvalid: "Veuillez entrer un numéro marocain valide",
+    errAddressRequired: "Veuillez entrer votre adresse",
+    errAddressInvalid: "Veuillez entrer une adresse complète et détaillée",
+    errBlocked: "Commande impossible pour le moment. Vérifiez vos informations ou réessayez plus tard.",
+    errGeneric: "Impossible de finaliser la commande. Veuillez réessayer.",
+    errNetwork: "Impossible de finaliser. Vérifiez votre connexion et réessayez.",
+    city: "Maroc",
+  },
+} as const;
 
 function FieldError({ message }: { message: string }) {
   return (
@@ -42,12 +100,14 @@ function FieldError({ message }: { message: string }) {
   );
 }
 
-export function ProductOrderForm({ product, variant, quantity }: ProductOrderFormProps) {
+export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: ProductOrderFormProps) {
   const router = useRouter();
   const submitting = useRef(false);
   const formRef = useRef<HTMLFormElement>(null);
   const pageLoadedAt = useRef(Date.now());
   const deviceRef = useRef<CollectedDeviceSignals | null>(null);
+  const t = COPY[locale];
+  const isFr = locale === "fr";
 
   const [form, setForm] = useState<FormFields>({ fullName: "", phone: "", address: "" });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -67,7 +127,6 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           /* collector best-effort */
         });
     };
-    // Defer fingerprinting until idle so it never blocks LCP/INP
     let idleId: number | undefined;
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
     if (typeof window !== "undefined" && "requestIdleCallback" in window) {
@@ -84,25 +143,25 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
     };
   }, []);
 
-  const productName = product.name.ar;
+  const productName = isFr ? product.name.fr : product.name.ar;
   const productImage = resolveProductHero(product);
   const shipping = 0;
   const subtotal = variant.price * quantity;
   const total = subtotal + shipping;
-  const totalFormatted = formatPriceNumber(total, "ar");
+  const totalFormatted = formatPriceNumber(total, locale);
 
   const validateField = (key: keyof FormFields, value: string): string | undefined => {
     switch (key) {
       case "fullName":
-        if (!value.trim()) return "الرجاء إدخال الاسم الكامل";
+        if (!value.trim()) return t.errName;
         return undefined;
       case "phone":
-        if (!value.trim()) return "الرجاء إدخال رقم الهاتف";
-        if (!isValidMoroccanPhone(value)) return "الرجاء إدخال رقم هاتف مغربي صحيح";
+        if (!value.trim()) return t.errPhoneRequired;
+        if (!isValidMoroccanPhone(value)) return t.errPhoneInvalid;
         return undefined;
       case "address":
-        if (!value.trim()) return "الرجاء إدخال العنوان";
-        if (!isValidAddress(value)) return "الرجاء إدخال عنوان تفصيلي كامل";
+        if (!value.trim()) return t.errAddressRequired;
+        if (!isValidAddress(value)) return t.errAddressInvalid;
         return undefined;
     }
   };
@@ -160,15 +219,14 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
             fullName: form.fullName.trim(),
             phone,
             address: form.address.trim(),
-            city: "المغرب",
+            city: t.city,
             country: "Morocco",
           },
           paymentMethod: "cod",
-          locale: "ar",
+          locale,
           device: device || undefined,
           honeypot,
           formFillMs,
-          // Meta CAPI enrichment — never send the access token from the browser
           meta: {
             fbp: clickIds.fbp,
             fbc: clickIds.fbc,
@@ -181,10 +239,8 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
       const data = await res.json();
 
       if (data.success && data.orderNumber) {
-        // Shared event_id with server CAPI → Meta dedupes Pixel + Conversions API
         const purchaseEventId = `purchase_${data.orderNumber}`;
 
-        // Pixel only here; CAPI Purchase is sent after the order is persisted server-side
         fbPurchase({
           eventId: purchaseEventId,
           contentIds: [product.id],
@@ -196,7 +252,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
             phone,
             firstName,
             lastName,
-            city: "المغرب",
+            city: t.city,
             country: "ma",
             fbp: clickIds.fbp,
             fbc: clickIds.fbc,
@@ -204,7 +260,6 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
           sendToServer: false,
         });
 
-        // Keep TikTok / dataLayer purchase signal (Meta handled above)
         trackEvent("Purchase", {
           content_ids: [product.id],
           value: total,
@@ -226,12 +281,12 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
       }
 
       if (data.blocked) {
-        setFormError("تعذر إتمام الطلب حالياً. يرجى التحقق من معلوماتك أو المحاولة لاحقاً.");
+        setFormError(t.errBlocked);
       } else {
-        setFormError("تعذر إتمام الطلب. يرجى المحاولة مرة أخرى.");
+        setFormError(t.errGeneric);
       }
     } catch {
-      setFormError("تعذر إتمام الطلب. تحقق من اتصالك وحاول مجدداً.");
+      setFormError(t.errNetwork);
     } finally {
       setLoading(false);
       submitting.current = false;
@@ -241,10 +296,26 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
   const fieldBorder = (key: keyof FormFields) =>
     errors[key] && touched[key]
       ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-      : "border-[#E5E7EB] focus:border-[#6366F1] focus:ring-[#6366F1]/20";
+      : isFr
+        ? "border-[#E5E7EB] focus:border-[#1B4D3E] focus:ring-[#1B4D3E]/20"
+        : "border-[#E5E7EB] focus:border-[#6366F1] focus:ring-[#6366F1]/20";
+
+  const iconClass = isFr ? "text-[#6B8F71]" : "text-[#A5B4FC]";
+  const totalBoxClass = isFr
+    ? "rounded-xl bg-[#E8F2ED] border border-[#1B4D3E]/20 px-4 py-3 text-center"
+    : "rounded-xl bg-[#EEF2FF] border border-[#C7D2FE] px-4 py-3 text-center";
+  const totalLabelClass = isFr
+    ? "text-xs font-bold text-[#1B4D3E] mb-1 flex items-center justify-center gap-1"
+    : "text-xs font-bold text-[#4338CA] mb-1 flex items-center justify-center gap-1";
+  const totalPriceClass = isFr
+    ? "text-3xl font-black text-[#1B4D3E] tabular-nums"
+    : "text-3xl font-black text-[#4F46E5] tabular-nums";
+  const ctaClass = isFr
+    ? "w-full h-16 rounded-2xl text-lg font-black text-white disabled:opacity-60 flex items-center justify-center gap-3 bg-[#1B4D3E] hover:bg-[#163f32] shadow-lg shadow-[#1B4D3E]/25"
+    : "premium-checkout-cta w-full h-16 rounded-2xl text-lg font-black text-white disabled:opacity-60 flex items-center justify-center gap-3";
 
   return (
-    <section className="cod-checkout-isolated mt-0 w-full relative z-10" id="order-form">
+    <section className="cod-checkout-isolated mt-0 w-full relative z-10" id="order-form" dir={isFr ? "ltr" : undefined}>
       <FacebookCheckoutTracker
         productId={product.id}
         value={total}
@@ -260,14 +331,10 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
       >
         <header className="text-center mb-6 pb-5 border-b border-[#E5E7EB]">
           <h2 className="text-xl sm:text-2xl font-black tracking-tight text-black leading-tight">
-            اطلب الآن وادفع عند الاستلام
+            {t.title}
           </h2>
           <ul className="mt-4 space-y-2 text-start max-w-sm mx-auto">
-            {[
-              "الدفع عند الاستلام",
-              "لن تدفع أي مبلغ الآن",
-              "ادفع فقط عند استلام الطلب",
-            ].map((line) => (
+            {t.bullets.map((line) => (
               <li key={line} className="flex items-center gap-2 text-sm font-semibold text-[#065F46]">
                 <span className="text-emerald-600" aria-hidden>
                   ✓
@@ -283,17 +350,17 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
 
           <div>
             <label htmlFor="fullName" className="premium-field-label">
-              الاسم الكامل
+              {t.fullName}
             </label>
             <div className="relative">
-              <User className="pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5 text-[#A5B4FC]" aria-hidden />
+              <User className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
               <input
                 id="fullName"
                 value={form.fullName}
                 onChange={(e) => updateField("fullName", e.target.value)}
                 onBlur={() => blurField("fullName")}
                 className={cn("premium-checkout-input ps-14", fieldBorder("fullName"))}
-                placeholder="محمد محمد"
+                placeholder={t.fullNamePh}
                 autoComplete="name"
                 disabled={loading}
               />
@@ -303,10 +370,10 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
 
           <div>
             <label htmlFor="phone" className="premium-field-label">
-              رقم الهاتف
+              {t.phone}
             </label>
             <div className="relative">
-              <Phone className="pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5 text-[#A5B4FC]" aria-hidden />
+              <Phone className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
               <input
                 id="phone"
                 type="tel"
@@ -315,7 +382,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                 onChange={(e) => updateField("phone", e.target.value)}
                 onBlur={() => blurField("phone")}
                 className={cn("premium-checkout-input ps-14 tabular-nums", fieldBorder("phone"))}
-                placeholder="06XXXXXXXX"
+                placeholder={t.phonePh}
                 dir="ltr"
                 autoComplete="tel"
                 disabled={loading}
@@ -326,10 +393,10 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
 
           <div>
             <label htmlFor="address" className="premium-field-label">
-              العنوان الكامل
+              {t.address}
             </label>
             <div className="relative">
-              <MapPin className="pointer-events-none absolute top-5 start-5 h-5 w-5 text-[#A5B4FC]" aria-hidden />
+              <MapPin className={cn("pointer-events-none absolute top-5 start-5 h-5 w-5", iconClass)} aria-hidden />
               <textarea
                 id="address"
                 value={form.address}
@@ -340,7 +407,7 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
                   "premium-checkout-textarea ps-14 pt-[18px] min-h-[120px] resize-none leading-relaxed",
                   fieldBorder("address"),
                 )}
-                placeholder="الحي - الشارع - رقم المنزل - الطابق"
+                placeholder={t.addressPh}
                 autoComplete="street-address"
                 disabled={loading}
               />
@@ -357,25 +424,27 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
               )}
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-bold text-black line-clamp-2">{productName}</p>
-                <p className="text-xs text-[#64748B] mt-0.5">الكمية: {quantity}</p>
+                <p className="text-xs text-[#64748B] mt-0.5">
+                  {t.qty}: {quantity}
+                </p>
               </div>
             </div>
             <div className="flex justify-between text-sm font-semibold text-[#475569]">
-              <span>الشحن</span>
-              <span className="text-emerald-600 font-bold">مجاني</span>
+              <span>{t.shipping}</span>
+              <span className="text-emerald-600 font-bold">{t.free}</span>
             </div>
-            <div className="rounded-xl bg-[#EEF2FF] border border-[#C7D2FE] px-4 py-3 text-center">
-              <p className="text-xs font-bold text-[#4338CA] mb-1 flex items-center justify-center gap-1">
+            <div className={totalBoxClass}>
+              <p className={totalLabelClass}>
                 <Banknote className="h-3.5 w-3.5" />
-                الإجمالي عند الاستلام
+                {t.totalLabel}
               </p>
-              <p className="text-3xl font-black text-[#4F46E5] tabular-nums">
+              <p className={totalPriceClass}>
                 {totalFormatted}
-                <span className="text-sm ms-1 font-bold">درهم</span>
+                <span className="text-sm ms-1 font-bold">{t.currency}</span>
               </p>
               <p className="mt-1 text-[11px] font-semibold text-[#64748B] flex items-center justify-center gap-1">
                 <Shield className="h-3 w-3" />
-                بلا دفع مسبق
+                {t.noPrepay}
               </p>
             </div>
           </div>
@@ -386,20 +455,16 @@ export function ProductOrderForm({ product, variant, quantity }: ProductOrderFor
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="premium-checkout-cta w-full h-16 rounded-2xl text-lg font-black text-white disabled:opacity-60 flex items-center justify-center gap-3"
-          >
+          <button type="submit" disabled={loading} className={ctaClass}>
             {loading ? (
               <>
                 <Loader2 className="h-6 w-6 animate-spin" />
-                جاري إنشاء الطلب...
+                {t.submitting}
               </>
             ) : (
               <>
                 <Lock className="h-5 w-5" />
-                تأكيد الطلب
+                {t.submit}
               </>
             )}
           </button>

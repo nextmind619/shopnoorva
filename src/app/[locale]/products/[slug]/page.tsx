@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import { products, getProductBySlug, getProductById } from "@/data/products";
+import { products, getProductBySlug, getProductById, getReviewsForProduct } from "@/data/products";
 import { ProductPageClient } from "@/components/product/product-page-client";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL } from "@/lib/site";
@@ -11,6 +11,19 @@ import { resolveProductHero } from "@/lib/product-images/resolve";
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
 }
+
+const SHIATSU_SLUG = "shiatsu-neck-shoulder-massager";
+
+const SHIATSU_KEYWORDS = [
+  "massage shiatsu",
+  "masseur cou épaules",
+  "appareil massage chauffage",
+  "massage cervicales Maroc",
+  "relaxation",
+  "bien-être",
+  "paiement à la livraison",
+  "NOORVA",
+];
 
 export async function generateMetadata({
   params,
@@ -23,31 +36,69 @@ export async function generateMetadata({
 
   const hero = resolveProductHero(product);
   const canonical = `${SITE_URL}/ar/products/${product.slug}`;
+  const isShiatsu = product.slug === SHIATSU_SLUG;
+  const title = isShiatsu ? product.seo.title.fr : product.seo.title.ar;
+  const description = isShiatsu ? product.seo.description.fr : product.seo.description.ar;
+  const ogLocale = isShiatsu ? "fr_MA" : "ar_MA";
+  const name = isShiatsu ? product.name.fr : product.name.ar;
 
   return {
-    title: product.seo.title.ar,
-    description: product.seo.description.ar,
-    keywords: product.tags,
+    title,
+    description,
+    keywords: isShiatsu ? [...SHIATSU_KEYWORDS, ...product.tags] : product.tags,
     alternates: { canonical },
     openGraph: {
-      title: product.seo.title.ar,
-      description: product.seo.description.ar,
-      images: [{ url: hero, alt: product.name.ar }],
-      locale: "ar_MA",
+      title,
+      description,
+      images: [{ url: hero, alt: name }],
+      locale: ogLocale,
       type: "website",
       url: canonical,
       siteName: "NOORVA",
     },
     twitter: {
       card: "summary_large_image",
-      title: product.seo.title.ar,
-      description: product.seo.description.ar,
+      title,
+      description,
       images: [hero],
     },
   };
 }
 
 function getProductFaqs(slug: string, warrantyMonths: number) {
+  if (slug === SHIATSU_SLUG) {
+    return [
+      {
+        q: "Livraison — quels délais au Maroc ?",
+        a: "Livraison gratuite partout au Maroc : 24–48 h pour les grandes villes, 2–4 jours pour le reste du Royaume.",
+      },
+      {
+        q: "Paiement — dois-je payer maintenant ?",
+        a: "Non. Paiement à la livraison uniquement (COD). Vous réglez en espèces à la réception.",
+      },
+      {
+        q: "Garantie — que couvre-t-elle ?",
+        a: `Garantie ${warrantyMonths} mois sur les défauts de fabrication, plus remplacement sous 7 jours en cas de défaut.`,
+      },
+      {
+        q: "Utilisation — comment bien l’utiliser ?",
+        a: "Placez l’appareil autour du cou ou sur la zone à masser, ajustez les sangles, lancez le massage et activez le chauffage si besoin. 10–15 minutes suffisent.",
+      },
+      {
+        q: "Chauffage — est-il sûr ?",
+        a: "Oui. Le chauffage intégré offre une chaleur douce et contrôlée. Vous pouvez l’activer ou le désactiver selon votre confort.",
+      },
+      {
+        q: "Nettoyage — comment l’entretenir ?",
+        a: "Débranchez l’appareil et essuyez-le avec un chiffon doux légèrement humide. Ne jamais immerger dans l’eau.",
+      },
+      {
+        q: "Retour — puis-je renvoyer le produit ?",
+        a: "Oui. Contactez-nous sur WhatsApp sous 14 jours en cas de défaut de fabrication.",
+      },
+    ];
+  }
+
   if (slug === "northern-lights-galaxy-projector") {
     return [
       {
@@ -110,6 +161,47 @@ function getProductFaqs(slug: string, warrantyMonths: number) {
     ];
   }
 
+  if (slug === "green-laser-pointer-303") {
+    return [
+      {
+        q: "هل يوجد الدفع عند الاستلام؟",
+        a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب.",
+      },
+      {
+        q: "واش التوصيل مجاني؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب.",
+      },
+      {
+        q: "كيفاش كتشحن البطارية؟",
+        a: "البطارية من نوع 18650 وقابلة للشحن عبر كابل USB الموجود في العلبة.",
+      },
+      {
+        q: "شنو مدى الشعاع؟",
+        a: "الشعاع الأخضر قوي وواضح لمسافات بعيدة — مناسب للفلك، التخييم، والعروض المهنية.",
+      },
+      {
+        q: "واش فيه ضمان؟",
+        a: `نعم، ضمان ${warrantyMonths} شهر على عيوب التصنيع، مع استبدال خلال 7 أيام عند وجود عيب.`,
+      },
+      {
+        q: "كيفاش كنستعملو بسلامة؟",
+        a: "لا توجّه الشعاع نحو العيون أو الطائرات أو المركبات. استعمل مفاتيح الأمان وحزام اليد، وفعّله فقط عند الحاجة.",
+      },
+      {
+        q: "واش يمكن الإرجاع؟",
+        a: "نعم، تواصل معنا على واتساب خلال 14 يومًا إذا كان هناك عيب مصنعي.",
+      },
+      {
+        q: "شنو كاين فالعلبة؟",
+        a: "ليزر أخضر 303، بطارية 18650، كابل USB، حزام يد مع مفاتيح أمان، غطاء نجوم، ودليل الاستخدام.",
+      },
+      {
+        q: "كم مدة التوصيل؟",
+        a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${warrantyMonths} شهر.`,
+      },
+    ];
+  }
+
   return [];
 }
 
@@ -130,6 +222,8 @@ export default async function ProductPage({
   const hero = resolveProductHero(product);
   const productUrl = `${SITE_URL}/ar/products/${product.slug}`;
   const productFaqs = getProductFaqs(product.slug, product.warrantyMonths || 12);
+  const isShiatsu = product.slug === SHIATSU_SLUG;
+  const reviews = isShiatsu ? getReviewsForProduct(product.id) : [];
 
   return (
     <>
@@ -137,11 +231,13 @@ export default async function ProductPage({
         data={{
           "@context": "https://schema.org",
           "@type": "Product",
-          name: product.name.ar,
-          description: product.description.ar,
+          name: isShiatsu ? product.name.fr : product.name.ar,
+          description: isShiatsu ? product.description.fr : product.description.ar,
           image: [hero],
           sku: product.sku,
           brand: { "@type": "Brand", name: "NOORVA" },
+          color: isShiatsu ? "Green" : undefined,
+          material: isShiatsu ? "ABS + PU Leather" : undefined,
           offers: {
             "@type": "Offer",
             price: defaultVariant.price,
@@ -150,12 +246,38 @@ export default async function ProductPage({
             url: productUrl,
             priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
             itemCondition: "https://schema.org/NewCondition",
+            shippingDetails: isShiatsu
+              ? {
+                  "@type": "OfferShippingDetails",
+                  shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },
+                  shippingDestination: { "@type": "DefinedRegion", addressCountry: "MA" },
+                }
+              : undefined,
           },
           aggregateRating: {
             "@type": "AggregateRating",
             ratingValue: product.rating,
             reviewCount: product.reviewCount,
+            bestRating: "5",
+            worstRating: "1",
           },
+          ...(reviews.length > 0
+            ? {
+                review: reviews.slice(0, 10).map((r) => ({
+                  "@type": "Review",
+                  author: { "@type": "Person", name: r.author },
+                  datePublished: r.date,
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: r.rating,
+                    bestRating: "5",
+                    worstRating: "1",
+                  },
+                  name: r.title.fr,
+                  reviewBody: r.content.fr,
+                })),
+              }
+            : {}),
         }}
       />
       {productFaqs.length > 0 && (

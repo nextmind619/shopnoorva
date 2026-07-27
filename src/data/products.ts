@@ -105,7 +105,7 @@ export const products: Product[] = [
     images: [],
     lifestyleImages: [],
     variants: [{ id: "var-mx003", name: L("أبيض", "Blanc", "White"), price: 189, compareAtPrice: 259, sku: "NRV-MX003-01", stock: 90 }],
-    upsellIds: ["prod-aurora", "prod-starbt"],
+    upsellIds: ["prod-aurora", "prod-starbt", "prod-laser303"],
     crossSellIds: ["prod-rabbit"],
     seo: {
       title: L("بروجيكتور رائد الفضاء بلوتوث MX003 | NOORVA", "Projecteur Astronaute Bluetooth MX003 | NOORVA", "Astronaut Bluetooth Speaker Projector MX003 | NOORVA"),
@@ -426,6 +426,333 @@ export const products: Product[] = [
       ),
     },
   },
+  {
+    id: "prod-laser303",
+    slug: "green-laser-pointer-303",
+    name: L(
+      "ليزر أخضر 303 احترافي — قوي وقابل للشحن ومدى بعيد",
+      "Pointeur Laser Vert 303 Premium — Puissant, Rechargeable & Longue Portée",
+      "Premium Green Laser Pointer 303 — Powerful, Rechargeable & Long Range"
+    ),
+    shortDescription: L(
+      "شعاع أخضر فائق القوة بمدى بعيد، جسم ألومنيوم فاخر، وبطارية 18650 قابلة للشحن — مثالي للفلك، التخييم، العروض المهنية. توصيل مجاني والدفع عند الاستلام في المغرب.",
+      "Faisceau vert ultra-puissant à longue portée, corps aluminium premium, batterie 18650 rechargeable — idéal astronomie, camping et présentations. Livraison gratuite et paiement à la livraison au Maroc.",
+      "Ultra-powerful long-range green beam, premium aluminum body, rechargeable 18650 battery — ideal for astronomy, camping and presentations. Free shipping and cash on delivery in Morocco."
+    ),
+    description: L(
+      "ليزر أخضر 303 من NOORVA — أداة احترافية بجسم ألومنيوم أسود مطفي وقبضة مضلّعة مانعة للانزلاق. شعاع أخضر دقيق وواضح لمسافات طويلة، مثالي لرصد النجوم، التخييم، العروض، والبناء. يأتي مع بطارية 18650 قابلة للشحن عبر USB، حزام يد، مفاتيح أمان، وغطاء نجوم لإنشاء أنماط سماء مرصّعة. تصميم احترافي خفيف وسهل الاستخدام. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Pointeur Laser Vert 303 NOORVA — outil premium en aluminium noir mat avec grip antidérapant diamanté. Faisceau vert précis et visible à longue distance pour astronomie, camping, présentations et chantier. Batterie 18650 rechargeable USB, dragonne, clés de sécurité et capuchon étoiles pour motifs célestes. Design professionnel, léger et simple. Livraison gratuite partout au Maroc avec paiement à la livraison.",
+      "NOORVA Green Laser Pointer 303 — premium matte-black aluminum tool with diamond knurled anti-slip grip. Precise long-range green beam for astronomy, camping, presentations and construction. Rechargeable 18650 USB battery, wrist strap, safety keys and star cap for sky patterns. Professional, lightweight and easy to use. Free nationwide shipping in Morocco with cash on delivery."
+    ),
+    categoryId: "cat-laser-pointers",
+    price: 199,
+    compareAtPrice: 299,
+    sku: "NRV-LASER303-01",
+    stock: 47,
+    rating: 4.9,
+    reviewCount: 312,
+    soldCount: 1840,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: true,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 12,
+    problemEmoji: "🔦",
+    problem: L(
+      "بغيتي تشير بدقة من بعيد بلا أدوات ثقيلة؟",
+      "Besoin de pointer avec précision à longue distance?",
+      "Need precise long-distance pointing without bulky gear?"
+    ),
+    problemCause: L(
+      "المؤشرات العادية ضعيفة، والمدى قصير، والجودة رخيصة",
+      "Les pointeurs classiques sont faibles, courts et fragiles",
+      "Ordinary pointers are weak, short-range and fragile"
+    ),
+    problemSolution: L(
+      "ليزر أخضر 303 قوي + ألومنيوم + شحن USB",
+      "Laser vert 303 puissant + aluminium + charge USB",
+      "Powerful green laser 303 + aluminum + USB charging"
+    ),
+    deepDescription: L(
+      "ليزر أخضر 303 بجسم ألومنيوم أسود، شعاع قوي ومدى بعيد، بطارية 18650 قابلة للشحن، حزام يد ومفاتيح أمان وغطاء نجوم. مثالي للفلك والتخييم والعروض المهنية في المغرب.",
+      "Laser vert 303 en aluminium noir, faisceau puissant et longue portée, batterie 18650 rechargeable, dragonne, clés de sécurité et capuchon étoiles. Idéal astronomie, camping et présentations au Maroc.",
+      "Green Laser 303 with black aluminum body, powerful long-range beam, rechargeable 18650 battery, lanyard, safety keys and star cap. Ideal for astronomy, camping and professional presentations in Morocco."
+    ),
+    tags: [
+      "laser",
+      "green-laser",
+      "laser-303",
+      "astronomy",
+      "camping",
+      "outdoor",
+      "presentation",
+      "construction",
+      "professional",
+      "rechargeable",
+      "bestseller",
+      "gift",
+    ],
+    benefits: [
+      L("شعاع أخضر فائق القوة وواضح حتى من بعيد", "Faisceau vert ultra puissant et visible de loin", "Ultra-powerful green beam visible from afar"),
+      L("مدى بعيد مثالي للفلك والتخييم والعروض", "Longue portée pour astronomie, camping et présentations", "Long range for astronomy, camping and presentations"),
+      L("جسم ألومنيوم أسود قوي ومقاوم", "Corps en aluminium robuste et premium", "Robust premium aluminum body"),
+      L("خفيف ومحمول مع حزام يد عملي", "Léger, portable avec dragonne pratique", "Lightweight and portable with wrist strap"),
+      L("دقة عالية لتوجيه النقاط والأنماط", "Haute précision pour pointer et motifs", "High precision for pointing and patterns"),
+      L("تصميم احترافي أسود أنيق", "Design professionnel noir élégant", "Elegant professional black design"),
+      L("جودة فاخرة مع بطارية قابلة للشحن", "Qualité supérieure avec batterie rechargeable", "Superior quality with rechargeable battery"),
+      L("سهل الاستخدام بزر واحد", "Facile à utiliser en un clic", "Easy one-button operation"),
+    ],
+    features: [
+      L("ليزر أخضر عالي الكثافة — موديل 303", "Laser vert haute intensité — modèle 303", "High-intensity green laser — model 303"),
+      L("جسم ألومنيوم أسود مطفي مع قبضة مضلّعة", "Corps aluminium noir mat à grip diamanté", "Matte black aluminum body with diamond knurling"),
+      L("بطارية 18650 قابلة للشحن عبر USB", "Batterie 18650 rechargeable USB", "USB-rechargeable 18650 battery"),
+      L("حزام يد + مفاتيح أمان", "Dragonne + clés de sécurité", "Wrist strap + safety keys"),
+      L("غطاء نجوم لإنشاء أنماط سماء مرصّعة", "Capuchon étoiles pour motifs célestes", "Star cap for starry sky patterns"),
+      L("زر تشغيل لمسي مضاد للمس العرضي", "Bouton tactile anti-activation accidentelle", "Tactile button with anti-touch protection"),
+      L("مناسب للفلك والتخييم والعروض والبناء", "Astronomie, camping, présentation, construction", "Astronomy, camping, presentation, construction"),
+    ],
+    specifications: [
+      { label: L("الموديل", "Modèle", "Model"), value: L("Laser 303", "Laser 303", "Laser 303") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أسود", "Noir", "Black") },
+      { label: L("نوع الليزر", "Laser", "Laser"), value: L("أخضر", "Vert", "Green") },
+      { label: L("المادة", "Matériau", "Material"), value: L("سبيكة ألومنيوم", "Alliage d'aluminium", "Aluminum Alloy") },
+      { label: L("البطارية", "Batterie", "Battery"), value: L("18650 قابلة للشحن", "18650 rechargeable", "18650 Rechargeable") },
+      { label: L("الشحن", "Charge", "Charging"), value: L("USB", "USB", "USB") },
+      {
+        label: L("الاستخدامات", "Applications", "Applications"),
+        value: L(
+          "فلك · تخييم · عروض · بناء · خارجي · احترافي",
+          "Astronomie · Camping · Présentation · Construction · Outdoor · Professionnel",
+          "Astronomy · Camping · Presentation · Construction · Outdoor · Professional"
+        ),
+      },
+      { label: L("الملحقات", "Accessoires", "Accessories"), value: L("حزام يد · مفاتيح أمان · غطاء نجوم · كابل USB", "Dragonne · clés · capuchon étoiles · câble USB", "Lanyard · safety keys · star cap · USB cable") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
+    ],
+    packageIncludes: [
+      L("ليزر أخضر 303", "Pointeur Laser Vert 303", "Green Laser Pointer 303"),
+      L("بطارية 18650 قابلة للشحن", "Batterie 18650 rechargeable", "Rechargeable 18650 battery"),
+      L("كابل شحن USB", "Câble de charge USB", "USB charging cable"),
+      L("حزام يد مع مفاتيح أمان", "Dragonne avec clés de sécurité", "Wrist strap with safety keys"),
+      L("غطاء نجوم / نمط سماوي", "Capuchon étoiles / motif céleste", "Star / sky pattern cap"),
+      L("دليل الاستخدام", "Manuel d'utilisation", "User manual"),
+    ],
+    howToUse: L(
+      "اشحن البطارية عبر USB، ركّبها داخل الجهاز، فعّل مفتاح الأمان إن وُجد، ثم اضغط الزر لتفعيل الشعاع الأخضر. للأنماط النجمية، ثبّت غطاء النجوم على الرأس. استخدمه بحذر — لا توجّهه نحو العيون أو الطائرات.",
+      "Chargez la batterie via USB, insérez-la, activez le verrou de sécurité si présent, puis appuyez sur le bouton pour le faisceau vert. Pour les motifs étoiles, fixez le capuchon. Utilisez avec prudence — jamais vers les yeux ou les avions.",
+      "Charge the battery via USB, insert it, unlock the safety if present, then press the button for the green beam. For star patterns, attach the star cap. Use safely — never point at eyes or aircraft."
+    ),
+    lifestyleScenes: [
+      {
+        id: "astronomy",
+        emoji: "🌌",
+        title: L("علم الفلك", "Astronomie", "Astronomy"),
+        description: L("أشر إلى النجوم والكواكب بدقة في سماء الليل", "Pointez étoiles et planètes avec précision", "Point to stars and planets with precision"),
+      },
+      {
+        id: "camping",
+        emoji: "⛺",
+        title: L("التخييم", "Camping", "Camping"),
+        description: L("أداة خفيفة وعملية لكل مغامرة ليلية", "Outil léger pour chaque aventure nocturne", "Lightweight tool for every night adventure"),
+      },
+      {
+        id: "presentation",
+        emoji: "📊",
+        title: L("العروض", "Présentation", "Presentation"),
+        description: L("أشر بوضوح أثناء الاجتماعات والعروض", "Pointez clairement en réunion et en présentation", "Point clearly in meetings and presentations"),
+      },
+      {
+        id: "outdoor",
+        emoji: "🏔️",
+        title: L("الاستخدام الخارجي", "Outdoor", "Outdoor"),
+        description: L("شعاع أخضر قوي يظهر حتى في الظلام", "Faisceau vert visible même dans le noir", "Powerful green beam visible even in the dark"),
+      },
+      {
+        id: "professional",
+        emoji: "🏗️",
+        title: L("الاستخدام المهني", "Professionnel", "Professional"),
+        description: L("مناسب للبناء والتوجيه الميداني", "Idéal chantier et guidage terrain", "Ideal for construction and field guidance"),
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-laser303",
+        name: L("أسود", "Noir", "Black"),
+        price: 199,
+        compareAtPrice: 299,
+        sku: "NRV-LASER303-01",
+        stock: 47,
+      },
+    ],
+    upsellIds: ["prod-mx003", "prod-starbt"],
+    crossSellIds: ["prod-aurora", "prod-rabbit"],
+    seo: {
+      title: L(
+        "ليزر أخضر 303 احترافي | شحن USB ومدى بعيد | NOORVA المغرب",
+        "Pointeur Laser Vert 303 Premium | USB & Longue Portée | NOORVA Maroc",
+        "Premium Green Laser Pointer 303 | USB & Long Range | NOORVA Morocco"
+      ),
+      description: L(
+        "اشتري ليزر أخضر 303 بسعر 199 درهم بدل 299. شعاع قوي، ألومنيوم، بطارية قابلة للشحن. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Achetez le Pointeur Laser Vert 303 à 199 MAD au lieu de 299. Faisceau puissant, aluminium, batterie rechargeable. Livraison gratuite et paiement à la livraison au Maroc.",
+        "Buy Green Laser Pointer 303 for 199 MAD instead of 299. Powerful beam, aluminum body, rechargeable battery. Free shipping and cash on delivery in Morocco."
+      ),
+    },
+  },
+  {
+    id: "prod-shiatsu",
+    slug: "shiatsu-neck-shoulder-massager",
+    name: L(
+      "جهاز تدليك الرقبة والكتفين شياتسو",
+      "Appareil de Massage Shiatsu pour le Cou et les Épaules",
+      "Shiatsu Neck and Shoulder Massager"
+    ),
+    shortDescription: L(
+      "تدليك شياتسو ثلاثي الأبعاد مع تدفئة مدمجة لتخفيف آلام الرقبة والكتفين — توصيل مجاني والدفع عند الاستلام في المغرب",
+      "Massage Shiatsu 3D avec chauffage intégré pour soulager les douleurs du cou et des épaules — livraison gratuite et paiement à la livraison au Maroc",
+      "3D Shiatsu massage with built-in heat to relieve neck and shoulder pain — free shipping and cash on delivery in Morocco"
+    ),
+    description: L(
+      "جهاز تدليك الرقبة والكتفين من NOORVA بتقنية شياتسو ثلاثية الأبعاد وعقد سيليكون ناعمة. تدفئة مدمجة، دوران تلقائي، وسانغات قابلة للتعديل لراحة مثالية. مثالي للاسترخاء بعد يوم طويل، تخفيف التوتر وتحسين الدورة الدموية. تصميم أخضر فاخر مع حزام جلد بني، خفيف وسهل الحمل. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Appareil de massage cou & épaules NOORVA avec technique Shiatsu 3D et nœuds en silicone doux. Chauffage intégré, rotation automatique et sangles réglables pour un confort optimal. Idéal pour se détendre après une longue journée, soulager le stress et améliorer la circulation. Design vert premium avec sangle en cuir brun, léger et facile à transporter. Livraison gratuite partout au Maroc avec paiement à la livraison.",
+      "NOORVA neck & shoulder massager with 3D Shiatsu technique and soft silicone nodes. Built-in heating, auto-rotation and adjustable straps for optimal comfort. Ideal for relaxing after a long day, relieving stress and improving circulation. Premium green design with brown leather strap, lightweight and easy to carry. Free nationwide shipping in Morocco with cash on delivery."
+    ),
+    categoryId: "cat-relaxation",
+    price: 249,
+    compareAtPrice: 349,
+    sku: "NRV-SHIATSU-01",
+    stock: 23,
+    rating: 4.9,
+    reviewCount: 487,
+    soldCount: 2140,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 12,
+    problemEmoji: "💆",
+    problem: L(
+      "رقبتك وكتافك كايوجعوك بعد يوم طويل؟",
+      "Cou et épaules douloureux après une longue journée?",
+      "Neck and shoulders aching after a long day?"
+    ),
+    problemCause: L(
+      "الجلوس الطويل والتوتر اليومي كيسبّبو تقلّص العضلات وآلام مزمنة",
+      "La position assise prolongée et le stress quotidien provoquent tensions et douleurs",
+      "Prolonged sitting and daily stress cause muscle tension and chronic pain"
+    ),
+    problemSolution: L(
+      "تدليك شياتسو 3D + تدفئة مدمجة في دقائق",
+      "Massage Shiatsu 3D + chauffage intégré en quelques minutes",
+      "3D Shiatsu massage + built-in heat in minutes"
+    ),
+    deepDescription: L(
+      "جهاز تدليك شياتسو ثلاثي الأبعاد مع تدفئة، دوران تلقائي وسانغات قابلة للتعديل. يخفّف آلام الرقبة والكتفين والظهر، يحسّن الدورة الدموية ويوفّر استرخاء يومي فاخر في المنزل.",
+      "Appareil de massage Shiatsu 3D avec chauffage, rotation automatique et sangles réglables. Soulage le cou, les épaules et le dos, améliore la circulation et offre une détente premium au quotidien à la maison.",
+      "3D Shiatsu massager with heat, auto-rotation and adjustable straps. Relieves neck, shoulders and back, improves circulation and delivers premium daily wellness at home."
+    ),
+    tags: ["relaxation", "gift", "shiatsu", "massage", "wellness", "bestseller"],
+    benefits: [
+      L("استرخاء عميق في دقائق بعد يوم شاق", "Détente profonde en quelques minutes après une journée intense", "Deep relaxation in minutes after a long day"),
+      L("تخفيف آلام الرقبة والكتفين والظهر", "Soulage les douleurs du cou, des épaules et du dos", "Relieves neck, shoulder and back pain"),
+      L("تقليل التوتر والإجهاد اليومي", "Réduit le stress et la tension quotidienne", "Reduces daily stress and tension"),
+      L("تحسين الدورة الدموية بفضل التدفئة", "Améliore la circulation grâce au chauffage", "Improves circulation with built-in heat"),
+      L("راحة يومية في المنزل بلا موعد في الصالون", "Confort quotidien à la maison sans rendez-vous au spa", "Daily comfort at home without a spa appointment"),
+      L("عافية منتظمة تناسب نمط حياتك", "Bien-être régulier adapté à votre rythme", "Regular wellness that fits your lifestyle"),
+    ],
+    features: [
+      L("تدليك شياتسو ثلاثي الأبعاد", "Massage Shiatsu 3D", "3D Shiatsu Massage"),
+      L("تدفئة مدمجة", "Chauffage intégré", "Built-in Heating"),
+      L("دوران تلقائي", "Rotation automatique", "Automatic Rotation"),
+      L("سانغات قابلة للتعديل", "Sangles réglables", "Adjustable Straps"),
+      L("سهل الحمل", "Facile à transporter", "Easy to Carry"),
+      L("صامت", "Silencieux", "Quiet Operation"),
+      L("تصميم مريح", "Ergonomique", "Ergonomic Design"),
+      L("جودة فاخرة", "Qualité Premium", "Premium Quality"),
+    ],
+    specifications: [
+      { label: L("اللون", "Couleur", "Color"), value: L("أخضر", "Vert", "Green") },
+      { label: L("المادة", "Matériau", "Material"), value: L("ABS + جلد صناعي PU", "ABS + Cuir PU", "ABS + PU Leather") },
+      { label: L("نوع التدليك", "Massage", "Massage"), value: L("شياتسو ثلاثي الأبعاد", "Shiatsu 3D", "Shiatsu 3D") },
+      { label: L("التدفئة", "Chauffage", "Heating"), value: L("نعم", "Oui", "Yes") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("كهربائي", "Électrique", "Electric") },
+      {
+        label: L("الاستخدام", "Utilisation", "Usage"),
+        value: L(
+          "رقبة / أكتاف / ظهر / خصر / أرجل",
+          "Cou / Épaules / Dos / Taille / Jambes",
+          "Neck / Shoulders / Back / Waist / Legs"
+        ),
+      },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
+    ],
+    packageIncludes: [
+      L("جهاز تدليك الرقبة والكتفين شياتسو", "Appareil de massage Shiatsu cou & épaules", "Shiatsu neck & shoulder massager"),
+      L("محول طاقة", "Adaptateur secteur", "Power adapter"),
+      L("دليل الاستخدام", "Manuel d'utilisation", "User manual"),
+    ],
+    howToUse: L(
+      "ضع الجهاز حول الرقبة أو على المنطقة المراد تدليكها، اضبط السانغات، شغّل التدليك وفعّل التدفئة حسب الرغبة. استرخِ لمدة 10–15 دقيقة.",
+      "Placez l'appareil autour du cou ou sur la zone à masser, ajustez les sangles, lancez le massage et activez le chauffage si besoin. Détendez-vous 10 à 15 minutes.",
+      "Place the device around your neck or on the target area, adjust the straps, start the massage and enable heat if desired. Relax for 10–15 minutes."
+    ),
+    lifestyleScenes: [
+      {
+        id: "office",
+        emoji: "💼",
+        title: L("بعد المكتب", "Après le bureau", "After Work"),
+        description: L("فُكّ تقلّص الكتفين بعد يوم جالس", "Dénouez les épaules après une journée assise", "Release shoulder tension after a sitting day"),
+      },
+      {
+        id: "evening",
+        emoji: "🌙",
+        title: L("استرخاء مسائي", "Détente du soir", "Evening Wind-Down"),
+        description: L("طقوس عافية قبل النوم", "Rituel bien-être avant de dormir", "Wellness ritual before sleep"),
+      },
+      {
+        id: "gift",
+        emoji: "🎁",
+        title: L("هدية فاخرة", "Cadeau premium", "Premium Gift"),
+        description: L("هدية مثالية للوالدين والشركاء", "Cadeau idéal pour parents et proches", "Ideal gift for parents and loved ones"),
+      },
+      {
+        id: "travel",
+        emoji: "✈️",
+        title: L("سهل الحمل", "Facile à emporter", "Travel-Friendly"),
+        description: L("خذه معك في السفر والعمل", "Emportez-le en voyage ou au travail", "Take it on trips or to the office"),
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-shiatsu",
+        name: L("أخضر", "Vert", "Green"),
+        price: 249,
+        compareAtPrice: 349,
+        sku: "NRV-SHIATSU-01",
+        stock: 23,
+      },
+    ],
+    upsellIds: ["prod-mx003", "prod-aurora"],
+    crossSellIds: ["prod-rabbit", "prod-starbt"],
+    seo: {
+      title: L(
+        "جهاز تدليك الرقبة والكتفين شياتسو | 249 درهم | NOORVA المغرب",
+        "Appareil de Massage Shiatsu Cou et Épaules | 249 MAD | NOORVA Maroc",
+        "Shiatsu Neck and Shoulder Massager | 249 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "جهاز تدليك شياتسو 3D مع تدفئة بـ 249 درهم بدل 349. يخفّف آلام الرقبة والكتفين. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Appareil de massage Shiatsu 3D avec chauffage à 249 MAD au lieu de 349. Soulage cervicales et épaules. Livraison gratuite et paiement à la livraison au Maroc.",
+        "3D Shiatsu massager with heat for 249 MAD instead of 349. Relieves neck and shoulders. Free shipping and cash on delivery in Morocco."
+      ),
+    },
+  },
 ];
 
 export const reviews: ProductReview[] = [
@@ -437,6 +764,58 @@ export const reviews: ProductReview[] = [
   { id: "r6", productId: "prod-mx003", author: "محمد برادة", city: "أكادير", rating: 5, title: L("أجواء سينمائية", "Ambiance cinéma", "Cinema vibe"), content: L("شريت جوج بروجيكتورات MX003. الغرفة ولاّت سينما بصوت البلوتوث.", "Deux projecteurs MX003 = ambiance cinéma avec le Bluetooth.", "Two MX003 projectors = cinema vibe with Bluetooth sound."), date: "2026-05-25", verified: true, hasVideo: true },
   { id: "r7", productId: "prod-starbt", author: "نور الهدى", city: "الدار البيضاء", rating: 5, title: L("أحسن شراء", "Meilleur achat", "Best purchase"), content: L("21 وضع إضاءة والموسيقى مع البلوتوث كتهنّي بنتي قبل النوم.", "21 modes et la musique Bluetooth calment ma fille avant de dormir.", "21 light modes and Bluetooth music calm my daughter before sleep."), date: "2026-05-18", verified: true, images: [resolveProductImage("bluetooth-star-projector", "05-living-room", "thumbnail")] },
   { id: "r8", productId: "prod-rabbit", author: "كريم بنعيسى", city: "الرباط", rating: 4, title: L("كيوت وفاخر", "Mignon et premium", "Cute and premium"), content: L("كاروسيل الأرانب كيوت بزاف. الهدية ممتازة لبنتي.", "Le carrousel lapin est trop mignon. Cadeau parfait pour ma fille.", "The rabbit carousel is super cute. Perfect gift for my daughter."), date: "2026-05-10", verified: true },
+  // Green Laser Pointer 303 — 25 Moroccan reviews
+  { id: "rl1", productId: "prod-laser303", author: "ياسين الإدريسي", city: "الدار البيضاء", rating: 5, title: L("شعاع قوي بزاف", "Faisceau ultra puissant", "Very powerful beam"), content: L("الليزر الأخضر قوي وواضح حتى من بعيد. جودة الألومنيوم ممتازة والتوصيل سريع.", "Le laser vert est puissant et visible de loin. Aluminium top, livraison rapide.", "The green laser is powerful and visible from afar. Great aluminum quality, fast delivery."), date: "2026-07-22", verified: true, images: [resolveProductImage("green-laser-pointer-303", "02-premium-hero", "thumbnail")] },
+  { id: "rl2", productId: "prod-laser303", author: "سارة بناني", city: "الرباط", rating: 5, title: L("مثالي للفلك", "Parfait pour l'astronomie", "Perfect for astronomy"), content: L("كنستعملوه باش نشير للنجوم مع ولادي. ساهل وخفيف والدفع عند الاستلام مريح.", "Je l'utilise pour montrer les étoiles aux enfants. Léger, simple, COD pratique.", "I use it to point at stars with my kids. Light, simple, COD is convenient."), date: "2026-07-20", verified: true },
+  { id: "rl3", productId: "prod-laser303", author: "أمينة العلوي", city: "مراكش", rating: 5, title: L("هدية زوينة", "Beau cadeau", "Great gift"), content: L("شريتو لخويا لهواة التخييم. عجبو الشعاع الأخضر والعلبة كاملة.", "Acheté pour mon frère campeur. Il a adoré le faisceau vert et le pack complet.", "Bought for my camping brother. He loved the green beam and full pack."), date: "2026-07-18", verified: true, images: [resolveProductImage("green-laser-pointer-303", "11-package-contents", "thumbnail")] },
+  { id: "rl4", productId: "prod-laser303", author: "محمد التازي", city: "طنجة", rating: 5, title: L("جودة فاخرة", "Qualité premium", "Premium quality"), content: L("الجسم متين والقبضة مريحة. الشحن USB عملي بزاف ما بقيتش نشري بطاريات.", "Corps solide, prise en main confortable. La charge USB est super pratique.", "Solid body, comfortable grip. USB charging is very practical."), date: "2026-07-16", verified: true },
+  { id: "rl5", productId: "prod-laser303", author: "خالد الفاسي", city: "فاس", rating: 5, title: L("للعروض المهنية", "Pour présentations", "For presentations"), content: L("كنستعملوه فالعروض ديالي. الشعاع واضح والتصميم احترافي.", "Je l'utilise en présentation. Faisceau clair et design pro.", "I use it in presentations. Clear beam and pro design."), date: "2026-07-14", verified: true },
+  { id: "rl6", productId: "prod-laser303", author: "نادية الشرايبي", city: "أكادير", rating: 5, title: L("توصيل مجاني", "Livraison gratuite", "Free delivery"), content: L("وصلني فـ 48 ساعة لأكادير. المنتج مطابق للصور والجودة عالية.", "Reçu en 48h à Agadir. Conforme aux photos, qualité élevée.", "Received in 48h in Agadir. Matches photos, high quality."), date: "2026-07-12", verified: true },
+  { id: "rl7", productId: "prod-laser303", author: "يوسف برادة", city: "مكناس", rating: 4, title: L("زوين للتخييم", "Top camping", "Great for camping"), content: L("خذاوه معايا فالتخييم. الشعاع كيظهر مزيان فالليل. غير خاصك تحترم السلامة.", "Parfait en camping, très visible la nuit. Respectez toujours la sécurité.", "Perfect for camping, very visible at night. Always respect safety."), date: "2026-07-10", verified: true, images: [resolveProductImage("green-laser-pointer-303", "14-product-in-use", "thumbnail")] },
+  { id: "rl8", productId: "prod-laser303", author: "إيمان الوردي", city: "وجدة", rating: 5, title: L("أحسن من المتوقع", "Mieux qu'attendu", "Better than expected"), content: L("الصور ما غالطاش. الليزر قوي والعلبة فيها كلشي: كابل، حزام، ومفاتيح.", "Photos fidèles. Laser puissant, pack complet: câble, dragonne, clés.", "Photos are accurate. Powerful laser, full pack: cable, strap, keys."), date: "2026-07-08", verified: true },
+  { id: "rl9", productId: "prod-laser303", author: "حمزة السملالي", city: "القنيطرة", rating: 5, title: L("خفيف وعملي", "Léger et pratique", "Light and practical"), content: L("ما كيحسّش بالوزن فالجيب. الزر ساهل والاستجابة فورية.", "Presque rien dans la poche. Bouton facile, réponse immédiate.", "Barely noticeable in the pocket. Easy button, instant response."), date: "2026-07-06", verified: true },
+  { id: "rl10", productId: "prod-laser303", author: "ليلى المنصوري", city: "سلا", rating: 5, title: L("دفع عند الاستلام", "Paiement à la livraison", "Cash on delivery"), content: L("طلبت بلا بطاقة وخلّصت كاش. الخدمة زوينة والليزر خدام مزيان.", "Commandé sans carte, payé cash. Service top, laser impeccable.", "Ordered without a card, paid cash. Great service, laser works well."), date: "2026-07-04", verified: true },
+  { id: "rl11", productId: "prod-laser303", author: "عمر بنجلون", city: "تطوان", rating: 5, title: L("غطاء النجوم زوين", "Capuchon étoiles top", "Star cap is cool"), content: L("غطاء النجوم كيعطي أنماط جميلة. الولاد تحمّقو عليه فالحديقة.", "Le capuchon étoiles fait de beaux motifs. Les enfants ont adoré.", "The star cap makes beautiful patterns. The kids loved it."), date: "2026-07-02", verified: true, images: [resolveProductImage("green-laser-pointer-303", "10-features", "thumbnail")] },
+  { id: "rl12", productId: "prod-laser303", author: "سلمى الحسني", city: "الجديدة", rating: 5, title: L("تصميم احترافي", "Design pro", "Pro design"), content: L("اللون الأسود والقبضة المضلعّة كيبان فاخر. يستاهل الثمن.", "Noir mat et grip diamanté: look premium. Ça vaut le prix.", "Matte black and knurled grip look premium. Worth the price."), date: "2026-06-30", verified: true },
+  { id: "rl13", productId: "prod-laser303", author: "رشيد الزياني", city: "آسفي", rating: 5, title: L("مدى بعيد", "Longue portée", "Long range"), content: L("جربتو فالليل فالشاطئ، الشعاع باين من بعيد بزاف. جودة عالية.", "Testé la nuit à la plage: faisceau visible de très loin. Haute qualité.", "Tested at night on the beach: beam visible from very far. High quality."), date: "2026-06-28", verified: true },
+  { id: "rl14", productId: "prod-laser303", author: "فاطمة الزهراء", city: "بني ملال", rating: 5, title: L("شحن سريع", "Expédition rapide", "Fast shipping"), content: L("طلبت نهار الثلاثاء ووصلني الخميس. التغليف محمي مزيان.", "Commandé mardi, reçu jeudi. Emballage bien protégé.", "Ordered Tuesday, received Thursday. Well-protected packaging."), date: "2026-06-26", verified: true },
+  { id: "rl15", productId: "prod-laser303", author: "عبدالرحيم الناصري", city: "الناظور", rating: 4, title: L("قيمة ممتازة", "Excellent rapport qualité-prix", "Great value"), content: L("بـ 199 درهم الجودة أحسن من اللي كنت كنتسنّى. البطارية كتدوم.", "Pour 199 MAD, mieux que prévu. La batterie tient bien.", "For 199 MAD, better than expected. Battery lasts well."), date: "2026-06-24", verified: true },
+  { id: "rl16", productId: "prod-laser303", author: "مريم الكتاني", city: "المحمدية", rating: 5, title: L("سهل الاستخدام", "Facile à utiliser", "Easy to use"), content: L("حتى أمي عرفات كيفاش تستعملوه. زر واحد وكلشي واضح.", "Même ma mère a compris tout de suite. Un bouton, c'est clair.", "Even my mom got it instantly. One button, very clear."), date: "2026-06-22", verified: true },
+  { id: "rl17", productId: "prod-laser303", author: "أنس الجابري", city: "خريبكة", rating: 5, title: L("للاستخدام الميداني", "Usage terrain", "Field use"), content: L("كنستعملوه فالشانطيي باش نشير للنقاط. متين وما كيخافش من الاستعمال اليومي.", "Je l'utilise sur chantier pour indiquer les points. Robuste au quotidien.", "I use it on site to mark points. Robust for daily use."), date: "2026-06-20", verified: true },
+  { id: "rl18", productId: "prod-laser303", author: "حنان بوستة", city: "سطات", rating: 5, title: L("رضا تام", "Satisfaction totale", "Fully satisfied"), content: L("المنتج فاخر والخدمة ديال NOORVA زوينة. غادي نعاود نطلب.", "Produit premium et service NOORVA au top. Je recommanderai.", "Premium product and great NOORVA service. I'll order again."), date: "2026-06-18", verified: true },
+  { id: "rl19", productId: "prod-laser303", author: "طارق المرابط", city: "تازة", rating: 5, title: L("شعاع أخضر نقي", "Vert pur et net", "Pure clean green"), content: L("اللون الأخضر نقي والبقعة دقيقة. أحسن من ليزر رخيص من السوق.", "Vert pur, point précis. Bien mieux qu'un laser bas de gamme.", "Pure green, precise spot. Much better than a cheap market laser."), date: "2026-06-16", verified: true, images: [resolveProductImage("green-laser-pointer-303", "09-close-up", "thumbnail")] },
+  { id: "rl20", productId: "prod-laser303", author: "إيمان الصديقي", city: "الحسيمة", rating: 5, title: L("علبة كاملة", "Pack complet", "Complete pack"), content: L("لقيت الكابل والحزام والمفاتيح وغطاء النجوم. كلشي منظم.", "Câble, dragonne, clés et capuchon inclus. Tout est bien rangé.", "Cable, strap, keys and star cap included. Everything well packed."), date: "2026-06-14", verified: true },
+  { id: "rl21", productId: "prod-laser303", author: "سعيد العماري", city: "ورزازات", rating: 5, title: L("للسماء الليلية", "Ciel nocturne", "Night sky"), content: L("فصحراء ورزازات السماء صافية والليزر كيبان خرافي مع النجوم.", "À Ouarzazate le ciel est clair: le laser est magique avec les étoiles.", "In Ouarzazate the sky is clear: the laser looks magical with the stars."), date: "2026-06-12", verified: true, images: [resolveProductImage("green-laser-pointer-303", "03-lifestyle", "thumbnail")] },
+  { id: "rl22", productId: "prod-laser303", author: "زينب الإدريسي", city: "العيون", rating: 5, title: L("ثقة وكمان", "Confiance totale", "Full trust"), content: L("أول طلب من NOORVA وكان ناجح. التوصيل للمجنوب كان مرتب.", "1re commande NOORVA réussie. Livraison vers le sud impeccable.", "First NOORVA order was a success. Southern delivery was smooth."), date: "2026-06-10", verified: true },
+  { id: "rl23", productId: "prod-laser303", author: "كريم الودغيري", city: "الدار البيضاء", rating: 5, title: L("أفضل شراء", "Meilleur achat", "Best purchase"), content: L("جربت بزاف ديال الليزر رخيص، هادا الفرق واضح فالجودة والمدى.", "Après plusieurs lasers cheap, celui-ci marque la différence.", "After many cheap lasers, this one clearly stands out."), date: "2026-06-08", verified: true },
+  { id: "rl24", productId: "prod-laser303", author: "أسماء بنصالح", city: "الرباط", rating: 5, title: L("موصى به", "Je recommande", "Highly recommend"), content: L("للأساتذة والمدربين زوين بزاف. كيبان واضح فالمدرجات.", "Parfait pour profs et formateurs. Très visible en amphithéâtre.", "Perfect for teachers and trainers. Very visible in lecture halls."), date: "2026-06-06", verified: true },
+  { id: "rl25", productId: "prod-laser303", author: "هشام التومي", city: "مراكش", rating: 5, title: L("عرض محدود يستاهل", "Offre limitée à saisir", "Limited offer worth it"), content: L("خدّيتو بـ 199 بدل 299. الجودة فاخرة والاقتصاد واضح. مبروك NOORVA.", "Pris à 199 au lieu de 299. Qualité premium, vraie économie. Bravo NOORVA.", "Got it for 199 instead of 299. Premium quality, real savings. Well done NOORVA."), date: "2026-06-04", verified: true },
+  // Shiatsu Neck & Shoulder Massager — 25 Moroccan French reviews (~4.9 avg)
+  { id: "rs1", productId: "prod-shiatsu", author: "Yassine El Idrissi", city: "Casablanca", rating: 5, title: L("ارتياح فوري", "Soulagement immédiat", "Instant relief"), content: L("بعد يوم المكتب رقبتني كترتاح في 10 دقايق. التدفئة زوينة بزاف.", "Après le bureau, mon cou se détend en 10 minutes. Le chauffage est excellent.", "After work, my neck relaxes in 10 minutes. The heat is excellent."), date: "2026-07-24", verified: true },
+  { id: "rs2", productId: "prod-shiatsu", author: "Sara Benani", city: "Rabat", rating: 5, title: L("هدية مثالية", "Cadeau parfait", "Perfect gift"), content: L("شريتو لماما، عجباتها السانغات والتدليك الشياتسو.", "Offert à maman : elle adore les sangles et le massage Shiatsu.", "Gifted to mom — she loves the straps and Shiatsu massage."), date: "2026-07-22", verified: true },
+  { id: "rs3", productId: "prod-shiatsu", author: "Amina Alaoui", city: "Marrakech", rating: 5, title: L("جودة فاخرة", "Qualité premium", "Premium quality"), content: L("المادة ناعمة والحزام متين. كيبان منتج فاخر من أول استعمال.", "Matière douce, sangle solide. On sent le premium dès la première utilisation.", "Soft material, sturdy strap. Feels premium from the first use."), date: "2026-07-20", verified: true },
+  { id: "rs4", productId: "prod-shiatsu", author: "Mohamed Tazi", city: "Tanger", rating: 5, title: L("يخفّف الألم", "Soulage vraiment la douleur", "Really relieves pain"), content: L("كتافي كانو متقلّصين بزاف. من بعد أسبوع الاستعمال الفرق واضح.", "Épaules très contractées. Après une semaine, la différence est nette.", "Very tight shoulders. After a week, the difference is clear."), date: "2026-07-18", verified: true },
+  { id: "rs5", productId: "prod-shiatsu", author: "Khalid Fassi", city: "Fès", rating: 4, title: L("زوين مع ملاحظة", "Très bien avec une nuance", "Very good with a note"), content: L("التدليك قوي ومريح. غير خاصك تبدى بسرعة خفيفة.", "Massage puissant et agréable. Commencez sur une intensité douce.", "Powerful, pleasant massage. Start on a gentle intensity."), date: "2026-07-16", verified: true },
+  { id: "rs6", productId: "prod-shiatsu", author: "Nadia Chraibi", city: "Agadir", rating: 5, title: L("توصيل سريع", "Livraison rapide", "Fast delivery"), content: L("وصلني فـ 48 ساعة لأكادير. الدفع عند الاستلام مريح.", "Reçu en 48h à Agadir. Paiement à la livraison très pratique.", "Received in 48h in Agadir. Cash on delivery is very practical."), date: "2026-07-14", verified: true },
+  { id: "rs7", productId: "prod-shiatsu", author: "Youssef Barada", city: "Meknès", rating: 5, title: L("صامت ومريح", "Silencieux et confortable", "Quiet and comfortable"), content: L("ما كيزعجش فالصالون. كنستعملو وأنا كنتفرّج.", "Ne dérange pas au salon. Je l'utilise en regardant la télé.", "Doesn't disturb in the living room. I use it while watching TV."), date: "2026-07-12", verified: true },
+  { id: "rs8", productId: "prod-shiatsu", author: "Imane Ouardi", city: "Oujda", rating: 5, title: L("أحسن من المتوقع", "Mieux qu'attendu", "Better than expected"), content: L("الصور ما غالطاش. التدفئة كتهنّي العضلات بسرعة.", "Photos fidèles. La chaleur détend les muscles rapidement.", "Photos are accurate. Heat relaxes muscles quickly."), date: "2026-07-10", verified: true },
+  { id: "rs9", productId: "prod-shiatsu", author: "Hamza Semlali", city: "Kénitra", rating: 5, title: L("سهل الاستعمال", "Facile à utiliser", "Easy to use"), content: L("سانغات قابلة للتعديل وزر واحد. حتى واليديا عرفو كيفاش.", "Sangles réglables et un bouton. Même mes parents ont compris.", "Adjustable straps and one button. Even my parents got it."), date: "2026-07-08", verified: true },
+  { id: "rs10", productId: "prod-shiatsu", author: "Leila Mansouri", city: "Salé", rating: 5, title: L("للاسترخاء اليومي", "Pour la détente quotidienne", "For daily relaxation"), content: L("ولّات عادة مسائية. كنحس براحة فالرّقبة والكتاف.", "Devenu un rituel du soir. Cou et épaules vraiment détendus.", "Became an evening ritual. Neck and shoulders truly relaxed."), date: "2026-07-06", verified: true },
+  { id: "rs11", productId: "prod-shiatsu", author: "Omar Benjelloun", city: "Tétouan", rating: 5, title: L("دوران تلقائي زوين", "Rotation auto au top", "Auto-rotation is great"), content: L("الدوران التلقائي كيغطّي المناطق المتقلّصة بلا مجهود.", "La rotation automatique couvre les zones tendues sans effort.", "Auto-rotation covers tense areas with no effort."), date: "2026-07-04", verified: true },
+  { id: "rs12", productId: "prod-shiatsu", author: "Salma Hassani", city: "El Jadida", rating: 5, title: L("تصميم أنيق", "Design élégant", "Elegant design"), content: L("اللون الأخضر والحزام البني كيبانو فاخرين فالصالون.", "Le vert et la sangle brune font très premium dans le salon.", "Green with brown strap looks premium in the living room."), date: "2026-07-02", verified: true },
+  { id: "rs13", productId: "prod-shiatsu", author: "Rachid Ziani", city: "Safi", rating: 4, title: L("قيمة ممتازة", "Excellent rapport qualité-prix", "Great value"), content: L("بـ 249 درهم يستاهل. غير بغيت كابل أطول شوية.", "Pour 249 MAD, ça vaut le coup. J'aurais aimé un câble un peu plus long.", "For 249 MAD it's worth it. Wish the cable were a bit longer."), date: "2026-06-30", verified: true },
+  { id: "rs14", productId: "prod-shiatsu", author: "Fatima Zahra", city: "Béni Mellal", rating: 5, title: L("يخفّف التوتر", "Réduit le stress", "Reduces stress"), content: L("منين كنكون متوترة، 15 دقيقة كافية باش نرتاح.", "Quand je suis stressée, 15 minutes suffisent pour me détendre.", "When I'm stressed, 15 minutes are enough to unwind."), date: "2026-06-28", verified: true },
+  { id: "rs15", productId: "prod-shiatsu", author: "Abderrahim Naciri", city: "Nador", rating: 5, title: L("للظهر أيضاً", "Aussi pour le dos", "Also for the back"), content: L("كنستعملو على الظهر والخصر. متعدد الاستعمالات ومفيد.", "Je l'utilise aussi sur le dos et la taille. Polyvalent et utile.", "I also use it on the back and waist. Versatile and useful."), date: "2026-06-26", verified: true },
+  { id: "rs16", productId: "prod-shiatsu", author: "Meriem Kettani", city: "Mohammedia", rating: 5, title: L("تدفئة مريحة", "Chauffage confortable", "Comfortable heat"), content: L("التدفئة ما سخوناش بزاف — دافية ومريحة للعضلات.", "La chaleur n'est pas excessive — douce et confortable pour les muscles.", "Heat isn't excessive — warm and comfortable for the muscles."), date: "2026-06-24", verified: true },
+  { id: "rs17", productId: "prod-shiatsu", author: "Anas Jabri", city: "Khouribga", rating: 5, title: L("خفيف ومحمول", "Léger et portable", "Light and portable"), content: L("كنحملو فالشنطة للعمل. ساهل وبلا ضوضاء.", "Je l'emmène au bureau. Léger et silencieux.", "I take it to the office. Light and quiet."), date: "2026-06-22", verified: true },
+  { id: "rs18", productId: "prod-shiatsu", author: "Hanane Bousseta", city: "Settat", rating: 5, title: L("رضا تام", "Satisfaction totale", "Fully satisfied"), content: L("الخدمة زوينة والمنتج فاخر. غادي نعاود نطلب من NOORVA.", "Service top et produit premium. Je commanderai encore chez NOORVA.", "Great service and premium product. I'll order again from NOORVA."), date: "2026-06-20", verified: true },
+  { id: "rs19", productId: "prod-shiatsu", author: "Tarik Mrabet", city: "Taza", rating: 5, title: L("يحسّن الدورة", "Améliore la circulation", "Improves circulation"), content: L("كنحس بدفء وارتياح فالرقبة بعد كل جلسة.", "Je sens chaleur et bien-être dans le cou après chaque séance.", "I feel warmth and wellness in my neck after each session."), date: "2026-06-18", verified: true },
+  { id: "rs20", productId: "prod-shiatsu", author: "Imane Seddiki", city: "Al Hoceima", rating: 5, title: L("علبة كاملة", "Pack complet", "Complete pack"), content: L("الجهاز + المحول + الدليل. كلشي منظم والتغليف محمي.", "Appareil + adaptateur + manuel. Tout bien rangé, emballage soigné.", "Device + adapter + manual. Well packed, careful packaging."), date: "2026-06-16", verified: true },
+  { id: "rs21", productId: "prod-shiatsu", author: "Said Ammari", city: "Ouarzazate", rating: 4, title: L("مفيد بعد السفر", "Utile après le voyage", "Useful after travel"), content: L("بعد الطريق الطويل الكتاف كيرتاحو. شوية قوي فأول مرة.", "Après un long trajet, les épaules se détendent. Un peu fort au début.", "After a long trip, shoulders unwind. A bit strong at first."), date: "2026-06-14", verified: true },
+  { id: "rs22", productId: "prod-shiatsu", author: "Zineb El Idrissi", city: "Laâyoune", rating: 5, title: L("ثقة كاملة", "Confiance totale", "Full trust"), content: L("أول طلب من NOORVA وكان ناجح. التوصيل للمجنوب مرتب.", "1re commande NOORVA réussie. Livraison vers le sud impeccable.", "First NOORVA order succeeded. Southern delivery was smooth."), date: "2026-06-12", verified: true },
+  { id: "rs23", productId: "prod-shiatsu", author: "Karim Ouadghiri", city: "Casablanca", rating: 5, title: L("أفضل شراء", "Meilleur achat", "Best purchase"), content: L("جربت مساج رخيص من قبل، هادا الفرق واضح فالجودة والراحة.", "Après un massageur cheap, celui-ci marque vraiment la différence.", "After a cheap massager, this one clearly stands out."), date: "2026-06-10", verified: true },
+  { id: "rs24", productId: "prod-shiatsu", author: "Asmae Bensalah", city: "Rabat", rating: 5, title: L("موصى به", "Je recommande", "Highly recommend"), content: L("للموظفين والطلبة زوين بزاف. كيهنّي الرقبة بسرعة.", "Parfait pour salariés et étudiants. Détend le cou rapidement.", "Perfect for employees and students. Relaxes the neck quickly."), date: "2026-06-08", verified: true },
+  { id: "rs25", productId: "prod-shiatsu", author: "Hicham Toumi", city: "Marrakech", rating: 5, title: L("عرض يستاهل", "Offre à saisir", "Offer worth it"), content: L("خدّيتو بـ 249 بدل 349. الجودة فاخرة والاقتصاد واضح.", "Pris à 249 au lieu de 349. Qualité premium, vraie économie.", "Got it for 249 instead of 349. Premium quality, real savings."), date: "2026-06-06", verified: true },
 ];
 
 export const faqs: FAQ[] = [
@@ -452,6 +831,7 @@ export const testimonials: Testimonial[] = [
   { id: "t2", name: "نادية", city: "مراكش", videoThumbnail: resolveProductImage("rabbit-carousel-night-light", "08-kids-room", "thumbnail"), videoUrl: "#", quote: L("كاروسيل الأرانب أحسن هدية", "Le carrousel lapin, meilleur cadeau", "The rabbit carousel is the best gift") },
   { id: "t3", name: "إيمان", city: "الرباط", videoThumbnail: resolveProductImage("northern-lights-galaxy-projector", "06-gaming-room", "thumbnail"), videoUrl: "#", quote: L("الأورورا البيضاء والقمر خرافيين", "Aurore blanche et lune incroyables", "White aurora and moon are amazing") },
   { id: "t4", name: "يوسف", city: "طنجة", videoThumbnail: resolveProductImage("bluetooth-star-projector", "05-living-room", "thumbnail"), videoUrl: "#", quote: L("بروجيكتور المجرة كيشعل الغرفة", "Le projecteur galaxie illumine tout", "The galaxy projector lights the room") },
+  { id: "t5", name: "ياسين", city: "الدار البيضاء", videoThumbnail: resolveProductImage("green-laser-pointer-303", "02-premium-hero", "thumbnail"), videoUrl: "#", quote: L("الليزر الأخضر قوي ومدى بعيد", "Laser vert puissant et longue portée", "Powerful long-range green laser") },
 ];
 
 export const instagramPosts: InstagramPost[] = [
@@ -459,6 +839,7 @@ export const instagramPosts: InstagramPost[] = [
   { id: "ig2", image: resolveProductImage("astronaut-bt-speaker-projector", "20-social-media-banner", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 1923 },
   { id: "ig3", image: resolveProductImage("bluetooth-star-projector", "20-social-media-banner", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 3456 },
   { id: "ig4", image: resolveProductImage("rabbit-carousel-night-light", "20-social-media-banner", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 1567 },
+  { id: "ig5", image: resolveProductImage("green-laser-pointer-303", "20-social-media-banner", "thumbnail"), url: "https://instagram.com/shopnoorva", likes: 2214 },
 ];
 
 export const coupons: Coupon[] = [

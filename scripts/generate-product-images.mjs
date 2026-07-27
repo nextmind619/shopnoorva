@@ -79,6 +79,18 @@ const PRODUCT_PROFILES = [
     visualIdentity: "Exact product: pink gold carousel-shaped musical night light, rabbit-themed music box. Domed pastel pink canopy gold trim, transparent cylinder with pink bunny figurines spinning on gold rods, pink hemispherical base gold rim, 4 cabriole gold legs, built-in sound machine plays lullaby music, white remote. DO NOT redesign.",
     sourceUrls: {},
   },
+  {
+    id: "prod-laser303", slug: "green-laser-pointer-303", sku: "NRV-LASER303-01",
+    name: "Green Laser Pointer 303",
+    visualIdentity: "Exact matte black aluminum cylindrical Green Laser Pointer 303 with diamond knurled grip, Laser 303 label, warning sticker, circular power button, USB charging port, black wrist lanyard with safety keys, optional star pattern cap, vivid green laser beam. NEVER redesign.",
+    customPrompts: {
+      "01-hero-white-bg": "Matte black aluminum Green Laser Pointer 303 on pure white background with lanyard and safety keys, studio product photography, 8K, no watermark",
+      "02-premium-hero": "Matte black Green Laser Pointer 303 on deep black background emitting vivid neon green laser beam, luxury ecommerce hero, 8K, no watermark",
+      "03-lifestyle": "Hand holding Green Laser Pointer 303 outdoors at night pointing at starry sky with green beam, photorealistic, 8K",
+      "14-product-in-use": "Camping night scene with Green Laser Pointer 303 green beam, photorealistic, 8K",
+    },
+    sourceUrls: {},
+  },
 ];
 
 const BASE_QUALITY = "commercial product photography, 8K, photorealistic, sharp, no watermark, no text, exact product replica";

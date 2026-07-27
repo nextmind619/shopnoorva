@@ -99,6 +99,57 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       amazonRefs: "/products/rabbit-carousel-night-light/amazon-refs/",
     },
   },
+  {
+    id: "prod-laser303",
+    slug: "green-laser-pointer-303",
+    sku: "NRV-LASER303-01",
+    name: "Green Laser Pointer 303",
+    type: "Handheld rechargeable green laser pointer",
+    color: "Matte Black",
+    category: "Laser Pointers",
+    categoryId: "cat-laser-pointers",
+    shortDescription:
+      "Matte black aluminum Laser 303 — powerful green beam, diamond knurled grip, USB-rechargeable 18650, wrist strap, safety keys, star pattern cap",
+    visualIdentity:
+      "EXACT real product — matte black cylindrical aluminum alloy Green Laser Pointer 303. Diamond-pattern knurled mid-grip, smooth barrel sections, ridged head bezel, small circular tactile power button, silver/metallic Laser 303 label on grip, multi-color laser radiation warning sticker near aperture, recessed USB charging port in tail, black nylon wrist lanyard with two black-headed metal safety keys on split ring. Optional gold-interior star pattern cap. Emits vivid neon green laser beam / starry pattern. NEVER redesign as flashlight-only, toy plastic, or projector dome.",
+    dimensions: "Handheld pen-style ≈ 16 cm length",
+    accessories: ["USB charging cable", "Wrist strap with safety keys", "Star pattern cap", "User manual"],
+    packageItems: [
+      "Green Laser Pointer 303",
+      "Rechargeable 18650 battery",
+      "USB charging cable",
+      "Wrist strap with safety keys",
+      "Star pattern cap",
+      "User manual",
+    ],
+    sourceUrls: {
+      amazonRefs: "/products/green-laser-pointer-303/amazon-refs/",
+    },
+  },
+  {
+    id: "prod-shiatsu",
+    slug: "shiatsu-neck-shoulder-massager",
+    sku: "NRV-SHIATSU-01",
+    name: "Shiatsu 3D Neck & Shoulder Massager with Heat",
+    type: "Electric Shiatsu neck / shoulder / back massager with heating",
+    color: "Forest Green with brown leather strap",
+    category: "Relaxation & Wellness",
+    categoryId: "cat-relaxation",
+    shortDescription:
+      "Forest-green U-shaped Shiatsu neck & shoulder massager — soft silicone kneading nodes, built-in heat, auto-rotation, adjustable brown PU leather straps, electric powered",
+    visualIdentity:
+      "EXACT real product — forest green (#1B4D3E family) U-shaped / wrap-around Shiatsu neck and shoulder massager. Soft green fabric or ABS shell with brown / tan PU leather adjustable straps and buckle-style fasteners. Multiple soft silicone massage nodes (kneading fingers) on the inner contact surface. Compact electric wellness device for neck, shoulders, back, waist and legs. Clean modern premium look, no purple accents, no redesign as pillow-only or handheld gun massager. Preserve exact proportions, green body, brown leather strap, and silicone nodes from reference photography.",
+    dimensions: "Wearable U-shape / wrap-around neck massager",
+    accessories: ["Power adapter", "User manual"],
+    packageItems: [
+      "Shiatsu neck & shoulder massager",
+      "Power adapter",
+      "User manual",
+    ],
+    sourceUrls: {
+      amazonRefs: "/products/shiatsu-neck-shoulder-massager/",
+    },
+  },
 ];
 
 export function getProductProfile(slug: string): ProductProfile | undefined {

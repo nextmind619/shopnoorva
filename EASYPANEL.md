@@ -1,7 +1,8 @@
 # Deploy NOORVA on EasyPanel
 
 Repo: https://github.com/nextmind619/shopnoorva  
-Domain: shopnoorva.shop
+Domain: shopnoorva.shop  
+Server: `187.77.180.117`
 
 ## 1) Create Project
 1. Open EasyPanel Dashboard
@@ -21,78 +22,75 @@ Inside project `shopnoorva`:
 8. Create service (name: `web`)
 
 ### Environment variables (web)
+
+> **Critical:** Do not duplicate keys. In EasyPanel the **last** value wins.  
+> Never leave `EVOLUTION_API_URL=https://your-evolution-api-host` — that breaks WhatsApp orders.  
+> Hostnames: `{project}_{service}` (e.g. `shopnoorva_evolution-api`).  
+> After Save → **restart** (or Deploy) so `web` reloads env.
+
 ```
-NEXT_PUBLIC_SITE_URL=https://shopnoorva.shop
 NODE_ENV=production
 PORT=3000
-CRON_SECRET=change_this_secret
-OPENAI_API_KEY=
-DATABASE_URL=postgresql://noorva:CHANGE_PASSWORD@postgres:5432/noorva_ai
-REDIS_URL=redis://redis:6379
-MINIO_ENDPOINT=minio
-MINIO_PORT=9000
-MINIO_ACCESS_KEY=noorva
-MINIO_SECRET_KEY=CHANGE_MINIO_SECRET
-MINIO_BUCKET=noorva
-MINIO_USE_SSL=false
-N8N_WEBHOOK_BASE=https://n8n.shopnoorva.shop/webhook
-EMAIL_FROM=NOORVA <orders@shopnoorva.shop>
-SUPPORT_WHATSAPP=+212600000000
-ADMIN_WHATSAPP=+212693428013
-EVOLUTION_API_URL=https://your-evolution-api-host
-EVOLUTION_API_KEY=your_evolution_api_key
+HOSTNAME=0.0.0.0
+NEXT_PUBLIC_SITE_URL=https://shopnoorva.shop
+DATABASE_URL=postgresql://noorva:CHANGE_PASSWORD@shopnoorva_noorva:5432/noorva_ai
+REDIS_URL=redis://default:CHANGE_PASSWORD@shopnoorva_redis:6379
+EVOLUTION_API_URL=http://shopnoorva_evolution-api:8080
+EVOLUTION_API_KEY=CHANGE_EVOLUTION_API_KEY
 EVOLUTION_INSTANCE=noorva
+ADMIN_WHATSAPP=+212693428013
+SUPPORT_WHATSAPP=+212693428013
+OPENAI_API_KEY=
+CRON_SECRET=change_this_secret
+EMAIL_FROM=NOORVA <orders@shopnoorva.shop>
+# Meta Pixel + Conversions API (prefer these names; legacy NEXT_PUBLIC_FB_PIXEL_ID / META_ACCESS_TOKEN still work)
+NEXT_PUBLIC_FACEBOOK_PIXEL_ID=
+FACEBOOK_ACCESS_TOKEN=
+FACEBOOK_TEST_EVENT_CODE=
+FACEBOOK_DATASET_ID=
 ```
 
 ## 3) Add Postgres
-1. Add service → **Postgres**
-2. Name: `postgres`
-3. User: `noorva`
-4. Password: strong password
-5. Database: `noorva_ai`
-6. Mount/init: paste content of `db/schema.sql` if EasyPanel supports init SQL, otherwise run it once after start
+1. Add service → **Postgres** (or App named `noorva`)
+2. User: `noorva`
+3. Password: same as in `DATABASE_URL`
+4. Database: `noorva_ai`
+5. Init with `db/schema.sql` if supported
 
 ## 4) Add Redis
-1. Add service → **Redis**
-2. Name: `redis`
+1. Add service → **Redis**, name: `redis`
+2. Use hostname `shopnoorva_redis` in `REDIS_URL`
 
-## 5) Add MinIO (optional first launch)
-1. Add service → **App** from image `minio/minio`
-2. Command: `server /data --console-address ":9001"`
-3. Ports: `9000`, `9001`
-4. Env:
-```
-MINIO_ROOT_USER=noorva
-MINIO_ROOT_PASSWORD=CHANGE_MINIO_SECRET
-```
+## 5) Add Evolution API (WhatsApp orders)
+1. Add Evolution API service named `evolution-api`, port `8080`
+2. API key must match `EVOLUTION_API_KEY` on `web`
+3. Create instance **`noorva`** and scan QR until connected
+4. On `web` use: `EVOLUTION_API_URL=http://shopnoorva_evolution-api:8080`
 
-## 6) Add n8n (optional first launch)
-1. Add service → **App** from image `n8nio/n8n`
-2. Port: `5678`
-3. Domain later: `n8n.shopnoorva.shop`
+### WhatsApp checklist
+- [ ] `evolution-api` green / running
+- [ ] Instance `noorva` connected
+- [ ] `web` has **one** set of `EVOLUTION_*` (no placeholders, no duplicates)
+- [ ] Save + restart `web`
+- [ ] Test COD order → admin gets WhatsApp `طلب جديد — NOORVA`
 
-## 7) Connect domain
-1. Open service `web` → **Domains**
-2. Add: `shopnoorva.shop`
-3. Add: `www.shopnoorva.shop`
-4. Enable HTTPS
+## 6) MinIO (optional)
+Image `minio/minio`, command: `server /data --console-address ":9001"`, ports `9000`/`9001`.
 
-### DNS at your domain registrar
-Point to your EasyPanel server IP: `187.77.180.117`
+## 7) n8n (optional)
+Image `n8nio/n8n`, port `5678`, domain `n8n.shopnoorva.shop`.
 
-| Type | Name | Value |
-|------|------|--------|
-| A | `@` | `187.77.180.117` |
-| A | `www` | `187.77.180.117` |
+## 8) Domains
+1. `web` → Domains → `shopnoorva.shop` + `www.shopnoorva.shop` + HTTPS
+2. DNS A records `@` and `www` → `187.77.180.117`
 
-## 8) Deploy order (recommended)
-1. Create project `shopnoorva`
-2. Add `postgres` + `redis` first and wait green
-3. Add `web` (GitHub + Dockerfile) and deploy
-4. Attach domain
-5. Later add MinIO + n8n + Evolution
+## 9) Deploy order
+1. Postgres + Redis green
+2. Evolution API + instance `noorva` connected
+3. Deploy `web` with clean env
+4. Attach domain; later MinIO + n8n
 
-## 9) Test
+## 10) Test
 - https://shopnoorva.shop/fr
 - https://shopnoorva.shop/admin/ai
-- Create a test COD order
+- Create test COD order → WhatsApp to `ADMIN_WHATSAPP`

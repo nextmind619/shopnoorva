@@ -26,6 +26,8 @@ import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
+import { FlashCountdown, StockScarcityBar } from "@/components/product/flash-countdown";
+import { ProductSocialProof } from "@/components/product/product-social-proof";
 
 const ProductOrderForm = dynamic(
   () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
@@ -56,10 +58,10 @@ const ProductHowToSection = dynamic(
   { ssr: true }
 );
 const TRUST_BADGES = [
+  { icon: Truck, label: "توصيل مجاني" },
   { icon: Banknote, label: "الدفع عند الاستلام" },
-  { icon: Truck, label: "شحن سريع" },
-  { icon: Shield, label: "ضمان الجودة" },
-  { icon: MessageCircle, label: "خدمة عملاء" },
+  { icon: Shield, label: "جودة فاخرة" },
+  { icon: MessageCircle, label: "رضا مضمون" },
 ] as const;
 
 function getBenefitHeadline(product: Product): { title: string; subtitle: string } {
@@ -105,6 +107,19 @@ function getProductFaqs(product: Product) {
       { q: "كيفاش نبدّل فيلم الإسقاط؟", a: "انزعي غطاء المصباح، دوّري كأس الإضاءة، بدّلي قرص الفيلم، ثم أعيدي التركيب — ثواني فقط." },
       { q: "شنو كاين فالعلبة؟", a: "مصباح الكاروسيل الوردي، 6 أقراص أفلام إسقاط، ودليل الاستخدام." },
       { q: "كم مدة التوصيل وهل فيه ضمان؟", a: delivery },
+    ];
+  }
+  if (product.slug === "green-laser-pointer-303") {
+    return [
+      { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
+      { q: "واش التوصيل مجاني؟", a: "نعم، التوصيل مجاني لجميع مدن المغرب." },
+      { q: "كيفاش كتشحن البطارية؟", a: "البطارية من نوع 18650 وقابلة للشحن عبر كابل USB الموجود في العلبة." },
+      { q: "شنو مدى الشعاع؟", a: "الشعاع الأخضر قوي وواضح لمسافات بعيدة — مناسب للفلك، التخييم، والعروض المهنية." },
+      { q: "واش فيه ضمان؟", a: `نعم، ضمان ${warranty} شهر على عيوب التصنيع، مع استبدال خلال 7 أيام عند وجود عيب.` },
+      { q: "كيفاش كنستعملو بسلامة؟", a: "لا توجّه الشعاع نحو العيون أو الطائرات أو المركبات. استعمل مفاتيح الأمان وحزام اليد، وفعّله فقط عند الحاجة." },
+      { q: "واش يمكن الإرجاع؟", a: "نعم، تواصل معنا على واتساب خلال 14 يومًا إذا كان هناك عيب مصنعي." },
+      { q: "شنو كاين فالعلبة؟", a: "ليزر أخضر 303، بطارية 18650، كابل USB، حزام يد مع مفاتيح أمان، غطاء نجوم، ودليل الاستخدام." },
+      { q: "كم مدة التوصيل؟", a: delivery },
     ];
   }
   return [
@@ -171,6 +186,13 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   }, []);
 
   const maxQty = Math.min(variant.stock || 10, 10);
+  const isLaser = product.slug === "green-laser-pointer-303";
+  const ctaClass = isLaser
+    ? "w-full h-14 sm:h-16 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/35 transition-colors"
+    : "w-full h-14 sm:h-16 rounded-2xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-500/30 transition-colors";
+  const stickyCtaClass = isLaser
+    ? "flex-1 h-12 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30"
+    : "flex-1 h-12 rounded-xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30";
 
   return (
     <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans" dir="rtl">
@@ -185,15 +207,15 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
       <div className="bg-[#12121a] border-b border-white/10 text-white/80 text-xs sm:text-sm py-2.5 px-4">
         <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-1 text-center">
           <span className="flex items-center gap-1.5">
+            <Truck className="h-3.5 w-3.5 text-emerald-400" /> توصيل مجاني في كل المغرب
+          </span>
+          <span className="hidden sm:inline text-white/20">|</span>
+          <span className="flex items-center gap-1.5">
             <Banknote className="h-3.5 w-3.5" /> الدفع عند الاستلام
           </span>
           <span className="hidden sm:inline text-white/20">|</span>
           <span className="flex items-center gap-1.5">
-            <Truck className="h-3.5 w-3.5" /> شحن سريع
-          </span>
-          <span className="hidden sm:inline text-white/20">|</span>
-          <span className="flex items-center gap-1.5">
-            <Shield className="h-3.5 w-3.5" /> ضمان الجودة
+            <Shield className="h-3.5 w-3.5" /> جودة فاخرة
           </span>
           <span className="hidden sm:inline text-white/20">|</span>
           <span className="flex items-center gap-1.5">
@@ -262,10 +284,23 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           </div>
           {savedAmount > 0 && (
             <p className="text-sm font-semibold text-emerald-400/90">
-              بدلاً من {formatPriceNumber(variant.compareAtPrice || 0, "ar")} درهم
+              بدلاً من {formatPriceNumber(variant.compareAtPrice || 0, "ar")} درهم — وفّر{" "}
+              {formatPriceNumber(savedAmount, "ar")} درهم
             </p>
           )}
+          {product.flashSaleEndsAt && <FlashCountdown endDate={product.flashSaleEndsAt} />}
+          <StockScarcityBar stock={Math.min(variant.stock, 47)} originalStock={120} />
+          <ProductSocialProof productLabel={product.name.ar.split("—")[0]?.trim() || product.name.ar} />
         </section>
+
+        {/* شريط توصيل مجاني */}
+        <div className="rounded-2xl border border-emerald-500/25 bg-gradient-to-l from-emerald-500/15 to-transparent px-5 py-3.5 text-center sm:text-start">
+          <p className="text-sm font-bold text-emerald-300 flex items-center justify-center sm:justify-start gap-2">
+            <Truck className="h-4 w-4" />
+            توصيل مجاني في جميع أنحاء المغرب
+          </p>
+          <p className="text-xs text-white/50 mt-1">⚡ شحن سريع · 💵 الدفع عند الاستلام · ✅ متوفر في المخزون</p>
+        </div>
 
         {/* 4. شارات الثقة */}
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -307,11 +342,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         </section>
 
         {/* 5. زر اطلب الآن */}
-        <button
-          type="button"
-          onClick={scrollToOrder}
-          className="w-full h-14 sm:h-16 rounded-2xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-500/30 transition-colors"
-        >
+        <button type="button" onClick={scrollToOrder} className={ctaClass}>
           <ShoppingBag className="h-5 w-5" />
           اطلب الآن
         </button>
@@ -407,7 +438,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {reviews.slice(0, 3).map((r) => (
+              {reviews.slice(0, isLaser ? 9 : 3).map((r) => (
                 <div key={r.id} className="rounded-2xl border border-white/8 bg-[#0a0a0f]/50 p-5 flex flex-col">
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex gap-0.5">
@@ -557,7 +588,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               <button
                 type="button"
                 onClick={scrollToOrder}
-                className="w-full h-14 rounded-2xl bg-[#6366f1] text-white font-black text-base flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30 active:scale-[0.98] transition-transform"
+                className={cn(stickyCtaClass, "w-full h-14 rounded-2xl text-base active:scale-[0.98] transition-transform")}
               >
                 <ShoppingBag className="h-5 w-5" />
                 اطلب الآن — {formatPriceNumber(variant.price * qty, "ar")} درهم

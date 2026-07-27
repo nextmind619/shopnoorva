@@ -31,9 +31,16 @@ export const aiConfig = {
     privateKey: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n") || "",
   },
   meta: {
-    pixelId: process.env.NEXT_PUBLIC_FB_PIXEL_ID || "",
-    accessToken: process.env.META_ACCESS_TOKEN || "",
+    // Prefer new env names; keep legacy fallbacks for EasyPanel deploys already live
+    pixelId:
+      process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID ||
+      process.env.NEXT_PUBLIC_FB_PIXEL_ID ||
+      "",
+    accessToken:
+      process.env.FACEBOOK_ACCESS_TOKEN || process.env.META_ACCESS_TOKEN || "",
     adAccountId: process.env.META_AD_ACCOUNT_ID || "",
+    datasetId: process.env.FACEBOOK_DATASET_ID || "",
+    testEventCode: process.env.FACEBOOK_TEST_EVENT_CODE || "",
   },
   tiktok: {
     pixelId: process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID || "",
