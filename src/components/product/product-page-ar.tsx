@@ -122,6 +122,38 @@ function getProductFaqs(product: Product) {
       { q: "كم مدة التوصيل؟", a: delivery },
     ];
   }
+  if (product.slug === "shiatsu-neck-shoulder-massager") {
+    return [
+      {
+        q: "التوصيل المجاني — شحال كياخد؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب: 24–48 ساعة للمدن الكبرى، و2–4 أيام لباقي المدن.",
+      },
+      {
+        q: "الدفع عند الاستلام — خاصني نخلص دابا؟",
+        a: "لا. الدفع عند الاستلام فقط (كاش عند الباب). تطلب بلا بطاقة بنكية وتخلّص ملي يوصلك الطلب.",
+      },
+      {
+        q: "الضمان — شنو كيغطي؟",
+        a: `ضمان ${warranty} شهر على عيوب التصنيع، مع استبدال خلال 7 أيام إذا كان هناك عيب.`,
+      },
+      {
+        q: "طريقة الاستعمال — كيفاش كنستعملو؟",
+        a: "حط الجهاز حول الرقبة أو على المنطقة اللي بغيتي تدليكها، اضبط السانات، شغّل التدليك وفعّل التدفئة إلا بغيتي. 10–15 دقيقة كافية.",
+      },
+      {
+        q: "التدفئة — واش آمنة؟",
+        a: "نعم. التدفئة المدمجة كتعطي دفء لطيف ومتحكم فيه. تقدّر تشغّلها أو تطفيها حسب راحتك.",
+      },
+      {
+        q: "التنظيف — كيفاش نحتفظ بيه؟",
+        a: "افصل الجهاز من الكهرباء وامسحو بقطعة قماش ناعمة رطبة قليلاً. ما تغطسوش في الماء أبدًا.",
+      },
+      {
+        q: "الإرجاع — واش يمكن نرجع المنتج؟",
+        a: "نعم. تواصل معنا على واتساب خلال 14 يومًا إذا كان هناك عيب مصنعي.",
+      },
+    ];
+  }
   return [
     { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
     { q: "شنو كيعطي هاد البروجيكتور؟", a: "إسقاط مجرة ونجوم HD من خوذة رائد الفضاء، مع سبيكر بلوتوث 5.0 مدمج باش تشغّل موسيقاك من الهاتف في نفس الوقت." },
@@ -187,6 +219,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
   const maxQty = Math.min(variant.stock || 10, 10);
   const isLaser = product.slug === "green-laser-pointer-303";
+  const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
   const ctaClass = isLaser
     ? "w-full h-14 sm:h-16 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/35 transition-colors"
     : "w-full h-14 sm:h-16 rounded-2xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-500/30 transition-colors";
@@ -284,8 +317,14 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           </div>
           {savedAmount > 0 && (
             <p className="text-sm font-semibold text-emerald-400/90">
-              بدلاً من {formatPriceNumber(variant.compareAtPrice || 0, "ar")} درهم — وفّر{" "}
-              {formatPriceNumber(savedAmount, "ar")} درهم
+              {isShiatsu ? (
+                <>🔥 وفر {formatPriceNumber(savedAmount, "ar")} درهم</>
+              ) : (
+                <>
+                  بدلاً من {formatPriceNumber(variant.compareAtPrice || 0, "ar")} درهم — وفّر{" "}
+                  {formatPriceNumber(savedAmount, "ar")} درهم
+                </>
+              )}
             </p>
           )}
           {product.flashSaleEndsAt && <FlashCountdown endDate={product.flashSaleEndsAt} />}

@@ -19,6 +19,158 @@ const CATEGORY_TAG_MAP: Record<string, string[]> = {
 
 export const products: Product[] = [
   {
+    id: "prod-shiatsu",
+    slug: "shiatsu-neck-shoulder-massager",
+    name: L(
+      "جهاز تدليك الرقبة والكتفين شياتسو 3D مع تدفئة (محاكاة اليد)",
+      "Appareil de Massage Shiatsu 3D Cou & Épaules avec Chauffage (Simulation Main)",
+      "3D Shiatsu Neck & Shoulder Massager with Heat (Hand Simulation)"
+    ),
+    shortDescription: L(
+      "تدليك شياتسو 3D محاكاة اليد مع تدفئة مدمجة — فكّ آلام الرقبة والكتفين في دقائق · توصيل مجاني والدفع عند الاستلام",
+      "Massage Shiatsu 3D simulation main avec chauffage — soulage cou et épaules en minutes · livraison gratuite et COD",
+      "3D hand-simulation Shiatsu with built-in heat — relieve neck & shoulders in minutes · free shipping and COD"
+    ),
+    description: L(
+      "جهاز تدليك الرقبة والكتفين من NOORVA بتقنية شياتسو 3D محاكاة اليد: 8 عقد سيليكون غذائي (4 لكل جهة) كتعجن العضلات بحركة الأصابع. جسم ABS أخضر غابة، أحزمة جلد PU بني محبّب قابلة للتعديل، ولوحة تحكم سوداء (تشغيل + تدفئة). مناسب للرقبة والأكتاف والظهر والخصر والأرجل. دوران تلقائي، صامت، خفيف وسهل الحمل. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Masseur cou & épaules NOORVA en Shiatsu 3D simulation main : 8 nœuds silicone alimentaire (4 par côté). Coque ABS vert forêt, sangles cuir PU brun grainé réglables, panneau noir (marche + chauffage). Cou, épaules, dos, taille, jambes. Rotation auto, silencieux, portable. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA neck & shoulder massager with 3D hand-simulation Shiatsu: 8 food-grade silicone nodes (4 per side). Forest-green ABS body, adjustable brown pebbled PU leather straps, black control panel (power + heat). For neck, shoulders, back, waist, legs. Auto-rotation, quiet, portable. Free Morocco shipping with cash on delivery."
+    ),
+    categoryId: "cat-relaxation",
+    price: 199,
+    compareAtPrice: 299,
+    sku: "NRV-SHIATSU-01",
+    stock: 47,
+    rating: 4.9,
+    reviewCount: 487,
+    soldCount: 2140,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: true,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 12,
+    problemEmoji: "💆",
+    problem: L(
+      "رقبتك وكتافك كايوجعوك بعد يوم طويل؟",
+      "Cou et épaules douloureux après une longue journée?",
+      "Neck and shoulders aching after a long day?"
+    ),
+    problemCause: L(
+      "الجلوس الطويل والتوتر اليومي كيسبّبو تقلّص العضلات وآلام مزمنة",
+      "La position assise prolongée et le stress quotidien provoquent tensions et douleurs",
+      "Prolonged sitting and daily stress cause muscle tension and chronic pain"
+    ),
+    problemSolution: L(
+      "تدليك شياتسو 3D محاكاة اليد + تدفئة مدمجة في دقائق",
+      "Massage Shiatsu 3D simulation main + chauffage intégré en quelques minutes",
+      "3D hand-simulation Shiatsu + built-in heat in minutes"
+    ),
+    deepDescription: L(
+      "مساج شياتسو 3D بمحاكاة أصابع اليد: 8 عقد سيليكون، تدفئة مدمجة، دوران تلقائي وسانات قابلة للتعديل. يخفّف آلام الرقبة والأكتاف والظهر والخصر والأرجل، يحسّن الدورة الدموية ويوفّر استرخاء يومي فاخر في المنزل — بلا موعد في الصالون.",
+      "Masseur Shiatsu 3D type doigts : 8 nœuds silicone, chauffage, rotation auto et sangles réglables. Soulage cou, épaules, dos, taille et jambes, améliore la circulation et offre une détente premium à la maison.",
+      "3D finger-simulation Shiatsu: 8 silicone nodes, heat, auto-rotation and adjustable straps. Relieves neck, shoulders, back, waist and legs, improves circulation and delivers premium daily wellness at home."
+    ),
+    tags: ["shiatsu", "massage", "relaxation", "gift", "wellness", "bestseller", "neck", "shoulder", "heat", "new"],
+    benefits: [
+      L("استرخاء عميق في دقائق بعد يوم شاق", "Détente profonde en quelques minutes après une journée intense", "Deep relaxation in minutes after a long day"),
+      L("تخفيف آلام الرقبة والكتفين والظهر والخصر", "Soulage cou, épaules, dos et taille", "Relieves neck, shoulder, back and waist pain"),
+      L("تقليل التوتر والإجهاد اليومي", "Réduit le stress et la tension quotidienne", "Reduces daily stress and tension"),
+      L("تحسين الدورة الدموية بفضل التدفئة المدمجة", "Améliore la circulation grâce au chauffage intégré", "Improves circulation with built-in heat"),
+      L("راحة يومية في المنزل بلا موعد في الصالون", "Confort quotidien à la maison sans rendez-vous au spa", "Daily comfort at home without a spa appointment"),
+      L("هدية فاخرة مثالية للوالدين والشركاء", "Cadeau premium idéal pour parents et proches", "Premium gift ideal for parents and loved ones"),
+    ],
+    features: [
+      L("تدليك شياتسو 3D محاكاة اليد", "Massage Shiatsu 3D simulation main", "3D Hand-Simulation Shiatsu Massage"),
+      L("تدفئة مدمجة", "Chauffage intégré", "Built-in Heating"),
+      L("دوران تلقائي", "Rotation automatique", "Automatic Rotation"),
+      L("سانات/أحزمة قابلة للتعديل", "Sangles réglables", "Adjustable Straps"),
+      L("سهل الحمل", "Facile à transporter", "Easy to Carry"),
+      L("صامت", "Silencieux", "Quiet Operation"),
+      L("مريح", "Confortable", "Comfortable Fit"),
+      L("جودة فاخرة", "Qualité Premium", "Premium Quality"),
+    ],
+    specifications: [
+      { label: L("اللون", "Couleur", "Color"), value: L("أخضر", "Vert", "Green") },
+      { label: L("المادة", "Matériau", "Material"), value: L("ABS + جلد PU", "ABS + Cuir PU", "ABS + PU Leather") },
+      { label: L("نوع التدليك", "Massage", "Massage"), value: L("شياتسو 3D", "Shiatsu 3D", "Shiatsu 3D") },
+      { label: L("التدفئة", "Chauffage", "Heating"), value: L("نعم", "Oui", "Yes") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("كهربائي", "Électrique", "Electric") },
+      {
+        label: L("الاستخدام", "Utilisation", "Usage"),
+        value: L(
+          "رقبة / أكتاف / ظهر / خصر / أرجل",
+          "Cou / Épaules / Dos / Taille / Jambes",
+          "Neck / Shoulders / Back / Waist / Legs"
+        ),
+      },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
+    ],
+    packageIncludes: [
+      L("جهاز تدليك الرقبة والكتفين شياتسو 3D مع تدفئة", "Appareil de massage Shiatsu 3D cou & épaules avec chauffage", "3D Shiatsu neck & shoulder massager with heat"),
+      L("محول طاقة", "Adaptateur secteur", "Power adapter"),
+      L("دليل الاستخدام", "Manuel d'utilisation", "User manual"),
+    ],
+    howToUse: L(
+      "حط الجهاز حول الرقبة أو على المنطقة المراد تدليكها، اضبط السانات، شغّل التدليك من اللوحة السوداء وفعّل التدفئة حسب الرغبة. استرخِ 10–15 دقيقة. مناسب أيضًا للظهر والخصر والأرجل.",
+      "Placez l'appareil autour du cou ou sur la zone à masser, ajustez les sangles, lancez le massage et activez le chauffage si besoin. Détendez-vous 10 à 15 minutes. Aussi pour dos, taille et jambes.",
+      "Place the device around your neck or on the target area, adjust the straps, start the massage from the black panel and enable heat if desired. Relax 10–15 minutes. Also for back, waist and legs."
+    ),
+    lifestyleScenes: [
+      {
+        id: "office",
+        emoji: "💼",
+        title: L("بعد المكتب", "Après le bureau", "After Work"),
+        description: L("فُكّ تقلّص الكتفين بعد يوم جالس", "Dénouez les épaules après une journée assise", "Release shoulder tension after a sitting day"),
+      },
+      {
+        id: "evening",
+        emoji: "🌙",
+        title: L("استرخاء مسائي", "Détente du soir", "Evening Wind-Down"),
+        description: L("طقوس عافية قبل النوم", "Rituel bien-être avant de dormir", "Wellness ritual before sleep"),
+      },
+      {
+        id: "gift",
+        emoji: "🎁",
+        title: L("هدية فاخرة", "Cadeau premium", "Premium Gift"),
+        description: L("هدية مثالية للوالدين والشركاء", "Cadeau idéal pour parents et proches", "Ideal gift for parents and loved ones"),
+      },
+      {
+        id: "travel",
+        emoji: "✈️",
+        title: L("سهل الحمل", "Facile à emporter", "Travel-Friendly"),
+        description: L("خذه معك في السفر والعمل", "Emportez-le en voyage ou au travail", "Take it on trips or to the office"),
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-shiatsu",
+        name: L("أخضر", "Vert", "Green"),
+        price: 199,
+        compareAtPrice: 299,
+        sku: "NRV-SHIATSU-01",
+        stock: 47,
+      },
+    ],
+    upsellIds: ["prod-mx003", "prod-aurora"],
+    crossSellIds: ["prod-rabbit", "prod-starbt"],
+    seo: {
+      title: L(
+        "جهاز تدليك الرقبة والكتفين شياتسو 3D مع تدفئة | 199 درهم | NOORVA المغرب",
+        "Appareil de Massage Shiatsu 3D Cou et Épaules | 199 MAD | NOORVA Maroc",
+        "3D Shiatsu Neck & Shoulder Massager with Heat | 199 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "جهاز تدليك شياتسو 3D محاكاة اليد مع تدفئة بـ 199 درهم بدل 299. يخفّف آلام الرقبة والكتفين. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Masseur Shiatsu 3D simulation main avec chauffage à 199 MAD au lieu de 299. Soulage cervicales et épaules. Livraison gratuite et paiement à la livraison au Maroc.",
+        "3D hand-simulation Shiatsu with heat for 199 MAD instead of 299. Relieves neck and shoulders. Free shipping and cash on delivery in Morocco."
+      ),
+    },
+  },
+
+  {
     id: "prod-mx003",
     slug: "astronaut-bt-speaker-projector",
     name: L("بروجيكتور رائد الفضاء بلوتوث MX003", "Projecteur Astronaute Bluetooth MX003", "Astronaut Bluetooth Speaker Projector MX003"),
@@ -602,157 +754,6 @@ export const products: Product[] = [
       ),
     },
   },
-  {
-    id: "prod-shiatsu",
-    slug: "shiatsu-neck-shoulder-massager",
-    name: L(
-      "جهاز تدليك الرقبة والكتفين شياتسو",
-      "Appareil de Massage Shiatsu pour le Cou et les Épaules",
-      "Shiatsu Neck and Shoulder Massager"
-    ),
-    shortDescription: L(
-      "تدليك شياتسو ثلاثي الأبعاد مع تدفئة مدمجة لتخفيف آلام الرقبة والكتفين — توصيل مجاني والدفع عند الاستلام في المغرب",
-      "Massage Shiatsu 3D avec chauffage intégré pour soulager les douleurs du cou et des épaules — livraison gratuite et paiement à la livraison au Maroc",
-      "3D Shiatsu massage with built-in heat to relieve neck and shoulder pain — free shipping and cash on delivery in Morocco"
-    ),
-    description: L(
-      "جهاز تدليك الرقبة والكتفين من NOORVA بتقنية شياتسو ثلاثية الأبعاد وعقد سيليكون ناعمة. تدفئة مدمجة، دوران تلقائي، وسانغات قابلة للتعديل لراحة مثالية. مثالي للاسترخاء بعد يوم طويل، تخفيف التوتر وتحسين الدورة الدموية. تصميم أخضر فاخر مع حزام جلد بني، خفيف وسهل الحمل. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
-      "Appareil de massage cou & épaules NOORVA avec technique Shiatsu 3D et nœuds en silicone doux. Chauffage intégré, rotation automatique et sangles réglables pour un confort optimal. Idéal pour se détendre après une longue journée, soulager le stress et améliorer la circulation. Design vert premium avec sangle en cuir brun, léger et facile à transporter. Livraison gratuite partout au Maroc avec paiement à la livraison.",
-      "NOORVA neck & shoulder massager with 3D Shiatsu technique and soft silicone nodes. Built-in heating, auto-rotation and adjustable straps for optimal comfort. Ideal for relaxing after a long day, relieving stress and improving circulation. Premium green design with brown leather strap, lightweight and easy to carry. Free nationwide shipping in Morocco with cash on delivery."
-    ),
-    categoryId: "cat-relaxation",
-    price: 249,
-    compareAtPrice: 349,
-    sku: "NRV-SHIATSU-01",
-    stock: 23,
-    rating: 4.9,
-    reviewCount: 487,
-    soldCount: 2140,
-    isBestSeller: true,
-    isTrending: true,
-    isTikTokViral: false,
-    isFeatured: true,
-    flashSaleEndsAt: flashEnd,
-    warrantyMonths: 12,
-    problemEmoji: "💆",
-    problem: L(
-      "رقبتك وكتافك كايوجعوك بعد يوم طويل؟",
-      "Cou et épaules douloureux après une longue journée?",
-      "Neck and shoulders aching after a long day?"
-    ),
-    problemCause: L(
-      "الجلوس الطويل والتوتر اليومي كيسبّبو تقلّص العضلات وآلام مزمنة",
-      "La position assise prolongée et le stress quotidien provoquent tensions et douleurs",
-      "Prolonged sitting and daily stress cause muscle tension and chronic pain"
-    ),
-    problemSolution: L(
-      "تدليك شياتسو 3D + تدفئة مدمجة في دقائق",
-      "Massage Shiatsu 3D + chauffage intégré en quelques minutes",
-      "3D Shiatsu massage + built-in heat in minutes"
-    ),
-    deepDescription: L(
-      "جهاز تدليك شياتسو ثلاثي الأبعاد مع تدفئة، دوران تلقائي وسانغات قابلة للتعديل. يخفّف آلام الرقبة والكتفين والظهر، يحسّن الدورة الدموية ويوفّر استرخاء يومي فاخر في المنزل.",
-      "Appareil de massage Shiatsu 3D avec chauffage, rotation automatique et sangles réglables. Soulage le cou, les épaules et le dos, améliore la circulation et offre une détente premium au quotidien à la maison.",
-      "3D Shiatsu massager with heat, auto-rotation and adjustable straps. Relieves neck, shoulders and back, improves circulation and delivers premium daily wellness at home."
-    ),
-    tags: ["relaxation", "gift", "shiatsu", "massage", "wellness", "bestseller"],
-    benefits: [
-      L("استرخاء عميق في دقائق بعد يوم شاق", "Détente profonde en quelques minutes après une journée intense", "Deep relaxation in minutes after a long day"),
-      L("تخفيف آلام الرقبة والكتفين والظهر", "Soulage les douleurs du cou, des épaules et du dos", "Relieves neck, shoulder and back pain"),
-      L("تقليل التوتر والإجهاد اليومي", "Réduit le stress et la tension quotidienne", "Reduces daily stress and tension"),
-      L("تحسين الدورة الدموية بفضل التدفئة", "Améliore la circulation grâce au chauffage", "Improves circulation with built-in heat"),
-      L("راحة يومية في المنزل بلا موعد في الصالون", "Confort quotidien à la maison sans rendez-vous au spa", "Daily comfort at home without a spa appointment"),
-      L("عافية منتظمة تناسب نمط حياتك", "Bien-être régulier adapté à votre rythme", "Regular wellness that fits your lifestyle"),
-    ],
-    features: [
-      L("تدليك شياتسو ثلاثي الأبعاد", "Massage Shiatsu 3D", "3D Shiatsu Massage"),
-      L("تدفئة مدمجة", "Chauffage intégré", "Built-in Heating"),
-      L("دوران تلقائي", "Rotation automatique", "Automatic Rotation"),
-      L("سانغات قابلة للتعديل", "Sangles réglables", "Adjustable Straps"),
-      L("سهل الحمل", "Facile à transporter", "Easy to Carry"),
-      L("صامت", "Silencieux", "Quiet Operation"),
-      L("تصميم مريح", "Ergonomique", "Ergonomic Design"),
-      L("جودة فاخرة", "Qualité Premium", "Premium Quality"),
-    ],
-    specifications: [
-      { label: L("اللون", "Couleur", "Color"), value: L("أخضر", "Vert", "Green") },
-      { label: L("المادة", "Matériau", "Material"), value: L("ABS + جلد صناعي PU", "ABS + Cuir PU", "ABS + PU Leather") },
-      { label: L("نوع التدليك", "Massage", "Massage"), value: L("شياتسو ثلاثي الأبعاد", "Shiatsu 3D", "Shiatsu 3D") },
-      { label: L("التدفئة", "Chauffage", "Heating"), value: L("نعم", "Oui", "Yes") },
-      { label: L("الطاقة", "Alimentation", "Power"), value: L("كهربائي", "Électrique", "Electric") },
-      {
-        label: L("الاستخدام", "Utilisation", "Usage"),
-        value: L(
-          "رقبة / أكتاف / ظهر / خصر / أرجل",
-          "Cou / Épaules / Dos / Taille / Jambes",
-          "Neck / Shoulders / Back / Waist / Legs"
-        ),
-      },
-      { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
-    ],
-    packageIncludes: [
-      L("جهاز تدليك الرقبة والكتفين شياتسو", "Appareil de massage Shiatsu cou & épaules", "Shiatsu neck & shoulder massager"),
-      L("محول طاقة", "Adaptateur secteur", "Power adapter"),
-      L("دليل الاستخدام", "Manuel d'utilisation", "User manual"),
-    ],
-    howToUse: L(
-      "ضع الجهاز حول الرقبة أو على المنطقة المراد تدليكها، اضبط السانغات، شغّل التدليك وفعّل التدفئة حسب الرغبة. استرخِ لمدة 10–15 دقيقة.",
-      "Placez l'appareil autour du cou ou sur la zone à masser, ajustez les sangles, lancez le massage et activez le chauffage si besoin. Détendez-vous 10 à 15 minutes.",
-      "Place the device around your neck or on the target area, adjust the straps, start the massage and enable heat if desired. Relax for 10–15 minutes."
-    ),
-    lifestyleScenes: [
-      {
-        id: "office",
-        emoji: "💼",
-        title: L("بعد المكتب", "Après le bureau", "After Work"),
-        description: L("فُكّ تقلّص الكتفين بعد يوم جالس", "Dénouez les épaules après une journée assise", "Release shoulder tension after a sitting day"),
-      },
-      {
-        id: "evening",
-        emoji: "🌙",
-        title: L("استرخاء مسائي", "Détente du soir", "Evening Wind-Down"),
-        description: L("طقوس عافية قبل النوم", "Rituel bien-être avant de dormir", "Wellness ritual before sleep"),
-      },
-      {
-        id: "gift",
-        emoji: "🎁",
-        title: L("هدية فاخرة", "Cadeau premium", "Premium Gift"),
-        description: L("هدية مثالية للوالدين والشركاء", "Cadeau idéal pour parents et proches", "Ideal gift for parents and loved ones"),
-      },
-      {
-        id: "travel",
-        emoji: "✈️",
-        title: L("سهل الحمل", "Facile à emporter", "Travel-Friendly"),
-        description: L("خذه معك في السفر والعمل", "Emportez-le en voyage ou au travail", "Take it on trips or to the office"),
-      },
-    ],
-    images: [],
-    lifestyleImages: [],
-    variants: [
-      {
-        id: "var-shiatsu",
-        name: L("أخضر", "Vert", "Green"),
-        price: 249,
-        compareAtPrice: 349,
-        sku: "NRV-SHIATSU-01",
-        stock: 23,
-      },
-    ],
-    upsellIds: ["prod-mx003", "prod-aurora"],
-    crossSellIds: ["prod-rabbit", "prod-starbt"],
-    seo: {
-      title: L(
-        "جهاز تدليك الرقبة والكتفين شياتسو | 249 درهم | NOORVA المغرب",
-        "Appareil de Massage Shiatsu Cou et Épaules | 249 MAD | NOORVA Maroc",
-        "Shiatsu Neck and Shoulder Massager | 249 MAD | NOORVA Morocco"
-      ),
-      description: L(
-        "جهاز تدليك شياتسو 3D مع تدفئة بـ 249 درهم بدل 349. يخفّف آلام الرقبة والكتفين. توصيل مجاني والدفع عند الاستلام في المغرب.",
-        "Appareil de massage Shiatsu 3D avec chauffage à 249 MAD au lieu de 349. Soulage cervicales et épaules. Livraison gratuite et paiement à la livraison au Maroc.",
-        "3D Shiatsu massager with heat for 249 MAD instead of 349. Relieves neck and shoulders. Free shipping and cash on delivery in Morocco."
-      ),
-    },
-  },
 ];
 
 export const reviews: ProductReview[] = [
@@ -803,7 +804,7 @@ export const reviews: ProductReview[] = [
   { id: "rs10", productId: "prod-shiatsu", author: "Leila Mansouri", city: "Salé", rating: 5, title: L("للاسترخاء اليومي", "Pour la détente quotidienne", "For daily relaxation"), content: L("ولّات عادة مسائية. كنحس براحة فالرّقبة والكتاف.", "Devenu un rituel du soir. Cou et épaules vraiment détendus.", "Became an evening ritual. Neck and shoulders truly relaxed."), date: "2026-07-06", verified: true },
   { id: "rs11", productId: "prod-shiatsu", author: "Omar Benjelloun", city: "Tétouan", rating: 5, title: L("دوران تلقائي زوين", "Rotation auto au top", "Auto-rotation is great"), content: L("الدوران التلقائي كيغطّي المناطق المتقلّصة بلا مجهود.", "La rotation automatique couvre les zones tendues sans effort.", "Auto-rotation covers tense areas with no effort."), date: "2026-07-04", verified: true },
   { id: "rs12", productId: "prod-shiatsu", author: "Salma Hassani", city: "El Jadida", rating: 5, title: L("تصميم أنيق", "Design élégant", "Elegant design"), content: L("اللون الأخضر والحزام البني كيبانو فاخرين فالصالون.", "Le vert et la sangle brune font très premium dans le salon.", "Green with brown strap looks premium in the living room."), date: "2026-07-02", verified: true },
-  { id: "rs13", productId: "prod-shiatsu", author: "Rachid Ziani", city: "Safi", rating: 4, title: L("قيمة ممتازة", "Excellent rapport qualité-prix", "Great value"), content: L("بـ 249 درهم يستاهل. غير بغيت كابل أطول شوية.", "Pour 249 MAD, ça vaut le coup. J'aurais aimé un câble un peu plus long.", "For 249 MAD it's worth it. Wish the cable were a bit longer."), date: "2026-06-30", verified: true },
+  { id: "rs13", productId: "prod-shiatsu", author: "Rachid Ziani", city: "Safi", rating: 4, title: L("قيمة ممتازة", "Excellent rapport qualité-prix", "Great value"), content: L("بـ 199 درهم يستاهل. غير بغيت كابل أطول شوية.", "Pour 199 MAD, ça vaut le coup. J'aurais aimé un câble un peu plus long.", "For 199 MAD it's worth it. Wish the cable were a bit longer."), date: "2026-06-30", verified: true },
   { id: "rs14", productId: "prod-shiatsu", author: "Fatima Zahra", city: "Béni Mellal", rating: 5, title: L("يخفّف التوتر", "Réduit le stress", "Reduces stress"), content: L("منين كنكون متوترة، 15 دقيقة كافية باش نرتاح.", "Quand je suis stressée, 15 minutes suffisent pour me détendre.", "When I'm stressed, 15 minutes are enough to unwind."), date: "2026-06-28", verified: true },
   { id: "rs15", productId: "prod-shiatsu", author: "Abderrahim Naciri", city: "Nador", rating: 5, title: L("للظهر أيضاً", "Aussi pour le dos", "Also for the back"), content: L("كنستعملو على الظهر والخصر. متعدد الاستعمالات ومفيد.", "Je l'utilise aussi sur le dos et la taille. Polyvalent et utile.", "I also use it on the back and waist. Versatile and useful."), date: "2026-06-26", verified: true },
   { id: "rs16", productId: "prod-shiatsu", author: "Meriem Kettani", city: "Mohammedia", rating: 5, title: L("تدفئة مريحة", "Chauffage confortable", "Comfortable heat"), content: L("التدفئة ما سخوناش بزاف — دافية ومريحة للعضلات.", "La chaleur n'est pas excessive — douce et confortable pour les muscles.", "Heat isn't excessive — warm and comfortable for the muscles."), date: "2026-06-24", verified: true },
@@ -815,7 +816,7 @@ export const reviews: ProductReview[] = [
   { id: "rs22", productId: "prod-shiatsu", author: "Zineb El Idrissi", city: "Laâyoune", rating: 5, title: L("ثقة كاملة", "Confiance totale", "Full trust"), content: L("أول طلب من NOORVA وكان ناجح. التوصيل للمجنوب مرتب.", "1re commande NOORVA réussie. Livraison vers le sud impeccable.", "First NOORVA order succeeded. Southern delivery was smooth."), date: "2026-06-12", verified: true },
   { id: "rs23", productId: "prod-shiatsu", author: "Karim Ouadghiri", city: "Casablanca", rating: 5, title: L("أفضل شراء", "Meilleur achat", "Best purchase"), content: L("جربت مساج رخيص من قبل، هادا الفرق واضح فالجودة والراحة.", "Après un massageur cheap, celui-ci marque vraiment la différence.", "After a cheap massager, this one clearly stands out."), date: "2026-06-10", verified: true },
   { id: "rs24", productId: "prod-shiatsu", author: "Asmae Bensalah", city: "Rabat", rating: 5, title: L("موصى به", "Je recommande", "Highly recommend"), content: L("للموظفين والطلبة زوين بزاف. كيهنّي الرقبة بسرعة.", "Parfait pour salariés et étudiants. Détend le cou rapidement.", "Perfect for employees and students. Relaxes the neck quickly."), date: "2026-06-08", verified: true },
-  { id: "rs25", productId: "prod-shiatsu", author: "Hicham Toumi", city: "Marrakech", rating: 5, title: L("عرض يستاهل", "Offre à saisir", "Offer worth it"), content: L("خدّيتو بـ 249 بدل 349. الجودة فاخرة والاقتصاد واضح.", "Pris à 249 au lieu de 349. Qualité premium, vraie économie.", "Got it for 249 instead of 349. Premium quality, real savings."), date: "2026-06-06", verified: true },
+  { id: "rs25", productId: "prod-shiatsu", author: "Hicham Toumi", city: "Marrakech", rating: 5, title: L("عرض يستاهل", "Offre à saisir", "Offer worth it"), content: L("خدّيتو بـ 199 بدل 299. الجودة فاخرة والاقتصاد واضح.", "Pris à 199 au lieu de 299. Qualité premium, vraie économie.", "Got it for 199 instead of 299. Premium quality, real savings."), date: "2026-06-06", verified: true },
 ];
 
 export const faqs: FAQ[] = [
@@ -871,6 +872,11 @@ export function getBestSellers() { return products.filter((p) => p.isBestSeller)
 export function getTrending() { return products.filter((p) => p.isTrending).map(enrichProduct); }
 export function getTikTokViral() { return products.filter((p) => p.isTikTokViral).map(enrichProduct); }
 export function getFeatured() { return products.filter((p) => p.isFeatured).map(enrichProduct); }
+export function getNewArrivals() {
+  return products
+    .filter((p) => p.tags.includes("new") || p.isTrending)
+    .map(enrichProduct);
+}
 export function getFlashSaleProducts() { return products.filter((p) => p.flashSaleEndsAt).map(enrichProduct); }
 export function getReviewsForProduct(productId: string) {
   const matched = reviews.filter((r) => r.productId === productId);

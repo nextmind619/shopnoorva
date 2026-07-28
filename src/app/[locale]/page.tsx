@@ -17,14 +17,14 @@ const HomeBelowFold = dynamic(
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const titles: Record<string, string> = {
-    ar: "NOORVA — إضاءة فاخرة وبروجيكتور مجرة | المغرب",
-    fr: "NOORVA — Projecteurs Galaxy Premium | Maroc",
-    en: "NOORVA — Premium Galaxy Projectors | Morocco",
+    ar: "NOORVA — إضاءة فاخرة وجهاز تدليك شياتسو | المغرب",
+    fr: "NOORVA — Projecteurs Galaxy & Masseur Shiatsu | Maroc",
+    en: "NOORVA — Premium Galaxy Projectors & Shiatsu Massager | Morocco",
   };
   const descriptions: Record<string, string> = {
-    ar: "٤ بروجيكتورات فاخرة لتحويل غرفتك: رائد فضاء بلوتوث، مجرة ونجوم ملونة، الأورورا الشمالية، كاروسيل الأرانب. توصيل 24-48 ساعة · دفع عند الاستلام في المغرب.",
-    fr: "4 projecteurs premium : astronaute Bluetooth, galaxie multicolore, aurores boréales, carrousel lapin. Livraison 24-48h, paiement à la livraison au Maroc.",
-    en: "4 premium projectors: astronaut Bluetooth, multi-color galaxy stars, northern lights aurora, rabbit carousel. 24-48h delivery, cash on delivery in Morocco.",
+    ar: "منتجات فاخرة للمغرب: جهاز تدليك الرقبة شياتسو مع تدفئة، بروجيكتور رائد الفضاء بلوتوث، مجرة ونجوم، الأورورا، وكاروسيل الأرانب. توصيل 24-48 ساعة · دفع عند الاستلام.",
+    fr: "Produits premium au Maroc : masseur Shiatsu cou & épaules avec chauffage, projecteur astronaute Bluetooth, galaxie, aurores, carrousel lapin. Livraison 24-48h, paiement à la livraison.",
+    en: "Premium products for Morocco: Shiatsu neck massager with heat, astronaut Bluetooth projector, galaxy stars, aurora, rabbit carousel. 24-48h delivery, cash on delivery.",
   };
   return {
     title: titles[locale] || titles.ar,

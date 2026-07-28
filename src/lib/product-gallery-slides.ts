@@ -52,11 +52,11 @@ export function buildProductGallerySlides(product: Product): GallerySlide[] {
 
 /** Main product gallery: max 6 curated slides (hero → lifestyle → feature → use → angle → package) */
 const PRIMARY_GALLERY_TYPES: PremiumImageType[] = [
+  "01-hero-white-bg",
   "02-premium-hero",
-  "03-lifestyle",
-  "10-features",
   "14-product-in-use",
   "09-close-up",
+  "03-lifestyle",
   "11-package-contents",
 ];
 

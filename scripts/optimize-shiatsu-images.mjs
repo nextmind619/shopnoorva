@@ -42,26 +42,26 @@ const FOLDER = {
 };
 
 const SOURCE_MAP = {
-  "01-hero-white-bg": "shiatsu-01-hero-white-bg.png",
+  "01-hero-white-bg": "shiatsu-v2-01-white.png",
   "02-premium-hero": "shiatsu-02-premium-hero.png",
   "03-lifestyle": "shiatsu-03-lifestyle.png",
-  "04-bedroom": "shiatsu-14-woman-use.png",
+  "04-bedroom": "shiatsu-v2-14-woman.png",
   "05-living-room": "shiatsu-05-living-room.png",
   "06-gaming-room": "shiatsu-06-healthcare.png",
   "07-romantic-room": "shiatsu-07-man-use.png",
   "08-kids-room": "shiatsu-03-lifestyle.png",
-  "09-close-up": "shiatsu-09-close-up.png",
-  "10-features": "shiatsu-09-close-up.png",
-  "11-package-contents": "shiatsu-16-packaging.png",
-  "12-dimensions": "shiatsu-01-hero-white-bg.png",
-  "13-before-after": "shiatsu-14-woman-use.png",
-  "14-product-in-use": "shiatsu-14-woman-use.png",
+  "09-close-up": "shiatsu-v2-09-closeup.png",
+  "10-features": "shiatsu-v2-09-closeup.png",
+  "11-package-contents": "shiatsu-v2-16-pack.png",
+  "12-dimensions": "shiatsu-v2-01-white.png",
+  "13-before-after": "shiatsu-v2-14-woman.png",
+  "14-product-in-use": "shiatsu-v2-14-woman.png",
   "15-banner": "shiatsu-19-desktop-banner.png",
-  "16-packaging": "shiatsu-16-packaging.png",
-  "17-infographic": "shiatsu-09-close-up.png",
+  "16-packaging": "shiatsu-v2-16-pack.png",
+  "17-infographic": "shiatsu-v2-09-closeup.png",
   "18-mobile-banner": "shiatsu-02-premium-hero.png",
   "19-desktop-banner": "shiatsu-19-desktop-banner.png",
-  "20-social-media-banner": "shiatsu-02-premium-hero.png",
+  "20-social-media-banner": "shiatsu-v2-01-white.png",
 };
 
 async function optimizeImage(inputBuffer, outDir, baseName, width = 2000, height = 2000) {

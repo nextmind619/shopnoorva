@@ -15,14 +15,16 @@ export function generateStaticParams() {
 const SHIATSU_SLUG = "shiatsu-neck-shoulder-massager";
 
 const SHIATSU_KEYWORDS = [
-  "massage shiatsu",
-  "masseur cou épaules",
-  "appareil massage chauffage",
-  "massage cervicales Maroc",
-  "relaxation",
-  "bien-être",
-  "paiement à la livraison",
+  "جهاز تدليك الرقبة",
+  "تدليك شياتسو",
+  "مساج الكتفين",
+  "تدفئة",
+  "استرخاء",
+  "عافية",
+  "الدفع عند الاستلام",
   "NOORVA",
+  "shiatsu",
+  "massage",
 ];
 
 export async function generateMetadata({
@@ -37,10 +39,10 @@ export async function generateMetadata({
   const hero = resolveProductHero(product);
   const canonical = `${SITE_URL}/ar/products/${product.slug}`;
   const isShiatsu = product.slug === SHIATSU_SLUG;
-  const title = isShiatsu ? product.seo.title.fr : product.seo.title.ar;
-  const description = isShiatsu ? product.seo.description.fr : product.seo.description.ar;
-  const ogLocale = isShiatsu ? "fr_MA" : "ar_MA";
-  const name = isShiatsu ? product.name.fr : product.name.ar;
+  const title = product.seo.title.ar;
+  const description = product.seo.description.ar;
+  const ogLocale = "ar_MA";
+  const name = product.name.ar;
 
   return {
     title,
@@ -69,32 +71,32 @@ function getProductFaqs(slug: string, warrantyMonths: number) {
   if (slug === SHIATSU_SLUG) {
     return [
       {
-        q: "Livraison — quels délais au Maroc ?",
-        a: "Livraison gratuite partout au Maroc : 24–48 h pour les grandes villes, 2–4 jours pour le reste du Royaume.",
+        q: "التوصيل المجاني — شحال كياخد؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب: 24–48 ساعة للمدن الكبرى، و2–4 أيام لباقي المدن.",
       },
       {
-        q: "Paiement — dois-je payer maintenant ?",
-        a: "Non. Paiement à la livraison uniquement (COD). Vous réglez en espèces à la réception.",
+        q: "الدفع عند الاستلام — خاصني نخلص دابا؟",
+        a: "لا. الدفع عند الاستلام فقط (كاش عند الباب). تطلب بلا بطاقة بنكية وتخلّص ملي يوصلك الطلب.",
       },
       {
-        q: "Garantie — que couvre-t-elle ?",
-        a: `Garantie ${warrantyMonths} mois sur les défauts de fabrication, plus remplacement sous 7 jours en cas de défaut.`,
+        q: "الضمان — شنو كيغطي؟",
+        a: `ضمان ${warrantyMonths} شهر على عيوب التصنيع، مع استبدال خلال 7 أيام إذا كان هناك عيب.`,
       },
       {
-        q: "Utilisation — comment bien l’utiliser ?",
-        a: "Placez l’appareil autour du cou ou sur la zone à masser, ajustez les sangles, lancez le massage et activez le chauffage si besoin. 10–15 minutes suffisent.",
+        q: "طريقة الاستعمال — كيفاش كنستعملو؟",
+        a: "حط الجهاز حول الرقبة أو على المنطقة اللي بغيتي تدليكها، اضبط السانات، شغّل التدليك وفعّل التدفئة إلا بغيتي. 10–15 دقيقة كافية.",
       },
       {
-        q: "Chauffage — est-il sûr ?",
-        a: "Oui. Le chauffage intégré offre une chaleur douce et contrôlée. Vous pouvez l’activer ou le désactiver selon votre confort.",
+        q: "التدفئة — واش آمنة؟",
+        a: "نعم. التدفئة المدمجة كتعطي دفء لطيف ومتحكم فيه. تقدّر تشغّلها أو تطفيها حسب راحتك.",
       },
       {
-        q: "Nettoyage — comment l’entretenir ?",
-        a: "Débranchez l’appareil et essuyez-le avec un chiffon doux légèrement humide. Ne jamais immerger dans l’eau.",
+        q: "التنظيف — كيفاش نحتفظ بيه؟",
+        a: "افصل الجهاز من الكهرباء وامسحو بقطعة قماش ناعمة رطبة قليلاً. ما تغطسوش في الماء أبدًا.",
       },
       {
-        q: "Retour — puis-je renvoyer le produit ?",
-        a: "Oui. Contactez-nous sur WhatsApp sous 14 jours en cas de défaut de fabrication.",
+        q: "الإرجاع — واش يمكن نرجع المنتج؟",
+        a: "نعم. تواصل معنا على واتساب خلال 14 يومًا إذا كان هناك عيب مصنعي.",
       },
     ];
   }
@@ -231,13 +233,13 @@ export default async function ProductPage({
         data={{
           "@context": "https://schema.org",
           "@type": "Product",
-          name: isShiatsu ? product.name.fr : product.name.ar,
-          description: isShiatsu ? product.description.fr : product.description.ar,
+          name: product.name.ar,
+          description: product.description.ar,
           image: [hero],
           sku: product.sku,
           brand: { "@type": "Brand", name: "NOORVA" },
-          color: isShiatsu ? "Green" : undefined,
-          material: isShiatsu ? "ABS + PU Leather" : undefined,
+          color: isShiatsu ? "أخضر غابة" : undefined,
+          material: isShiatsu ? "ABS + جلد PU + سيليكون غذائي" : undefined,
           offers: {
             "@type": "Offer",
             price: defaultVariant.price,
@@ -273,8 +275,8 @@ export default async function ProductPage({
                     bestRating: "5",
                     worstRating: "1",
                   },
-                  name: r.title.fr,
-                  reviewBody: r.content.fr,
+                  name: r.title.ar,
+                  reviewBody: r.content.ar,
                 })),
               }
             : {}),

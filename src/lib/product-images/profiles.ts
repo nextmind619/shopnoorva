@@ -138,7 +138,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
     shortDescription:
       "Forest-green U-shaped Shiatsu neck & shoulder massager — soft silicone kneading nodes, built-in heat, auto-rotation, adjustable brown PU leather straps, electric powered",
     visualIdentity:
-      "EXACT real product — forest green (#1B4D3E family) U-shaped / wrap-around Shiatsu neck and shoulder massager. Soft green fabric or ABS shell with brown / tan PU leather adjustable straps and buckle-style fasteners. Multiple soft silicone massage nodes (kneading fingers) on the inner contact surface. Compact electric wellness device for neck, shoulders, back, waist and legs. Clean modern premium look, no purple accents, no redesign as pillow-only or handheld gun massager. Preserve exact proportions, green body, brown leather strap, and silicone nodes from reference photography.",
+      "EXACT real product — forest green (#1B4D3E family) ABS U-shaped / wrap-around Bionic Finger / Hand-Simulation Shiatsu neck and shoulder massager with heat. Soft green ABS shell with brown / tan pebbled PU leather adjustable straps and buckle-style fasteners. Black control panel with power + heat buttons. Exactly 8 soft food-grade silicone finger-like kneading nodes (4 per side) on the inner contact surface that simulate hand massage. Compact electric wellness device for neck, shoulders, back, waist and legs. Clean modern premium look, no purple accents, no redesign as pillow-only or handheld gun massager. Preserve exact proportions, forest-green ABS body, brown PU straps, black controls, and 8 silicone nodes from reference photography.",
     dimensions: "Wearable U-shape / wrap-around neck massager",
     accessories: ["Power adapter", "User manual"],
     packageItems: [

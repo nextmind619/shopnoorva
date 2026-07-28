@@ -91,11 +91,11 @@ export const categories: Category[] = [
     slug: "relaxation",
     name: { ar: "الاسترخاء", fr: "Relaxation", en: "Relaxation" },
     description: {
-      ar: "أضواء ومؤقتات وموسيقى هادئة تساعد على النوم العميق",
-      fr: "Lumières, minuteries et musique douce pour un sommeil profond",
-      en: "Lights, timers and soft music that help you sleep deeply",
+      ar: "جهاز تدليك شياتسو مع تدفئة، أضواء ومؤقتات تساعد على الاسترخاء والنوم العميق",
+      fr: "Masseur Shiatsu chauffant, lumières et minuteries pour la détente et le sommeil",
+      en: "Heated Shiatsu massager, lights and timers for relaxation and deep sleep",
     },
-    image: getProductHeroUrl("northern-lights-galaxy-projector"),
+    image: getProductHeroUrl("shiatsu-neck-shoulder-massager"),
     productCount: 4,
   },
   {
