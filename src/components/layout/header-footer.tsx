@@ -20,7 +20,7 @@ const TRUST_TICKER = [
 export function AnnouncementBar() {
   const t = useTranslations("announcement");
   return (
-    <div className="bg-navy text-cream text-center py-2 px-4 text-xs sm:text-sm overflow-hidden relative z-[60]">
+    <div className="bg-navy text-cream text-center py-2 px-4 text-xs sm:text-sm overflow-x-clip relative z-[60] w-full max-w-full">
       <div className="flex animate-marquee whitespace-nowrap gap-12">
         {[...TRUST_TICKER, ...TRUST_TICKER].map((item, i) => (
           <span key={i} className="inline-flex items-center gap-2">

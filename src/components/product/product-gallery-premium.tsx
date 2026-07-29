@@ -184,8 +184,14 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
   const prev = useCallback(() => go(active - 1), [active, go]);
 
   useEffect(() => {
-    const el = thumbRef.current?.children[active] as HTMLElement | undefined;
-    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    const container = thumbRef.current;
+    const el = container?.children[active] as HTMLElement | undefined;
+    if (!container || !el) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const delta = elRect.left - containerRect.left - (containerRect.width - elRect.width) / 2;
+    container.scrollBy({ left: delta, behavior: "smooth" });
   }, [active]);
 
   useEffect(() => {
@@ -206,7 +212,7 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
 
   return (
     <>
-      <div className="space-y-4" dir="rtl">
+      <div className="space-y-4 min-w-0 max-w-full overflow-hidden" dir="rtl">
         <AnimatePresence mode="wait">
           <motion.div
             key={current.id}
@@ -233,9 +239,9 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0 cursor-zoom-in"
               onClick={() => setZoomOpen(true)}
@@ -287,7 +293,7 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
 
         <div
           ref={thumbRef}
-          className="flex gap-2.5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide -mx-1 px-1"
+          className="flex gap-2.5 overflow-x-auto overscroll-x-contain pb-2 snap-x snap-mandatory scrollbar-hide max-w-full touch-pan-x"
           role="tablist"
           aria-label="صور المنتج"
         >

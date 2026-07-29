@@ -77,14 +77,6 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
     objectFit: "contain",
   },
   {
-    section: "bluetooth",
-    imageType: "14-product-in-use",
-    emoji: "🎵",
-    heading: "مكبر صوت بلوتوث مدمج",
-    subtitle: "اتصال بلوتوث عبر الهاتف · تشغيل الموسيقى بجودة عالية",
-    objectFit: "cover",
-  },
-  {
     section: "projection",
     imageType: "06-gaming-room",
     emoji: "🌌",

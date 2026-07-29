@@ -49,8 +49,6 @@ export function ProductSocialProof({ productLabel }: { productLabel: string }) {
           <Eye className="h-3.5 w-3.5" />
           {viewers} أشخاص يشاهدون هذا المنتج الآن
         </span>
-        <span className="hidden sm:inline text-emerald-500/40">|</span>
-        <span className="font-medium text-emerald-200/90">🔥 عرض محدود · اليوم فقط</span>
       </div>
 
       <AnimatePresence>

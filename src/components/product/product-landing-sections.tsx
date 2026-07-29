@@ -41,8 +41,8 @@ function SectionBlock({
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className="scroll-mt-24"
     >
-      <div className="bg-[#1a1a24] rounded-[2rem] border border-white/10 overflow-hidden shadow-2xl">
-        <div className={cn("grid grid-cols-1 lg:grid-cols-2 gap-0", reverse && "lg:[direction:ltr]")}>
+      <div className="bg-[#1a1a24] rounded-[2rem] border border-white/10 overflow-hidden shadow-2xl min-w-0 max-w-full">
+        <div className={cn("grid grid-cols-1 lg:grid-cols-2 gap-0 min-w-0", reverse && "lg:[direction:ltr]")}>
           <div className={cn("relative aspect-[4/3] lg:aspect-auto lg:min-h-[420px] bg-[#12121a]", reverse && "lg:order-2")}>
             <Image
               src={primary.imageUrl}
@@ -102,7 +102,7 @@ export function ProductLandingSections({ product }: ProductLandingSectionsProps)
   const bySection = getSlidesBySection(product);
 
   return (
-    <div className="space-y-8 mt-12">
+    <div className="space-y-8 mt-12 min-w-0 max-w-full">
       {LANDING_SECTIONS.map((section, i) => {
         const slides = bySection.get(section);
         if (!slides?.length) return null;

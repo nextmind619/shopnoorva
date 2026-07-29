@@ -16,11 +16,9 @@ import {
   BadgeCheck,
   Minus,
   Plus,
-  Flame,
   Check,
   Sparkles,
   Zap,
-  X,
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
@@ -80,53 +78,6 @@ const FAQS = [
   },
 ] as const;
 
-function FlashCountdownFr({ endDate }: { endDate: string }) {
-  const [t, setT] = useState<{ hours: number; minutes: number; seconds: number } | null>(null);
-
-  useEffect(() => {
-    const calc = () => {
-      const diff = new Date(endDate).getTime() - Date.now();
-      if (diff <= 0) return { hours: 0, minutes: 0, seconds: 0 };
-      return {
-        hours: Math.floor(diff / (1000 * 60 * 60)),
-        minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((diff % (1000 * 60)) / 1000),
-      };
-    };
-    setT(calc());
-    const id = setInterval(() => setT(calc()), 1000);
-    return () => clearInterval(id);
-  }, [endDate]);
-
-  const display = t ?? { hours: 0, minutes: 0, seconds: 0 };
-  const pad = (n: number) => n.toString().padStart(2, "0");
-
-  return (
-    <div className="flex items-center gap-3 rounded-2xl bg-amber-50 border border-amber-200/80 px-4 py-3">
-      <Flame className="h-4 w-4 text-amber-600 shrink-0" />
-      <span className="text-xs font-bold text-amber-900 whitespace-nowrap">Offre flash se termine dans :</span>
-      <div className="flex items-center gap-1.5 ms-auto" dir="ltr">
-        {[
-          { val: display.hours, label: "h" },
-          { val: display.minutes, label: "min" },
-          { val: display.seconds, label: "s" },
-        ].map(({ val, label }, i) => (
-          <div key={label} className="flex items-center gap-1.5">
-            <div
-              className="rounded-lg w-10 h-11 flex flex-col items-center justify-center border border-[#1B4D3E]/15"
-              style={{ background: FOREST }}
-            >
-              <span className="text-sm font-bold text-white tabular-nums leading-none">{pad(val)}</span>
-              <span className="text-[8px] text-white/70 leading-none mt-0.5">{label}</span>
-            </div>
-            {i < 2 && <span className="font-bold" style={{ color: FOREST }}>:</span>}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 interface ProductPageFrProps {
   product: Product;
   related?: Product[];
@@ -140,8 +91,6 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
   const [qty, setQty] = useState(1);
   const [sticky, setSticky] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [exitOpen, setExitOpen] = useState(false);
-  const [exitShown, setExitShown] = useState(false);
   const [showAllReviews, setShowAllReviews] = useState(false);
 
   const name = product.name.fr;
@@ -177,18 +126,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const onLeave = (e: MouseEvent) => {
-      if (exitShown || e.clientY > 12) return;
-      setExitOpen(true);
-      setExitShown(true);
-    };
-    document.addEventListener("mouseleave", onLeave);
-    return () => document.removeEventListener("mouseleave", onLeave);
-  }, [exitShown]);
-
   const scrollToOrder = useCallback(() => {
-    setExitOpen(false);
     document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
@@ -197,7 +135,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
   const benefits = product.benefits || [];
 
   return (
-    <div className="min-h-screen font-sans text-[#1a2e28]" style={{ background: CREAM }} dir="ltr">
+    <div className="min-h-screen font-sans text-[#1a2e28] w-full max-w-full overflow-x-clip min-w-0" style={{ background: CREAM }} dir="ltr">
       <FacebookProductTracker
         productId={product.id}
         contentName={product.name.fr}
@@ -218,11 +156,11 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
           <span className="hidden sm:inline text-white/40">|</span>
           <span className="flex items-center gap-1.5">Paiement à la livraison</span>
           <span className="hidden sm:inline text-white/40">|</span>
-          <span className="flex items-center gap-1.5">Offre limitée −100 MAD</span>
+          <span className="flex items-center gap-1.5">Qualité premium</span>
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 pb-28 lg:pb-16 pt-4 space-y-10 sm:space-y-12">
+      <div className="max-w-3xl mx-auto px-4 pb-28 lg:pb-16 pt-4 space-y-10 sm:space-y-12 min-w-0 w-full">
         <nav className="flex items-center gap-2 text-xs text-[#1B4D3E]/55">
           <Link href="/ar" className="hover:text-[#1B4D3E] transition-colors">
             NOORVA
@@ -309,7 +247,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
           )}
 
           <div className="flex flex-wrap gap-2">
-            {["Livraison Gratuite", "Paiement à la livraison", "Offre Limitée"].map((badge) => (
+            {["Livraison Gratuite", "Paiement à la livraison", "Qualité Premium"].map((badge) => (
               <span
                 key={badge}
                 className="inline-flex items-center rounded-full px-3 py-1.5 text-[11px] font-bold border border-[#1B4D3E]/15 bg-[#1B4D3E]/5 text-[#1B4D3E]"
@@ -317,24 +255,6 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
                 {badge}
               </span>
             ))}
-          </div>
-
-          {product.flashSaleEndsAt && <FlashCountdownFr endDate={product.flashSaleEndsAt} />}
-
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between text-xs">
-              <span className="flex items-center gap-1.5 font-bold text-orange-700">
-                <Zap className="h-3.5 w-3.5" />
-                Plus que {variant.stock} en stock au prix promo
-              </span>
-              <span className="text-[#1B4D3E]/45">Stock bas</span>
-            </div>
-            <div className="h-2 rounded-full overflow-hidden bg-[#1B4D3E]/10">
-              <div
-                className="h-full rounded-full transition-all duration-700"
-                style={{ width: `${Math.min(100, Math.max(8, (variant.stock / 80) * 100))}%`, background: FOREST }}
-              />
-            </div>
           </div>
         </section>
 
@@ -638,7 +558,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
         {recentlyViewed.length > 0 && (
           <section className="opacity-90">
             <h2 className="text-sm font-medium text-center mb-4 text-[#1B4D3E]/50">Vu récemment</h2>
-            <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-hide">
+            <div className="flex gap-3 overflow-x-auto overscroll-x-contain pb-1 scrollbar-hide max-w-full touch-pan-x">
               {recentlyViewed.map((p) => (
                 <Link
                   key={p.id}
@@ -655,53 +575,6 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
           </section>
         )}
       </div>
-
-      {/* Exit intent */}
-      <AnimatePresence>
-        {exitOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] hidden lg:flex items-center justify-center bg-black/40 backdrop-blur-sm p-6"
-            onClick={() => setExitOpen(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.94, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.96, opacity: 0 }}
-              className="relative max-w-md w-full rounded-3xl bg-white p-8 shadow-2xl text-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                aria-label="Fermer"
-                onClick={() => setExitOpen(false)}
-                className="absolute top-4 end-4 p-2 rounded-full hover:bg-[#1B4D3E]/5 text-[#1B4D3E]/60"
-              >
-                <X className="h-4 w-4" />
-              </button>
-              <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: SAGE }}>
-                Offre limitée
-              </p>
-              <h3 className="text-2xl font-black text-[#14352c] mb-2">Attendez — économisez 100 MAD</h3>
-              <p className="text-sm text-[#1B4D3E]/70 mb-6 leading-relaxed">
-                Prix promo {formatPriceNumber(variant.price, "fr")} MAD au lieu de{" "}
-                {formatPriceNumber(variant.compareAtPrice || 0, "fr")} MAD. Livraison gratuite + paiement à la livraison.
-              </p>
-              <button
-                type="button"
-                onClick={scrollToOrder}
-                className="w-full h-14 rounded-2xl text-white font-black flex items-center justify-center gap-2"
-                style={{ background: FOREST }}
-              >
-                <ShoppingBag className="h-5 w-5" />
-                Commander Maintenant
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Sticky mobile CTA */}
       <AnimatePresence>

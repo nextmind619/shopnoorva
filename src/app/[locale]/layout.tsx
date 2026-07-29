@@ -58,7 +58,7 @@ export default async function LocaleLayout({
           <AnalyticsScripts />
           <AnnouncementBar />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 min-w-0 w-full overflow-x-clip">{children}</main>
           <Footer />
           <DeferredClientChrome />
         </NextIntlClientProvider>

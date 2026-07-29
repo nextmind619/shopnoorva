@@ -54,9 +54,9 @@ export function buildProductGallerySlides(product: Product): GallerySlide[] {
 const PRIMARY_GALLERY_TYPES: PremiumImageType[] = [
   "01-hero-white-bg",
   "02-premium-hero",
-  "14-product-in-use",
   "09-close-up",
   "03-lifestyle",
+  "04-bedroom",
   "11-package-contents",
 ];
 

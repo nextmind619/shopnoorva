@@ -26,7 +26,6 @@ import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
-import { FlashCountdown, StockScarcityBar } from "@/components/product/flash-countdown";
 
 const ProductOrderForm = dynamic(
   () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
@@ -227,7 +226,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
     : "flex-1 h-12 rounded-xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30";
 
   return (
-    <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans" dir="rtl">
+    <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans w-full max-w-full overflow-x-clip min-w-0" dir="rtl">
       <FacebookProductTracker
         productId={product.id}
         contentName={product.name.ar}
@@ -256,7 +255,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 pb-28 lg:pb-16 pt-4 space-y-10 sm:space-y-14">
+      <div className="max-w-3xl mx-auto px-4 pb-28 lg:pb-16 pt-4 space-y-10 sm:space-y-14 min-w-0 w-full">
         <nav className="flex items-center gap-2 text-xs text-white/50">
           <Link href="/ar" className="hover:text-[#6366f1] transition-colors">
             نورڤا
@@ -326,8 +325,6 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               )}
             </p>
           )}
-          {product.flashSaleEndsAt && <FlashCountdown endDate={product.flashSaleEndsAt} />}
-          <StockScarcityBar stock={Math.min(variant.stock, 47)} originalStock={120} />
         </section>
 
         {/* شريط توصيل مجاني */}
@@ -578,7 +575,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         {recentlyViewed.length > 0 && (
           <section className="opacity-80">
             <h2 className="text-sm font-medium text-center mb-4 text-white/50">شوهد مؤخرًا</h2>
-            <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-hide">
+            <div className="flex gap-3 overflow-x-auto overscroll-x-contain pb-1 scrollbar-hide max-w-full touch-pan-x">
               {recentlyViewed.map((p) => (
                 <Link
                   key={p.id}
