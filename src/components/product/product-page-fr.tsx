@@ -27,6 +27,7 @@ import { FacebookProductTracker } from "@/components/facebook/facebook-trackers"
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
+import { ProductVariantPicker, isPackVariantSku } from "@/components/product/product-variant-picker";
 
 const ProductOrderForm = dynamic(
   () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
@@ -87,7 +88,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
   const recentlyViewedIds = useRecentlyViewedStore((s) => s.productIds);
 
-  const [variant] = useState(product.variants[0]);
+  const [variant, setVariant] = useState(product.variants[0]);
   const [qty, setQty] = useState(1);
   const [sticky, setSticky] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -131,6 +132,8 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
   }, []);
 
   const maxQty = Math.min(variant.stock || 3, 3);
+  const isPack = isPackVariantSku(variant.sku);
+  const orderQty = isPack ? 1 : qty;
   const features = product.features || [];
   const benefits = product.benefits || [];
 
@@ -141,7 +144,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
         contentName={product.name.fr}
         value={variant.price}
         currency="MAD"
-        quantity={qty}
+        quantity={orderQty}
       />
 
       {/* Free shipping top banner */}
@@ -282,7 +285,19 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
           ))}
         </section>
 
+        <ProductVariantPicker
+          variants={product.variants}
+          selectedId={variant.id}
+          onSelect={(v) => {
+            setVariant(v);
+            setQty(1);
+          }}
+          locale="fr"
+          label="Choisir l'offre"
+        />
+
         {/* Qty */}
+        {!isPack && (
         <section className="flex items-center justify-between sm:justify-start gap-6 rounded-2xl border border-[#1B4D3E]/10 bg-white/70 px-5 py-4">
           <span className="text-sm font-medium text-[#1B4D3E]/70">Quantité</span>
           <div className="flex items-center gap-3">
@@ -307,8 +322,9 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
             </button>
           </div>
         </section>
+        )}
 
-        <ProductOrderForm product={product} variant={variant} quantity={qty} locale="fr" />
+        <ProductOrderForm product={product} variant={variant} quantity={orderQty} locale="fr" />
 
         {/* Persuasive description */}
         <section className="rounded-3xl border border-[#1B4D3E]/10 bg-white/80 backdrop-blur-sm p-6 sm:p-8 shadow-sm">
@@ -593,7 +609,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
                 style={{ background: FOREST, boxShadow: "0 8px 20px rgba(27,77,62,0.25)" }}
               >
                 <ShoppingBag className="h-5 w-5" />
-                Commander — {formatPriceNumber(variant.price * qty, "fr")} MAD
+                Commander — {formatPriceNumber(variant.price * orderQty, "fr")} MAD
               </button>
             </div>
           </motion.div>

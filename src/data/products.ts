@@ -10,7 +10,7 @@ const L = (ar: string, fr: string, en: string) => ({ ar, fr, en });
  *  are populated by tag match in addition to the product's primary categoryId. */
 const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-galaxy-lights": ["galaxy", "aurora", "laser", "star"],
-  "cat-home-decor": ["decor"],
+  "cat-home-decor": ["decor", "cooler", "fan", "desk"],
   "cat-bedroom-lighting": ["bedroom"],
   "cat-kids-room": ["kids"],
   "cat-relaxation": ["relaxation"],
@@ -751,6 +751,636 @@ export const products: Product[] = [
         "اشتري ليزر أخضر 303 بسعر 199 درهم بدل 299. شعاع قوي، ألومنيوم، بطارية قابلة للشحن. توصيل مجاني والدفع عند الاستلام في المغرب.",
         "Achetez le Pointeur Laser Vert 303 à 199 MAD au lieu de 299. Faisceau puissant, aluminium, batterie rechargeable. Livraison gratuite et paiement à la livraison au Maroc.",
         "Buy Green Laser Pointer 303 for 199 MAD instead of 299. Powerful beam, aluminum body, rechargeable battery. Free shipping and cash on delivery in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-galaxy-rgb",
+    slug: "star-galaxy-projector-rgb-gift",
+    name: L(
+      "مصباح عرض النجوم والمجرة مع شريط إضاءة RGB هدية",
+      "Projecteur Étoiles & Galaxie + Bande LED RGB Offerte",
+      "Star & Galaxy Projection Lamp with Free RGB LED Strip Gift"
+    ),
+    shortDescription: L(
+      "مجرة ملونة على السقف + شريط RGB هدية — مؤقت 2س، USB DC 5V والدفع عند الاستلام",
+      "Galaxie colorée au plafond + bande RGB offerte — minuterie 2h, USB DC 5V, paiement à la livraison",
+      "Colorful galaxy on your ceiling + free RGB strip — 2h timer, USB DC 5V, cash on delivery"
+    ),
+    description: L(
+      "عرض NOORVA: مصباح عرض النجوم والمجرة بقاعدة سوداء مطفي وقبة كريستال شفافة متعددة الأوجه، كيعرض سديم ونجوم بألوان حية (وردي، سماوي، برتقالي…). لوحة تحكم أمامية: منفذ USB، طاقة DC 5V 2A، أزرار أوضاع ومؤقت 2H، منزلق سطوع ومفتاح OFF-ON. مع الطلب: شريط إضاءة LED RGB مرن هدية (على بكرة مع شريطة هدية) باش تكمّل ديكور الغرفة. مثالي لغرفة النوم، الأطفال والهدايا. 199 درهم، توصيل مجاني والدفع عند الاستلام في المغرب.",
+      "Offre NOORVA : projecteur étoiles & galaxie, base noire mate et dôme cristal facetté, nébuleuse et étoiles multicolores. Panneau avant : USB, DC 5V 2A, modes, minuterie 2H, curseur luminosité, interrupteur OFF-ON. Bande LED RGB flexible offerte. Idéal chambre, enfants, cadeaux. 199 MAD, livraison gratuite et COD au Maroc.",
+      "NOORVA bundle: star & galaxy projection lamp with matte black base and faceted crystal dome, vivid nebula and stars. Front panel: USB, DC 5V 2A, mode buttons, 2H timer, brightness slider, OFF-ON switch. Includes a flexible RGB LED strip gift. Perfect for bedrooms, kids rooms and gifts. 199 MAD, free shipping and cash on delivery in Morocco."
+    ),
+    categoryId: "cat-projectors",
+    price: 199,
+    compareAtPrice: 279,
+    sku: "NRV-GALAXY-RGB-01",
+    stock: 80,
+    rating: 4.9,
+    reviewCount: 94,
+    soldCount: 620,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: true,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 12,
+    problemEmoji: "🌌",
+    problem: L(
+      "بغيت غرفة بمجرة حقيقية بثمن زوين؟",
+      "Envie d'une vraie ambiance galaxie à bon prix?",
+      "Want a real galaxy room without overspending?"
+    ),
+    problemCause: L(
+      "الإضاءة العادية ما كتعطيش سديم ولا هدية ديكور مع الطلب",
+      "La lumière classique ne projette pas de nébuleuse et n'offre pas de bande RGB",
+      "Normal lights don't give nebula projection or a bonus RGB strip"
+    ),
+    problemSolution: L(
+      "مصباح مجرة + شريط RGB هدية بـ 199 درهم",
+      "Projecteur galaxie + bande RGB offerte à 199 MAD",
+      "Galaxy lamp + free RGB strip for 199 MAD"
+    ),
+    deepDescription: L(
+      "جسم ABS أسود صحني بقبة كريستال شفافة. إسقاط نجوم وسديم متعدد الألوان. تحكم يدوي: مؤقت 2H، تعتيم، USB وDC 5V 2A. الشريط RGB المرن هدية — ألوان متعددة لتزيين السرير، المكتب أو التلفزة. حجم مدمج للطاولة أو كومodin.",
+      "Corps noir en forme de coupelle, dôme cristal. Projection étoiles et nébuleuse. Minuterie 2H, intensité, USB et DC 5V 2A. Bande RGB flexible offerte pour lit, bureau ou TV. Format compact table de chevet.",
+      "Black bowl ABS body with faceted crystal dome. Stars and nebula projection. 2H timer, dimming, USB and DC 5V 2A. Flexible RGB strip gift for bed, desk or TV. Compact bedside size."
+    ),
+    tags: ["star", "galaxy", "rgb", "night-light", "bedroom", "kids", "gift", "decor", "new", "bundle"],
+    benefits: [
+      L("مجرة ملونة فوراً على السقف والجدران", "Galaxie colorée instantanée au plafond", "Instant colorful galaxy on ceiling and walls"),
+      L("شريط RGB هدية — ديكور إضافي بلا ثمن زائد", "Bande RGB offerte — déco en plus sans surcoût", "Free RGB strip — extra decor at no extra cost"),
+      L("مؤقت 2H ومنزلق سطوع للنوم المريح", "Minuterie 2H et curseur pour dormir sereinement", "2H timer and brightness slider for easy sleep"),
+      L("هدية مثالية للأطفال والأجواء الرومانسية", "Cadeau idéal enfants et soirées romantiques", "Ideal gift for kids and romantic evenings"),
+    ],
+    features: [
+      L("إسقاط نجوم وسديم متعدد الألوان", "Projection étoiles et nébuleuse multicolore", "Multicolor stars and nebula projection"),
+      L("قبة كريستال شفافة متعددة الأوجه", "Dôme cristal facetté transparent", "Faceted transparent crystal dome"),
+      L("مؤقت 2H + تعتيم + مفتاح OFF-ON", "Minuterie 2H + intensité + OFF-ON", "2H timer + dimming + OFF-ON switch"),
+      L("USB + DC 5V 2A", "USB + DC 5V 2A", "USB + DC 5V 2A power"),
+      L("شريط LED RGB مرن هدية", "Bande LED RGB flexible offerte", "Free flexible RGB LED strip"),
+    ],
+    specifications: [
+      { label: L("التصميم", "Design", "Design"), value: L("قاعدة سوداء + قبة كريستال", "Base noire + dôme cristal", "Black base + crystal dome") },
+      { label: L("المادة", "Matériau", "Material"), value: L("بلاستيك ABS", "Plastique ABS", "ABS plastic") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("USB · DC 5V 2A", "USB · DC 5V 2A", "USB · DC 5V 2A") },
+      { label: L("المؤقت", "Minuterie", "Timer"), value: L("2 ساعات (2H)", "2 heures (2H)", "2 hours (2H)") },
+      { label: L("الهدية", "Offre", "Bundle"), value: L("شريط إضاءة RGB", "Bande LED RGB", "RGB LED light strip") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
+    ],
+    packageIncludes: [
+      L("مصباح عرض النجوم والمجرة", "Projecteur étoiles & galaxie", "Star & galaxy projection lamp"),
+      L("شريط إضاءة LED RGB (هدية)", "Bande LED RGB (offerte)", "RGB LED light strip (gift)"),
+      L("كابل طاقة", "Câble d'alimentation", "Power cable"),
+      L("دليل الاستخدام", "Manuel", "User manual"),
+    ],
+    howToUse: L(
+      "ضع المصباح في غرفة مظلمة ووجّهه نحو السقف. وصّل DC 5V 2A أو USB، شغّل المفتاح، اضبط السطوع والوضع، وفعّل مؤقت 2H قبل النوم. ثبّت شريط RGB على السرير أو المكتب حسب التعليمات.",
+      "Pièce sombre, orienter vers le plafond. Brancher DC 5V 2A ou USB, allumer, régler luminosité/mode, minuterie 2H. Coller la bande RGB selon le manuel.",
+      "Place in a dark room aimed at the ceiling. Connect DC 5V 2A or USB, power on, set brightness/mode and 2H timer before sleep. Mount the RGB strip per instructions."
+    ),
+    images: [],
+    lifestyleImages: [],
+    lifestyleScenes: [
+      { id: "bedroom", emoji: "🛏️", title: L("غرفة النوم", "Chambre", "Bedroom"), description: L("مجرة هادئة قبل النوم", "Galaxie douce avant de dormir", "Calm galaxy before sleep") },
+      { id: "kids", emoji: "👶", title: L("غرفة الأطفال", "Enfants", "Kids Room"), description: L("نجوم + شريط RGB ملوّن", "Étoiles + bande RGB colorée", "Stars + colorful RGB strip") },
+      { id: "gift", emoji: "🎁", title: L("هدية", "Cadeau", "Gift"), description: L("مصباح + شريط RGB في طلب واحد", "Projecteur + bande RGB en un colis", "Lamp + RGB strip in one order") },
+      { id: "romantic", emoji: "💫", title: L("أجواء رومانسية", "Romantique", "Romantic"), description: L("سديم ملون فالدار", "Nébuleuse colorée à la maison", "Colorful nebula at home") },
+    ],
+    variants: [
+      {
+        id: "var-galaxy-rgb",
+        name: L("أسود + شريط RGB", "Noir + bande RGB", "Black + RGB strip"),
+        price: 199,
+        compareAtPrice: 279,
+        sku: "NRV-GALAXY-RGB-01",
+        stock: 80,
+      },
+    ],
+    upsellIds: ["prod-starbt", "prod-mx003", "prod-aurora"],
+    crossSellIds: ["prod-rabbit"],
+    seo: {
+      title: L(
+        "مصباح النجوم والمجرة + شريط RGB هدية | 199 درهم | NOORVA",
+        "Projecteur Étoiles Galaxie + Bande RGB | 199 MAD | NOORVA",
+        "Star Galaxy Projector + Free RGB Strip | 199 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "مصباح عرض النجوم والمجرة مع شريط إضاءة RGB هدية بـ 199 درهم. مؤقت 2H، USB DC 5V. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Projecteur étoiles & galaxie + bande RGB offerte à 199 MAD. Minuterie 2H, USB DC 5V. Livraison gratuite et COD au Maroc.",
+        "Star & galaxy projection lamp with free RGB LED strip for 199 MAD. 2H timer, USB DC 5V. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-car-mount",
+    slug: "magnetic-car-phone-mount-maidsail",
+    name: L(
+      "حامل هاتف مغناطيسي للسيارة Maidsail — MagSafe وذراع قابل للتعديل",
+      "Support Téléphone Magnétique Voiture Maidsail — MagSafe & Bras Ajustable",
+      "Maidsail Magnetic Car Phone Mount — MagSafe & Adjustable Arm"
+    ),
+    shortDescription: L(
+      "تثبيت مغناطيسي قوي، ذراع متعدد المفاصل، وقاعدة شفط مع قفل TIGHT/OPEN — تنقل آمن للهاتف في السيارة · توصيل مجاني والدفع عند الاستلام",
+      "Fixation magnétique forte, bras articulé, ventouse avec verrou TIGHT/OPEN — conduite sûre · livraison gratuite et COD",
+      "Strong magnetic hold, multi-joint arm, suction base with TIGHT/OPEN lock — safe driving · free shipping and COD"
+    ),
+    description: L(
+      "حامل هاتف مغناطيسي للسيارة من Maidsail عبر NOORVA: رأس حلقة مغناطيسية كبيرة متوافقة مع MagSafe وحالات مغناطيسية، ذراع قابل للطي والتعديل للارتفاع والزاوية، وقاعدة شفط دائرية مع حلقة قفل فضية (TIGHT / OPEN). تصميم أسود أنيق مع لمسات رمادية معدنية، مناسب للملاحة والمكالمات hands-free. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Support magnétique Maidsail NOORVA : anneau MagSafe, bras pliable réglable, ventouse avec bague de verrouillage (TIGHT / OPEN). Noir et gris métallique pour GPS et mains libres. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA Maidsail magnetic car mount: MagSafe ring head, foldable adjustable arm, suction cup with TIGHT/OPEN lock ring. Black with metallic grey for navigation and hands-free. Free Morocco shipping, cash on delivery."
+    ),
+    categoryId: "cat-car-accessories",
+    price: 159,
+    compareAtPrice: 229,
+    sku: "NRV-CARMOUNT-01",
+    stock: 55,
+    rating: 4.8,
+    reviewCount: 142,
+    soldCount: 680,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 6,
+    problemEmoji: "📱",
+    problem: L(
+      "الهاتف كيقع أو كيتزحلق فالسيارة؟",
+      "Votre téléphone glisse ou tombe en voiture?",
+      "Does your phone slip or fall in the car?"
+    ),
+    problemCause: L(
+      "الحاملات الضعيفة ما كتثبتش مزيان فالطريق",
+      "Les supports faibles ne tiennent pas sur la route",
+      "Weak mounts don't hold on bumpy roads"
+    ),
+    problemSolution: L(
+      "مغناطيس قوي + شفط محكم + ذراع قابل للتعديل",
+      "Aimant fort + ventouse verrouillée + bras réglable",
+      "Strong magnet + locked suction + adjustable arm"
+    ),
+    deepDescription: L(
+      "حامل Maidsail: رأس مغناطيسي MagSafe، ذراع متعدد المفاصل للزاوية والارتفاع، قاعدة شفط مع قفل دوّار، وتصميم قابل للطي للتخزين. مثالي للملاحة والمكالمات بأمان في المغرب.",
+      "Support Maidsail : tête MagSafe, bras articulé, ventouse verrouillée, pliable. Idéal GPS et mains libres au Maroc.",
+      "Maidsail mount: MagSafe head, articulated arm, locked suction, foldable storage. Ideal for safe GPS and hands-free in Morocco."
+    ),
+    tags: ["car", "phone-mount", "magnetic", "magsafe", "driving", "gift", "new", "accessories"],
+    benefits: [
+      L("تثبيت مغناطيسي قوي للهاتف بلا سقوط", "Fixation magnétique forte sans chute", "Strong magnetic hold without drops"),
+      L("ذراع قابل للتعديل للزاوية والارتفاع المثالي", "Bras réglable pour l'angle idéal", "Adjustable arm for the perfect angle"),
+      L("قاعدة شفط مع قفل TIGHT/OPEN للثبات", "Ventouse avec verrou TIGHT/OPEN", "Suction base with TIGHT/OPEN lock"),
+      L("متوافق MagSafe والحلقات المغناطيسية", "Compatible MagSafe et anneaux magnétiques", "MagSafe and magnetic ring compatible"),
+      L("تصميم قابل للطي وسهل الحمل", "Pliable et facile à ranger", "Foldable and easy to store"),
+      L("قيادة آمنة للملاحة والمكالمات", "Conduite sûre pour GPS et appels", "Safer driving for GPS and calls"),
+    ],
+    features: [
+      L("رأس حلقة مغناطيسية كبيرة (MagSafe)", "Anneau magnétique MagSafe", "Large MagSafe magnetic ring head"),
+      L("ذراع متعدد المفاصل قابل للطي", "Bras articulé pliable", "Multi-joint foldable arm"),
+      L("قاعدة شفط مع حلقة قفل دوّارة", "Ventouse à bague de verrouillage", "Suction cup with twist-lock ring"),
+      L("تعديل 360° للزاوية", "Rotation 360°", "360° angle adjustment"),
+      L("تصميم أسود فاخر", "Design noir premium", "Premium black design"),
+      L("سهل التركيب والإزالة", "Installation et retrait faciles", "Easy install and removal"),
+    ],
+    specifications: [
+      { label: L("العلامة", "Marque", "Brand"), value: L("Maidsail", "Maidsail", "Maidsail") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أسود / فضي", "Noir / Argent", "Black / Silver") },
+      { label: L("النوع", "Type", "Type"), value: L("حامل مغناطيسي للسيارة", "Support magnétique voiture", "Magnetic car mount") },
+      { label: L("التوافق", "Compatibilité", "Compatibility"), value: L("MagSafe / حلقة مغناطيسية", "MagSafe / anneau magnétique", "MagSafe / magnetic ring") },
+      { label: L("التثبيت", "Fixation", "Mounting"), value: L("شفط + قفل", "Ventouse + verrou", "Suction + lock") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("6 أشهر", "6 mois", "6 months") },
+    ],
+    packageIncludes: [
+      L("حامل هاتف مغناطيسي Maidsail للسيارة", "Support magnétique Maidsail voiture", "Maidsail magnetic car phone mount"),
+      L("دليل الاستخدام", "Manuel d'utilisation", "User manual"),
+    ],
+    howToUse: L(
+      "نظّف السطح (لوحة القيادة أو الزجاج)، ضع قاعدة الشفط واضغط، دوّر الحلقة على TIGHT للتثبيت. ثبّت الهاتف على الرأس المغناطيسي (MagSafe أو حلقة). اضبط الذراع للزاوية المناسبة. للإزالة، دوّر على OPEN.",
+      "Nettoyez la surface, posez la ventouse, tournez sur TIGHT. Fixez le téléphone (MagSafe ou anneau). Réglez le bras. Pour retirer, tournez sur OPEN.",
+      "Clean the surface, place the suction cup, twist to TIGHT. Attach phone (MagSafe or ring). Adjust the arm. To remove, twist to OPEN."
+    ),
+    lifestyleScenes: [
+      {
+        id: "navigation",
+        emoji: "🗺️",
+        title: L("الملاحة", "Navigation", "Navigation"),
+        description: L("GPS واضح بلا إمساك الهاتف", "GPS clair sans tenir le téléphone", "Clear GPS without holding your phone"),
+      },
+      {
+        id: "commute",
+        emoji: "🚗",
+        title: L("التنقل اليومي", "Trajet quotidien", "Daily commute"),
+        description: L("مكالمات hands-free بأمان", "Appels mains libres en sécurité", "Safe hands-free calls"),
+      },
+      {
+        id: "travel",
+        emoji: "✈️",
+        title: L("السفر", "Voyage", "Travel"),
+        description: L("قابل للطي — خذه معاك", "Pliable — emportez-le partout", "Foldable — take it anywhere"),
+      },
+      {
+        id: "gift",
+        emoji: "🎁",
+        title: L("هدية عملية", "Cadeau pratique", "Practical gift"),
+        description: L("مفيد لكل سائق", "Utile pour tout conducteur", "Useful for every driver"),
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-car-mount",
+        name: L("أسود", "Noir", "Black"),
+        price: 159,
+        compareAtPrice: 229,
+        sku: "NRV-CARMOUNT-01",
+        stock: 55,
+      },
+    ],
+    upsellIds: ["prod-laser303", "prod-mx003"],
+    crossSellIds: ["prod-shiatsu", "prod-starbt", "prod-car-fan-sunshade"],
+    seo: {
+      title: L(
+        "حامل هاتف مغناطيسي للسيارة Maidsail | 159 درهم | NOORVA المغرب",
+        "Support Magnétique Voiture Maidsail | 159 MAD | NOORVA Maroc",
+        "Maidsail Magnetic Car Phone Mount | 159 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "حامل مغناطيسي Maidsail بـ 159 درهم: MagSafe، ذراع قابل للتعديل، شفط مع قفل. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Support magnétique Maidsail à 159 MAD : MagSafe, bras réglable, ventouse verrouillée. Livraison gratuite et COD au Maroc.",
+        "Maidsail magnetic mount for 159 MAD: MagSafe, adjustable arm, locked suction. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-car-fan-sunshade",
+    slug: "car-dual-fan-foldable-sunshade-2in1-pack",
+    name: L(
+      "باك 2 في 1: مروحة سيارة مزدوجة مع مظلة شمس أمامية قابلة للطي",
+      "Pack 2 en 1 : Double Ventilateur Voiture + Pare-soleil Pare-brise Pliable",
+      "2-in-1 Pack: Dual Car Fan and Foldable Front Windshield Sunshade"
+    ),
+    shortDescription: L(
+      "مروحتين للسيارة + مظلة شمس عاكسة قابلة للطي · 249 درهم · توصيل مجاني والدفع عند الاستلام",
+      "Double ventilateur voiture + pare-soleil réfléchissant pliable · 249 MAD · livraison gratuite et COD",
+      "Dual car fans + foldable reflective sunshade · 249 MAD · free shipping and COD"
+    ),
+    description: L(
+      "باك 2 في 1 من NOORVA للصيف داخل السيارة: مروحة سيارة مزدوجة برأسين دوّارين وقاعدة سوداء ثابتة على لوحة القيادة، مع مظلة شمس أمامية قابلة للطي بتصميم مظلة — وجه فضي عاكس يبعد الحر والشمس عن المقصورة، وحقيبة حمل للتخزين. مثالي للوقوف تحت الشمس، التنقل اليومي، والسفر. 249 درهم. توصيل مجاني في المغرب والدفع عند الاستلام.",
+      "Pack 2 en 1 NOORVA pour l'été en voiture : double ventilateur avec deux têtes orientables sur base noire pour tableau de bord, plus pare-soleil pare-brise pliable type parapluie — face argentée réfléchissante et pochette de rangement. Idéal stationnement au soleil, trajets quotidiens et voyage. 249 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA 2-in-1 summer car pack: dual-head dashboard car fan on a black adjustable base, plus foldable umbrella-style front windshield sunshade with silver reflective face and carry pouch. Ideal for parking in sun, daily commutes and travel. 249 MAD. Free Morocco shipping, cash on delivery."
+    ),
+    categoryId: "cat-car-accessories",
+    price: 249,
+    compareAtPrice: 379,
+    sku: "NRV-CARFAN-SUN-01",
+    stock: 65,
+    rating: 4.8,
+    reviewCount: 52,
+    soldCount: 380,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 6,
+    problemEmoji: "☀️",
+    problem: L(
+      "السيارة كتحمّى بزاف فالشمس وما كتبردش بسرعة؟",
+      "La voiture surchauffe au soleil et ne refroidit pas assez vite?",
+      "Does your car overheat in the sun and take forever to cool down?"
+    ),
+    problemCause: L(
+      "الشمس على الزجاج الأمامي والهواء الراكد داخل المقصورة",
+      "Le soleil sur le pare-brise et l'air stagnant dans l'habitacle",
+      "Sun on the windshield and stagnant air inside the cabin"
+    ),
+    problemSolution: L(
+      "مظلة عاكسة + مروحتين — حماية من الحر وهواء منعش",
+      "Pare-soleil réfléchissant + double ventilateur — moins de chaleur, air frais",
+      "Reflective shade + dual fans — block heat and circulate fresh air"
+    ),
+    deepDescription: L(
+      "المروحة المزدوجة: قاعدة سوداء مع مفتاح تشغيل، ذراعان قابلان للتوجيه و رأسان دائريان بشبكة سوداء وريش أصفر للتبريد السريع على لوحة القيادة. المظلة: تصميم قابل للطي كالمظلة، وجه داخلي أسود ووجه خارجي فضي عاكس، مع حقيبة جلدية سوداء للحمل. تركيب المظلة من الداخل على الزجاج الأمامي يقلّل حرارة المقصورة؛ المروحة تعطي تدفق هواء أثناء القيادة أو الوقوف.",
+      "Double ventilateur : base noire, interrupteur, deux têtes orientables à grilles noires et pales jaunes pour le tableau de bord. Pare-soleil : pliable type parapluie, intérieur noir, extérieur argent réfléchissant, pochette noire. Réduit la chaleur au stationnement ; ventilateurs pour l'air en conduite ou à l'arrêt.",
+      "Dual fan: black base with switch, two adjustable heads with black grilles and yellow blades for dashboard use. Sunshade: umbrella-style foldable design, black interior and silver reflective exterior with black carry pouch. Shade cuts cabin heat when parked; fans add airflow while driving or waiting."
+    ),
+    tags: ["car", "fan", "summer", "sunshade", "driving", "gift", "new", "accessories"],
+    benefits: [
+      L("باك كامل: تبريد + حماية من الشمس", "Pack complet : fraîcheur + protection solaire", "Complete pack: cooling + sun protection"),
+      L("مروحتين لتدفق هواء أقوى", "Deux ventilateurs pour un flux d'air plus fort", "Two fans for stronger airflow"),
+      L("مظلة عاكسة تقلّل حرارة المقصورة", "Pare-soleil réfléchissant réduit la chaleur", "Reflective shade reduces cabin heat"),
+      L("قابلة للطي مع حقيبة حمل", "Pliable avec pochette de transport", "Foldable with carry pouch"),
+      L("249 درهم — قيمة ممتازة للصيف", "249 MAD — excellent rapport qualité-prix été", "249 MAD — great summer value"),
+    ],
+    features: [
+      L("مروحة سيارة مزدوجة برأسين قابلتين للتوجيه", "Double ventilateur voiture à têtes orientables", "Dual car fan with two adjustable heads"),
+      L("مظلة شمس أمامية قابلة للطي", "Pare-soleil pare-brise pliable", "Foldable front windshield sunshade"),
+      L("وجه فضي عاكس للشمس", "Face argentée réfléchissante", "Silver reflective sun-facing side"),
+      L("حقيبة تخزين للمظلة", "Pochette de rangement pour le pare-soleil", "Sunshade storage pouch"),
+      L("مناسبة للسيارة والسفر", "Adapté voiture et voyage", "Suitable for car and travel"),
+    ],
+    specifications: [
+      { label: L("المحتويات", "Contenu", "Contents"), value: L("مروحة مزدوجة + مظلة شمس", "Double ventilateur + pare-soleil", "Dual fan + sunshade") },
+      { label: L("المروحة", "Ventilateur", "Fan"), value: L("رأسان دوّاران · قاعدة لوحة القيادة", "2 têtes orientables · base tableau de bord", "2 adjustable heads · dashboard base") },
+      { label: L("المظلة", "Pare-soleil", "Sunshade"), value: L("قابلة للطي · عاكسة فضية", "Pliable · réfléchissant argent", "Foldable · silver reflective") },
+      { label: L("الاستخدام", "Utilisation", "Usage"), value: L("زجاج أمامي + مقصورة", "Pare-brise + habitacle", "Windshield + cabin") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("6 أشهر", "6 mois", "6 months") },
+    ],
+    packageIncludes: [
+      L("مروحة سيارة مزدوجة", "Double ventilateur voiture", "Dual car fan"),
+      L("مظلة شمس أمامية قابلة للطي", "Pare-soleil pare-brise pliable", "Foldable front windshield sunshade"),
+      L("حقيبة حمل للمظلة", "Pochette pour le pare-soleil", "Sunshade carry pouch"),
+    ],
+    howToUse: L(
+      "للمظلة: افتحها كالمظلة وثبّتها من داخل السيارة على الزجاج الأمامي (الوجه الفضي للخارج)، واطوِها في الحقيبة بعد الاستخدام. للمروحة: ضعها على لوحة القيادة، وجّه الرأسين نحوك أو نحو المقاعد، وشغّل المفتاح. استعمل المظلة عند الوقوف والمروحة للتهوية أثناء القيادة أو الانتظار.",
+      "Pare-soleil : déployez comme un parapluie, fixez de l'intérieur sur le pare-brise (face argentée dehors), rangez dans la pochette. Ventilateur : posez sur le tableau de bord, orientez les têtes, allumez. Pare-soleil au stationnement, ventilateur en conduite ou à l'arrêt.",
+      "Sunshade: open like an umbrella, install from inside on the windshield (silver side out), fold into the pouch when done. Fan: place on dashboard, aim both heads, switch on. Use shade when parked and fan for airflow while driving or waiting."
+    ),
+    lifestyleScenes: [
+      { id: "parking", emoji: "🅿️", title: L("الوقوف تحت الشمس", "Stationnement au soleil", "Parking in sun"), description: L("المظلة تبعد الحر عن المقصورة", "Le pare-soleil limite la surchauffe", "Shade keeps cabin heat down") },
+      { id: "commute", emoji: "🚗", title: L("التنقل اليومي", "Trajet quotidien", "Daily commute"), description: L("هواء منعش مع المروحتين", "Air frais avec le double ventilateur", "Fresh air with dual fans") },
+      { id: "travel", emoji: "🧳", title: L("السفر", "Voyage", "Travel"), description: L("قابلة للطي — خذ الباك معاك", "Pliable — emportez le pack", "Foldable — take the pack anywhere") },
+      { id: "summer", emoji: "☀️", title: L("الصيف", "Été", "Summer"), description: L("رفيقك ضد الحر داخل السيارة", "Votre allié anti-chaleur en voiture", "Your in-car heat companion") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-car-fan-sunshade",
+        name: L("باك 2 في 1", "Pack 2 en 1", "2-in-1 pack"),
+        price: 249,
+        compareAtPrice: 379,
+        sku: "NRV-CARFAN-SUN-01",
+        stock: 65,
+      },
+    ],
+    upsellIds: ["prod-car-mount", "prod-laser303"],
+    crossSellIds: ["prod-dual-cooler", "prod-car-mount"],
+    seo: {
+      title: L(
+        "باك 2 في 1 مروحة سيارة + مظلة شمس | 249 درهم | NOORVA المغرب",
+        "Pack 2 en 1 Ventilateur + Pare-soleil Voiture | 249 MAD | NOORVA Maroc",
+        "2-in-1 Car Fan + Sunshade Pack | 249 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "مروحة سيارة مزدوجة مع مظلة شمس أمامية قابلة للطي بـ 249 درهم. حماية من الحر وهواء منعش. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Double ventilateur voiture + pare-soleil pliable à 249 MAD. Moins de chaleur, air frais. Livraison gratuite et COD au Maroc.",
+        "Dual car fan and foldable windshield sunshade for 249 MAD. Block heat, fresh airflow. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-mosquito-tent",
+    slug: "foldable-mosquito-bed-tent",
+    name: L(
+      "خيمة الحماية من الناموس بتصميم قابل للطي وسريع التركيب",
+      "Moustiquaire Pop-Up Pliable — Installation Rapide",
+      "Foldable Pop-Up Mosquito Protection Bed Tent"
+    ),
+    shortDescription: L(
+      "شبكة دقيقة فوق السرير · تركيب pop-up في ثوانٍ · 199 درهم · عرض 2 بـ 269 درهم · توصيل مجاني والدفع عند الاستلام",
+      "Maille fine sur le lit · montage pop-up en secondes · 199 MAD · 2 pour 269 MAD · livraison gratuite et COD",
+      "Fine mesh over the bed · pop-up setup in seconds · 199 MAD · 2 for 269 MAD · free shipping and COD"
+    ),
+    description: L(
+      "خيمة حماية من الناموس من NOORVA: تصميم pop-up قابل للطي يُركّب بسرعة فوق سرير زوجي أو queen. شبكة بيضاء دقيقة مع إطار أزرق مرن، زخرفة dentelle أفقية، وفتحة U كبيرة بسحّاب للدخول والخروج. تُطوى في حقيبة دائرية خضراء/زرقاء للحمل والتخزين. مثالية للصيف، غرف الأطفال، والبيوت والرحلات. 199 درهم للوحدة أو 2 خيمات بـ 269 درهم. توصيل مجاني في المغرب والدفع عند الاستلام.",
+      "Moustiquaire pop-up NOORVA : montage rapide sur lit double/queen. Maille blanche fine, cadre bleu souple, dentelle décorative, grande ouverture en U avec fermeture éclair. Se plie dans un sac rond vert/bleu. Idéal été, chambres d'enfants, maison et voyage. 199 MAD l'unité ou 2 pour 269 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA pop-up mosquito bed tent: quick setup over double/queen bed. Fine white mesh, flexible blue frame, lace trim, large U-shaped zip door. Folds into green/blue circular carry bag. Ideal for summer, kids rooms, home and travel. 199 MAD each or 2 for 269 MAD. Free Morocco shipping, cash on delivery."
+    ),
+    categoryId: "cat-bedroom-lighting",
+    price: 199,
+    compareAtPrice: 279,
+    sku: "NRV-MOSQUITO-01",
+    stock: 120,
+    rating: 4.8,
+    reviewCount: 86,
+    soldCount: 540,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 6,
+    problemEmoji: "🦟",
+    problem: L(
+      "الناموس كيوقّفك على النوم فالصيف؟",
+      "Les moustiques gâchent votre sommeil en été?",
+      "Mosquitoes ruining your sleep in summer?"
+    ),
+    problemCause: L(
+      "الشبكات التقليدية صعبة التركيب أو ما كتغطّيش السرير كامل",
+      "Les moustiquaires classiques sont difficiles à installer ou ne couvrent pas tout le lit",
+      "Traditional nets are hard to install or don't cover the whole bed"
+    ),
+    problemSolution: L(
+      "خيمة pop-up قابلة للطي — تركيب سريع وحماية كاملة",
+      "Moustiquaire pop-up pliable — installation rapide, protection totale",
+      "Foldable pop-up tent — fast setup, full protection"
+    ),
+    deepDescription: L(
+      "هيكل pop-up مرن بإطار أزرق يُفتح في ثوانٍ فوق المرتبة. شبكة micro-mesh بيضاء مع زخرفة dentelle وفتحة سحّاب U للدخول بدون إزعاج. تُطوى في حقيبة دائرية ملونة للتخزين أو السفر. مناسبة للسرير الزوجي، غرف الأطفال، والبيوت الصيفية.",
+      "Structure pop-up à cadre bleu qui s'ouvre en secondes sur le matelas. Maille blanche fine, dentelle décorative, ouverture U zippée. Se range dans un sac rond coloré. Pour lit double, chambre enfant et maison d'été.",
+      "Flexible blue pop-up frame opens in seconds over the mattress. Fine white micro-mesh, lace trim, zippered U entry. Folds into a colorful round bag. For double beds, kids rooms and summer homes."
+    ),
+    tags: ["bedroom", "home", "kids", "gift", "new", "mosquito", "summer", "travel"],
+    benefits: [
+      L("حماية كاملة من الناموس طوال الليل", "Protection anti-moustiques toute la nuit", "Full mosquito protection all night"),
+      L("تركيب pop-up سريع بلا أدوات", "Montage pop-up rapide sans outils", "Quick pop-up setup with no tools"),
+      L("قابلة للطي مع حقيبة حمل عملية", "Pliable avec sac de transport pratique", "Foldable with practical carry bag"),
+      L("فتحة سحّاب واسعة للدخول والخروج", "Grande fermeture éclair pour entrer/sortir", "Wide zip entry for easy access"),
+      L("عرض 2 خيمات بـ 269 درهم — توفير واضح", "2 moustiquaires pour 269 MAD — vraie économie", "2 tents for 269 MAD — clear savings"),
+    ],
+    features: [
+      L("تصميم pop-up قابل للطي", "Design pop-up pliable", "Foldable pop-up design"),
+      L("شبكة micro-mesh بيضاء", "Maille micro-fine blanche", "White micro-mesh netting"),
+      L("إطار مرن أزرق", "Cadre souple bleu", "Flexible blue frame"),
+      L("فتحة U بسحّاب", "Ouverture en U zippée", "U-shaped zip door"),
+      L("حقيبة تخزين دائرية", "Sac de rangement rond", "Circular storage bag"),
+      L("مناسبة سرير زوجي / queen", "Adaptée lit double / queen", "Fits double / queen bed"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("خيمة ناموس pop-up", "Moustiquaire pop-up", "Pop-up mosquito tent") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أبيض + إطار أزرق", "Blanc + cadre bleu", "White + blue frame") },
+      { label: L("المقاس", "Taille", "Size"), value: L("سرير زوجي / queen", "Lit double / queen", "Double / queen bed") },
+      { label: L("الدخول", "Accès", "Entry"), value: L("سحّاب U", "Fermeture U", "U zip door") },
+      { label: L("الحمل", "Transport", "Portability"), value: L("حقيبة دائرية قابلة للطي", "Sac rond pliable", "Foldable round bag") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("6 أشهر", "6 mois", "6 months") },
+    ],
+    packageIncludes: [
+      L("خيمة حماية من الناموس pop-up", "Moustiquaire pop-up anti-moustiques", "Pop-up mosquito bed tent"),
+      L("حقيبة حمل وتخزين", "Sac de transport", "Carry / storage bag"),
+    ],
+    howToUse: L(
+      "افتح الخيمة من الحقيبة، اترك الهيكل pop-up يتمدّد فوق السرير، ثبّت الحواف تحت المرتبة أو حسب التعليمات. استخدم السحّاب للدخول. للطي، اطوِ الهيكل بحركة دائرية وارجعها للحقيبة.",
+      "Sortez la moustiquaire, laissez le pop-up se déployer sur le lit, fixez les bords sous le matelas. Utilisez la fermeture éclair. Pour ranger, pliez en cercle et remettez dans le sac.",
+      "Remove from bag, let the pop-up expand over the bed, tuck edges under the mattress per instructions. Use the zip to enter. To store, fold in a circle and return to the bag."
+    ),
+    lifestyleScenes: [
+      { id: "bedroom", emoji: "🛏️", title: L("غرفة النوم", "Chambre", "Bedroom"), description: L("نوم هادئ بلا لدغات", "Sommeil paisible sans piqûres", "Peaceful bite-free sleep") },
+      { id: "kids", emoji: "👶", title: L("غرفة الأطفال", "Enfants", "Kids Room"), description: L("حماية آمنة للصغار", "Protection sûre pour les enfants", "Safe protection for kids") },
+      { id: "summer", emoji: "☀️", title: L("الصيف", "Été", "Summer"), description: L("ضرورية فالحر", "Indispensable en saison chaude", "Essential in hot season") },
+      { id: "travel", emoji: "🎒", title: L("السفر", "Voyage", "Travel"), description: L("حقيبة حمل — خذها معاك", "Sac compact — emportez-la", "Compact bag — take it anywhere") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-mosquito-1",
+        name: L("1 خيمة — 199 درهم", "1 moustiquaire — 199 MAD", "1 tent — 199 MAD"),
+        price: 199,
+        compareAtPrice: 279,
+        sku: "NRV-MOSQUITO-01",
+        stock: 120,
+      },
+      {
+        id: "var-mosquito-2pk",
+        name: L("2 خيمات — 269 درهم", "2 moustiquaires — 269 MAD", "2 tents — 269 MAD"),
+        price: 269,
+        compareAtPrice: 398,
+        sku: "NRV-MOSQUITO-2PK",
+        stock: 80,
+      },
+    ],
+    upsellIds: ["prod-rabbit", "prod-starbt"],
+    crossSellIds: ["prod-galaxy-rgb", "prod-shiatsu"],
+    seo: {
+      title: L(
+        "خيمة الحماية من الناموس | 199 درهم · 2 بـ 269 | NOORVA المغرب",
+        "Moustiquaire Pop-Up Pliable | 199 MAD · 2 pour 269 | NOORVA Maroc",
+        "Foldable Mosquito Bed Tent | 199 MAD · 2 for 269 | NOORVA Morocco"
+      ),
+      description: L(
+        "خيمة ناموس pop-up قابلة للطي بـ 199 درهم أو 2 بـ 269 درهم. تركيب سريع، شبكة دقيقة، سحّاب U. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Moustiquaire pop-up pliable à 199 MAD ou 2 pour 269 MAD. Montage rapide, maille fine, fermeture U. Livraison gratuite et COD au Maroc.",
+        "Foldable pop-up mosquito tent for 199 MAD or 2 for 269 MAD. Fast setup, fine mesh, U zip. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-dual-cooler",
+    slug: "portable-rechargeable-dual-fan-air-cooler",
+    name: L(
+      "مبرد هواء محمول قابل للشحن مع مروحتين وتدفق هواء قوي وتصميم مكتبي أنيق",
+      "Refroidisseur d'Air Portable Rechargeable — Double Ventilateur & Design Bureau",
+      "Portable Rechargeable Dual-Fan Air Cooler — Strong Airflow & Elegant Desk Design"
+    ),
+    shortDescription: L(
+      "مروحتين عموديتين · تدفق هواء واسع وقوي · بطارية قابلة للشحن · 249 درهم · توصيل مجاني والدفع عند الاستلام",
+      "Double ventilateur · flux d'air large et puissant · batterie rechargeable · 249 MAD · livraison gratuite et COD",
+      "Dual vertical fans · wide strong airflow · rechargeable · 249 MAD · free shipping and COD"
+    ),
+    description: L(
+      "مبرد هواء محمول من NOORVA بتصميم برج أبيض أنيق: مروحتين دائريتين متراصّفتين لتدفق هواء أقوى ومساحة تبريد أوسع، فوهات رش خفيف، نافذة مستوى الماء، وشريط حمل جلدي. قابل للشحن — مثالي للمكتب، غرفة النوم، أو الطاولة بجانبك فالصيف. 249 درهم. توصيل مجاني في المغرب والدفع عند الاستلام.",
+      "Refroidisseur portable NOORVA : tour blanche élégante, double ventilateur pour un flux plus fort, buse brume légère, indicateur d'eau, sangle de transport. Rechargeable — idéal bureau, chambre ou table en été. 249 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA portable air cooler: elegant white tower, dual fans for stronger wide airflow, light mist nozzles, water level window, carry strap. Rechargeable — ideal for desk, bedroom or side table in summer. 249 MAD. Free Morocco shipping, cash on delivery."
+    ),
+    categoryId: "cat-home-decor",
+    price: 249,
+    compareAtPrice: 349,
+    sku: "NRV-DUALCOOL-01",
+    stock: 75,
+    rating: 4.8,
+    reviewCount: 64,
+    soldCount: 420,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 6,
+    problemEmoji: "🥵",
+    problem: L(
+      "الحر فالمكتب أو الغرفة كيخلّيك ما تقدّرش تركّز؟",
+      "La chaleur au bureau ou dans la chambre vous empêche de vous concentrer?",
+      "Heat at your desk or room making it hard to focus?"
+    ),
+    problemCause: L(
+      "المروحة الواحدة الصغيرة ما كتوصلش بارد كافي للمساحة",
+      "Un petit ventilateur unique ne refroidit pas assez la zone",
+      "A single small fan doesn't cool enough of your space"
+    ),
+    problemSolution: L(
+      "مروحتين + تدفق واسع + محمول قابل للشحن على مكتبك",
+      "Double ventilateur + flux large + portable rechargeable sur votre bureau",
+      "Dual fans + wide airflow + rechargeable portable on your desk"
+    ),
+    deepDescription: L(
+      "برج أبيض بمروحتين عموديتين: كل مروحة خلف شبكة slats بيضاء، مع فوهات رش علوية ومؤشر ماء شفاف. شريط حمل بني فاتح للتنقل، وقاعدة بيضاوية ثابتة على الطاولة. شحن USB للاستعمال اليومي في المكتب، الدراسة، أو بجانب السرير — بارد منعش بلا ما تشغّل التكييف كامل النهار.",
+      "Tour blanche à deux ventilateurs superposés, grilles slats, buse brume et voyant d'eau. Sangle transport, base ovale stable. Charge USB pour bureau, études ou chevet — fraîcheur sans clim toute la journée.",
+      "White tower with two stacked fans, slat grilles, mist nozzles and water window. Carry strap, stable oval base. USB charging for desk, study or bedside — fresh cooling without running AC all day."
+    ),
+    tags: ["cooler", "fan", "desk", "portable", "rechargeable", "summer", "home", "gift", "new", "decor"],
+    benefits: [
+      L("تبريد أسرع بفضل مروحتين بدل واحدة", "Refroidissement plus rapide grâce au double ventilateur", "Faster cooling with dual fans instead of one"),
+      L("تدفق هواء واسع يغطي منطقة أكبر على المكتب", "Flux d'air large couvrant plus de surface sur le bureau", "Wide airflow covering more of your desk area"),
+      L("قابل للشحن — خذه معاك بلا مقبس دائم", "Rechargeable — emportez-le sans prise permanente", "Rechargeable — take it without a permanent outlet"),
+      L("تصميم برج أنيق يناسب أي مكتب أو غرفة", "Design tour élégant pour bureau ou chambre", "Elegant tower design for any desk or room"),
+      L("خفيف مع شريط حمل عملي", "Léger avec sangle de transport pratique", "Lightweight with practical carry strap"),
+      L("249 درهم — قيمة ممتازة فالصيف", "249 MAD — excellent rapport qualité-prix en été", "249 MAD — great summer value"),
+    ],
+    features: [
+      L("مروحتان دائريتان عموديتان", "Deux ventilateurs circulaires superposés", "Two vertically stacked circular fans"),
+      L("تدفق هواء قوي ومساحة ريح واسعة", "Flux d'air puissant et zone large", "Strong airflow and wide wind area"),
+      L("قابل للشحن (USB)", "Rechargeable (USB)", "Rechargeable (USB)"),
+      L("فوهات رش / تبريد تبخيري خفيف", "Buses brume / refroidissement évaporatif léger", "Mist nozzles / light evaporative cooling"),
+      L("مؤشر مستوى الماء", "Indicateur niveau d'eau", "Water level indicator"),
+      L("شريط حمل وقاعدة مستقرة", "Sangle de transport et base stable", "Carry strap and stable base"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("مبرد هواء محمول", "Refroidisseur portable", "Portable air cooler") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أبيض + شريط بني", "Blanc + sangle marron", "White + tan strap") },
+      { label: L("المروحات", "Ventilateurs", "Fans"), value: L("مروحتان", "Double ventilateur", "Dual fans") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("قابل للشحن USB", "Recharge USB", "USB rechargeable") },
+      { label: L("الاستخدام", "Utilisation", "Usage"), value: L("مكتب / غرفة / طاولة", "Bureau / chambre / table", "Desk / room / side table") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("6 أشهر", "6 mois", "6 months") },
+    ],
+    packageIncludes: [
+      L("مبرد هواء محمول بمروحتين", "Refroidisseur portable double ventilateur", "Dual-fan portable air cooler"),
+      L("كابل شحن USB", "Câble de charge USB", "USB charging cable"),
+      L("دليل الاستخدام", "Manuel d'utilisation", "User manual"),
+    ],
+    howToUse: L(
+      "املأ خزان الماء حسب التعليمات، شحن الجهاز عبر USB، شغّل المروحتين واضبط مستوى الريح. ضعه على مكتب أو طاولة مستقرة. للتبريد المعزّز، استعمل وضع الرش إن وُجد. أعد الشحن عندما ينخفض المؤشر.",
+      "Remplissez le réservoir d'eau, chargez via USB, allumez les ventilateurs et réglez le flux. Placez sur un bureau stable. Utilisez la brume si disponible. Rechargez quand nécessaire.",
+      "Fill the water tank per instructions, charge via USB, turn on both fans and adjust airflow. Place on a stable desk or table. Use mist mode if available. Recharge when needed."
+    ),
+    lifestyleScenes: [
+      { id: "desk", emoji: "🖥️", title: L("المكتب", "Bureau", "Desk"), description: L("هواء منعش أثناء العمل", "Air frais pendant le travail", "Fresh air while you work") },
+      { id: "bedroom", emoji: "🛏️", title: L("غرفة النوم", "Chambre", "Bedroom"), description: L("برد خفيف بجانب السرير", "Fraîcheur légère au chevet", "Light cooling by the bed") },
+      { id: "study", emoji: "📚", title: L("الدراسة", "Études", "Study"), description: L("تركيز أفضل فالحر", "Meilleure concentration par la chaleur", "Better focus in the heat") },
+      { id: "summer", emoji: "☀️", title: L("الصيف", "Été", "Summer"), description: L("رفيقك اليومي فالحر", "Votre allié quotidien en été", "Your daily summer companion") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-dual-cooler",
+        name: L("أبيض", "Blanc", "White"),
+        price: 249,
+        compareAtPrice: 349,
+        sku: "NRV-DUALCOOL-01",
+        stock: 75,
+      },
+    ],
+    upsellIds: ["prod-shiatsu", "prod-mosquito-tent"],
+    crossSellIds: ["prod-starbt", "prod-car-mount"],
+    seo: {
+      title: L(
+        "مبرد هواء محمول بمروحتين | 249 درهم | NOORVA المغرب",
+        "Refroidisseur Portable Double Ventilateur | 249 MAD | NOORVA Maroc",
+        "Portable Dual-Fan Air Cooler | 249 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "مبرد هواء محمول قابل للشحن مع مروحتين وتدفق هواء قوي بـ 249 درهم. تصميم مكتبي أنيق. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Refroidisseur portable rechargeable double ventilateur à 249 MAD. Design bureau élégant. Livraison gratuite et COD au Maroc.",
+        "Portable rechargeable dual-fan air cooler for 249 MAD. Elegant desk design. Free shipping and COD in Morocco."
       ),
     },
   },

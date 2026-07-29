@@ -514,6 +514,82 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
       },
     ],
   },
+  "portable-rechargeable-dual-fan-air-cooler": {
+    headline: {
+      title: "برّد مكتبك بمروحتين — ريح أقوى ومساحة أوسع",
+      subtitle:
+        "مبرد هواء محمول قابل للشحن، تصميم برج أبيض أنيق، تدفق هواء قوي — مثالي للعمل والدراسة فالصيف.",
+    },
+    midCtaLabels: [
+      "بغيتي تهرب من الحر فالمكتب؟",
+      "249 درهم — مروحتين بلا تكييف طول النهار",
+      "خلص كاش عند الباب — بلا مخاطرة",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "املأ الماء",
+        desc: "عبّي خزان الماء حسب الدليل باش يخدم التبريد التبخيري.",
+        imageKey: "09-close-up",
+      },
+      {
+        step: "2",
+        title: "شحن الجهاز",
+        desc: "وصّل USB وشحن البطارية قبل ما تبدأ يومك.",
+        imageKey: "01-hero-white-bg",
+      },
+      {
+        step: "3",
+        title: "شغّل المروحتين",
+        desc: "حطّه على مكتب مستقر واستمتع بتدفق هواء واسع.",
+        imageKey: "10-features",
+      },
+      {
+        step: "4",
+        title: "خذه معاك",
+        desc: "شريط الحمل كيخلّيك تنقلو بسهولة بين الغرفة والمكتب.",
+        imageKey: "14-product-in-use",
+      },
+    ],
+    comparison: {
+      oursLabel: "مبرد NOORVA بمروحتين",
+      rows: [
+        { label: "مروحتان لتدفق أقوى", us: true, them: "مروحة واحدة" },
+        { label: "قابل للشحن USB", us: true, them: "سلك دائم غالبًا" },
+        { label: "تصميم برج مكتبي أنيق", us: true, them: "عادي" },
+        { label: "شريط حمل محمول", us: true, them: false },
+        { label: "249 درهم", us: true, them: "أغلى" },
+        ...SHARED_TRUST_ROWS,
+      ],
+    },
+    benefits: [
+      {
+        icon: Zap,
+        title: "ريح أقوى",
+        desc: "مروحتين عموديتين كيوزّعو الهواء على مساحة أوسع من مروحة واحدة.",
+      },
+      {
+        icon: BatteryCharging,
+        title: "قابل للشحن",
+        desc: "شحن USB — استعملو على المكتب أو بجانب السرير بلا ما يبقى معلّق على المقبس.",
+      },
+      {
+        icon: Feather,
+        title: "خفيف ومحمول",
+        desc: "شريط حمل عملي وتصميم برج ما كياخدش بزاف ديال البلاصة.",
+      },
+      {
+        icon: Thermometer,
+        title: "برد منعش",
+        desc: "مثالي فالصيف للعمل، الدراسة، أو الراحة بلا ما تشعل التكييف كامل النهار.",
+      },
+      {
+        icon: Gift,
+        title: "هدية صيفية",
+        desc: "عملي ومفيد — هدية مناسبة للعائلة والزملاء فموسم الحر.",
+      },
+    ],
+  },
 };
 
 export function getProductCroContent(slug: string): CroProductContent | null {

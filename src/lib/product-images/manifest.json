@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T12:18:41.209Z",
+  "generatedAt": "2026-07-29T15:41:13.748Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -1678,6 +1678,536 @@
         "18-mobile-banner": "ai-generated",
         "19-desktop-banner": "ai-generated",
         "20-social-media-banner": "ai-generated"
+      }
+    },
+    "magnetic-car-phone-mount-maidsail": {
+      "slug": "magnetic-car-phone-mount-maidsail",
+      "sku": "NRV-CARMOUNT-01",
+      "name": "Maidsail Magnetic Car Phone Mount",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.jpg",
+          "webp": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.webp",
+          "avif": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.avif",
+          "thumbnail": "/products/magnetic-car-phone-mount-maidsail/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/magnetic-car-phone-mount-maidsail/02-premium-hero.jpg",
+          "webp": "/products/magnetic-car-phone-mount-maidsail/02-premium-hero.webp",
+          "avif": "/products/magnetic-car-phone-mount-maidsail/02-premium-hero.avif",
+          "thumbnail": "/products/magnetic-car-phone-mount-maidsail/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-mount-maidsail/responsive/02-premium-hero-640.webp",
+            "md": "/products/magnetic-car-phone-mount-maidsail/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/magnetic-car-phone-mount-maidsail/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/magnetic-car-phone-mount-maidsail/09-close-up.jpg",
+          "webp": "/products/magnetic-car-phone-mount-maidsail/09-close-up.webp",
+          "avif": "/products/magnetic-car-phone-mount-maidsail/09-close-up.avif",
+          "thumbnail": "/products/magnetic-car-phone-mount-maidsail/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-mount-maidsail/responsive/09-close-up-640.webp",
+            "md": "/products/magnetic-car-phone-mount-maidsail/responsive/09-close-up-1280.webp",
+            "lg": "/products/magnetic-car-phone-mount-maidsail/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/magnetic-car-phone-mount-maidsail/10-features.jpg",
+          "webp": "/products/magnetic-car-phone-mount-maidsail/10-features.webp",
+          "avif": "/products/magnetic-car-phone-mount-maidsail/10-features.avif",
+          "thumbnail": "/products/magnetic-car-phone-mount-maidsail/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-mount-maidsail/responsive/10-features-640.webp",
+            "md": "/products/magnetic-car-phone-mount-maidsail/responsive/10-features-1280.webp",
+            "lg": "/products/magnetic-car-phone-mount-maidsail/responsive/10-features-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/magnetic-car-phone-mount-maidsail/14-product-in-use.jpg",
+          "webp": "/lifestyle/magnetic-car-phone-mount-maidsail/14-product-in-use.webp",
+          "avif": "/lifestyle/magnetic-car-phone-mount-maidsail/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/magnetic-car-phone-mount-maidsail/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/magnetic-car-phone-mount-maidsail/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/magnetic-car-phone-mount-maidsail/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/magnetic-car-phone-mount-maidsail/responsive/14-product-in-use-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
+        "09-close-up": "commercial",
+        "10-features": "commercial",
+        "14-product-in-use": "commercial"
+      }
+    },
+    "star-galaxy-projector-rgb-gift": {
+      "slug": "star-galaxy-projector-rgb-gift",
+      "sku": "NRV-GALAXY-RGB-01",
+      "name": "Star & Galaxy Projection Lamp with RGB LED Strip Gift",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/star-galaxy-projector-rgb-gift/01-hero-white-bg.jpg",
+          "webp": "/products/star-galaxy-projector-rgb-gift/01-hero-white-bg.webp",
+          "avif": "/products/star-galaxy-projector-rgb-gift/01-hero-white-bg.avif",
+          "thumbnail": "/products/star-galaxy-projector-rgb-gift/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/star-galaxy-projector-rgb-gift/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/star-galaxy-projector-rgb-gift/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/star-galaxy-projector-rgb-gift/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/star-galaxy-projector-rgb-gift/02-premium-hero.jpg",
+          "webp": "/products/star-galaxy-projector-rgb-gift/02-premium-hero.webp",
+          "avif": "/products/star-galaxy-projector-rgb-gift/02-premium-hero.avif",
+          "thumbnail": "/products/star-galaxy-projector-rgb-gift/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/star-galaxy-projector-rgb-gift/responsive/02-premium-hero-640.webp",
+            "md": "/products/star-galaxy-projector-rgb-gift/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/star-galaxy-projector-rgb-gift/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/star-galaxy-projector-rgb-gift/03-lifestyle.jpg",
+          "webp": "/lifestyle/star-galaxy-projector-rgb-gift/03-lifestyle.webp",
+          "avif": "/lifestyle/star-galaxy-projector-rgb-gift/03-lifestyle.avif",
+          "thumbnail": "/lifestyle/star-galaxy-projector-rgb-gift/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/03-lifestyle-640.webp",
+            "md": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/03-lifestyle-1280.webp",
+            "lg": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "04-bedroom": {
+          "original": "/lifestyle/star-galaxy-projector-rgb-gift/04-bedroom.jpg",
+          "webp": "/lifestyle/star-galaxy-projector-rgb-gift/04-bedroom.webp",
+          "avif": "/lifestyle/star-galaxy-projector-rgb-gift/04-bedroom.avif",
+          "thumbnail": "/lifestyle/star-galaxy-projector-rgb-gift/thumbs/04-bedroom-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/04-bedroom-640.webp",
+            "md": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/04-bedroom-1280.webp",
+            "lg": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/04-bedroom-2000.webp"
+          }
+        },
+        "05-living-room": {
+          "original": "/lifestyle/star-galaxy-projector-rgb-gift/05-living-room.jpg",
+          "webp": "/lifestyle/star-galaxy-projector-rgb-gift/05-living-room.webp",
+          "avif": "/lifestyle/star-galaxy-projector-rgb-gift/05-living-room.avif",
+          "thumbnail": "/lifestyle/star-galaxy-projector-rgb-gift/thumbs/05-living-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/05-living-room-640.webp",
+            "md": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/05-living-room-1280.webp",
+            "lg": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/05-living-room-2000.webp"
+          }
+        },
+        "06-gaming-room": {
+          "original": "/lifestyle/star-galaxy-projector-rgb-gift/06-gaming-room.jpg",
+          "webp": "/lifestyle/star-galaxy-projector-rgb-gift/06-gaming-room.webp",
+          "avif": "/lifestyle/star-galaxy-projector-rgb-gift/06-gaming-room.avif",
+          "thumbnail": "/lifestyle/star-galaxy-projector-rgb-gift/thumbs/06-gaming-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/06-gaming-room-640.webp",
+            "md": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/06-gaming-room-1280.webp",
+            "lg": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/06-gaming-room-2000.webp"
+          }
+        },
+        "07-romantic-room": {
+          "original": "/lifestyle/star-galaxy-projector-rgb-gift/07-romantic-room.jpg",
+          "webp": "/lifestyle/star-galaxy-projector-rgb-gift/07-romantic-room.webp",
+          "avif": "/lifestyle/star-galaxy-projector-rgb-gift/07-romantic-room.avif",
+          "thumbnail": "/lifestyle/star-galaxy-projector-rgb-gift/thumbs/07-romantic-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/07-romantic-room-640.webp",
+            "md": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/07-romantic-room-1280.webp",
+            "lg": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/07-romantic-room-2000.webp"
+          }
+        },
+        "08-kids-room": {
+          "original": "/lifestyle/star-galaxy-projector-rgb-gift/08-kids-room.jpg",
+          "webp": "/lifestyle/star-galaxy-projector-rgb-gift/08-kids-room.webp",
+          "avif": "/lifestyle/star-galaxy-projector-rgb-gift/08-kids-room.avif",
+          "thumbnail": "/lifestyle/star-galaxy-projector-rgb-gift/thumbs/08-kids-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/08-kids-room-640.webp",
+            "md": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/08-kids-room-1280.webp",
+            "lg": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/08-kids-room-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/star-galaxy-projector-rgb-gift/09-close-up.jpg",
+          "webp": "/products/star-galaxy-projector-rgb-gift/09-close-up.webp",
+          "avif": "/products/star-galaxy-projector-rgb-gift/09-close-up.avif",
+          "thumbnail": "/products/star-galaxy-projector-rgb-gift/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/star-galaxy-projector-rgb-gift/responsive/09-close-up-640.webp",
+            "md": "/products/star-galaxy-projector-rgb-gift/responsive/09-close-up-1280.webp",
+            "lg": "/products/star-galaxy-projector-rgb-gift/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/generated/star-galaxy-projector-rgb-gift/10-features.jpg",
+          "webp": "/generated/star-galaxy-projector-rgb-gift/10-features.webp",
+          "avif": "/generated/star-galaxy-projector-rgb-gift/10-features.avif",
+          "thumbnail": "/generated/star-galaxy-projector-rgb-gift/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/generated/star-galaxy-projector-rgb-gift/responsive/10-features-640.webp",
+            "md": "/generated/star-galaxy-projector-rgb-gift/responsive/10-features-1280.webp",
+            "lg": "/generated/star-galaxy-projector-rgb-gift/responsive/10-features-2000.webp"
+          }
+        },
+        "11-package-contents": {
+          "original": "/products/star-galaxy-projector-rgb-gift/11-package-contents.jpg",
+          "webp": "/products/star-galaxy-projector-rgb-gift/11-package-contents.webp",
+          "avif": "/products/star-galaxy-projector-rgb-gift/11-package-contents.avif",
+          "thumbnail": "/products/star-galaxy-projector-rgb-gift/thumbs/11-package-contents-400.webp",
+          "responsive": {
+            "sm": "/products/star-galaxy-projector-rgb-gift/responsive/11-package-contents-640.webp",
+            "md": "/products/star-galaxy-projector-rgb-gift/responsive/11-package-contents-1280.webp",
+            "lg": "/products/star-galaxy-projector-rgb-gift/responsive/11-package-contents-2000.webp"
+          }
+        },
+        "12-dimensions": {
+          "original": "/specifications/star-galaxy-projector-rgb-gift/12-dimensions.jpg",
+          "webp": "/specifications/star-galaxy-projector-rgb-gift/12-dimensions.webp",
+          "avif": "/specifications/star-galaxy-projector-rgb-gift/12-dimensions.avif",
+          "thumbnail": "/specifications/star-galaxy-projector-rgb-gift/thumbs/12-dimensions-400.webp",
+          "responsive": {
+            "sm": "/specifications/star-galaxy-projector-rgb-gift/responsive/12-dimensions-640.webp",
+            "md": "/specifications/star-galaxy-projector-rgb-gift/responsive/12-dimensions-1280.webp",
+            "lg": "/specifications/star-galaxy-projector-rgb-gift/responsive/12-dimensions-2000.webp"
+          }
+        },
+        "13-before-after": {
+          "original": "/generated/star-galaxy-projector-rgb-gift/13-before-after.jpg",
+          "webp": "/generated/star-galaxy-projector-rgb-gift/13-before-after.webp",
+          "avif": "/generated/star-galaxy-projector-rgb-gift/13-before-after.avif",
+          "thumbnail": "/generated/star-galaxy-projector-rgb-gift/thumbs/13-before-after-400.webp",
+          "responsive": {
+            "sm": "/generated/star-galaxy-projector-rgb-gift/responsive/13-before-after-640.webp",
+            "md": "/generated/star-galaxy-projector-rgb-gift/responsive/13-before-after-1280.webp",
+            "lg": "/generated/star-galaxy-projector-rgb-gift/responsive/13-before-after-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/star-galaxy-projector-rgb-gift/14-product-in-use.jpg",
+          "webp": "/lifestyle/star-galaxy-projector-rgb-gift/14-product-in-use.webp",
+          "avif": "/lifestyle/star-galaxy-projector-rgb-gift/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/star-galaxy-projector-rgb-gift/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/star-galaxy-projector-rgb-gift/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "15-banner": {
+          "original": "/banners/star-galaxy-projector-rgb-gift/15-banner.jpg",
+          "webp": "/banners/star-galaxy-projector-rgb-gift/15-banner.webp",
+          "avif": "/banners/star-galaxy-projector-rgb-gift/15-banner.avif",
+          "thumbnail": "/banners/star-galaxy-projector-rgb-gift/thumbs/15-banner-400.webp",
+          "responsive": {
+            "sm": "/banners/star-galaxy-projector-rgb-gift/responsive/15-banner-640.webp",
+            "md": "/banners/star-galaxy-projector-rgb-gift/responsive/15-banner-1280.webp",
+            "lg": "/banners/star-galaxy-projector-rgb-gift/responsive/15-banner-2000.webp"
+          }
+        },
+        "16-packaging": {
+          "original": "/products/star-galaxy-projector-rgb-gift/16-packaging.jpg",
+          "webp": "/products/star-galaxy-projector-rgb-gift/16-packaging.webp",
+          "avif": "/products/star-galaxy-projector-rgb-gift/16-packaging.avif",
+          "thumbnail": "/products/star-galaxy-projector-rgb-gift/thumbs/16-packaging-400.webp",
+          "responsive": {
+            "sm": "/products/star-galaxy-projector-rgb-gift/responsive/16-packaging-640.webp",
+            "md": "/products/star-galaxy-projector-rgb-gift/responsive/16-packaging-1280.webp",
+            "lg": "/products/star-galaxy-projector-rgb-gift/responsive/16-packaging-2000.webp"
+          }
+        },
+        "17-infographic": {
+          "original": "/generated/star-galaxy-projector-rgb-gift/17-infographic.jpg",
+          "webp": "/generated/star-galaxy-projector-rgb-gift/17-infographic.webp",
+          "avif": "/generated/star-galaxy-projector-rgb-gift/17-infographic.avif",
+          "thumbnail": "/generated/star-galaxy-projector-rgb-gift/thumbs/17-infographic-400.webp",
+          "responsive": {
+            "sm": "/generated/star-galaxy-projector-rgb-gift/responsive/17-infographic-640.webp",
+            "md": "/generated/star-galaxy-projector-rgb-gift/responsive/17-infographic-1280.webp",
+            "lg": "/generated/star-galaxy-projector-rgb-gift/responsive/17-infographic-2000.webp"
+          }
+        },
+        "18-mobile-banner": {
+          "original": "/banners/star-galaxy-projector-rgb-gift/18-mobile-banner.jpg",
+          "webp": "/banners/star-galaxy-projector-rgb-gift/18-mobile-banner.webp",
+          "avif": "/banners/star-galaxy-projector-rgb-gift/18-mobile-banner.avif",
+          "thumbnail": "/banners/star-galaxy-projector-rgb-gift/thumbs/18-mobile-banner-400.webp",
+          "responsive": {
+            "sm": "/banners/star-galaxy-projector-rgb-gift/responsive/18-mobile-banner-640.webp",
+            "md": "/banners/star-galaxy-projector-rgb-gift/responsive/18-mobile-banner-1280.webp",
+            "lg": "/banners/star-galaxy-projector-rgb-gift/responsive/18-mobile-banner-2000.webp"
+          }
+        },
+        "19-desktop-banner": {
+          "original": "/banners/star-galaxy-projector-rgb-gift/19-desktop-banner.jpg",
+          "webp": "/banners/star-galaxy-projector-rgb-gift/19-desktop-banner.webp",
+          "avif": "/banners/star-galaxy-projector-rgb-gift/19-desktop-banner.avif",
+          "thumbnail": "/banners/star-galaxy-projector-rgb-gift/thumbs/19-desktop-banner-400.webp",
+          "responsive": {
+            "sm": "/banners/star-galaxy-projector-rgb-gift/responsive/19-desktop-banner-640.webp",
+            "md": "/banners/star-galaxy-projector-rgb-gift/responsive/19-desktop-banner-1280.webp",
+            "lg": "/banners/star-galaxy-projector-rgb-gift/responsive/19-desktop-banner-2000.webp"
+          }
+        },
+        "20-social-media-banner": {
+          "original": "/banners/star-galaxy-projector-rgb-gift/20-social-media-banner.jpg",
+          "webp": "/banners/star-galaxy-projector-rgb-gift/20-social-media-banner.webp",
+          "avif": "/banners/star-galaxy-projector-rgb-gift/20-social-media-banner.avif",
+          "thumbnail": "/banners/star-galaxy-projector-rgb-gift/thumbs/20-social-media-banner-400.webp",
+          "responsive": {
+            "sm": "/banners/star-galaxy-projector-rgb-gift/responsive/20-social-media-banner-640.webp",
+            "md": "/banners/star-galaxy-projector-rgb-gift/responsive/20-social-media-banner-1280.webp",
+            "lg": "/banners/star-galaxy-projector-rgb-gift/responsive/20-social-media-banner-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
+        "03-lifestyle": "commercial",
+        "04-bedroom": "commercial",
+        "05-living-room": "commercial",
+        "06-gaming-room": "commercial",
+        "07-romantic-room": "commercial",
+        "08-kids-room": "commercial",
+        "09-close-up": "commercial",
+        "10-features": "commercial",
+        "11-package-contents": "commercial",
+        "12-dimensions": "commercial",
+        "13-before-after": "commercial",
+        "14-product-in-use": "commercial",
+        "15-banner": "commercial",
+        "16-packaging": "commercial",
+        "17-infographic": "commercial",
+        "18-mobile-banner": "commercial",
+        "19-desktop-banner": "commercial",
+        "20-social-media-banner": "commercial"
+      }
+    },
+    "foldable-mosquito-bed-tent": {
+      "slug": "foldable-mosquito-bed-tent",
+      "sku": "NRV-MOSQUITO-01",
+      "name": "Foldable Mosquito Protection Bed Tent",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/foldable-mosquito-bed-tent/01-hero-white-bg.jpg",
+          "webp": "/products/foldable-mosquito-bed-tent/01-hero-white-bg.webp",
+          "avif": "/products/foldable-mosquito-bed-tent/01-hero-white-bg.avif",
+          "thumbnail": "/products/foldable-mosquito-bed-tent/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-mosquito-bed-tent/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/foldable-mosquito-bed-tent/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/foldable-mosquito-bed-tent/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/foldable-mosquito-bed-tent/02-premium-hero.jpg",
+          "webp": "/products/foldable-mosquito-bed-tent/02-premium-hero.webp",
+          "avif": "/products/foldable-mosquito-bed-tent/02-premium-hero.avif",
+          "thumbnail": "/products/foldable-mosquito-bed-tent/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-mosquito-bed-tent/responsive/02-premium-hero-640.webp",
+            "md": "/products/foldable-mosquito-bed-tent/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/foldable-mosquito-bed-tent/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/foldable-mosquito-bed-tent/09-close-up.jpg",
+          "webp": "/products/foldable-mosquito-bed-tent/09-close-up.webp",
+          "avif": "/products/foldable-mosquito-bed-tent/09-close-up.avif",
+          "thumbnail": "/products/foldable-mosquito-bed-tent/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-mosquito-bed-tent/responsive/09-close-up-640.webp",
+            "md": "/products/foldable-mosquito-bed-tent/responsive/09-close-up-1280.webp",
+            "lg": "/products/foldable-mosquito-bed-tent/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/foldable-mosquito-bed-tent/10-features.jpg",
+          "webp": "/products/foldable-mosquito-bed-tent/10-features.webp",
+          "avif": "/products/foldable-mosquito-bed-tent/10-features.avif",
+          "thumbnail": "/products/foldable-mosquito-bed-tent/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-mosquito-bed-tent/responsive/10-features-640.webp",
+            "md": "/products/foldable-mosquito-bed-tent/responsive/10-features-1280.webp",
+            "lg": "/products/foldable-mosquito-bed-tent/responsive/10-features-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/foldable-mosquito-bed-tent/14-product-in-use.jpg",
+          "webp": "/lifestyle/foldable-mosquito-bed-tent/14-product-in-use.webp",
+          "avif": "/lifestyle/foldable-mosquito-bed-tent/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/foldable-mosquito-bed-tent/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/foldable-mosquito-bed-tent/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/foldable-mosquito-bed-tent/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/foldable-mosquito-bed-tent/responsive/14-product-in-use-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
+        "09-close-up": "commercial",
+        "10-features": "commercial",
+        "14-product-in-use": "commercial"
+      }
+    },
+    "portable-rechargeable-dual-fan-air-cooler": {
+      "slug": "portable-rechargeable-dual-fan-air-cooler",
+      "sku": "NRV-DUALCOOL-01",
+      "name": "Portable Rechargeable Dual-Fan Air Cooler",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/portable-rechargeable-dual-fan-air-cooler/01-hero-white-bg.jpg",
+          "webp": "/products/portable-rechargeable-dual-fan-air-cooler/01-hero-white-bg.webp",
+          "avif": "/products/portable-rechargeable-dual-fan-air-cooler/01-hero-white-bg.avif",
+          "thumbnail": "/products/portable-rechargeable-dual-fan-air-cooler/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/portable-rechargeable-dual-fan-air-cooler/02-premium-hero.jpg",
+          "webp": "/products/portable-rechargeable-dual-fan-air-cooler/02-premium-hero.webp",
+          "avif": "/products/portable-rechargeable-dual-fan-air-cooler/02-premium-hero.avif",
+          "thumbnail": "/products/portable-rechargeable-dual-fan-air-cooler/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/02-premium-hero-640.webp",
+            "md": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/portable-rechargeable-dual-fan-air-cooler/09-close-up.jpg",
+          "webp": "/products/portable-rechargeable-dual-fan-air-cooler/09-close-up.webp",
+          "avif": "/products/portable-rechargeable-dual-fan-air-cooler/09-close-up.avif",
+          "thumbnail": "/products/portable-rechargeable-dual-fan-air-cooler/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/09-close-up-640.webp",
+            "md": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/09-close-up-1280.webp",
+            "lg": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/portable-rechargeable-dual-fan-air-cooler/10-features.jpg",
+          "webp": "/products/portable-rechargeable-dual-fan-air-cooler/10-features.webp",
+          "avif": "/products/portable-rechargeable-dual-fan-air-cooler/10-features.avif",
+          "thumbnail": "/products/portable-rechargeable-dual-fan-air-cooler/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/10-features-640.webp",
+            "md": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/10-features-1280.webp",
+            "lg": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/10-features-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/portable-rechargeable-dual-fan-air-cooler/14-product-in-use.jpg",
+          "webp": "/lifestyle/portable-rechargeable-dual-fan-air-cooler/14-product-in-use.webp",
+          "avif": "/lifestyle/portable-rechargeable-dual-fan-air-cooler/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/portable-rechargeable-dual-fan-air-cooler/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/portable-rechargeable-dual-fan-air-cooler/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/portable-rechargeable-dual-fan-air-cooler/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/portable-rechargeable-dual-fan-air-cooler/responsive/14-product-in-use-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
+        "09-close-up": "commercial",
+        "10-features": "commercial",
+        "14-product-in-use": "commercial"
+      }
+    },
+    "car-dual-fan-foldable-sunshade-2in1-pack": {
+      "slug": "car-dual-fan-foldable-sunshade-2in1-pack",
+      "sku": "NRV-CARFAN-SUN-01",
+      "name": "2-in-1 Pack: Dual Car Fan and Foldable Front Windshield Sunshade",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/car-dual-fan-foldable-sunshade-2in1-pack/01-hero-white-bg.jpg",
+          "webp": "/products/car-dual-fan-foldable-sunshade-2in1-pack/01-hero-white-bg.webp",
+          "avif": "/products/car-dual-fan-foldable-sunshade-2in1-pack/01-hero-white-bg.avif",
+          "thumbnail": "/products/car-dual-fan-foldable-sunshade-2in1-pack/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/car-dual-fan-foldable-sunshade-2in1-pack/02-premium-hero.jpg",
+          "webp": "/products/car-dual-fan-foldable-sunshade-2in1-pack/02-premium-hero.webp",
+          "avif": "/products/car-dual-fan-foldable-sunshade-2in1-pack/02-premium-hero.avif",
+          "thumbnail": "/products/car-dual-fan-foldable-sunshade-2in1-pack/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/02-premium-hero-640.webp",
+            "md": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/car-dual-fan-foldable-sunshade-2in1-pack/09-close-up.jpg",
+          "webp": "/products/car-dual-fan-foldable-sunshade-2in1-pack/09-close-up.webp",
+          "avif": "/products/car-dual-fan-foldable-sunshade-2in1-pack/09-close-up.avif",
+          "thumbnail": "/products/car-dual-fan-foldable-sunshade-2in1-pack/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/09-close-up-640.webp",
+            "md": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/09-close-up-1280.webp",
+            "lg": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/car-dual-fan-foldable-sunshade-2in1-pack/10-features.jpg",
+          "webp": "/products/car-dual-fan-foldable-sunshade-2in1-pack/10-features.webp",
+          "avif": "/products/car-dual-fan-foldable-sunshade-2in1-pack/10-features.avif",
+          "thumbnail": "/products/car-dual-fan-foldable-sunshade-2in1-pack/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/10-features-640.webp",
+            "md": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/10-features-1280.webp",
+            "lg": "/products/car-dual-fan-foldable-sunshade-2in1-pack/responsive/10-features-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/car-dual-fan-foldable-sunshade-2in1-pack/14-product-in-use.jpg",
+          "webp": "/lifestyle/car-dual-fan-foldable-sunshade-2in1-pack/14-product-in-use.webp",
+          "avif": "/lifestyle/car-dual-fan-foldable-sunshade-2in1-pack/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/car-dual-fan-foldable-sunshade-2in1-pack/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/car-dual-fan-foldable-sunshade-2in1-pack/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/car-dual-fan-foldable-sunshade-2in1-pack/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/car-dual-fan-foldable-sunshade-2in1-pack/responsive/14-product-in-use-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
+        "09-close-up": "commercial",
+        "10-features": "commercial",
+        "14-product-in-use": "commercial"
       }
     }
   }

@@ -150,6 +150,111 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       amazonRefs: "/products/shiatsu-neck-shoulder-massager/",
     },
   },
+  {
+    id: "prod-galaxy-rgb",
+    slug: "star-galaxy-projector-rgb-gift",
+    sku: "NRV-GALAXY-RGB-01",
+    name: "Star & Galaxy Projection Lamp with RGB LED Strip Gift",
+    type: "Galaxy / star projection night light with free RGB LED strip bundle",
+    color: "Matte Black",
+    category: "Galaxy Projectors",
+    categoryId: "cat-projectors",
+    shortDescription:
+      "Matte black bowl galaxy projector — faceted crystal dome, multicolor nebula/stars, USB + DC 5V 2A, 2H timer, brightness slider, OFF-ON — plus flexible RGB LED strip on reel with gift bow",
+    visualIdentity:
+      "EXACT real product from client reference: matte black bowl-shaped star/galaxy projector with transparent multifaceted crystal dome emitting vivid magenta/cyan/orange/yellow nebula light. Front control panel with USB-A port, DC 5V 2A input, four square mode/timer buttons (2H), brightness slider, physical OFF-ON toggle. BUNDLE: flexible multicolor RGB LED strip on black plastic reel with large red satin gift bow, yellow plus sign between strip and projector in marketing composite. Cosmic purple/blue/pink nebula background in hero ads. NEVER astronaut, white aurora geometric, rabbit carousel, or aluminium laser pointer.",
+    dimensions: "Compact tabletop projector + RGB strip reel",
+    accessories: ["RGB LED light strip (gift)", "Power cable", "User manual"],
+    packageItems: [
+      "Star & galaxy projection lamp",
+      "RGB LED light strip gift",
+      "Power cable",
+      "User manual",
+    ],
+    sourceUrls: {
+      amazonRefs: "/products/star-galaxy-projector-rgb-gift/",
+    },
+  },
+  {
+    id: "prod-car-mount",
+    slug: "magnetic-car-phone-mount-maidsail",
+    sku: "NRV-CARMOUNT-01",
+    name: "Maidsail Magnetic Car Phone Mount",
+    type: "Magnetic suction-cup car phone holder with adjustable arm",
+    color: "Black with metallic grey / silver accents",
+    category: "Car Accessories",
+    categoryId: "cat-car-accessories",
+    shortDescription:
+      "Maidsail magnetic car mount — strong MagSafe-compatible ring head, multi-joint adjustable arm, vacuum suction base with twist-lock (TIGHT / OPEN)",
+    visualIdentity:
+      "EXACT real product — Maidsail brand magnetic car phone mount. Matte black plastic with metallic grey/silver accents. Large circular magnetic ring head (MagSafe-compatible hollow-center ring). Multi-jointed foldable adjustable arm with hinges at base and behind magnetic head. Circular vacuum suction cup base with rotating metallic grey lock ring labeled TIGHT and OPEN with arrows. Side profile shows arm extension and tilt; phone attached magnetically on head; fully folded compact portable position. NEVER redesign as vent clip-only, wireless charger dock, or different brand shape.",
+    dimensions: "Foldable adjustable arm mount with suction base",
+    accessories: ["Magnetic ring head (MagSafe compatible)", "Suction cup base with lock ring"],
+    packageItems: ["Magnetic car phone mount", "User manual"],
+    sourceUrls: {
+      amazonRefs: "/products/magnetic-car-phone-mount-maidsail/",
+    },
+  },
+  {
+    id: "prod-mosquito-tent",
+    slug: "foldable-mosquito-bed-tent",
+    sku: "NRV-MOSQUITO-01",
+    name: "Foldable Mosquito Protection Bed Tent",
+    type: "Pop-up mosquito net bed tent with zippered entry",
+    color: "White mesh with blue flexible frame trim; lime-green and royal-blue storage bag",
+    category: "Bedroom",
+    categoryId: "cat-bedroom-lighting",
+    shortDescription:
+      "White dome mosquito net tent over double/queen bed — lace trim, U-shaped zip door, foldable pop-up frame, circular carry bag",
+    visualIdentity:
+      "EXACT real product — white fine-mesh pop-up mosquito bed tent with flexible blue border/frame forming a dome over a bed. Horizontal white lace-like decorative trim on upper section. Large U-shaped zippered side opening. Fully deployed covering double/queen mattress on light wood bed frame with white bedding. Circular two-tone carry bag (lime green top, royal blue bottom) with blue handle leaning against bed. Bright modern bedroom with window light, bedside lamp, plant. NEVER redesign as hanging canopy-only net without pop-up frame or different color scheme.",
+    dimensions: "Fits double / queen bed (pop-up dome tent)",
+    accessories: ["Circular zippered storage bag (green/blue)"],
+    packageItems: ["Foldable mosquito bed tent", "Storage carry bag"],
+    sourceUrls: {
+      clientRef: "/products/foldable-mosquito-bed-tent/",
+    },
+  },
+  {
+    id: "prod-dual-cooler",
+    slug: "portable-rechargeable-dual-fan-air-cooler",
+    sku: "NRV-DUALCOOL-01",
+    name: "Portable Rechargeable Dual-Fan Air Cooler",
+    type: "Portable evaporative / dual-fan desk air cooler",
+    color: "White with tan/brown leather-like carry strap",
+    category: "Home & Desk",
+    categoryId: "cat-home-decor",
+    shortDescription:
+      "White tower dual-fan portable air cooler — rechargeable battery, strong wide airflow, mist nozzles, water level window, elegant desk design with top carry strap",
+    visualIdentity:
+      "EXACT real product — tall white matte plastic tower portable air cooler with two vertically stacked circular fans, each behind white radial slat grilles. Three small dark mist nozzles above top fan, slim horizontal vent at top edge, translucent vertical water-level strip on upper right side. Tan/brown leather-like carry strap attached at top left. Oval flat white base for desk stability. Marketing may show light blue gradient background with horizontal blue airflow streak lines emphasizing wide wind area. Compact elegant desk / bedside cooler — NOT a large floor AC unit, NOT black industrial fan, NOT single-blade only.",
+    dimensions: "Compact desk tower cooler",
+    accessories: ["USB charging cable", "User manual"],
+    packageItems: ["Dual-fan portable air cooler", "USB charging cable", "User manual"],
+    sourceUrls: {
+      clientRef: "/products/portable-rechargeable-dual-fan-air-cooler/",
+    },
+  },
+  {
+    id: "prod-car-fan-sunshade",
+    slug: "car-dual-fan-foldable-sunshade-2in1-pack",
+    sku: "NRV-CARFAN-SUN-01",
+    name: "2-in-1 Pack: Dual Car Fan and Foldable Front Windshield Sunshade",
+    type: "Dual dashboard car fan + foldable umbrella-style windshield sunshade",
+    color: "Black fan base and grilles with yellow blades; silver reflective sunshade with black interior and carry pouch",
+    category: "Car Accessories",
+    categoryId: "cat-car-accessories",
+    shortDescription:
+      "2-in-1 car summer pack — dual-head adjustable dashboard fan plus foldable silver reflective front windshield sunshade with carry pouch",
+    visualIdentity:
+      "EXACT real product bundle — (1) Dual car fan: black plastic base with red toggle switch, two pivoting arms, circular fan heads with black outer grilles and bright yellow inner blades, sits on car dashboard. (2) Foldable windshield sunshade: umbrella-style collapsible frame, silver reflective exterior, black interior fabric, shown open, in black leather-like vertical carry pouch, and installed inside red car windshield with yellow arrows illustrating heat reflection. Marketing hero shows both products on dashboard with palm trees/sunny sky through windshield. NEVER redesign as single fan only, cardboard accordion shade only, or rear-window-only shade.",
+    dimensions: "Dashboard dual fan; foldable full windshield sunshade",
+    accessories: ["Sunshade carry pouch"],
+    packageItems: ["Dual car fan", "Foldable front windshield sunshade", "Sunshade carry pouch"],
+    sourceUrls: {
+      clientRef: "/products/car-dual-fan-foldable-sunshade-2in1-pack/",
+    },
+  },
 ];
 
 export function getProductProfile(slug: string): ProductProfile | undefined {

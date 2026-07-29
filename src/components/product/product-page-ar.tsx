@@ -26,6 +26,7 @@ import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
+import { ProductVariantPicker, isPackVariantSku } from "@/components/product/product-variant-picker";
 
 const ProductOrderForm = dynamic(
   () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
@@ -171,7 +172,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
   const recentlyViewedIds = useRecentlyViewedStore((s) => s.productIds);
 
-  const [variant] = useState(product.variants[0]);
+  const [variant, setVariant] = useState(product.variants[0]);
   const [qty, setQty] = useState(1);
   const [sticky, setSticky] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -216,6 +217,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   }, []);
 
   const maxQty = Math.min(variant.stock || 3, 3);
+  const isPack = isPackVariantSku(variant.sku);
+  const orderQty = isPack ? 1 : qty;
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
   const ctaClass = isLaser
@@ -232,7 +235,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         contentName={product.name.ar}
         value={variant.price}
         currency="MAD"
-        quantity={qty}
+        quantity={orderQty}
       />
       {/* شريط ثقة علوي */}
       <div className="bg-[#12121a] border-b border-white/10 text-white/80 text-xs sm:text-sm py-2.5 px-4">
@@ -349,7 +352,19 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           ))}
         </section>
 
+        <ProductVariantPicker
+          variants={product.variants}
+          selectedId={variant.id}
+          onSelect={(v) => {
+            setVariant(v);
+            setQty(1);
+          }}
+          locale="ar"
+          label="اختر العرض"
+        />
+
         {/* الكمية — خارج النموذج */}
+        {!isPack && (
         <section className="flex items-center justify-between sm:justify-start gap-6 rounded-2xl border border-white/8 bg-[#12121a]/50 px-5 py-4">
           <span className="text-sm font-medium text-white/70">الكمية</span>
           <div className="flex items-center gap-3">
@@ -374,6 +389,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             </button>
           </div>
         </section>
+        )}
 
         {/* 5. زر اطلب الآن */}
         <button type="button" onClick={scrollToOrder} className={ctaClass}>
@@ -382,7 +398,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         </button>
 
         {/* 6. نموذج الطلب */}
-        <ProductOrderForm product={product} variant={variant} quantity={qty} />
+        <ProductOrderForm product={product} variant={variant} quantity={orderQty} />
 
         {/* 7. الفوائد */}
         <ProductBenefitsSection product={product} onOrderClick={scrollToOrder} />
@@ -625,7 +641,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 className={cn(stickyCtaClass, "w-full h-14 rounded-2xl text-base active:scale-[0.98] transition-transform")}
               >
                 <ShoppingBag className="h-5 w-5" />
-                اطلب الآن — {formatPriceNumber(variant.price * qty, "ar")} درهم
+                اطلب الآن — {formatPriceNumber(variant.price * orderQty, "ar")} درهم
               </button>
             </div>
           </motion.div>

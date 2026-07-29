@@ -67,8 +67,14 @@ export function getProductImageUrl(
 }
 
 export function getProductHeroUrl(slug: string): string {
-  // Astronaut + Laser use premium marketing composite as hero
-  if (slug === "astronaut-bt-speaker-projector" || slug === "green-laser-pointer-303") {
+  // Astronaut + Laser + car mount use premium marketing composite as hero
+  if (
+    slug === "astronaut-bt-speaker-projector" ||
+    slug === "green-laser-pointer-303" ||
+    slug === "magnetic-car-phone-mount-maidsail" ||
+    slug === "car-dual-fan-foldable-sunshade-2in1-pack" ||
+    slug === "star-galaxy-projector-rgb-gift"
+  ) {
     return (
       getProductImageUrl(slug, "02-premium-hero", "webp") ||
       getProductImageUrl(slug, "01-hero-white-bg", "webp") ||

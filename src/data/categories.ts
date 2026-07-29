@@ -3,6 +3,18 @@ import { getProductHeroUrl } from "@/lib/product-images/assets";
 
 export const categories: Category[] = [
   {
+    id: "cat-car-accessories",
+    slug: "accessoires-auto",
+    name: { ar: "إكسسوارات السيارة", fr: "Accessoires Auto", en: "Car Accessories" },
+    description: {
+      ar: "حاملات هاتف مغناطيسية وإكسسوارات عملية للقيادة الآمنة",
+      fr: "Supports téléphone magnétiques et accessoires pratiques pour la conduite",
+      en: "Magnetic phone mounts and practical driving accessories",
+    },
+    image: getProductHeroUrl("magnetic-car-phone-mount-maidsail"),
+    productCount: 1,
+  },
+  {
     id: "cat-laser-pointers",
     slug: "pointeurs-laser",
     name: { ar: "مؤشرات الليزر", fr: "Pointeurs Laser", en: "Laser Pointers" },
@@ -60,7 +72,7 @@ export const categories: Category[] = [
       en: "Premium lighting pieces to decorate any room",
     },
     image: getProductHeroUrl("bluetooth-star-projector"),
-    productCount: 5,
+    productCount: 6,
   },
   {
     id: "cat-bedroom-lighting",
@@ -72,7 +84,7 @@ export const categories: Category[] = [
       en: "Calming lighting that transforms your bedroom",
     },
     image: getProductHeroUrl("astronaut-bt-speaker-projector"),
-    productCount: 4,
+    productCount: 5,
   },
   {
     id: "cat-kids-room",

@@ -678,12 +678,188 @@ const SHIATSU_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const CAR_MOUNT_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🚗",
+    heading: "حامل مغناطيسي Maidsail للسيارة",
+    subtitle: "MagSafe · ذراع قابل للتعديل · شفط مع قفل TIGHT/OPEN",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "📷",
+    heading: "صورة المنتج الأصلية",
+    subtitle: "رأس مغناطيسي · ذراع متعدد المفاصل · قاعدة شفط",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "🧲",
+    heading: "تثبيت مغناطيسي قوي",
+    subtitle: "متوافق MagSafe والحلقات المغناطيسية",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🔒",
+    heading: "قفل الشفط",
+    subtitle: "دوّر على TIGHT للتثبيت · OPEN للإزالة",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "📱",
+    heading: "استخدام عملي في السيارة",
+    subtitle: "ملاحة ومكالمات hands-free بأمان",
+    objectFit: "contain",
+  },
+];
+
+const DUAL_FAN_COOLER_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "❄️",
+    heading: "مبرد هواء محمول — مروحتين",
+    subtitle: "تدفق هواء قوي · قابل للشحن · تصميم مكتبي أنيق",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "🌀",
+    heading: "برّد مكتبك بسرعة",
+    subtitle: "برج أبيض · شريط حمل · قاعدة مستقرة",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "💨",
+    heading: "مروحتين = ريح أقوى",
+    subtitle: "مساحة هواء أوسع وقوة تبريد طبيعية",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🔋",
+    heading: "محمول وقابل للشحن",
+    subtitle: "خذه للمكتب، الغرفة، أو الرحلات القصيرة",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "🖥️",
+    heading: "مثالي على المكتب",
+    subtitle: "هواء منعش أثناء العمل أو الدراسة",
+    objectFit: "contain",
+  },
+];
+
+const MOSQUITO_TENT_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🛏️",
+    heading: "خيمة حماية من الناموس",
+    subtitle: "قابلة للطي · تركيب سريع · فتحة سحّاب U",
+    objectFit: "cover",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "🦟",
+    heading: "شبكة دقيقة وإطار مرن",
+    subtitle: "حماية كاملة للسرير الزوجي",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "⚡",
+    heading: "تركيب في ثوانٍ",
+    subtitle: "تصميم pop-up قابل للطي مع حقيبة حمل",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🔒",
+    heading: "سحّاب جانبي واسع",
+    subtitle: "دخول وخروج سهل بلا إزعاج",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "🌙",
+    heading: "نوم هادئ بلا لدغات",
+    subtitle: "مثالية للصيف والبيوت والرحلات",
+    objectFit: "cover",
+  },
+];
+
+const CAR_FAN_SUNSHADE_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🚗",
+    heading: "باك 2 في 1 للسيارة",
+    subtitle: "مروحتين + مظلة شمس أمامية قابلة للطي",
+    objectFit: "cover",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "☀️",
+    heading: "حماية من الشمس وهواء منعش",
+    subtitle: "249 درهم · توصيل مجاني والدفع عند الاستلام",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "🌂",
+    heading: "مظلة عاكسة قابلة للطي",
+    subtitle: "تصميم مظلة · وجه فضي · حقيبة حمل",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "💨",
+    heading: "مروحة مزدوجة للوحة القيادة",
+    subtitle: "رأسان قابلان للتوجيه · تدفق هواء أقوى",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "🅿️",
+    heading: "مثالي فالصيف",
+    subtitle: "وقوف تحت الشمس أو تنقل يومي",
+    objectFit: "cover",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
   "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
   "northern-lights-galaxy-projector": AURORA_SLIDES,
   "green-laser-pointer-303": LASER_SLIDES,
   "shiatsu-neck-shoulder-massager": SHIATSU_SLIDES,
+  "magnetic-car-phone-mount-maidsail": CAR_MOUNT_SLIDES,
+  "car-dual-fan-foldable-sunshade-2in1-pack": CAR_FAN_SUNSHADE_SLIDES,
+  "foldable-mosquito-bed-tent": MOSQUITO_TENT_SLIDES,
+  "portable-rechargeable-dual-fan-air-cooler": DUAL_FAN_COOLER_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {
