@@ -7,15 +7,6 @@
 
 import { useEffect } from "react";
 
-declare global {
-  interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    fbq?: any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    _fbq?: any;
-  }
-}
-
 /** Install Meta's fbq stub early so events can queue before fbevents.js loads. */
 function installFbqStub() {
   if (typeof window === "undefined" || window.fbq) return;
@@ -62,8 +53,10 @@ export function FacebookPixelScript() {
 
         installFbqStub();
         loadFbevents();
-        window.fbq("init", pixelId);
-        window.fbq("track", "PageView");
+        const fbq = window.fbq;
+        if (!fbq) return;
+        fbq("init", pixelId);
+        fbq("track", "PageView");
         document.documentElement.dataset.fbPixel = pixelId;
       } catch {
         /* best-effort — CAPI still covers server events */
