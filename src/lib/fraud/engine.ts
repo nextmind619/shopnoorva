@@ -19,7 +19,7 @@ import { detectVelocity } from "./velocity";
 
 function addressLooksOk(address: string): boolean {
   const t = address.trim();
-  if (t.length < 12) return false;
+  if (!t) return false;
   if (/test|asdf|xxx|fake|lorem|123456/i.test(t)) return false;
   return true;
 }

@@ -9,8 +9,6 @@ import {
   validateMoroccanPhone,
 } from "@/lib/fraud/phone";
 
-const MIN_ADDRESS_LENGTH = 15;
-
 /** Validates Moroccan mobile numbers (05/06/07) and rejects obvious fakes. */
 export function isValidMoroccanPhone(phone: string): boolean {
   return validateMoroccanPhone(phone).valid;
@@ -52,6 +50,7 @@ function chunkDigits(digits: string): string {
   return parts.join(" ");
 }
 
-export function isValidAddress(address: string, minLength = MIN_ADDRESS_LENGTH): boolean {
-  return address.trim().length >= minLength;
+/** Any non-empty address is accepted (city-only is fine for COD). */
+export function isValidAddress(address: string): boolean {
+  return address.trim().length > 0;
 }

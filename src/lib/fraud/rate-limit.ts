@@ -34,7 +34,7 @@ export interface MultiRateLimitResult {
 }
 
 /**
- * Max 2 orders / 30 minutes per IP, phone, fingerprint, and device.
+ * Max 3 orders / 30 minutes per IP, phone, fingerprint, and device.
  * Sliding window. Optionally mirrored to Redis when REDIS_URL is up.
  */
 export function checkOrderRateLimits(keys: {

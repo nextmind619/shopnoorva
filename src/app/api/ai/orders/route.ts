@@ -10,7 +10,7 @@ const schema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
   city: z.string().min(2),
-  address: z.string().min(5),
+  address: z.string().min(1),
   paymentMethod: z.string().optional(),
   discount: z.number().optional(),
   cartId: z.string().optional(),

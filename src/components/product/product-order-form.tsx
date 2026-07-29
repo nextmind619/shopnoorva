@@ -57,7 +57,6 @@ const COPY = {
     errPhoneRequired: "الرجاء إدخال رقم الهاتف",
     errPhoneInvalid: "الرجاء إدخال رقم هاتف مغربي صحيح",
     errAddressRequired: "الرجاء إدخال العنوان",
-    errAddressInvalid: "الرجاء إدخال عنوان تفصيلي كامل",
     errBlocked: "تعذر إتمام الطلب حالياً. يرجى التحقق من معلوماتك أو المحاولة لاحقاً.",
     errGeneric: "تعذر إتمام الطلب. يرجى المحاولة مرة أخرى.",
     errNetwork: "تعذر إتمام الطلب. تحقق من اتصالك وحاول مجدداً.",
@@ -84,7 +83,6 @@ const COPY = {
     errPhoneRequired: "Veuillez entrer votre numéro de téléphone",
     errPhoneInvalid: "Veuillez entrer un numéro marocain valide",
     errAddressRequired: "Veuillez entrer votre adresse",
-    errAddressInvalid: "Veuillez entrer une adresse complète et détaillée",
     errBlocked: "Commande impossible pour le moment. Vérifiez vos informations ou réessayez plus tard.",
     errGeneric: "Impossible de finaliser la commande. Veuillez réessayer.",
     errNetwork: "Impossible de finaliser. Vérifiez votre connexion et réessayez.",
@@ -160,8 +158,7 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
         if (!isValidMoroccanPhone(value)) return t.errPhoneInvalid;
         return undefined;
       case "address":
-        if (!value.trim()) return t.errAddressRequired;
-        if (!isValidAddress(value)) return t.errAddressInvalid;
+        if (!value.trim() || !isValidAddress(value)) return t.errAddressRequired;
         return undefined;
     }
   };

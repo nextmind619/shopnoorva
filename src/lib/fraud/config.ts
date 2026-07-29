@@ -3,7 +3,7 @@
 export const FRAUD_CONFIG = {
   /** Max orders per window for IP / phone / fingerprint / device */
   rateLimit: {
-    maxOrders: 2,
+    maxOrders: 3,
     windowMs: 30 * 60 * 1000, // 30 minutes
   },
 
