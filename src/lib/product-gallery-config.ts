@@ -38,7 +38,7 @@ export const GALLERY_SECTION_LABELS: Record<GallerySection, string> = {
 const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
-    imageType: "02-premium-hero",
+    imageType: "01-hero-white-bg",
     emoji: "🚀",
     heading: "الصورة الرئيسية — رائد الفضاء",
     subtitle: "إسقاط مجرة حية · ريموت تحكم · 8 أصوات مهدئة · سبيكر بلوتوث",
@@ -46,7 +46,7 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
   },
   {
     section: "hero",
-    imageType: "01-hero-white-bg",
+    imageType: "09-close-up",
     emoji: "📷",
     heading: "منظر أمامي — المنتج الأصلي",
     subtitle: "قبة سوداء عاكسة · عدسة HD · قاعدة ثابتة · خلفية احترافية",
@@ -114,14 +114,6 @@ const ASTRONAUT_SLIDES: GallerySlideConfig[] = [
     emoji: "🧰",
     heading: "محتويات العلبة الكاملة",
     subtitle: "بروجيكتور + ريموت أسود + كابل USB + دليل الاستخدام",
-    objectFit: "contain",
-  },
-  {
-    section: "accessories",
-    imageType: "09-close-up",
-    emoji: "🔧",
-    heading: "منظر خلفي — أزرار التحكم",
-    subtitle: "ON/OFF · Model · Light · Music/Sound · منفذ USB",
     objectFit: "contain",
   },
   {

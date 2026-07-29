@@ -23,8 +23,19 @@ export interface GallerySlide {
   objectPosition?: string;
 }
 
+/** Slides omitted from gallery (low-res or duplicate) — hero URL may still use these elsewhere */
+const GALLERY_EXCLUDED_IMAGE_TYPES: Partial<Record<string, PremiumImageType[]>> = {
+  "astronaut-bt-speaker-projector": ["02-premium-hero", "14-product-in-use"],
+};
+
+function isGalleryImageExcluded(slug: string, imageType: PremiumImageType): boolean {
+  return GALLERY_EXCLUDED_IMAGE_TYPES[slug]?.includes(imageType) ?? false;
+}
+
 export function buildProductGallerySlides(product: Product): GallerySlide[] {
-  const configs = getGallerySlideConfigs(product.slug);
+  const configs = getGallerySlideConfigs(product.slug).filter(
+    (cfg) => !isGalleryImageExcluded(product.slug, cfg.imageType)
+  );
   const seen = new Set<string>();
 
   return configs
