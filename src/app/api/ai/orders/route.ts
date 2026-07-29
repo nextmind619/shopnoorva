@@ -23,7 +23,7 @@ const schema = z.object({
       z.object({
         productId: z.string(),
         variantId: z.string(),
-        quantity: z.number().int().positive(),
+        quantity: z.number().int().min(1).max(3),
       })
     )
     .min(1),

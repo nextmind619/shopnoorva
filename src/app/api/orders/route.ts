@@ -61,6 +61,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Full name is required" }, { status: 400 });
     }
 
+    const safeItems = items.map((item) => ({
+      ...item,
+      quantity: Math.min(3, Math.max(1, Math.floor(Number(item.quantity) || 1))),
+    }));
+
     const phoneCheck = validateMoroccanPhone(shippingAddress.phone);
     if (!phoneCheck.valid) {
       return NextResponse.json(
@@ -87,11 +92,11 @@ export async function POST(request: NextRequest) {
       email: shippingAddress.email,
       firstName,
       lastName,
-      city: shippingAddress.city,
+      city: shippingAddress.city || shippingAddress.address,
       address: shippingAddress.address,
       notes: shippingAddress.notes,
       paymentMethod: "cod",
-      items,
+      items: safeItems,
       discount,
       cartId,
       locale: (body as { locale?: string }).locale || "ar",

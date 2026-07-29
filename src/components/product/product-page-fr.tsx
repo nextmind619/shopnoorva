@@ -17,7 +17,6 @@ import {
   Minus,
   Plus,
   Flame,
-  Eye,
   Check,
   Sparkles,
   Zap,
@@ -81,17 +80,6 @@ const FAQS = [
   },
 ] as const;
 
-const RECENT_BUYERS = [
-  { name: "Yassine", city: "Casablanca", mins: 3 },
-  { name: "Sara", city: "Rabat", mins: 6 },
-  { name: "Amina", city: "Marrakech", mins: 9 },
-  { name: "Mohamed", city: "Tanger", mins: 12 },
-  { name: "Nadia", city: "Agadir", mins: 15 },
-  { name: "Khalid", city: "Fès", mins: 18 },
-  { name: "Imane", city: "Oujda", mins: 22 },
-  { name: "Youssef", city: "Meknès", mins: 27 },
-] as const;
-
 function FlashCountdownFr({ endDate }: { endDate: string }) {
   const [t, setT] = useState<{ hours: number; minutes: number; seconds: number } | null>(null);
 
@@ -152,9 +140,6 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
   const [qty, setQty] = useState(1);
   const [sticky, setSticky] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [viewers, setViewers] = useState(12);
-  const [toastIndex, setToastIndex] = useState(0);
-  const [toastVisible, setToastVisible] = useState(false);
   const [exitOpen, setExitOpen] = useState(false);
   const [exitShown, setExitShown] = useState(false);
   const [showAllReviews, setShowAllReviews] = useState(false);
@@ -187,29 +172,9 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
   }, [product.id, addRecentlyViewed]);
 
   useEffect(() => {
-    setViewers(8 + Math.floor(Math.random() * 20));
-  }, []);
-
-  useEffect(() => {
     const onScroll = () => setSticky(window.scrollY > 480);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    let hideTimer: ReturnType<typeof setTimeout> | undefined;
-    const show = () => {
-      setToastIndex((i) => (i + 1) % RECENT_BUYERS.length);
-      setToastVisible(true);
-      hideTimer = setTimeout(() => setToastVisible(false), 4200);
-    };
-    const start = setTimeout(show, 3500);
-    const interval = setInterval(show, 14000);
-    return () => {
-      clearTimeout(start);
-      clearInterval(interval);
-      if (hideTimer) clearTimeout(hideTimer);
-    };
   }, []);
 
   useEffect(() => {
@@ -227,8 +192,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
     document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
-  const maxQty = Math.min(variant.stock || 10, 10);
-  const buyer = RECENT_BUYERS[toastIndex];
+  const maxQty = Math.min(variant.stock || 3, 3);
   const features = product.features || [];
   const benefits = product.benefits || [];
 
@@ -310,8 +274,7 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
               ))}
             </div>
             <span className="text-[#1B4D3E]/60 text-xs">
-              {product.rating}/5 · {product.reviewCount.toLocaleString("fr-MA")}+ avis ·{" "}
-              {product.soldCount.toLocaleString("fr-MA")}+ vendus
+              {product.rating}/5 · {product.reviewCount.toLocaleString("fr-MA")}+ avis
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-bold leading-tight tracking-tight text-[#14352c]">{name}</h2>
@@ -372,13 +335,6 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
                 style={{ width: `${Math.min(100, Math.max(8, (variant.stock / 80) * 100))}%`, background: FOREST }}
               />
             </div>
-          </div>
-
-          <div className="rounded-2xl border border-[#1B4D3E]/12 bg-[#1B4D3E]/5 px-4 py-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs sm:text-sm text-[#1B4D3E]">
-            <span className="inline-flex items-center gap-1.5 font-semibold">
-              <Eye className="h-3.5 w-3.5" />
-              {viewers} personnes consultent ce produit maintenant
-            </span>
           </div>
         </section>
 
@@ -699,35 +655,6 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
           </section>
         )}
       </div>
-
-      {/* Recent purchase toast */}
-      <AnimatePresence>
-        {toastVisible && (
-          <motion.div
-            initial={{ opacity: 0, y: 24, x: -12 }}
-            animate={{ opacity: 1, y: 0, x: 0 }}
-            exit={{ opacity: 0, y: 12 }}
-            transition={{ duration: 0.35 }}
-            className="fixed bottom-24 start-4 z-40 max-w-[280px] rounded-2xl border border-[#1B4D3E]/15 bg-white/95 backdrop-blur-md shadow-2xl px-4 py-3 pointer-events-none"
-            role="status"
-            aria-live="polite"
-          >
-            <div className="flex items-start gap-3">
-              <div className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style={{ background: `${FOREST}18` }}>
-                <ShoppingBag className="h-4 w-4" style={{ color: FOREST }} />
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs font-bold text-[#14352c] truncate">
-                  {buyer.name} · {buyer.city}
-                </p>
-                <p className="text-[11px] text-[#1B4D3E]/55 leading-snug mt-0.5">
-                  a commandé il y a {buyer.mins} min
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Exit intent */}
       <AnimatePresence>

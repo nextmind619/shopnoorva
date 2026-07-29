@@ -42,8 +42,8 @@ const COPY = {
     fullNamePh: "محمد محمد",
     phone: "رقم الهاتف",
     phonePh: "06XXXXXXXX",
-    address: "العنوان",
-    addressPh: "المدينة أو الحي أو الشارع — أي عنوان يكفي",
+    address: "المدينة",
+    addressPh: "مثال: الدار البيضاء، مراكش، أكادير…",
     qty: "الكمية",
     shipping: "الشحن",
     free: "مجاني",
@@ -55,11 +55,10 @@ const COPY = {
     errName: "الرجاء إدخال الاسم الكامل",
     errPhoneRequired: "الرجاء إدخال رقم الهاتف",
     errPhoneInvalid: "الرجاء إدخال رقم هاتف مغربي صحيح",
-    errAddressRequired: "الرجاء إدخال العنوان",
+    errAddressRequired: "الرجاء إدخال المدينة",
     errBlocked: "تعذر إتمام الطلب حالياً. يرجى التحقق من معلوماتك أو المحاولة لاحقاً.",
     errGeneric: "تعذر إتمام الطلب. يرجى المحاولة مرة أخرى.",
     errNetwork: "تعذر إتمام الطلب. تحقق من اتصالك وحاول مجدداً.",
-    city: "المغرب",
   },
   fr: {
     title: "Commandez maintenant — payez à la livraison",
@@ -68,8 +67,8 @@ const COPY = {
     fullNamePh: "Mohamed Alaoui",
     phone: "Téléphone",
     phonePh: "06XXXXXXXX",
-    address: "Adresse",
-    addressPh: "Ville, quartier ou rue — n’importe quelle adresse suffit",
+    address: "Ville",
+    addressPh: "Ex. : Casablanca, Marrakech, Agadir…",
     qty: "Quantité",
     shipping: "Livraison",
     free: "Gratuite",
@@ -81,11 +80,10 @@ const COPY = {
     errName: "Veuillez entrer votre nom complet",
     errPhoneRequired: "Veuillez entrer votre numéro de téléphone",
     errPhoneInvalid: "Veuillez entrer un numéro marocain valide",
-    errAddressRequired: "Veuillez entrer votre adresse",
+    errAddressRequired: "Veuillez entrer votre ville",
     errBlocked: "Commande impossible pour le moment. Vérifiez vos informations ou réessayez plus tard.",
     errGeneric: "Impossible de finaliser la commande. Veuillez réessayer.",
     errNetwork: "Impossible de finaliser. Vérifiez votre connexion et réessayez.",
-    city: "Maroc",
   },
 } as const;
 
@@ -211,12 +209,12 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: [{ productId: product.id, variantId: variant.id, quantity }],
+          items: [{ productId: product.id, variantId: variant.id, quantity: Math.min(3, Math.max(1, quantity)) }],
           shippingAddress: {
             fullName: form.fullName.trim(),
             phone,
             address: form.address.trim(),
-            city: t.city,
+            city: form.address.trim(),
             country: "Morocco",
           },
           paymentMethod: "cod",
@@ -249,7 +247,7 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
             phone,
             firstName,
             lastName,
-            city: t.city,
+            city: form.address.trim(),
             country: "ma",
             fbp: clickIds.fbp,
             fbc: clickIds.fbc,
@@ -393,19 +391,16 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
               {t.address}
             </label>
             <div className="relative">
-              <MapPin className={cn("pointer-events-none absolute top-5 start-5 h-5 w-5", iconClass)} aria-hidden />
-              <textarea
+              <MapPin className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
+              <input
                 id="address"
+                type="text"
                 value={form.address}
                 onChange={(e) => updateField("address", e.target.value)}
                 onBlur={() => blurField("address")}
-                rows={3}
-                className={cn(
-                  "premium-checkout-textarea ps-14 pt-[18px] min-h-[120px] resize-none leading-relaxed",
-                  fieldBorder("address"),
-                )}
+                className={cn("premium-checkout-input ps-14", fieldBorder("address"))}
                 placeholder={t.addressPh}
-                autoComplete="street-address"
+                autoComplete="address-level2"
                 disabled={loading}
               />
             </div>

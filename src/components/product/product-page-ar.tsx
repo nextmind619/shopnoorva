@@ -27,7 +27,6 @@ import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
 import { FlashCountdown, StockScarcityBar } from "@/components/product/flash-countdown";
-import { ProductSocialProof } from "@/components/product/product-social-proof";
 
 const ProductOrderForm = dynamic(
   () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
@@ -217,7 +216,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
     document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
-  const maxQty = Math.min(variant.stock || 10, 10);
+  const maxQty = Math.min(variant.stock || 3, 3);
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
   const ctaClass = isLaser
@@ -329,7 +328,6 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           )}
           {product.flashSaleEndsAt && <FlashCountdown endDate={product.flashSaleEndsAt} />}
           <StockScarcityBar stock={Math.min(variant.stock, 47)} originalStock={120} />
-          <ProductSocialProof productLabel={product.name.ar.split("—")[0]?.trim() || product.name.ar} />
         </section>
 
         {/* شريط توصيل مجاني */}
