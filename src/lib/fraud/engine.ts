@@ -18,10 +18,8 @@ import type { FraudEvaluation, FraudRequestContext } from "./types";
 import { detectVelocity } from "./velocity";
 
 function addressLooksOk(address: string): boolean {
-  const t = address.trim();
-  if (!t) return false;
-  if (/test|asdf|xxx|fake|lorem|123456/i.test(t)) return false;
-  return true;
+  // COD buyers often write only a city or neighborhood — accept any non-empty text.
+  return address.trim().length > 0;
 }
 
 /**

@@ -9,7 +9,6 @@ import type { Product, ProductVariant } from "@/types";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import {
   isValidMoroccanPhone,
-  isValidAddress,
   normalizeMoroccanPhone,
   formatMoroccanPhoneInput,
 } from "@/lib/validate-phone";
@@ -43,8 +42,8 @@ const COPY = {
     fullNamePh: "محمد محمد",
     phone: "رقم الهاتف",
     phonePh: "06XXXXXXXX",
-    address: "العنوان الكامل",
-    addressPh: "الحي - الشارع - رقم المنزل - الطابق",
+    address: "العنوان",
+    addressPh: "المدينة أو الحي أو الشارع — أي عنوان يكفي",
     qty: "الكمية",
     shipping: "الشحن",
     free: "مجاني",
@@ -69,8 +68,8 @@ const COPY = {
     fullNamePh: "Mohamed Alaoui",
     phone: "Téléphone",
     phonePh: "06XXXXXXXX",
-    address: "Adresse complète",
-    addressPh: "Quartier — rue — n° — étage",
+    address: "Adresse",
+    addressPh: "Ville, quartier ou rue — n’importe quelle adresse suffit",
     qty: "Quantité",
     shipping: "Livraison",
     free: "Gratuite",
@@ -158,7 +157,8 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
         if (!isValidMoroccanPhone(value)) return t.errPhoneInvalid;
         return undefined;
       case "address":
-        if (!value.trim() || !isValidAddress(value)) return t.errAddressRequired;
+        // Any non-empty text is fine (city-only, street, etc.)
+        if (!value.trim()) return t.errAddressRequired;
         return undefined;
     }
   };
