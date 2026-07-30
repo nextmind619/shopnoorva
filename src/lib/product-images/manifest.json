@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T01:41:35.251Z",
+  "generatedAt": "2026-07-30T12:24:12.692Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -7,14 +7,14 @@
       "name": "Astronaut Bluetooth Speaker Galaxy Projector",
       "images": {
         "01-hero-white-bg": {
-          "original": "/products/astronaut-bt-speaker-projector/01-hero-white-bg.jpg",
-          "webp": "/products/astronaut-bt-speaker-projector/01-hero-white-bg.webp",
-          "avif": "/products/astronaut-bt-speaker-projector/01-hero-white-bg.avif",
-          "thumbnail": "/products/astronaut-bt-speaker-projector/thumbs/01-hero-white-bg-400.webp",
+          "original": "/products\\astronaut-bt-speaker-projector\\01-hero-white-bg.jpg",
+          "webp": "/products\\astronaut-bt-speaker-projector\\01-hero-white-bg.webp",
+          "avif": "/products\\astronaut-bt-speaker-projector\\01-hero-white-bg.avif",
+          "thumbnail": "/products\\astronaut-bt-speaker-projector\\thumbs\\01-hero-white-bg-400.webp",
           "responsive": {
-            "sm": "/products/astronaut-bt-speaker-projector/responsive/01-hero-white-bg-640.webp",
-            "md": "/products/astronaut-bt-speaker-projector/responsive/01-hero-white-bg-1280.webp",
-            "lg": "/products/astronaut-bt-speaker-projector/responsive/01-hero-white-bg-2000.webp"
+            "sm": "/products\\astronaut-bt-speaker-projector\\responsive\\01-hero-white-bg-640.webp",
+            "md": "/products\\astronaut-bt-speaker-projector\\responsive\\01-hero-white-bg-1280.webp",
+            "lg": "/products\\astronaut-bt-speaker-projector\\responsive\\01-hero-white-bg-2000.webp"
           }
         },
         "02-premium-hero": {
@@ -1743,11 +1743,11 @@
       },
       "prompts": {},
       "sources": {
-        "01-hero-white-bg": "commercial",
-        "02-premium-hero": "commercial",
-        "09-close-up": "commercial",
-        "10-features": "commercial",
-        "14-product-in-use": "commercial"
+        "01-hero-white-bg": "ai-generated",
+        "02-premium-hero": "ai-generated",
+        "09-close-up": "ai-generated",
+        "10-features": "ai-generated",
+        "14-product-in-use": "ai-generated"
       }
     },
     "star-galaxy-projector-rgb-gift": {
