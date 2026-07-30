@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
       ],
     },
     {
-      source: "/:path*\\.(png|jpg|jpeg|webp|gif|avif|svg|ico|woff2|woff)",
+      source: "/:path*\\.(png|jpg|jpeg|webp|gif|avif|svg|ico|woff2|woff|mp4|webm)",
       headers: [
         { key: "Cross-Origin-Resource-Policy", value: "same-site" },
         { key: "X-Content-Type-Options", value: "nosniff" },

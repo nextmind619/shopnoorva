@@ -88,6 +88,12 @@ export function ProductBenefitsSection({ product, onOrderClick }: SectionProps) 
   );
 }
 
+function getVideoPoster(videoSrc: string, productSlug: string): string | undefined {
+  const base = videoSrc.replace(/^.*\//, "").replace(/\.mp4$/i, "");
+  if (base) return `/videos/posters/${base}.webp`;
+  return resolveProductImage(productSlug, "02-premium-hero", "webp") || undefined;
+}
+
 export function ProductVideoSection({ product }: SectionProps) {
   const cro = getProductCroContent(product.slug);
   const videoSrc = cro?.videoSrc || product.videoUrl;
@@ -110,8 +116,8 @@ export function ProductVideoSection({ product }: SectionProps) {
           className="absolute inset-0 h-full w-full object-cover"
           controls
           playsInline
-          preload="none"
-          poster={resolveProductImage(product.slug, "02-premium-hero", "webp") || undefined}
+          preload="metadata"
+          poster={getVideoPoster(videoSrc, product.slug)}
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
