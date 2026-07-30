@@ -1422,6 +1422,87 @@ export const reviews: ProductReview[] = [
   { id: "rl23", productId: "prod-laser303", author: "كريم الودغيري", city: "الدار البيضاء", rating: 5, title: L("أفضل شراء", "Meilleur achat", "Best purchase"), content: L("جربت بزاف ديال الليزر رخيص، هادا الفرق واضح فالجودة والمدى.", "Après plusieurs lasers cheap, celui-ci marque la différence.", "After many cheap lasers, this one clearly stands out."), date: "2026-06-08", verified: true },
   { id: "rl24", productId: "prod-laser303", author: "أسماء بنصالح", city: "الرباط", rating: 5, title: L("موصى به", "Je recommande", "Highly recommend"), content: L("للأساتذة والمدربين زوين بزاف. كيبان واضح فالمدرجات.", "Parfait pour profs et formateurs. Très visible en amphithéâtre.", "Perfect for teachers and trainers. Very visible in lecture halls."), date: "2026-06-06", verified: true },
   { id: "rl25", productId: "prod-laser303", author: "هشام التومي", city: "مراكش", rating: 5, title: L("عرض محدود يستاهل", "Offre limitée à saisir", "Limited offer worth it"), content: L("خدّيتو بـ 199 بدل 299. الجودة فاخرة والاقتصاد واضح. مبروك NOORVA.", "Pris à 199 au lieu de 299. Qualité premium, vraie économie. Bravo NOORVA.", "Got it for 199 instead of 299. Premium quality, real savings. Well done NOORVA."), date: "2026-06-04", verified: true },
+  // Maidsail Magnetic Car Phone Mount — customer UGC reviews
+  {
+    id: "rcm1",
+    productId: "prod-car-mount",
+    author: "سارة المنصوري",
+    city: "الدار البيضاء",
+    rating: 5,
+    title: L("المغناطيس قوي بزاف", "Aimant très fort", "Very strong magnet"),
+    content: L(
+      "ثبّتو على لوحة القيادة والجوال ما كيتحركش حتى فالمطبات. الشكل أنيق وما كياخدش مساحة. أنصح به.",
+      "Fixé sur le tableau de bord, le téléphone ne bouge pas même sur les bosses. Design élégant et compact. Je recommande.",
+      "Mounted on the dashboard — phone stays put even on bumps. Sleek and compact. Highly recommend."
+    ),
+    date: "2026-07-28",
+    verified: true,
+    images: ["/reviews/magnetic-car-phone-mount-maidsail/05-dash-phone-thumb.webp"],
+  },
+  {
+    id: "rcm2",
+    productId: "prod-car-mount",
+    author: "يوسف العلوي",
+    city: "الرباط",
+    rating: 5,
+    title: L("جودة فاخرة", "Qualité premium", "Premium quality"),
+    content: L(
+      "الشفط محكم والذراع ساهل للتعديل. المنتج خفيف ومتين، والتوصيل سريع والدفع عند الاستلام مريح.",
+      "Ventouse solide, bras facile à régler. Léger et robuste, livraison rapide, COD pratique.",
+      "Solid suction, easy arm adjustment. Light and sturdy, fast delivery, COD is convenient."
+    ),
+    date: "2026-07-26",
+    verified: true,
+    images: ["/reviews/magnetic-car-phone-mount-maidsail/01-hand-hold-thumb.webp"],
+  },
+  {
+    id: "rcm3",
+    productId: "prod-car-mount",
+    author: "أمين التازي",
+    city: "طنجة",
+    rating: 5,
+    title: L("يناسب الشاشات الكبيرة", "Parfait pour grand écran", "Fits large screens"),
+    content: L(
+      "ركبته فوق الشاشة ديال السيارة وثبت مزيان. ما كيحجبش الرؤية وكيخلي الملاحة واضحة.",
+      "Installé au-dessus de l’écran: très stable, ne gêne pas la vue, GPS bien visible.",
+      "Mounted above the car screen — stable, doesn’t block the view, GPS stays clear."
+    ),
+    date: "2026-07-24",
+    verified: true,
+    images: ["/reviews/magnetic-car-phone-mount-maidsail/04-dash-screen-thumb.webp"],
+  },
+  {
+    id: "rcm4",
+    productId: "prod-car-mount",
+    author: "إيمان بنجلون",
+    city: "مراكش",
+    rating: 5,
+    title: L("زوين على الزجاج", "Top sur la vitre", "Great on the window"),
+    content: L(
+      "ثبّتو على الزجاج الجانبي للملاحة. المغناطيس كيشد الجوال بقوة والزاوية ممتازة للقيادة.",
+      "Fixé sur la vitre latérale pour le GPS. Aimant très accrocheur, angle parfait en conduite.",
+      "Fixed on the side window for navigation. Strong magnet, perfect driving angle."
+    ),
+    date: "2026-07-22",
+    verified: true,
+    images: ["/reviews/magnetic-car-phone-mount-maidsail/02-window-nav-thumb.webp"],
+  },
+  {
+    id: "rcm5",
+    productId: "prod-car-mount",
+    author: "خالد الفاسي",
+    city: "فاس",
+    rating: 5,
+    title: L("تصميم أنيق وثابت", "Design élégant et stable", "Sleek and stable"),
+    content: L(
+      "الحلقة المغناطيسية والشفط على الزجاج ثابتين بزاف. شكله أنيق وما كياخدش بلاصة. يستاهل الثمن.",
+      "Anneau magnétique et ventouse sur vitre très stables. Look élégant, peu encombrant. Ça vaut le prix.",
+      "Magnetic ring and window suction are very stable. Elegant, compact. Worth the price."
+    ),
+    date: "2026-07-20",
+    verified: true,
+    images: ["/reviews/magnetic-car-phone-mount-maidsail/03-window-ring-thumb.webp"],
+  },
   // Shiatsu Neck & Shoulder Massager — 25 Moroccan French reviews (~4.9 avg)
   { id: "rs1", productId: "prod-shiatsu", author: "Yassine El Idrissi", city: "Casablanca", rating: 5, title: L("ارتياح فوري", "Soulagement immédiat", "Instant relief"), content: L("بعد يوم المكتب رقبتني كترتاح في 10 دقايق. التدفئة زوينة بزاف.", "Après le bureau, mon cou se détend en 10 minutes. Le chauffage est excellent.", "After work, my neck relaxes in 10 minutes. The heat is excellent."), date: "2026-07-24", verified: true },
   { id: "rs2", productId: "prod-shiatsu", author: "Sara Benani", city: "Rabat", rating: 5, title: L("هدية مثالية", "Cadeau parfait", "Perfect gift"), content: L("شريتو لماما، عجباتها السانغات والتدليك الشياتسو.", "Offert à maman : elle adore les sangles et le massage Shiatsu.", "Gifted to mom — she loves the straps and Shiatsu massage."), date: "2026-07-22", verified: true },

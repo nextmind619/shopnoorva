@@ -448,6 +448,18 @@ export function ProductPageFr({ product, related: relatedProp }: ProductPageFrPr
                   </div>
                   <p className="font-bold text-sm text-[#14352c] mb-2">{r.title.fr}</p>
                   <p className="text-sm text-[#1B4D3E]/70 leading-relaxed flex-1">{r.content.fr}</p>
+                  {r.images?.[0] && (
+                    <div className="relative mt-3 aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#1B4D3E]/10 bg-[#F7F4EF]">
+                      <Image
+                        src={r.images[0]}
+                        alt={`Avis ${r.author}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   <div className="flex items-center gap-3 mt-4 pt-4 border-t border-[#1B4D3E]/10">
                     <div
                       className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white"

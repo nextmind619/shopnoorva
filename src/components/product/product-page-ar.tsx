@@ -221,6 +221,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const orderQty = isPack ? 1 : qty;
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
+  const isCarMount = product.slug === "magnetic-car-phone-mount-maidsail";
+  const reviewLimit = isLaser ? 9 : isCarMount ? 5 : 3;
   const ctaClass = isLaser
     ? "w-full h-14 sm:h-16 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/35 transition-colors"
     : "w-full h-14 sm:h-16 rounded-2xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-500/30 transition-colors";
@@ -488,7 +490,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {reviews.slice(0, isLaser ? 9 : 3).map((r) => (
+              {reviews.slice(0, reviewLimit).map((r) => (
                 <div key={r.id} className="rounded-2xl border border-white/8 bg-[#0a0a0f]/50 p-5 flex flex-col">
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div className="flex gap-0.5">
@@ -508,6 +510,18 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                   </div>
                   <p className="font-bold text-sm text-white mb-2">{r.title.ar}</p>
                   <p className="text-sm text-white/60 leading-relaxed flex-1">{r.content.ar}</p>
+                  {r.images?.[0] && (
+                    <div className="relative mt-3 aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/8 bg-black/30">
+                      <Image
+                        src={r.images[0]}
+                        alt={`تقييم ${r.author}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/8">
                     <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold">
                       {r.author.charAt(0)}
