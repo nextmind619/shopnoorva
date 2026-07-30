@@ -44,6 +44,9 @@ const BENIGN_REFERRERS = [
   /google\./i,
   /bing\./i,
   /tiktok\.com/i,
+  /tiktokv\.com/i,
+  /snssdk\.com/i,
+  /musical\.ly/i,
   /youtube\.com/i,
   /t\.co\//i,
   /whatsapp\.com/i,
@@ -114,11 +117,15 @@ export function analyzeReferrer(referer: string | null | undefined): ReferrerAna
   };
 }
 
-/** Real paid-click signals (fbclid etc.) — protects Moroccan customers from FB ads */
+/** Real paid-click signals (fbclid / ttclid etc.) — Meta + TikTok + Google ads */
 export function detectRealAdClick(searchParams: URLSearchParams): boolean {
   const keys = ["fbclid", "gclid", "ttclid", "msclkid"];
   if (keys.some((k) => searchParams.has(k))) return true;
   const utm = (searchParams.get("utm_source") || "").toLowerCase();
-  if (["facebook", "fb", "instagram", "ig", "tiktok", "meta"].includes(utm)) return true;
+  if (
+    ["facebook", "fb", "instagram", "ig", "tiktok", "tt", "meta", "bytedance"].includes(utm)
+  ) {
+    return true;
+  }
   return false;
 }

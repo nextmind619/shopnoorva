@@ -12,11 +12,13 @@ const intlMiddleware = createMiddleware({
 });
 
 const IMAGE_EXT = /\.(png|jpe?g|webp|gif|avif|svg|ico)$/i;
+/** Video/audio must bypass trust scoring — range requests would trip velocity & block playback. */
+const MEDIA_EXT = /\.(mp4|webm|mp3|ogg|wav|m4a)$/i;
 const STATIC_EXT = /\.(css|js|mjs|map|woff2?|ttf|eot|txt|xml|json|webmanifest)$/i;
 
-/** Meta domain verification + Pixel/OG crawlers must reach the real homepage meta tag. */
-const META_CRAWLER_UA =
-  /facebookexternalhit|Facebot|meta-externalagent|meta-externalads|FacebookBot/i;
+/** Meta / TikTok crawlers must reach the real homepage for ad preview + domain verification. */
+const AD_PLATFORM_CRAWLER_UA =
+  /facebookexternalhit|Facebot|meta-externalagent|meta-externalads|FacebookBot|Bytespider|TikTokSpider|Bytedance|musical_ly|TikTok/i;
 
 function clientIp(request: NextRequest): string {
   return (
@@ -63,8 +65,8 @@ export default function proxy(request: NextRequest) {
     return applySecurityHeaders(NextResponse.next());
   }
 
-  // Let Meta verify the domain / scrape OG without anti-spy blocking
-  if (META_CRAWLER_UA.test(request.headers.get("user-agent") || "")) {
+  // Let Meta / TikTok verify the domain / scrape OG without anti-spy blocking
+  if (AD_PLATFORM_CRAWLER_UA.test(request.headers.get("user-agent") || "")) {
     if (/^\/(fr|en)(\/|$)/.test(pathname)) {
       const url = request.nextUrl.clone();
       url.pathname = pathname.replace(/^\/(fr|en)/, `/${defaultLocale}`);
@@ -89,6 +91,29 @@ export default function proxy(request: NextRequest) {
       (!referer && secFetchSite === "none" && request.headers.get("sec-fetch-dest") === "image");
 
     // Block clear cross-site hotlinks
+    if (referer && !isAllowedAssetReferer(referer) && secFetchSite === "cross-site") {
+      return new NextResponse("Hotlinking forbidden", { status: 403 });
+    }
+    if (!ok && referer && !isAllowedAssetReferer(referer)) {
+      return new NextResponse("Hotlinking forbidden", { status: 403 });
+    }
+    return applySecurityHeaders(NextResponse.next());
+  }
+
+  // --- Hotlink protection for video/audio (same rules as images; never trust-score) ---
+  if (MEDIA_EXT.test(pathname)) {
+    const referer = request.headers.get("referer");
+    const secFetchSite = request.headers.get("sec-fetch-site");
+    const ok =
+      secFetchSite === "same-origin" ||
+      secFetchSite === "same-site" ||
+      isAllowedAssetReferer(referer) ||
+      (!referer &&
+        (secFetchSite === "none" || !secFetchSite) &&
+        (request.headers.get("sec-fetch-dest") === "video" ||
+          request.headers.get("sec-fetch-dest") === "audio" ||
+          request.headers.get("sec-fetch-dest") === "empty"));
+
     if (referer && !isAllowedAssetReferer(referer) && secFetchSite === "cross-site") {
       return new NextResponse("Hotlinking forbidden", { status: 403 });
     }

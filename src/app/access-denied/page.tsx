@@ -32,12 +32,12 @@ export default function AccessDeniedPage() {
           <h1 style={{ fontSize: 32, margin: "0 0 12px", fontWeight: 700 }}>Access Denied</h1>
           <p style={{ opacity: 0.75, lineHeight: 1.6, marginBottom: 28 }}>
             This request was blocked by our store protection system. If you are a real customer in
-            Morocco, please open the site from your Facebook/Instagram ad, disable VPN, and try again
-            in a normal mobile browser.
+            Morocco, please open the site from your Facebook, Instagram, or TikTok ad, disable VPN,
+            and try again in a normal mobile browser.
           </p>
           <p style={{ opacity: 0.75, lineHeight: 1.6, marginBottom: 28, direction: "rtl" }}>
             تم حظر هذا الطلب بواسطة نظام حماية المتجر. إذا كنت زبوناً حقيقياً من المغرب، افتح الموقع من
-            إعلان فيسبوك/إنستغرام، عطّل VPN، وحاول مجدداً من متصفح الهاتف العادي.
+            إعلان فيسبوك أو إنستغرام أو تيك توك، عطّل VPN، وحاول مجدداً من متصفح الهاتف العادي.
           </p>
           <Link
             href="/ar"
