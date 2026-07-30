@@ -962,6 +962,7 @@ export const products: Product[] = [
       "Nettoyez la surface, posez la ventouse, tournez sur TIGHT. Fixez le téléphone (MagSafe ou anneau). Réglez le bras. Pour retirer, tournez sur OPEN.",
       "Clean the surface, place the suction cup, twist to TIGHT. Attach phone (MagSafe or ring). Adjust the arm. To remove, twist to OPEN."
     ),
+    videoUrl: "/videos/car-mount-product-demo.mp4",
     lifestyleScenes: [
       {
         id: "navigation",
