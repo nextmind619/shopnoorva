@@ -227,8 +227,8 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
     shortDescription:
       "White tower dual-fan portable air cooler — rechargeable battery, strong wide airflow, mist nozzles, water level window, elegant desk design with top carry strap",
     visualIdentity:
-      "EXACT real product — tall white matte plastic tower portable air cooler with two vertically stacked circular fans, each behind white radial slat grilles. Three small dark mist nozzles above top fan, slim horizontal vent at top edge, translucent vertical water-level strip on upper right side. Tan/brown leather-like carry strap attached at top left. Oval flat white base for desk stability. Marketing may show light blue gradient background with horizontal blue airflow streak lines emphasizing wide wind area. Compact elegant desk / bedside cooler — NOT a large floor AC unit, NOT black industrial fan, NOT single-blade only.",
-    dimensions: "Compact desk tower cooler",
+      "EXACT real product — tall white matte plastic tower portable dual-fan air cooler with mist spray and LED light. Two vertically stacked circular fans behind white radial slat grilles with cool blue LED glow inside. Three small copper/rose-gold mist spray nozzles in a horizontal row above the top fan. Slim vertical LED light strip on upper front-right. Tan/brown leather-like carry strap arched over the top with metal rivets. Transparent water tank under top lid. Rounded soft edges, oval flat white base, USB-C charging near base. Compact elegant desk / bedside cooler ~37.5×14.8×8.5 cm — NOT a large floor AC unit, NOT black industrial fan, NOT single-blade only. DO NOT redesign.",
+    dimensions: "37.5 × 14.8 × 8.5 cm",
     accessories: ["USB charging cable", "User manual"],
     packageItems: ["Dual-fan portable air cooler", "USB charging cable", "User manual"],
     sourceUrls: {
