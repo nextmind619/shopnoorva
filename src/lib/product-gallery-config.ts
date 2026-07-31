@@ -724,10 +724,18 @@ const CAR_MOUNT_SLIDES: GallerySlideConfig[] = [
 const DUAL_FAN_COOLER_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
-    imageType: "01-hero-white-bg",
+    imageType: "02-premium-hero",
     emoji: "❄️",
+    heading: "تبريد أقوى بمروحتين",
+    subtitle: "هواء بارد ومنعش · رذاذ تبريد فوري",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "🌀",
     heading: "مبرد هواء محمول — مروحتين ورذاذ",
-    subtitle: "إضاءة LED زرقاء · رذاذ بارد · تصميم فاخر",
+    subtitle: "إضاءة زرقاء · رذاذ بارد · تصميم فاخر",
     objectFit: "contain",
   },
   {
@@ -756,19 +764,19 @@ const DUAL_FAN_COOLER_SLIDES: GallerySlideConfig[] = [
   },
   {
     section: "features",
+    imageType: "10-features",
+    emoji: "✅",
+    heading: "تبريد أقوى بمروحتين",
+    subtitle: "هواء بارد · رذاذ فوري · تشغيل هادئ · قابلة للشحن",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
     imageType: "09-close-up",
     emoji: "🔍",
     heading: "تفاصيل فاخرة",
     subtitle: "مروحتين · فوهات رذاذ · بلاستيك ممتاز",
     objectFit: "cover",
-  },
-  {
-    section: "features",
-    imageType: "10-features",
-    emoji: "✅",
-    heading: "كل المميزات فصورة",
-    subtitle: "شحن Type-C · بطارية · 3 سرعات · هادئ",
-    objectFit: "contain",
   },
   {
     section: "lifestyle",

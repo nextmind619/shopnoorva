@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T14:30:22.587Z",
+  "generatedAt": "2026-07-31T15:20:06.181Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -2087,14 +2087,14 @@
           }
         },
         "02-premium-hero": {
-          "original": "/products/portable-rechargeable-dual-fan-air-cooler/02-premium-hero.jpg",
-          "webp": "/products/portable-rechargeable-dual-fan-air-cooler/02-premium-hero.webp",
-          "avif": "/products/portable-rechargeable-dual-fan-air-cooler/02-premium-hero.avif",
-          "thumbnail": "/products/portable-rechargeable-dual-fan-air-cooler/thumbs/02-premium-hero-400.webp",
+          "original": "/products\\portable-rechargeable-dual-fan-air-cooler\\02-premium-hero.jpg",
+          "webp": "/products\\portable-rechargeable-dual-fan-air-cooler\\02-premium-hero.webp",
+          "avif": "/products\\portable-rechargeable-dual-fan-air-cooler\\02-premium-hero.avif",
+          "thumbnail": "/products\\portable-rechargeable-dual-fan-air-cooler\\thumbs\\02-premium-hero-400.webp",
           "responsive": {
-            "sm": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/02-premium-hero-640.webp",
-            "md": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/02-premium-hero-1280.webp",
-            "lg": "/products/portable-rechargeable-dual-fan-air-cooler/responsive/02-premium-hero-2000.webp"
+            "sm": "/products\\portable-rechargeable-dual-fan-air-cooler\\responsive\\02-premium-hero-640.webp",
+            "md": "/products\\portable-rechargeable-dual-fan-air-cooler\\responsive\\02-premium-hero-1280.webp",
+            "lg": "/products\\portable-rechargeable-dual-fan-air-cooler\\responsive\\02-premium-hero-2000.webp"
           }
         },
         "03-lifestyle": {
@@ -2175,14 +2175,14 @@
           }
         },
         "10-features": {
-          "original": "/generated/portable-rechargeable-dual-fan-air-cooler/10-features.jpg",
-          "webp": "/generated/portable-rechargeable-dual-fan-air-cooler/10-features.webp",
-          "avif": "/generated/portable-rechargeable-dual-fan-air-cooler/10-features.avif",
-          "thumbnail": "/generated/portable-rechargeable-dual-fan-air-cooler/thumbs/10-features-400.webp",
+          "original": "/generated\\portable-rechargeable-dual-fan-air-cooler\\10-features.jpg",
+          "webp": "/generated\\portable-rechargeable-dual-fan-air-cooler\\10-features.webp",
+          "avif": "/generated\\portable-rechargeable-dual-fan-air-cooler\\10-features.avif",
+          "thumbnail": "/generated\\portable-rechargeable-dual-fan-air-cooler\\thumbs\\10-features-400.webp",
           "responsive": {
-            "sm": "/generated/portable-rechargeable-dual-fan-air-cooler/responsive/10-features-640.webp",
-            "md": "/generated/portable-rechargeable-dual-fan-air-cooler/responsive/10-features-1280.webp",
-            "lg": "/generated/portable-rechargeable-dual-fan-air-cooler/responsive/10-features-2000.webp"
+            "sm": "/generated\\portable-rechargeable-dual-fan-air-cooler\\responsive\\10-features-640.webp",
+            "md": "/generated\\portable-rechargeable-dual-fan-air-cooler\\responsive\\10-features-1280.webp",
+            "lg": "/generated\\portable-rechargeable-dual-fan-air-cooler\\responsive\\10-features-2000.webp"
           }
         },
         "12-dimensions": {
@@ -2279,7 +2279,8 @@
           "sourceFile": "01-hero-white-bg.png"
         },
         "02-premium-hero": {
-          "sourceFile": "01-hero-white-bg.png"
+          "sourceFile": "dual-cooler-ar-marketing.png",
+          "lang": "ar"
         },
         "03-lifestyle": {
           "sourceFile": "02-summer-lifestyle.png"
@@ -2303,7 +2304,8 @@
           "sourceFile": "05-close-up.png"
         },
         "10-features": {
-          "sourceFile": "06-feature-infographic.png"
+          "sourceFile": "dual-cooler-ar-marketing.png",
+          "lang": "ar"
         },
         "12-dimensions": {
           "sourceFile": "09-size-dimensions.png"
@@ -2332,7 +2334,7 @@
       },
       "sources": {
         "01-hero-white-bg": "ai-generated",
-        "02-premium-hero": "ai-generated",
+        "02-premium-hero": "ai-generated-ar",
         "03-lifestyle": "ai-generated",
         "04-bedroom": "ai-generated",
         "05-living-room": "ai-generated",
@@ -2340,7 +2342,7 @@
         "07-romantic-room": "ai-generated",
         "08-kids-room": "ai-generated",
         "09-close-up": "ai-generated",
-        "10-features": "ai-generated",
+        "10-features": "ai-generated-ar",
         "12-dimensions": "ai-generated",
         "13-before-after": "ai-generated",
         "14-product-in-use": "ai-generated",
