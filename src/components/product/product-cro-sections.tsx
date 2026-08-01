@@ -1,8 +1,9 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { ShoppingBag, Check, X, Sparkles, Moon, Music2, Wifi, Gift } from "lucide-react";
+import { ShoppingBag, Check, X, Sparkles, Moon, Music2, Wifi, Gift, Play } from "lucide-react";
 import type { Product } from "@/types";
 import { cn } from "@/lib/utils";
 import { resolveProductImage } from "@/lib/product-images/resolve";
@@ -97,7 +98,18 @@ function getVideoPoster(videoSrc: string, productSlug: string): string | undefin
 export function ProductVideoSection({ product }: SectionProps) {
   const cro = getProductCroContent(product.slug);
   const videoSrc = cro?.videoSrc || product.videoUrl;
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [playing, setPlaying] = useState(false);
   if (!videoSrc) return null;
+
+  const startPlayback = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    void el.play().then(() => setPlaying(true)).catch(() => {
+      // Keep poster + play button if autoplay/gesture is blocked
+      setPlaying(false);
+    });
+  };
 
   return (
     <motion.section
@@ -113,14 +125,30 @@ export function ProductVideoSection({ product }: SectionProps) {
       </div>
       <div className="relative aspect-[9/16] max-h-[65vh] mx-auto w-full max-w-sm rounded-3xl overflow-hidden bg-black border border-white/10">
         <video
+          ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
-          controls
+          controls={playing}
           playsInline
           preload="metadata"
           poster={getVideoPoster(videoSrc, product.slug)}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          onEnded={() => setPlaying(false)}
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
+        {!playing && (
+          <button
+            type="button"
+            onClick={startPlayback}
+            className="absolute inset-0 z-10 flex items-center justify-center bg-black/25"
+            aria-label="تشغيل الفيديو"
+          >
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur transition-colors hover:bg-[#6366f1]/80">
+              <Play className="h-7 w-7 fill-white text-white ms-0.5" />
+            </span>
+          </button>
+        )}
       </div>
     </motion.section>
   );
