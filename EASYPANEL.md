@@ -50,6 +50,19 @@ FACEBOOK_TEST_EVENT_CODE=
 FACEBOOK_DATASET_ID=
 ```
 
+### Google Sheets (order sync)
+
+Share the spreadsheet with your service account email (Editor). Add to `web` env:
+
+```
+GOOGLE_SHEETS_ID=1zA2CxZKuLXU6AiP6JByxhGv2Mg-kXqCoKsaQN3wvp7k
+GOOGLE_SERVICE_ACCOUNT_EMAIL=your-sa@project.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+GOOGLE_SHEETS_ORDER_SHEET=leads
+```
+
+Test locally: `npm run test:google-sheets` (requires `.env.local`).
+
 ## 3) Add Postgres
 1. Add service → **Postgres** (or App named `noorva`)
 2. User: `noorva`

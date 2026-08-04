@@ -102,7 +102,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "prod-laser303",
     slug: "green-laser-pointer-303",
-    sku: "NRV-LASER303-01",
+    sku: "PRD-3765E729",
     name: "Green Laser Pointer 303",
     type: "Handheld rechargeable green laser pointer",
     color: "Matte Black",
@@ -178,7 +178,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "prod-car-mount",
     slug: "magnetic-car-phone-mount-maidsail",
-    sku: "NRV-CARMOUNT-01",
+    sku: "Mag-Holder",
     name: "Maidsail Magnetic Car Phone Mount",
     type: "Magnetic suction-cup car phone holder with adjustable arm",
     color: "Black with metallic grey / silver accents",
@@ -198,7 +198,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "prod-mosquito-tent",
     slug: "foldable-mosquito-bed-tent",
-    sku: "NRV-MOSQUITO-01",
+    sku: "Mosquito-protection-tent",
     name: "Foldable Mosquito Protection Bed Tent",
     type: "Pop-up mosquito net bed tent with zippered entry",
     color: "White mesh with blue flexible frame trim; lime-green and royal-blue storage bag",
@@ -218,7 +218,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "prod-dual-cooler",
     slug: "portable-rechargeable-dual-fan-air-cooler",
-    sku: "NRV-DUALCOOL-01",
+    sku: "Portable-air-cooler",
     name: "Portable Rechargeable Dual-Fan Air Cooler",
     type: "Portable evaporative / dual-fan desk air cooler",
     color: "White with tan/brown leather-like carry strap",

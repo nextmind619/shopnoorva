@@ -216,13 +216,26 @@ export async function processIncomingOrder(input: {
     await createShipment(order);
   }
 
-  await appendOrderToSheets({
-    orderNumber: order.orderNumber,
-    phone: order.phone,
-    city: order.city,
-    total: order.total,
-    status: order.status,
-  });
+  if (order.status === "confirmed" && !order.isDuplicate) {
+    await appendOrderToSheets({
+      orderNumber: order.orderNumber,
+      customerName: [order.firstName, order.lastName].filter(Boolean).join(" ") || "Client",
+      phone: order.phone,
+      city: order.city,
+      address: order.address,
+      notes: input.notes,
+      items: order.items.map((item, index, arr) => ({
+        sku: item.sku,
+        quantity: item.quantity,
+        price:
+          arr.length === 1
+            ? order.total
+            : index === 0
+              ? item.lineTotal + order.shipping - order.discount
+              : item.lineTotal,
+      })),
+    });
+  }
 
   await sendMetaConversion({
     eventName: "Purchase",

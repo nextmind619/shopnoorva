@@ -1182,7 +1182,7 @@
     },
     "green-laser-pointer-303": {
       "slug": "green-laser-pointer-303",
-      "sku": "NRV-LASER303-01",
+      "sku": "PRD-3765E729",
       "name": "Green Laser Pointer 303",
       "images": {
         "01-hero-white-bg": {
@@ -1682,7 +1682,7 @@
     },
     "magnetic-car-phone-mount-maidsail": {
       "slug": "magnetic-car-phone-mount-maidsail",
-      "sku": "NRV-CARMOUNT-01",
+      "sku": "Mag-Holder",
       "name": "Maidsail Magnetic Car Phone Mount",
       "images": {
         "01-hero-white-bg": {
@@ -2002,7 +2002,7 @@
     },
     "foldable-mosquito-bed-tent": {
       "slug": "foldable-mosquito-bed-tent",
-      "sku": "NRV-MOSQUITO-01",
+      "sku": "Mosquito-protection-tent",
       "name": "Foldable Mosquito Protection Bed Tent",
       "images": {
         "01-hero-white-bg": {
@@ -2072,7 +2072,7 @@
     },
     "portable-rechargeable-dual-fan-air-cooler": {
       "slug": "portable-rechargeable-dual-fan-air-cooler",
-      "sku": "NRV-DUALCOOL-01",
+      "sku": "Portable-air-cooler",
       "name": "Portable Rechargeable Dual-Fan Air Cooler",
       "images": {
         "01-hero-white-bg": {

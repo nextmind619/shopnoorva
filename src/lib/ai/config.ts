@@ -29,6 +29,7 @@ export const aiConfig = {
     spreadsheetId: process.env.GOOGLE_SHEETS_ID || "",
     serviceAccountEmail: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || "",
     privateKey: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n") || "",
+    orderSheetName: process.env.GOOGLE_SHEETS_ORDER_SHEET || "leads",
   },
   meta: {
     // Prefer new env names; keep legacy fallbacks for EasyPanel deploys already live

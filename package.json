@@ -12,7 +12,8 @@
     "ai:tick": "curl -s -X POST http://localhost:3000/api/ai/cron -H \"Content-Type: application/json\" -d \"{\\\"task\\\":\\\"tick\\\"}\"",
     "images:generate": "node scripts/generate-product-images.mjs",
     "images:force": "node scripts/generate-product-images.mjs --force",
-    "video:astronaut-watch-result": "node scripts/generate-astronaut-watch-result.mjs"
+    "video:astronaut-watch-result": "node scripts/generate-astronaut-watch-result.mjs",
+    "test:google-sheets": "node --env-file=.env.local scripts/test-google-sheets-order.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1083.0",
@@ -33,6 +34,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
+    "google-auth-library": "^11.0.0",
     "ioredis": "^5.11.1",
     "lucide-react": "^1.24.0",
     "motion": "^12.42.2",
