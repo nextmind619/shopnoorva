@@ -156,7 +156,7 @@ export function ProductVariantPicker({ variants, selectedId, onSelect, locale, l
   );
 }
 
-/** Pack SKUs (e.g. 2-for-269) are ordered as a single line item. */
+/** Pack SKUs (e.g. 2-for-299) are ordered as a single line item. */
 export function isPackVariantSku(sku: string): boolean {
   return sku.endsWith("-2PK");
 }

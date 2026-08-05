@@ -1145,14 +1145,14 @@ export const products: Product[] = [
       "Foldable Pop-Up Mosquito Protection Bed Tent"
     ),
     shortDescription: L(
-      "شبكة دقيقة فوق السرير · تركيب pop-up في ثوانٍ · 199 درهم · عرض 2 بـ 269 درهم · توصيل مجاني والدفع عند الاستلام",
-      "Maille fine sur le lit · montage pop-up en secondes · 199 MAD · 2 pour 269 MAD · livraison gratuite et COD",
-      "Fine mesh over the bed · pop-up setup in seconds · 199 MAD · 2 for 269 MAD · free shipping and COD"
+      "شبكة دقيقة فوق السرير · تركيب pop-up في ثوانٍ · 199 درهم · عرض 2 بـ 299 درهم · توصيل مجاني والدفع عند الاستلام",
+      "Maille fine sur le lit · montage pop-up en secondes · 199 MAD · 2 pour 299 MAD · livraison gratuite et COD",
+      "Fine mesh over the bed · pop-up setup in seconds · 199 MAD · 2 for 299 MAD · free shipping and COD"
     ),
     description: L(
-      "خيمة حماية من الناموس من NOORVA: تصميم pop-up قابل للطي يُركّب بسرعة فوق سرير زوجي أو queen. شبكة بيضاء دقيقة مع إطار أزرق مرن، زخرفة dentelle أفقية، وفتحة U كبيرة بسحّاب للدخول والخروج. تُطوى في حقيبة دائرية خضراء/زرقاء للحمل والتخزين. مثالية للصيف، غرف الأطفال، والبيوت والرحلات. 199 درهم للوحدة أو 2 خيمات بـ 269 درهم. توصيل مجاني في المغرب والدفع عند الاستلام.",
-      "Moustiquaire pop-up NOORVA : montage rapide sur lit double/queen. Maille blanche fine, cadre bleu souple, dentelle décorative, grande ouverture en U avec fermeture éclair. Se plie dans un sac rond vert/bleu. Idéal été, chambres d'enfants, maison et voyage. 199 MAD l'unité ou 2 pour 269 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
-      "NOORVA pop-up mosquito bed tent: quick setup over double/queen bed. Fine white mesh, flexible blue frame, lace trim, large U-shaped zip door. Folds into green/blue circular carry bag. Ideal for summer, kids rooms, home and travel. 199 MAD each or 2 for 269 MAD. Free Morocco shipping, cash on delivery."
+      "خيمة حماية من الناموس من NOORVA: تصميم pop-up قابل للطي يُركّب بسرعة فوق سرير زوجي أو queen. شبكة بيضاء دقيقة مع إطار أزرق مرن، زخرفة dentelle أفقية، وفتحة U كبيرة بسحّاب للدخول والخروج. تُطوى في حقيبة دائرية خضراء/زرقاء للحمل والتخزين. مثالية للصيف، غرف الأطفال، والبيوت والرحلات. 199 درهم للوحدة أو 2 خيمات بـ 299 درهم. توصيل مجاني في المغرب والدفع عند الاستلام.",
+      "Moustiquaire pop-up NOORVA : montage rapide sur lit double/queen. Maille blanche fine, cadre bleu souple, dentelle décorative, grande ouverture en U avec fermeture éclair. Se plie dans un sac rond vert/bleu. Idéal été, chambres d'enfants, maison et voyage. 199 MAD l'unité ou 2 pour 299 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA pop-up mosquito bed tent: quick setup over double/queen bed. Fine white mesh, flexible blue frame, lace trim, large U-shaped zip door. Folds into green/blue circular carry bag. Ideal for summer, kids rooms, home and travel. 199 MAD each or 2 for 299 MAD. Free Morocco shipping, cash on delivery."
     ),
     categoryId: "cat-bedroom-lighting",
     price: 199,
@@ -1195,7 +1195,7 @@ export const products: Product[] = [
       L("تركيب pop-up سريع بلا أدوات", "Montage pop-up rapide sans outils", "Quick pop-up setup with no tools"),
       L("قابلة للطي مع حقيبة حمل عملية", "Pliable avec sac de transport pratique", "Foldable with practical carry bag"),
       L("فتحة سحّاب واسعة للدخول والخروج", "Grande fermeture éclair pour entrer/sortir", "Wide zip entry for easy access"),
-      L("عرض 2 خيمات بـ 269 درهم — توفير واضح", "2 moustiquaires pour 269 MAD — vraie économie", "2 tents for 269 MAD — clear savings"),
+      L("عرض 2 خيمات بـ 299 درهم — توفير واضح", "2 moustiquaires pour 299 MAD — vraie économie", "2 tents for 299 MAD — clear savings"),
     ],
     features: [
       L("تصميم pop-up قابل للطي", "Design pop-up pliable", "Foldable pop-up design"),
@@ -1241,8 +1241,8 @@ export const products: Product[] = [
       },
       {
         id: "var-mosquito-2pk",
-        name: L("2 خيمات — 269 درهم", "2 moustiquaires — 269 MAD", "2 tents — 269 MAD"),
-        price: 269,
+        name: L("2 خيمات — 299 درهم", "2 moustiquaires — 299 MAD", "2 tents — 299 MAD"),
+        price: 299,
         compareAtPrice: 398,
         sku: "Mosquito-protection-tent-2PK",
         stock: 80,
@@ -1252,14 +1252,14 @@ export const products: Product[] = [
     crossSellIds: ["prod-galaxy-rgb", "prod-shiatsu"],
     seo: {
       title: L(
-        "خيمة الحماية من الناموس | 199 درهم · 2 بـ 269 | NOORVA المغرب",
-        "Moustiquaire Pop-Up Pliable | 199 MAD · 2 pour 269 | NOORVA Maroc",
-        "Foldable Mosquito Bed Tent | 199 MAD · 2 for 269 | NOORVA Morocco"
+        "خيمة الحماية من الناموس | 199 درهم · 2 بـ 299 | NOORVA المغرب",
+        "Moustiquaire Pop-Up Pliable | 199 MAD · 2 pour 299 | NOORVA Maroc",
+        "Foldable Mosquito Bed Tent | 199 MAD · 2 for 299 | NOORVA Morocco"
       ),
       description: L(
-        "خيمة ناموس pop-up قابلة للطي بـ 199 درهم أو 2 بـ 269 درهم. تركيب سريع، شبكة دقيقة، سحّاب U. توصيل مجاني والدفع عند الاستلام في المغرب.",
-        "Moustiquaire pop-up pliable à 199 MAD ou 2 pour 269 MAD. Montage rapide, maille fine, fermeture U. Livraison gratuite et COD au Maroc.",
-        "Foldable pop-up mosquito tent for 199 MAD or 2 for 269 MAD. Fast setup, fine mesh, U zip. Free shipping and COD in Morocco."
+        "خيمة ناموس pop-up قابلة للطي بـ 199 درهم أو 2 بـ 299 درهم. تركيب سريع، شبكة دقيقة، سحّاب U. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Moustiquaire pop-up pliable à 199 MAD ou 2 pour 299 MAD. Montage rapide, maille fine, fermeture U. Livraison gratuite et COD au Maroc.",
+        "Foldable pop-up mosquito tent for 199 MAD or 2 for 299 MAD. Fast setup, fine mesh, U zip. Free shipping and COD in Morocco."
       ),
     },
   },
