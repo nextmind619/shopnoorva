@@ -222,7 +222,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
   const isCarMount = product.slug === "magnetic-car-phone-mount-maidsail";
-  const reviewLimit = isLaser ? 9 : isCarMount ? 5 : 3;
+  const isMosquitoTent = product.slug === "foldable-mosquito-bed-tent";
+  const reviewLimit = isLaser ? 9 : isCarMount ? 5 : isMosquitoTent ? 6 : 3;
   const ctaClass = isLaser
     ? "w-full h-14 sm:h-16 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/35 transition-colors"
     : "w-full h-14 sm:h-16 rounded-2xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-500/30 transition-colors";

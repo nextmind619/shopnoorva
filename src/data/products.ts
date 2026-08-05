@@ -1503,6 +1503,103 @@ export const reviews: ProductReview[] = [
     verified: true,
     images: ["/reviews/magnetic-car-phone-mount-maidsail/03-window-ring-thumb.webp"],
   },
+  // Foldable Mosquito Bed Tent — customer UGC reviews
+  {
+    id: "rmt1",
+    productId: "prod-mosquito-tent",
+    author: "فاطمة الزهراء",
+    city: "الدار البيضاء",
+    rating: 5,
+    title: L("تركيب سريع على السرير", "Installation rapide sur le lit", "Quick bed setup"),
+    content: L(
+      "وصلتني بسرعة وتركيبها pop-up فعلاً فثوانٍ. الشبكة دقيقة والإطار الأزرق متين، بنتي كتنام بلا لدغات.",
+      "Livraison rapide, montage pop-up en secondes. Maille fine, cadre bleu solide — ma fille dort sans piqures.",
+      "Fast delivery, pop-up setup in seconds. Fine mesh, sturdy blue frame — my daughter sleeps bite-free."
+    ),
+    date: "2026-07-30",
+    verified: true,
+    images: ["/reviews/foldable-mosquito-bed-tent/01-bedroom-floral-thumb.webp"],
+  },
+  {
+    id: "rmt2",
+    productId: "prod-mosquito-tent",
+    author: "سمية العلوي",
+    city: "فاس",
+    rating: 5,
+    title: L("الحقيبة عملية بزاف", "Sac très pratique", "Very handy bag"),
+    content: L(
+      "الحقيبة الدائرية كتسهّل التخزين والسفر. فتحتها فوق السرير وخدمات مباشرة، جودة الشبكة واضحة.",
+      "Le sac rond facilite le rangement et le voyage. Déployée sur le lit tout de suite, maille de qualité.",
+      "The round bag makes storage and travel easy. Opened on the bed right away — quality mesh."
+    ),
+    date: "2026-07-27",
+    verified: true,
+    images: ["/reviews/foldable-mosquito-bed-tent/02-carry-bag-setup-thumb.webp"],
+  },
+  {
+    id: "rmt3",
+    productId: "prod-mosquito-tent",
+    author: "نadia الشرايبي",
+    city: "مراكش",
+    rating: 5,
+    title: L("السحّاب واسع وساهل", "Grande fermeture éclair", "Wide easy zip"),
+    content: L(
+      "الدخول والخروج سهل بلا ما نحيد الخيمة. السحّاب مزدوج وكيخدم مزيان، مناسبة للسرير الزوجي.",
+      "Entrer/sortir facile sans retirer la moustiquaire. Double fermeture éclair, parfaite pour lit double.",
+      "Easy in and out without removing the tent. Double zip works well, fits our double bed."
+    ),
+    date: "2026-07-24",
+    verified: true,
+    images: ["/reviews/foldable-mosquito-bed-tent/03-door-open-thumb.webp"],
+  },
+  {
+    id: "rmt4",
+    productId: "prod-mosquito-tent",
+    author: "خديجة التازي",
+    city: "طنجة",
+    rating: 5,
+    title: L("تغطي السرير كامل", "Couvre tout le lit", "Covers the whole bed"),
+    content: L(
+      "كتحمي السرير كامل من الناموس. التركيب pop-up ما خداش وقت وما محتاجاش أدوات، الدفع عند الاستلام مريح.",
+      "Protège tout le lit des moustiques. Montage pop-up sans outils, paiement à la livraison pratique.",
+      "Protects the whole bed from mosquitoes. Pop-up setup with no tools, COD was convenient."
+    ),
+    date: "2026-07-21",
+    verified: true,
+    images: ["/reviews/foldable-mosquito-bed-tent/04-bedroom-zip-open-thumb.webp"],
+  },
+  {
+    id: "rmt5",
+    productId: "prod-mosquito-tent",
+    author: "أمين برادة",
+    city: "أكادير",
+    rating: 5,
+    title: L("عرض جوج خيمات يستاهل", "Offre 2 moustiquaires top", "2-tent deal worth it"),
+    content: L(
+      "خديت عرض 2 ب299 درهم — وحدة للغرفة ووحدة للضيوف. التوفير واضح والجودة ممتازة.",
+      "Pris l'offre 2 pour 299 MAD — une pour la chambre, une pour les invités. Vraie économie, bonne qualité.",
+      "Got the 2 for 299 MAD deal — one for our room, one for guests. Clear savings, great quality."
+    ),
+    date: "2026-07-18",
+    verified: true,
+    images: ["/reviews/foldable-mosquito-bed-tent/05-two-tents-pack-thumb.webp"],
+  },
+  {
+    id: "rmt6",
+    productId: "prod-mosquito-tent",
+    author: "إيمان بنجلون",
+    city: "الرباط",
+    rating: 5,
+    title: L("مثالية لغرفة الأطفال", "Parfaite chambre enfant", "Perfect for kids room"),
+    content: L(
+      "ركبتها فغرفة الولاد وما بقاوش يتعبو من الناموس. الخيمة واسعة من الداخل وتهوية مزيانة.",
+      "Installée dans la chambre des enfants, fini les moustiques. Spacieuse à l'intérieur, bonne aération.",
+      "Set up in the kids room — no more mosquito trouble. Spacious inside with good airflow."
+    ),
+    date: "2026-07-15",
+    verified: true,
+    images: ["/reviews/foldable-mosquito-bed-tent/06-kids-room-thumb.webp"],
+  },
   // Shiatsu Neck & Shoulder Massager — 25 Moroccan French reviews (~4.9 avg)
   { id: "rs1", productId: "prod-shiatsu", author: "Yassine El Idrissi", city: "Casablanca", rating: 5, title: L("ارتياح فوري", "Soulagement immédiat", "Instant relief"), content: L("بعد يوم المكتب رقبتني كترتاح في 10 دقايق. التدفئة زوينة بزاف.", "Après le bureau, mon cou se détend en 10 minutes. Le chauffage est excellent.", "After work, my neck relaxes in 10 minutes. The heat is excellent."), date: "2026-07-24", verified: true },
   { id: "rs2", productId: "prod-shiatsu", author: "Sara Benani", city: "Rabat", rating: 5, title: L("هدية مثالية", "Cadeau parfait", "Perfect gift"), content: L("شريتو لماما، عجباتها السانغات والتدليك الشياتسو.", "Offert à maman : elle adore les sangles et le massage Shiatsu.", "Gifted to mom — she loves the straps and Shiatsu massage."), date: "2026-07-22", verified: true },
