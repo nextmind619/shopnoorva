@@ -1,7 +1,7 @@
 import { JWT } from "google-auth-library";
 import { aiConfig, isConfigured } from "../config";
 import { logIntegration } from "./logger";
-import { isGoogleSheetsConfigured, resolveGoogleServiceAccount } from "./google-auth";
+import { getGoogleSheetsConfigSummary, isGoogleSheetsConfigured, resolveGoogleServiceAccount } from "./google-auth";
 import type { DailyAnalytics } from "../memory-store";
 
 const SHEETS_SCOPE = "https://www.googleapis.com/auth/spreadsheets";
@@ -266,10 +266,16 @@ export async function syncAnalyticsToSheets(analytics: DailyAnalytics): Promise<
  * Append a confirmed order to the Codplus-compatible leads sheet.
  * Non-blocking for the order pipeline: failures are logged and swallowed.
  */
-export async function appendOrderToSheets(order: SheetOrderInput): Promise<void> {
+export async function appendOrderToSheets(order: SheetOrderInput): Promise<{
+  ok: boolean;
+  skipped?: string;
+  error?: string;
+}> {
   if (!isSheetsApiConfigured() && !isConfigured(process.env.GOOGLE_SHEETS_WEBHOOK || "")) {
-    await logIntegration("google_sheets", "append_order_dry_run", "ok", order);
-    return;
+    await logIntegration("google_sheets", "append_order_dry_run", "ok", order, {
+      reason: "missing_credentials",
+    });
+    return { ok: false, skipped: "missing_credentials" };
   }
 
   try {
@@ -280,9 +286,62 @@ export async function appendOrderToSheets(order: SheetOrderInput): Promise<void>
     }
 
     await logIntegration("google_sheets", "append_order", "ok", order);
+    return { ok: true };
   } catch (error) {
     const message = error instanceof Error ? error.message : "sheets_append_failed";
     console.error("[google-sheets] append order failed:", message, { orderNumber: order.orderNumber });
     await logIntegration("google_sheets", "append_order", "error", order, { error: message });
+    return { ok: false, error: message };
+  }
+}
+
+export async function diagnoseGoogleSheets(): Promise<Record<string, unknown>> {
+  const summary = getGoogleSheetsConfigSummary();
+  if (!summary.configured) {
+    return { ...summary, step: "config", ok: false, error: "Google Sheets credentials not configured" };
+  }
+
+  try {
+    const client = getSheetsAuthClient();
+    const token = await client.getAccessToken();
+    if (!token.token) {
+      return { ...summary, step: "token", ok: false, error: "Failed to obtain access token" };
+    }
+
+    const spreadsheetId = aiConfig.googleSheets.spreadsheetId;
+    const sheetName = aiConfig.googleSheets.orderSheetName;
+    const meta = await sheetsFetch<{ sheets?: Array<{ properties?: { title?: string } }> }>(
+      `/${spreadsheetId}?fields=sheets.properties.title`
+    );
+    const sheetExists = meta.sheets?.some((sheet) => sheet.properties?.title === sheetName);
+    if (!sheetExists) {
+      return {
+        ...summary,
+        step: "sheet",
+        ok: false,
+        error: `Sheet tab "${sheetName}" not found`,
+        availableSheets: meta.sheets?.map((s) => s.properties?.title).filter(Boolean),
+      };
+    }
+
+    const headerRange = encodeRange(sheetName, "1:1");
+    const headers = await sheetsFetch<{ values?: string[][] }>(
+      `/${spreadsheetId}/values/${encodeURIComponent(headerRange)}`
+    );
+
+    return {
+      ...summary,
+      step: "ready",
+      ok: true,
+      headers: headers.values?.[0] || [],
+      message: "Google Sheets connection is working",
+    };
+  } catch (error) {
+    return {
+      ...summary,
+      step: "api",
+      ok: false,
+      error: error instanceof Error ? error.message : "diagnose_failed",
+    };
   }
 }

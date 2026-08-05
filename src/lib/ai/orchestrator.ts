@@ -136,6 +136,30 @@ export async function processIncomingOrder(input: {
     /* لا تعطّل الطلب إذا فشلت قاعدة البيانات — memory-store يبقى مصدر الحقيقة للوحة التحكم */
   });
 
+  if ((order.status === "confirmed" || order.status === "review") && !order.isDuplicate) {
+    const sheetsResult = await appendOrderToSheets({
+      orderNumber: order.orderNumber,
+      customerName: [order.firstName, order.lastName].filter(Boolean).join(" ") || "Client",
+      phone: order.phone,
+      city: order.city,
+      address: order.address,
+      notes: input.notes,
+      items: order.items.map((item, index, arr) => ({
+        sku: item.sku,
+        quantity: item.quantity,
+        price:
+          arr.length === 1
+            ? order.total
+            : index === 0
+              ? item.lineTotal + order.shipping - order.discount
+              : item.lineTotal,
+      })),
+    });
+    if (!sheetsResult.ok) {
+      console.error("[google-sheets] order saved but sheet sync failed:", sheetsResult.error || sheetsResult.skipped);
+    }
+  }
+
   for (const item of lineItems) {
     decrementStock(item.sku, item.quantity);
   }
@@ -214,27 +238,6 @@ export async function processIncomingOrder(input: {
 
   if (order.status === "confirmed") {
     await createShipment(order);
-  }
-
-  if (order.status === "confirmed" && !order.isDuplicate) {
-    await appendOrderToSheets({
-      orderNumber: order.orderNumber,
-      customerName: [order.firstName, order.lastName].filter(Boolean).join(" ") || "Client",
-      phone: order.phone,
-      city: order.city,
-      address: order.address,
-      notes: input.notes,
-      items: order.items.map((item, index, arr) => ({
-        sku: item.sku,
-        quantity: item.quantity,
-        price:
-          arr.length === 1
-            ? order.total
-            : index === 0
-              ? item.lineTotal + order.shipping - order.discount
-              : item.lineTotal,
-      })),
-    });
   }
 
   await sendMetaConversion({
