@@ -1,64 +1,45 @@
 "use client";
 
-import Link from "next/link";
-import {
-  LayoutDashboard, Package, ShoppingCart, Users, Warehouse,
-  Ticket, BarChart3, ArrowLeft, Megaphone, ShieldAlert, Shield,
-} from "lucide-react";
+import { useState } from "react";
+import { Menu } from "lucide-react";
+import { AdminThemeProvider } from "@/components/admin/layout/admin-theme-provider";
+import { AdminSidebar } from "@/components/admin/layout/admin-sidebar";
 import "../globals.css";
 
-const navItems = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/fraud", label: "Fraud", icon: ShieldAlert },
-  { href: "/admin/security", label: "Security", icon: Shield },
-  { href: "/admin/ai", label: "AI System", icon: BarChart3 },
-  { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
-  { href: "/admin/products", label: "Products", icon: Package },
-  { href: "/admin/customers", label: "Customers", icon: Users },
-  { href: "/admin/inventory", label: "Inventory", icon: Warehouse },
-  { href: "/admin/coupons", label: "Coupons", icon: Ticket },
-  { href: "/admin/marketing", label: "Marketing", icon: Megaphone },
-  { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
-];
-
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <html lang="en">
-      <body className="antialiased">
-        <div className="min-h-screen bg-neutral-50 flex">
-          <aside className="w-64 bg-black text-white shrink-0 hidden md:flex md:flex-col relative">
-            <div className="p-6">
-              <Link href="/admin" className="font-display text-xl tracking-[0.2em]">
-                NOOR<span className="text-gold">VA</span>
-              </Link>
-              <p className="text-xs text-neutral-500 mt-1">Admin Panel</p>
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
+        <AdminThemeProvider>
+          <div className="min-h-screen flex">
+            <div className="hidden md:block">
+              <AdminSidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
             </div>
-            <nav className="px-3 space-y-1 flex-1">
-              {navItems.map(({ href, label, icon: Icon }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="flex items-center gap-3 px-3 py-2.5 text-sm text-neutral-400 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  <Icon className="h-4 w-4" />
-                  {label}
-                </Link>
-              ))}
-            </nav>
-            <div className="p-6">
-              <Link href="/ar" className="flex items-center gap-2 text-xs text-neutral-500 hover:text-gold transition-colors">
-                <ArrowLeft className="h-3 w-3" /> Back to Store
-              </Link>
-            </div>
-          </aside>
-          <main className="flex-1 overflow-auto">
-            <div className="md:hidden bg-black text-white p-4 flex items-center justify-between">
-              <span className="font-display tracking-[0.2em]">NOOR<span className="text-gold">VA</span> Admin</span>
-              <Link href="/ar" className="text-xs text-neutral-400">Store</Link>
-            </div>
-            {children}
-          </main>
-        </div>
+            {mobileOpen && (
+              <div className="fixed inset-0 z-50 md:hidden">
+                <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
+                <div className="relative h-full w-64">
+                  <AdminSidebar collapsed={false} onToggle={() => setMobileOpen(false)} />
+                </div>
+              </div>
+            )}
+            <main className="flex-1 min-w-0 overflow-auto">
+              <div className="md:hidden sticky top-0 z-30 flex items-center justify-between bg-neutral-950 text-white px-4 py-3">
+                <button type="button" onClick={() => setMobileOpen(true)} aria-label="Open menu">
+                  <Menu className="h-5 w-5" />
+                </button>
+                <span className="font-display tracking-[0.15em]">
+                  NOOR<span className="text-gold">VA</span>
+                </span>
+                <div className="w-5" />
+              </div>
+              {children}
+            </main>
+          </div>
+        </AdminThemeProvider>
       </body>
     </html>
   );
