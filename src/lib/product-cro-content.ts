@@ -445,7 +445,7 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
     },
     midCtaLabels: [
       "بغيتي ترتاح الليلة؟",
-      "199 درهم بدل 299 — سعر تخفيض",
+      "299 درهم بدل 399 — سعر تخفيض",
       "خلص كاش عند الباب — بلا مخاطرة",
     ],
     howTo: [
