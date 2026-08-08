@@ -3,7 +3,6 @@ import { analyzeOrderFraud, applyFraudToOrder } from "./fraud";
 import { generateInvoice } from "./invoices";
 import { formatOrderProductsForMessage, sendMessage } from "./messaging";
 import { suggestUpsells } from "./support";
-import { createShipment } from "./shipments";
 import { decrementStock, autoReorderProducts } from "./inventory";
 import { processAbandonedCarts, markCartRecovered } from "./cart-recovery";
 import { generateDailyAnalytics, generateMonthlyAnalytics } from "./analytics";
@@ -239,10 +238,6 @@ export async function processIncomingOrder(input: {
       variables: { message: upsell.message },
       locale: "ar",
     });
-  }
-
-  if (order.status === "confirmed") {
-    await createShipment(order);
   }
 
   await sendMetaConversion({
