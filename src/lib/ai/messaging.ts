@@ -19,11 +19,25 @@ export interface MessagePayload {
   intent?: string;
 }
 
+/** Formats product lines for customer order confirmation (Arabic). */
+export function formatOrderProductsForMessage(
+  items: Array<{ name: string; quantity: number }>
+): string {
+  if (!items.length) return "🛍️ المنتج: —";
+  if (items.length === 1) {
+    const item = items[0];
+    const qtyPart = item.quantity > 1 ? ` × ${item.quantity}` : "";
+    return `🛍️ المنتج: ${item.name}${qtyPart}`;
+  }
+  const lines = items.map((item) => `• ${item.name} × ${item.quantity}`).join("\n");
+  return `🛍️ المنتجات:\n${lines}\n`;
+}
+
 const TEMPLATES: Record<string, Record<string, string>> = {
   order_confirmed: {
-    fr: "Bonjour {{name}}, commande {{order}} confirmée ({{total}} MAD). Livraison estimée {{eta}}. Paiement: {{payment}}.",
-    ar: "مرحباً {{name}}، تم تأكيد طلبك {{order}} بنجاح.\n💰 المجموع: {{total}} درهم\n🚚 التوصيل المتوقع: {{eta}}\n💵 {{payment}}",
-    en: "Hi {{name}}, order {{order}} confirmed ({{total}} MAD). ETA {{eta}}. Payment: {{payment}}.",
+    fr: "Bonjour {{name}},\n\nVotre commande {{order}} est enregistrée ✅\n\n{{products}}\n💰 Total: {{total}} MAD\n\n📞 Notre équipe vous appellera bientôt pour confirmer.\n\n🚚 Livraison à domicile\n💵 Paiement à la livraison\n\nMerci pour votre confiance ❤️",
+    ar: "مرحباً بك 👋\n\nتم تسجيل طلبك بنجاح ✅\n\n{{products}}\n💰 الثمن الإجمالي: {{total}} درهم\n\n📞 سيتواصل معك فريقنا هاتفياً في أقرب وقت لتأكيد طلبك والتأكد من معلومات التوصيل.\n\nالمرجو الرد على المكالمة لتأكيد الطلب، كما يمكنكم طرح أي سؤال وسنكون سعداء بالإجابة عليه.\n\n🚚 التوصيل حتى باب المنزل\n💵 الأداء عند الاستلام\n\nشكراً لثقتكم بنا ❤️",
+    en: "Hi {{name}},\n\nYour order {{order}} was placed successfully ✅\n\n{{products}}\n💰 Total: {{total}} MAD\n\n📞 Our team will call you soon to confirm delivery details.\n\n🚚 Home delivery\n💵 Cash on delivery\n\nThank you for your trust ❤️",
   },
   abandoned_cart_1: {
     fr: "Votre panier NOORVA vous attend encore ({{total}} MAD). Finalisez en COD en 1 clic: {{link}}",

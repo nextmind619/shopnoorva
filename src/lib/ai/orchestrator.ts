@@ -1,13 +1,14 @@
 import { store, uid, type StoredOrder } from "./memory-store";
 import { analyzeOrderFraud, applyFraudToOrder } from "./fraud";
 import { generateInvoice } from "./invoices";
-import { sendMessage } from "./messaging";
+import { formatOrderProductsForMessage, sendMessage } from "./messaging";
 import { suggestUpsells } from "./support";
 import { createShipment } from "./shipments";
 import { decrementStock, autoReorderProducts } from "./inventory";
 import { processAbandonedCarts, markCartRecovered } from "./cart-recovery";
 import { generateDailyAnalytics, generateMonthlyAnalytics } from "./analytics";
 import { appendOrderToSheets } from "./integrations/google-sheets";
+import { sendLeadToCodplus } from "./integrations/codplus";
 import { sendMetaConversion } from "./integrations/meta";
 import { sendTikTokEvent } from "./integrations/tiktok";
 import { triggerN8n } from "./integrations/n8n";
@@ -136,14 +137,18 @@ export async function processIncomingOrder(input: {
     /* لا تعطّل الطلب إذا فشلت قاعدة البيانات — memory-store يبقى مصدر الحقيقة للوحة التحكم */
   });
 
-  if ((order.status === "confirmed" || order.status === "review") && !order.isDuplicate) {
-    const sheetsResult = await appendOrderToSheets({
+  if (order.status === "confirmed" || order.status === "review") {
+    const noteParts: string[] = [];
+    if (order.isDuplicate) noteParts.push("[DUPLICATE]");
+    if (input.notes?.trim()) noteParts.push(input.notes.trim());
+
+    const leadPayload = {
       orderNumber: order.orderNumber,
       customerName: [order.firstName, order.lastName].filter(Boolean).join(" ") || "Client",
       phone: order.phone,
       city: order.city,
       address: order.address,
-      notes: input.notes,
+      notes: noteParts.length ? noteParts.join(" ") : undefined,
       items: order.items.map((item, index, arr) => ({
         sku: item.sku,
         quantity: item.quantity,
@@ -154,9 +159,16 @@ export async function processIncomingOrder(input: {
               ? item.lineTotal + order.shipping - order.discount
               : item.lineTotal,
       })),
-    });
+    };
+
+    const sheetsResult = await appendOrderToSheets(leadPayload);
     if (!sheetsResult.ok) {
       console.error("[google-sheets] order saved but sheet sync failed:", sheetsResult.error || sheetsResult.skipped);
+    }
+
+    const codplusResult = await sendLeadToCodplus(leadPayload);
+    if (!codplusResult.ok) {
+      console.error("[codplus] order saved but webhook failed:", codplusResult.error || codplusResult.skipped);
     }
   }
 
@@ -169,6 +181,15 @@ export async function processIncomingOrder(input: {
   const invoice = await generateInvoice(order);
 
   const customerName = [input.firstName, input.lastName].filter(Boolean).join(" ") || "عميل";
+  const productsLine = formatOrderProductsForMessage(order.items);
+  const confirmationVars = {
+    name: customerFirst,
+    order: order.orderNumber,
+    products: productsLine,
+    total: order.total,
+    eta: etaLabel,
+    payment: paymentLabel,
+  };
 
   await notifyAdminNewOrder(order, customerName).catch(() => {
     /* لا تعطّل الطلب إذا فشل إشعار المسؤول */
@@ -178,14 +199,10 @@ export async function processIncomingOrder(input: {
     channel: "whatsapp",
     recipient: order.phone,
     templateKey: "order_confirmed",
-    variables: {
-      name: customerFirst,
-      order: order.orderNumber,
-      total: order.total,
-      eta: etaLabel,
-      payment: paymentLabel,
-    },
+    variables: confirmationVars,
     locale: "ar",
+    relatedType: "order",
+    relatedId: order.id,
   });
 
   if (order.email) {
@@ -194,13 +211,7 @@ export async function processIncomingOrder(input: {
       recipient: order.email,
       templateKey: "order_confirmed",
       subject: locale === "ar" ? `تأكيد الطلب ${order.orderNumber}` : `Commande ${order.orderNumber} confirmée`,
-      variables: {
-        name: customerFirst,
-        order: order.orderNumber,
-        total: order.total,
-        eta: etaLabel,
-        payment: paymentLabel,
-      },
+      variables: confirmationVars,
       locale,
       generateWithAi: true,
       intent: "order confirmation email with invoice link",
@@ -211,13 +222,7 @@ export async function processIncomingOrder(input: {
     channel: "sms",
     recipient: order.phone,
     templateKey: "order_confirmed",
-    variables: {
-      name: customerFirst,
-      order: order.orderNumber,
-      total: order.total,
-      eta: etaLabel,
-      payment: paymentLabel,
-    },
+    variables: confirmationVars,
     locale: "ar",
   });
 
