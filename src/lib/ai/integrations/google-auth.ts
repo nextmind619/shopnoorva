@@ -8,7 +8,31 @@ function normalizePrivateKey(raw: string): string {
   ) {
     key = key.slice(1, -1);
   }
-  return key.replace(/\\n/g, "\n");
+  key = key.replace(/\\n/g, "\n").replace(/\r/g, "");
+  return key.trim();
+}
+
+function extractPrivateKeyFromJsonBlob(raw: string): string | null {
+  const trimmed = raw.trim();
+  if (!trimmed.startsWith("{")) return null;
+
+  try {
+    const json = JSON.parse(trimmed) as { private_key?: string };
+    if (json.private_key) return normalizePrivateKey(json.private_key);
+  } catch {
+    /* fall through — env panels often break JSON quoting */
+  }
+
+  const match = trimmed.match(/"private_key"\s*:\s*"((?:\\.|[^"\\])*)"/);
+  if (match?.[1]) {
+    return normalizePrivateKey(
+      match[1]
+        .replace(/\\"/g, '"')
+        .replace(/\\\\/g, "\\")
+    );
+  }
+
+  return null;
 }
 
 export function resolveGoogleServiceAccount(): { email: string; privateKey: string } | null {
@@ -25,6 +49,11 @@ export function resolveGoogleServiceAccount(): { email: string; privateKey: stri
       }
     } catch {
       /* fall through */
+    }
+
+    const extracted = extractPrivateKeyFromJsonBlob(rawKey);
+    if (extracted && isConfigured(rawEmail)) {
+      return { email: rawEmail, privateKey: extracted };
     }
   }
 

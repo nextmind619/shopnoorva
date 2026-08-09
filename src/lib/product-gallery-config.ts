@@ -828,6 +828,73 @@ const DUAL_FAN_COOLER_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const VINTAGE_LANTERN_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🏮",
+    heading: "بدّل جو دارك بلمسة وحدة",
+    subtitle: "فانوس LED بستايل كلاسيكي كيخلي أي بلاصة دافئة ومميزة",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "05-living-room",
+    emoji: "🛋️",
+    heading: "ماشي غير فانوس… قطعة ديكور",
+    subtitle: "جو دافئ وأنيق فالصالون وغرفة النوم",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "03-lifestyle",
+    emoji: "🌅",
+    heading: "شوف كيفاش كيبدل الجو",
+    subtitle: "تراس مغربي بأجواء دافئة فالليل",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "⛺",
+    heading: "وخا فالدار ولا برا",
+    subtitle: "مناسب للتراس، الحديقة والتخييم",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "✨",
+    heading: "تفاصيل وجودة",
+    subtitle: "تشطيب Vintage وتصميم Hurricane أصيل",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "🔥",
+    heading: "خد جوج واستافد أكثر",
+    subtitle: "عرض جوج قطع بـ 319 درهم — وفّر 139 درهم",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "07-romantic-room",
+    emoji: "🎁",
+    heading: "اختيار زوين للهدية",
+    subtitle: "دفء وراحة فمنتج واحد",
+    objectFit: "cover",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "📸",
+    heading: "فانوس LED كلاسيكي",
+    subtitle: "229 درهم · الدفع عند الاستلام",
+    objectFit: "cover",
+  },
+];
+
 const MOSQUITO_TENT_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
@@ -924,6 +991,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "car-dual-fan-foldable-sunshade-2in1-pack": CAR_FAN_SUNSHADE_SLIDES,
   "foldable-mosquito-bed-tent": MOSQUITO_TENT_SLIDES,
   "portable-rechargeable-dual-fan-air-cooler": DUAL_FAN_COOLER_SLIDES,
+  "vintage-led-lantern": VINTAGE_LANTERN_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

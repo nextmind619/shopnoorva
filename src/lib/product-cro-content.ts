@@ -17,6 +17,8 @@ import {
   Heart,
   Thermometer,
   Activity,
+  Home,
+  Flame,
 } from "lucide-react";
 import type { PremiumImageType } from "@/lib/product-images/types";
 
@@ -587,6 +589,76 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         icon: Gift,
         title: "هدية صيفية",
         desc: "عملي ومفيد — هدية مناسبة للعائلة والزملاء فموسم الحر.",
+      },
+    ],
+  },
+
+  "vintage-led-lantern": {
+    headline: {
+      title: "بدّل جو دارك بلمسة وحدة ✨",
+      subtitle: "فانوس LED بستايل كلاسيكي كيخلي أي بلاصة دافئة ومميزة",
+    },
+    midCtaLabels: [
+      "ماشي غير ضو… هاد الفانوس كيعطيك جو دافئ وأنيق",
+      "اختار العرض ديالك — قطعة أو جوج بأحسن ثمن",
+      "🛒 بغيتو دابا — الدفع عند الاستلام",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "حطّو فبلاصة مناسبة",
+        desc: "طاولة، رف، تراس أو طاولة تخييم — أي بلاصة بغيتي تزيّنها.",
+        imageKey: "05-living-room",
+      },
+      {
+        step: "2",
+        title: "شغّل الإضاءة",
+        desc: "اضغط على زر التشغيل فالقاعدة باش يولّي الفانوس كيضوي.",
+        imageKey: "09-close-up",
+      },
+      {
+        step: "3",
+        title: "اضبط الجو",
+        desc: "استعمل المقبض باش تختار شدة الإضاءة اللي كتريحك.",
+        imageKey: "02-premium-hero",
+      },
+      {
+        step: "4",
+        title: "استمتع بالأجواء",
+        desc: "صالون، غرفة نوم، تراس أو حديقة — جو دافئ فأي وقت.",
+        imageKey: "03-lifestyle",
+      },
+    ],
+    comparison: {
+      oursLabel: "فانوس NOORVA LED",
+      rows: [
+        { label: "إضاءة دافئة كهرمانية", us: true, them: "ضوء بارد عادي" },
+        { label: "ستايل Vintage Hurricane", us: true, them: "تصميم عادي" },
+        { label: "ديكور + إضاءة فمنتج واحد", us: true, them: "واحد منهم" },
+        { label: "عرض جوج بـ 319 درهم", us: true, them: false },
+        ...SHARED_TRUST_ROWS,
+      ],
+    },
+    benefits: [
+      {
+        icon: Flame,
+        title: "إضاءة دافئة ✨",
+        desc: "كيعطي جو مريح ودافئ خصوصاً فالليل.",
+      },
+      {
+        icon: Sparkles,
+        title: "ستايل كلاسيكي 🏮",
+        desc: "الشكل ديالو Vintage كيضيف لمسة مميزة لأي بلاصة.",
+      },
+      {
+        icon: Home,
+        title: "لدار وبرا 🌙",
+        desc: "مناسب للصالون، التراس، الحديقة وحتى الخرجات.",
+      },
+      {
+        icon: Gift,
+        title: "اختيار زوين للهدية 🎁",
+        desc: "كيجمع بين الديكور والاستعمال فمنتج واحد.",
       },
     ],
   },

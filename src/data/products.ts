@@ -1385,6 +1385,128 @@ export const products: Product[] = [
       ),
     },
   },
+
+  {
+    id: "prod-vintage-lantern",
+    slug: "vintage-led-lantern",
+    name: L(
+      "فانوس LED كلاسيكي للديكور والإضاءة الدافئة",
+      "Lanterne LED Vintage — Déco & Lumière Chaleureuse",
+      "Vintage LED Lantern — Warm Decor Lighting"
+    ),
+    shortDescription: L(
+      "فانوس LED بستايل كلاسيكي كيخلي أي بلاصة دافئة ومميزة · 229 درهم · عرض جوج بـ 319 درهم · الدفع عند الاستلام",
+      "Lanterne LED style classique pour une ambiance chaleureuse · 229 MAD · 2 pour 319 MAD · COD",
+      "Classic-style LED lantern for warm ambiance · 229 MAD · 2 for 319 MAD · cash on delivery"
+    ),
+    description: L(
+      "فانوس LED من NOORVA بستايل Hurricane كلاسيكي: تشطيب Vintage برونزي/ذهبي م distressed، كرة زجاجية frosted كتضوي بضوء كهرماني دافئ، قفص سلكي على شكل X، أنابيب جانبية منحنية، ومقبض سلكي أسود. كيضيف جو دافئ وأنيق للصالون، غرفة النوم، التراس، الحديقة والتخييم. قطعة بـ 229 درهم أو جوج بـ 319 درهم (توفير 139 درهم). توصيل مجاني والدفع عند الاستلام في المغرب.",
+      "Lanterne LED NOORVA style Hurricane : finition bronze/or vintage, globe givré lumière ambrée, cage fil X, tubes latéraux, poignée noire. Ambiance chaleureuse salon, chambre, terrasse, jardin, camping. 229 MAD l'unité ou 2 pour 319 MAD (139 MAD d'économie). Livraison gratuite et COD au Maroc.",
+      "NOORVA classic Hurricane-style LED lantern: distressed bronze/gold vintage finish, frosted amber glow globe, X-wire cage, curved side tubes, black wire handle. Warm elegant ambiance for living room, bedroom, terrace, garden and camping. 229 MAD each or 2 for 319 MAD (save 139 MAD). Free Morocco shipping and cash on delivery."
+    ),
+    categoryId: "cat-home-decor",
+    price: 229,
+    sku: "NRV-LANTERN-01",
+    stock: 85,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    warrantyMonths: 6,
+    problemEmoji: "🏮",
+    problem: L(
+      "حاس براسك الدار ناقصها داك الجو الدافئ؟",
+      "Il manque une ambiance chaleureuse chez vous?",
+      "Feel like your home is missing that warm cozy glow?"
+    ),
+    problemCause: L(
+      "الإضاءة العادية كتضوي… ولكن ما كتخلقش الجو",
+      "La lumière ordinaire éclaire sans créer d'ambiance",
+      "Regular lighting illuminates but doesn't create atmosphere"
+    ),
+    problemSolution: L(
+      "إضاءة دافئة + شكل Vintage كلاسيكي فمنتج واحد",
+      "Lumière chaleureuse + style vintage classique en un seul objet",
+      "Warm lighting + classic vintage look in one piece"
+    ),
+    deepDescription: L(
+      "فانوس LED بارتفاع 35 سم بتصميم Hurricane تقليدي: قاعدة دائرية متدرجة مع زر تشغيل ومقبض dimmer، كرة إضاءة frosted، قفص حماية سلكي، أنبوبان جانبيان يربطان القاعدة بالغطاء العلوي، ومقبض حمل سلكي. تشطيب برونزي/ذهبي antique distressed. مناسب للديكور الداخلي والخارجي والهدايا.",
+      "Lanterne LED 35 cm style Hurricane : base à gradins avec bouton et variateur, globe givré, cage fil, tubes latéraux, poignée. Finition bronze/or antique. Déco intérieure, extérieure et cadeaux.",
+      "35cm Hurricane-style LED lantern: tiered base with power button and dimmer knob, frosted globe, wire cage, side tubes, carry handle. Distressed antique bronze/gold finish. Indoor/outdoor decor and gifts."
+    ),
+    tags: ["decor", "bedroom", "gift", "new", "lantern", "vintage", "home"],
+    benefits: [
+      L("إضاءة دافئة — كيعطي جو مريح ودافئ خصوصاً فالليل", "Lumière chaleureuse — ambiance cosy surtout la nuit", "Warm glow — cozy atmosphere especially at night"),
+      L("ستايل كلاسيكي — الشكل Vintage كيضيف لمسة مميزة", "Style classique — touche vintage distinctive", "Classic style — distinctive vintage touch"),
+      L("لدار وبرا — صالون، تراس، حديقة وخرجات", "Intérieur & extérieur — salon, terrasse, jardin", "Indoor & outdoor — living room, terrace, garden"),
+      L("اختيار زوين للهدية — ديكور واستعمال فمنتج واحد", "Idée cadeau — déco et usage réunis", "Great gift — decor and utility in one"),
+    ],
+    features: [
+      L("تصميم Hurricane كلاسيكي", "Design Hurricane classique", "Classic Hurricane design"),
+      L("تشطيب Vintage برونزي/ذهبي", "Finition vintage bronze/or", "Distressed bronze/gold vintage finish"),
+      L("إضاءة LED كهرمانية دافئة", "LED ambrée chaleureuse", "Warm amber LED glow"),
+      L("قفص سلكي حماية", "Cage fil de protection", "Protective wire cage"),
+      L("مقبض حمل سلكي", "Poignée de transport", "Wire carry handle"),
+      L("زر تشغيل + مقبض dimmer", "Bouton marche + variateur", "Power button + dimmer knob"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("فانوس LED ديكور", "Lanterne LED déco", "Decor LED lantern") },
+      { label: L("الارتفاع", "Hauteur", "Height"), value: L("35 سم", "35 cm", "35 cm") },
+      { label: L("الستايل", "Style", "Style"), value: L("Vintage Hurricane", "Hurricane vintage", "Vintage Hurricane") },
+      { label: L("اللون", "Couleur", "Color"), value: L("برونزي/ذهبي antique", "Bronze/or antique", "Antique bronze/gold") },
+      { label: L("الإضاءة", "Éclairage", "Lighting"), value: L("LED دافئة كهرمانية", "LED ambrée chaleureuse", "Warm amber LED") },
+    ],
+    packageIncludes: [
+      L("فانوس LED كلاسيكي", "Lanterne LED classique", "Classic LED lantern"),
+    ],
+    howToUse: L(
+      "حط الفانوس على طاولة أو رف، شغّله بالزر فالقاعدة واضبط الإضاءة بالمقبض. مناسب للصالون، غرفة النوم، التراس، الحديقة أو التخييم.",
+      "Placez la lanterne sur une table ou étagère, allumez avec le bouton et réglez la lumière avec le variateur. Salon, chambre, terrasse, jardin ou camping.",
+      "Place the lantern on a table or shelf, press the base power button and adjust brightness with the dimmer knob. For living room, bedroom, terrace, garden or camping."
+    ),
+    lifestyleScenes: [
+      { id: "living", emoji: "🛋️", title: L("الصالون", "Salon", "Living room"), description: L("جو دافئ وأنيق", "Ambiance chaleureuse", "Warm elegant mood") },
+      { id: "terrace", emoji: "🌙", title: L("التراس", "Terrasse", "Terrace"), description: L("أمسيات مميزة", "Soirées cosy", "Cozy evenings") },
+      { id: "outdoor", emoji: "⛺", title: L("الخرجات", "Extérieur", "Outdoors"), description: L("تخييم وحديقة", "Camping et jardin", "Camping and garden") },
+      { id: "gift", emoji: "🎁", title: L("هدية", "Cadeau", "Gift"), description: L("فكرة هدية جميلة", "Belle idée cadeau", "Beautiful gift idea") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-lantern-1",
+        name: L("قطعة وحدة — 229 درهم", "1 lanterne — 229 MAD", "1 lantern — 229 MAD"),
+        price: 229,
+        sku: "NRV-LANTERN-01",
+        stock: 85,
+      },
+      {
+        id: "var-lantern-2pk",
+        name: L("جوج قطع — 319 درهم", "2 lanternes — 319 MAD", "2 lanterns — 319 MAD"),
+        price: 319,
+        compareAtPrice: 458,
+        sku: "NRV-LANTERN-01-2PK",
+        stock: 60,
+      },
+    ],
+    upsellIds: ["prod-rabbit", "prod-starbt"],
+    crossSellIds: ["prod-mosquito-tent", "prod-galaxy-rgb"],
+    seo: {
+      title: L(
+        "فانوس LED كلاسيكي للديكور والإضاءة | 229 DH",
+        "Lanterne LED Classique Déco | 229 MAD | NOORVA",
+        "Classic LED Lantern Decor | 229 MAD | NOORVA"
+      ),
+      description: L(
+        "اكتشف فانوس LED بستايل كلاسيكي كيضيف جو دافئ وأنيق للدار، التراس والخرجات. قطعة بـ229 DH أو جوج بـ319 DH.",
+        "Lanterne LED style classique pour une ambiance chaleureuse. 229 MAD l'unité ou 2 pour 319 MAD. COD au Maroc.",
+        "Classic LED lantern for warm elegant ambiance. 229 MAD each or 2 for 319 MAD. Cash on delivery in Morocco."
+      ),
+    },
+  },
 ];
 
 export const reviews: ProductReview[] = [

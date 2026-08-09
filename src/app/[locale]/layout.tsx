@@ -8,12 +8,12 @@ import { DeferredClientChrome } from "@/components/layout/deferred-client-chrome
 import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
 import "../globals.css";
 
-/** Critical display + body fonts — Tajawal not preloaded so hero wins the network */
+/** Lean font set — fewer Arabic WOFF2 files on the critical path */
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
   variable: "--font-cairo",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "700"],
   preload: true,
   adjustFontFallback: true,
 });
@@ -22,7 +22,7 @@ const tajawal = Tajawal({
   subsets: ["arabic"],
   variable: "--font-tajawal",
   display: "swap",
-  weight: ["400", "500", "700", "800"],
+  weight: ["400", "700"],
   preload: false,
   adjustFontFallback: true,
 });
@@ -48,7 +48,7 @@ export default async function LocaleLayout({
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${tajawal.variable} h-full`}>
       <head>
         <meta name="facebook-domain-verification" content="gsg759rql91jkxu1wywq1fibppl2tl" />
-        <link rel="preload" as="image" href="/hero/collection-banner.webp" type="image/webp" fetchPriority="high" />
+        {/* Hero uses next/image priority — avoid double-fetching the raw WebP */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://analytics.tiktok.com" />

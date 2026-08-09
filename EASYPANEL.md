@@ -63,6 +63,17 @@ GOOGLE_SHEETS_ORDER_SHEET=leads
 
 Test locally: `npm run test:google-sheets` (requires `.env.local`).
 
+### Codplus webhook
+
+Add to `web` env (copy Webhook URL from Codplus dashboard → Integrations):
+
+```
+CODPLUS_WEBHOOK_URL=https://www.codplus.space/...your-webhook-url...
+CODPLUS_WEBHOOK_TOKEN=your-webhook-token
+```
+
+Test: `https://shopnoorva.shop/api/admin/test-codplus?secret=CRON_SECRET`
+
 ## 3) Add Postgres
 1. Add service → **Postgres** (or App named `noorva`)
 2. User: `noorva`

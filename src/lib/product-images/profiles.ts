@@ -255,6 +255,26 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       clientRef: "/products/car-dual-fan-foldable-sunshade-2in1-pack/",
     },
   },
+  {
+    id: "prod-vintage-lantern",
+    slug: "vintage-led-lantern",
+    sku: "NRV-LANTERN-01",
+    name: "Vintage LED Hurricane Lantern",
+    type: "Classic Hurricane-style decorative LED lantern",
+    color: "Distressed antique bronze/gold over dark base",
+    category: "Home Decor",
+    categoryId: "cat-home-decor",
+    shortDescription:
+      "35cm tall vintage Hurricane LED lantern — frosted amber globe, X-wire cage, curved side tubes, tiered chimney cap, black wire handle, base power button and dimmer knob",
+    visualIdentity:
+      "EXACT real product from client reference — classic Hurricane-style LED lantern 35cm tall. Distressed antique bronze/gold brushed finish over dark black/brown base (NOT silver chrome). Frosted glass globe glowing warm amber/orange LED. Thin metal wire protective cage with sharp X-shaped wires front and back. Two thick curved hollow metal side tubes from tiered circular base to tiered chimney cap with small rectangular ventilation holes. Black wire bail handle on top. Base front: round black power button center-bottom and textured round dimmer/switch knob above. NEVER redesign shape, NEVER modernize, NEVER substitute different lantern, NEVER add/remove features.",
+    dimensions: "35 cm height",
+    accessories: [],
+    packageItems: ["Vintage LED lantern"],
+    sourceUrls: {
+      clientRef: "/products/vintage-led-lantern/product-reference.png",
+    },
+  },
 ];
 
 export function getProductProfile(slug: string): ProductProfile | undefined {

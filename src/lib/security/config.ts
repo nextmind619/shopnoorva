@@ -13,6 +13,7 @@ export const SECURITY_CONFIG = {
     challengePassed: 20,
     likelyMoroccan: 15,
     realAdClick: 12,
+    socialTraffic: 12,
     missingReferrerSoft: -5,
     suspiciousReferrer: -25,
     facebookAdLibrary: -35,
@@ -52,6 +53,10 @@ export const SECURITY_CONFIG = {
 
   /** Soft allow-list query params that indicate real paid traffic */
   adClickParams: ["fbclid", "gclid", "ttclid", "msclkid", "utm_source", "utm_campaign"],
+
+  /** Optional owner preview token (env SECURITY_PREVIEW_TOKEN) — bypasses storefront blocks */
+  previewQueryParam: "nv_preview",
+  previewCookie: "nv_preview",
 
   maxLogs: 4000,
 } as const;

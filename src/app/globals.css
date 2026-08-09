@@ -179,7 +179,7 @@ body {
   display: block;
   margin-bottom: 0.625rem;
   font-size: 1.125rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #000000 !important;
   letter-spacing: -0.01em;
 }
@@ -254,15 +254,15 @@ body {
 
 .glass {
   background: var(--glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .glass-dark {
-  background: rgba(26, 47, 74, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(26, 47, 74, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -277,6 +277,13 @@ body {
 
 .section-padding {
   @apply px-4 sm:px-6 lg:px-8 py-20 md:py-28;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 560px;
+}
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
 }
 
 .container-luxury {
@@ -335,6 +342,17 @@ body {
 
 [dir="rtl"] .animate-marquee {
   animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .gold-shimmer {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 ::-webkit-scrollbar { width: 6px; }

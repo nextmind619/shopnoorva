@@ -72,7 +72,7 @@ export const categories: Category[] = [
       en: "Premium lighting pieces to decorate any room",
     },
     image: getProductHeroUrl("bluetooth-star-projector"),
-    productCount: 6,
+    productCount: 7,
   },
   {
     id: "cat-bedroom-lighting",

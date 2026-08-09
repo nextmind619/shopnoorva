@@ -2422,6 +2422,112 @@
         "10-features": "commercial",
         "14-product-in-use": "commercial"
       }
+    },
+    "vintage-led-lantern": {
+      "slug": "vintage-led-lantern",
+      "sku": "NRV-LANTERN-01",
+      "name": "Vintage LED Lantern",
+      "images": {
+        "02-premium-hero": {
+          "original": "/products/vintage-led-lantern/02-premium-hero.jpg",
+          "webp": "/products/vintage-led-lantern/02-premium-hero.webp",
+          "avif": "/products/vintage-led-lantern/02-premium-hero.avif",
+          "thumbnail": "/products/vintage-led-lantern/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/vintage-led-lantern/responsive/02-premium-hero-640.webp",
+            "md": "/products/vintage-led-lantern/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/vintage-led-lantern/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "01-hero-white-bg": {
+          "original": "/products/vintage-led-lantern/01-hero-white-bg.jpg",
+          "webp": "/products/vintage-led-lantern/01-hero-white-bg.webp",
+          "avif": "/products/vintage-led-lantern/01-hero-white-bg.avif",
+          "thumbnail": "/products/vintage-led-lantern/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/vintage-led-lantern/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/vintage-led-lantern/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/vintage-led-lantern/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/vintage-led-lantern/09-close-up.jpg",
+          "webp": "/products/vintage-led-lantern/09-close-up.webp",
+          "avif": "/products/vintage-led-lantern/09-close-up.avif",
+          "thumbnail": "/products/vintage-led-lantern/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/vintage-led-lantern/responsive/09-close-up-640.webp",
+            "md": "/products/vintage-led-lantern/responsive/09-close-up-1280.webp",
+            "lg": "/products/vintage-led-lantern/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/vintage-led-lantern/10-features.jpg",
+          "webp": "/products/vintage-led-lantern/10-features.webp",
+          "avif": "/products/vintage-led-lantern/10-features.avif",
+          "thumbnail": "/products/vintage-led-lantern/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/vintage-led-lantern/responsive/10-features-640.webp",
+            "md": "/products/vintage-led-lantern/responsive/10-features-1280.webp",
+            "lg": "/products/vintage-led-lantern/responsive/10-features-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/vintage-led-lantern/03-lifestyle.jpg",
+          "webp": "/lifestyle/vintage-led-lantern/03-lifestyle.webp",
+          "avif": "/lifestyle/vintage-led-lantern/03-lifestyle.avif",
+          "thumbnail": "/lifestyle/vintage-led-lantern/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/vintage-led-lantern/responsive/03-lifestyle-640.webp",
+            "md": "/lifestyle/vintage-led-lantern/responsive/03-lifestyle-1280.webp",
+            "lg": "/lifestyle/vintage-led-lantern/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "05-living-room": {
+          "original": "/lifestyle/vintage-led-lantern/05-living-room.jpg",
+          "webp": "/lifestyle/vintage-led-lantern/05-living-room.webp",
+          "avif": "/lifestyle/vintage-led-lantern/05-living-room.avif",
+          "thumbnail": "/lifestyle/vintage-led-lantern/thumbs/05-living-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/vintage-led-lantern/responsive/05-living-room-640.webp",
+            "md": "/lifestyle/vintage-led-lantern/responsive/05-living-room-1280.webp",
+            "lg": "/lifestyle/vintage-led-lantern/responsive/05-living-room-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/vintage-led-lantern/14-product-in-use.jpg",
+          "webp": "/lifestyle/vintage-led-lantern/14-product-in-use.webp",
+          "avif": "/lifestyle/vintage-led-lantern/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/vintage-led-lantern/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/vintage-led-lantern/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/vintage-led-lantern/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/vintage-led-lantern/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "07-romantic-room": {
+          "original": "/lifestyle/vintage-led-lantern/07-romantic-room.jpg",
+          "webp": "/lifestyle/vintage-led-lantern/07-romantic-room.webp",
+          "avif": "/lifestyle/vintage-led-lantern/07-romantic-room.avif",
+          "thumbnail": "/lifestyle/vintage-led-lantern/thumbs/07-romantic-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/vintage-led-lantern/responsive/07-romantic-room-640.webp",
+            "md": "/lifestyle/vintage-led-lantern/responsive/07-romantic-room-1280.webp",
+            "lg": "/lifestyle/vintage-led-lantern/responsive/07-romantic-room-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "02-premium-hero": "generated-with-reference",
+        "01-hero-white-bg": "generated-with-reference",
+        "09-close-up": "generated-with-reference",
+        "10-features": "generated-with-reference",
+        "03-lifestyle": "generated-with-reference",
+        "05-living-room": "generated-with-reference",
+        "14-product-in-use": "generated-with-reference",
+        "07-romantic-room": "generated-with-reference"
+      }
     }
   }
 }

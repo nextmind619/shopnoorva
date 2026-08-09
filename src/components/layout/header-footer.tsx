@@ -21,10 +21,10 @@ export function AnnouncementBar() {
   const t = useTranslations("announcement");
   return (
     <div className="bg-navy text-cream text-center py-2 px-4 text-xs sm:text-sm overflow-x-clip relative z-[60] w-full max-w-full">
-      <div className="flex animate-marquee whitespace-nowrap gap-12">
-        {[...TRUST_TICKER, ...TRUST_TICKER].map((item, i) => (
-          <span key={i} className="inline-flex items-center gap-2">
-            <span>{item.icon}</span>
+      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
+        {TRUST_TICKER.map((item) => (
+          <span key={item.key} className="inline-flex items-center gap-1.5">
+            <span aria-hidden>{item.icon}</span>
             {t(`ticker.${item.key}`)}
           </span>
         ))}
@@ -59,7 +59,7 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-black/5">
+      <header className="sticky top-0 z-50 bg-cream border-b border-black/5">
         <div className="container-luxury px-4 h-[72px] flex items-center justify-between">
           <button className="p-2 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

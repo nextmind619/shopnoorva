@@ -29,9 +29,13 @@ interface ProductOrderFormProps {
   variant: ProductVariant;
   quantity: number;
   locale?: "ar" | "fr";
+  /** Split city + street address fields (Moroccan COD flow) */
+  extendedAddress?: boolean;
+  /** Override submit button label */
+  submitLabel?: string;
 }
 
-type FormFields = { fullName: string; phone: string; address: string };
+type FormFields = { fullName: string; phone: string; address: string; city: string; streetAddress: string };
 type FormErrors = Partial<Record<keyof FormFields, string>>;
 
 const COPY = {
@@ -44,6 +48,10 @@ const COPY = {
     phonePh: "06XXXXXXXX",
     address: "المدينة",
     addressPh: "كلمة واحدة تكفي — مثال: أكادير",
+    city: "المدينة",
+    cityPh: "مثال: الدار البيضاء",
+    streetAddress: "العنوان",
+    streetAddressPh: "الحي، الشارع أو علامة قريبة",
     qty: "الكمية",
     shipping: "الشحن",
     free: "مجاني",
@@ -56,6 +64,7 @@ const COPY = {
     errPhoneRequired: "الرجاء إدخال رقم الهاتف",
     errPhoneInvalid: "الرجاء إدخال رقم هاتف مغربي صحيح",
     errAddressRequired: "الرجاء إدخال المدينة",
+    errStreetRequired: "الرجاء إدخال العنوان",
     errBlocked: "تعذر إتمام الطلب حالياً. يرجى التحقق من معلوماتك أو المحاولة لاحقاً.",
     errGeneric: "تعذر إتمام الطلب. يرجى المحاولة مرة أخرى.",
     errNetwork: "تعذر إتمام الطلب. تحقق من اتصالك وحاول مجدداً.",
@@ -69,6 +78,10 @@ const COPY = {
     phonePh: "06XXXXXXXX",
     address: "Ville",
     addressPh: "Un mot suffit — ex. Agadir",
+    city: "Ville",
+    cityPh: "Ex. Casablanca",
+    streetAddress: "Adresse",
+    streetAddressPh: "Quartier, rue ou repère",
     qty: "Quantité",
     shipping: "Livraison",
     free: "Gratuite",
@@ -81,6 +94,7 @@ const COPY = {
     errPhoneRequired: "Veuillez entrer votre numéro de téléphone",
     errPhoneInvalid: "Veuillez entrer un numéro marocain valide",
     errAddressRequired: "Veuillez entrer votre ville",
+    errStreetRequired: "Veuillez entrer votre adresse",
     errBlocked: "Commande impossible pour le moment. Vérifiez vos informations ou réessayez plus tard.",
     errGeneric: "Impossible de finaliser la commande. Veuillez réessayer.",
     errNetwork: "Impossible de finaliser. Vérifiez votre connexion et réessayez.",
@@ -95,7 +109,14 @@ function FieldError({ message }: { message: string }) {
   );
 }
 
-export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: ProductOrderFormProps) {
+export function ProductOrderForm({
+  product,
+  variant,
+  quantity,
+  locale = "ar",
+  extendedAddress = false,
+  submitLabel,
+}: ProductOrderFormProps) {
   const router = useRouter();
   const submitting = useRef(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -104,7 +125,7 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
   const t = COPY[locale];
   const isFr = locale === "fr";
 
-  const [form, setForm] = useState<FormFields>({ fullName: "", phone: "", address: "" });
+  const [form, setForm] = useState<FormFields>({ fullName: "", phone: "", address: "", city: "", streetAddress: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof FormFields, boolean>>>({});
   const [loading, setLoading] = useState(false);
@@ -155,20 +176,30 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
         if (!isValidMoroccanPhone(value)) return t.errPhoneInvalid;
         return undefined;
       case "address":
-        // Any non-empty text is fine (city-only, street, etc.)
-        if (!value.trim()) return t.errAddressRequired;
+        if (!extendedAddress) {
+          if (!value.trim()) return t.errAddressRequired;
+        }
+        return undefined;
+      case "city":
+        if (extendedAddress && !value.trim()) return t.errAddressRequired;
+        return undefined;
+      case "streetAddress":
+        if (extendedAddress && !value.trim()) return t.errStreetRequired;
         return undefined;
     }
   };
 
   const validate = (): boolean => {
     const next: FormErrors = {};
-    (["fullName", "phone", "address"] as const).forEach((key) => {
+    const keys: (keyof FormFields)[] = extendedAddress
+      ? ["fullName", "phone", "city", "streetAddress"]
+      : ["fullName", "phone", "address"];
+    keys.forEach((key) => {
       const err = validateField(key, form[key]);
       if (err) next[key] = err;
     });
     setErrors(next);
-    setTouched({ fullName: true, phone: true, address: true });
+    setTouched(Object.fromEntries(keys.map((k) => [k, true])) as Partial<Record<keyof FormFields, boolean>>);
     return Object.keys(next).length === 0;
   };
 
@@ -204,6 +235,10 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ") || "";
       const phone = normalizeMoroccanPhone(form.phone);
+      const cityValue = extendedAddress ? form.city.trim() : form.address.trim();
+      const addressValue = extendedAddress
+        ? `${form.city.trim()} — ${form.streetAddress.trim()}`
+        : form.address.trim();
 
       const res = await fetch("/api/orders", {
         method: "POST",
@@ -213,8 +248,8 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
           shippingAddress: {
             fullName: form.fullName.trim(),
             phone,
-            address: form.address.trim(),
-            city: form.address.trim(),
+            address: addressValue,
+            city: cityValue,
             country: "Morocco",
           },
           paymentMethod: "cod",
@@ -247,7 +282,7 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
             phone,
             firstName,
             lastName,
-            city: form.address.trim(),
+            city: cityValue,
             country: "ma",
             fbp: clickIds.fbp,
             fbc: clickIds.fbc,
@@ -266,7 +301,7 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
           order: data.orderNumber,
           name: form.fullName.trim(),
           phone,
-          address: form.address.trim(),
+          address: addressValue,
           product: productName,
           total: String(total),
           productId: product.id,
@@ -387,24 +422,71 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
           </div>
 
           <div>
-            <label htmlFor="address" className="premium-field-label">
-              {t.address}
-            </label>
-            <div className="relative">
-              <MapPin className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
-              <input
-                id="address"
-                type="text"
-                value={form.address}
-                onChange={(e) => updateField("address", e.target.value)}
-                onBlur={() => blurField("address")}
-                className={cn("premium-checkout-input ps-14", fieldBorder("address"))}
-                placeholder={t.addressPh}
-                autoComplete="address-level2"
-                disabled={loading}
-              />
-            </div>
-            {touched.address && errors.address && <FieldError message={errors.address} />}
+            {extendedAddress ? (
+              <>
+                <div className="mb-5">
+                  <label htmlFor="city" className="premium-field-label">
+                    {t.city}
+                  </label>
+                  <div className="relative">
+                    <MapPin className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
+                    <input
+                      id="city"
+                      type="text"
+                      value={form.city}
+                      onChange={(e) => updateField("city", e.target.value)}
+                      onBlur={() => blurField("city")}
+                      className={cn("premium-checkout-input ps-14", fieldBorder("city"))}
+                      placeholder={t.cityPh}
+                      autoComplete="address-level2"
+                      disabled={loading}
+                    />
+                  </div>
+                  {touched.city && errors.city && <FieldError message={errors.city} />}
+                </div>
+                <div>
+                  <label htmlFor="streetAddress" className="premium-field-label">
+                    {t.streetAddress}
+                  </label>
+                  <div className="relative">
+                    <MapPin className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
+                    <input
+                      id="streetAddress"
+                      type="text"
+                      value={form.streetAddress}
+                      onChange={(e) => updateField("streetAddress", e.target.value)}
+                      onBlur={() => blurField("streetAddress")}
+                      className={cn("premium-checkout-input ps-14", fieldBorder("streetAddress"))}
+                      placeholder={t.streetAddressPh}
+                      autoComplete="street-address"
+                      disabled={loading}
+                    />
+                  </div>
+                  {touched.streetAddress && errors.streetAddress && <FieldError message={errors.streetAddress} />}
+                </div>
+              </>
+            ) : (
+              <>
+                <label htmlFor="address" className="premium-field-label">
+                  {t.address}
+                </label>
+                <div className="relative">
+                  <MapPin className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
+                  <input
+                    id="address"
+                    type="text"
+                    value={form.address}
+                    onChange={(e) => updateField("address", e.target.value)}
+                    onBlur={() => blurField("address")}
+                    className={cn("premium-checkout-input ps-14", fieldBorder("address"))}
+                    placeholder={t.addressPh}
+                    autoComplete="address-level2"
+                    disabled={loading}
+                  />
+                </div>
+                {touched.address && errors.address && <FieldError message={errors.address} />}
+              </>
+            )}
           </div>
 
           <div className="rounded-2xl border border-[#E5E7EB] bg-[#F8FAFC] p-4 space-y-3">
@@ -456,7 +538,7 @@ export function ProductOrderForm({ product, variant, quantity, locale = "ar" }: 
             ) : (
               <>
                 <Lock className="h-5 w-5" />
-                {t.submit}
+                {submitLabel ?? t.submit}
               </>
             )}
           </button>

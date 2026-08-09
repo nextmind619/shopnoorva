@@ -221,9 +221,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const orderQty = isPack ? 1 : qty;
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
-  const isCarMount = product.slug === "magnetic-car-phone-mount-maidsail";
-  const isMosquitoTent = product.slug === "foldable-mosquito-bed-tent";
-  const reviewLimit = isLaser ? 9 : isCarMount ? 5 : isMosquitoTent ? 6 : 3;
+  const reviewLimit = 3;
   const ctaClass = isLaser
     ? "w-full h-14 sm:h-16 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/35 transition-colors"
     : "w-full h-14 sm:h-16 rounded-2xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-500/30 transition-colors";
@@ -647,7 +645,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             initial={{ y: 88 }}
             animate={{ y: 0 }}
             exit={{ y: 88 }}
-            className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[#0a0a0f]/95 backdrop-blur-md border-t border-white/10 safe-area-pb"
+            className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[#0a0a0f] border-t border-white/10 safe-area-pb"
           >
             <div className="px-4 py-3 max-w-lg mx-auto">
               <button

@@ -38,6 +38,11 @@ export function getProductImageManifest(): ProductImageManifest {
   return manifest;
 }
 
+function normalizePublicPath(url: string | undefined): string | undefined {
+  if (!url) return undefined;
+  return url.replace(/\\/g, "/");
+}
+
 export function getProductImageUrl(
   slug: string,
   imageType: PremiumImageType,
@@ -48,25 +53,27 @@ export function getProductImageUrl(
 
   switch (variant) {
     case "original":
-      return entry.original;
+      return normalizePublicPath(entry.original);
     case "webp":
-      return entry.webp;
+      return normalizePublicPath(entry.webp);
     case "avif":
-      return entry.avif;
+      return normalizePublicPath(entry.avif);
     case "thumbnail":
-      return entry.thumbnail;
+      return normalizePublicPath(entry.thumbnail);
     case "sm":
-      return entry.responsive.sm;
+      return normalizePublicPath(entry.responsive.sm);
     case "md":
-      return entry.responsive.md;
+      return normalizePublicPath(entry.responsive.md);
     case "lg":
-      return entry.responsive.lg;
+      return normalizePublicPath(entry.responsive.lg);
     default:
-      return entry.webp;
+      return normalizePublicPath(entry.webp);
   }
 }
 
-export function getProductHeroUrl(slug: string): string {
+type HeroVariant = "webp" | "avif" | "original" | "thumbnail" | "sm" | "md" | "lg";
+
+export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): string {
   // Astronaut + Laser + car mount use premium marketing composite as hero
   if (
     slug === "astronaut-bt-speaker-projector" ||
@@ -76,13 +83,17 @@ export function getProductHeroUrl(slug: string): string {
     slug === "star-galaxy-projector-rgb-gift"
   ) {
     return (
+      getProductImageUrl(slug, "02-premium-hero", variant) ||
       getProductImageUrl(slug, "02-premium-hero", "webp") ||
+      getProductImageUrl(slug, "01-hero-white-bg", variant) ||
       getProductImageUrl(slug, "01-hero-white-bg", "webp") ||
       `/products/${slug.replace(/-projector$|-night-light$|-303$/, "")}.svg`
     );
   }
   return (
+    getProductImageUrl(slug, "01-hero-white-bg", variant) ||
     getProductImageUrl(slug, "01-hero-white-bg", "webp") ||
+    getProductImageUrl(slug, "02-premium-hero", variant) ||
     getProductImageUrl(slug, "02-premium-hero", "webp") ||
     `/products/${slug.replace(/-projector$|-night-light$/, "")}.svg`
   );

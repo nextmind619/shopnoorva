@@ -129,7 +129,7 @@ export function ProductVideoSection({ product }: SectionProps) {
           className="absolute inset-0 h-full w-full object-cover"
           controls={playing}
           playsInline
-          preload="metadata"
+          preload="none"
           poster={getVideoPoster(videoSrc, product.slug)}
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}

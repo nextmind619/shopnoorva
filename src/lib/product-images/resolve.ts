@@ -52,34 +52,39 @@ export function resolveProductImage(
   const local = getProductImageUrl(slug, premiumType, variant);
   if (local) return local;
 
-  // Fallback to Pollinations
-  const profile = getProductProfile(slug);
-  if (profile) {
-    const config = IMAGE_TYPE_CONFIGS[premiumType];
-    if (config) {
-      return getPollinationsUrl(profile, premiumType, config.width, config.height);
+  // Never hit generative CDNs in production — keeps pages fast & predictable
+  if (process.env.NODE_ENV !== "production") {
+    const profile = getProductProfile(slug);
+    if (profile) {
+      const config = IMAGE_TYPE_CONFIGS[premiumType];
+      if (config) {
+        return getPollinationsUrl(profile, premiumType, config.width, config.height);
+      }
+    }
+
+    const p = typeof product === "string" ? null : product;
+    if (p) {
+      return getAIImageUrl({
+        productName: p.name.en || p.name.ar,
+        productDescription: p.shortDescription.en || p.shortDescription.ar,
+        type: imageType as ImageType,
+        width: 1080,
+        height: 1080,
+      });
     }
   }
 
-  const p = typeof product === "string" ? null : product;
-  if (p) {
-    return getAIImageUrl({
-      productName: p.name.en || p.name.ar,
-      productDescription: p.shortDescription.en || p.shortDescription.ar,
-      type: imageType as ImageType,
-      width: 1080,
-      height: 1080,
-    });
-  }
-
-  return getProductHeroUrl(slug);
+  return getProductHeroUrl(slug, variant === "original" ? "webp" : variant);
 }
 
-export function resolveProductHero(product: Product | string): string {
+export function resolveProductHero(
+  product: Product | string,
+  variant: ImageVariant = "webp"
+): string {
   const slug = typeof product === "string" ? product : product.slug;
-  const hero = getProductHeroUrl(slug);
+  const hero = getProductHeroUrl(slug, variant);
   if (hero && !hero.endsWith(".svg")) return hero;
-  return resolveProductImage(product, "01-hero-white-bg");
+  return resolveProductImage(product, "01-hero-white-bg", variant);
 }
 
 export function resolveLifestyleImage(product: Product): string {

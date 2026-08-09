@@ -63,7 +63,7 @@ export function HeroSection() {
               fill
               priority
               fetchPriority="high"
-              quality={80}
+              quality={75}
               className="object-cover rounded-3xl shadow-luxury"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />

@@ -1,5 +1,5 @@
 import { detectAutomation, likelyMoroccanCustomer } from "./automation";
-import { analyzeReferrer, detectRealAdClick } from "./referrer";
+import { analyzeReferrer, detectRealAdClick, detectSocialTraffic } from "./referrer";
 import { evaluateVisitorIp } from "./ip";
 import { calculateVisitorTrust } from "./trust-score";
 import { recordPageHit, recordBlock, shouldAutoBlacklist } from "./velocity";
@@ -31,6 +31,13 @@ export function evaluateVisitor(ctx: VisitorContext): VisitorEvaluation {
 
   const realAdClick = detectRealAdClick(ctx.searchParams);
   if (realAdClick) flags.push("real_ad_click");
+
+  const socialTraffic = detectSocialTraffic({
+    referer: ctx.referer,
+    userAgent: ctx.userAgent,
+    searchParams: ctx.searchParams,
+  });
+  if (socialTraffic) flags.push("social_traffic");
 
   const ip = evaluateVisitorIp({
     ip: ctx.ip,
@@ -68,7 +75,8 @@ export function evaluateVisitor(ctx: VisitorContext): VisitorEvaluation {
     challengePassed: ctx.challengePassed,
     likelyMoroccan: morocco,
     realAdClick,
-    missingReferrer: ref.missing,
+    socialTraffic,
+    missingReferrer: ref.missing && !socialTraffic,
     suspiciousReferrer: ref.suspicious,
     facebookAdLibrary: ref.facebookAdLibrary,
     ipRisk: ip.kind,
@@ -87,7 +95,7 @@ export function evaluateVisitor(ctx: VisitorContext): VisitorEvaluation {
   let score = scored.score;
 
   // Extra checks when referrer missing or suspicious
-  if ((ref.missing || ref.suspicious) && !ctx.challengePassed && !realAdClick) {
+  if ((ref.missing || ref.suspicious) && !ctx.challengePassed && !realAdClick && !socialTraffic) {
     if (decision === "allow" && (ip.highRisk || auto.isBot || velocity.rapid)) {
       decision = "challenge";
       reasons.push("elevated_checks_no_referrer");

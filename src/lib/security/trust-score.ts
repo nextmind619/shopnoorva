@@ -7,6 +7,7 @@ export interface TrustInput {
   challengePassed: boolean;
   likelyMoroccan: boolean;
   realAdClick: boolean;
+  socialTraffic: boolean;
   missingReferrer: boolean;
   suspiciousReferrer: boolean;
   facebookAdLibrary: boolean;
@@ -50,6 +51,7 @@ export function calculateVisitorTrust(input: TrustInput): {
   if (input.challengePassed) add("challenge", w.challengePassed, "Passed invisible challenge");
   if (input.likelyMoroccan) add("moroccan", w.likelyMoroccan, "Likely Moroccan customer");
   if (input.realAdClick) add("ad_click", w.realAdClick, "Real paid ad click params");
+  else if (input.socialTraffic) add("social_traffic", w.socialTraffic, "Social platform traffic");
 
   if (input.facebookAdLibrary) add("ad_library", w.facebookAdLibrary, "Facebook Ad Library referrer");
   else if (input.suspiciousReferrer) add("suspicious_ref", w.suspiciousReferrer, "Suspicious referrer");
@@ -84,7 +86,7 @@ export function calculateVisitorTrust(input: TrustInput): {
    * unless score is extremely low from clear malice (tor/blacklist/devtools farm).
    */
   const protectedCustomer =
-    (input.likelyMoroccan || input.realAdClick) &&
+    (input.likelyMoroccan || input.realAdClick || input.socialTraffic) &&
     input.realBrowser &&
     !input.selenium &&
     !input.puppeteer &&
@@ -108,7 +110,12 @@ export function calculateVisitorTrust(input: TrustInput): {
   if (protectedCustomer && decision === "block" && score >= 25) {
     decision = "challenge";
   }
-  if (protectedCustomer && input.realAdClick && decision === "challenge" && !input.massVisits) {
+  if (
+    protectedCustomer &&
+    (input.realAdClick || input.socialTraffic) &&
+    decision === "challenge" &&
+    !input.massVisits
+  ) {
     decision = "allow";
   }
 

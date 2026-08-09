@@ -40,25 +40,6 @@ function SlideImage({ slide, priority }: { slide: GallerySlide; priority?: boole
 
   return (
     <div className={cn("relative w-full h-full overflow-hidden", SECTION_BG[slide.section])}>
-      {slide.section === "lifestyle" && (
-        <div className="absolute inset-0 pointer-events-none">
-          {Array.from({ length: 30 }).map((_, i) => (
-            <span
-              key={i}
-              className="absolute rounded-full bg-white/40 animate-pulse"
-              style={{
-                width: `${1 + (i % 2)}px`,
-                height: `${1 + (i % 2)}px`,
-                top: `${(i * 17) % 80}%`,
-                left: `${(i * 23) % 100}%`,
-                opacity: 0.2 + (i % 4) * 0.1,
-                animationDelay: `${i * 0.12}s`,
-              }}
-            />
-          ))}
-        </div>
-      )}
-
       <div
         className={cn(
           "absolute inset-0 flex items-center justify-center p-2 sm:p-4",
@@ -71,6 +52,7 @@ function SlideImage({ slide, priority }: { slide: GallerySlide; priority?: boole
           fill
           priority={priority}
           loading={priority ? undefined : "lazy"}
+          quality={priority ? 75 : 65}
           sizes="(max-width: 1024px) 100vw, 55vw"
           className={cn(
             slide.objectFit === "contain" ? "object-contain" : "object-cover",

@@ -38,6 +38,7 @@ const SUSPICIOUS_REFERRERS = [
 const BENIGN_REFERRERS = [
   /facebook\.com/i,
   /instagram\.com/i,
+  /l\.instagram\.com/i,
   /l\.facebook\.com/i,
   /lm\.facebook\.com/i,
   /m\.facebook\.com/i,
@@ -48,10 +49,16 @@ const BENIGN_REFERRERS = [
   /snssdk\.com/i,
   /musical\.ly/i,
   /youtube\.com/i,
+  /youtu\.be/i,
+  /m\.youtube\.com/i,
   /t\.co\//i,
   /whatsapp\.com/i,
   /shopnoorva\.shop/i,
 ];
+
+/** In-app browsers often strip Referer — detect platform from User-Agent instead. */
+const SOCIAL_INAPP_UA =
+  /Instagram|FBAN\/|FBAV\/|FB_IAB\/|FB4A|FBIOS|BytedanceWebview|musical_ly|TikTok|YouTube\/|GSA\/|com\.google\.android\.youtube/i;
 
 export interface ReferrerAnalysis {
   missing: boolean;
@@ -123,9 +130,36 @@ export function detectRealAdClick(searchParams: URLSearchParams): boolean {
   if (keys.some((k) => searchParams.has(k))) return true;
   const utm = (searchParams.get("utm_source") || "").toLowerCase();
   if (
-    ["facebook", "fb", "instagram", "ig", "tiktok", "tt", "meta", "bytedance"].includes(utm)
+    [
+      "facebook",
+      "fb",
+      "instagram",
+      "ig",
+      "tiktok",
+      "tt",
+      "meta",
+      "bytedance",
+      "youtube",
+      "yt",
+    ].includes(utm)
   ) {
     return true;
   }
   return false;
+}
+
+/** Instagram / YouTube / TikTok / Facebook in-app WebViews (Referer often empty). */
+export function detectSocialInAppBrowser(userAgent: string): boolean {
+  return SOCIAL_INAPP_UA.test(userAgent || "");
+}
+
+/** Organic or paid traffic from social platforms (referrer, in-app UA, or ad params). */
+export function detectSocialTraffic(input: {
+  referer?: string | null;
+  userAgent?: string;
+  searchParams?: URLSearchParams;
+}): boolean {
+  if (detectRealAdClick(input.searchParams || new URLSearchParams())) return true;
+  if (detectSocialInAppBrowser(input.userAgent || "")) return true;
+  return analyzeReferrer(input.referer).benignSocial;
 }

@@ -147,6 +147,13 @@ export default function proxy(request: NextRequest) {
   const trustCookie = request.cookies.get(SECURITY_CONFIG.challenge.cookieName)?.value;
   const trust = readTrustCookie(trustCookie);
 
+  const previewToken = process.env.SECURITY_PREVIEW_TOKEN?.trim();
+  const previewQuery = request.nextUrl.searchParams.get(SECURITY_CONFIG.previewQueryParam);
+  const previewCookie = request.cookies.get(SECURITY_CONFIG.previewCookie)?.value;
+  const ownerPreview =
+    Boolean(previewToken) &&
+    (previewQuery === previewToken || previewCookie === previewToken);
+
   const evaluation = evaluateVisitor({
     ip,
     userAgent: ua,
@@ -172,13 +179,23 @@ export default function proxy(request: NextRequest) {
     evaluation.decision = "challenge";
   }
 
-  if (evaluation.decision === "block") {
+  if (evaluation.decision === "block" && !ownerPreview) {
     const denied = NextResponse.redirect(new URL("/access-denied", request.url));
     return applySecurityHeaders(denied);
   }
 
   const intlResponse = intlMiddleware(request);
   const res = applySecurityHeaders(intlResponse);
+
+  if (ownerPreview && previewToken) {
+    res.cookies.set(SECURITY_CONFIG.previewCookie, previewToken, {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+      secure: process.env.NODE_ENV === "production",
+    });
+  }
 
   if (evaluation.decision === "challenge") {
     res.cookies.set("nv_need_ch", "1", {

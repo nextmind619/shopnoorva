@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { motion } from "motion/react";
 import { Star, ChevronLeft, ChevronRight, Play, Check, X } from "lucide-react";
 import { products, reviews, faqs } from "@/data/products";
 import { resolveProductHero } from "@/lib/product-images/resolve";
@@ -33,18 +32,22 @@ const HOME_UGC_VIDEOS: Record<string, { src: string; poster: string }> = {
   },
 };
 
+/** Keep homepage light — deep-dive only top sellers, not the full catalog */
+const HOME_SHOWCASE_LIMIT = 4;
+const homeProducts = products.filter((p) => p.isBestSeller).slice(0, HOME_SHOWCASE_LIMIT);
+
 export function TrustGridSection() {
   const t = useTranslations("trustGrid");
   const items = ["shipping", "cod", "warranty", "quality", "secure", "packaging"] as const;
   return (
-    <section className="py-10 bg-white border-y border-black/5">
+    <section className="py-10 bg-white border-y border-black/5 content-auto">
       <div className="container-luxury px-4">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {items.map((key, i) => (
-            <motion.div key={key} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }} className="text-center p-4">
+          {items.map((key) => (
+            <div key={key} className="text-center p-4">
               <p className="text-sm font-medium">{t(`${key}.title`)}</p>
               <p className="text-[11px] text-muted mt-1">{t(`${key}.desc`)}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -64,9 +67,9 @@ export function ProblemSection() {
           <p className="text-muted mt-4">{t("subtitle")}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {products.map((product, i) => (
-            <motion.div key={product.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-              <Link href={`/${locale}/products/${product.slug}`} className="block bg-white rounded-3xl p-6 shadow-soft border border-black/5 hover:border-gold/30 hover:shadow-luxury transition-all duration-500 group">
+          {homeProducts.map((product) => (
+            <div key={product.id}>
+              <Link href={`/${locale}/products/${product.slug}`} className="block bg-white rounded-3xl p-6 shadow-soft border border-black/5 hover:border-gold/30 hover:shadow-luxury transition-all duration-300 group">
                 <span className="text-2xl">{product.problemEmoji}</span>
                 <h3 className="font-display text-xl mt-3 group-hover:text-gold transition-colors">{getLocalized(product.problem || product.name, locale)}</h3>
                 <p className="text-xs text-gold font-medium mt-3">{t("cause")}</p>
@@ -75,7 +78,7 @@ export function ProblemSection() {
                 <p className="text-sm font-medium mt-1">{getLocalized(product.problemSolution || product.name, locale)}</p>
                 <p className="text-xs text-muted mt-3">{getLocalized(product.name, locale)}</p>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -95,7 +98,7 @@ export function ProductDeepDiveSection() {
           <p className="text-muted mt-3">{t("subtitle")}</p>
         </div>
         <div className="space-y-20">
-          {products.map((product, i) => (
+          {homeProducts.map((product, i) => (
             <ProductShowcase key={product.id} product={product} locale={locale} reversed={i % 2 === 1} />
           ))}
         </div>
@@ -110,7 +113,7 @@ function ProductShowcase({ product, locale, reversed }: { product: Product; loca
   return (
     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${reversed ? "lg:[direction:rtl]" : ""}`}>
       <div className={`relative aspect-square rounded-3xl overflow-hidden shadow-luxury ${reversed ? "lg:[direction:ltr]" : ""}`}>
-        <Image src={product.images[0]?.url || resolveProductHero(product)} alt="" fill className="object-cover" sizes="50vw" loading="lazy" />
+        <Image src={resolveProductHero(product, "md")} alt="" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" quality={70} loading="lazy" />
       </div>
       <div className={reversed ? "lg:[direction:ltr]" : ""}>
         <span className="text-2xl">{product.problemEmoji}</span>
@@ -172,11 +175,11 @@ export function PillarsSection() {
           <p className="text-muted mt-3 max-w-xl mx-auto">{t("subtitle")}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {keys.map((key, i) => (
-            <motion.div key={key} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-cream rounded-3xl p-6 border border-black/5">
+          {keys.map((key) => (
+            <div key={key} className="bg-cream rounded-3xl p-6 border border-black/5">
               <h3 className="font-medium text-gold">{t(`${key}.title`)}</h3>
               <p className="text-sm text-muted mt-3 leading-relaxed">{t(`${key}.desc`)}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -224,17 +227,19 @@ export function TikTokReviewsSection() {
   const [playingId, setPlayingId] = useState<string | null>(null);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
 
-  const videos = products.map((p) => {
-    const ugc = HOME_UGC_VIDEOS[p.id];
-    return {
-      id: p.id,
-      name: getLocalized(p.name, locale).split(" ")[0],
-      city: "المغرب",
-      quote: getLocalized(p.shortDescription, locale).slice(0, 60) + " ✨",
-      img: ugc?.poster || p.images[0]?.url || resolveProductHero(p),
-      src: ugc?.src,
-    };
-  });
+  const videos = products
+    .filter((p) => HOME_UGC_VIDEOS[p.id])
+    .map((p) => {
+      const ugc = HOME_UGC_VIDEOS[p.id];
+      return {
+        id: p.id,
+        name: getLocalized(p.name, locale).split(" ")[0],
+        city: "المغرب",
+        quote: getLocalized(p.shortDescription, locale).slice(0, 60) + " ✨",
+        img: ugc.poster,
+        src: ugc.src,
+      };
+    });
 
   const playVideo = (id: string) => {
     Object.entries(videoRefs.current).forEach(([key, el]) => {

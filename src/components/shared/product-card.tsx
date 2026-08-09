@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
-import { motion } from "motion/react";
 import { Star, ArrowLeft } from "lucide-react";
 import type { Product, Locale } from "@/types";
 import { getLocalized, calculateDiscount, cn } from "@/lib/utils";
@@ -20,16 +19,11 @@ export function ProductCard({ product, priority = false, className }: ProductCar
   const locale = useLocale() as Locale;
   const defaultVariant = product.variants[0];
   const discount = calculateDiscount(defaultVariant.price, defaultVariant.compareAtPrice);
-  const imageUrl = product.images[0]?.url || resolveProductHero(product);
+  /** Prefer prebuilt sm WebP — lighter than full hero + optimizer round-trip */
+  const imageUrl = resolveProductHero(product, "sm");
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={cn("group", className)}
-    >
+    <div className={cn("group", className)}>
       <Link href={`/${locale}/products/${product.slug}`}>
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-100 shadow-soft">
           <Image
@@ -37,10 +31,12 @@ export function ProductCard({ product, priority = false, className }: ProductCar
             alt={getLocalized(product.images[0]?.alt || product.name, locale)}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            quality={70}
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
             priority={priority}
+            loading={priority ? undefined : "lazy"}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-noir/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-noir/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           {discount > 0 && (
             <span className="absolute top-4 start-4 bg-gold text-noir text-xs font-semibold px-3 py-1 rounded-full">-{discount}%</span>
           )}
@@ -63,7 +59,7 @@ export function ProductCard({ product, priority = false, className }: ProductCar
           <PriceDisplay amount={defaultVariant.price} compareAt={defaultVariant.compareAtPrice} size="sm" />
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }
 
