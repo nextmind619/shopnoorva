@@ -895,6 +895,65 @@ const VINTAGE_LANTERN_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const WARM_LED_LAMP_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "✨",
+    heading: "ضو دافئ كيبدل جو دارك",
+    subtitle: "مصباح LED أنيق بإضاءة دافئة",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "04-bedroom",
+    emoji: "🌙",
+    heading: "مثالي لغرفة النوم",
+    subtitle: "جو هادئ ومريح فالليل",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "✨",
+    heading: "تفاصيل وجودة",
+    subtitle: "ملمس زخرفي وقاعدة ذهبية",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "05-living-room",
+    emoji: "🛋️",
+    heading: "قطعة ديكور أنيقة",
+    subtitle: "كيزيد لمسة زوينة للصالون",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "💼",
+    heading: "فوق المكتب أو الطاولة",
+    subtitle: "إضاءة دافئة بستايل minimal",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "07-romantic-room",
+    emoji: "🌃",
+    heading: "أجواء ليلية دافئة",
+    subtitle: "ضو خفيف وجو هادئ",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "🔥",
+    heading: "عرض جوج مصابيح",
+    subtitle: "299 درهم — كتوفر 99 درهم",
+    objectFit: "cover",
+  },
+];
+
 const MOSQUITO_TENT_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
@@ -992,6 +1051,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "foldable-mosquito-bed-tent": MOSQUITO_TENT_SLIDES,
   "portable-rechargeable-dual-fan-air-cooler": DUAL_FAN_COOLER_SLIDES,
   "vintage-led-lantern": VINTAGE_LANTERN_SLIDES,
+  "warm-led-decor-lamp": WARM_LED_LAMP_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

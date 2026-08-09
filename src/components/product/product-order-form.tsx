@@ -33,6 +33,10 @@ interface ProductOrderFormProps {
   extendedAddress?: boolean;
   /** Override submit button label */
   submitLabel?: string;
+  /** Override form header title */
+  formTitle?: string;
+  /** Override form header subtitle (replaces bullet list when set) */
+  formSubtitle?: string;
 }
 
 type FormFields = { fullName: string; phone: string; address: string; city: string; streetAddress: string };
@@ -116,6 +120,8 @@ export function ProductOrderForm({
   locale = "ar",
   extendedAddress = false,
   submitLabel,
+  formTitle,
+  formSubtitle,
 }: ProductOrderFormProps) {
   const router = useRouter();
   const submitting = useRef(false);
@@ -361,18 +367,24 @@ export function ProductOrderForm({
       >
         <header className="text-center mb-6 pb-5 border-b border-[#E5E7EB]">
           <h2 className="text-xl sm:text-2xl font-black tracking-tight text-black leading-tight">
-            {t.title}
+            {formTitle ?? t.title}
           </h2>
-          <ul className="mt-4 space-y-2 text-start max-w-sm mx-auto">
-            {t.bullets.map((line) => (
-              <li key={line} className="flex items-center gap-2 text-sm font-semibold text-[#065F46]">
-                <span className="text-emerald-600" aria-hidden>
-                  ✓
-                </span>
-                {line}
-              </li>
-            ))}
-          </ul>
+          {formSubtitle ? (
+            <p className="mt-4 text-sm font-medium text-[#4B5563] leading-relaxed max-w-sm mx-auto">
+              {formSubtitle}
+            </p>
+          ) : (
+            <ul className="mt-4 space-y-2 text-start max-w-sm mx-auto">
+              {t.bullets.map((line) => (
+                <li key={line} className="flex items-center gap-2 text-sm font-semibold text-[#065F46]">
+                  <span className="text-emerald-600" aria-hidden>
+                    ✓
+                  </span>
+                  {line}
+                </li>
+              ))}
+            </ul>
+          )}
         </header>
 
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 relative" noValidate>

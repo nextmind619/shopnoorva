@@ -1507,6 +1507,125 @@ export const products: Product[] = [
       ),
     },
   },
+
+  {
+    id: "prod-warm-led-lamp",
+    slug: "warm-led-decor-lamp",
+    name: L(
+      "مصباح LED ديكوري بإضاءة دافئة",
+      "Lampe LED Décorative — Lumière Chaude",
+      "Decorative LED Lamp — Warm Glow"
+    ),
+    shortDescription: L(
+      "مصباح LED أنيق بستايل عصري، مناسب للبيت وغرفة النوم وكيعطي جو هادئ ومريح · 199 درهم · جوج بـ299 درهم · الدفع عند الاستلام",
+      "Lampe LED élégante pour une ambiance chaleureuse · 199 MAD · 2 pour 299 MAD · COD",
+      "Elegant LED lamp for a calm warm ambiance · 199 MAD · 2 for 299 MAD · cash on delivery"
+    ),
+    description: L(
+      "مصباح LED ديكوري من NOORVA بتصميم بيضاوي/قوسي: جسم شفاف مضيء بملمس زخرفي، قاعدة ذهبية/معدنية، وإضاءة دافئة. مثالي لغرفة النوم، الصالون، والهدايا. مصباح واحد بـ199 درهم أو جوج بـ299 درهم (توفير 99 درهم). الدفع عند الاستلام في المغرب.",
+      "Lampe LED NOORVA design ovale/arch : corps transparent texturé, base dorée, lumière chaude. Chambre, salon, cadeaux. 199 MAD l'unité ou 2 pour 299 MAD (99 MAD d'économie). COD au Maroc.",
+      "NOORVA decorative oval/arch LED lamp: transparent textured glowing body, gold metallic base, warm light. Bedroom, living room, gifts. 199 MAD each or 2 for 299 MAD (save 99 MAD). Cash on delivery in Morocco."
+    ),
+    categoryId: "cat-home-decor",
+    price: 199,
+    sku: "Warm-LED-Decor-Lamp",
+    stock: 90,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    warrantyMonths: 6,
+    problemEmoji: "✨",
+    problem: L(
+      "باقي كتستعمل ضو عادي فالليل؟",
+      "Vous utilisez encore une lumière ordinaire la nuit?",
+      "Still using ordinary light at night?"
+    ),
+    problemCause: L(
+      "الإضاءة ماشي غير باش تشوف… الإضاءة كتقدر تبدل الجو كامل",
+      "La lumière ne sert pas qu'à voir — elle change l'ambiance",
+      "Lighting isn't just for seeing — it changes the whole mood"
+    ),
+    problemSolution: L(
+      "إضاءة دافئة + تصميم أنيق فمنتج واحد",
+      "Lumière chaude + design élégant en un seul objet",
+      "Warm lighting + elegant design in one piece"
+    ),
+    deepDescription: L(
+      "مصباح LED ديكوري بتصميم بيضاوي/قوسي: جسم شفاف مضيء بملمس زخرفي، فتحة داخلية بخطوط ذهبية، قاعدة معدنية ذهبية مع زر تشغيل. إضاءة دافئة مناسبة لغرفة النوم والصالون والديكور.",
+      "Lampe LED ovale/arch : corps transparent texturé, ouverture intérieure dorée, base métallique dorée avec bouton. Lumière chaude pour chambre et salon.",
+      "Oval/arch LED decor lamp: transparent textured body, gold-lined inner opening, gold metallic base with power button. Warm light for bedroom and living room."
+    ),
+    tags: ["decor", "bedroom", "gift", "new", "lamp", "home", "nightlight"],
+    benefits: [
+      L("إضاءة دافئة — كتعطي جو هادئ ومريح", "Lumière chaude — ambiance calme", "Warm glow — calm cozy mood"),
+      L("ديكور أنيق — كيزيد لمسة زوينة لأي بلاصة", "Déco élégante — touche raffinée", "Elegant decor — refined touch anywhere"),
+      L("مثالي لغرفة النوم — جو هادئ ومناسب للراحة", "Idéal chambre — calme et repos", "Perfect for bedroom — calm and restful"),
+      L("فكرة هدية — هدية بسيطة وأنيقة", "Idée cadeau — simple et élégant", "Gift idea — simple and elegant"),
+    ],
+    features: [
+      L("تصميم بيضاوي/قوسي عصري", "Design ovale/arch moderne", "Modern oval/arch design"),
+      L("جسم شفاف مضيء بملمس زخرفي", "Corps transparent texturé", "Transparent textured glowing body"),
+      L("قاعدة معدنية ذهبية", "Base métallique dorée", "Gold metallic base"),
+      L("إضاءة LED دافئة", "LED lumière chaude", "Warm LED lighting"),
+      L("زر تشغيل على القاعدة", "Bouton sur la base", "Power button on base"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("مصباح LED ديكوري", "Lampe LED déco", "Decor LED lamp") },
+      { label: L("التصميم", "Design", "Design"), value: L("بيضاوي/قوسي", "Ovale/arch", "Oval/arch") },
+      { label: L("اللون", "Couleur", "Color"), value: L("ذهبي + إضاءة دافئة", "Or + lumière chaude", "Gold + warm glow") },
+      { label: L("الإضاءة", "Éclairage", "Lighting"), value: L("LED دافئة", "LED chaude", "Warm LED") },
+    ],
+    packageIncludes: [
+      L("مصباح LED ديكوري", "Lampe LED décorative", "Decorative LED lamp"),
+    ],
+    howToUse: L(
+      "حط المصباح على طاولة أو كومودينو، شغّلو بالزر فالقاعدة. مناسب لغرفة النوم، الصالون، المكتب أو كهدية.",
+      "Placez la lampe sur une table ou table de nuit, allumez avec le bouton de la base. Chambre, salon, bureau ou cadeau.",
+      "Place the lamp on a table or nightstand, press the base button to turn on. For bedroom, living room, desk or as a gift."
+    ),
+    lifestyleScenes: [
+      { id: "bedroom", emoji: "🌙", title: L("غرفة النوم", "Chambre", "Bedroom"), description: L("جو هادئ ومريح", "Ambiance calme", "Calm cozy mood") },
+      { id: "living", emoji: "🛋️", title: L("الصالون", "Salon", "Living room"), description: L("لمسة ديكور أنيقة", "Touche déco", "Elegant decor touch") },
+      { id: "desk", emoji: "💼", title: L("المكتب", "Bureau", "Desk"), description: L("إضاءة دافئة للعمل", "Lumière chaude", "Warm work light") },
+      { id: "gift", emoji: "🎁", title: L("هدية", "Cadeau", "Gift"), description: L("فكرة هدية زوينة", "Belle idée cadeau", "Beautiful gift idea") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-warm-lamp-1",
+        name: L("مصباح واحد — 199 درهم", "1 lampe — 199 MAD", "1 lamp — 199 MAD"),
+        price: 199,
+        sku: "Warm-LED-Decor-Lamp",
+        stock: 90,
+      },
+      {
+        id: "var-warm-lamp-2pk",
+        name: L("جوج مصابيح — 299 درهم", "2 lampes — 299 MAD", "2 lamps — 299 MAD"),
+        price: 299,
+        sku: "Warm-LED-Decor-Lamp-2PK",
+        stock: 65,
+      },
+    ],
+    upsellIds: ["prod-vintage-lantern", "prod-rabbit"],
+    crossSellIds: ["prod-starbt", "prod-galaxy-rgb"],
+    seo: {
+      title: L(
+        "مصباح LED ديكوري بإضاءة دافئة | 199 درهم",
+        "Lampe LED Décorative | 199 MAD | NOORVA",
+        "Decorative LED Lamp | 199 MAD | NOORVA"
+      ),
+      description: L(
+        "مصباح LED أنيق بإضاءة دافئة، مثالي لغرفة النوم والصالون والديكور. 199 درهم للواحد أو جوج بـ299 درهم.",
+        "Lampe LED élégante à lumière chaude, idéale chambre et salon. 199 MAD l'unité ou 2 pour 299 MAD.",
+        "Elegant warm LED lamp for bedroom and living room decor. 199 MAD each or 2 for 299 MAD."
+      ),
+    },
+  },
 ];
 
 export const reviews: ProductReview[] = [

@@ -275,6 +275,26 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       clientRef: "/products/vintage-led-lantern/product-reference.png",
     },
   },
+  {
+    id: "prod-warm-led-lamp",
+    slug: "warm-led-decor-lamp",
+    sku: "Warm-LED-Decor-Lamp",
+    name: "Warm LED Decor Lamp",
+    type: "Decorative oval/arch LED table lamp",
+    color: "Transparent crystal-textured body with warm golden glow, gold metallic base",
+    category: "Home Decor",
+    categoryId: "cat-home-decor",
+    shortDescription:
+      "Decorative oval/arch LED lamp — transparent faceted crystal body, gold-lined inner rim, gold metallic cylindrical base with power button, warm ambient glow",
+    visualIdentity:
+      "EXACT real product from client reference — decorative LED table lamp with tall vertical hollow oval/arch ring design on flat circular gold base. Outer body: transparent crystalline material with highly textured faceted diamond-cut pattern refracting warm light. Inner rim: polished gold-toned metal with concentric ribbed textures along inside of arch. Base: low flat cylindrical polished gold/rose-gold mirror finish with small cylindrical metallic power button on top surface. Warm golden-toned glow diffused through crystalline texture. NEVER redesign shape, NEVER change proportions, NEVER substitute different lamp, NEVER add/remove buttons or features.",
+    dimensions: "Table lamp — oval/arch decorative form factor",
+    accessories: [],
+    packageItems: ["Decorative LED lamp"],
+    sourceUrls: {
+      clientRef: "/products/warm-led-decor-lamp/product-reference.png",
+    },
+  },
 ];
 
 export function getProductProfile(slug: string): ProductProfile | undefined {

@@ -662,6 +662,70 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
       },
     ],
   },
+
+  "warm-led-decor-lamp": {
+    headline: {
+      title: "ضو دافئ كيبدل جو دارك ✨",
+      subtitle: "مصباح LED أنيق بستايل عصري، مناسب للبيت وغرفة النوم وكيعطي جو هادئ ومريح.",
+    },
+    midCtaLabels: [
+      "الإضاءة كتقدر تبدل الجو كامل — جرّب هاد المصباح",
+      "اختار العرض المناسب ليك — واحد أو جوج",
+      "🛒 بغيتو دابا — الدفع عند الاستلام",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "حطّو فبلاصة مناسبة",
+        desc: "كومودينو، طاولة صالون أو مكتب — أي بلاصة بغيتي تزيّنها.",
+        imageKey: "04-bedroom",
+      },
+      {
+        step: "2",
+        title: "شغّل الإضاءة",
+        desc: "اضغط على زر التشغيل فالقاعدة الذهبية.",
+        imageKey: "09-close-up",
+      },
+      {
+        step: "3",
+        title: "استمتع بالجو",
+        desc: "ضو دافئ وجو هادئ — مثالي لليل.",
+        imageKey: "07-romantic-room",
+      },
+    ],
+    comparison: {
+      oursLabel: "مصباح NOORVA LED",
+      rows: [
+        { label: "إضاءة دافئة ومريحة", us: true, them: "ضوء بارد عادي" },
+        { label: "تصميم أنيق وعصري", us: true, them: "تصميم عادي" },
+        { label: "ديكور + إضاءة فمنتج واحد", us: true, them: "واحد منهم" },
+        { label: "عرض جوج بـ 299 درهم", us: true, them: false },
+        ...SHARED_TRUST_ROWS,
+      ],
+    },
+    benefits: [
+      {
+        icon: Sparkles,
+        title: "إضاءة دافئة ✨",
+        desc: "كتعطي جو هادئ ومريح.",
+      },
+      {
+        icon: Home,
+        title: "ديكور أنيق 🏠",
+        desc: "كيزيد لمسة زوينة لأي بلاصة.",
+      },
+      {
+        icon: Moon,
+        title: "مثالي لغرفة النوم 🌙",
+        desc: "جو هادئ ومناسب للراحة.",
+      },
+      {
+        icon: Gift,
+        title: "فكرة هدية 🎁",
+        desc: "هدية بسيطة وأنيقة.",
+      },
+    ],
+  },
 };
 
 export function getProductCroContent(slug: string): CroProductContent | null {
