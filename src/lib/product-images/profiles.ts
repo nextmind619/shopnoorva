@@ -258,7 +258,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "prod-vintage-lantern",
     slug: "vintage-led-lantern",
-    sku: "NRV-LANTERN-01",
+    sku: "Rechargeable-Camping-Lantern",
     name: "Vintage LED Hurricane Lantern",
     type: "Classic Hurricane-style decorative LED lantern",
     color: "Distressed antique bronze/gold over dark base",

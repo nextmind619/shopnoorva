@@ -14,7 +14,7 @@ const PUBLIC = path.join(ROOT, "public");
 const ASSETS = "C:/Users/admin/.cursor/projects/c-Users-admin-tmp-shopnoorva-rabbit/assets";
 
 const SLUG = "vintage-led-lantern";
-const SKU = "NRV-LANTERN-01";
+const SKU = "Rechargeable-Camping-Lantern";
 
 const IMAGE_MAP = [
   { type: "02-premium-hero", src: "02-premium-hero.png", folder: "products" },
