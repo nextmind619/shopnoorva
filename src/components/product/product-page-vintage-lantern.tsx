@@ -101,12 +101,16 @@ function OfferCard({
           <p className="text-lg font-bold text-[#2c2419]">{title}</p>
           <p className="text-sm text-[#6b5d4d] mt-0.5">{subtitle}</p>
           {savings != null && savings > 0 && (
-            <p className="text-sm font-semibold text-emerald-700 mt-2">كتوفر {formatPriceNumber(savings, "ar")} DH</p>
+            <p className="text-sm font-semibold text-emerald-700 mt-2">
+              كتوفر {formatPriceNumber(savings, "ar")} درهم
+            </p>
           )}
         </div>
         <div className="text-end shrink-0">
-          <p className="text-2xl font-black tabular-nums text-[#2c2419]">{formatPriceNumber(price, "ar")}</p>
-          <p className="text-xs font-medium text-[#8b7355]">DH</p>
+          <p className="text-2xl sm:text-3xl font-black tabular-nums text-[#8b6914] leading-none">
+            {formatPriceNumber(price, "ar")}{" "}
+            <span className="text-base sm:text-lg font-bold text-[#2c2419]">درهم</span>
+          </p>
         </div>
       </div>
     </button>
@@ -189,8 +193,6 @@ export function ProductPageVintageLantern({ product, related: relatedProp }: Pro
     document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
-  const heroImage = resolveLanternImage("02-premium-hero");
-  const ctaLabel = isPack ? "🛒 نطلب جوج" : "🛒 بغيتو دابا";
   const stickyLabel = isPack ? "نطلب جوج" : "نطلب دابا";
 
   return (
@@ -220,7 +222,7 @@ export function ProductPageVintageLantern({ product, related: relatedProp }: Pro
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 pb-28 lg:pb-16 pt-4 space-y-12 sm:space-y-16">
+      <div className="max-w-3xl mx-auto px-4 pb-28 lg:pb-16 pt-4 space-y-8 sm:space-y-10">
         <nav className="flex items-center gap-2 text-xs text-[#8b7355]">
           <Link href="/ar" className="hover:text-[#8b6914] transition-colors">
             نورڤا
@@ -233,116 +235,105 @@ export function ProductPageVintageLantern({ product, related: relatedProp }: Pro
           <span className="font-medium truncate text-[#2c2419]/80">{product.name.ar}</span>
         </nav>
 
-        {/* Hero — desktop split */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="order-1 lg:order-1">
-            <div className="relative aspect-square max-w-xl mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-[#e8ddd0] shadow-xl bg-white">
-              <Image
-                src={heroImage}
-                alt="فانوس LED كلاسيكي بإضاءة دافئة"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+        {/* عنوان + مقدمة قصيرة */}
+        <section className="text-center space-y-3">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#f5ead8] border border-[#e8ddd0] px-4 py-1.5 text-xs font-semibold text-[#8b6914]">
+            🏮 ديكور · إضاءة · Vintage
           </div>
-
-          <div className="order-2 lg:order-2 space-y-6 text-center lg:text-start">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#f5ead8] border border-[#e8ddd0] px-4 py-1.5 text-xs font-semibold text-[#8b6914]">
-              🏮 ديكور · إضاءة · Vintage
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight tracking-tight text-[#2c2419]">
-              {cro?.headline.title ?? "بدّل جو دارك بلمسة وحدة ✨"}
-            </h1>
-            <p className="text-lg text-[#6b5d4d] leading-relaxed max-w-lg mx-auto lg:mx-0">
-              {cro?.headline.subtitle ?? product.shortDescription.ar}
-            </p>
-            <p className="text-base text-[#6b5d4d]/90 leading-relaxed max-w-lg mx-auto lg:mx-0">
-              ماشي غير ضو… هاد الفانوس كيعطيك جو دافئ وأنيق فالدار، فالسطح، فالحديقة وحتى فالتخييم.
-            </p>
-
-            <div className="space-y-3 pt-2">
-              <p className="text-sm font-bold text-[#8b6914]">اختار العرض 👇</p>
-              <OfferCard
-                active={variant.id === singleVariant.id}
-                title="قطعة وحدة"
-                price={SINGLE_PRICE}
-                subtitle="فانوس واحد"
-                onSelect={() => {
-                  setVariant(singleVariant);
-                  setQty(1);
-                }}
-              />
-              <OfferCard
-                active={variant.id === packVariant.id}
-                recommended
-                title="جوج قطع"
-                price={PACK_PRICE}
-                subtitle="فانوسين — الأكثر طلباً"
-                savings={PACK_SAVINGS}
-                badge="🔥 الأكثر طلباً"
-                onSelect={() => {
-                  setVariant(packVariant);
-                  setQty(1);
-                }}
-              />
-            </div>
-
-            {!isPack && (
-              <div className="flex items-center justify-center lg:justify-start gap-4">
-                <span className="text-sm font-medium text-[#6b5d4d]">الكمية</span>
-                <div className="flex items-center gap-3">
-                  <button
-                    type="button"
-                    aria-label="إنقاص"
-                    disabled={qty <= 1}
-                    onClick={() => setQty((q) => Math.max(1, q - 1))}
-                    className="h-10 w-10 rounded-full border border-[#e8ddd0] flex items-center justify-center disabled:opacity-30 hover:bg-white"
-                  >
-                    <Minus className="h-4 w-4" />
-                  </button>
-                  <span className="w-8 text-center text-lg font-bold tabular-nums">{qty}</span>
-                  <button
-                    type="button"
-                    aria-label="زيادة"
-                    disabled={qty >= maxQty}
-                    onClick={() => setQty((q) => Math.min(maxQty, q + 1))}
-                    className="h-10 w-10 rounded-full border border-[#e8ddd0] flex items-center justify-center disabled:opacity-30 hover:bg-white"
-                  >
-                    <Plus className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            )}
-
-            <button
-              type="button"
-              onClick={scrollToOrder}
-              className="w-full sm:w-auto min-w-[240px] h-14 sm:h-16 rounded-2xl bg-[#8b6914] hover:bg-[#7a5c12] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-[#8b6914]/25 transition-colors mx-auto lg:mx-0"
-            >
-              <ShoppingBag className="h-5 w-5" />
-              {ctaLabel}
-            </button>
-
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-xs text-[#8b7355]">
-              <span className="flex items-center gap-1.5">
-                <Banknote className="h-3.5 w-3.5" /> الأداء عند الاستلام
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Truck className="h-3.5 w-3.5" /> توصيل مجاني
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Shield className="h-3.5 w-3.5" /> طلب آمن
-              </span>
-            </div>
-          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-[#2c2419]">
+            {cro?.headline.title ?? "بدّل جو دارك بلمسة وحدة ✨"}
+          </h1>
+          <p className="text-base text-[#6b5d4d] leading-relaxed max-w-lg mx-auto">
+            {cro?.headline.subtitle ?? product.shortDescription.ar}
+          </p>
         </section>
 
-        {/* Gallery */}
+        {/* صور المنتج */}
         <section aria-label="صور المنتج">
           <PremiumProductGallery product={product} />
         </section>
+
+        {/* السعر واضح بالعربية */}
+        <section className="rounded-2xl border-2 border-[#8b6914]/25 bg-white px-5 py-4 text-center shadow-sm">
+          <p className="text-sm font-semibold text-[#6b5d4d] mb-2">الثمن</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <p className="text-xl sm:text-2xl font-black text-[#2c2419]">
+              قطعة وحدة:{" "}
+              <span className="text-[#8b6914]">{formatPriceNumber(SINGLE_PRICE, "ar")} درهم</span>
+            </p>
+            <span className="hidden sm:inline text-[#e8ddd0]">|</span>
+            <p className="text-xl sm:text-2xl font-black text-[#2c2419]">
+              جوج قطع:{" "}
+              <span className="text-[#8b6914]">{formatPriceNumber(PACK_PRICE, "ar")} درهم</span>
+              <span className="ms-2 text-xs font-bold text-emerald-700 align-middle">🔥 الأكثر طلباً</span>
+            </p>
+          </div>
+          <p className="text-xs text-[#8b7355] mt-2">💵 الأداء عند الاستلام · 📦 توصيل للمدن المغربية</p>
+        </section>
+
+        {/* اختيار العرض — مباشرة قبل الفورم */}
+        <section className="space-y-3">
+          <p className="text-base font-bold text-center text-[#2c2419]">اختار العرض 👇</p>
+          <OfferCard
+            active={variant.id === singleVariant.id}
+            title="قطعة وحدة"
+            price={SINGLE_PRICE}
+            subtitle="فانوس واحد — 229 درهم"
+            onSelect={() => {
+              setVariant(singleVariant);
+              setQty(1);
+            }}
+          />
+          <OfferCard
+            active={variant.id === packVariant.id}
+            recommended
+            title="جوج قطع"
+            price={PACK_PRICE}
+            subtitle="فانوسين — 319 درهم · الأكثر طلباً"
+            savings={PACK_SAVINGS}
+            badge="🔥 الأكثر طلباً"
+            onSelect={() => {
+              setVariant(packVariant);
+              setQty(1);
+            }}
+          />
+
+          {!isPack && (
+            <div className="flex items-center justify-center gap-4 rounded-2xl border border-[#e8ddd0] bg-white px-5 py-3">
+              <span className="text-sm font-medium text-[#6b5d4d]">الكمية</span>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  aria-label="إنقاص"
+                  disabled={qty <= 1}
+                  onClick={() => setQty((q) => Math.max(1, q - 1))}
+                  className="h-10 w-10 rounded-full border border-[#e8ddd0] flex items-center justify-center disabled:opacity-30 hover:bg-[#f7f3ed]"
+                >
+                  <Minus className="h-4 w-4" />
+                </button>
+                <span className="w-8 text-center text-lg font-bold tabular-nums">{qty}</span>
+                <button
+                  type="button"
+                  aria-label="زيادة"
+                  disabled={qty >= maxQty}
+                  onClick={() => setQty((q) => Math.min(maxQty, q + 1))}
+                  className="h-10 w-10 rounded-full border border-[#e8ddd0] flex items-center justify-center disabled:opacity-30 hover:bg-[#f7f3ed]"
+                >
+                  <Plus className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* نموذج الطلب — مباشرة تحت الصور */}
+        <ProductOrderForm
+          product={product}
+          variant={variant}
+          quantity={orderQty}
+          extendedAddress
+          submitLabel="أكد الطلب ديالك"
+        />
 
         {/* Benefits */}
         <section className="scroll-mt-24">
@@ -402,23 +393,23 @@ export function ProductPageVintageLantern({ product, related: relatedProp }: Pro
           reverse
         />
 
-        {/* Bottom offer */}
-        <section className="rounded-3xl border-2 border-[#8b6914]/30 bg-white p-6 sm:p-8 space-y-4 shadow-sm">
+        {/* Bottom offer — CTA للتمرير للفورم */}
+        <section className="rounded-3xl border-2 border-[#8b6914]/30 bg-white p-6 sm:p-8 space-y-4 shadow-sm scroll-mt-24">
           <h2 className="text-xl sm:text-2xl font-bold text-center text-[#2c2419]">اختار العرض ديالك 👇</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
             <OfferCard
               active={variant.id === singleVariant.id}
-              title={`1 فانوس — ${SINGLE_PRICE} DH`}
+              title="1 فانوس"
               price={SINGLE_PRICE}
-              subtitle="قطعة وحدة"
+              subtitle={`${formatPriceNumber(SINGLE_PRICE, "ar")} درهم`}
               onSelect={() => setVariant(singleVariant)}
             />
             <OfferCard
               active={variant.id === packVariant.id}
               recommended
-              title={`2 فوانيس — ${PACK_PRICE} DH`}
+              title="2 فوانيس"
               price={PACK_PRICE}
-              subtitle="الأكثر طلباً"
+              subtitle={`${formatPriceNumber(PACK_PRICE, "ar")} درهم · الأكثر طلباً`}
               savings={PACK_SAVINGS}
               onSelect={() => setVariant(packVariant)}
             />
@@ -429,18 +420,9 @@ export function ProductPageVintageLantern({ product, related: relatedProp }: Pro
             className="w-full max-w-md mx-auto h-14 rounded-2xl bg-[#8b6914] hover:bg-[#7a5c12] text-white font-black text-lg flex items-center justify-center gap-2 shadow-lg"
           >
             <ShoppingBag className="h-5 w-5" />
-            🛒 نطلب دابا
+            🛒 نطلب دابا — {formatPriceNumber(variant.price, "ar")} درهم
           </button>
         </section>
-
-        {/* Order form */}
-        <ProductOrderForm
-          product={product}
-          variant={variant}
-          quantity={orderQty}
-          extendedAddress
-          submitLabel="أكد الطلب ديالك"
-        />
 
         {/* Reviews placeholder */}
         <section id="reviews" className="scroll-mt-24">
@@ -510,8 +492,8 @@ export function ProductPageVintageLantern({ product, related: relatedProp }: Pro
           >
             <div className="flex items-center gap-3 px-4 py-3 max-w-lg mx-auto">
               <div className="shrink-0 text-end">
-                <p className="text-lg font-black tabular-nums text-[#2c2419]">
-                  {formatPriceNumber(variant.price, "ar")} DH
+                <p className="text-lg font-black tabular-nums text-[#8b6914]">
+                  {formatPriceNumber(variant.price, "ar")} درهم
                 </p>
               </div>
               <button
