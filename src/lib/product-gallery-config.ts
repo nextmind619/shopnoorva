@@ -995,6 +995,14 @@ const MOSQUITO_TENT_SLIDES: GallerySlideConfig[] = [
     subtitle: "مثالية للصيف والبيوت والرحلات",
     objectFit: "cover",
   },
+  {
+    section: "dimensions",
+    imageType: "12-dimensions",
+    emoji: "📏",
+    heading: "المقاسات والأبعاد",
+    subtitle: "200 × 180 × 150 سم · مناسبة لسرير زوجي / queen",
+    objectFit: "contain",
+  },
 ];
 
 const CAR_FAN_SUNSHADE_SLIDES: GallerySlideConfig[] = [

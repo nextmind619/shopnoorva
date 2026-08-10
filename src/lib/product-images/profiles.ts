@@ -208,7 +208,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       "White dome mosquito net tent over double/queen bed — lace trim, U-shaped zip door, foldable pop-up frame, circular carry bag",
     visualIdentity:
       "EXACT real product — white fine-mesh pop-up mosquito bed tent with flexible blue border/frame forming a dome over a bed. Horizontal white lace-like decorative trim on upper section. Large U-shaped zippered side opening. Fully deployed covering double/queen mattress on light wood bed frame with white bedding. Circular two-tone carry bag (lime green top, royal blue bottom) with blue handle leaning against bed. Bright modern bedroom with window light, bedside lamp, plant. NEVER redesign as hanging canopy-only net without pop-up frame or different color scheme.",
-    dimensions: "Fits double / queen bed (pop-up dome tent)",
+    dimensions: "200 × 180 × 150 cm opened (L × W × H); fits double/queen bed up to 200 × 180 cm; folded carry bag ≈ 60 cm diameter",
     accessories: ["Circular zippered storage bag (green/blue)"],
     packageItems: ["Foldable mosquito bed tent", "Storage carry bag"],
     sourceUrls: {

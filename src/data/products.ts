@@ -1185,9 +1185,9 @@ export const products: Product[] = [
       "Foldable pop-up tent — fast setup, full protection"
     ),
     deepDescription: L(
-      "هيكل pop-up مرن بإطار أزرق يُفتح في ثوانٍ فوق المرتبة. شبكة micro-mesh بيضاء مع زخرفة dentelle وفتحة سحّاب U للدخول بدون إزعاج. تُطوى في حقيبة دائرية ملونة للتخزين أو السفر. مناسبة للسرير الزوجي، غرف الأطفال، والبيوت الصيفية.",
-      "Structure pop-up à cadre bleu qui s'ouvre en secondes sur le matelas. Maille blanche fine, dentelle décorative, ouverture U zippée. Se range dans un sac rond coloré. Pour lit double, chambre enfant et maison d'été.",
-      "Flexible blue pop-up frame opens in seconds over the mattress. Fine white micro-mesh, lace trim, zippered U entry. Folds into a colorful round bag. For double beds, kids rooms and summer homes."
+      "هيكل pop-up مرن بإطار أزرق يُفتح في ثوانٍ فوق المرتبة. أبعاد مفتوحة 200 × 180 × 150 سم — مناسبة لسرير زوجي أو queen. شبكة micro-mesh بيضاء مع زخرفة dentelle وفتحة سحّاب U للدخول بدون إزعاج. تُطوى في حقيبة دائرية ملونة (≈ 60 سم) للتخزين أو السفر. مناسبة للسرير الزوجي، غرف الأطفال، والبيوت الصيفية.",
+      "Structure pop-up à cadre bleu qui s'ouvre en secondes sur le matelas. Dimensions ouvertes 200 × 180 × 150 cm — lit double/queen. Maille blanche fine, dentelle décorative, ouverture U zippée. Se range dans un sac rond coloré (≈ 60 cm). Pour lit double, chambre enfant et maison d'été.",
+      "Flexible blue pop-up frame opens in seconds over the mattress. Open dimensions 200 × 180 × 150 cm — fits double/queen bed. Fine white micro-mesh, lace trim, zippered U entry. Folds into a colorful round bag (≈ 60 cm). For double beds, kids rooms and summer homes."
     ),
     tags: ["bedroom", "home", "kids", "gift", "new", "mosquito", "summer", "travel"],
     benefits: [
@@ -1208,7 +1208,9 @@ export const products: Product[] = [
     specifications: [
       { label: L("النوع", "Type", "Type"), value: L("خيمة ناموس pop-up", "Moustiquaire pop-up", "Pop-up mosquito tent") },
       { label: L("اللون", "Couleur", "Color"), value: L("أبيض + إطار أزرق", "Blanc + cadre bleu", "White + blue frame") },
-      { label: L("المقاس", "Taille", "Size"), value: L("سرير زوجي / queen", "Lit double / queen", "Double / queen bed") },
+      { label: L("الأبعاد (مفتوحة)", "Dimensions (ouvert)", "Dimensions (opened)"), value: L("200 × 180 × 150 سم", "200 × 180 × 150 cm", "200 × 180 × 150 cm") },
+      { label: L("مناسبة لسرير", "Compatible lit", "Fits bed up to"), value: L("200 × 180 سم (زوجي / queen)", "200 × 180 cm (double / queen)", "200 × 180 cm (double / queen)") },
+      { label: L("مطوية (الحقيبة)", "Plié (sac)", "Folded (carry bag)"), value: L("≈ 60 سم قطر", "≈ 60 cm de diamètre", "≈ 60 cm diameter") },
       { label: L("الدخول", "Accès", "Entry"), value: L("سحّاب U", "Fermeture U", "U zip door") },
       { label: L("الحمل", "Transport", "Portability"), value: L("حقيبة دائرية قابلة للطي", "Sac rond pliable", "Foldable round bag") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("6 أشهر", "6 mois", "6 months") },

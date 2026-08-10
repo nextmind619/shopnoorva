@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T15:11:54.755Z",
+  "generatedAt": "2026-08-10T14:21:22.881Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -2059,6 +2059,17 @@
             "md": "/lifestyle/foldable-mosquito-bed-tent/responsive/14-product-in-use-1280.webp",
             "lg": "/lifestyle/foldable-mosquito-bed-tent/responsive/14-product-in-use-2000.webp"
           }
+        },
+        "12-dimensions": {
+          "original": "/specifications/foldable-mosquito-bed-tent/12-dimensions.jpg",
+          "webp": "/specifications/foldable-mosquito-bed-tent/12-dimensions.webp",
+          "avif": "/specifications/foldable-mosquito-bed-tent/12-dimensions.avif",
+          "thumbnail": "/specifications/foldable-mosquito-bed-tent/thumbs/12-dimensions-400.webp",
+          "responsive": {
+            "sm": "/specifications/foldable-mosquito-bed-tent/responsive/12-dimensions-640.webp",
+            "md": "/specifications/foldable-mosquito-bed-tent/responsive/12-dimensions-1280.webp",
+            "lg": "/specifications/foldable-mosquito-bed-tent/responsive/12-dimensions-2000.webp"
+          }
         }
       },
       "prompts": {},
@@ -2067,7 +2078,8 @@
         "02-premium-hero": "ai-generated",
         "09-close-up": "ai-generated",
         "10-features": "ai-generated",
-        "14-product-in-use": "ai-generated"
+        "14-product-in-use": "ai-generated",
+        "12-dimensions": "generated"
       }
     },
     "portable-rechargeable-dual-fan-air-cooler": {
