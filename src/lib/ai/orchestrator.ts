@@ -2,7 +2,6 @@ import { store, uid, type StoredOrder } from "./memory-store";
 import { analyzeOrderFraud, applyFraudToOrder } from "./fraud";
 import { generateInvoice } from "./invoices";
 import { formatOrderProductsForMessage, sendMessage } from "./messaging";
-import { suggestUpsells } from "./support";
 import { decrementStock, autoReorderProducts } from "./inventory";
 import { processAbandonedCarts, markCartRecovered } from "./cart-recovery";
 import { generateDailyAnalytics, generateMonthlyAnalytics } from "./analytics";
@@ -49,7 +48,6 @@ export async function processIncomingOrder(input: {
   blocked?: boolean;
   reason?: string;
   order?: StoredOrder;
-  upsell?: Awaited<ReturnType<typeof suggestUpsells>>;
   invoiceUrl?: string;
 }> {
   const lineItems = input.items.map((item) => {
@@ -225,21 +223,6 @@ export async function processIncomingOrder(input: {
     locale: "ar",
   });
 
-  const upsell = await suggestUpsells({
-    productIds: lineItems.map((i) => i.productId),
-    locale: "ar",
-  });
-
-  if (upsell.message && order.status === "confirmed") {
-    await sendMessage({
-      channel: "whatsapp",
-      recipient: order.phone,
-      templateKey: "upsell",
-      variables: { message: upsell.message },
-      locale: "ar",
-    });
-  }
-
   await sendMetaConversion({
     eventName: "Purchase",
     // Must match browser fbPurchase eventID for Meta deduplication
@@ -283,7 +266,6 @@ export async function processIncomingOrder(input: {
   return {
     success: true,
     order,
-    upsell,
     invoiceUrl: invoice.invoiceUrl,
   };
 }

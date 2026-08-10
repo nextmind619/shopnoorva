@@ -126,7 +126,6 @@ export async function POST(request: NextRequest) {
       orderNumber: result.order.orderNumber,
       orderId: result.order.id,
       invoiceUrl: result.invoiceUrl,
-      upsell: result.upsell,
       trackingNumber: result.order.trackingNumber,
       fraudScore: result.order.fraudScore,
       couponCode,
