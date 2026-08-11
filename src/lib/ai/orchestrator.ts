@@ -12,6 +12,7 @@ import { sendTikTokEvent } from "./integrations/tiktok";
 import { triggerN8n } from "./integrations/n8n";
 import { persistOrderToDb } from "./integrations/db-orders";
 import { notifyAdminNewOrder } from "./admin-notify";
+import { aiConfig } from "./config";
 import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
 
@@ -181,6 +182,7 @@ export async function processIncomingOrder(input: {
   const productsLine = formatOrderProductsForMessage(order.items);
   const confirmationVars = {
     name: customerFirst,
+    store: aiConfig.brand.name,
     order: order.orderNumber,
     products: productsLine,
     total: order.total,

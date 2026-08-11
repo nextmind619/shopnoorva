@@ -23,21 +23,20 @@ export interface MessagePayload {
 export function formatOrderProductsForMessage(
   items: Array<{ name: string; quantity: number }>
 ): string {
-  if (!items.length) return "🛍️ المنتج: —";
+  if (!items.length) return "—";
   if (items.length === 1) {
     const item = items[0];
     const qtyPart = item.quantity > 1 ? ` × ${item.quantity}` : "";
-    return `🛍️ المنتج: ${item.name}${qtyPart}`;
+    return `${item.name}${qtyPart}`;
   }
-  const lines = items.map((item) => `• ${item.name} × ${item.quantity}`).join("\n");
-  return `🛍️ المنتجات:\n${lines}\n`;
+  return items.map((item) => `• ${item.name} × ${item.quantity}`).join("\n");
 }
 
 const TEMPLATES: Record<string, Record<string, string>> = {
   order_confirmed: {
-    fr: "Bonjour {{name}},\n\nVotre commande {{order}} est enregistrée ✅\n\n{{products}}\n💰 Total: {{total}} MAD\n\n📞 Notre équipe vous appellera bientôt pour confirmer.\n\n🚚 Livraison à domicile\n💵 Paiement à la livraison\n\nMerci pour votre confiance ❤️",
-    ar: "مرحباً بك 👋\n\nتم تسجيل طلبك بنجاح ✅\n\n{{products}}\n💰 الثمن الإجمالي: {{total}} درهم\n\n📞 سيتواصل معك فريقنا هاتفياً في أقرب وقت لتأكيد طلبك والتأكد من معلومات التوصيل.\n\nالمرجو الرد على المكالمة لتأكيد الطلب، كما يمكنكم طرح أي سؤال وسنكون سعداء بالإجابة عليه.\n\n🚚 التوصيل حتى باب المنزل\n💵 الأداء عند الاستلام\n\nشكراً لثقتكم بنا ❤️",
-    en: "Hi {{name}},\n\nYour order {{order}} was placed successfully ✅\n\n{{products}}\n💰 Total: {{total}} MAD\n\n📞 Our team will call you soon to confirm delivery details.\n\n🚚 Home delivery\n💵 Cash on delivery\n\nThank you for your trust ❤️",
+    fr: "Bonjour {{name}},\n\nBienvenue chez {{store}} 👋\n\nVotre commande {{order}} est enregistrée ✅\n\n{{products}}\n💰 Total: {{total}} MAD\n\n📞 L'équipe {{store}} vous appellera très bientôt pour confirmer votre commande et l'adresse de livraison.\n\n⚠️ Important : ne repassez pas commande et ne commandez pas depuis une autre pub — votre commande est déjà enregistrée chez nous et sera préparée après confirmation par téléphone.\n\n📲 Merci de répondre à l'appel pour confirmer. Pour toute question, répondez à ce message.\n\n🚚 Livraison à domicile\n💵 Paiement à la livraison\n\nMerci pour votre confiance — {{store}} ❤️",
+    ar: "مرحباً بك في NOORVA 👋❤️\n\n✅ تم تسجيل طلبك بنجاح!\n\n🛍️ طلبك: {{products}}\n💰 المبلغ الإجمالي: {{total}} درهم\n\n📞 الخطوة الأخيرة لتأكيد طلبك:\nسيتصل بك فريق NOORVA قريباً لتأكيد الطلب وعنوان التوصيل.\n\n⚠️ ملاحظة مهمة: لا حاجة لإعادة تسجيل الطلب، فقد تم حفظ طلبك بالفعل. فقط انتظر مكالمتنا وأكد معلوماتك معنا.\n\n🚚 التوصيل حتى باب المنزل\n💵 الدفع عند الاستلام\n\n📲 المرجو الرد على المكالمة عند اتصال فريقنا حتى نتمكن من تجهيز طلبك وإرساله إليك.\n\nشكراً لثقتك في NOORVA ❤️",
+    en: "Hi {{name}},\n\nWelcome to {{store}} 👋\n\nYour order {{order}} was placed successfully ✅\n\n{{products}}\n💰 Total: {{total}} MAD\n\n📞 The {{store}} team will call you shortly to confirm your order and delivery address.\n\n⚠️ Important: do not place the order again or order from another ad — your order is already registered with us and will be prepared after phone confirmation.\n\n📲 Please answer the call to confirm. Reply to this message if you have any questions.\n\n🚚 Home delivery\n💵 Cash on delivery\n\nThank you for trusting {{store}} ❤️",
   },
   abandoned_cart_1: {
     fr: "Votre panier NOORVA vous attend encore ({{total}} MAD). Finalisez en COD en 1 clic: {{link}}",
