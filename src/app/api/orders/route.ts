@@ -48,6 +48,7 @@ export async function POST(request: NextRequest) {
       meta?: {
         fbp?: string;
         fbc?: string;
+        ttclid?: string;
         eventSourceUrl?: string;
         referrerUrl?: string;
       };

@@ -12,7 +12,6 @@ import {
   normalizeMoroccanPhone,
   formatMoroccanPhoneInput,
 } from "@/lib/validate-phone";
-import { trackEvent } from "@/components/analytics/analytics-scripts";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { collectDeviceSignals, type CollectedDeviceSignals } from "@/components/fraud/collect-device";
 import { FraudHoneypotFields, readHoneypotFromForm } from "@/components/fraud/honeypot-fields";
@@ -23,6 +22,7 @@ import {
   getFacebookClickIds,
   getReferrerUrl,
 } from "@/lib/facebook/events";
+import { getTtclid, ttCompletePayment } from "@/lib/tiktok/events";
 
 interface ProductOrderFormProps {
   product: Product;
@@ -266,6 +266,7 @@ export function ProductOrderForm({
           meta: {
             fbp: clickIds.fbp,
             fbc: clickIds.fbc,
+            ttclid: getTtclid(),
             eventSourceUrl: getEventSourceUrl(),
             referrerUrl: getReferrerUrl(),
           },
@@ -296,11 +297,13 @@ export function ProductOrderForm({
           sendToServer: false,
         });
 
-        trackEvent("Purchase", {
-          content_ids: [product.id],
+        ttCompletePayment({
+          eventId: purchaseEventId,
+          contentIds: [product.id],
           value: total,
           currency: "MAD",
-          order_id: data.orderNumber,
+          orderId: data.orderNumber,
+          numItems: quantity,
         });
 
         const params = new URLSearchParams({

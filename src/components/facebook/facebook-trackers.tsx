@@ -13,6 +13,12 @@ import {
   fbPageView,
   fbViewContent,
 } from "@/lib/facebook/events";
+import {
+  ttAddToCart,
+  ttInitiateCheckout,
+  ttSubmitForm,
+  ttViewContent,
+} from "@/lib/tiktok/events";
 
 const fired = new Set<string>();
 
@@ -56,6 +62,12 @@ export function FacebookProductTracker({
         value,
         currency,
       });
+      ttViewContent({
+        contentIds: [productId],
+        contentName,
+        value,
+        currency,
+      });
     });
   }, [productId, contentName, contentCategory, value, currency]);
 
@@ -63,10 +75,18 @@ export function FacebookProductTracker({
     if (quantity === qtyRef.current) return;
     qtyRef.current = quantity;
     // Quantity change on a COD PDP ≈ add / update cart intent
+    const cartValue = value != null ? value * quantity : undefined;
     fbAddToCart({
       contentIds: [productId],
       contentName,
-      value: value != null ? value * quantity : undefined,
+      value: cartValue,
+      currency,
+      quantity,
+    });
+    ttAddToCart({
+      contentIds: [productId],
+      contentName,
+      value: cartValue,
       currency,
       quantity,
     });
@@ -95,9 +115,21 @@ export function FacebookCheckoutTracker({
         currency,
         numItems,
       });
+      ttInitiateCheckout({
+        contentIds: [productId],
+        value,
+        currency,
+        numItems,
+      });
       // First engagement with checkout also counts as AddToCart for COD funnels
       once(`cart:${productId}`, () => {
         fbAddToCart({
+          contentIds: [productId],
+          value,
+          currency,
+          quantity: numItems,
+        });
+        ttAddToCart({
           contentIds: [productId],
           value,
           currency,
@@ -140,6 +172,11 @@ export function FacebookThankYouTracker({
             firstName,
             country: "ma",
           },
+        });
+        ttSubmitForm({
+          eventId: `lead_${orderNumber}`,
+          contentIds,
+          value,
         });
       }
     });

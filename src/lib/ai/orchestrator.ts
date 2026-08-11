@@ -41,6 +41,7 @@ export async function processIncomingOrder(input: {
   meta?: {
     fbp?: string;
     fbc?: string;
+    ttclid?: string;
     eventSourceUrl?: string;
     referrerUrl?: string;
   };
@@ -250,9 +251,15 @@ export async function processIncomingOrder(input: {
 
   await sendTikTokEvent({
     event: "CompletePayment",
+    eventId: `purchase_${order.orderNumber}`,
+    orderId: order.orderNumber,
     value: order.total,
     currency: "MAD",
-    contentIds: lineItems.map((i) => i.sku),
+    contentIds: lineItems.map((i) => i.productId),
+    clientIpAddress: input.ip,
+    clientUserAgent: input.userAgent,
+    eventSourceUrl: input.meta?.eventSourceUrl,
+    ttclid: input.meta?.ttclid,
   });
 
   await triggerN8n("order-processed", {
