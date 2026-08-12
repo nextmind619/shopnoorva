@@ -6,13 +6,15 @@
 
 import { NextResponse } from "next/server";
 import { getFacebookPixelId } from "@/lib/facebook/config";
+import { getTikTokPixelId } from "@/lib/tiktok/config";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   const pixelId = getFacebookPixelId();
+  const tiktokPixelId = getTikTokPixelId();
   return NextResponse.json(
-    { pixelId: pixelId || null },
+    { pixelId: pixelId || null, tiktokPixelId: tiktokPixelId || null },
     {
       headers: {
         // Pixel id rarely changes; short cache is fine, avoid stale empty after env update

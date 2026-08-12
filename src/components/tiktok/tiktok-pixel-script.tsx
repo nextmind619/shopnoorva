@@ -66,6 +66,30 @@ function installTtqStub() {
   };
 }
 
+async function fetchTikTokPixelId(): Promise<string | null> {
+  const endpoints = ["/api/tiktok/pixel", "/api/facebook/pixel"];
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url, { credentials: "same-origin" });
+      if (!res.ok) continue;
+      const data = (await res.json()) as { pixelId?: string | null; tiktokPixelId?: string | null };
+      const id = (url.includes("tiktok") ? data.pixelId : data.tiktokPixelId)?.trim();
+      if (id) return id;
+    } catch {
+      /* try next endpoint */
+    }
+  }
+  return process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID?.trim() || null;
+}
+
+function bootTikTokPixel(pixelId: string) {
+  if (document.documentElement.dataset.ttPixel === pixelId) return;
+  installTtqStub();
+  window.ttq?.load(pixelId);
+  window.ttq?.page();
+  document.documentElement.dataset.ttPixel = pixelId;
+}
+
 export function TikTokPixelScript() {
   installTtqStub();
 
@@ -73,21 +97,9 @@ export function TikTokPixelScript() {
     let cancelled = false;
 
     async function boot() {
-      try {
-        const res = await fetch("/api/tiktok/pixel", { credentials: "same-origin" });
-        if (!res.ok || cancelled) return;
-        const data = (await res.json()) as { pixelId?: string | null };
-        const pixelId = data.pixelId?.trim();
-        if (!pixelId || cancelled) return;
-        if (document.documentElement.dataset.ttPixel === pixelId) return;
-
-        installTtqStub();
-        window.ttq?.load(pixelId);
-        window.ttq?.page();
-        document.documentElement.dataset.ttPixel = pixelId;
-      } catch {
-        /* best-effort — Events API still covers server-side conversions */
-      }
+      const pixelId = await fetchTikTokPixelId();
+      if (!pixelId || cancelled) return;
+      bootTikTokPixel(pixelId);
     }
 
     void boot();
