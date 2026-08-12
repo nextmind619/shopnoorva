@@ -33,7 +33,10 @@ function installTtqStub() {
     "revokeConsent",
     "grantConsent",
   ];
-  ttq.setAndDefer = function (target: { push: (args: unknown[]) => void }, method: string) {
+  ttq.setAndDefer = function (
+    target: Record<string, unknown> & { push: (args: unknown[]) => void },
+    method: string,
+  ) {
     target[method] = function (...args: unknown[]) {
       target.push([method, ...args]);
     };
