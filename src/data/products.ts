@@ -37,8 +37,8 @@ export const products: Product[] = [
       "NOORVA neck & shoulder massager with 3D hand-simulation Shiatsu: 8 food-grade silicone nodes (4 per side). Forest-green ABS body, adjustable brown pebbled PU leather straps, black control panel (power + heat). For neck, shoulders, back, waist, legs. Auto-rotation, quiet, portable. Free Morocco shipping with cash on delivery."
     ),
     categoryId: "cat-relaxation",
-    price: 299,
-    compareAtPrice: 399,
+    price: 399,
+    compareAtPrice: 549,
     sku: "NRV-SHIATSU-01",
     stock: 47,
     rating: 4.9,
@@ -148,8 +148,8 @@ export const products: Product[] = [
       {
         id: "var-shiatsu",
         name: L("أخضر", "Vert", "Green"),
-        price: 299,
-        compareAtPrice: 399,
+        price: 399,
+        compareAtPrice: 549,
         sku: "NRV-SHIATSU-01",
         stock: 47,
       },
@@ -158,14 +158,14 @@ export const products: Product[] = [
     crossSellIds: ["prod-rabbit", "prod-starbt"],
     seo: {
       title: L(
-        "جهاز تدليك الرقبة والكتفين شياتسو 3D مع تدفئة | 299 درهم | NOORVA المغرب",
-        "Appareil de Massage Shiatsu 3D Cou et Épaules | 299 MAD | NOORVA Maroc",
-        "3D Shiatsu Neck & Shoulder Massager with Heat | 299 MAD | NOORVA Morocco"
+        "جهاز تدليك الرقبة والكتفين شياتسو 3D مع تدفئة | 399 درهم | NOORVA المغرب",
+        "Appareil de Massage Shiatsu 3D Cou et Épaules | 399 MAD | NOORVA Maroc",
+        "3D Shiatsu Neck & Shoulder Massager with Heat | 399 MAD | NOORVA Morocco"
       ),
       description: L(
-        "جهاز تدليك شياتسو 3D محاكاة اليد مع تدفئة بـ 299 درهم بدل 399. يخفّف آلام الرقبة والكتفين. توصيل مجاني والدفع عند الاستلام في المغرب.",
-        "Masseur Shiatsu 3D simulation main avec chauffage à 299 MAD au lieu de 399. Soulage cervicales et épaules. Livraison gratuite et paiement à la livraison au Maroc.",
-        "3D hand-simulation Shiatsu with heat for 299 MAD instead of 399. Relieves neck and shoulders. Free shipping and cash on delivery in Morocco."
+        "جهاز تدليك شياتسو 3D محاكاة اليد مع تدفئة بـ 399 درهم بدل 549. يخفّف آلام الرقبة والكتفين. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Masseur Shiatsu 3D simulation main avec chauffage à 399 MAD au lieu de 549. Soulage cervicales et épaules. Livraison gratuite et paiement à la livraison au Maroc.",
+        "3D hand-simulation Shiatsu with heat for 399 MAD instead of 549. Relieves neck and shoulders. Free shipping and cash on delivery in Morocco."
       ),
     },
   },
@@ -1856,7 +1856,7 @@ export const reviews: ProductReview[] = [
   { id: "rs10", productId: "prod-shiatsu", author: "Leila Mansouri", city: "Salé", rating: 5, title: L("للاسترخاء اليومي", "Pour la détente quotidienne", "For daily relaxation"), content: L("ولّات عادة مسائية. كنحس براحة فالرّقبة والكتاف.", "Devenu un rituel du soir. Cou et épaules vraiment détendus.", "Became an evening ritual. Neck and shoulders truly relaxed."), date: "2026-07-06", verified: true },
   { id: "rs11", productId: "prod-shiatsu", author: "Omar Benjelloun", city: "Tétouan", rating: 5, title: L("دوران تلقائي زوين", "Rotation auto au top", "Auto-rotation is great"), content: L("الدوران التلقائي كيغطّي المناطق المتقلّصة بلا مجهود.", "La rotation automatique couvre les zones tendues sans effort.", "Auto-rotation covers tense areas with no effort."), date: "2026-07-04", verified: true },
   { id: "rs12", productId: "prod-shiatsu", author: "Salma Hassani", city: "El Jadida", rating: 5, title: L("تصميم أنيق", "Design élégant", "Elegant design"), content: L("اللون الأخضر والحزام البني كيبانو فاخرين فالصالون.", "Le vert et la sangle brune font très premium dans le salon.", "Green with brown strap looks premium in the living room."), date: "2026-07-02", verified: true },
-  { id: "rs13", productId: "prod-shiatsu", author: "Rachid Ziani", city: "Safi", rating: 4, title: L("قيمة ممتازة", "Excellent rapport qualité-prix", "Great value"), content: L("بـ 299 درهم يستاهل. غير بغيت كابل أطول شوية.", "Pour 299 MAD, ça vaut le coup. J'aurais aimé un câble un peu plus long.", "For 299 MAD it's worth it. Wish the cable were a bit longer."), date: "2026-06-30", verified: true },
+  { id: "rs13", productId: "prod-shiatsu", author: "Rachid Ziani", city: "Safi", rating: 4, title: L("قيمة ممتازة", "Excellent rapport qualité-prix", "Great value"), content: L("بـ 399 درهم يستاهل. غير بغيت كابل أطول شوية.", "Pour 399 MAD, ça vaut le coup. J'aurais aimé un câble un peu plus long.", "For 399 MAD it's worth it. Wish the cable were a bit longer."), date: "2026-06-30", verified: true },
   { id: "rs14", productId: "prod-shiatsu", author: "Fatima Zahra", city: "Béni Mellal", rating: 5, title: L("يخفّف التوتر", "Réduit le stress", "Reduces stress"), content: L("منين كنكون متوترة، 15 دقيقة كافية باش نرتاح.", "Quand je suis stressée, 15 minutes suffisent pour me détendre.", "When I'm stressed, 15 minutes are enough to unwind."), date: "2026-06-28", verified: true },
   { id: "rs15", productId: "prod-shiatsu", author: "Abderrahim Naciri", city: "Nador", rating: 5, title: L("للظهر أيضاً", "Aussi pour le dos", "Also for the back"), content: L("كنستعملو على الظهر والخصر. متعدد الاستعمالات ومفيد.", "Je l'utilise aussi sur le dos et la taille. Polyvalent et utile.", "I also use it on the back and waist. Versatile and useful."), date: "2026-06-26", verified: true },
   { id: "rs16", productId: "prod-shiatsu", author: "Meriem Kettani", city: "Mohammedia", rating: 5, title: L("تدفئة مريحة", "Chauffage confortable", "Comfortable heat"), content: L("التدفئة ما سخوناش بزاف — دافية ومريحة للعضلات.", "La chaleur n'est pas excessive — douce et confortable pour les muscles.", "Heat isn't excessive — warm and comfortable for the muscles."), date: "2026-06-24", verified: true },
@@ -1868,7 +1868,7 @@ export const reviews: ProductReview[] = [
   { id: "rs22", productId: "prod-shiatsu", author: "Zineb El Idrissi", city: "Laâyoune", rating: 5, title: L("ثقة كاملة", "Confiance totale", "Full trust"), content: L("أول طلب من NOORVA وكان ناجح. التوصيل للمجنوب مرتب.", "1re commande NOORVA réussie. Livraison vers le sud impeccable.", "First NOORVA order succeeded. Southern delivery was smooth."), date: "2026-06-12", verified: true },
   { id: "rs23", productId: "prod-shiatsu", author: "Karim Ouadghiri", city: "Casablanca", rating: 5, title: L("أفضل شراء", "Meilleur achat", "Best purchase"), content: L("جربت مساج رخيص من قبل، هادا الفرق واضح فالجودة والراحة.", "Après un massageur cheap, celui-ci marque vraiment la différence.", "After a cheap massager, this one clearly stands out."), date: "2026-06-10", verified: true },
   { id: "rs24", productId: "prod-shiatsu", author: "Asmae Bensalah", city: "Rabat", rating: 5, title: L("موصى به", "Je recommande", "Highly recommend"), content: L("للموظفين والطلبة زوين بزاف. كيهنّي الرقبة بسرعة.", "Parfait pour salariés et étudiants. Détend le cou rapidement.", "Perfect for employees and students. Relaxes the neck quickly."), date: "2026-06-08", verified: true },
-  { id: "rs25", productId: "prod-shiatsu", author: "Hicham Toumi", city: "Marrakech", rating: 5, title: L("عرض يستاهل", "Offre à saisir", "Offer worth it"), content: L("خدّيتو بـ 199 بدل 299. الجودة فاخرة والاقتصاد واضح.", "Pris à 199 au lieu de 299. Qualité premium, vraie économie.", "Got it for 199 instead of 299. Premium quality, real savings."), date: "2026-06-06", verified: true },
+  { id: "rs25", productId: "prod-shiatsu", author: "Hicham Toumi", city: "Marrakech", rating: 5, title: L("عرض يستاهل", "Offre à saisir", "Offer worth it"), content: L("خدّيتو بـ 399 بدل 549. الجودة فاخرة والاقتصاد واضح.", "Pris à 399 au lieu de 549. Qualité premium, vraie économie.", "Got it for 399 instead of 549. Premium quality, real savings."), date: "2026-06-06", verified: true },
 ];
 
 export const faqs: FAQ[] = [
