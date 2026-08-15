@@ -461,7 +461,7 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         step: "2",
         title: "اضبط السانات",
         desc: "شدّ الأحزمة القابلة للتعديل بشكل مريح باش يبقا ثابت.",
-        imageKey: "09-close-up",
+        imageKey: "04-bedroom",
       },
       {
         step: "3",
@@ -473,7 +473,7 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         step: "4",
         title: "فعّل التدفئة",
         desc: "زيد الدفء اللطيف 10–15 دقيقة لاسترخاء أعمق.",
-        imageKey: "10-features",
+        imageKey: "07-romantic-room",
       },
     ],
     comparison: {

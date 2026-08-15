@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T14:21:22.881Z",
+  "generatedAt": "2026-08-15T16:18:00.051Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -1666,8 +1666,8 @@
         "06-gaming-room": "ai-generated",
         "07-romantic-room": "ai-generated",
         "08-kids-room": "ai-generated",
-        "09-close-up": "ai-generated",
-        "10-features": "ai-generated",
+        "09-close-up": "original-product-photo",
+        "10-features": "original-product-photo",
         "11-package-contents": "ai-generated",
         "12-dimensions": "ai-generated",
         "13-before-after": "ai-generated",
