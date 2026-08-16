@@ -71,6 +71,17 @@ const PRIMARY_GALLERY_TYPES: PremiumImageType[] = [
   "11-package-contents",
 ];
 
+const PRIMARY_GALLERY_OVERRIDES: Partial<Record<string, PremiumImageType[]>> = {
+  "shiatsu-neck-shoulder-massager": [
+    "01-hero-white-bg",
+    "14-product-in-use",
+    "07-romantic-room",
+    "03-lifestyle",
+    "11-package-contents",
+    "05-living-room",
+  ],
+};
+
 const PRIMARY_GALLERY_FALLBACKS: PremiumImageType[] = [
   "01-hero-white-bg",
   "04-bedroom",
@@ -94,10 +105,12 @@ export function buildPrimaryGallerySlides(product: Product, limit = 6): GalleryS
     used.add(slide.id);
   };
 
-  for (const type of PRIMARY_GALLERY_TYPES) tryAdd(type);
+  const types = PRIMARY_GALLERY_OVERRIDES[product.slug] ?? PRIMARY_GALLERY_TYPES;
+  for (const type of types) tryAdd(type);
   for (const type of PRIMARY_GALLERY_FALLBACKS) tryAdd(type);
   for (const slide of all) {
     if (picked.length >= limit) break;
+    if (product.slug === "shiatsu-neck-shoulder-massager" && slide.imageType === "09-close-up") continue;
     if (!used.has(slide.id)) {
       picked.push(slide);
       used.add(slide.id);
