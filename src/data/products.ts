@@ -116,6 +116,7 @@ export const products: Product[] = [
       "Placez l'appareil autour du cou ou sur la zone à masser, ajustez les sangles, lancez le massage et activez le chauffage si besoin. Détendez-vous 10 à 15 minutes. Aussi pour dos, taille et jambes.",
       "Place the device around your neck or on the target area, adjust the straps, start the massage from the black panel and enable heat if desired. Relax 10–15 minutes. Also for back, waist and legs."
     ),
+    videoUrl: "/videos/shiatsu-neck-massager-relaxation.mp4",
     lifestyleScenes: [
       {
         id: "office",

@@ -102,6 +102,8 @@ export function ProductVideoSection({ product }: SectionProps) {
   const [playing, setPlaying] = useState(false);
   if (!videoSrc) return null;
 
+  const isLandscape = cro?.videoAspect === "16/9";
+
   const startPlayback = () => {
     const el = videoRef.current;
     if (!el) return;
@@ -123,7 +125,14 @@ export function ProductVideoSection({ product }: SectionProps) {
         <h2 className="text-2xl font-bold text-white">شاهد النتيجة</h2>
         <p className="text-sm text-white/55 mt-2">الاستخدام · المزايا · الأجواء النهائية</p>
       </div>
-      <div className="relative aspect-[9/16] max-h-[65vh] mx-auto w-full max-w-sm rounded-3xl overflow-hidden bg-black border border-white/10">
+      <div
+        className={cn(
+          "relative mx-auto w-full rounded-3xl overflow-hidden bg-black border border-white/10",
+          isLandscape
+            ? "aspect-video max-w-2xl"
+            : "aspect-[9/16] max-h-[65vh] max-w-sm"
+        )}
+      >
         <video
           ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"

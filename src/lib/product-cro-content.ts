@@ -47,6 +47,7 @@ export type CroProductContent = {
   comparison: CroComparison;
   benefits: CroBenefitBlock[];
   videoSrc?: string;
+  videoAspect?: "9/16" | "16/9";
 };
 
 const SHARED_TRUST_ROWS: CroComparison["rows"] = [
@@ -515,6 +516,8 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         desc: "مثالية للوالدين والشركاء والزملاء — عافية جاهزة للإهداء.",
       },
     ],
+    videoSrc: "/videos/shiatsu-neck-massager-relaxation.mp4",
+    videoAspect: "16/9",
   },
   "portable-rechargeable-dual-fan-air-cooler": {
     headline: {
