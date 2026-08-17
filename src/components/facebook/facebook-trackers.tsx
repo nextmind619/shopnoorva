@@ -19,6 +19,11 @@ import {
   ttSubmitForm,
   ttViewContent,
 } from "@/lib/tiktok/events";
+import {
+  trackAddToCart,
+  trackBeginCheckout,
+  trackViewItem,
+} from "@/lib/google/events";
 
 const fired = new Set<string>();
 
@@ -68,6 +73,15 @@ export function FacebookProductTracker({
         value,
         currency,
       });
+      if (value != null) {
+        trackViewItem({
+          itemId: productId,
+          itemName: contentName || productId,
+          price: value,
+          quantity: 1,
+          currency,
+        });
+      }
     });
   }, [productId, contentName, contentCategory, value, currency]);
 
@@ -90,6 +104,16 @@ export function FacebookProductTracker({
       currency,
       quantity,
     });
+    if (value != null) {
+      trackAddToCart({
+        itemId: productId,
+        itemName: contentName || productId,
+        price: value,
+        quantity,
+        value: cartValue,
+        currency,
+      });
+    }
   }, [quantity, productId, contentName, value, currency]);
 
   return null;
@@ -98,11 +122,13 @@ export function FacebookProductTracker({
 /** Fires InitiateCheckout once when the COD order form mounts / is focused. */
 export function FacebookCheckoutTracker({
   productId,
+  contentName,
   value,
   currency = "MAD",
   numItems = 1,
 }: {
   productId: string;
+  contentName?: string;
   value?: number;
   currency?: string;
   numItems?: number;
@@ -121,6 +147,22 @@ export function FacebookCheckoutTracker({
         currency,
         numItems,
       });
+      if (value != null) {
+        const unitPrice = numItems > 0 ? value / numItems : value;
+        trackBeginCheckout({
+          items: [
+            {
+              itemId: productId,
+              itemName: contentName || productId,
+              price: unitPrice,
+              quantity: numItems,
+              currency,
+            },
+          ],
+          value,
+          currency,
+        });
+      }
       // First engagement with checkout also counts as AddToCart for COD funnels
       once(`cart:${productId}`, () => {
         fbAddToCart({
@@ -135,9 +177,20 @@ export function FacebookCheckoutTracker({
           currency,
           quantity: numItems,
         });
+        if (value != null) {
+          const unitPrice = numItems > 0 ? value / numItems : value;
+          trackAddToCart({
+            itemId: productId,
+            itemName: contentName || productId,
+            price: unitPrice,
+            quantity: numItems,
+            value,
+            currency,
+          });
+        }
       });
     });
-  }, [productId, value, currency, numItems]);
+  }, [productId, contentName, value, currency, numItems]);
 
   return null;
 }
