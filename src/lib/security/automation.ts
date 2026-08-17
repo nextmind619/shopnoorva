@@ -72,8 +72,13 @@ export function detectAutomation(
   return { isBot, isHeadless, selenium, puppeteer, playwright, fakeBrowser, reasons, tool };
 }
 
-/** Soft Moroccan customer heuristics from Accept-Language (never hard-block alone) */
-export function likelyMoroccanCustomer(acceptLanguage: string, timezoneFromClient?: string): boolean {
+/** Soft Moroccan customer heuristics (never hard-block alone) */
+export function likelyMoroccanCustomer(
+  acceptLanguage: string,
+  timezoneFromClient?: string,
+  country?: string | null
+): boolean {
+  if ((country || "").toUpperCase() === "MA") return true;
   const al = (acceptLanguage || "").toLowerCase();
   if (al.includes("ar-ma") || al.includes("fr-ma") || al.includes("ar,") || al.startsWith("ar")) return true;
   if (al.includes("fr") && al.includes("ar")) return true;

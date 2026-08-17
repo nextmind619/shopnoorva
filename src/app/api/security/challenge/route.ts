@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     // Base trust after challenge — Moroccan soft bump applied later by proxy via cookie score
     let score = 75;
     if (/Africa\/Casablanca/i.test(body.signals.timezone || "")) score += 10;
-    if (/^ar/i.test(body.signals.language || "")) score += 5;
+    if (/^(ar|fr)/i.test(body.signals.language || "")) score += 5;
     score = Math.min(100, score);
 
     const trust = mintTrustCookie(score);

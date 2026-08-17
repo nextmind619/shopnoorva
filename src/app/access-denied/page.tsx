@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { AccessDeniedRecovery } from "@/components/security/access-denied-recovery";
 
 export const metadata: Metadata = {
   title: "Access Denied | NOORVA",
@@ -53,6 +54,7 @@ export default function AccessDeniedPage() {
           >
             Try storefront
           </Link>
+          <AccessDeniedRecovery />
         </main>
       </body>
     </html>

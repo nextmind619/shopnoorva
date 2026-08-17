@@ -1,3 +1,5 @@
+import { extractClientIp } from "@/lib/security/client-ip";
+
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
 export function rateLimit(
@@ -22,11 +24,5 @@ export function rateLimit(
 }
 
 export function getClientIp(request: Request): string {
-  const headers = request.headers;
-  return (
-    headers.get("cf-connecting-ip")?.trim() ||
-    headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    headers.get("x-real-ip")?.trim() ||
-    "unknown"
-  );
+  return extractClientIp(request.headers);
 }

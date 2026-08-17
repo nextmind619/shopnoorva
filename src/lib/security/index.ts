@@ -4,6 +4,7 @@
 
 export { evaluateVisitor } from "./engine";
 export { SECURITY_CONFIG } from "./config";
+export { extractClientIp } from "./client-ip";
 export {
   issueChallengeNonce,
   verifyChallengeNonce,

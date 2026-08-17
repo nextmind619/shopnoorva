@@ -110,6 +110,21 @@ export function calculateVisitorTrust(input: TrustInput): {
   if (protectedCustomer && decision === "block" && score >= 25) {
     decision = "challenge";
   }
+  // Real browsers get a JS challenge instead of Access Denied, unless the
+  // visitor is clearly hostile (Tor, automation, Ad Library, manual blacklist).
+  if (
+    decision === "block" &&
+    input.realBrowser &&
+    !input.blacklisted &&
+    !input.selenium &&
+    !input.puppeteer &&
+    !input.playwright &&
+    !input.headless &&
+    !input.facebookAdLibrary &&
+    input.ipRisk !== "tor"
+  ) {
+    decision = "challenge";
+  }
   if (
     protectedCustomer &&
     (input.realAdClick || input.socialTraffic) &&

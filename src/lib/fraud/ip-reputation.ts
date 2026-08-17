@@ -1,4 +1,5 @@
 import type { IpRiskType } from "./types";
+import { isCloudflareHopIp, isPrivateOrLocalIp } from "@/lib/security/client-ip";
 
 /**
  * Fast local IP reputation (<5ms).
@@ -16,7 +17,6 @@ const DATACENTER_PREFIXES = [
   "45.8.", "45.9.", "45.32.", "45.33.", "45.63.", "45.76.", "45.77.", "66.135.", "104.156.", "108.61.", "149.28.", "207.246.", // Vultr / Linode-ish
   "64.225.", "64.227.", "67.205.", "68.183.", "134.122.", "137.184.", "138.68.", "139.59.", "143.110.", "143.198.", "146.190.", "157.230.", "159.65.", "159.89.", "161.35.", "164.90.", "165.22.", "167.71.", "167.99.", "174.138.", "178.62.", "178.128.", "188.166.", "206.189.", "209.38.", // DigitalOcean
   "5.161.", "5.75.", "49.12.", "49.13.", "65.108.", "65.109.", "78.46.", "88.99.", "91.107.", "95.216.", "116.202.", "128.140.", "135.181.", "136.243.", "142.132.", "148.251.", "157.90.", "159.69.", "162.55.", "167.235.", "168.119.", "176.9.", "178.63.", "188.34.", "188.40.", "195.201.", "213.133.", "213.239.", // Hetzner
-  "104.16.", "104.17.", "104.18.", "104.19.", "104.20.", "104.21.", "104.22.", "104.23.", "104.24.", "104.25.", "104.26.", "104.27.", "172.64.", "172.65.", "172.66.", "172.67.", // Cloudflare anycast (proxy)
 ];
 
 const VPN_UA_HINTS = /vpn|proxy|tor-browser|tails/i;
@@ -65,9 +65,20 @@ export function analyzeIpReputation(input: {
     return { risk: "unknown", highRisk: true, reasons: ["ip_unknown"] };
   }
 
-  if (PRIVATE_RE.test(ip) || ip === "localhost" || ip === "::1") {
+  if (isPrivateOrLocalIp(ip) || PRIVATE_RE.test(ip) || ip === "localhost" || ip === "::1") {
     // Local/dev — treat as residential-equivalent for DX, not high risk
     return { risk: "residential", highRisk: false, reasons: ["ip_private_local"], provider: "local" };
+  }
+
+  // Cloudflare edge / WARP is a proxy hop. Scoring it as datacenter hard-blocks
+  // every shopper when EasyPanel forwards the CF IP instead of the client IP.
+  if (isCloudflareHopIp(ip)) {
+    return {
+      risk: "vpn",
+      highRisk: true,
+      reasons: ["cf_edge_or_warp"],
+      provider: "cloudflare",
+    };
   }
 
   reasons.push(...analyzeHeaders(input.headers));

@@ -18,10 +18,26 @@ export function evaluateVisitor(ctx: VisitorContext): VisitorEvaluation {
   const reasons: string[] = [];
   const flags: string[] = [];
 
+  const country = (ctx.headers?.["cf-ipcountry"] || "").toUpperCase();
+  const auto = detectAutomation(ctx.userAgent, ctx.headers);
+  const realBrowser = /Mozilla\/5\.0.*(Chrome|Firefox|Safari|Edg|Mobile)/i.test(ctx.userAgent);
+  const morocco = likelyMoroccanCustomer(ctx.acceptLanguage, undefined, country);
+
   const bl = isSecurityBlacklisted(ctx.ip, ctx.userAgent);
-  if (bl) {
+  // Auto-blacklist from earlier false positives must not lock out real Moroccan browsers.
+  const ignoreAutoBlacklist =
+    bl?.source === "auto" &&
+    realBrowser &&
+    (morocco || country === "MA") &&
+    !auto.selenium &&
+    !auto.puppeteer &&
+    !auto.playwright &&
+    !auto.isHeadless;
+  if (bl && !ignoreAutoBlacklist) {
     reasons.push("blacklisted");
     flags.push(`blacklist_${bl.type}`);
+  } else if (ignoreAutoBlacklist) {
+    flags.push("auto_blacklist_ignored");
   }
 
   const ref = analyzeReferrer(ctx.referer);
@@ -49,7 +65,6 @@ export function evaluateVisitor(ctx: VisitorContext): VisitorEvaluation {
     reasons.push(`ip_${ip.kind}`);
   }
 
-  const auto = detectAutomation(ctx.userAgent, ctx.headers);
   flags.push(...auto.reasons.map((r) => `auto_${r}`));
   if (auto.isBot) reasons.push("bot_detected");
   if (auto.tool) reasons.push(auto.tool);
@@ -64,13 +79,11 @@ export function evaluateVisitor(ctx: VisitorContext): VisitorEvaluation {
     reasons.push("aggressive_crawling");
   }
 
-  const morocco = likelyMoroccanCustomer(ctx.acceptLanguage);
   if (morocco) flags.push("likely_moroccan");
-
-  const realBrowser = /Mozilla\/5\.0.*(Chrome|Firefox|Safari|Edg|Mobile)/i.test(ctx.userAgent);
+  if (country === "MA") flags.push("cf_country_ma");
 
   const scored = calculateVisitorTrust({
-    blacklisted: Boolean(bl),
+    blacklisted: Boolean(bl && !ignoreAutoBlacklist),
     realBrowser,
     challengePassed: ctx.challengePassed,
     likelyMoroccan: morocco,
@@ -103,8 +116,14 @@ export function evaluateVisitor(ctx: VisitorContext): VisitorEvaluation {
   }
 
   if (decision === "block") {
+    const skipAutoBlacklist =
+      (country === "MA" || morocco) &&
+      realBrowser &&
+      !auto.selenium &&
+      !auto.puppeteer &&
+      !auto.playwright;
     const blockCount = recordBlock(ctx.ip);
-    if (shouldAutoBlacklist(ctx.ip) || blockCount >= 3) {
+    if (!skipAutoBlacklist && (shouldAutoBlacklist(ctx.ip) || blockCount >= 3)) {
       addSecurityBlacklist({
         type: "ip",
         value: ctx.ip,

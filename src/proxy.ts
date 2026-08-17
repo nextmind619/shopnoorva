@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { defaultLocale } from "./i18n/config";
 import { evaluateVisitor, readTrustCookie } from "@/lib/security";
 import { SECURITY_CONFIG } from "@/lib/security/config";
+import { extractClientIp } from "@/lib/security/client-ip";
 import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
 
 const intlMiddleware = createMiddleware({
@@ -21,12 +22,7 @@ const AD_PLATFORM_CRAWLER_UA =
   /facebookexternalhit|Facebot|meta-externalagent|meta-externalads|FacebookBot|Bytespider|TikTokSpider|Bytedance|musical_ly|TikTok/i;
 
 function clientIp(request: NextRequest): string {
-  return (
-    request.headers.get("cf-connecting-ip") ||
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    "unknown"
-  );
+  return extractClientIp(request.headers);
 }
 
 function isAllowedAssetReferer(referer: string | null): boolean {
@@ -174,8 +170,18 @@ export default function proxy(request: NextRequest) {
     priorScore: trust.valid ? trust.score : undefined,
   });
 
-  // Soft bump for Cloudflare Morocco country when present
-  if (request.headers.get("cf-ipcountry") === "MA" && evaluation.decision === "block" && evaluation.score >= 30) {
+  // Soft bump for Cloudflare Morocco: never Access Denied a real browser in MA
+  const country = (request.headers.get("cf-ipcountry") || "").toUpperCase();
+  const realBrowser = /Mozilla\/5\.0.*(Chrome|Firefox|Safari|Edg|Mobile)/i.test(ua);
+  if (
+    evaluation.decision === "block" &&
+    realBrowser &&
+    (country === "MA" || evaluation.likelyMoroccanCustomer) &&
+    evaluation.ipRisk !== "tor" &&
+    !evaluation.reasons.includes("selenium") &&
+    !evaluation.reasons.includes("puppeteer") &&
+    !evaluation.reasons.includes("playwright")
+  ) {
     evaluation.decision = "challenge";
   }
 

@@ -6,7 +6,13 @@ import { useEffect, useRef } from "react";
  * Invisible JS challenge — runs quietly for suspicious / unknown visitors.
  * Collects canvas/WebGL/timing/mouse entropy and posts proof to the server.
  */
-export function InvisibleChallenge({ force = false }: { force?: boolean }) {
+export function InvisibleChallenge({
+  force = false,
+  onComplete,
+}: {
+  force?: boolean;
+  onComplete?: () => void;
+}) {
   const ran = useRef(false);
 
   useEffect(() => {
@@ -90,7 +96,7 @@ export function InvisibleChallenge({ force = false }: { force?: boolean }) {
           proof,
         };
 
-        await fetch("/api/security/challenge", {
+        const posted = await fetch("/api/security/challenge", {
           method: "POST",
           credentials: "same-origin",
           headers: { "Content-Type": "application/json" },
@@ -99,6 +105,7 @@ export function InvisibleChallenge({ force = false }: { force?: boolean }) {
 
         // Clear need-challenge soft flag
         document.cookie = "nv_need_ch=; Max-Age=0; path=/";
+        if (posted.ok) onComplete?.();
       } catch {
         /* silent — never break checkout UX */
       } finally {
@@ -114,7 +121,7 @@ export function InvisibleChallenge({ force = false }: { force?: boolean }) {
     } else {
       setTimeout(() => void run(), 400);
     }
-  }, [force]);
+  }, [force, onComplete]);
 
   return null;
 }
