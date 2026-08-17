@@ -1055,6 +1055,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "green-laser-pointer-303": LASER_SLIDES,
   "shiatsu-neck-shoulder-massager": SHIATSU_SLIDES,
   "magnetic-car-phone-mount-maidsail": CAR_MOUNT_SLIDES,
+  "magnetic-car-phone-mount": CAR_MOUNT_SLIDES,
   "car-dual-fan-foldable-sunshade-2in1-pack": CAR_FAN_SUNSHADE_SLIDES,
   "foldable-mosquito-bed-tent": MOSQUITO_TENT_SLIDES,
   "portable-rechargeable-dual-fan-air-cooler": DUAL_FAN_COOLER_SLIDES,

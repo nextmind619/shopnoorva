@@ -49,6 +49,16 @@ function getStory(slug: string) {
       ],
     };
   }
+  if (slug.includes("magnetic-car-phone-mount")) {
+    return {
+      eyebrow: "القيادة الآمنة",
+      title: "الهاتف ثابت… والملاحة واضحة بلا ما تمسّو",
+      paragraphs: [
+        "الحامل المغناطيسي كيشد الهاتف بقوة على الرأس MagSafe، والذراع متعدد المفاصل كيخلّيك تضبط الزاوية والارتفاع باش GPS يبقى واضح بلا ما يحجب الرؤية. قاعدة الشفط مع قفل TIGHT/OPEN كتعطي ثبات حتى فالمطبات.",
+        "تركيب في ثوانٍ على لوحة القيادة أو الزجاج، تصميم أسود قابل للطي، ودفع عند الاستلام في جميع مدن المغرب.",
+      ],
+    };
+  }
   if (slug.includes("astronaut")) {
     return {
       eyebrow: "التجربة",
@@ -72,6 +82,7 @@ function getStory(slug: string) {
 function productNameHint(slug: string) {
   if (slug.includes("astronaut")) return "بروجيكتور رائد الفضاء";
   if (slug.includes("star")) return "بروجيكتور النجوم";
+  if (slug.includes("magnetic-car-phone-mount")) return "الحامل المغناطيسي للسيارة";
   return "هاد المنتج";
 }
 

@@ -38,6 +38,15 @@ export function getProductImageManifest(): ProductImageManifest {
   return manifest;
 }
 
+/** Landing-page clones reuse the original product's optimized assets. */
+const IMAGE_SLUG_ALIASES: Record<string, string> = {
+  "magnetic-car-phone-mount": "magnetic-car-phone-mount-maidsail",
+};
+
+function resolveImageSlug(slug: string): string {
+  return IMAGE_SLUG_ALIASES[slug] ?? slug;
+}
+
 function normalizePublicPath(url: string | undefined): string | undefined {
   if (!url) return undefined;
   return url.replace(/\\/g, "/");
@@ -48,7 +57,7 @@ export function getProductImageUrl(
   imageType: PremiumImageType,
   variant: "webp" | "avif" | "original" | "thumbnail" | "sm" | "md" | "lg" = "webp"
 ): string | undefined {
-  const entry = manifest.products[slug]?.images[imageType];
+  const entry = manifest.products[resolveImageSlug(slug)]?.images[imageType];
   if (!entry) return undefined;
 
   switch (variant) {
@@ -79,6 +88,7 @@ export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): 
     slug === "astronaut-bt-speaker-projector" ||
     slug === "green-laser-pointer-303" ||
     slug === "magnetic-car-phone-mount-maidsail" ||
+    slug === "magnetic-car-phone-mount" ||
     slug === "car-dual-fan-foldable-sunshade-2in1-pack" ||
     slug === "star-galaxy-projector-rgb-gift"
   ) {
@@ -100,7 +110,7 @@ export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): 
 }
 
 export function getAllProductImages(slug: string): OptimizedImageSet[] {
-  const product = manifest.products[slug];
+  const product = manifest.products[resolveImageSlug(slug)];
   if (!product) return [];
   return PREMIUM_IMAGE_TYPES.map((t) => product.images[t]).filter(Boolean) as OptimizedImageSet[];
 }

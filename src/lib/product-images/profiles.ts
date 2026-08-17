@@ -297,8 +297,13 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   },
 ];
 
+const PROFILE_SLUG_ALIASES: Record<string, string> = {
+  "magnetic-car-phone-mount": "magnetic-car-phone-mount-maidsail",
+};
+
 export function getProductProfile(slug: string): ProductProfile | undefined {
-  return PRODUCT_PROFILES.find((p) => p.slug === slug);
+  const resolved = PROFILE_SLUG_ALIASES[slug] ?? slug;
+  return PRODUCT_PROFILES.find((p) => p.slug === slug) ?? PRODUCT_PROFILES.find((p) => p.slug === resolved);
 }
 
 export function getProductProfileById(id: string): ProductProfile | undefined {
