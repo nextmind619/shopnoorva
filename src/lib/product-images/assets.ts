@@ -89,6 +89,7 @@ export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): 
     slug === "green-laser-pointer-303" ||
     slug === "magnetic-car-phone-mount-maidsail" ||
     slug === "magnetic-car-phone-mount" ||
+    slug === "magnetic-car-phone-holder-1-plus-1" ||
     slug === "car-dual-fan-foldable-sunshade-2in1-pack" ||
     slug === "star-galaxy-projector-rgb-gift"
   ) {

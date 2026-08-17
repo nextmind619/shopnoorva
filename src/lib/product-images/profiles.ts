@@ -299,6 +299,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
 
 const PROFILE_SLUG_ALIASES: Record<string, string> = {
   "magnetic-car-phone-mount": "magnetic-car-phone-mount-maidsail",
+  "magnetic-car-phone-holder-1-plus-1": "magnetic-car-phone-mount-maidsail",
 };
 
 export function getProductProfile(slug: string): ProductProfile | undefined {

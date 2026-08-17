@@ -12,7 +12,7 @@ export const categories: Category[] = [
       en: "Magnetic phone mounts and practical driving accessories",
     },
     image: getProductHeroUrl("magnetic-car-phone-mount-maidsail"),
-    productCount: 3,
+    productCount: 4,
   },
   {
     id: "cat-laser-pointers",

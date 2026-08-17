@@ -23,6 +23,8 @@ import {
   getReferrerUrl,
 } from "@/lib/facebook/events";
 import { getTtclid, ttCompletePayment } from "@/lib/tiktok/events";
+import { getStoredAttribution, trackPurchase } from "@/lib/google/events";
+import { getClientAdsSendTo } from "@/components/google/google-analytics-script";
 
 interface ProductOrderFormProps {
   product: Product;
@@ -37,6 +39,16 @@ interface ProductOrderFormProps {
   formTitle?: string;
   /** Override form header subtitle (replaces bullet list when set) */
   formSubtitle?: string;
+  /** Moroccan city dropdown options (used with extendedAddress) */
+  cityOptions?: string[];
+  /** Override the quantity line in the order summary */
+  quantityLabel?: string;
+  /** Extra rows shown in the order summary before shipping */
+  summaryRows?: { label: string; value: string }[];
+  /** Stored on the order note for warehouse / sheets (does not change totals) */
+  orderNote?: string;
+  /** Override full-name placeholder */
+  fullNamePlaceholder?: string;
 }
 
 type FormFields = { fullName: string; phone: string; address: string; city: string; streetAddress: string };
@@ -122,6 +134,11 @@ export function ProductOrderForm({
   submitLabel,
   formTitle,
   formSubtitle,
+  cityOptions,
+  quantityLabel,
+  summaryRows,
+  orderNote,
+  fullNamePlaceholder,
 }: ProductOrderFormProps) {
   const router = useRouter();
   const submitting = useRef(false);
@@ -237,6 +254,7 @@ export function ProductOrderForm({
       const formFillMs = Date.now() - pageLoadedAt.current;
 
       const clickIds = getFacebookClickIds();
+      const attribution = getStoredAttribution();
       const nameParts = form.fullName.trim().split(/\s+/);
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ") || "";
@@ -257,6 +275,7 @@ export function ProductOrderForm({
             address: addressValue,
             city: cityValue,
             country: "Morocco",
+            notes: orderNote || undefined,
           },
           paymentMethod: "cod",
           locale,
@@ -269,6 +288,8 @@ export function ProductOrderForm({
             ttclid: getTtclid(),
             eventSourceUrl: getEventSourceUrl(),
             referrerUrl: getReferrerUrl(),
+            attribution: attribution || undefined,
+            gclid: attribution?.gclid,
           },
         }),
       });
@@ -304,6 +325,23 @@ export function ProductOrderForm({
           currency: "MAD",
           orderId: data.orderNumber,
           numItems: quantity,
+        });
+
+        trackPurchase({
+          transactionId: data.orderNumber,
+          value: total,
+          currency: "MAD",
+          items: [
+            {
+              itemId: product.id,
+              itemName: productName,
+              price: variant.price,
+              quantity,
+              currency: "MAD",
+            },
+          ],
+          adsSendTo: getClientAdsSendTo(),
+          phone,
         });
 
         const params = new URLSearchParams({
@@ -357,6 +395,7 @@ export function ProductOrderForm({
     <section className="cod-checkout-isolated mt-0 w-full relative z-10" id="order-form" dir={isFr ? "ltr" : undefined}>
       <FacebookCheckoutTracker
         productId={product.id}
+        contentName={productName}
         value={total}
         currency="MAD"
         numItems={quantity}
@@ -405,7 +444,7 @@ export function ProductOrderForm({
                 onChange={(e) => updateField("fullName", e.target.value)}
                 onBlur={() => blurField("fullName")}
                 className={cn("premium-checkout-input ps-14", fieldBorder("fullName"))}
-                placeholder={t.fullNamePh}
+                placeholder={fullNamePlaceholder ?? t.fullNamePh}
                 autoComplete="name"
                 disabled={loading}
               />
@@ -445,17 +484,35 @@ export function ProductOrderForm({
                   </label>
                   <div className="relative">
                     <MapPin className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
-                    <input
-                      id="city"
-                      type="text"
-                      value={form.city}
-                      onChange={(e) => updateField("city", e.target.value)}
-                      onBlur={() => blurField("city")}
-                      className={cn("premium-checkout-input ps-14", fieldBorder("city"))}
-                      placeholder={t.cityPh}
-                      autoComplete="address-level2"
-                      disabled={loading}
-                    />
+                    {cityOptions && cityOptions.length > 0 ? (
+                      <select
+                        id="city"
+                        value={form.city}
+                        onChange={(e) => updateField("city", e.target.value)}
+                        onBlur={() => blurField("city")}
+                        className={cn("premium-checkout-input ps-14 appearance-none bg-white", fieldBorder("city"))}
+                        disabled={loading}
+                      >
+                        <option value="">{t.cityPh}</option>
+                        {cityOptions.map((city) => (
+                          <option key={city} value={city}>
+                            {city}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        id="city"
+                        type="text"
+                        value={form.city}
+                        onChange={(e) => updateField("city", e.target.value)}
+                        onBlur={() => blurField("city")}
+                        className={cn("premium-checkout-input ps-14", fieldBorder("city"))}
+                        placeholder={t.cityPh}
+                        autoComplete="address-level2"
+                        disabled={loading}
+                      />
+                    )}
                   </div>
                   {touched.city && errors.city && <FieldError message={errors.city} />}
                 </div>
@@ -505,6 +562,9 @@ export function ProductOrderForm({
           </div>
 
           <div className="rounded-2xl border border-[#E5E7EB] bg-[#F8FAFC] p-4 space-y-3">
+            {summaryRows && summaryRows.length > 0 && (
+              <p className="text-sm font-black text-black">ملخص الطلب</p>
+            )}
             <div className="flex gap-3 items-center">
               {productImage && (
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-[#E5E7EB] bg-white">
@@ -513,8 +573,13 @@ export function ProductOrderForm({
               )}
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-bold text-black line-clamp-2">{productName}</p>
+                {summaryRows?.map((row) => (
+                  <p key={row.label} className="text-xs text-[#64748B] mt-0.5">
+                    {row.label}: <span className="font-semibold text-[#0F172A]">{row.value}</span>
+                  </p>
+                ))}
                 <p className="text-xs text-[#64748B] mt-0.5">
-                  {t.qty}: {quantity}
+                  {t.qty}: {quantityLabel ?? quantity}
                 </p>
               </div>
             </div>

@@ -1750,6 +1750,88 @@
         "14-product-in-use": "ai-generated"
       }
     },
+    "magnetic-car-phone-holder-1-plus-1": {
+      "slug": "magnetic-car-phone-holder-1-plus-1",
+      "sku": "Mag-Holder-2PK",
+      "name": "Magnetic Car Phone Mount 1+1",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.jpg",
+          "webp": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.webp",
+          "avif": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.avif",
+          "thumbnail": "/products/magnetic-car-phone-mount-maidsail/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
+          "webp": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
+          "avif": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
+          "thumbnail": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero-thumb.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
+            "md": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
+            "lg": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/magnetic-car-phone-mount-maidsail/09-close-up.jpg",
+          "webp": "/products/magnetic-car-phone-mount-maidsail/09-close-up.webp",
+          "avif": "/products/magnetic-car-phone-mount-maidsail/09-close-up.avif",
+          "thumbnail": "/products/magnetic-car-phone-mount-maidsail/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-mount-maidsail/responsive/09-close-up-640.webp",
+            "md": "/products/magnetic-car-phone-mount-maidsail/responsive/09-close-up-1280.webp",
+            "lg": "/products/magnetic-car-phone-mount-maidsail/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/magnetic-car-phone-mount-maidsail/10-features.jpg",
+          "webp": "/products/magnetic-car-phone-mount-maidsail/10-features.webp",
+          "avif": "/products/magnetic-car-phone-mount-maidsail/10-features.avif",
+          "thumbnail": "/products/magnetic-car-phone-mount-maidsail/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-mount-maidsail/responsive/10-features-640.webp",
+            "md": "/products/magnetic-car-phone-mount-maidsail/responsive/10-features-1280.webp",
+            "lg": "/products/magnetic-car-phone-mount-maidsail/responsive/10-features-2000.webp"
+          }
+        },
+        "11-package-contents": {
+          "original": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
+          "webp": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
+          "avif": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
+          "thumbnail": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
+          "responsive": {
+            "sm": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
+            "md": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
+            "lg": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/magnetic-car-phone-mount-maidsail/14-product-in-use.jpg",
+          "webp": "/lifestyle/magnetic-car-phone-mount-maidsail/14-product-in-use.webp",
+          "avif": "/lifestyle/magnetic-car-phone-mount-maidsail/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/magnetic-car-phone-mount-maidsail/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/magnetic-car-phone-mount-maidsail/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/magnetic-car-phone-mount-maidsail/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/magnetic-car-phone-mount-maidsail/responsive/14-product-in-use-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "commercial",
+        "02-premium-hero": "commercial",
+        "09-close-up": "commercial",
+        "10-features": "commercial",
+        "11-package-contents": "commercial",
+        "14-product-in-use": "commercial"
+      }
+    },
     "star-galaxy-projector-rgb-gift": {
       "slug": "star-galaxy-projector-rgb-gift",
       "sku": "NRV-GALAXY-RGB-01",

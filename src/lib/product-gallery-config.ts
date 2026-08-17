@@ -1048,6 +1048,57 @@ const CAR_FAN_SUNSHADE_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const CAR_MOUNT_1PLUS1_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🚗",
+    heading: "حامل مغناطيسي للسيارة",
+    subtitle: "اشترِ 1 وخذ 1 مجاناً — قطعتان بسعر قطعة واحدة",
+    objectFit: "contain",
+  },
+  {
+    section: "gift",
+    imageType: "11-package-contents",
+    emoji: "🎁",
+    heading: "1 + 1 مجاناً",
+    subtitle: "قطعة مدفوعة + قطعة مجانية",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "📷",
+    heading: "صورة المنتج",
+    subtitle: "رأس مغناطيسي · ذراع بمفصلين · قاعدة شفط",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "🧲",
+    heading: "تثبيت مغناطيسي",
+    subtitle: "متوافق MagSafe — تركيب وإزالة سهلة",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🔒",
+    heading: "قفل الشفط TIGHT/OPEN",
+    subtitle: "دوّر على TIGHT للتثبيت",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "📱",
+    heading: "في السيارة",
+    subtitle: "الهاتف ثابت قدامك أثناء القيادة",
+    objectFit: "contain",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
   "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
@@ -1056,6 +1107,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "shiatsu-neck-shoulder-massager": SHIATSU_SLIDES,
   "magnetic-car-phone-mount-maidsail": CAR_MOUNT_SLIDES,
   "magnetic-car-phone-mount": CAR_MOUNT_SLIDES,
+  "magnetic-car-phone-holder-1-plus-1": CAR_MOUNT_1PLUS1_SLIDES,
   "car-dual-fan-foldable-sunshade-2in1-pack": CAR_FAN_SUNSHADE_SLIDES,
   "foldable-mosquito-bed-tent": MOSQUITO_TENT_SLIDES,
   "portable-rechargeable-dual-fan-air-cooler": DUAL_FAN_COOLER_SLIDES,

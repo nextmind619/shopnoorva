@@ -1160,6 +1160,130 @@ export const products: Product[] = [
   },
 
   {
+    id: "prod-car-mount-1plus1",
+    slug: "magnetic-car-phone-holder-1-plus-1",
+    name: L(
+      "حامل الهاتف المغناطيسي للسيارة",
+      "Support Téléphone Magnétique Voiture",
+      "Magnetic Car Phone Mount"
+    ),
+    shortDescription: L(
+      "ثبّت هاتفك بسهولة أثناء القيادة وخليه قدامك بشكل ثابت وواضح.",
+      "Fixez votre téléphone facilement en conduisant, bien visible et stable.",
+      "Keep your phone stable and clearly visible while driving."
+    ),
+    description: L(
+      "حامل هاتف مغناطيسي للسيارة من NOORVA: رأس حلقة مغناطيسية متوافقة مع MagSafe، ذراع قابل للتعديل، وقاعدة شفط مع قفل TIGHT/OPEN. عرض 1+1 مجاناً: تخلص ثمن قطعة واحدة وتحصل على قطعتين. توصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Support magnétique NOORVA : anneau MagSafe, bras réglable, ventouse TIGHT/OPEN. Offre 1+1 : vous payez une pièce et recevez deux. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA magnetic car mount: MagSafe ring, adjustable arm, TIGHT/OPEN suction lock. Buy 1 get 1 free — pay for one, receive two. Free Morocco shipping, cash on delivery."
+    ),
+    categoryId: "cat-car-accessories",
+    price: 199,
+    compareAtPrice: 398,
+    sku: "Mag-Holder-2PK",
+    stock: 55,
+    rating: 4.8,
+    reviewCount: 142,
+    soldCount: 680,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    warrantyMonths: 6,
+    problemEmoji: "📱",
+    problem: L(
+      "الهاتف كيقع أو كيتزحلق فالسيارة؟",
+      "Votre téléphone glisse ou tombe en voiture?",
+      "Does your phone slip or fall in the car?"
+    ),
+    problemCause: L(
+      "الحاملات الضعيفة ما كتثبتش مزيان فالطريق",
+      "Les supports faibles ne tiennent pas sur la route",
+      "Weak mounts don't hold on bumpy roads"
+    ),
+    problemSolution: L(
+      "مغناطيس قوي + شفط محكم + عرض 1+1 مجاناً",
+      "Aimant fort + ventouse verrouillée + offre 1+1",
+      "Strong magnet + locked suction + buy 1 get 1 free"
+    ),
+    deepDescription: L(
+      "تخلص ثمن حامل واحد وكتحصل على جوج: رأس MagSafe، ذراع بمفصلين للزاوية، وقاعدة شفط مع قفل دوّار TIGHT/OPEN. مناسب للملاحة والمكالمات أثناء القيادة.",
+      "Payez un support, recevez-en deux : tête MagSafe, bras à deux articulations, ventouse TIGHT/OPEN. Idéal GPS et appels.",
+      "Pay for one mount, get two: MagSafe head, dual-hinge arm, TIGHT/OPEN suction. Ideal for GPS and calls."
+    ),
+    tags: ["car", "phone-mount", "magnetic", "magsafe", "driving", "gift", "offer", "accessories"],
+    benefits: [
+      L("خلي هاتفك ثابت وفي مكان واضح أثناء القيادة", "Téléphone stable et visible en conduite", "Phone stays stable and visible while driving"),
+      L("تركيب وإزالة سهلة بالمغناطيس", "Fixation et retrait magnétiques faciles", "Easy magnetic attach and remove"),
+      L("تصميم عملي داخل السيارة", "Conçu pour un usage en voiture", "Practical in-car design"),
+      L("ذراع قابل للتعديل للزاوية المناسبة", "Bras réglable selon l'angle", "Adjustable arm for the right angle"),
+    ],
+    features: [
+      L("رأس حلقة مغناطيسية (MagSafe)", "Anneau magnétique MagSafe", "MagSafe magnetic ring head"),
+      L("ذراع بمفصلين قابل للتعديل", "Bras à deux articulations", "Dual-hinge adjustable arm"),
+      L("قاعدة شفط مع قفل TIGHT/OPEN", "Ventouse avec verrou TIGHT/OPEN", "Suction base with TIGHT/OPEN lock"),
+      L("قابل للطي للتخزين", "Pliable pour le rangement", "Foldable for storage"),
+    ],
+    specifications: [
+      { label: L("اللون", "Couleur", "Color"), value: L("أسود / رمادي معدني", "Noir / Gris métallique", "Black / Gunmetal") },
+      { label: L("النوع", "Type", "Type"), value: L("حامل مغناطيسي للسيارة", "Support magnétique voiture", "Magnetic car mount") },
+      { label: L("التوافق", "Compatibilité", "Compatibility"), value: L("MagSafe / حلقة مغناطيسية", "MagSafe / anneau magnétique", "MagSafe / magnetic ring") },
+      { label: L("التثبيت", "Fixation", "Mounting"), value: L("شفط + قفل دوّار", "Ventouse + verrou", "Suction + twist lock") },
+      { label: L("العرض", "Offre", "Offer"), value: L("1 + 1 مجاناً (قطعتان)", "1 + 1 offert (2 pièces)", "Buy 1 get 1 free (2 units)") },
+    ],
+    packageIncludes: [
+      L("حاملان مغناطيسيان للسيارة (1 مدفوع + 1 مجاناً)", "2 supports magnétiques (1 payé + 1 offert)", "Two magnetic car mounts (1 paid + 1 free)"),
+      L("دليل الاستخدام", "Manuel d'utilisation", "User manual"),
+    ],
+    howToUse: L(
+      "نظّف السطح داخل السيارة، ضع قاعدة الشفط واضغط، دوّر الحلقة على TIGHT. قرّب الهاتف من الرأس المغناطيسي واضبط الذراع. للإزالة، دوّر على OPEN.",
+      "Nettoyez la surface, posez la ventouse, tournez sur TIGHT. Approchez le téléphone de la tête magnétique. Pour retirer, tournez sur OPEN.",
+      "Clean the surface, place the suction cup, twist to TIGHT. Bring the phone to the magnetic head. To remove, twist to OPEN."
+    ),
+    videoUrl: "/videos/car-mount-product-demo-v2.mp4",
+    lifestyleScenes: [
+      {
+        id: "navigation",
+        emoji: "🗺️",
+        title: L("الملاحة", "Navigation", "Navigation"),
+        description: L("GPS واضح بلا إمساك الهاتف", "GPS clair sans tenir le téléphone", "Clear GPS without holding your phone"),
+      },
+      {
+        id: "commute",
+        emoji: "🚗",
+        title: L("التنقل اليومي", "Trajet quotidien", "Daily commute"),
+        description: L("الهاتف ثابت قدامك", "Téléphone bien en vue", "Phone stays in front of you"),
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-car-mount-1plus1",
+        name: L("1 + 1 مجاناً — قطعتان", "1 + 1 offert — 2 pièces", "Buy 1 get 1 free — 2 units"),
+        price: 199,
+        compareAtPrice: 398,
+        sku: "Mag-Holder-2PK",
+        stock: 55,
+      },
+    ],
+    upsellIds: ["prod-laser303", "prod-mx003"],
+    crossSellIds: ["prod-shiatsu", "prod-starbt", "prod-car-fan-sunshade"],
+    seo: {
+      title: L(
+        "حامل هاتف مغناطيسي للسيارة | اشترِ 1 وخذ 1 مجاناً | NOORVA",
+        "Support Magnétique Voiture | 1+1 offert | NOORVA",
+        "Magnetic Car Phone Mount | Buy 1 Get 1 Free | NOORVA"
+      ),
+      description: L(
+        "اشترِ حاملاً مغناطيسياً للسيارة وخذ الثاني مجاناً. قطعتان بسعر قطعة واحدة. MagSafe، شفط مع قفل، توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Achetez un support magnétique et recevez le second gratuitement. 2 pièces au prix d'une. MagSafe, ventouse verrouillée, livraison gratuite et COD au Maroc.",
+        "Buy one magnetic car mount and get the second free. Two units for the price of one. MagSafe, locked suction, free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
     id: "prod-car-fan-sunshade",
     slug: "car-dual-fan-foldable-sunshade-2in1-pack",
     name: L(
@@ -1967,6 +2091,54 @@ export const reviews: ProductReview[] = [
     date: "2026-07-20",
     verified: true,
     images: ["/reviews/magnetic-car-phone-mount-maidsail/03-window-ring-thumb.webp"],
+  },
+  {
+    id: "rcm1p1-1",
+    productId: "prod-car-mount-1plus1",
+    author: "سارة المنصوري",
+    city: "الدار البيضاء",
+    rating: 5,
+    title: L("المغناطيس قوي بزاف", "Aimant très fort", "Very strong magnet"),
+    content: L(
+      "ثبّتو على لوحة القيادة والجوال ما كيتحركش حتى فالمطبات. الشكل أنيق وما كياخدش مساحة. أنصح به.",
+      "Fixé sur le tableau de bord, le téléphone ne bouge pas même sur les bosses. Design élégant et compact. Je recommande.",
+      "Mounted on the dashboard — phone stays put even on bumps. Sleek and compact. Highly recommend."
+    ),
+    date: "2026-07-28",
+    verified: true,
+    images: ["/reviews/magnetic-car-phone-mount-maidsail/05-dash-phone-thumb.webp"],
+  },
+  {
+    id: "rcm1p1-2",
+    productId: "prod-car-mount-1plus1",
+    author: "يوسف العلوي",
+    city: "الرباط",
+    rating: 5,
+    title: L("جودة فاخرة", "Qualité premium", "Premium quality"),
+    content: L(
+      "الشفط محكم والذراع ساهل للتعديل. المنتج خفيف ومتين، والتوصيل سريع والدفع عند الاستلام مريح.",
+      "Ventouse solide, bras facile à régler. Léger et robuste, livraison rapide, COD pratique.",
+      "Solid suction, easy arm adjustment. Light and sturdy, fast delivery, COD is convenient."
+    ),
+    date: "2026-07-26",
+    verified: true,
+    images: ["/reviews/magnetic-car-phone-mount-maidsail/01-hand-hold-thumb.webp"],
+  },
+  {
+    id: "rcm1p1-3",
+    productId: "prod-car-mount-1plus1",
+    author: "أمين التازي",
+    city: "طنجة",
+    rating: 5,
+    title: L("يناسب الشاشات الكبيرة", "Parfait pour grand écran", "Fits large screens"),
+    content: L(
+      "ركبته فوق الشاشة ديال السيارة وثبت مزيان. ما كيحجبش الرؤية وكيخلي الملاحة واضحة.",
+      "Installé au-dessus de l’écran: très stable, ne gêne pas la vue, GPS bien visible.",
+      "Mounted above the car screen — stable, doesn’t block the view, GPS stays clear."
+    ),
+    date: "2026-07-24",
+    verified: true,
+    images: ["/reviews/magnetic-car-phone-mount-maidsail/04-dash-screen-thumb.webp"],
   },
   // Foldable Mosquito Bed Tent — customer UGC reviews
   {
