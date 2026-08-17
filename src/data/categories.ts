@@ -111,6 +111,18 @@ export const categories: Category[] = [
     productCount: 4,
   },
   {
+    id: "cat-study-office",
+    slug: "etude-bureau",
+    name: { ar: "أدوات الدراسة والمكتب", fr: "Étude & Bureau", en: "Study & Office" },
+    description: {
+      ar: "آلة حاسبة إلكترونية مع لوح كتابة للطلاب والأساتذة والمكاتب",
+      fr: "Calculatrice électronique avec tablette d'écriture pour étudiants, profs et bureaux",
+      en: "Electronic calculator with writing tablet for students, teachers and offices",
+    },
+    image: getProductHeroUrl("solar-calculator-lcd-notepad"),
+    productCount: 1,
+  },
+  {
     id: "cat-gift-ideas",
     slug: "gift-ideas",
     name: { ar: "أفكار هدايا", fr: "Idées Cadeaux", en: "Gift Ideas" },

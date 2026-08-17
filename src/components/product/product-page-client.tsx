@@ -5,6 +5,7 @@ import { ProductPageAr } from "@/components/product/product-page-ar";
 import { ProductPageVintageLantern } from "@/components/product/product-page-vintage-lantern";
 import { ProductPageWarmLedDecorLamp } from "@/components/product/product-page-warm-led-decor-lamp";
 import { ProductPageCarMount1Plus1 } from "@/components/product/product-page-car-mount-1plus1";
+import { ProductPageSolarCalculator } from "@/components/product/product-page-solar-calculator";
 
 interface ProductPageClientProps {
   product: Product;
@@ -26,6 +27,10 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
 
   if (product.slug === "magnetic-car-phone-holder-1-plus-1") {
     return <ProductPageCarMount1Plus1 product={product} />;
+  }
+
+  if (product.slug === "solar-calculator-lcd-notepad") {
+    return <ProductPageSolarCalculator product={product} />;
   }
 
   return <ProductPageAr product={product} related={relatedProp} />;

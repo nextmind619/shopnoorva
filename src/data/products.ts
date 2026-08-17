@@ -15,6 +15,7 @@ const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-kids-room": ["kids"],
   "cat-relaxation": ["relaxation"],
   "cat-gift-ideas": ["gift"],
+  "cat-study-office": ["calculator", "study"],
 };
 
 export const products: Product[] = [
@@ -1891,6 +1892,126 @@ export const products: Product[] = [
         "مصباح LED أنيق بإضاءة دافئة، مثالي لغرفة النوم والصالون والديكور. 199 درهم للواحد أو جوج بـ299 درهم.",
         "Lampe LED élégante à lumière chaude, idéale chambre et salon. 199 MAD l'unité ou 2 pour 299 MAD.",
         "Elegant warm LED lamp for bedroom and living room decor. 199 MAD each or 2 for 299 MAD."
+      ),
+    },
+  },
+
+  {
+    id: "prod-calc-tablet",
+    slug: "solar-calculator-lcd-notepad",
+    name: L(
+      "آلة حاسبة إلكترونية مع لوح كتابة",
+      "Calculatrice solaire avec tablette d'écriture LCD",
+      "Solar Calculator with LCD Writing Tablet"
+    ),
+    shortDescription: L(
+      "الحساب والكتابة فـ جهاز واحد: آلة حاسبة 12 رقم + لوح LCD + قلم · طاقة شمسية · 249 درهم بدل 2349 · شحن مجاني والدفع عند الاستلام",
+      "Calculer et écrire dans un seul appareil : calculatrice 12 chiffres + tablette LCD + stylet · solaire · 249 MAD au lieu de 2349 · livraison gratuite et COD",
+      "Calculate and write in one device: 12-digit calculator + LCD tablet + stylus · solar · 249 MAD instead of 2349 · free shipping and COD"
+    ),
+    description: L(
+      "آلة حاسبة إلكترونية ذكية من NOORVA بتصميم حديث: آلة حاسبة كبيرة وواضحة 12 رقم، لوح كتابة إلكتروني مدمج، وقلم Stylus. تمسح الكتابة بسهولة، وتخدم بالطاقة الشمسية (تشغيل مزدوج). مناسبة للتلاميذ، الطلبة، الأساتذة، الموظفين والمكاتب. عرض الإطلاق: 249 درهم بدل 2349 درهم. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Calculatrice intelligente NOORVA : grand écran 12 chiffres, tablette LCD intégrée et stylet. Effacement facile, alimentation solaire (double alimentation). Pour élèves, étudiants, profs et bureaux. Offre de lancement : 249 MAD au lieu de 2349 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA smart calculator: large 12-digit display, built-in LCD writing tablet and stylus. Easy erase, solar dual power. For students, teachers and offices. Launch offer: 249 MAD instead of 2349 MAD. Free Morocco shipping with cash on delivery."
+    ),
+    categoryId: "cat-study-office",
+    price: 249,
+    compareAtPrice: 2349,
+    sku: "NRV-CALC-ZH70-01",
+    stock: 58,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    warrantyMonths: 12,
+    problemEmoji: "🧮",
+    problem: L(
+      "علاش تستعمل جوج أدوات وانت تقدر تجمعهم فـ جهاز واحد؟",
+      "Pourquoi deux outils alors qu'un seul appareil suffit?",
+      "Why use two tools when one device does both?"
+    ),
+    problemCause: L(
+      "الحاسبة العادية ما فيهاش بلاصة للملاحظات، والورقة كتضيع فوق المكتب",
+      "Une calculatrice classique n'a pas de place pour les notes, et les papiers se perdent",
+      "A regular calculator has no space for notes, and scrap paper gets lost"
+    ),
+    problemSolution: L(
+      "آلة حاسبة + لوح كتابة إلكتروني + قلم فـ جهاز واحد",
+      "Calculatrice + tablette LCD + stylet dans un seul appareil",
+      "Calculator + LCD writing tablet + stylus in one device"
+    ),
+    deepDescription: L(
+      "جهاز 2-في-1 بتصميم مستطيل أسود مطفي: على اليسار آلة حاسبة 12 رقم مع لوحة شمسية صغيرة فوق الشاشة وأزرار واضحة (زر تشغيل فيروزي ON/AC). على اليمين لوح كتابة إلكتروني كبير مع قلم Stylus أسود. أيقونات المسح والقفل تحت شاشة الحاسبة. تشغيل مزدوج مع طاقة شمسية للاستخدام اليومي في الدراسة والعمل.",
+      "Appareil 2-en-1 noir mat : à gauche calculatrice 12 chiffres avec panneau solaire et touches lisibles (ON/AC turquoise). À droite grande tablette LCD avec stylet noir. Icônes d'effacement et de verrouillage. Double alimentation solaire pour l'étude et le bureau.",
+      "Matte-black 2-in-1: left side 12-digit calculator with solar panel and clear keys (teal ON/AC). Right side large LCD writing tablet with black stylus. Erase and lock icons below the calculator screen. Dual solar power for daily study and office use."
+    ),
+    tags: ["new", "desk", "gift", "calculator", "study", "office"],
+    benefits: [
+      L("حساب وكتابة فـ نفس الجهاز — بلا ورقة إضافية", "Calculer et écrire dans le même appareil", "Calculate and write on the same device"),
+      L("لوح كتابة إلكتروني مدمج للملاحظات السريعة", "Tablette LCD intégrée pour notes rapides", "Built-in LCD tablet for quick notes"),
+      L("قلم Stylus للكتابة والمسح بسهولة", "Stylet pour écrire et effacer facilement", "Stylus for fast writing and easy erase"),
+      L("تصميم عملي وخفيف للمكتب والمحفظة", "Design pratique et léger pour bureau et sac", "Practical light design for desk and bag"),
+      L("مناسب للدراسة، الخدمة، والأساتذة", "Idéal étude, travail et enseignants", "Fits study, work and teaching"),
+      L("طاقة شمسية للاستخدام اليومي", "Énergie solaire pour un usage quotidien", "Solar power for everyday use"),
+    ],
+    features: [
+      L("آلة حاسبة 12 رقم بشاشة LCD واضحة", "Calculatrice 12 chiffres à écran LCD", "12-digit LCD calculator"),
+      L("لوح كتابة إلكتروني مدمج", "Tablette d'écriture LCD intégrée", "Built-in LCD writing tablet"),
+      L("قلم Stylus", "Stylet", "Stylus pen"),
+      L("مسح الكتابة بسهولة", "Effacement facile", "Easy erase"),
+      L("طاقة شمسية وتشغيل مزدوج", "Solaire et double alimentation", "Solar dual power"),
+      L("تصميم مستطيل عملي أسود مطفي", "Boîtier rectangulaire noir mat", "Matte black rectangular body"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("آلة حاسبة + لوح كتابة", "Calculatrice + tablette", "Calculator + writing tablet") },
+      { label: L("الشاشة", "Écran", "Display"), value: L("12 رقم LCD", "12 chiffres LCD", "12-digit LCD") },
+      { label: L("اللوح", "Tablette", "Tablet"), value: L("لوح كتابة إلكتروني", "Tablette LCD", "LCD writing tablet") },
+      { label: L("القلم", "Stylet", "Stylus"), value: L("نعم", "Oui", "Yes") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("شمسية / تشغيل مزدوج", "Solaire / double", "Solar / dual power") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أسود مطفي", "Noir mat", "Matte black") },
+    ],
+    packageIncludes: [
+      L("آلة حاسبة مع لوح كتابة إلكتروني", "Calculatrice avec tablette LCD", "Calculator with LCD writing tablet"),
+      L("قلم Stylus", "Stylet", "Stylus pen"),
+    ],
+    howToUse: L(
+      "شغّل الحاسبة بزر ON/AC، احسب كالعادة على الأزرار. للكتابة، استعمل القلم على اللوح الإلكتروني. لمسح الملاحظات استعمل زر المسح. اللوح مناسب للحسابات والملاحظات السريعة بلا ورقة.",
+      "Allumez avec ON/AC, calculez sur le clavier. Écrivez au stylet sur la tablette LCD. Effacez avec le bouton prévu. Idéal pour calculs et notes sans papier.",
+      "Turn on with ON/AC, calculate on the keypad. Write with the stylus on the LCD tablet. Erase with the clear control. Ideal for calculations and quick notes without paper."
+    ),
+    lifestyleScenes: [
+      { id: "student", emoji: "🎓", title: L("تلميذ / طالب", "Élève / étudiant", "Student"), description: L("حساب وتمارين بلا ما تضيع الأوراق", "Calculs et exercices sans papiers perdus", "Calculations and exercises without lost paper") },
+      { id: "teacher", emoji: "👨‍🏫", title: L("أستاذ", "Enseignant", "Teacher"), description: L("شرح وتمارين بسرعة فوق المكتب", "Expliquer et noter vite au bureau", "Explain and jot notes quickly at the desk") },
+      { id: "office", emoji: "💼", title: L("موظف / مكتب", "Employé / bureau", "Office"), description: L("حسابات يومية وملاحظات منظمة", "Calculs quotidiens et notes claires", "Daily figures and tidy notes") },
+      { id: "home", emoji: "🏠", title: L("فالدار", "À la maison", "At home"), description: L("ميزانية، فروض، وملاحظات سريعة", "Budget, devoirs et notes rapides", "Budget, homework and quick notes") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-calc-tablet",
+        name: L("آلة حاسبة مع لوح كتابة", "Calculatrice + tablette LCD", "Calculator + LCD tablet"),
+        price: 249,
+        compareAtPrice: 2349,
+        sku: "NRV-CALC-ZH70-01",
+        stock: 58,
+      },
+    ],
+    upsellIds: ["prod-warm-led-lamp", "prod-shiatsu"],
+    crossSellIds: ["prod-vintage-lantern", "prod-dual-cooler"],
+    seo: {
+      title: L(
+        "آلة حاسبة مع لوح كتابة إلكتروني | 249 درهم",
+        "Calculatrice solaire avec tablette LCD | 249 MAD",
+        "Solar Calculator with LCD Writing Tablet | 249 MAD"
+      ),
+      description: L(
+        "آلة حاسبة إلكترونية للطلاب والمكتب مع لوح كتابة وقلم. طاقة شمسية. عرض الإطلاق 249 درهم بدل 2349. شحن مجاني والدفع عند الاستلام في المغرب.",
+        "Calculatrice électronique pour étudiants et bureau, tablette LCD et stylet. Solaire. Offre 249 MAD au lieu de 2349. Livraison gratuite et COD au Maroc.",
+        "Electronic calculator for students and office with LCD writing tablet and stylus. Solar powered. Launch price 249 MAD instead of 2349. Free shipping and COD in Morocco."
       ),
     },
   },

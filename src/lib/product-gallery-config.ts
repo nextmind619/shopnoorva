@@ -1099,6 +1099,57 @@ const CAR_MOUNT_1PLUS1_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const SOLAR_CALCULATOR_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🧮",
+    heading: "الحساب والكتابة فـ جهاز واحد",
+    subtitle: "آلة حاسبة 12 رقم + لوح كتابة إلكتروني + قلم",
+    objectFit: "cover",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "☀️",
+    heading: "آلة حاسبة مع لوح كتابة",
+    subtitle: "طاقة شمسية · تصميم عملي للدراسة والمكتب",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "03-lifestyle",
+    emoji: "📚",
+    heading: "فوق مكتب الدراسة",
+    subtitle: "حساب وتمارين بلا أوراق ضايعة",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "✍️",
+    heading: "كتابة بالقلم على اللوح",
+    subtitle: "ملاحظات سريعة ومسح ساهل",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "🖊️",
+    heading: "الاستعمال اليومي",
+    subtitle: "للطالب، الأستاذ، والموظف",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "🔥",
+    heading: "عرض الإطلاق",
+    subtitle: "249 درهم · شحن مجاني · الدفع عند الاستلام",
+    objectFit: "cover",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
   "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
@@ -1113,6 +1164,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "portable-rechargeable-dual-fan-air-cooler": DUAL_FAN_COOLER_SLIDES,
   "vintage-led-lantern": VINTAGE_LANTERN_SLIDES,
   "warm-led-decor-lamp": WARM_LED_LAMP_SLIDES,
+  "solar-calculator-lcd-notepad": SOLAR_CALCULATOR_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

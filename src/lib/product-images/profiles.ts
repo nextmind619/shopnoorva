@@ -296,6 +296,26 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       clientRef: "/products/warm-led-decor-lamp/product-reference.png",
     },
   },
+  {
+    id: "prod-calc-tablet",
+    slug: "solar-calculator-lcd-notepad",
+    sku: "NRV-CALC-ZH70-01",
+    name: "Solar Calculator with LCD Writing Tablet",
+    type: "2-in-1 desktop calculator with built-in LCD writing tablet and stylus",
+    color: "Matte black with teal ON/AC key and teal LCD writing",
+    category: "Study & Office",
+    categoryId: "cat-study-office",
+    shortDescription:
+      "Wide landscape 2-in-1 — 12-digit solar calculator on the LEFT, LCD writing tablet with black stylus on the RIGHT, dual power, easy erase",
+    visualIdentity:
+      "EXACT real product from client reference — WIDE HORIZONTAL landscape 2-in-1, NOT vertical, NOT stacked, NOT a folding clamshell. Slim matte black/dark-grey rectangular body with rounded corners. LEFT half: 12-digit LCD calculator showing numbers, small rectangular solar panel directly above the display, square keys (grey number keys, bright teal/turquoise ON/AC, larger light-grey + and =). Bezel text: ZH-70, 12 DIGITS NOTES, TOW WAY POWER. Trash/lock/stylus icons below the calculator screen. RIGHT half: large bezel-less LCD writing tablet with bright teal handwriting (formulas, sine wave, geometric shapes) and a slim black stylus with clip. Dual solar power. NEVER redesign as a vertical notepad calculator, NEVER change colors or split layout.",
+    dimensions: "Wide landscape desktop 2-in-1",
+    accessories: ["Black stylus pen"],
+    packageItems: ["Calculator with LCD writing tablet", "Stylus pen"],
+    sourceUrls: {
+      clientRef: "/products/solar-calculator-lcd-notepad/product-reference.png",
+    },
+  },
 ];
 
 const PROFILE_SLUG_ALIASES: Record<string, string> = {

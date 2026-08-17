@@ -88,6 +88,14 @@ const PRIMARY_GALLERY_OVERRIDES: Partial<Record<string, PremiumImageType[]>> = {
     "10-features",
     "14-product-in-use",
   ],
+  "solar-calculator-lcd-notepad": [
+    "02-premium-hero",
+    "01-hero-white-bg",
+    "03-lifestyle",
+    "09-close-up",
+    "14-product-in-use",
+    "10-features",
+  ],
 };
 
 const PRIMARY_GALLERY_FALLBACKS: PremiumImageType[] = [

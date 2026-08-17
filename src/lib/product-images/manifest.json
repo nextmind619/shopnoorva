@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T15:09:08.845Z",
+  "generatedAt": "2026-08-17T16:22:39.960Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -2715,6 +2715,112 @@
         "14-product-in-use": "client-reference",
         "07-romantic-room": "client-reference",
         "10-features": "client-reference"
+      }
+    },
+    "solar-calculator-lcd-notepad": {
+      "slug": "solar-calculator-lcd-notepad",
+      "sku": "NRV-CALC-ZH70-01",
+      "name": "Solar Calculator LCD Notepad ZH-70",
+      "images": {
+        "02-premium-hero": {
+          "original": "/products/solar-calculator-lcd-notepad/02-premium-hero.jpg",
+          "webp": "/products/solar-calculator-lcd-notepad/02-premium-hero.webp",
+          "avif": "/products/solar-calculator-lcd-notepad/02-premium-hero.avif",
+          "thumbnail": "/products/solar-calculator-lcd-notepad/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/solar-calculator-lcd-notepad/responsive/02-premium-hero-640.webp",
+            "md": "/products/solar-calculator-lcd-notepad/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/solar-calculator-lcd-notepad/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "01-hero-white-bg": {
+          "original": "/products/solar-calculator-lcd-notepad/01-hero-white-bg.jpg",
+          "webp": "/products/solar-calculator-lcd-notepad/01-hero-white-bg.webp",
+          "avif": "/products/solar-calculator-lcd-notepad/01-hero-white-bg.avif",
+          "thumbnail": "/products/solar-calculator-lcd-notepad/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/solar-calculator-lcd-notepad/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/solar-calculator-lcd-notepad/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/solar-calculator-lcd-notepad/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/solar-calculator-lcd-notepad/03-lifestyle.jpg",
+          "webp": "/lifestyle/solar-calculator-lcd-notepad/03-lifestyle.webp",
+          "avif": "/lifestyle/solar-calculator-lcd-notepad/03-lifestyle.avif",
+          "thumbnail": "/lifestyle/solar-calculator-lcd-notepad/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/solar-calculator-lcd-notepad/responsive/03-lifestyle-640.webp",
+            "md": "/lifestyle/solar-calculator-lcd-notepad/responsive/03-lifestyle-1280.webp",
+            "lg": "/lifestyle/solar-calculator-lcd-notepad/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "05-living-room": {
+          "original": "/lifestyle/solar-calculator-lcd-notepad/05-living-room.jpg",
+          "webp": "/lifestyle/solar-calculator-lcd-notepad/05-living-room.webp",
+          "avif": "/lifestyle/solar-calculator-lcd-notepad/05-living-room.avif",
+          "thumbnail": "/lifestyle/solar-calculator-lcd-notepad/thumbs/05-living-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/solar-calculator-lcd-notepad/responsive/05-living-room-640.webp",
+            "md": "/lifestyle/solar-calculator-lcd-notepad/responsive/05-living-room-1280.webp",
+            "lg": "/lifestyle/solar-calculator-lcd-notepad/responsive/05-living-room-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/solar-calculator-lcd-notepad/09-close-up.jpg",
+          "webp": "/products/solar-calculator-lcd-notepad/09-close-up.webp",
+          "avif": "/products/solar-calculator-lcd-notepad/09-close-up.avif",
+          "thumbnail": "/products/solar-calculator-lcd-notepad/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/solar-calculator-lcd-notepad/responsive/09-close-up-640.webp",
+            "md": "/products/solar-calculator-lcd-notepad/responsive/09-close-up-1280.webp",
+            "lg": "/products/solar-calculator-lcd-notepad/responsive/09-close-up-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/solar-calculator-lcd-notepad/14-product-in-use.jpg",
+          "webp": "/lifestyle/solar-calculator-lcd-notepad/14-product-in-use.webp",
+          "avif": "/lifestyle/solar-calculator-lcd-notepad/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/solar-calculator-lcd-notepad/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/solar-calculator-lcd-notepad/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/solar-calculator-lcd-notepad/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/solar-calculator-lcd-notepad/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/solar-calculator-lcd-notepad/10-features.jpg",
+          "webp": "/products/solar-calculator-lcd-notepad/10-features.webp",
+          "avif": "/products/solar-calculator-lcd-notepad/10-features.avif",
+          "thumbnail": "/products/solar-calculator-lcd-notepad/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/solar-calculator-lcd-notepad/responsive/10-features-640.webp",
+            "md": "/products/solar-calculator-lcd-notepad/responsive/10-features-1280.webp",
+            "lg": "/products/solar-calculator-lcd-notepad/responsive/10-features-2000.webp"
+          }
+        },
+        "20-social-media-banner": {
+          "original": "/banners/solar-calculator-lcd-notepad/20-social-media-banner.jpg",
+          "webp": "/banners/solar-calculator-lcd-notepad/20-social-media-banner.webp",
+          "avif": "/banners/solar-calculator-lcd-notepad/20-social-media-banner.avif",
+          "thumbnail": "/banners/solar-calculator-lcd-notepad/thumbs/20-social-media-banner-400.webp",
+          "responsive": {
+            "sm": "/banners/solar-calculator-lcd-notepad/responsive/20-social-media-banner-640.webp",
+            "md": "/banners/solar-calculator-lcd-notepad/responsive/20-social-media-banner-1280.webp",
+            "lg": "/banners/solar-calculator-lcd-notepad/responsive/20-social-media-banner-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "02-premium-hero": "client-reference",
+        "01-hero-white-bg": "ai-generated-locked-shape",
+        "03-lifestyle": "ai-generated-locked-shape",
+        "05-living-room": "ai-generated-locked-shape",
+        "09-close-up": "ai-generated-locked-shape",
+        "14-product-in-use": "ai-generated-locked-shape",
+        "10-features": "ai-generated-locked-shape",
+        "20-social-media-banner": "client-reference"
       }
     }
   }

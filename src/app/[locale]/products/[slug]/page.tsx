@@ -13,6 +13,7 @@ export function generateStaticParams() {
 }
 
 const SHIATSU_SLUG = "shiatsu-neck-shoulder-massager";
+const CALCULATOR_SLUG = "solar-calculator-lcd-notepad";
 
 const SHIATSU_KEYWORDS = [
   "جهاز تدليك الرقبة",
@@ -27,6 +28,18 @@ const SHIATSU_KEYWORDS = [
   "massage",
 ];
 
+const CALCULATOR_KEYWORDS = [
+  "آلة حاسبة",
+  "آلة حاسبة إلكترونية",
+  "آلة حاسبة للطلاب",
+  "آلة حاسبة مع لوح كتابة",
+  "آلة حاسبة للدراسة",
+  "آلة حاسبة للمكتب",
+  "لوح كتابة إلكتروني",
+  "الدفع عند الاستلام",
+  "NOORVA",
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -39,20 +52,28 @@ export async function generateMetadata({
   const hero = resolveProductHero(product);
   const canonical = `${SITE_URL}/ar/products/${product.slug}`;
   const isShiatsu = product.slug === SHIATSU_SLUG;
+  const isCalculator = product.slug === CALCULATOR_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
   const name = product.name.ar;
+  const imageAlt = isCalculator
+    ? "آلة حاسبة إلكترونية مع لوح كتابة إلكتروني وقلم للطالب والمكتب"
+    : name;
 
   return {
     title,
     description,
-    keywords: isShiatsu ? [...SHIATSU_KEYWORDS, ...product.tags] : product.tags,
+    keywords: isShiatsu
+      ? [...SHIATSU_KEYWORDS, ...product.tags]
+      : isCalculator
+        ? [...CALCULATOR_KEYWORDS, ...product.tags]
+        : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
       description,
-      images: [{ url: hero, alt: name }],
+      images: [{ url: hero, alt: imageAlt }],
       locale: ogLocale,
       type: "website",
       url: canonical,
@@ -287,6 +308,47 @@ function getProductFaqs(slug: string, warrantyMonths: number) {
     ];
   }
 
+  if (slug === "solar-calculator-lcd-notepad") {
+    return [
+      {
+        q: "واش كتخدم بالطاقة الشمسية؟",
+        a: "نعم. فيها لوحة شمسية فوق شاشة الحاسبة، وتشغيل مزدوج للاستخدام اليومي.",
+      },
+      {
+        q: "واش فيها لوح للكتابة؟",
+        a: "نعم. لوح كتابة إلكتروني مدمج على يمين الحاسبة، تقدر تكتب عليه الملاحظات والحسابات.",
+      },
+      {
+        q: "واش كيجي معها القلم؟",
+        a: "نعم. كيجي معها قلم Stylus باش تكتب على اللوح.",
+      },
+      {
+        q: "واش نقدر نمسح الكتابة؟",
+        a: "نعم. تقدر تمسح الكتابة بسهولة من اللوح وتعاود تكتب من جديد.",
+      },
+      {
+        q: "واش مناسبة للتلاميذ والطلبة؟",
+        a: "نعم. مناسبة للتلاميذ والطلبة والأساتذة — حساب وتمارين وملاحظات فـ جهاز واحد.",
+      },
+      {
+        q: "واش نقدر نستعملها فالخدمة؟",
+        a: "نعم. مناسبة للموظفين وأصحاب المكاتب وأي شخص كيدير الحسابات يومياً.",
+      },
+      {
+        q: "شحال مدة التوصيل؟",
+        a: "24–48 ساعة للمدن الكبرى، و2–4 أيام لباقي المدن. التوصيل لجميع مدن المغرب.",
+      },
+      {
+        q: "واش كاين الدفع عند الاستلام؟",
+        a: "نعم. الدفع عند الاستلام فقط. ما كخلص والو دابا — كتخلص كاش ملي توصلك الطلبية.",
+      },
+      {
+        q: "واش التوصيل مجاني؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب.",
+      },
+    ];
+  }
+
   return [];
 }
 
@@ -308,6 +370,7 @@ export default async function ProductPage({
   const productUrl = `${SITE_URL}/ar/products/${product.slug}`;
   const productFaqs = getProductFaqs(product.slug, product.warrantyMonths || 12);
   const isShiatsu = product.slug === SHIATSU_SLUG;
+  const isCalculator = product.slug === CALCULATOR_SLUG;
   const reviews = isShiatsu ? getReviewsForProduct(product.id) : [];
 
   return (
@@ -321,7 +384,7 @@ export default async function ProductPage({
           image: [hero],
           sku: product.sku,
           brand: { "@type": "Brand", name: "NOORVA" },
-          color: isShiatsu ? "أخضر غابة" : undefined,
+          color: isShiatsu ? "أخضر غابة" : isCalculator ? "أسود مطفي" : undefined,
           material: isShiatsu ? "ABS + جلد PU + سيليكون غذائي" : undefined,
           offers: {
             "@type": "Offer",
@@ -331,21 +394,26 @@ export default async function ProductPage({
             url: productUrl,
             priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
             itemCondition: "https://schema.org/NewCondition",
-            shippingDetails: isShiatsu
-              ? {
-                  "@type": "OfferShippingDetails",
-                  shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },
-                  shippingDestination: { "@type": "DefinedRegion", addressCountry: "MA" },
-                }
-              : undefined,
+            shippingDetails:
+              isShiatsu || isCalculator
+                ? {
+                    "@type": "OfferShippingDetails",
+                    shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },
+                    shippingDestination: { "@type": "DefinedRegion", addressCountry: "MA" },
+                  }
+                : undefined,
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: product.rating,
-            reviewCount: product.reviewCount,
-            bestRating: "5",
-            worstRating: "1",
-          },
+          ...(product.reviewCount > 0
+            ? {
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: product.rating,
+                  reviewCount: product.reviewCount,
+                  bestRating: "5",
+                  worstRating: "1",
+                },
+              }
+            : {}),
           ...(reviews.length > 0
             ? {
                 review: reviews.slice(0, 10).map((r) => ({
