@@ -273,7 +273,7 @@ export function ProductPageCarMount1Plus1({ product }: Props) {
           <div className="relative aspect-square bg-white">
             <Image
               src={offerSrc}
-              alt="اشترِ 1 واحصل على 1 مجاناً — حاملان مغناطيسيان"
+              alt="العرض 1+1 على المنتج الأصلي — حاملان مغناطيسيان"
               fill
               loading="lazy"
               sizes="(max-width: 768px) 100vw, 768px"

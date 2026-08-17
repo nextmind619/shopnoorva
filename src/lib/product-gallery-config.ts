@@ -1052,9 +1052,17 @@ const CAR_MOUNT_1PLUS1_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
     imageType: "02-premium-hero",
+    emoji: "📷",
+    heading: "المنتج الأصلي",
+    subtitle: "رأس مغناطيسي · ذراع بمفصلين · قاعدة شفط TIGHT/OPEN",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
     emoji: "🚗",
     heading: "حامل مغناطيسي للسيارة",
-    subtitle: "اشترِ 1 وخذ 1 مجاناً — قطعتان بسعر قطعة واحدة",
+    subtitle: "قطعة واحدة — نفس المنتج الذي يصلك",
     objectFit: "contain",
   },
   {
@@ -1062,15 +1070,7 @@ const CAR_MOUNT_1PLUS1_SLIDES: GallerySlideConfig[] = [
     imageType: "11-package-contents",
     emoji: "🎁",
     heading: "1 + 1 مجاناً",
-    subtitle: "قطعة مدفوعة + قطعة مجانية",
-    objectFit: "contain",
-  },
-  {
-    section: "hero",
-    imageType: "01-hero-white-bg",
-    emoji: "📷",
-    heading: "صورة المنتج",
-    subtitle: "رأس مغناطيسي · ذراع بمفصلين · قاعدة شفط",
+    subtitle: "قطعة مدفوعة + قطعة مجانية — نفس المنتج الأصلي",
     objectFit: "contain",
   },
   {

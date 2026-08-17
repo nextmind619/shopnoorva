@@ -187,12 +187,13 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
     shortDescription:
       "Maidsail magnetic car mount — strong MagSafe-compatible ring head, multi-joint adjustable arm, vacuum suction base with twist-lock (TIGHT / OPEN)",
     visualIdentity:
-      "EXACT real product — Maidsail brand magnetic car phone mount. Matte black plastic with metallic grey/silver accents. Large circular magnetic ring head (MagSafe-compatible hollow-center ring). Multi-jointed foldable adjustable arm with hinges at base and behind magnetic head. Circular vacuum suction cup base with rotating metallic grey lock ring labeled TIGHT and OPEN with arrows. Side profile shows arm extension and tilt; phone attached magnetically on head; fully folded compact portable position. NEVER redesign as vent clip-only, wireless charger dock, or different brand shape.",
+      "CLIENT-CONFIRMED ORIGINAL PRODUCT: matte black + gunmetal magnetic car phone mount. Hollow-center MagSafe-style ring head WITHOUT printed MagSafe text. Dual-hinge foldable metallic arm. Circular vacuum suction base with knurled metallic lock ring labeled ◀ TIGHT |||||||||||| OPEN ▶ and a small suction pull-tab. Official reference is the studio collage (main unit + 3 insets: phone on arm, magnetic attach graphic, folded compact). NEVER use the fake 1+1 composite that shows two units with MagSafe printed on the ring, a mid-arm tightening knob, or a lever lock. NEVER redesign as vent clip-only or wireless charger dock.",
     dimensions: "Foldable adjustable arm mount with suction base",
     accessories: ["Magnetic ring head (MagSafe compatible)", "Suction cup base with lock ring"],
     packageItems: ["Magnetic car phone mount", "User manual"],
     sourceUrls: {
       amazonRefs: "/products/magnetic-car-phone-mount-maidsail/",
+      clientRef: "/products/magnetic-car-phone-holder-1-plus-1/product-reference.png",
     },
   },
   {

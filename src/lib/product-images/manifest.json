@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T16:18:00.051Z",
+  "generatedAt": "2026-08-17T15:09:08.845Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -1756,25 +1756,25 @@
       "name": "Magnetic Car Phone Mount 1+1",
       "images": {
         "01-hero-white-bg": {
-          "original": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.jpg",
-          "webp": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.webp",
-          "avif": "/products/magnetic-car-phone-mount-maidsail/01-hero-white-bg.avif",
-          "thumbnail": "/products/magnetic-car-phone-mount-maidsail/thumbs/01-hero-white-bg-400.webp",
+          "original": "/products/magnetic-car-phone-holder-1-plus-1/01-hero-white-bg.jpg",
+          "webp": "/products/magnetic-car-phone-holder-1-plus-1/01-hero-white-bg.webp",
+          "avif": "/products/magnetic-car-phone-holder-1-plus-1/01-hero-white-bg.avif",
+          "thumbnail": "/products/magnetic-car-phone-holder-1-plus-1/thumbs/01-hero-white-bg-400.webp",
           "responsive": {
-            "sm": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-640.webp",
-            "md": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-1280.webp",
-            "lg": "/products/magnetic-car-phone-mount-maidsail/responsive/01-hero-white-bg-2000.webp"
+            "sm": "/products/magnetic-car-phone-holder-1-plus-1/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/magnetic-car-phone-holder-1-plus-1/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/magnetic-car-phone-holder-1-plus-1/responsive/01-hero-white-bg-2000.webp"
           }
         },
         "02-premium-hero": {
-          "original": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
+          "original": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.jpg",
           "webp": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
-          "avif": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
-          "thumbnail": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero-thumb.webp",
+          "avif": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.avif",
+          "thumbnail": "/products/magnetic-car-phone-holder-1-plus-1/thumbs/02-premium-hero-400.webp",
           "responsive": {
-            "sm": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
-            "md": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp",
-            "lg": "/products/magnetic-car-phone-holder-1-plus-1/02-premium-hero.webp"
+            "sm": "/products/magnetic-car-phone-holder-1-plus-1/responsive/02-premium-hero-640.webp",
+            "md": "/products/magnetic-car-phone-holder-1-plus-1/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/magnetic-car-phone-holder-1-plus-1/responsive/02-premium-hero-2000.webp"
           }
         },
         "09-close-up": {
@@ -1800,14 +1800,14 @@
           }
         },
         "11-package-contents": {
-          "original": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
+          "original": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.jpg",
           "webp": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
-          "avif": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
-          "thumbnail": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
+          "avif": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.avif",
+          "thumbnail": "/products/magnetic-car-phone-holder-1-plus-1/thumbs/11-package-contents-400.webp",
           "responsive": {
-            "sm": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
-            "md": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp",
-            "lg": "/products/magnetic-car-phone-holder-1-plus-1/11-package-contents.webp"
+            "sm": "/products/magnetic-car-phone-holder-1-plus-1/responsive/11-package-contents-640.webp",
+            "md": "/products/magnetic-car-phone-holder-1-plus-1/responsive/11-package-contents-1280.webp",
+            "lg": "/products/magnetic-car-phone-holder-1-plus-1/responsive/11-package-contents-2000.webp"
           }
         },
         "14-product-in-use": {
@@ -1824,11 +1824,11 @@
       },
       "prompts": {},
       "sources": {
-        "01-hero-white-bg": "commercial",
-        "02-premium-hero": "commercial",
+        "01-hero-white-bg": "client-original",
+        "02-premium-hero": "client-original",
         "09-close-up": "commercial",
         "10-features": "commercial",
-        "11-package-contents": "commercial",
+        "11-package-contents": "client-original",
         "14-product-in-use": "commercial"
       }
     },
