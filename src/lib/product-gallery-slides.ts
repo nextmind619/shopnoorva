@@ -40,7 +40,11 @@ export function buildProductGallerySlides(product: Product): GallerySlide[] {
 
   return configs
     .map((cfg) => {
-      const imageUrl = resolveProductImage(product, cfg.imageType);
+      const imageUrl = resolveProductImage(
+        product,
+        cfg.imageType,
+        product.slug === "magnetic-car-phone-holder-1-plus-1" ? "original" : "webp"
+      );
       if (seen.has(imageUrl)) return null;
       seen.add(imageUrl);
 

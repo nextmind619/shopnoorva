@@ -37,13 +37,14 @@ const SECTION_BG: Record<GallerySection, string> = {
 
 function SlideImage({ slide, priority }: { slide: GallerySlide; priority?: boolean }) {
   const isLight = ["hero", "package", "accessories", "dimensions"].includes(slide.section);
+  const crisp = /\.(jpe?g|png)$/i.test(slide.imageUrl);
 
   return (
     <div className={cn("relative w-full h-full overflow-hidden", SECTION_BG[slide.section])}>
       <div
         className={cn(
-          "absolute inset-0 flex items-center justify-center p-2 sm:p-4",
-          slide.objectFit === "contain" && "p-4 sm:p-8"
+          "absolute inset-0 flex items-center justify-center",
+          slide.objectFit === "contain" ? "p-1.5 sm:p-2" : "p-0"
         )}
       >
         <Image
@@ -52,8 +53,9 @@ function SlideImage({ slide, priority }: { slide: GallerySlide; priority?: boole
           fill
           priority={priority}
           loading={priority ? undefined : "lazy"}
-          quality={priority ? 75 : 65}
-          sizes="(max-width: 1024px) 100vw, 55vw"
+          quality={crisp ? 95 : priority ? 90 : 80}
+          unoptimized={crisp}
+          sizes="(max-width: 768px) 100vw, 800px"
           className={cn(
             slide.objectFit === "contain" ? "object-contain" : "object-cover",
             !isLight && slide.objectFit === "cover" && "opacity-95"
