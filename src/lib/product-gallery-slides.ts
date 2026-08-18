@@ -81,9 +81,9 @@ const PRIMARY_GALLERY_OVERRIDES: Partial<Record<string, PremiumImageType[]>> = {
     "05-living-room",
   ],
   "magnetic-car-phone-holder-1-plus-1": [
+    "11-package-contents",
     "02-premium-hero",
     "01-hero-white-bg",
-    "11-package-contents",
     "09-close-up",
     "10-features",
     "14-product-in-use",

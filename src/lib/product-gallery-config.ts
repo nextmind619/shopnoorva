@@ -1051,6 +1051,14 @@ const CAR_FAN_SUNSHADE_SLIDES: GallerySlideConfig[] = [
 const CAR_MOUNT_1PLUS1_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
+    imageType: "11-package-contents",
+    emoji: "🎁",
+    heading: "1 + 1 مجاناً",
+    subtitle: "قطعة مدفوعة + قطعة مجانية — نفس المنتج الأصلي",
+    objectFit: "contain",
+  },
+  {
+    section: "hero",
     imageType: "02-premium-hero",
     emoji: "📷",
     heading: "المنتج الأصلي",
@@ -1063,14 +1071,6 @@ const CAR_MOUNT_1PLUS1_SLIDES: GallerySlideConfig[] = [
     emoji: "🚗",
     heading: "حامل مغناطيسي للسيارة",
     subtitle: "قطعة واحدة — نفس المنتج الذي يصلك",
-    objectFit: "contain",
-  },
-  {
-    section: "gift",
-    imageType: "11-package-contents",
-    emoji: "🎁",
-    heading: "1 + 1 مجاناً",
-    subtitle: "قطعة مدفوعة + قطعة مجانية — نفس المنتج الأصلي",
     objectFit: "contain",
   },
   {

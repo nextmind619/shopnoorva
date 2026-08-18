@@ -268,6 +268,12 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
             </button>
           </div>
 
+          {product.slug === "magnetic-car-phone-holder-1-plus-1" && (
+            <div className="absolute top-4 start-4 z-20 rounded-full bg-amber-400 px-3.5 py-1.5 text-xs sm:text-sm font-black text-[#1a1200] shadow-lg">
+              🎁 1 + 1 مجاناً
+            </div>
+          )}
+
           <div className="absolute bottom-4 start-4 z-20 bg-black/50 backdrop-blur-md rounded-full px-3 py-1.5 text-[11px] font-semibold text-white tabular-nums">
             {active + 1} / {total}
           </div>

@@ -325,12 +325,27 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               {product.rating} · {product.reviewCount.toLocaleString("ar-MA")}+ تقييم
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white">{name}</h1>
-          <p className="text-white/60 text-base leading-relaxed max-w-xl mx-auto sm:mx-0">{headline.subtitle}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white">
+            {isBogo ? "اشترِ 1 وخذ 1 مجاناً 🎁" : name}
+          </h1>
+          {isBogo && (
+            <p className="text-base font-semibold text-amber-200">المنتج الأصلي · جوج قطع في الطلب</p>
+          )}
+          <p className="text-white/60 text-base leading-relaxed max-w-xl mx-auto sm:mx-0">
+            {isBogo
+              ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. الدفع عند الاستلام والتوصيل مجاني."
+              : headline.subtitle}
+          </p>
         </section>
 
         {/* 3. السعر */}
         <section className="rounded-3xl border border-white/10 bg-[#12121a] px-6 py-7 sm:px-8 sm:py-8 space-y-3">
+          {isBogo && (
+            <div className="text-center sm:text-start space-y-1 pb-2">
+              <p className="text-3xl sm:text-4xl font-black text-amber-200">1 + 1 مجاناً</p>
+              <p className="text-base font-bold text-white">قطعتان بسعر قطعة واحدة</p>
+            </div>
+          )}
           <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
             <span className="text-5xl sm:text-6xl font-black tabular-nums text-white leading-none tracking-tight">
               {formatPriceNumber(variant.price, "ar")}
@@ -360,7 +375,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             </p>
           )}
           {isBogo && (
-            <p className="text-sm font-bold text-amber-200">🎁 1 + 1 مجاناً — قطعتان بسعر قطعة واحدة</p>
+            <p className="text-sm font-bold text-emerald-300">🎁 الثانية مجاناً — كياوصلك جوج قطع أصلية</p>
           )}
         </section>
 
@@ -428,7 +443,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         {/* 5. زر اطلب الآن */}
         <button type="button" onClick={scrollToOrder} className={ctaClass}>
           <ShoppingBag className="h-5 w-5" />
-          اطلب الآن
+          {isBogo ? "اطلب 1 + 1 مجاناً" : "اطلب الآن"}
         </button>
 
         {/* 6. نموذج الطلب */}
@@ -438,10 +453,18 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           quantity={orderQty}
           quantityLabel={isBogo ? "2 قطع" : undefined}
           orderNote={isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined}
+          submitLabel={isBogo ? "أكد طلب 1 + 1 مجاناً" : undefined}
+          formTitle={isBogo ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام" : undefined}
+          formSubtitle={isBogo ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا." : undefined}
+          summaryRows={isBogo ? [{ label: "العرض", value: "1 مدفوعة + 1 مجاناً" }] : undefined}
         />
 
         {/* 7. الفوائد */}
-        <ProductBenefitsSection product={product} onOrderClick={scrollToOrder} />
+        <ProductBenefitsSection
+          product={product}
+          onOrderClick={scrollToOrder}
+          ctaLabel={isBogo ? "اطلب 1 + 1 مجاناً" : undefined}
+        />
 
         {/* 8. الفيديو */}
         <ProductVideoSection product={product} />
@@ -686,14 +709,22 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             exit={{ y: 88 }}
             className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[#0a0a0f] border-t border-white/10 safe-area-pb"
           >
-            <div className="px-4 py-3 max-w-lg mx-auto">
+            <div className="px-4 py-3 max-w-lg mx-auto flex items-center gap-3">
+              {isBogo && (
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-amber-200">1 + 1 مجاناً</p>
+                  <p className="text-sm font-black tabular-nums">{formatPriceNumber(variant.price, "ar")} DH</p>
+                </div>
+              )}
               <button
                 type="button"
                 onClick={scrollToOrder}
                 className={cn(stickyCtaClass, "w-full h-14 rounded-2xl text-base active:scale-[0.98] transition-transform")}
               >
                 <ShoppingBag className="h-5 w-5" />
-                اطلب الآن — {formatPriceNumber(variant.price * orderQty, "ar")} درهم
+                {isBogo
+                  ? `اطلب جوج — ${formatPriceNumber(variant.price, "ar")} درهم`
+                  : `اطلب الآن — ${formatPriceNumber(variant.price * orderQty, "ar")} درهم`}
               </button>
             </div>
           </motion.div>

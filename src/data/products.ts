@@ -1164,14 +1164,14 @@ export const products: Product[] = [
     id: "prod-car-mount-1plus1",
     slug: "magnetic-car-phone-holder-1-plus-1",
     name: L(
-      "حامل الهاتف المغناطيسي للسيارة",
-      "Support Téléphone Magnétique Voiture",
-      "Magnetic Car Phone Mount"
+      "حامل الهاتف المغناطيسي للسيارة — 1 + 1 مجاناً",
+      "Support Téléphone Magnétique Voiture — 1 + 1 offert",
+      "Magnetic Car Phone Mount — Buy 1 Get 1 Free"
     ),
     shortDescription: L(
-      "ثبّت هاتفك بسهولة أثناء القيادة وخليه قدامك بشكل ثابت وواضح.",
-      "Fixez votre téléphone facilement en conduisant, bien visible et stable.",
-      "Keep your phone stable and clearly visible while driving."
+      "اشترِ حاملاً أصلياً وخذ الثاني مجاناً. قطعتان بسعر قطعة واحدة.",
+      "Achetez un support original et recevez le second gratuitement. Deux pièces au prix d'une.",
+      "Buy one original mount and get the second free. Two units for the price of one."
     ),
     description: L(
       "حامل هاتف مغناطيسي للسيارة من NOORVA: رأس حلقة مغناطيسية متوافقة مع MagSafe، ذراع قابل للتعديل، وقاعدة شفط مع قفل TIGHT/OPEN. عرض 1+1 مجاناً: تخلص ثمن قطعة واحدة وتحصل على قطعتين. توصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",

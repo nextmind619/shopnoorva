@@ -13,6 +13,7 @@ import type { PremiumImageType } from "@/lib/product-images/types";
 interface SectionProps {
   product: Product;
   onOrderClick?: () => void;
+  ctaLabel?: string;
 }
 
 function getGenericHowTo(product: Product): {
@@ -38,7 +39,7 @@ function getGenericHowTo(product: Product): {
   ];
 }
 
-export function ProductBenefitsSection({ product, onOrderClick }: SectionProps) {
+export function ProductBenefitsSection({ product, onOrderClick, ctaLabel }: SectionProps) {
   const cro = getProductCroContent(product.slug);
   const benefitBlocks =
     cro?.benefits ??
@@ -81,7 +82,7 @@ export function ProductBenefitsSection({ product, onOrderClick }: SectionProps) 
             className="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-full bg-[#6366f1] hover:bg-[#4f46e5] text-white font-bold text-sm"
           >
             <ShoppingBag className="h-4 w-4" />
-            اطلب الآن
+            {ctaLabel ?? "اطلب الآن"}
           </button>
         </div>
       )}
