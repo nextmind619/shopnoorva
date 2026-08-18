@@ -121,6 +121,18 @@ function getProductFaqs(product: Product) {
       { q: "كم مدة التوصيل؟", a: delivery },
     ];
   }
+  if (product.slug === "magnetic-car-phone-holder-1-plus-1") {
+    return [
+      { q: "واش العرض فعلاً فيه جوج قطع؟", a: "نعم. كتخلص ثمن قطعة وحدة وكتحصل على القطعة الثانية مجاناً — جوج حاملات في الطلب." },
+      { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
+      { q: "واش التوصيل مجاني؟", a: "نعم، التوصيل مجاني لجميع مدن المغرب." },
+      { q: "كيفاش كنركّبو؟", a: "نظّف السطح، ضع قاعدة الشفط واضغط، دوّر الحلقة على TIGHT. ثبّت الهاتف على الرأس المغناطيسي واضبط الذراع. للإزالة، دوّر على OPEN." },
+      { q: "واش كيتوافق مع MagSafe؟", a: "نعم، الرأس حلقة مغناطيسية كبيرة متوافقة مع MagSafe والحلقات المغناطيسية لجميع الهواتف." },
+      { q: "فين كنثبّتو؟", a: "على لوحة القيادة أو الزجاج الأمامي/الجانبي. القفل TIGHT/OPEN كيخلي الشفط ثابت حتى فالمطبات." },
+      { q: "شنو كاين فالعلبة؟", a: "حاملان مغناطيسيان للسيارة (1 مدفوع + 1 مجاناً) ودليل الاستخدام." },
+      { q: "كم مدة التوصيل وهل فيه ضمان؟", a: delivery },
+    ];
+  }
   if (product.slug.includes("magnetic-car-phone-mount")) {
     return [
       { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
@@ -228,7 +240,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   }, []);
 
   const maxQty = Math.min(variant.stock || 3, 3);
-  const isPack = isPackVariantSku(variant.sku);
+  const isBogo = product.slug === "magnetic-car-phone-holder-1-plus-1";
+  const isPack = isPackVariantSku(variant.sku) || isBogo;
   const orderQty = isPack ? 1 : qty;
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
@@ -267,6 +280,12 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           <span className="flex items-center gap-1.5">
             <MessageCircle className="h-3.5 w-3.5" /> خدمة عملاء
           </span>
+          {isBogo && (
+            <>
+              <span className="hidden sm:inline text-white/20">|</span>
+              <span className="flex items-center gap-1.5">🎁 1 + 1 مجاناً</span>
+            </>
+          )}
         </div>
       </div>
 
@@ -340,6 +359,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               )}
             </p>
           )}
+          {isBogo && (
+            <p className="text-sm font-bold text-amber-200">🎁 1 + 1 مجاناً — قطعتان بسعر قطعة واحدة</p>
+          )}
         </section>
 
         {/* شريط توصيل مجاني */}
@@ -410,7 +432,13 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         </button>
 
         {/* 6. نموذج الطلب */}
-        <ProductOrderForm product={product} variant={variant} quantity={orderQty} />
+        <ProductOrderForm
+          product={product}
+          variant={variant}
+          quantity={orderQty}
+          quantityLabel={isBogo ? "2 قطع" : undefined}
+          orderNote={isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined}
+        />
 
         {/* 7. الفوائد */}
         <ProductBenefitsSection product={product} onOrderClick={scrollToOrder} />

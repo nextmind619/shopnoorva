@@ -19,6 +19,8 @@ import {
   Activity,
   Home,
   Flame,
+  Magnet,
+  Car,
 } from "lucide-react";
 import type { PremiumImageType } from "@/lib/product-images/types";
 
@@ -728,6 +730,78 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         desc: "هدية بسيطة وأنيقة.",
       },
     ],
+  },
+  "magnetic-car-phone-holder-1-plus-1": {
+    headline: {
+      title: "ثبّت هاتفك في السيارة… واشترِ واحداً وخذ الثاني مجاناً",
+      subtitle:
+        "حامل مغناطيسي MagSafe بذراع قابل للتعديل وقاعدة شفط TIGHT/OPEN — تخلص ثمن قطعة وتحصل على قطعتين.",
+    },
+    midCtaLabels: [
+      "بغيتي جوج حاملات بثمن واحد؟",
+      "199 درهم — القطعة الثانية مجاناً",
+      "خلص كاش عند الباب — بلا مخاطرة",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "نظّف السطح",
+        desc: "امسح لوحة القيادة أو الزجاج باش الشفط يثبت مزيان.",
+        imageKey: "01-hero-white-bg",
+      },
+      {
+        step: "2",
+        title: "ثبّت القاعدة",
+        desc: "ضع قاعدة الشفط واضغط، ثم دوّر الحلقة على TIGHT.",
+        imageKey: "09-close-up",
+      },
+      {
+        step: "3",
+        title: "قرّب الهاتف",
+        desc: "ثبّت الهاتف على الرأس المغناطيسي (MagSafe أو حلقة) واضبط الذراع.",
+        imageKey: "10-features",
+      },
+      {
+        step: "4",
+        title: "قد وانت مرتاح",
+        desc: "الملاحة والمكالمات قدامك بلا ما تمسك الهاتف. للإزالة دوّر على OPEN.",
+        imageKey: "14-product-in-use",
+      },
+    ],
+    comparison: {
+      oursLabel: "حامل NOORVA 1+1",
+      rows: [
+        { label: "قطعة ثانية مجاناً", us: true, them: false },
+        { label: "مغناطيس MagSafe قوي", us: true, them: "ضعيف" },
+        { label: "قاعدة شفط مع قفل TIGHT/OPEN", us: true, them: false },
+        { label: "ذراع بمفصلين قابل للتعديل", us: true, them: "ثابت" },
+        ...SHARED_TRUST_ROWS,
+      ],
+    },
+    benefits: [
+      {
+        icon: Magnet,
+        title: "تثبيت مغناطيسي قوي",
+        desc: "الهاتف كيشد بلا سقوط حتى فالمطبات — MagSafe أو حلقة مغناطيسية.",
+      },
+      {
+        icon: Car,
+        title: "مصمم للسيارة",
+        desc: "قاعدة شفط مع قفل دوّار TIGHT/OPEN للثبات على اللوحة أو الزجاج.",
+      },
+      {
+        icon: Gift,
+        title: "1 + 1 مجاناً",
+        desc: "تخلص ثمن حامل واحد وكياوصلك جوج — قطعة لك وقطعة هدية.",
+      },
+      {
+        icon: Shield,
+        title: "قيادة آمنة",
+        desc: "GPS ومكالمات قدامك بلا ما تمسك الهاتف أثناء الطريق.",
+      },
+    ],
+    videoSrc: "/videos/car-mount-product-demo-v2.mp4",
+    videoAspect: "9/16",
   },
 };
 
