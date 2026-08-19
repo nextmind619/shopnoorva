@@ -1,5 +1,6 @@
 import { aiConfig, isConfigured } from "../config";
 import { logIntegration } from "./logger";
+import { packNoteSuffix, toCodplusLineItem } from "./codplus-sku";
 
 export interface CodplusLeadInput {
   orderNumber: string;
@@ -12,8 +13,11 @@ export interface CodplusLeadInput {
 }
 
 function buildLeadPayload(lead: CodplusLeadInput, item: CodplusLeadInput["items"][number]) {
+  const mapped = toCodplusLineItem(item);
   const noteParts = [`NOORVA:${lead.orderNumber}`];
   if (lead.notes?.trim()) noteParts.push(lead.notes.trim());
+  const packNote = packNoteSuffix(item.sku);
+  if (packNote) noteParts.push(packNote);
 
   return {
     customer: lead.customerName,
@@ -22,11 +26,11 @@ function buildLeadPayload(lead: CodplusLeadInput, item: CodplusLeadInput["items"
     phone: lead.phone,
     city: lead.city,
     address: lead.address,
-    price: item.price,
-    amount: item.price,
-    quantity: item.quantity,
-    qty: item.quantity,
-    sku: item.sku,
+    price: mapped.price,
+    amount: mapped.price,
+    quantity: mapped.quantity,
+    qty: mapped.quantity,
+    sku: mapped.sku,
     note: noteParts.join(" | "),
     notes: noteParts.join(" | "),
     external_id: lead.orderNumber,

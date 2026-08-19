@@ -2,6 +2,7 @@ import { JWT } from "google-auth-library";
 import { aiConfig, isConfigured } from "../config";
 import { logIntegration } from "./logger";
 import { getGoogleSheetsConfigSummary, isGoogleSheetsConfigured, resolveGoogleServiceAccount } from "./google-auth";
+import { packNoteSuffix, toCodplusLineItem } from "./codplus-sku";
 import type { DailyAnalytics } from "../memory-store";
 
 const SHEETS_SCOPE = "https://www.googleapis.com/auth/spreadsheets";
@@ -49,17 +50,20 @@ function encodeRange(sheetName: string, range: string): string {
 }
 
 function itemToRow(order: SheetOrderInput, item: SheetOrderLineItem): string[] {
+  const mapped = toCodplusLineItem(item);
   const noteParts = [orderMarker(order.orderNumber)];
   if (order.notes?.trim()) noteParts.push(order.notes.trim());
+  const packNote = packNoteSuffix(item.sku);
+  if (packNote) noteParts.push(packNote);
 
   return [
     order.customerName,
     order.phone,
     order.city,
     order.address,
-    String(item.price),
-    String(item.quantity),
-    item.sku,
+    String(mapped.price),
+    String(mapped.quantity),
+    mapped.sku,
     noteParts.join(" | "),
   ];
 }

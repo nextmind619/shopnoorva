@@ -4,6 +4,9 @@ import { Check, Tag } from "lucide-react";
 import type { ProductVariant } from "@/types";
 import type { Locale } from "@/types";
 import { cn, formatPriceNumber, calculateDiscount } from "@/lib/utils";
+import { isPackVariantSku } from "@/lib/catalog/pack-sku";
+
+export { isPackVariantSku };
 
 type Props = {
   variants: ProductVariant[];
@@ -156,7 +159,3 @@ export function ProductVariantPicker({ variants, selectedId, onSelect, locale, l
   );
 }
 
-/** Pack SKUs (e.g. 2-for-299) are ordered as a single line item. */
-export function isPackVariantSku(sku: string): boolean {
-  return sku.endsWith("-2PK");
-}

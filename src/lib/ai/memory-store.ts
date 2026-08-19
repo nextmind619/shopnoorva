@@ -39,6 +39,17 @@ export interface StoredOrder {
   duplicateOf?: string;
   trackingNumber?: string;
   invoiceUrl?: string;
+  /** First-party ad attribution (UTM / gclid) captured at order time */
+  attribution?: {
+    utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
+    utm_content?: string;
+    utm_term?: string;
+    gclid?: string;
+    landingPath?: string;
+    capturedAt?: string;
+  };
   createdAt: string;
 }
 

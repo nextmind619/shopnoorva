@@ -15,6 +15,7 @@ import { notifyAdminNewOrder } from "./admin-notify";
 import { aiConfig } from "./config";
 import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
+import { physicalUnitsForProduct } from "@/lib/catalog/pack-sku";
 
 export async function processIncomingOrder(input: {
   phone: string;
@@ -42,8 +43,19 @@ export async function processIncomingOrder(input: {
     fbp?: string;
     fbc?: string;
     ttclid?: string;
+    gclid?: string;
     eventSourceUrl?: string;
     referrerUrl?: string;
+    attribution?: {
+      utm_source?: string;
+      utm_medium?: string;
+      utm_campaign?: string;
+      utm_content?: string;
+      utm_term?: string;
+      gclid?: string;
+      landingPath?: string;
+      capturedAt?: string;
+    };
   };
 }): Promise<{
   success: boolean;
@@ -126,6 +138,14 @@ export async function processIncomingOrder(input: {
     fraudScore: 0,
     fraudFlags: [],
     isDuplicate: false,
+    attribution: input.meta?.attribution
+      ? {
+          ...input.meta.attribution,
+          gclid: input.meta.attribution.gclid || input.meta.gclid,
+        }
+      : input.meta?.gclid
+        ? { gclid: input.meta.gclid }
+        : undefined,
     createdAt: new Date().toISOString(),
   };
 
@@ -148,9 +168,9 @@ export async function processIncomingOrder(input: {
       city: order.city,
       address: order.address,
       notes: noteParts.length ? noteParts.join(" ") : undefined,
-      items: order.items.map((item, index, arr) => ({
+      items: lineItems.map((item, index, arr) => ({
         sku: item.sku,
-        quantity: item.quantity,
+        quantity: physicalUnitsForProduct(item.productId, item.sku, item.quantity),
         price:
           arr.length === 1
             ? order.total
