@@ -18,9 +18,11 @@ export function toCodplusLineItem(item: CodplusLineItem): CodplusLineItem {
     return { sku: item.sku, quantity: item.quantity, price: item.price };
   }
 
+  const units = packUnitCount(item.sku);
   return {
     sku: baseSkuFromPack(item.sku),
-    quantity: item.quantity * packUnitCount(item.sku),
+    // Orchestrator may already send physical units; only expand a 1-pack line.
+    quantity: item.quantity < units ? item.quantity * units : item.quantity,
     price: item.price,
   };
 }
