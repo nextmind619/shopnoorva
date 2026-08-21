@@ -319,7 +319,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "prod-heli-freshener",
     slug: "solar-helicopter-car-air-freshener",
-    sku: "NRV-HELI-FRESH-01",
+    sku: "Car-air-freshener",
     name: "Solar Helicopter Car Air Freshener",
     type: "Solar-powered decorative helicopter car air freshener",
     color: "Silver chrome helicopter, glossy black cockpit, matte black rotors, metallic red circular base",
@@ -339,7 +339,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "prod-sunshade",
     slug: "foldable-car-windshield-sunshade",
-    sku: "NRV-SUNSHADE-01",
+    sku: "Sun-and-heat-protection",
     name: "Foldable Umbrella Car Windshield Sunshade",
     type: "Foldable umbrella-style front windshield sunshade",
     color: "Silver reflective exterior, black interior, black leather-like pouch",
@@ -359,7 +359,7 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
   {
     id: "prod-mini-vacuum",
     slug: "cordless-mini-vacuum-keyboard",
-    sku: "NRV-VACMINI-01",
+    sku: "Car-Air-Duster",
     name: "Cordless Mini Vacuum Keyboard Duster",
     type: "2-in-1 cordless handheld mini vacuum and air duster for keyboards and electronics",
     color: "Matte Black",

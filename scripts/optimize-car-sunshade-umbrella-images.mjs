@@ -21,7 +21,7 @@ const HIRES_SRC = path.join(
 );
 
 const SLUG = "foldable-car-windshield-sunshade";
-const SKU = "NRV-SUNSHADE-01";
+const SKU = "Sun-and-heat-protection";
 const NAME = "Foldable Umbrella Car Windshield Sunshade";
 
 async function writeSet(inputBuffer, outDir, baseName, width, height, fit = "cover") {

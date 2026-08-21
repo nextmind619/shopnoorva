@@ -2825,7 +2825,7 @@
     },
     "solar-helicopter-car-air-freshener": {
       "slug": "solar-helicopter-car-air-freshener",
-      "sku": "NRV-HELI-FRESH-01",
+      "sku": "Car-air-freshener",
       "name": "Solar Helicopter Car Air Freshener",
       "images": {
         "02-premium-hero": {
@@ -2919,7 +2919,7 @@
     },
     "cordless-mini-vacuum-keyboard": {
       "slug": "cordless-mini-vacuum-keyboard",
-      "sku": "NRV-VACMINI-01",
+      "sku": "Car-Air-Duster",
       "name": "Cordless Mini Vacuum Keyboard Duster",
       "images": {
         "02-premium-hero": {
@@ -3025,7 +3025,7 @@
     },
     "foldable-car-windshield-sunshade": {
       "slug": "foldable-car-windshield-sunshade",
-      "sku": "NRV-SUNSHADE-01",
+      "sku": "Sun-and-heat-protection",
       "name": "Foldable Umbrella Car Windshield Sunshade",
       "images": {
         "02-premium-hero": {

@@ -15,7 +15,7 @@ const SOURCE = path.join(
   ".cursor/projects/c-Users-admin-tmp-shopnoorva-rabbit/assets/c__Users_admin_AppData_Roaming_Cursor_User_workspaceStorage_20fa50bb1ae1d39b0ebfd5bed5341b9e_images_1783596901395-13_a3ep_ff__2___1_-455bb478-2b7c-4a5a-ad9d-01c117355fc3.png"
 );
 const SLUG = "solar-helicopter-car-air-freshener";
-const SKU = "NRV-HELI-FRESH-01";
+const SKU = "Car-air-freshener";
 const NAME = "Solar Helicopter Car Air Freshener";
 
 async function writeSet(inputBuffer, outDir, baseName, width, height, fit = "cover") {

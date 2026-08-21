@@ -13,7 +13,7 @@ const ROOT = path.join(__dirname, "..");
 const PUBLIC = path.join(ROOT, "public");
 
 const SLUG = "cordless-mini-vacuum-keyboard";
-const SKU = "NRV-VACMINI-01";
+const SKU = "Car-Air-Duster";
 const PRODUCT_DIR = path.join(PUBLIC, "products", SLUG);
 const SIZE = 1280;
 
