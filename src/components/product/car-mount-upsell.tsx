@@ -5,7 +5,7 @@ import { Check, Plus } from "lucide-react";
 import type { Product } from "@/types";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
-import { CAR_MOUNT_UPSELL_PRICE } from "@/lib/catalog/car-mount-upsell";
+import { getCarMountUpsellPrice } from "@/lib/catalog/car-mount-upsell";
 
 interface CarMountUpsellProps {
   products: Product[];
@@ -31,8 +31,7 @@ export function CarMountUpsell({ products, selectedIds, onToggle }: CarMountUpse
             كمّل تجهيز سيارتك 🚗
           </h2>
           <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-md mx-auto">
-            اختار منتج إضافي واستافد من العرض الخاص بـ{" "}
-            <span className="font-black text-amber-300">{CAR_MOUNT_UPSELL_PRICE} DH فقط</span>
+            اختار منتج إضافي واستافد من <span className="font-black text-amber-300">العرض الخاص</span>
           </p>
         </header>
 
@@ -40,7 +39,8 @@ export function CarMountUpsell({ products, selectedIds, onToggle }: CarMountUpse
           {products.map((product) => {
             const added = selected.has(product.id);
             const originalPrice = product.price;
-            const showStrike = originalPrice > CAR_MOUNT_UPSELL_PRICE;
+            const offerPrice = getCarMountUpsellPrice(product.id);
+            const showStrike = originalPrice > offerPrice;
 
             return (
               <article
@@ -60,7 +60,7 @@ export function CarMountUpsell({ products, selectedIds, onToggle }: CarMountUpse
                     loading="lazy"
                   />
                   <span className="absolute top-2 start-2 rounded-full bg-amber-400 text-[#1a1408] text-[10px] font-black px-2 py-1">
-                    عرض {CAR_MOUNT_UPSELL_PRICE} DH
+                    عرض {offerPrice} DH
                   </span>
                 </div>
                 <div className="p-3.5 flex flex-col gap-2 flex-1">
@@ -74,7 +74,7 @@ export function CarMountUpsell({ products, selectedIds, onToggle }: CarMountUpse
                       </span>
                     )}
                     <p className="text-lg font-black text-amber-300 tabular-nums leading-none">
-                      {CAR_MOUNT_UPSELL_PRICE} DH فقط
+                      {offerPrice} DH فقط
                     </p>
                   </div>
                   <button
@@ -96,7 +96,7 @@ export function CarMountUpsell({ products, selectedIds, onToggle }: CarMountUpse
                     ) : (
                       <>
                         <Plus className="h-4 w-4" />
-                        أضف بـ {CAR_MOUNT_UPSELL_PRICE} DH
+                        أضف بـ {offerPrice} DH
                       </>
                     )}
                   </button>

@@ -29,8 +29,8 @@ import { PremiumProductGallery } from "@/components/product/product-gallery-prem
 import { ProductVariantPicker, isPackVariantSku } from "@/components/product/product-variant-picker";
 import { CarMountUpsell } from "@/components/product/car-mount-upsell";
 import {
-  CAR_MOUNT_UPSELL_PRICE,
   carMountUpsellOrderNote,
+  getCarMountUpsellPrice,
   getCarMountUpsellProducts,
   isCarMountUpsellHostSlug,
 } from "@/lib/catalog/car-mount-upsell";
@@ -285,7 +285,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
     () => carMountUpsells.filter((item) => upsellIds.includes(item.id)),
     [carMountUpsells, upsellIds],
   );
-  const upsellAddonTotal = selectedUpsells.length * CAR_MOUNT_UPSELL_PRICE;
+  const upsellAddonTotal = selectedUpsells.reduce((sum, item) => sum + getCarMountUpsellPrice(item.id), 0);
   const orderTotal = variant.price * orderQty + upsellAddonTotal;
   const combinedOrderNote = [isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined, carMountUpsellOrderNote(upsellIds)]
     .filter(Boolean)
@@ -517,7 +517,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             name: item.name.ar,
             image: resolveProductHero(item),
             quantity: 1,
-            unitPrice: CAR_MOUNT_UPSELL_PRICE,
+            unitPrice: getCarMountUpsellPrice(item.id),
           }))}
         />
 

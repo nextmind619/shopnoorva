@@ -17,7 +17,7 @@ import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
 import { physicalUnitsForProduct } from "@/lib/catalog/pack-sku";
 import {
-  CAR_MOUNT_UPSELL_PRICE,
+  getCarMountUpsellPrice,
   isEligibleCarMountUpsellProduct,
   orderHasCarMountUpsellHost,
   resolveCarMountUpsellQuantity,
@@ -178,11 +178,13 @@ export async function processIncomingOrder(input: {
     if (order.isDuplicate) noteParts.push("[DUPLICATE]");
     if (input.notes?.trim()) noteParts.push(input.notes.trim());
     const upsellLines = lineItems.filter(
-      (item) => isEligibleCarMountUpsellProduct(item.productId) && item.unitPrice === CAR_MOUNT_UPSELL_PRICE,
+      (item) =>
+        isEligibleCarMountUpsellProduct(item.productId) &&
+        item.unitPrice === getCarMountUpsellPrice(item.productId),
     );
     if (upsellLines.length > 0 && !input.notes?.includes("عرض Upsell")) {
       noteParts.push(
-        `عرض Upsell ${CAR_MOUNT_UPSELL_PRICE} DH: ${upsellLines.map((item) => item.name).join(" + ")}`,
+        `عرض Upsell: ${upsellLines.map((item) => `${item.name} (${item.unitPrice} DH)`).join(" + ")}`,
       );
     }
 

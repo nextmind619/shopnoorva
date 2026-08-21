@@ -1,8 +1,17 @@
 import type { Product } from "@/types";
 import { getProductById } from "@/data/products";
 
-/** Fixed offer price used only as a line add-on on the two car-mount PDPs. Catalog prices stay unchanged. */
+/** Default offer price used only as a line add-on on the two car-mount PDPs. Catalog prices stay unchanged. */
 export const CAR_MOUNT_UPSELL_PRICE = 99;
+
+/** Per-SKU upsell prices. Anything not listed uses CAR_MOUNT_UPSELL_PRICE. */
+const CAR_MOUNT_UPSELL_PRICE_BY_ID: Record<string, number> = {
+  "prod-car-fan-sunshade": 149,
+};
+
+export function getCarMountUpsellPrice(productId: string): number {
+  return CAR_MOUNT_UPSELL_PRICE_BY_ID[productId] ?? CAR_MOUNT_UPSELL_PRICE;
+}
 
 /** Product pages that may attach the 99 DH car-accessory offer. */
 export const CAR_MOUNT_UPSELL_HOST_IDS = new Set(["prod-car-mount", "prod-car-mount-1plus1"]);
@@ -41,7 +50,7 @@ export function orderHasCarMountUpsellHost(productIds: readonly string[]): boole
 }
 
 /**
- * Server-side unit price. 99 DH applies only when a host car-mount is on the same order
+ * Server-side unit price. The upsell offer applies only when a host car-mount is on the same order
  * and the line is an allowlisted catalog car accessory. Direct purchases keep catalog price.
  */
 export function resolveCarMountUpsellUnitPrice(
@@ -52,7 +61,7 @@ export function resolveCarMountUpsellUnitPrice(
   if (!orderHasCarMountUpsellHost(orderProductIds)) return catalogPrice;
   if (!isEligibleCarMountUpsellProduct(productId)) return catalogPrice;
   if (isCarMountUpsellHostId(productId)) return catalogPrice;
-  return CAR_MOUNT_UPSELL_PRICE;
+  return getCarMountUpsellPrice(productId);
 }
 
 /** One unit per upsell SKU — prevents quantity abuse of the 99 DH offer. */
@@ -80,7 +89,7 @@ export function carMountUpsellOrderNote(selectedIds: readonly string[]): string 
   const names = selectedIds
     .map((id) => getProductById(id))
     .filter((product): product is Product => Boolean(product))
-    .map((product) => `${product.name.ar} (${CAR_MOUNT_UPSELL_PRICE} DH)`);
+    .map((product) => `${product.name.ar} (${getCarMountUpsellPrice(product.id)} DH)`);
   if (names.length === 0) return undefined;
-  return `عرض Upsell 99 DH: ${names.join(" + ")}`;
+  return `عرض Upsell: ${names.join(" + ")}`;
 }
