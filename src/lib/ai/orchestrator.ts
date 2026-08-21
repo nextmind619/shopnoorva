@@ -16,6 +16,13 @@ import { aiConfig } from "./config";
 import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
 import { physicalUnitsForProduct } from "@/lib/catalog/pack-sku";
+import {
+  CAR_MOUNT_UPSELL_PRICE,
+  isEligibleCarMountUpsellProduct,
+  orderHasCarMountUpsellHost,
+  resolveCarMountUpsellQuantity,
+  resolveCarMountUpsellUnitPrice,
+} from "@/lib/catalog/car-mount-upsell";
 
 export async function processIncomingOrder(input: {
   phone: string;
@@ -64,18 +71,28 @@ export async function processIncomingOrder(input: {
   order?: StoredOrder;
   invoiceUrl?: string;
 }> {
-  const lineItems = input.items.map((item) => {
+  const orderProductIds = input.items.map((item) => item.productId);
+  const seenUpsellIds = new Set<string>();
+  const lineItems = input.items.flatMap((item) => {
     const product = getProductById(item.productId);
     const variant = product?.variants.find((v) => v.id === item.variantId) || product?.variants[0];
     if (!product || !variant) throw new Error(`Invalid product ${item.productId}`);
-    return {
-      sku: variant.sku,
-      name: product.name.ar || product.name.fr,
-      quantity: item.quantity,
-      unitPrice: variant.price,
-      lineTotal: variant.price * item.quantity,
-      productId: product.id,
-    };
+    if (isEligibleCarMountUpsellProduct(product.id) && orderHasCarMountUpsellHost(orderProductIds)) {
+      if (seenUpsellIds.has(product.id)) return [];
+      seenUpsellIds.add(product.id);
+    }
+    const quantity = resolveCarMountUpsellQuantity(product.id, item.quantity, orderProductIds);
+    const unitPrice = resolveCarMountUpsellUnitPrice(product.id, variant.price, orderProductIds);
+    return [
+      {
+        sku: variant.sku,
+        name: product.name.ar || product.name.fr,
+        quantity,
+        unitPrice,
+        lineTotal: unitPrice * quantity,
+        productId: product.id,
+      },
+    ];
   });
 
   const locale = input.locale || "ar";
@@ -160,6 +177,14 @@ export async function processIncomingOrder(input: {
     const noteParts: string[] = [];
     if (order.isDuplicate) noteParts.push("[DUPLICATE]");
     if (input.notes?.trim()) noteParts.push(input.notes.trim());
+    const upsellLines = lineItems.filter(
+      (item) => isEligibleCarMountUpsellProduct(item.productId) && item.unitPrice === CAR_MOUNT_UPSELL_PRICE,
+    );
+    if (upsellLines.length > 0 && !input.notes?.includes("عرض Upsell")) {
+      noteParts.push(
+        `عرض Upsell ${CAR_MOUNT_UPSELL_PRICE} DH: ${upsellLines.map((item) => item.name).join(" + ")}`,
+      );
+    }
 
     const leadPayload = {
       orderNumber: order.orderNumber,

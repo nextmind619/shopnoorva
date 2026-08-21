@@ -49,6 +49,15 @@ interface ProductOrderFormProps {
   orderNote?: string;
   /** Override full-name placeholder */
   fullNamePlaceholder?: string;
+  /** Extra catalog lines added from a PDP upsell. Server recalculates prices. */
+  addonItems?: Array<{
+    productId: string;
+    variantId: string;
+    name: string;
+    image?: string;
+    quantity: number;
+    unitPrice: number;
+  }>;
 }
 
 type FormFields = { fullName: string; phone: string; address: string; city: string; streetAddress: string };
@@ -139,6 +148,7 @@ export function ProductOrderForm({
   summaryRows,
   orderNote,
   fullNamePlaceholder,
+  addonItems = [],
 }: ProductOrderFormProps) {
   const router = useRouter();
   const submitting = useRef(false);
@@ -185,7 +195,8 @@ export function ProductOrderForm({
   const productName = isFr ? product.name.fr : product.name.ar;
   const productImage = resolveProductHero(product);
   const shipping = 0;
-  const subtotal = variant.price * quantity;
+  const addonTotal = addonItems.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
+  const subtotal = variant.price * quantity + addonTotal;
   const total = subtotal + shipping;
   const totalFormatted = formatPriceNumber(total, locale);
 
@@ -268,7 +279,14 @@ export function ProductOrderForm({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: [{ productId: product.id, variantId: variant.id, quantity: Math.min(3, Math.max(1, quantity)) }],
+          items: [
+            { productId: product.id, variantId: variant.id, quantity: Math.min(3, Math.max(1, quantity)) },
+            ...addonItems.map((item) => ({
+              productId: item.productId,
+              variantId: item.variantId,
+              quantity: Math.min(3, Math.max(1, item.quantity)),
+            })),
+          ],
           shippingAddress: {
             fullName: form.fullName.trim(),
             phone,
@@ -301,11 +319,11 @@ export function ProductOrderForm({
 
         fbPurchase({
           eventId: purchaseEventId,
-          contentIds: [product.id],
+          contentIds: [product.id, ...addonItems.map((item) => item.productId)],
           value: total,
           currency: "MAD",
           orderId: data.orderNumber,
-          numItems: quantity,
+          numItems: quantity + addonItems.reduce((sum, item) => sum + item.quantity, 0),
           userData: {
             phone,
             firstName,
@@ -320,11 +338,11 @@ export function ProductOrderForm({
 
         ttCompletePayment({
           eventId: purchaseEventId,
-          contentIds: [product.id],
+          contentIds: [product.id, ...addonItems.map((item) => item.productId)],
           value: total,
           currency: "MAD",
           orderId: data.orderNumber,
-          numItems: quantity,
+          numItems: quantity + addonItems.reduce((sum, item) => sum + item.quantity, 0),
         });
 
         trackPurchase({
@@ -339,6 +357,13 @@ export function ProductOrderForm({
               quantity,
               currency: "MAD",
             },
+            ...addonItems.map((item) => ({
+              itemId: item.productId,
+              itemName: item.name,
+              price: item.unitPrice,
+              quantity: item.quantity,
+              currency: "MAD",
+            })),
           ],
           adsSendTo: getClientAdsSendTo(),
           phone,
@@ -349,7 +374,10 @@ export function ProductOrderForm({
           name: form.fullName.trim(),
           phone,
           address: addressValue,
-          product: productName,
+          product:
+            addonItems.length > 0
+              ? [productName, ...addonItems.map((item) => item.name)].join(" + ")
+              : productName,
           total: String(total),
           productId: product.id,
         });
@@ -398,7 +426,7 @@ export function ProductOrderForm({
         contentName={productName}
         value={total}
         currency="MAD"
-        numItems={quantity}
+        numItems={quantity + addonItems.reduce((sum, item) => sum + item.quantity, 0)}
       />
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -581,8 +609,28 @@ export function ProductOrderForm({
                 <p className="text-xs text-[#64748B] mt-0.5">
                   {t.qty}: {quantityLabel ?? quantity}
                 </p>
+                {addonItems.length > 0 && (
+                  <p className="text-xs font-bold text-[#0F172A] mt-0.5 tabular-nums">
+                    {formatPriceNumber(variant.price * quantity, locale)} {t.currency}
+                  </p>
+                )}
               </div>
             </div>
+            {addonItems.map((item) => (
+              <div key={item.productId} className="flex gap-3 items-center pt-1">
+                {item.image && (
+                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-[#E5E7EB] bg-white">
+                    <Image src={item.image} alt={item.name} fill className="object-cover" sizes="48px" />
+                  </div>
+                )}
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-bold text-black line-clamp-2">{item.name}</p>
+                  <p className="text-xs text-amber-700 font-black mt-0.5 tabular-nums">
+                    {formatPriceNumber(item.unitPrice, locale)} {t.currency}
+                  </p>
+                </div>
+              </div>
+            ))}
             <div className="flex justify-between text-sm font-semibold text-[#475569]">
               <span>{t.shipping}</span>
               <span className="text-emerald-600 font-bold">{t.free}</span>

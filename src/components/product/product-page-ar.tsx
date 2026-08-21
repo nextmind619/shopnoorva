@@ -27,6 +27,13 @@ import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
 import { ProductVariantPicker, isPackVariantSku } from "@/components/product/product-variant-picker";
+import { CarMountUpsell } from "@/components/product/car-mount-upsell";
+import {
+  CAR_MOUNT_UPSELL_PRICE,
+  carMountUpsellOrderNote,
+  getCarMountUpsellProducts,
+  isCarMountUpsellHostSlug,
+} from "@/lib/catalog/car-mount-upsell";
 
 const ProductOrderForm = dynamic(
   () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
@@ -222,6 +229,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const [qty, setQty] = useState(1);
   const [sticky, setSticky] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [upsellIds, setUpsellIds] = useState<string[]>([]);
 
   const name = product.name.ar;
   const discount = calculateDiscount(variant.price, variant.compareAtPrice);
@@ -268,6 +276,25 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const orderQty = isPack ? 1 : qty;
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
+  const showCarMountUpsell = isCarMountUpsellHostSlug(product.slug);
+  const carMountUpsells = useMemo(
+    () => (showCarMountUpsell ? getCarMountUpsellProducts() : []),
+    [showCarMountUpsell],
+  );
+  const selectedUpsells = useMemo(
+    () => carMountUpsells.filter((item) => upsellIds.includes(item.id)),
+    [carMountUpsells, upsellIds],
+  );
+  const upsellAddonTotal = selectedUpsells.length * CAR_MOUNT_UPSELL_PRICE;
+  const orderTotal = variant.price * orderQty + upsellAddonTotal;
+  const combinedOrderNote = [isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined, carMountUpsellOrderNote(upsellIds)]
+    .filter(Boolean)
+    .join(" | ") || undefined;
+  const toggleUpsell = useCallback((productId: string) => {
+    setUpsellIds((current) =>
+      current.includes(productId) ? current.filter((id) => id !== productId) : [...current, productId],
+    );
+  }, []);
   const reviewLimit = 3;
   const ctaClass = isLaser
     ? "w-full h-14 sm:h-16 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/35 transition-colors"
@@ -469,17 +496,29 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           {isBogo ? "اطلب 1 + 1 مجاناً" : "اطلب الآن"}
         </button>
 
+        {showCarMountUpsell && (
+          <CarMountUpsell products={carMountUpsells} selectedIds={upsellIds} onToggle={toggleUpsell} />
+        )}
+
         {/* 6. نموذج الطلب */}
         <ProductOrderForm
           product={product}
           variant={variant}
           quantity={orderQty}
           quantityLabel={isBogo ? "2 قطع" : undefined}
-          orderNote={isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined}
+          orderNote={combinedOrderNote}
           submitLabel={isBogo ? "أكد طلب 1 + 1 مجاناً" : undefined}
           formTitle={isBogo ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام" : undefined}
           formSubtitle={isBogo ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا." : undefined}
           summaryRows={isBogo ? [{ label: "العرض", value: "1 مدفوعة + 1 مجاناً" }] : undefined}
+          addonItems={selectedUpsells.map((item) => ({
+            productId: item.id,
+            variantId: item.variants[0]?.id || "",
+            name: item.name.ar,
+            image: resolveProductHero(item),
+            quantity: 1,
+            unitPrice: CAR_MOUNT_UPSELL_PRICE,
+          }))}
         />
 
         {/* 7. الفوائد */}
@@ -736,7 +775,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               {isBogo && (
                 <div className="min-w-0">
                   <p className="text-xs font-bold text-amber-200">1 + 1 مجاناً</p>
-                  <p className="text-sm font-black tabular-nums">{formatPriceNumber(variant.price, "ar")} DH</p>
+                  <p className="text-sm font-black tabular-nums">{formatPriceNumber(orderTotal, "ar")} DH</p>
                 </div>
               )}
               <button
@@ -746,8 +785,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               >
                 <ShoppingBag className="h-5 w-5" />
                 {isBogo
-                  ? `اطلب جوج — ${formatPriceNumber(variant.price, "ar")} درهم`
-                  : `اطلب الآن — ${formatPriceNumber(variant.price * orderQty, "ar")} درهم`}
+                  ? `اطلب جوج — ${formatPriceNumber(orderTotal, "ar")} درهم`
+                  : `اطلب الآن — ${formatPriceNumber(orderTotal, "ar")} درهم`}
               </button>
             </div>
           </motion.div>
