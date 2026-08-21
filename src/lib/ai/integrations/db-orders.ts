@@ -45,7 +45,11 @@ export async function persistOrderToDb(order: StoredOrder): Promise<void> {
         order.isDuplicate,
         order.trackingNumber || null,
         order.invoiceUrl || null,
-        JSON.stringify({ firstName: order.firstName, lastName: order.lastName }),
+        JSON.stringify({
+          firstName: order.firstName,
+          lastName: order.lastName,
+          attribution: order.attribution || null,
+        }),
         order.createdAt,
       ]
     );

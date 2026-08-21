@@ -15,6 +15,12 @@ import {
   trafficSourceLabel,
 } from "@/lib/analytics/traffic";
 import { generateInsights } from "@/lib/analytics/insights";
+import {
+  getGa4MeasurementId,
+  getGtmId,
+} from "@/lib/google/config";
+import { platformFromAttribution } from "@/lib/google/attribution";
+import type { StoredOrder } from "@/lib/ai/memory-store";
 import type {
   AnalyticsDashboardData,
   AnalyticsNotification,
@@ -63,11 +69,14 @@ function getPixelStatus(envValue: string | undefined): PixelStatus {
 }
 
 function buildPixels(): PixelConfig[] {
+  const ga4Id = getGa4MeasurementId();
+  const gtmId = getGtmId();
+
   const configs = [
     { id: "facebook", name: "Facebook Pixel", envKey: process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID },
     { id: "tiktok", name: "TikTok Pixel", envKey: process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID },
-    { id: "ga4", name: "Google Analytics 4", envKey: process.env.NEXT_PUBLIC_GA_ID },
-    { id: "gtm", name: "Google Tag Manager", envKey: process.env.NEXT_PUBLIC_GTM_ID },
+    { id: "ga4", name: "Google Analytics 4", envKey: ga4Id },
+    { id: "gtm", name: "Google Tag Manager", envKey: gtmId },
     { id: "snap", name: "Snap Pixel", envKey: process.env.NEXT_PUBLIC_SNAP_PIXEL_ID },
     { id: "pinterest", name: "Pinterest Pixel", envKey: process.env.NEXT_PUBLIC_PINTEREST_PIXEL_ID },
   ];
@@ -76,7 +85,8 @@ function buildPixels(): PixelConfig[] {
 
   return configs.map((c) => {
     const status = getPixelStatus(c.envKey);
-    const warning = c.id === "ga4" && process.env.NEXT_PUBLIC_GTM_ID ? "warning" : status;
+    // GA4 + GTM both configured can double-count if tags overlap — warn, keep separate
+    const warning = c.id === "ga4" && gtmId && ga4Id ? "warning" : status;
     return {
       id: c.id,
       name: c.name,
@@ -169,12 +179,52 @@ function buildTrafficSources(from: string, to: string): TrafficSourceItem[] {
     .sort((a, b) => b.visitors - a.visitors);
 }
 
+function resolveOrderPlatform(order: StoredOrder, logs: ReturnType<typeof logsInRange>): string | null {
+  // Prefer first-party attribution stored on the order (UTM / gclid)
+  const fromAttr = platformFromAttribution(order.attribution || null);
+  if (fromAttr) return fromAttr;
+
+  if (order.attribution?.utm_source) {
+    const params = new URLSearchParams();
+    params.set("utm_source", order.attribution.utm_source);
+    if (order.attribution.gclid) params.set("gclid", order.attribution.gclid);
+    const source = classifyTrafficSource("", params);
+    const platform = platformFromSource(source);
+    if (platform) return platform;
+  }
+
+  // Fallback: IP/time window match against security visitor logs (legacy)
+  const matchingLog = logs.find(
+    (l) => l.ip && isWithinRange(order.createdAt, l.createdAt, order.createdAt),
+  );
+  if (!matchingLog) return null;
+
+  let params: URLSearchParams | undefined;
+  try {
+    const url = new URL(
+      matchingLog.pathname.startsWith("http") ? matchingLog.pathname : `https://x${matchingLog.pathname}`,
+    );
+    params = url.searchParams;
+  } catch {
+    params = undefined;
+  }
+
+  return platformFromSource(classifyTrafficSource(matchingLog.referer, params));
+}
+
 function buildMarketing(from: string, to: string): MarketingPlatformMetrics[] {
   const logs = logsInRange(from, to);
   const platformOrders = new Map<string, { revenue: number; orders: number; clicks: number }>();
 
   for (const log of logs) {
-    const source = classifyTrafficSource(log.referer);
+    let params: URLSearchParams | undefined;
+    try {
+      const url = new URL(log.pathname.startsWith("http") ? log.pathname : `https://x${log.pathname}`);
+      params = url.searchParams;
+    } catch {
+      params = undefined;
+    }
+    const source = classifyTrafficSource(log.referer, params);
     const platform = platformFromSource(source);
     if (!platform) continue;
     const prev = platformOrders.get(platform) || { revenue: 0, orders: 0, clicks: 0 };
@@ -183,9 +233,7 @@ function buildMarketing(from: string, to: string): MarketingPlatformMetrics[] {
   }
 
   for (const order of ordersInRange(from, to)) {
-    const matchingLog = logs.find((l) => l.ip && isWithinRange(order.createdAt, l.createdAt, order.createdAt));
-    const source = classifyTrafficSource(matchingLog?.referer || "");
-    const platform = platformFromSource(source);
+    const platform = resolveOrderPlatform(order, logs);
     if (!platform) continue;
     const prev = platformOrders.get(platform) || { revenue: 0, orders: 0, clicks: 0 };
     prev.revenue += order.total;
@@ -202,6 +250,7 @@ function buildMarketing(from: string, to: string): MarketingPlatformMetrics[] {
 
   return defs.map(({ platform, label, color }) => {
     const data = platformOrders.get(platform) || { revenue: 0, orders: 0, clicks: 0 };
+    // Spend stays 0 until Google Ads API / manual spend is connected — never invent spend
     const spend = 0;
     return {
       platform,

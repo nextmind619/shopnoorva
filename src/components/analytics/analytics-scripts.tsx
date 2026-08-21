@@ -1,19 +1,21 @@
 import Script from "next/script";
 import { FacebookPixelScript } from "@/components/facebook/facebook-pixel-script";
 import { TikTokPixelScript } from "@/components/tiktok/tiktok-pixel-script";
+import { GoogleAnalyticsScript } from "@/components/google/google-analytics-script";
 
 /**
  * Third-party pixels load after the page is interactive / idle
  * so they never compete with LCP / FCP / INP.
- * If GTM is configured, skip raw GA to avoid double-loading analytics.
+ *
+ * GTM remains optional and separate from GA4.
+ * GA4 + Google Ads load via GoogleAnalyticsScript (runtime env).
  *
  * Meta Pixel lives in FacebookPixelScript (single PageView on init).
  * Ecommerce Meta events use `@/lib/facebook/events` with shared event_id.
+ * Google ecommerce events use `@/lib/google/events`.
  */
 export function AnalyticsScripts() {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  const loadGa = Boolean(gaId) && !gtmId;
 
   return (
     <>
@@ -37,15 +39,8 @@ export function AnalyticsScripts() {
         </>
       )}
 
-      {loadGa && (
-        <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="lazyOnload" />
-          <Script id="ga" strategy="lazyOnload">
-            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-            gtag('js',new Date());gtag('config','${gaId}');`}
-          </Script>
-        </>
-      )}
+      {/* GA4 + Google Ads (runtime IDs) + UTM/gclid capture */}
+      <GoogleAnalyticsScript />
 
       {/* Meta Pixel + PageView — dedicated module (no duplicate fbq init here) */}
       <FacebookPixelScript />
@@ -58,8 +53,7 @@ export function AnalyticsScripts() {
 
 /**
  * Generic multi-pixel helper for GTM / TikTok.
- * Prefer `@/lib/facebook/events` (fbViewContent, fbPurchase, …) for Meta so
- * event_id deduplication and CAPI mirroring stay correct.
+ * Prefer `@/lib/facebook/events` for Meta and `@/lib/google/events` for GA4.
  */
 export function trackEvent(event: string, data?: Record<string, unknown>) {
   if (typeof window === "undefined") return;

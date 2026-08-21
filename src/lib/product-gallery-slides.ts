@@ -100,6 +100,27 @@ const PRIMARY_GALLERY_OVERRIDES: Partial<Record<string, PremiumImageType[]>> = {
     "14-product-in-use",
     "10-features",
   ],
+  "solar-helicopter-car-air-freshener": [
+    "02-premium-hero",
+    "14-product-in-use",
+    "09-close-up",
+    "10-features",
+  ],
+  "foldable-car-windshield-sunshade": [
+    "02-premium-hero",
+    "01-hero-white-bg",
+    "14-product-in-use",
+    "09-close-up",
+    "11-package-contents",
+  ],
+  "cordless-mini-vacuum-keyboard": [
+    "02-premium-hero",
+    "01-hero-white-bg",
+    "03-lifestyle",
+    "09-close-up",
+    "14-product-in-use",
+    "11-package-contents",
+  ],
 };
 
 const PRIMARY_GALLERY_FALLBACKS: PremiumImageType[] = [

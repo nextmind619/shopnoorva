@@ -15,7 +15,7 @@ const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-kids-room": ["kids"],
   "cat-relaxation": ["relaxation"],
   "cat-gift-ideas": ["gift"],
-  "cat-study-office": ["calculator", "study"],
+  "cat-study-office": ["calculator", "study", "vacuum", "keyboard"],
 };
 
 export const products: Product[] = [
@@ -1004,7 +1004,7 @@ export const products: Product[] = [
       },
     ],
     upsellIds: ["prod-laser303", "prod-mx003"],
-    crossSellIds: ["prod-shiatsu", "prod-starbt", "prod-car-fan-sunshade"],
+    crossSellIds: ["prod-shiatsu", "prod-starbt", "prod-car-fan-sunshade", "prod-heli-freshener", "prod-sunshade"],
     seo: {
       title: L(
         "حامل هاتف مغناطيسي للسيارة Maidsail | 159 درهم | NOORVA المغرب",
@@ -1145,7 +1145,7 @@ export const products: Product[] = [
       },
     ],
     upsellIds: ["prod-laser303", "prod-mx003"],
-    crossSellIds: ["prod-shiatsu", "prod-starbt", "prod-car-fan-sunshade"],
+    crossSellIds: ["prod-shiatsu", "prod-starbt", "prod-car-fan-sunshade", "prod-heli-freshener", "prod-sunshade"],
     seo: {
       title: L(
         "حامل هاتف مغناطيسي للسيارة | 199 درهم | NOORVA المغرب",
@@ -1269,7 +1269,7 @@ export const products: Product[] = [
       },
     ],
     upsellIds: ["prod-laser303", "prod-mx003"],
-    crossSellIds: ["prod-shiatsu", "prod-starbt", "prod-car-fan-sunshade"],
+    crossSellIds: ["prod-shiatsu", "prod-starbt", "prod-car-fan-sunshade", "prod-heli-freshener", "prod-sunshade"],
     seo: {
       title: L(
         "حامل هاتف مغناطيسي للسيارة | اشترِ 1 وخذ 1 مجاناً | NOORVA",
@@ -1388,7 +1388,7 @@ export const products: Product[] = [
       },
     ],
     upsellIds: ["prod-car-mount", "prod-laser303"],
-    crossSellIds: ["prod-dual-cooler", "prod-car-mount"],
+    crossSellIds: ["prod-dual-cooler", "prod-car-mount", "prod-heli-freshener", "prod-sunshade"],
     seo: {
       title: L(
         "باك 2 في 1 مروحة سيارة + مظلة شمس | 249 درهم | NOORVA المغرب",
@@ -2015,6 +2015,363 @@ export const products: Product[] = [
       ),
     },
   },
+
+  {
+    id: "prod-heli-freshener",
+    slug: "solar-helicopter-car-air-freshener",
+    name: L(
+      "معطر سيارة شمسي بشكل هليكوبتر — راحة وديكور",
+      "Désodorisant Solaire Hélicoptère — Confort & Déco Voiture",
+      "Solar Helicopter Car Air Freshener — Comfort & Decor"
+    ),
+    shortDescription: L(
+      "معطر + ديكور هليكوبتر شمسي على الطابلوه · 169 درهم · توصيل مجاني والدفع عند الاستلام",
+      "Désodorisant + déco hélicoptère solaire sur le tableau de bord · 169 MAD · livraison gratuite et COD",
+      "Solar helicopter air freshener + dashboard decor · 169 MAD · free shipping and COD"
+    ),
+    description: L(
+      "معطر سيارة شمسي من NOORVA بتصميم هليكوبتر أنيق: جسم فضي كروم، مقصورة سوداء لامعة، وشفرات دوّارة سوداء فوق قاعدة حمراء معدنية مع لوحة شمسية. الشمس تشغّل الدوران بلا بطاريات، والرائحة تخرج من فتحات القاعدة — راحة في المقصورة وديكور فاخر في نفس الوقت. 169 درهم. توصيل مجاني في المغرب والدفع عند الاستلام.",
+      "Désodorisant solaire NOORVA en forme d'hélicoptère : corps chrome argenté, cockpit noir brillant, rotors noirs sur base rouge métallique avec panneau solaire. Le soleil fait tourner les pales sans piles, le parfum sort par les fentes de la base — confort et déco dans l'habitacle. 169 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA solar helicopter car air freshener: silver chrome body, glossy black cockpit, matte black rotors on a metallic red base with a solar panel. Sunlight spins the blades with no batteries, fragrance releases from the base vents — cabin comfort and luxury decor in one. 169 MAD. Free Morocco shipping, cash on delivery."
+    ),
+    categoryId: "cat-car-accessories",
+    price: 169,
+    compareAtPrice: 229,
+    sku: "NRV-HELI-FRESH-01",
+    stock: 80,
+    rating: 4.8,
+    reviewCount: 42,
+    soldCount: 260,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    warrantyMonths: 6,
+    problemEmoji: "🚁",
+    problem: L(
+      "ريحة السيارة كتعكر عليك الطريق والتابلوه باقي فارغ؟",
+      "L'habitacle sent mauvais et le tableau de bord reste vide?",
+      "Does your car smell stale and the dashboard look empty?"
+    ),
+    problemCause: L(
+      "المعطرات العادية كتخفي الرائحة بلا ديكور، والقطع الديكورية ما كتعطيش راحة",
+      "Les désodorisants classiques masquent l'odeur sans décorer, et les objets déco ne parfument pas",
+      "Plain fresheners hide odor without style, and decor pieces don't freshen the air"
+    ),
+    problemSolution: L(
+      "معطر + ديكور هليكوبتر شمسي فمنتج واحد",
+      "Parfum + déco hélicoptère solaire en un seul objet",
+      "Fragrance + solar helicopter decor in one piece"
+    ),
+    deepDescription: L(
+      "هليكوبتر مصغّر بجسم فضي كروم ومقصورة سوداء، مثبت على عمود فوق قاعدة حمراء دائرية. سطح القاعدة لوحة شمسية داكنة تشغّل دوران الشفرات مع ضوء الشمس. ثلاث فتحات جانبية تُخرج الرائحة داخل المقصورة. يوضع في وسط الطابلوه خلف الزجاج الأمامي — راحة يومية وقطعة ديكور تلفت النظر.",
+      "Mini-hélicoptère chrome argenté et cockpit noir, monté sur une base rouge ronde. Panneau solaire sombre sur le dessus : les pales tournent au soleil. Trois fentes latérales diffusent le parfum. Se pose au centre du tableau de bord derrière le pare-brise — confort quotidien et objet déco.",
+      "Miniature chrome-silver helicopter with a black cockpit, mounted on a round metallic-red base. Dark solar panel on top spins the rotors in sunlight. Three side vents release fragrance. Sits at the center of the dashboard behind the windshield — daily comfort and a showpiece."
+    ),
+    tags: ["car", "air-freshener", "solar", "decor", "gift", "new", "accessories", "helicopter"],
+    benefits: [
+      L("راحة في السيارة — ريحة منعشة طول الطريق", "Confort en voiture — parfum frais tout le trajet", "In-car comfort — fresh scent the whole ride"),
+      L("ديكور أنيق — هليكوبتر كروم يزيّن الطابلوه", "Déco élégante — hélicoptère chrome sur le tableau de bord", "Elegant decor — chrome helicopter on the dashboard"),
+      L("طاقة شمسية — الشفرات كيدورو بلا بطاريات", "Énergie solaire — pales qui tournent sans piles", "Solar powered — rotors spin with no batteries"),
+      L("هدية عملية — راحة وشكل فاخر فمنتج واحد", "Cadeau utile — confort et look premium en un", "Practical gift — comfort and a premium look in one"),
+    ],
+    features: [
+      L("تصميم هليكوبتر فاخر بجسم كروم فضي", "Design hélicoptère premium chrome argenté", "Premium helicopter design with silver chrome body"),
+      L("لوحة شمسية تشغّل دوران الشفرات", "Panneau solaire pour la rotation des pales", "Solar panel powers rotor spin"),
+      L("قاعدة حمراء معدنية مع فتحات عطر", "Base rouge métallique avec fentes parfum", "Metallic red base with fragrance vents"),
+      L("مقصورة سوداء لامعة وشفرات سوداء", "Cockpit noir brillant et rotors noirs", "Glossy black cockpit and black rotors"),
+      L("يوضع على لوحة القيادة خلف الزجاج", "Pose sur le tableau de bord derrière le pare-brise", "Sits on the dashboard behind the windshield"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("معطر سيارة شمسي ديكوري", "Désodorisant solaire déco", "Solar decorative car freshener") },
+      { label: L("التصميم", "Design", "Design"), value: L("هليكوبتر مصغّر", "Mini-hélicoptère", "Miniature helicopter") },
+      { label: L("اللون", "Couleur", "Color"), value: L("كروم فضي + قاعدة حمراء", "Chrome argent + base rouge", "Silver chrome + red base") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("شمسية — بلا بطاريات", "Solaire — sans piles", "Solar — no batteries") },
+      { label: L("الاستخدام", "Utilisation", "Usage"), value: L("لوحة القيادة / خلف الزجاج", "Tableau de bord / pare-brise", "Dashboard / behind windshield") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("6 أشهر", "6 mois", "6 months") },
+    ],
+    packageIncludes: [
+      L("معطر سيارة شمسي بشكل هليكوبتر", "Désodorisant solaire hélicoptère", "Solar helicopter car air freshener"),
+    ],
+    howToUse: L(
+      "نظّف وسط الطابلوه، ضع القاعدة الحمراء خلف الزجاج الأمامي في مكان تصله الشمس. الشفرات تدور تلقائياً مع الضوء، والرائحة تخرج من الفتحات الجانبية. لا تحجب اللوحة الشمسية.",
+      "Nettoyez le centre du tableau de bord, posez la base rouge derrière le pare-brise au soleil. Les pales tournent seules à la lumière, le parfum sort par les fentes. Ne couvrez pas le panneau solaire.",
+      "Clean the center of the dashboard, place the red base behind the windshield in sunlight. Rotors spin automatically in light, fragrance exits the side vents. Do not cover the solar panel."
+    ),
+    lifestyleScenes: [
+      { id: "commute", emoji: "🚗", title: L("التنقل اليومي", "Trajet quotidien", "Daily commute"), description: L("ريحة منعشة وديكور قدامك فالطريق", "Parfum frais et déco devant vous", "Fresh scent and decor in front of you") },
+      { id: "dashboard", emoji: "✨", title: L("ديكور الطابلوه", "Déco tableau de bord", "Dashboard decor"), description: L("هليكوبتر كروم يلفت النظر", "Hélicoptère chrome qui attire l'œil", "Chrome helicopter that stands out") },
+      { id: "solar", emoji: "☀️", title: L("طاقة شمسية", "Énergie solaire", "Solar power"), description: L("الشفرات كيدورو مع الشمس بلا بطاريات", "Pales qui tournent au soleil, sans piles", "Rotors spin in the sun, no batteries") },
+      { id: "gift", emoji: "🎁", title: L("هدية", "Cadeau", "Gift"), description: L("راحة وديكور — فكرة هدية زوينة", "Confort et déco — belle idée cadeau", "Comfort and decor — a great gift idea") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-heli-freshener",
+        name: L("هليكوبتر شمسي — 169 درهم", "Hélicoptère solaire — 169 MAD", "Solar helicopter — 169 MAD"),
+        price: 169,
+        compareAtPrice: 229,
+        sku: "NRV-HELI-FRESH-01",
+        stock: 80,
+      },
+    ],
+    upsellIds: ["prod-car-mount-1plus1", "prod-car-fan-sunshade"],
+    crossSellIds: ["prod-car-mount", "prod-shiatsu", "prod-sunshade"],
+    seo: {
+      title: L(
+        "معطر سيارة شمسي هليكوبتر | راحة وديكور | 169 درهم | NOORVA",
+        "Désodorisant Solaire Hélicoptère | 169 MAD | NOORVA",
+        "Solar Helicopter Car Air Freshener | 169 MAD | NOORVA"
+      ),
+      description: L(
+        "معطر سيارة شمسي بشكل هليكوبتر: راحة في المقصورة وديكور أنيق على الطابلوه. 169 درهم. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Désodorisant solaire hélicoptère : confort dans l'habitacle et déco élégante. 169 MAD. Livraison gratuite et COD au Maroc.",
+        "Solar helicopter car air freshener: cabin comfort and elegant dashboard decor. 169 MAD. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-sunshade",
+    slug: "foldable-car-windshield-sunshade",
+    name: L(
+      "مظلة شمس أمامية للسيارة قابلة للطي — حماية من الحر والأشعة",
+      "Pare-soleil Pare-brise Pliable Type Parapluie — Anti-chaleur",
+      "Foldable Umbrella Car Windshield Sunshade — Heat & UV Protection"
+    ),
+    shortDescription: L(
+      "مظلة عاكسة للزجاج الأمامي · تطوى كالمظلة · 149 درهم · توصيل مجاني والدفع عند الاستلام",
+      "Pare-soleil réfléchissant pour pare-brise · pliable type parapluie · 149 MAD · livraison gratuite et COD",
+      "Reflective windshield sunshade · folds like an umbrella · 149 MAD · free shipping and COD"
+    ),
+    description: L(
+      "مظلة شمس أمامية من NOORVA بتصميم مظلة قابلة للطي: وجه فضي عاكس يبعد الحر والأشعة عن المقصورة، ووجه داخلي أسود، مع حقيبة جلد أسود للتخزين. تركيب ساهل من داخل السيارة على الزجاج الأمامي — تفتحها كالمظلة وتطويها في ثوانٍ. مثالية للوقوف تحت الشمس في الصيف المغربي. 149 درهم. توصيل مجاني في المغرب والدفع عند الاستلام.",
+      "Pare-soleil pare-brise NOORVA type parapluie pliable : face argentée réfléchissante, intérieur noir, pochette cuir noir. Installation facile de l'intérieur — s'ouvre et se plie en secondes. Idéal au stationnement sous le soleil marocain. 149 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA umbrella-style foldable windshield sunshade: silver reflective exterior, black interior, black leather-like carry pouch. Easy install from inside — opens and folds in seconds. Ideal for parking in Moroccan summer sun. 149 MAD. Free Morocco shipping, cash on delivery."
+    ),
+    categoryId: "cat-car-accessories",
+    price: 149,
+    compareAtPrice: 229,
+    sku: "NRV-SUNSHADE-01",
+    stock: 85,
+    rating: 4.8,
+    reviewCount: 6,
+    soldCount: 240,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    warrantyMonths: 6,
+    problemEmoji: "☀️",
+    problem: L(
+      "السيارة كتحمّى بزاف ملي كتوقفها فالشمس؟",
+      "La voiture surchauffe dès que vous la garez au soleil?",
+      "Does your car overheat as soon as you park in the sun?"
+    ),
+    problemCause: L(
+      "الزجاج الأمامي كيدخل الشمس والحر مباشرة للمقصورة والطابلوه",
+      "Le pare-brise laisse entrer soleil et chaleur directement dans l'habitacle",
+      "The windshield lets sun and heat straight into the cabin and dashboard"
+    ),
+    problemSolution: L(
+      "مظلة عاكسة فضية تطوى كالمظلة — حر أقل ومقصورة أبرد",
+      "Pare-soleil argenté pliable type parapluie — moins de chaleur, habitacle plus frais",
+      "Silver reflective umbrella shade — less heat, cooler cabin"
+    ),
+    deepDescription: L(
+      "تصميم مظلة مستطيلة بإطار أضلاع معدنية ومقبض أسود قصير: الوجه الخارجي فضي عاكس يبعد أشعة الشمس، والوجه الداخلي أسود. تُركَّب من الداخل على الزجاج الأمامي بدون لاصق. تطوى في حقيبة جلد أسود مضغوطة توضع في الباب أو الصندوق. تقلّل حرارة المقاعد والطابلوه بعد الوقوف تحت الشمس.",
+      "Forme rectangulaire type parapluie, armatures métalliques et poignée noire courte : extérieur argent réfléchissant, intérieur noir. Se pose de l'intérieur sur le pare-brise, sans adhésif. Se range dans une pochette cuir noire compacte. Réduit la chaleur des sièges et du tableau de bord après stationnement au soleil.",
+      "Rectangular umbrella frame with metal ribs and a short black handle: silver reflective exterior, black interior. Installs from inside on the windshield with no adhesive. Folds into a compact black leather-like pouch. Cuts seat and dashboard heat after parking in the sun."
+    ),
+    tags: ["car", "sunshade", "summer", "umbrella", "uv", "gift", "new", "accessories"],
+    benefits: [
+      L("تقلّل حرارة المقصورة بعد الوقوف تحت الشمس", "Réduit la chaleur de l'habitacle après stationnement", "Reduces cabin heat after parking in the sun"),
+      L("وجه فضي عاكس يحمي الطابلوه من الأشعة", "Face argentée qui protège le tableau de bord", "Silver face protects the dashboard from UV"),
+      L("تفتح وتطوى كالمظلة في ثوانٍ", "S'ouvre et se plie comme un parapluie en secondes", "Opens and folds like an umbrella in seconds"),
+      L("حقيبة جلد أسود للتخزين في الباب أو الصندوق", "Pochette cuir noire pour la portière ou le coffre", "Black leather pouch for the door pocket or trunk"),
+      L("149 درهم — حماية صيفية بسعر واضح", "149 MAD — protection d'été à prix clair", "149 MAD — clear summer protection price"),
+    ],
+    features: [
+      L("تصميم مظلة قابل للطي للزجاج الأمامي", "Design parapluie pliable pour pare-brise", "Foldable umbrella design for the windshield"),
+      L("وجه فضي عاكس للشمس والحر", "Face argentée réfléchissante anti-chaleur", "Silver reflective sun- and heat-facing side"),
+      L("وجه داخلي أسود", "Intérieur noir", "Black interior face"),
+      L("إطار أضلاع معدنية ومقبض قصير", "Armatures métalliques et poignée courte", "Metal rib frame and short handle"),
+      L("حقيبة تخزين جلد أسود", "Pochette de rangement cuir noir", "Black leather-like storage pouch"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("مظلة شمس أمامية قابلة للطي", "Pare-soleil parapluie pliable", "Foldable umbrella windshield sunshade") },
+      { label: L("اللون", "Couleur", "Color"), value: L("فضي عاكس / أسود", "Argent réfléchissant / noir", "Reflective silver / black") },
+      { label: L("التركيب", "Installation", "Install"), value: L("من الداخل على الزجاج الأمامي", "De l'intérieur sur le pare-brise", "From inside on the windshield") },
+      { label: L("التخزين", "Rangement", "Storage"), value: L("حقيبة جلد أسود مضغوطة", "Pochette cuir noire compacte", "Compact black leather pouch") },
+      { label: L("الاستخدام", "Utilisation", "Usage"), value: L("وقوف تحت الشمس / صيف", "Stationnement au soleil / été", "Parking in sun / summer") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("6 أشهر", "6 mois", "6 months") },
+    ],
+    packageIncludes: [
+      L("مظلة شمس أمامية قابلة للطي", "Pare-soleil pare-brise pliable", "Foldable front windshield sunshade"),
+      L("حقيبة حمل جلد أسود", "Pochette de transport cuir noir", "Black leather-like carry pouch"),
+    ],
+    howToUse: L(
+      "افتح المظلة من المقبض، ثبّتها من داخل السيارة على الزجاج الأمامي والوجه الفضي للخارج (نحو الشمس). المقبض يرتكز على الطابلوه. بعد الاستعمال اطوها كالمظلة وضعها في الحقيبة السوداء.",
+      "Ouvrez le pare-soleil par la poignée, fixez-le de l'intérieur sur le pare-brise, face argentée vers l'extérieur. La poignée repose sur le tableau de bord. Après usage, pliez-le comme un parapluie et rangez-le dans la pochette noire.",
+      "Open the shade by the handle, install it from inside on the windshield with the silver side facing out. The handle rests on the dashboard. After use, fold it like an umbrella and store it in the black pouch."
+    ),
+    lifestyleScenes: [
+      { id: "parking", emoji: "🅿️", title: L("الوقوف تحت الشمس", "Stationnement au soleil", "Parking in sun"), description: L("المظلة تبعد الحر عن المقاعد والطابلوه", "Le pare-soleil limite la chaleur sièges et tableau", "Shade keeps seats and dashboard cooler") },
+      { id: "summer", emoji: "☀️", title: L("الصيف", "Été", "Summer"), description: L("رفيقك ضد الشمس داخل السيارة", "Votre allié anti-soleil en voiture", "Your in-car sun companion") },
+      { id: "travel", emoji: "🧳", title: L("السفر", "Voyage", "Travel"), description: L("تطوى في الحقيبة — خذها معاك", "Se plie dans la pochette — emportez-la", "Folds into the pouch — take it anywhere") },
+      { id: "daily", emoji: "🚗", title: L("الاستعمال اليومي", "Usage quotidien", "Daily use"), description: L("ثوانٍ للفتح والطي بعد كل وقوف", "Secondes pour ouvrir et plier à chaque arrêt", "Seconds to open and fold after every stop") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-sunshade",
+        name: L("مظلة شمس أمامية — 149 درهم", "Pare-soleil parapluie — 149 MAD", "Umbrella sunshade — 149 MAD"),
+        price: 149,
+        compareAtPrice: 229,
+        sku: "NRV-SUNSHADE-01",
+        stock: 85,
+      },
+    ],
+    upsellIds: ["prod-car-fan-sunshade", "prod-heli-freshener"],
+    crossSellIds: ["prod-car-mount", "prod-heli-freshener", "prod-car-fan-sunshade"],
+    seo: {
+      title: L(
+        "مظلة شمس أمامية للسيارة قابلة للطي | 149 درهم | NOORVA المغرب",
+        "Pare-soleil Pare-brise Pliable | 149 MAD | NOORVA Maroc",
+        "Foldable Car Windshield Sunshade | 149 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "مظلة شمس عاكسة للزجاج الأمامي بتصميم مظلة قابلة للطي بـ 149 درهم بدل 229. تقلّل حرارة السيارة. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Pare-soleil réfléchissant pliable type parapluie à 149 MAD au lieu de 229. Moins de chaleur en voiture. Livraison gratuite et COD au Maroc.",
+        "Foldable umbrella windshield sunshade for 149 MAD instead of 229. Cuts car heat. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-mini-vacuum",
+    slug: "cordless-mini-vacuum-keyboard",
+    name: L(
+      "مكنسة لاسلكية صغيرة 2 في 1 لتنظيف الكيبورد",
+      "Mini aspirateur sans fil 2-en-1 pour clavier",
+      "Cordless 2-in-1 Mini Keyboard Vacuum & Air Duster"
+    ),
+    shortDescription: L(
+      "مكنسة لاسلكية صغيرة للكيبورد والإلكترونيات · شفط + فرشاة · شحن USB · 149 درهم بدل 249 · شحن مجاني والدفع عند الاستلام",
+      "Mini aspirateur sans fil pour clavier et électronique · succion + brosse · USB · 149 MAD au lieu de 249 · livraison gratuite et COD",
+      "Cordless mini vacuum for keyboard and electronics · suction + brush · USB · 149 MAD instead of 249 · free shipping and COD"
+    ),
+    description: L(
+      "مكنسة لاسلكية صغيرة من NOORVA بتصميم قبضة يد سوداء مطفية: شفط قوي عبر فوهة طويلة مع فرشاة لتنظيف الكيبورد، اللاب توب، فتحات التهوية والإلكترونيات. حجرة غبار شفافة، فوهة ضيقة للشقوق، وكابل شحن USB. عرض الإطلاق: 149 درهم بدل 249 درهم. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Mini aspirateur sans fil NOORVA à poignée pistolet noire mate : succion puissante avec brosse pour clavier, laptop, aérations et électronique. Bac transparent, sucette fine, câble USB. Offre de lancement : 149 MAD au lieu de 249 MAD. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA cordless mini pistol-grip vacuum: strong suction with brush nozzle for keyboards, laptops, vents and electronics. Transparent dust cup, crevice tool, USB cable. Launch offer: 149 MAD instead of 249 MAD. Free Morocco shipping with cash on delivery."
+    ),
+    categoryId: "cat-study-office",
+    price: 149,
+    compareAtPrice: 249,
+    sku: "NRV-VACMINI-01",
+    stock: 72,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    warrantyMonths: 12,
+    problemEmoji: "⌨️",
+    problem: L(
+      "الكيبورد ديالك وسخ والغبار بين الأزرار؟",
+      "Clavier poussiéreux et miettes entre les touches?",
+      "Dusty keyboard with crumbs between the keys?"
+    ),
+    problemCause: L(
+      "المنديل كيمسح السطح والوسخ كايبقى تحت الأزرار وفي الشقوق",
+      "Un chiffon nettoie la surface, mais la saleté reste sous les touches",
+      "A cloth wipes the surface, but dirt stays under the keys and in crevices"
+    ),
+    problemSolution: L(
+      "مكنسة صغيرة لاسلكية بفوهة فرشاة تدخل بين الأزرار",
+      "Mini aspirateur sans fil avec brosse qui passe entre les touches",
+      "Cordless mini vacuum with a brush nozzle that reaches between keys"
+    ),
+    deepDescription: L(
+      "مكنسة مكتبية لاسلكية بقبضة مسدس سوداء مطفية: حجرة غبار شفافة، زناد تشغيل، وفوهة طويلة برأس فرشاة. كتشفط الغبار من الكيبورد الميكانيكي، اللاب توب، فتحات سيارة، والإلكترونيات الدقيقة. العلبة فيها فوهة ضيقة، رأس فرشاة، وكابل USB. حجم صغير يتحط فوق المكتب.",
+      "Mini aspirateur de bureau sans fil, poignée pistolet noire mate : bac transparent, gâchette, sucette longue à brosse. Aspire clavier mécanique, laptop, aérations auto et électronique. Inclus : sucette fine, brosse, câble USB. Format compact pour le bureau.",
+      "Cordless desk mini vacuum with a matte-black pistol grip: transparent dust cup, trigger, long brush-tip nozzle. Cleans mechanical keyboards, laptops, car vents and delicate electronics. Box includes crevice tool, brush head, USB cable. Compact enough to sit on the desk."
+    ),
+    tags: ["new", "desk", "gift", "vacuum", "cleaner", "keyboard", "office"],
+    benefits: [
+      L("تنظيف الكيبورد بين الأزرار بلا تفكيك", "Nettoyer entre les touches sans démonter", "Clean between keys without taking the keyboard apart"),
+      L("لاسلكية وسهلة الحمل بيد واحدة", "Sans fil, une seule main", "Cordless, one-hand use"),
+      L("شحن USB بلا بطاريات قابلة للرمي", "Charge USB, sans piles jetables", "USB charging, no disposable batteries"),
+      L("فوهة فرشاة + فوهة ضيقة للشقوق", "Brosse + sucette fine pour les recoins", "Brush nozzle + crevice tool for tight spots"),
+      L("مناسبة للسيارة والإلكترونيات", "Idéal voiture et électronique", "Fits car vents and electronics"),
+      L("حجم صغير فوق المكتب", "Format compact sur le bureau", "Compact desk size"),
+    ],
+    features: [
+      L("مكنسة لاسلكية 2 في 1 (شفط + فرشاة)", "Aspirateur 2-en-1 sans fil (succion + brosse)", "2-in-1 cordless vacuum (suction + brush)"),
+      L("فوهة طويلة برأس فرشاة للكيبورد", "Sucette longue à brosse pour clavier", "Long brush-tip nozzle for keyboards"),
+      L("فوهة ضيقة للشقوق والتهوية", "Sucette fine pour fentes et aérations", "Crevice tool for gaps and vents"),
+      L("حجرة غبار شفافة", "Bac à poussière transparent", "Transparent dust chamber"),
+      L("شحن USB", "Charge USB", "USB charging"),
+      L("تصميم أسود مطفي بقبضة يد", "Boîtier noir mat à poignée pistolet", "Matte black pistol-grip body"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("مكنسة صغيرة لاسلكية 2 في 1", "Mini aspirateur 2-en-1", "2-in-1 cordless mini vacuum") },
+      { label: L("الاستخدام", "Utilisation", "Usage"), value: L("كيبورد / لاب توب / سيارة / إلكترونيات", "Clavier / laptop / voiture / électronique", "Keyboard / laptop / car / electronics") },
+      { label: L("الطاقة", "Alimentation", "Power"), value: L("قابلة للشحن USB", "Rechargeable USB", "USB rechargeable") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أسود مطفي", "Noir mat", "Matte black") },
+      { label: L("الملحقات", "Accessoires", "Accessories"), value: L("فوهة ضيقة + فرشاة + كابل USB", "Sucette + brosse + câble USB", "Crevice tool + brush + USB cable") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
+    ],
+    packageIncludes: [
+      L("مكنسة لاسلكية صغيرة", "Mini aspirateur sans fil", "Cordless mini vacuum"),
+      L("فوهة ضيقة للشقوق", "Sucette fine", "Crevice tool"),
+      L("رأس فرشاة", "Tête brosse", "Brush attachment"),
+      L("كابل شحن USB", "Câble de charge USB", "USB charging cable"),
+    ],
+    howToUse: L(
+      "ركّب رأس الفرشاة أو الفوهة الضيقة، اضغط الزناد ومرّر الفوهة بين أزرار الكيبورد أو داخل التهوية. فرّغ حجرة الغبار بعد الاستعمال، وأعد الشحن عبر USB عند الحاجة.",
+      "Montez la brosse ou la sucette fine, appuyez sur la gâchette et passez entre les touches ou dans les aérations. Videz le bac après usage et rechargez en USB.",
+      "Fit the brush or crevice tool, press the trigger and run the nozzle between keys or into vents. Empty the dust cup after use and recharge via USB when needed."
+    ),
+    lifestyleScenes: [
+      { id: "desk", emoji: "⌨️", title: L("فوق المكتب", "Au bureau", "At the desk"), description: L("نظّف الكيبورد بين جلسات العمل", "Nettoyez le clavier entre deux sessions", "Clean the keyboard between work sessions") },
+      { id: "laptop", emoji: "💻", title: L("لاب توب", "Laptop", "Laptop"), description: L("شفط الغبار من الشاشة والمفاتيح", "Aspire poussière clavier et grilles", "Dust keys and laptop vents") },
+      { id: "car", emoji: "🚗", title: L("السيارة", "Voiture", "Car"), description: L("فتحات التهوية والكونسول", "Aérations et console", "Vents and center console") },
+      { id: "gift", emoji: "🎁", title: L("هدية عملية", "Cadeau utile", "Useful gift"), description: L("هدية صغيرة لكل من يخدم على المكتب", "Petit cadeau pour le bureau", "A small gift for anyone at a desk") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-mini-vacuum",
+        name: L("مكنسة لاسلكية للكيبورد", "Mini aspirateur clavier", "Keyboard mini vacuum"),
+        price: 149,
+        compareAtPrice: 249,
+        sku: "NRV-VACMINI-01",
+        stock: 72,
+      },
+    ],
+    upsellIds: ["prod-calc-tablet", "prod-shiatsu"],
+    crossSellIds: ["prod-dual-cooler", "prod-heli-freshener"],
+    seo: {
+      title: L(
+        "مكنسة لاسلكية للكيبورد | 149 درهم",
+        "Mini aspirateur sans fil pour clavier | 149 MAD",
+        "Cordless Mini Keyboard Vacuum | 149 MAD"
+      ),
+      description: L(
+        "مكنسة لاسلكية صغيرة 2 في 1 لتنظيف الكيبورد والإلكترونيات. شحن USB. عرض الإطلاق 149 درهم بدل 249. شحن مجاني والدفع عند الاستلام في المغرب.",
+        "Mini aspirateur 2-en-1 sans fil pour clavier et électronique. USB. Offre 149 MAD au lieu de 249. Livraison gratuite et COD au Maroc.",
+        "Cordless 2-in-1 mini vacuum for keyboards and electronics. USB charging. Launch price 149 MAD instead of 249. Free shipping and COD in Morocco."
+      ),
+    },
+  },
 ];
 
 export const reviews: ProductReview[] = [
@@ -2384,6 +2741,18 @@ export const reviews: ProductReview[] = [
   { id: "rs23", productId: "prod-shiatsu", author: "Karim Ouadghiri", city: "Casablanca", rating: 5, title: L("أفضل شراء", "Meilleur achat", "Best purchase"), content: L("جربت مساج رخيص من قبل، هادا الفرق واضح فالجودة والراحة.", "Après un massageur cheap, celui-ci marque vraiment la différence.", "After a cheap massager, this one clearly stands out."), date: "2026-06-10", verified: true },
   { id: "rs24", productId: "prod-shiatsu", author: "Asmae Bensalah", city: "Rabat", rating: 5, title: L("موصى به", "Je recommande", "Highly recommend"), content: L("للموظفين والطلبة زوين بزاف. كيهنّي الرقبة بسرعة.", "Parfait pour salariés et étudiants. Détend le cou rapidement.", "Perfect for employees and students. Relaxes the neck quickly."), date: "2026-06-08", verified: true },
   { id: "rs25", productId: "prod-shiatsu", author: "Hicham Toumi", city: "Marrakech", rating: 5, title: L("عرض يستاهل", "Offre à saisir", "Offer worth it"), content: L("خدّيتو بـ 399 بدل 549. الجودة فاخرة والاقتصاد واضح.", "Pris à 399 au lieu de 549. Qualité premium, vraie économie.", "Got it for 399 instead of 549. Premium quality, real savings."), date: "2026-06-06", verified: true },
+  { id: "rh1", productId: "prod-heli-freshener", author: "ياسين المنصوري", city: "الدار البيضاء", rating: 5, title: L("ديكور وريحة فنفس الوقت", "Déco et parfum ensemble", "Decor and scent together"), content: L("حطّيتو فالطابلوه والشفرات كيدورو مع الشمس. الريحة زوينة والشكل كروم فاخر.", "Posé sur le tableau de bord, les pales tournent au soleil. Bon parfum et chrome premium.", "On the dashboard, rotors spin in the sun. Nice scent and premium chrome."), date: "2026-08-12", verified: true, images: [resolveProductImage("solar-helicopter-car-air-freshener", "02-premium-hero", "thumbnail")] },
+  { id: "rh2", productId: "prod-heli-freshener", author: "سارة العلوي", city: "الرباط", rating: 5, title: L("هدية زوينة لراجلي", "Beau cadeau", "Great gift"), content: L("شريتو لراجلي. عجبو الهليكوبتر والسيارة ولاّت ريحتها نقية.", "Acheté pour mon mari. Il a adoré l'hélicoptère et la voiture sent mieux.", "Bought for my husband. He loved the helicopter and the car smells fresher."), date: "2026-08-10", verified: true },
+  { id: "rh3", productId: "prod-heli-freshener", author: "محمد التازي", city: "طنجة", rating: 5, title: L("بلا بطاريات", "Sans piles", "No batteries"), content: L("طاقة شمسية حقيقية. ملي كتكون الشمس الشفرات كيدورو وحدهم.", "Vraiment solaire. Dès qu'il y a du soleil, les pales tournent seules.", "Truly solar. In sunlight the rotors spin on their own."), date: "2026-08-08", verified: true, images: [resolveProductImage("solar-helicopter-car-air-freshener", "09-close-up", "thumbnail")] },
+  { id: "rh4", productId: "prod-heli-freshener", author: "أمينة الفاسي", city: "فاس", rating: 4, title: L("شكل أنيق", "Look élégant", "Elegant look"), content: L("أحسن من المعطرات الكرطون. غير خاصك تحطو فبلاصة الشمس.", "Bien mieux qu'un désodorisant carton. Il faut juste le mettre au soleil.", "Much better than a cardboard freshener. Just place it in the sun."), date: "2026-08-06", verified: true },
+  { id: "rh5", productId: "prod-heli-freshener", author: "خالد برادة", city: "مراكش", rating: 5, title: L("توصيل سريع", "Livraison rapide", "Fast delivery"), content: L("وصلني فـ 48 ساعة. الدفع عند الاستلام مريح والمنتج مطابق للصورة.", "Reçu en 48h. COD pratique et produit conforme à la photo.", "Received in 48h. COD was convenient and it matches the photo."), date: "2026-08-04", verified: true, images: [resolveProductImage("solar-helicopter-car-air-freshener", "14-product-in-use", "thumbnail")] },
+  { id: "rh6", productId: "prod-heli-freshener", author: "يوسف بنجلون", city: "مكناس", rating: 5, title: L("قيمة ممتازة", "Excellent rapport qualité-prix", "Great value"), content: L("بـ 169 درهم كتجمع ديكور ومعطر. أحسن من اللي كنت كنتسنّى.", "Pour 169 MAD, déco et parfum. Mieux que prévu.", "For 169 MAD you get decor and scent. Better than expected."), date: "2026-07-30", verified: true },
+  { id: "rs1", productId: "prod-sunshade", author: "ياسين المنصوري", city: "الدار البيضاء", rating: 5, title: L("السيارة ولاّت أبرد", "Voiture moins chaude", "Car stays cooler"), content: L("ركّحتها على الزجاج والوجه الفضي كيبعد الشمس. ملي رجعت للسيارة المقاعد ما كانوش حارقين.", "Installé sur le pare-brise, la face argentée bloque le soleil. En rentrant, les sièges n'étaient plus brûlants.", "Installed on the windshield, the silver side blocks the sun. Seats weren't burning when I came back."), date: "2026-08-16", verified: true, images: [resolveProductImage("foldable-car-windshield-sunshade", "14-product-in-use", "thumbnail")] },
+  { id: "rs2", productId: "prod-sunshade", author: "سارة العلوي", city: "الرباط", rating: 5, title: L("ساهلة بزاف", "Très facile", "Very easy"), content: L("كتفتح كالمظلة وتطوى فالحقيبة. ما بقيتش نعاني مع الكرتون اللي كيطّيح.", "Ça s'ouvre comme un parapluie et se range dans la pochette. Fini le carton qui tombe.", "Opens like an umbrella and folds into the pouch. No more cardboard that falls down."), date: "2026-08-14", verified: true },
+  { id: "rs3", productId: "prod-sunshade", author: "محمد التازي", city: "طنجة", rating: 5, title: L("قيمة ممتازة", "Excellent rapport qualité-prix", "Great value"), content: L("بـ 149 درهم الجودة واضحة. الحقيبة الجلد زوينة والتوصيل سريع.", "Pour 149 MAD la qualité est claire. Pochette cuir jolie, livraison rapide.", "For 149 MAD the quality is clear. Nice leather pouch, fast delivery."), date: "2026-08-12", verified: true, images: [resolveProductImage("foldable-car-windshield-sunshade", "11-package-contents", "thumbnail")] },
+  { id: "rs4", productId: "prod-sunshade", author: "أمينة الفاسي", city: "فاس", rating: 4, title: L("كتغطي الزجاج مزيان", "Bonne couverture", "Good coverage"), content: L("ناسبات سيارتي مزيان. غير خاصك توجه الوجه الفضي للخارج.", "Bien adapté à ma voiture. Il faut juste mettre la face argentée vers l'extérieur.", "Fits my car well. Just keep the silver side facing out."), date: "2026-08-10", verified: true },
+  { id: "rs5", productId: "prod-sunshade", author: "خالد برادة", city: "مراكش", rating: 5, title: L("مثالية فالصيف", "Parfaite en été", "Perfect in summer"), content: L("فمراكش الشمس قوية. المظلة فرّقات معايا بزاف والطابلوه ما بقاش كيسخّن.", "À Marrakech le soleil est fort. Le pare-soleil m'a bien aidé, le tableau de bord chauffe moins.", "In Marrakech the sun is intense. The shade helped a lot, dashboard heats less."), date: "2026-08-08", verified: true, images: [resolveProductImage("foldable-car-windshield-sunshade", "02-premium-hero", "thumbnail")] },
+  { id: "rs6", productId: "prod-sunshade", author: "يوسف بنجلون", city: "مكناس", rating: 5, title: L("توصيل والدفع عند الاستلام", "Livraison et COD", "Delivery and COD"), content: L("طلبت كاش عند الباب ووصلاتني فـ 48 ساعة. المنتج مطابق للصورة.", "Commandé en paiement à la livraison, reçu en 48h. Conforme à la photo.", "Ordered cash on delivery, received in 48h. Matches the photo."), date: "2026-08-06", verified: true },
 ];
 
 export const faqs: FAQ[] = [

@@ -5,6 +5,7 @@ import { ProductPageAr } from "@/components/product/product-page-ar";
 import { ProductPageVintageLantern } from "@/components/product/product-page-vintage-lantern";
 import { ProductPageWarmLedDecorLamp } from "@/components/product/product-page-warm-led-decor-lamp";
 import { ProductPageSolarCalculator } from "@/components/product/product-page-solar-calculator";
+import { ProductPageMiniVacuum } from "@/components/product/product-page-mini-vacuum";
 
 interface ProductPageClientProps {
   product: Product;
@@ -26,6 +27,10 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
 
   if (product.slug === "solar-calculator-lcd-notepad") {
     return <ProductPageSolarCalculator product={product} />;
+  }
+
+  if (product.slug === "cordless-mini-vacuum-keyboard") {
+    return <ProductPageMiniVacuum product={product} />;
   }
 
   return <ProductPageAr product={product} related={relatedProp} />;

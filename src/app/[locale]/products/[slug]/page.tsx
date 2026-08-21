@@ -14,6 +14,7 @@ export function generateStaticParams() {
 
 const SHIATSU_SLUG = "shiatsu-neck-shoulder-massager";
 const CALCULATOR_SLUG = "solar-calculator-lcd-notepad";
+const VACUUM_SLUG = "cordless-mini-vacuum-keyboard";
 
 const SHIATSU_KEYWORDS = [
   "جهاز تدليك الرقبة",
@@ -40,6 +41,17 @@ const CALCULATOR_KEYWORDS = [
   "NOORVA",
 ];
 
+const VACUUM_KEYWORDS = [
+  "مكنسة لاسلكية",
+  "مكنسة كيبورد",
+  "تنظيف الكيبورد",
+  "مكنسة صغيرة",
+  "شفط الغبار",
+  "إلكترونيات",
+  "الدفع عند الاستلام",
+  "NOORVA",
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -53,13 +65,16 @@ export async function generateMetadata({
   const canonical = `${SITE_URL}/ar/products/${product.slug}`;
   const isShiatsu = product.slug === SHIATSU_SLUG;
   const isCalculator = product.slug === CALCULATOR_SLUG;
+  const isVacuum = product.slug === VACUUM_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
   const name = product.name.ar;
   const imageAlt = isCalculator
     ? "آلة حاسبة إلكترونية مع لوح كتابة إلكتروني وقلم للطالب والمكتب"
-    : name;
+    : isVacuum
+      ? "مكنسة لاسلكية صغيرة لتنظيف الكيبورد والإلكترونيات"
+      : name;
 
   return {
     title,
@@ -68,7 +83,9 @@ export async function generateMetadata({
       ? [...SHIATSU_KEYWORDS, ...product.tags]
       : isCalculator
         ? [...CALCULATOR_KEYWORDS, ...product.tags]
-        : product.tags,
+        : isVacuum
+          ? [...VACUUM_KEYWORDS, ...product.tags]
+          : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
@@ -295,6 +312,76 @@ function getProductFaqs(slug: string, warrantyMonths: number) {
     ];
   }
 
+  if (slug === "solar-helicopter-car-air-freshener") {
+    return [
+      {
+        q: "هل يوجد الدفع عند الاستلام؟",
+        a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب.",
+      },
+      {
+        q: "واش التوصيل مجاني؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب.",
+      },
+      {
+        q: "كيفاش كيخدم؟",
+        a: "حطّو على وسط الطابلوه قدام الزجاج. الشمس كتشغّل دوران الشفرات، والرائحة كتخرج من فتحات القاعدة الحمراء.",
+      },
+      {
+        q: "واش خاصو بطاريات؟",
+        a: "لا. الطاقة شمسية — الشفرات كيدورو مع ضوء الشمس بلا بطاريات وبلا شحن.",
+      },
+      {
+        q: "شنو كيعطي المنتج؟",
+        a: "جوج في واحد: معطر كيعطي راحة فالمقصورة، وهليكوبتر كروم ديكور أنيق فوق الطابلوه.",
+      },
+      {
+        q: "شنو الثمن؟",
+        a: "169 درهم بدل 229 درهم. توصيل مجاني والدفع عند الاستلام.",
+      },
+      {
+        q: "شنو كاين فالعلبة؟",
+        a: "معطر سيارة شمسي بشكل هليكوبتر.",
+      },
+      {
+        q: "كم مدة التوصيل وهل فيه ضمان؟",
+        a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${warrantyMonths} شهر واستبدال خلال 7 أيام عند وجود عيب.`,
+      },
+    ];
+  }
+
+  if (slug === "foldable-car-windshield-sunshade") {
+    return [
+      {
+        q: "هل يوجد الدفع عند الاستلام؟",
+        a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب.",
+      },
+      {
+        q: "واش التوصيل مجاني؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب.",
+      },
+      {
+        q: "كيفاش كنركّبها؟",
+        a: "افتحها كالمظلة من المقبض، ثبّتها من داخل السيارة على الزجاج الأمامي والوجه الفضي للخارج. المقبض يرتكز على الطابلوه.",
+      },
+      {
+        q: "واش كتخدم على جميع السيارات؟",
+        a: "نعم، الشكل المستطيل مناسب لمعظم الزجاج الأمامي للسيارات السياحية. تطوى بسهولة إذا كان الزجاج أصغر.",
+      },
+      {
+        q: "شنو الثمن؟",
+        a: "149 درهم بدل 229 درهم. توصيل مجاني والدفع عند الاستلام.",
+      },
+      {
+        q: "شنو كاين فالعلبة؟",
+        a: "مظلة شمس أمامية قابلة للطي وحقيبة حمل جلد أسود.",
+      },
+      {
+        q: "كم مدة التوصيل وهل فيه ضمان؟",
+        a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${warrantyMonths} شهر واستبدال خلال 7 أيام عند وجود عيب.`,
+      },
+    ];
+  }
+
   if (slug === "warm-led-decor-lamp") {
     return [
       {
@@ -361,6 +448,47 @@ function getProductFaqs(slug: string, warrantyMonths: number) {
     ];
   }
 
+  if (slug === VACUUM_SLUG) {
+    return [
+      {
+        q: "واش لاسلكية؟",
+        a: "نعم. مكنسة صغيرة لاسلكية قابلة للشحن عبر USB. ما كتحتاجش فيشة وأنت كتخدم.",
+      },
+      {
+        q: "واش تنظّف الكيبورد مزيان؟",
+        a: "نعم. الفوهة الطويلة مع الفرشاة كتدخل بين الأزرار وكتشفط الغبار والفتات من الكيبورد واللاب توب.",
+      },
+      {
+        q: "شنو كيجي فالعلبة؟",
+        a: "المكنسة، فوهة ضيقة للشقوق، رأس فرشاة، وكابل شحن USB.",
+      },
+      {
+        q: "واش نقدر نستعملها فالسيارة؟",
+        a: "نعم. مناسبة لفتحات التهوية، الكونسول، والمساحات الضيقة فالسيارة.",
+      },
+      {
+        q: "كيفاش كتشحن؟",
+        a: "كتشحن بكابل USB. وصّلها بالشاحن، الباور بانك، أو اللاب توب.",
+      },
+      {
+        q: "واش 2 في 1؟",
+        a: "نعم. شفط الغبار + رأس فرشاة لتنظيف الإلكترونيات والأسطح الدقيقة.",
+      },
+      {
+        q: "شحال مدة التوصيل؟",
+        a: "24–48 ساعة للمدن الكبرى، و2–4 أيام لباقي المدن. التوصيل لجميع مدن المغرب.",
+      },
+      {
+        q: "واش كاين الدفع عند الاستلام؟",
+        a: "نعم. الدفع عند الاستلام فقط. ما كخلص والو دابا — كتخلص كاش ملي توصلك الطلبية.",
+      },
+      {
+        q: "واش التوصيل مجاني؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب.",
+      },
+    ];
+  }
+
   return [];
 }
 
@@ -383,6 +511,7 @@ export default async function ProductPage({
   const productFaqs = getProductFaqs(product.slug, product.warrantyMonths || 12);
   const isShiatsu = product.slug === SHIATSU_SLUG;
   const isCalculator = product.slug === CALCULATOR_SLUG;
+  const isVacuum = product.slug === VACUUM_SLUG;
   const reviews = isShiatsu ? getReviewsForProduct(product.id) : [];
 
   return (
@@ -396,7 +525,7 @@ export default async function ProductPage({
           image: [hero],
           sku: product.sku,
           brand: { "@type": "Brand", name: "NOORVA" },
-          color: isShiatsu ? "أخضر غابة" : isCalculator ? "أسود مطفي" : undefined,
+          color: isShiatsu ? "أخضر غابة" : isCalculator || isVacuum ? "أسود مطفي" : undefined,
           material: isShiatsu ? "ABS + جلد PU + سيليكون غذائي" : undefined,
           offers: {
             "@type": "Offer",
@@ -407,7 +536,7 @@ export default async function ProductPage({
             priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
             itemCondition: "https://schema.org/NewCondition",
             shippingDetails:
-              isShiatsu || isCalculator
+              isShiatsu || isCalculator || isVacuum
                 ? {
                     "@type": "OfferShippingDetails",
                     shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },

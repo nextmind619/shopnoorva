@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T11:34:36.380Z",
+  "generatedAt": "2026-08-20T16:31:52.293Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -2820,6 +2820,312 @@
         "09-close-up": "ai-generated-locked-shape",
         "14-product-in-use": "ai-generated-locked-shape",
         "10-features": "ai-generated-locked-shape",
+        "20-social-media-banner": "client-reference"
+      }
+    },
+    "solar-helicopter-car-air-freshener": {
+      "slug": "solar-helicopter-car-air-freshener",
+      "sku": "NRV-HELI-FRESH-01",
+      "name": "Solar Helicopter Car Air Freshener",
+      "images": {
+        "02-premium-hero": {
+          "original": "/products/solar-helicopter-car-air-freshener/02-premium-hero.jpg",
+          "webp": "/products/solar-helicopter-car-air-freshener/02-premium-hero.webp",
+          "avif": "/products/solar-helicopter-car-air-freshener/02-premium-hero.webp",
+          "thumbnail": "/products/solar-helicopter-car-air-freshener/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/solar-helicopter-car-air-freshener/responsive/02-premium-hero-640.webp",
+            "md": "/products/solar-helicopter-car-air-freshener/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/solar-helicopter-car-air-freshener/02-premium-hero.webp"
+          }
+        },
+        "01-hero-white-bg": {
+          "original": "/products/solar-helicopter-car-air-freshener/01-hero-white-bg.webp",
+          "webp": "/products/solar-helicopter-car-air-freshener/01-hero-white-bg.webp",
+          "avif": "/products/solar-helicopter-car-air-freshener/01-hero-white-bg.webp",
+          "thumbnail": "/products/solar-helicopter-car-air-freshener/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/solar-helicopter-car-air-freshener/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/solar-helicopter-car-air-freshener/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/solar-helicopter-car-air-freshener/01-hero-white-bg.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/solar-helicopter-car-air-freshener/09-close-up.jpg",
+          "webp": "/products/solar-helicopter-car-air-freshener/09-close-up.webp",
+          "avif": "/products/solar-helicopter-car-air-freshener/09-close-up.webp",
+          "thumbnail": "/products/solar-helicopter-car-air-freshener/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/solar-helicopter-car-air-freshener/responsive/09-close-up-640.webp",
+            "md": "/products/solar-helicopter-car-air-freshener/responsive/09-close-up-1280.webp",
+            "lg": "/products/solar-helicopter-car-air-freshener/09-close-up.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/solar-helicopter-car-air-freshener/10-features.webp",
+          "webp": "/products/solar-helicopter-car-air-freshener/10-features.webp",
+          "avif": "/products/solar-helicopter-car-air-freshener/10-features.webp",
+          "thumbnail": "/products/solar-helicopter-car-air-freshener/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/solar-helicopter-car-air-freshener/responsive/10-features-640.webp",
+            "md": "/products/solar-helicopter-car-air-freshener/responsive/10-features-1280.webp",
+            "lg": "/products/solar-helicopter-car-air-freshener/10-features.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/solar-helicopter-car-air-freshener/03-lifestyle.jpg",
+          "webp": "/lifestyle/solar-helicopter-car-air-freshener/03-lifestyle.webp",
+          "avif": "/lifestyle/solar-helicopter-car-air-freshener/03-lifestyle.webp",
+          "thumbnail": "/lifestyle/solar-helicopter-car-air-freshener/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/solar-helicopter-car-air-freshener/responsive/03-lifestyle-640.webp",
+            "md": "/lifestyle/solar-helicopter-car-air-freshener/responsive/03-lifestyle-1280.webp",
+            "lg": "/lifestyle/solar-helicopter-car-air-freshener/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/solar-helicopter-car-air-freshener/14-product-in-use.jpg",
+          "webp": "/lifestyle/solar-helicopter-car-air-freshener/14-product-in-use.webp",
+          "avif": "/lifestyle/solar-helicopter-car-air-freshener/14-product-in-use.webp",
+          "thumbnail": "/lifestyle/solar-helicopter-car-air-freshener/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/solar-helicopter-car-air-freshener/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/solar-helicopter-car-air-freshener/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/solar-helicopter-car-air-freshener/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "20-social-media-banner": {
+          "original": "/banners/solar-helicopter-car-air-freshener/20-social-media-banner.jpg",
+          "webp": "/banners/solar-helicopter-car-air-freshener/20-social-media-banner.webp",
+          "avif": "/banners/solar-helicopter-car-air-freshener/20-social-media-banner.webp",
+          "thumbnail": "/banners/solar-helicopter-car-air-freshener/thumbs/20-social-media-banner-400.webp",
+          "responsive": {
+            "sm": "/banners/solar-helicopter-car-air-freshener/responsive/20-social-media-banner-640.webp",
+            "md": "/banners/solar-helicopter-car-air-freshener/responsive/20-social-media-banner-1280.webp",
+            "lg": "/banners/solar-helicopter-car-air-freshener/responsive/20-social-media-banner-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "02-premium-hero": "client-reference",
+        "01-hero-white-bg": "client-reference",
+        "09-close-up": "client-reference",
+        "10-features": "client-reference",
+        "03-lifestyle": "client-reference",
+        "14-product-in-use": "client-reference",
+        "20-social-media-banner": "client-reference"
+      }
+    },
+    "cordless-mini-vacuum-keyboard": {
+      "slug": "cordless-mini-vacuum-keyboard",
+      "sku": "NRV-VACMINI-01",
+      "name": "Cordless Mini Vacuum Keyboard Duster",
+      "images": {
+        "02-premium-hero": {
+          "original": "/products/cordless-mini-vacuum-keyboard/02-premium-hero.jpg",
+          "webp": "/products/cordless-mini-vacuum-keyboard/02-premium-hero.webp",
+          "avif": "/products/cordless-mini-vacuum-keyboard/02-premium-hero.avif",
+          "thumbnail": "/products/cordless-mini-vacuum-keyboard/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/cordless-mini-vacuum-keyboard/responsive/02-premium-hero-640.webp",
+            "md": "/products/cordless-mini-vacuum-keyboard/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/cordless-mini-vacuum-keyboard/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "01-hero-white-bg": {
+          "original": "/products/cordless-mini-vacuum-keyboard/01-hero-white-bg.jpg",
+          "webp": "/products/cordless-mini-vacuum-keyboard/01-hero-white-bg.webp",
+          "avif": "/products/cordless-mini-vacuum-keyboard/01-hero-white-bg.avif",
+          "thumbnail": "/products/cordless-mini-vacuum-keyboard/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/cordless-mini-vacuum-keyboard/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/cordless-mini-vacuum-keyboard/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/cordless-mini-vacuum-keyboard/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/cordless-mini-vacuum-keyboard/09-close-up.jpg",
+          "webp": "/products/cordless-mini-vacuum-keyboard/09-close-up.webp",
+          "avif": "/products/cordless-mini-vacuum-keyboard/09-close-up.avif",
+          "thumbnail": "/products/cordless-mini-vacuum-keyboard/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/cordless-mini-vacuum-keyboard/responsive/09-close-up-640.webp",
+            "md": "/products/cordless-mini-vacuum-keyboard/responsive/09-close-up-1280.webp",
+            "lg": "/products/cordless-mini-vacuum-keyboard/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/cordless-mini-vacuum-keyboard/10-features.jpg",
+          "webp": "/products/cordless-mini-vacuum-keyboard/10-features.webp",
+          "avif": "/products/cordless-mini-vacuum-keyboard/10-features.avif",
+          "thumbnail": "/products/cordless-mini-vacuum-keyboard/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/cordless-mini-vacuum-keyboard/responsive/10-features-640.webp",
+            "md": "/products/cordless-mini-vacuum-keyboard/responsive/10-features-1280.webp",
+            "lg": "/products/cordless-mini-vacuum-keyboard/responsive/10-features-2000.webp"
+          }
+        },
+        "11-package-contents": {
+          "original": "/products/cordless-mini-vacuum-keyboard/11-package-contents.jpg",
+          "webp": "/products/cordless-mini-vacuum-keyboard/11-package-contents.webp",
+          "avif": "/products/cordless-mini-vacuum-keyboard/11-package-contents.avif",
+          "thumbnail": "/products/cordless-mini-vacuum-keyboard/thumbs/11-package-contents-400.webp",
+          "responsive": {
+            "sm": "/products/cordless-mini-vacuum-keyboard/responsive/11-package-contents-640.webp",
+            "md": "/products/cordless-mini-vacuum-keyboard/responsive/11-package-contents-1280.webp",
+            "lg": "/products/cordless-mini-vacuum-keyboard/responsive/11-package-contents-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/cordless-mini-vacuum-keyboard/03-lifestyle.jpg",
+          "webp": "/lifestyle/cordless-mini-vacuum-keyboard/03-lifestyle.webp",
+          "avif": "/lifestyle/cordless-mini-vacuum-keyboard/03-lifestyle.avif",
+          "thumbnail": "/lifestyle/cordless-mini-vacuum-keyboard/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/cordless-mini-vacuum-keyboard/responsive/03-lifestyle-640.webp",
+            "md": "/lifestyle/cordless-mini-vacuum-keyboard/responsive/03-lifestyle-1280.webp",
+            "lg": "/lifestyle/cordless-mini-vacuum-keyboard/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/cordless-mini-vacuum-keyboard/14-product-in-use.jpg",
+          "webp": "/lifestyle/cordless-mini-vacuum-keyboard/14-product-in-use.webp",
+          "avif": "/lifestyle/cordless-mini-vacuum-keyboard/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/cordless-mini-vacuum-keyboard/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/cordless-mini-vacuum-keyboard/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/cordless-mini-vacuum-keyboard/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/cordless-mini-vacuum-keyboard/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "20-social-media-banner": {
+          "original": "/banners/cordless-mini-vacuum-keyboard/20-social-media-banner.jpg",
+          "webp": "/banners/cordless-mini-vacuum-keyboard/20-social-media-banner.webp",
+          "avif": "/banners/cordless-mini-vacuum-keyboard/20-social-media-banner.avif",
+          "thumbnail": "/banners/cordless-mini-vacuum-keyboard/thumbs/20-social-media-banner-400.webp",
+          "responsive": {
+            "sm": "/banners/cordless-mini-vacuum-keyboard/responsive/20-social-media-banner-640.webp",
+            "md": "/banners/cordless-mini-vacuum-keyboard/responsive/20-social-media-banner-1280.webp",
+            "lg": "/banners/cordless-mini-vacuum-keyboard/responsive/20-social-media-banner-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "02-premium-hero": "client-reference",
+        "01-hero-white-bg": "client-reference",
+        "09-close-up": "client-reference",
+        "10-features": "client-reference",
+        "11-package-contents": "client-reference",
+        "03-lifestyle": "client-reference",
+        "14-product-in-use": "client-reference",
+        "20-social-media-banner": "client-reference"
+      }
+    },
+    "foldable-car-windshield-sunshade": {
+      "slug": "foldable-car-windshield-sunshade",
+      "sku": "NRV-SUNSHADE-01",
+      "name": "Foldable Umbrella Car Windshield Sunshade",
+      "images": {
+        "02-premium-hero": {
+          "original": "/products/foldable-car-windshield-sunshade/02-premium-hero.jpg",
+          "webp": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp",
+          "avif": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp",
+          "thumbnail": "/products/foldable-car-windshield-sunshade/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-car-windshield-sunshade/responsive/02-premium-hero-640.webp",
+            "md": "/products/foldable-car-windshield-sunshade/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp"
+          }
+        },
+        "01-hero-white-bg": {
+          "original": "/products/foldable-car-windshield-sunshade/01-hero-white-bg.jpg",
+          "webp": "/products/foldable-car-windshield-sunshade/01-hero-white-bg.webp",
+          "avif": "/products/foldable-car-windshield-sunshade/01-hero-white-bg.webp",
+          "thumbnail": "/products/foldable-car-windshield-sunshade/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-car-windshield-sunshade/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/foldable-car-windshield-sunshade/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/foldable-car-windshield-sunshade/01-hero-white-bg.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/foldable-car-windshield-sunshade/09-close-up.jpg",
+          "webp": "/products/foldable-car-windshield-sunshade/09-close-up.webp",
+          "avif": "/products/foldable-car-windshield-sunshade/09-close-up.webp",
+          "thumbnail": "/products/foldable-car-windshield-sunshade/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-car-windshield-sunshade/responsive/09-close-up-640.webp",
+            "md": "/products/foldable-car-windshield-sunshade/responsive/09-close-up-1280.webp",
+            "lg": "/products/foldable-car-windshield-sunshade/09-close-up.webp"
+          }
+        },
+        "11-package-contents": {
+          "original": "/products/foldable-car-windshield-sunshade/11-package-contents.jpg",
+          "webp": "/products/foldable-car-windshield-sunshade/11-package-contents.webp",
+          "avif": "/products/foldable-car-windshield-sunshade/11-package-contents.webp",
+          "thumbnail": "/products/foldable-car-windshield-sunshade/thumbs/11-package-contents-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-car-windshield-sunshade/responsive/11-package-contents-640.webp",
+            "md": "/products/foldable-car-windshield-sunshade/responsive/11-package-contents-1280.webp",
+            "lg": "/products/foldable-car-windshield-sunshade/11-package-contents.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/foldable-car-windshield-sunshade/14-product-in-use.jpg",
+          "webp": "/lifestyle/foldable-car-windshield-sunshade/14-product-in-use.webp",
+          "avif": "/lifestyle/foldable-car-windshield-sunshade/14-product-in-use.webp",
+          "thumbnail": "/lifestyle/foldable-car-windshield-sunshade/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/foldable-car-windshield-sunshade/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/foldable-car-windshield-sunshade/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/foldable-car-windshield-sunshade/14-product-in-use.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/foldable-car-windshield-sunshade/02-premium-hero.jpg",
+          "webp": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp",
+          "avif": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp",
+          "thumbnail": "/products/foldable-car-windshield-sunshade/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-car-windshield-sunshade/responsive/02-premium-hero-640.webp",
+            "md": "/products/foldable-car-windshield-sunshade/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/foldable-car-windshield-sunshade/14-product-in-use.jpg",
+          "webp": "/lifestyle/foldable-car-windshield-sunshade/14-product-in-use.webp",
+          "avif": "/lifestyle/foldable-car-windshield-sunshade/14-product-in-use.webp",
+          "thumbnail": "/lifestyle/foldable-car-windshield-sunshade/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/foldable-car-windshield-sunshade/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/foldable-car-windshield-sunshade/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/foldable-car-windshield-sunshade/14-product-in-use.webp"
+          }
+        },
+        "20-social-media-banner": {
+          "original": "/products/foldable-car-windshield-sunshade/02-premium-hero.jpg",
+          "webp": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp",
+          "avif": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp",
+          "thumbnail": "/products/foldable-car-windshield-sunshade/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-car-windshield-sunshade/responsive/02-premium-hero-640.webp",
+            "md": "/products/foldable-car-windshield-sunshade/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/foldable-car-windshield-sunshade/02-premium-hero.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "02-premium-hero": "client-reference",
+        "01-hero-white-bg": "client-reference",
+        "09-close-up": "client-reference",
+        "11-package-contents": "client-reference",
+        "14-product-in-use": "client-reference",
+        "10-features": "client-reference",
+        "03-lifestyle": "client-reference",
         "20-social-media-banner": "client-reference"
       }
     }

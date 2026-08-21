@@ -49,8 +49,19 @@ export async function POST(request: NextRequest) {
         fbp?: string;
         fbc?: string;
         ttclid?: string;
+        gclid?: string;
         eventSourceUrl?: string;
         referrerUrl?: string;
+        attribution?: {
+          utm_source?: string;
+          utm_medium?: string;
+          utm_campaign?: string;
+          utm_content?: string;
+          utm_term?: string;
+          gclid?: string;
+          landingPath?: string;
+          capturedAt?: string;
+        };
       };
     };
 

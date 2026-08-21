@@ -1099,6 +1099,84 @@ const CAR_MOUNT_1PLUS1_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const SUNSHADE_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "☀️",
+    heading: "مظلة شمس أمامية قابلة للطي",
+    subtitle: "وجه فضي عاكس · تطوى كالمظلة · 149 درهم",
+    objectFit: "cover",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "🌂",
+    heading: "تفتحها كالمظلة في ثوانٍ",
+    subtitle: "إطار أضلاع · مقبض أسود · تركيب من الداخل",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "🚗",
+    heading: "مركّبة على الزجاج الأمامي",
+    subtitle: "الوجه الفضي كيبعد الحر عن المقصورة",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🛡️",
+    heading: "عاكس فضي ضد الشمس",
+    subtitle: "يحمي الطابلوه والمقاعد من الأشعة",
+    objectFit: "cover",
+  },
+  {
+    section: "accessories",
+    imageType: "11-package-contents",
+    emoji: "👜",
+    heading: "حقيبة جلد أسود",
+    subtitle: "تطوى وتتخزّن في الباب أو الصندوق",
+    objectFit: "contain",
+  },
+];
+
+const HELI_FRESHENER_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🚁",
+    heading: "معطر + ديكور على الطابلوه",
+    subtitle: "هليكوبتر شمسي كروم — راحة في السيارة وشكل فاخر",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "🚗",
+    heading: "فالسيارة… قدام الزجاج",
+    subtitle: "حطّو فوسط الطابلوه واستمتع بالريحة والديكور",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "☀️",
+    heading: "شفرات دوّارة بطاقة شمسية",
+    subtitle: "لوحة شمسية على القاعدة الحمراء — بلا بطاريات",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "✨",
+    heading: "تفاصيل كروم فاخرة",
+    subtitle: "جسم فضي · مقصورة سوداء · قاعدة حمراء مع فتحات عطر",
+    objectFit: "cover",
+  },
+];
+
 const SOLAR_CALCULATOR_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
@@ -1150,6 +1228,65 @@ const SOLAR_CALCULATOR_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const MINI_VACUUM_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "⌨️",
+    heading: "كيبورد نقي فثواني",
+    subtitle: "مكنسة لاسلكية صغيرة 2 في 1 — شفط + فرشاة",
+    objectFit: "cover",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "🧹",
+    heading: "مكنسة مكتبية لاسلكية",
+    subtitle: "قبضة يد · حجرة شفافة · شحن USB",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "03-lifestyle",
+    emoji: "💻",
+    heading: "فوق المكتب",
+    subtitle: "تنظيف الكيبورد بين جلسات العمل",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🔍",
+    heading: "فوهة فرشاة بين الأزرار",
+    subtitle: "كتدخل فين المنديل ما كيوصلش",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "✨",
+    heading: "الاستعمال اليومي",
+    subtitle: "كيبورد · لاب توب · سيارة",
+    objectFit: "cover",
+  },
+  {
+    section: "accessories",
+    imageType: "11-package-contents",
+    emoji: "🧰",
+    heading: "محتويات العلبة",
+    subtitle: "مكنسة · فوهة ضيقة · فرشاة · كابل USB",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "🔥",
+    heading: "عرض الإطلاق",
+    subtitle: "149 درهم · شحن مجاني · الدفع عند الاستلام",
+    objectFit: "cover",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
   "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
@@ -1165,6 +1302,9 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "vintage-led-lantern": VINTAGE_LANTERN_SLIDES,
   "warm-led-decor-lamp": WARM_LED_LAMP_SLIDES,
   "solar-calculator-lcd-notepad": SOLAR_CALCULATOR_SLIDES,
+  "solar-helicopter-car-air-freshener": HELI_FRESHENER_SLIDES,
+  "foldable-car-windshield-sunshade": SUNSHADE_SLIDES,
+  "cordless-mini-vacuum-keyboard": MINI_VACUUM_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

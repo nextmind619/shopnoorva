@@ -316,6 +316,71 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       clientRef: "/products/solar-calculator-lcd-notepad/product-reference.png",
     },
   },
+  {
+    id: "prod-heli-freshener",
+    slug: "solar-helicopter-car-air-freshener",
+    sku: "NRV-HELI-FRESH-01",
+    name: "Solar Helicopter Car Air Freshener",
+    type: "Solar-powered decorative helicopter car air freshener",
+    color: "Silver chrome helicopter, glossy black cockpit, matte black rotors, metallic red circular base",
+    category: "Car Accessories",
+    categoryId: "cat-car-accessories",
+    shortDescription:
+      "Miniature chrome helicopter on a metallic red solar base — spinning rotors in sunlight, fragrance vents on the side, dashboard decor + cabin comfort",
+    visualIdentity:
+      "EXACT real product from client reference — miniature decorative solar helicopter car air freshener on a car dashboard. Sleek metallic silver chrome helicopter body with glossy black cockpit canopy, pointed aerodynamic tail, four-bladed matte black main rotor. Helicopter sits on a small central pillar above a circular metallic red base. Dark circular solar panel on the top of the red base directly beneath the helicopter. Three vertical fragrance vents/slits on the side of the red base. Placed at the center of a tan textured car dashboard behind the windshield, road and trees visible through the glass. NEVER redesign as a toy helicopter, drone, or vent-clip cardboard freshener. Preserve exact chrome, black cockpit, red solar base, and proportions from the reference photo.",
+    dimensions: "Compact dashboard helicopter on circular solar base",
+    accessories: [],
+    packageItems: ["Solar helicopter car air freshener"],
+    sourceUrls: {
+      clientRef: "/products/solar-helicopter-car-air-freshener/product-reference.png",
+    },
+  },
+  {
+    id: "prod-sunshade",
+    slug: "foldable-car-windshield-sunshade",
+    sku: "NRV-SUNSHADE-01",
+    name: "Foldable Umbrella Car Windshield Sunshade",
+    type: "Foldable umbrella-style front windshield sunshade",
+    color: "Silver reflective exterior, black interior, black leather-like pouch",
+    category: "Car Accessories",
+    categoryId: "cat-car-accessories",
+    shortDescription:
+      "Umbrella-style foldable windshield sunshade — silver reflective exterior, black interior, short black handle, compact black leather-like carry pouch",
+    visualIdentity:
+      "EXACT real product from client reference — foldable umbrella-style car windshield sunshade. Rectangular canopy with metal ribs radiating from a central shaft and a short black handle with wrist strap. Interior face matte black; exterior face bright silver reflective. Shown fully open against blue sky, installed inside a red sedan windshield with yellow heat-reflection arrows, and folded into a slim black pebbled faux-leather storage sleeve with hanging strap. NEVER redesign as accordion cardboard shade, rear-window-only shade, or dual-fan bundle. Preserve exact umbrella mechanism, silver/black faces, pouch, and proportions.",
+    dimensions: "Full front windshield coverage; folds to compact pouch size",
+    accessories: ["Black leather-like carry pouch"],
+    packageItems: ["Foldable windshield sunshade", "Black carry pouch"],
+    sourceUrls: {
+      clientRef: "/products/foldable-car-windshield-sunshade/product-reference.jpg",
+    },
+  },
+  {
+    id: "prod-mini-vacuum",
+    slug: "cordless-mini-vacuum-keyboard",
+    sku: "NRV-VACMINI-01",
+    name: "Cordless Mini Vacuum Keyboard Duster",
+    type: "2-in-1 cordless handheld mini vacuum and air duster for keyboards and electronics",
+    color: "Matte Black",
+    category: "Study & Office",
+    categoryId: "cat-study-office",
+    shortDescription:
+      "Matte black pistol-grip cordless mini vacuum — transparent dust cup, long brush nozzle, crevice tool, USB rechargeable",
+    visualIdentity:
+      "EXACT real product from client reference — compact matte black cordless pistol-grip handheld mini vacuum / air duster. Short cylindrical body with semi-transparent dust collection chamber, trigger on the underside of the handle, long thin extension nozzle with a small round brush tip. Palm-sized desktop gadget, NOT a stick vacuum, NOT a full-size household vacuum. Accessories: long crevice tool, spare brush attachment, black USB charging cable. Typical use: cleaning mechanical keyboard keys, laptop, car vents, electronics. DO NOT redesign shape, color, or proportions.",
+    dimensions: "Palm-sized handheld pistol-grip",
+    accessories: ["Crevice tool", "Brush attachment", "USB charging cable"],
+    packageItems: [
+      "Cordless mini vacuum",
+      "Crevice tool",
+      "Brush attachment",
+      "USB charging cable",
+    ],
+    sourceUrls: {
+      clientRef: "/products/cordless-mini-vacuum-keyboard/product-reference.png",
+    },
+  },
 ];
 
 const PROFILE_SLUG_ALIASES: Record<string, string> = {

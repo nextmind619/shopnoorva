@@ -7,12 +7,12 @@ export const categories: Category[] = [
     slug: "accessoires-auto",
     name: { ar: "إكسسوارات السيارة", fr: "Accessoires Auto", en: "Car Accessories" },
     description: {
-      ar: "حاملات هاتف مغناطيسية وإكسسوارات عملية للقيادة الآمنة",
-      fr: "Supports téléphone magnétiques et accessoires pratiques pour la conduite",
-      en: "Magnetic phone mounts and practical driving accessories",
+      ar: "حاملات هاتف، مظلات شمس، معطرات ديكور، وإكسسوارات عملية للقيادة المريحة",
+      fr: "Supports téléphone, pare-soleil, désodorisants déco et accessoires pratiques pour la conduite",
+      en: "Phone mounts, sunshades, decorative fresheners, and practical driving accessories",
     },
     image: getProductHeroUrl("magnetic-car-phone-mount-maidsail"),
-    productCount: 4,
+    productCount: 6,
   },
   {
     id: "cat-laser-pointers",
@@ -72,7 +72,7 @@ export const categories: Category[] = [
       en: "Premium lighting pieces to decorate any room",
     },
     image: getProductHeroUrl("bluetooth-star-projector"),
-    productCount: 7,
+    productCount: 8,
   },
   {
     id: "cat-bedroom-lighting",
@@ -115,12 +115,12 @@ export const categories: Category[] = [
     slug: "etude-bureau",
     name: { ar: "أدوات الدراسة والمكتب", fr: "Étude & Bureau", en: "Study & Office" },
     description: {
-      ar: "آلة حاسبة إلكترونية مع لوح كتابة للطلاب والأساتذة والمكاتب",
-      fr: "Calculatrice électronique avec tablette d'écriture pour étudiants, profs et bureaux",
-      en: "Electronic calculator with writing tablet for students, teachers and offices",
+      ar: "آلة حاسبة إلكترونية ومكنسة صغيرة لتنظيف الكيبورد والمكتب",
+      fr: "Calculatrice électronique et mini aspirateur pour clavier et bureau",
+      en: "Electronic calculator and mini vacuum for keyboard and desk",
     },
     image: getProductHeroUrl("solar-calculator-lcd-notepad"),
-    productCount: 1,
+    productCount: 2,
   },
   {
     id: "cat-gift-ideas",
@@ -132,7 +132,7 @@ export const categories: Category[] = [
       en: "Premium, original gifts for every occasion",
     },
     image: getProductHeroUrl("rabbit-carousel-night-light"),
-    productCount: 5,
+    productCount: 7,
   },
 ];
 

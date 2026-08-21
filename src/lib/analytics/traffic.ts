@@ -12,14 +12,16 @@ const SOURCE_COLORS: Record<string, string> = {
 export function classifyTrafficSource(referer: string, searchParams?: URLSearchParams): string {
   const ref = (referer || "").toLowerCase();
   const utm = (searchParams?.get("utm_source") || "").toLowerCase();
-  const combined = `${ref} ${utm}`;
+  const gclid = (searchParams?.get("gclid") || "").toLowerCase();
+  const combined = `${ref} ${utm} ${gclid}`;
 
   if (/fbclid|facebook|fb\.com|fb\.me|m\.facebook/.test(combined)) return "facebook";
   if (/instagram|l\.instagram/.test(combined)) return "instagram";
   if (/tiktok|ttclid|bytedance|musical_ly/.test(combined)) return "tiktok";
-  if (/gclid|google\.|googleads|youtube/.test(combined)) return "google";
+  if (/gclid|google\.|googleads|youtube|adwords|\byt\b/.test(combined)) return "google";
+  if (utm === "google" || utm === "youtube" || utm === "yt") return "google";
   if (/email|mail\.|newsletter|resend/.test(combined)) return "email";
-  if (!ref && !utm) return "direct";
+  if (!ref && !utm && !gclid) return "direct";
   if (/bing|duckduck|yahoo|search/.test(combined)) return "organic";
   return "other";
 }
