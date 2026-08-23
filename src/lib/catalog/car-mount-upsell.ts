@@ -89,7 +89,7 @@ export function carMountUpsellOrderNote(selectedIds: readonly string[]): string 
   const names = selectedIds
     .map((id) => getProductById(id))
     .filter((product): product is Product => Boolean(product))
-    .map((product) => `${product.name.ar} (${getCarMountUpsellPrice(product.id)} DH)`);
+    .map((product) => `${product.name.ar} (${getCarMountUpsellPrice(product.id)} درهم)`);
   if (names.length === 0) return undefined;
   return `عرض Upsell: ${names.join(" + ")}`;
 }

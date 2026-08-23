@@ -2,7 +2,7 @@ import { JWT } from "google-auth-library";
 import { aiConfig, isConfigured } from "../config";
 import { logIntegration } from "./logger";
 import { getGoogleSheetsConfigSummary, isGoogleSheetsConfigured, resolveGoogleServiceAccount } from "./google-auth";
-import { packNoteSuffix, toCodplusLineItem } from "./codplus-sku";
+import { collapseCodplusLeadItems } from "./codplus-sku";
 import type { DailyAnalytics } from "../memory-store";
 
 const SHEETS_SCOPE = "https://www.googleapis.com/auth/spreadsheets";
@@ -49,21 +49,20 @@ function encodeRange(sheetName: string, range: string): string {
   return `${quoted}!${range}`;
 }
 
-function itemToRow(order: SheetOrderInput, item: SheetOrderLineItem): string[] {
-  const mapped = toCodplusLineItem(item);
+function orderToRow(order: SheetOrderInput): string[] {
+  const collapsed = collapseCodplusLeadItems(order.items);
   const noteParts = [orderMarker(order.orderNumber)];
   if (order.notes?.trim()) noteParts.push(order.notes.trim());
-  const packNote = packNoteSuffix(item.sku);
-  if (packNote) noteParts.push(packNote);
+  noteParts.push(...collapsed.extraNotes);
 
   return [
     order.customerName,
     order.phone,
     order.city,
     order.address,
-    String(mapped.price),
-    String(mapped.quantity),
-    mapped.sku,
+    String(collapsed.price),
+    String(collapsed.quantity),
+    collapsed.sku,
     noteParts.join(" | "),
   ];
 }
@@ -185,31 +184,31 @@ async function appendOrderRowViaApi(order: SheetOrderInput): Promise<void> {
     return;
   }
 
-  const rows = order.items.map((item) => itemToRow(order, item));
-  if (!rows.length) return;
+  if (!order.items.length) return;
 
   const range = encodeRange(sheetName, "A:H");
   await sheetsFetch(
     `/${spreadsheetId}/values/${encodeURIComponent(range)}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
     {
       method: "POST",
-      body: JSON.stringify({ values: rows }),
+      body: JSON.stringify({ values: [orderToRow(order)] }),
     }
   );
 }
 
 async function appendOrderRowViaWebhook(order: SheetOrderInput): Promise<void> {
+  if (!order.items.length) return;
+
   const webhook =
     process.env.GOOGLE_SHEETS_WEBHOOK || `${aiConfig.n8n.webhookBase}/google-sheets-orders`;
 
-  const rows = order.items.map((item) => itemToRow(order, item));
   const res = await fetch(webhook, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       spreadsheetId: aiConfig.googleSheets.spreadsheetId,
       sheet: aiConfig.googleSheets.orderSheetName,
-      values: rows,
+      values: [orderToRow(order)],
     }),
   });
 
@@ -268,6 +267,7 @@ export async function syncAnalyticsToSheets(analytics: DailyAnalytics): Promise<
 
 /**
  * Append a confirmed order to the Codplus-compatible leads sheet.
+ * Multi-product orders (main SKU + upsells) are written as a single row.
  * Non-blocking for the order pipeline: failures are logged and swallowed.
  */
 export async function appendOrderToSheets(order: SheetOrderInput): Promise<{

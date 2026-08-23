@@ -184,7 +184,7 @@ export async function processIncomingOrder(input: {
     );
     if (upsellLines.length > 0 && !input.notes?.includes("عرض Upsell")) {
       noteParts.push(
-        `عرض Upsell: ${upsellLines.map((item) => `${item.name} (${item.unitPrice} DH)`).join(" + ")}`,
+        `عرض Upsell: ${upsellLines.map((item) => `${item.name} (${item.unitPrice} درهم)`).join(" + ")}`,
       );
     }
 

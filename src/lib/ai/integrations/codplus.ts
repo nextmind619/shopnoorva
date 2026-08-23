@@ -1,6 +1,6 @@
 import { aiConfig, isConfigured } from "../config";
 import { logIntegration } from "./logger";
-import { packNoteSuffix, toCodplusLineItem } from "./codplus-sku";
+import { collapseCodplusLeadItems } from "./codplus-sku";
 
 export interface CodplusLeadInput {
   orderNumber: string;
@@ -12,12 +12,12 @@ export interface CodplusLeadInput {
   items: Array<{ sku: string; quantity: number; price: number }>;
 }
 
-function buildLeadPayload(lead: CodplusLeadInput, item: CodplusLeadInput["items"][number]) {
-  const mapped = toCodplusLineItem(item);
+function buildLeadPayload(lead: CodplusLeadInput) {
+  const collapsed = collapseCodplusLeadItems(lead.items);
   const noteParts = [`NOORVA:${lead.orderNumber}`];
   if (lead.notes?.trim()) noteParts.push(lead.notes.trim());
-  const packNote = packNoteSuffix(item.sku);
-  if (packNote) noteParts.push(packNote);
+  noteParts.push(...collapsed.extraNotes);
+  const note = noteParts.join(" | ");
 
   return {
     customer: lead.customerName,
@@ -26,13 +26,15 @@ function buildLeadPayload(lead: CodplusLeadInput, item: CodplusLeadInput["items"
     phone: lead.phone,
     city: lead.city,
     address: lead.address,
-    price: mapped.price,
-    amount: mapped.price,
-    quantity: mapped.quantity,
-    qty: mapped.quantity,
-    sku: mapped.sku,
-    note: noteParts.join(" | "),
-    notes: noteParts.join(" | "),
+    price: collapsed.price,
+    amount: collapsed.price,
+    quantity: collapsed.quantity,
+    qty: collapsed.quantity,
+    sku: collapsed.sku,
+    products: collapsed.products,
+    items: collapsed.products,
+    note,
+    notes: note,
     external_id: lead.orderNumber,
     source: "noorva",
   };
@@ -61,42 +63,41 @@ export async function sendLeadToCodplus(lead: CodplusLeadInput): Promise<{
     return { ok: false, skipped: "missing_codplus_webhook_config" };
   }
 
-  const results: unknown[] = [];
+  if (!lead.items.length) {
+    await logIntegration("codplus", "send_lead", "ok", lead, { skipped: "empty_items" });
+    return { ok: true, skipped: "empty_items" };
+  }
 
   try {
-    for (const item of lead.items) {
-      const payload = buildLeadPayload(lead, item);
-      const res = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${webhookToken}`,
-          "X-Webhook-Token": webhookToken,
-          "X-Codplus-Webhook-Token": webhookToken,
-        },
-        body: JSON.stringify({
-          ...payload,
-          webhook_token: webhookToken,
-        }),
-      });
+    const payload = buildLeadPayload(lead);
+    const res = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${webhookToken}`,
+        "X-Webhook-Token": webhookToken,
+        "X-Codplus-Webhook-Token": webhookToken,
+      },
+      body: JSON.stringify({
+        ...payload,
+        webhook_token: webhookToken,
+      }),
+    });
 
-      const body = await res.text();
-      let parsed: unknown = body;
-      try {
-        parsed = body ? JSON.parse(body) : null;
-      } catch {
-        /* keep text */
-      }
-
-      if (!res.ok) {
-        throw new Error(`Codplus webhook ${res.status}: ${typeof parsed === "string" ? parsed : JSON.stringify(parsed)}`);
-      }
-
-      results.push(parsed);
+    const body = await res.text();
+    let parsed: unknown = body;
+    try {
+      parsed = body ? JSON.parse(body) : null;
+    } catch {
+      /* keep text */
     }
 
-    await logIntegration("codplus", "send_lead", "ok", lead, { results });
-    return { ok: true, response: results };
+    if (!res.ok) {
+      throw new Error(`Codplus webhook ${res.status}: ${typeof parsed === "string" ? parsed : JSON.stringify(parsed)}`);
+    }
+
+    await logIntegration("codplus", "send_lead", "ok", lead, { response: parsed });
+    return { ok: true, response: parsed };
   } catch (error) {
     const message = error instanceof Error ? error.message : "codplus_send_failed";
     console.error("[codplus] send lead failed:", message, { orderNumber: lead.orderNumber });

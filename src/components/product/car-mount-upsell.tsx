@@ -60,7 +60,7 @@ export function CarMountUpsell({ products, selectedIds, onToggle }: CarMountUpse
                     loading="lazy"
                   />
                   <span className="absolute top-2 start-2 rounded-full bg-amber-400 text-[#1a1408] text-[10px] font-black px-2 py-1">
-                    عرض {offerPrice} DH
+                    عرض {offerPrice} درهم
                   </span>
                 </div>
                 <div className="p-3.5 flex flex-col gap-2 flex-1">
@@ -70,11 +70,11 @@ export function CarMountUpsell({ products, selectedIds, onToggle }: CarMountUpse
                   <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
                     {showStrike && (
                       <span className="text-sm text-white/40 line-through tabular-nums">
-                        {formatPriceNumber(originalPrice, "ar")} DH
+                        {formatPriceNumber(originalPrice, "ar")} درهم
                       </span>
                     )}
                     <p className="text-lg font-black text-amber-300 tabular-nums leading-none">
-                      {offerPrice} DH فقط
+                      {offerPrice} درهم فقط
                     </p>
                   </div>
                   <button
@@ -96,7 +96,7 @@ export function CarMountUpsell({ products, selectedIds, onToggle }: CarMountUpse
                     ) : (
                       <>
                         <Plus className="h-4 w-4" />
-                        أضف بـ {offerPrice} DH
+                        أضف بـ {offerPrice} درهم
                       </>
                     )}
                   </button>

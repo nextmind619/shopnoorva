@@ -775,7 +775,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               {isBogo && (
                 <div className="min-w-0">
                   <p className="text-xs font-bold text-amber-200">1 + 1 مجاناً</p>
-                  <p className="text-sm font-black tabular-nums">{formatPriceNumber(orderTotal, "ar")} DH</p>
+                  <p className="text-sm font-black tabular-nums">{formatPriceNumber(orderTotal, "ar")} درهم</p>
                 </div>
               )}
               <button
