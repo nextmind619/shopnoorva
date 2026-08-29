@@ -28,12 +28,12 @@ export const products: Product[] = [
       "3D Shiatsu Neck & Shoulder Massager with Heat (Hand Simulation)"
     ),
     shortDescription: L(
-      "تدليك شياتسو 3D محاكاة اليد مع تدفئة مدمجة — فكّ آلام الرقبة والكتفين في دقائق · توصيل مجاني والدفع عند الاستلام",
+      "تدليك شياتسو 3D محاكاة اليد مع تدفئة مدمجة — لحظة راحة واسترخاء بعد يوم طويل · توصيل مجاني والدفع عند الاستلام",
       "Massage Shiatsu 3D simulation main avec chauffage — soulage cou et épaules en minutes · livraison gratuite et COD",
       "3D hand-simulation Shiatsu with built-in heat — relieve neck & shoulders in minutes · free shipping and COD"
     ),
     description: L(
-      "جهاز تدليك الرقبة والكتفين من NOORVA بتقنية شياتسو 3D محاكاة اليد: 8 عقد سيليكون غذائي (4 لكل جهة) كتعجن العضلات بحركة الأصابع. جسم ABS أخضر غابة، أحزمة جلد PU بني محبّب قابلة للتعديل، ولوحة تحكم سوداء (تشغيل + تدفئة). مناسب للرقبة والأكتاف والظهر والخصر والأرجل. دوران تلقائي، صامت، خفيف وسهل الحمل. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "جهاز تدليك الرقبة والكتفين من NOORVA بتقنية شياتسو 3D محاكاة اليد: 8 عقد سيليكون غذائي (4 لكل جهة) كتحاكي حركة الأصابع. جسم ABS أخضر غابة، أحزمة جلد PU بني محبّب قابلة للتعديل، ولوحة تحكم سوداء (تشغيل + تدفئة). مناسب لجلسات الراحة للرقبة والأكتاف والظهر والخصر والأرجل حسب تعليمات الاستعمال. دوران تلقائي، صامت، خفيف وسهل الحمل. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
       "Masseur cou & épaules NOORVA en Shiatsu 3D simulation main : 8 nœuds silicone alimentaire (4 par côté). Coque ABS vert forêt, sangles cuir PU brun grainé réglables, panneau noir (marche + chauffage). Cou, épaules, dos, taille, jambes. Rotation auto, silencieux, portable. Livraison gratuite au Maroc, paiement à la livraison.",
       "NOORVA neck & shoulder massager with 3D hand-simulation Shiatsu: 8 food-grade silicone nodes (4 per side). Forest-green ABS body, adjustable brown pebbled PU leather straps, black control panel (power + heat). For neck, shoulders, back, waist, legs. Auto-rotation, quiet, portable. Free Morocco shipping with cash on delivery."
     ),
@@ -53,31 +53,31 @@ export const products: Product[] = [
     warrantyMonths: 12,
     problemEmoji: "💆",
     problem: L(
-      "رقبتك وكتافك كايوجعوك بعد يوم طويل؟",
+      "كتحس بالتعب فالرقبة والكتاف بعد يوم طويل؟",
       "Cou et épaules douloureux après une longue journée?",
       "Neck and shoulders aching after a long day?"
     ),
     problemCause: L(
-      "الجلوس الطويل والتوتر اليومي كيسبّبو تقلّص العضلات وآلام مزمنة",
+      "الجلوس الطويل والتوتر اليومي كيخليوك تحتاج لحظة راحة",
       "La position assise prolongée et le stress quotidien provoquent tensions et douleurs",
       "Prolonged sitting and daily stress cause muscle tension and chronic pain"
     ),
     problemSolution: L(
-      "تدليك شياتسو 3D محاكاة اليد + تدفئة مدمجة في دقائق",
+      "تدليك شياتسو 3D محاكاة اليد + تدفئة مدمجة لروتين استرخاء مريح",
       "Massage Shiatsu 3D simulation main + chauffage intégré en quelques minutes",
       "3D hand-simulation Shiatsu + built-in heat in minutes"
     ),
     deepDescription: L(
-      "مساج شياتسو 3D بمحاكاة أصابع اليد: 8 عقد سيليكون، تدفئة مدمجة، دوران تلقائي وسانات قابلة للتعديل. يخفّف آلام الرقبة والأكتاف والظهر والخصر والأرجل، يحسّن الدورة الدموية ويوفّر استرخاء يومي فاخر في المنزل — بلا موعد في الصالون.",
+      "مساج شياتسو 3D بمحاكاة أصابع اليد: 8 عقد سيليكون، تدفئة مدمجة، دوران تلقائي وسانات قابلة للتعديل. مناسب لجلسة راحة واسترخاء للرقبة والأكتاف والظهر والخصر والأرجل حسب تعليمات الاستعمال — بلا موعد في الصالون.",
       "Masseur Shiatsu 3D type doigts : 8 nœuds silicone, chauffage, rotation auto et sangles réglables. Soulage cou, épaules, dos, taille et jambes, améliore la circulation et offre une détente premium à la maison.",
       "3D finger-simulation Shiatsu: 8 silicone nodes, heat, auto-rotation and adjustable straps. Relieves neck, shoulders, back, waist and legs, improves circulation and delivers premium daily wellness at home."
     ),
     tags: ["shiatsu", "massage", "relaxation", "gift", "wellness", "bestseller", "neck", "shoulder", "heat", "new"],
     benefits: [
-      L("استرخاء عميق في دقائق بعد يوم شاق", "Détente profonde en quelques minutes après une journée intense", "Deep relaxation in minutes after a long day"),
-      L("تخفيف آلام الرقبة والكتفين والظهر والخصر", "Soulage cou, épaules, dos et taille", "Relieves neck, shoulder, back and waist pain"),
-      L("تقليل التوتر والإجهاد اليومي", "Réduit le stress et la tension quotidienne", "Reduces daily stress and tension"),
-      L("تحسين الدورة الدموية بفضل التدفئة المدمجة", "Améliore la circulation grâce au chauffage intégré", "Improves circulation with built-in heat"),
+      L("لحظة راحة بعد يوم طويل", "Un moment de détente après une longue journée", "A relaxing moment after a long day"),
+      L("إحساس مساج مريح للرقبة والكتفين", "Sensation de massage agréable pour le cou et les épaules", "A pleasant massage sensation for neck and shoulders"),
+      L("روتين بسيط للاسترخاء اليومي", "Une routine simple de détente quotidienne", "A simple daily relaxation routine"),
+      L("دفء مريح أثناء الجلسة", "Une chaleur agréable pendant la séance", "Comfortable warmth during the session"),
       L("راحة يومية في المنزل بلا موعد في الصالون", "Confort quotidien à la maison sans rendez-vous au spa", "Daily comfort at home without a spa appointment"),
       L("هدية فاخرة مثالية للوالدين والشركاء", "Cadeau premium idéal pour parents et proches", "Premium gift ideal for parents and loved ones"),
     ],
@@ -165,7 +165,7 @@ export const products: Product[] = [
         "3D Shiatsu Neck & Shoulder Massager with Heat | 399 MAD | NOORVA Morocco"
       ),
       description: L(
-        "جهاز تدليك شياتسو 3D محاكاة اليد مع تدفئة بـ 399 درهم بدل 549. يخفّف آلام الرقبة والكتفين. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "جهاز تدليك شياتسو 3D محاكاة اليد مع تدفئة بـ 399 درهم بدل 549. لحظة راحة واسترخاء للرقبة والكتفين. توصيل مجاني والدفع عند الاستلام في المغرب.",
         "Masseur Shiatsu 3D simulation main avec chauffage à 399 MAD au lieu de 549. Soulage cervicales et épaules. Livraison gratuite et paiement à la livraison au Maroc.",
         "3D hand-simulation Shiatsu with heat for 399 MAD instead of 549. Relieves neck and shoulders. Free shipping and cash on delivery in Morocco."
       ),

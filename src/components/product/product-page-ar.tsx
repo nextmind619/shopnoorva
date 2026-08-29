@@ -27,6 +27,7 @@ import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
 import { ProductVariantPicker, isPackVariantSku } from "@/components/product/product-variant-picker";
+import { ShiatsuCroSections } from "@/components/product/shiatsu-cro-sections";
 import { CarMountUpsell } from "@/components/product/car-mount-upsell";
 import {
   carMountUpsellOrderNote,
@@ -190,11 +191,11 @@ function getProductFaqs(product: Product) {
       },
       {
         q: "طريقة الاستعمال — كيفاش كنستعملو؟",
-        a: "حط الجهاز حول الرقبة أو على المنطقة اللي بغيتي تدليكها، اضبط السانات، شغّل التدليك وفعّل التدفئة إلا بغيتي. 10–15 دقيقة كافية.",
+        a: "حط الجهاز حول الرقبة أو على المنطقة اللي بغيتي تدليكها، اضبط السانات، وشغّلو حسب تعليمات الاستعمال. استعمل التدفئة حسب راحتك إذا كانت متوفرة.",
       },
       {
         q: "التدفئة — واش آمنة؟",
-        a: "نعم. التدفئة المدمجة كتعطي دفء لطيف ومتحكم فيه. تقدّر تشغّلها أو تطفيها حسب راحتك.",
+        a: "التدفئة المدمجة كتزيد إحساس دافئ ومريح. استعملها حسب راحتك وتعليمات المنتج، وقدر تطفيها في أي وقت.",
       },
       {
         q: "التنظيف — كيفاش نحتفظ بيه؟",
@@ -287,7 +288,11 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   );
   const upsellAddonTotal = selectedUpsells.reduce((sum, item) => sum + getCarMountUpsellPrice(item.id), 0);
   const orderTotal = variant.price * orderQty + upsellAddonTotal;
-  const combinedOrderNote = [isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined, carMountUpsellOrderNote(upsellIds)]
+  const combinedOrderNote = [
+    isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined,
+    isShiatsu ? "هدية مجانية: كريم سنام الجمل للاستعمال الخارجي" : undefined,
+    carMountUpsellOrderNote(upsellIds),
+  ]
     .filter(Boolean)
     .join(" | ") || undefined;
   const toggleUpsell = useCallback((productId: string) => {
@@ -302,6 +307,14 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const stickyCtaClass = isLaser
     ? "flex-1 h-12 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30"
     : "flex-1 h-12 rounded-xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30";
+  const trustBadges = isShiatsu
+    ? [
+        { icon: Truck, label: "توصيل مجاني في المغرب" },
+        { icon: Banknote, label: "الدفع عند الاستلام" },
+        { icon: Shield, label: "ضمان 12 شهر" },
+        { icon: MessageCircle, label: "خدمة تأكيد الطلب" },
+      ]
+    : TRUST_BADGES;
 
   return (
     <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans w-full max-w-full overflow-x-clip min-w-0" dir="rtl">
@@ -376,7 +389,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white">
-            {isBogo ? "اشترِ 1 وخذ 1 مجاناً 🎁" : name}
+            {isBogo ? "اشترِ 1 وخذ 1 مجاناً 🎁" : isShiatsu ? "راحة الرقبة والكتاف… فالوقت اللي تحتاجها" : name}
           </h1>
           {isBogo && (
             <p className="text-base font-semibold text-amber-200">المنتج الأصلي · جوج قطع في الطلب</p>
@@ -387,6 +400,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               : headline.subtitle}
           </p>
         </section>
+
+        {isShiatsu && <ShiatsuCroSections product={product} onOrderClick={scrollToOrder} />}
 
         {/* 3. السعر */}
         <section className="rounded-3xl border border-white/10 bg-[#12121a] px-6 py-7 sm:px-8 sm:py-8 space-y-3">
@@ -440,7 +455,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
         {/* 4. شارات الثقة */}
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {TRUST_BADGES.map((b) => (
+          {trustBadges.map((b) => (
             <div
               key={b.label}
               className="flex flex-col items-center gap-2 rounded-2xl border border-white/8 bg-[#12121a]/70 px-3 py-4 text-center"
@@ -510,7 +525,13 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           submitLabel={isBogo ? "أكد طلب 1 + 1 مجاناً" : undefined}
           formTitle={isBogo ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام" : undefined}
           formSubtitle={isBogo ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا." : undefined}
-          summaryRows={isBogo ? [{ label: "العرض", value: "1 مدفوعة + 1 مجاناً" }] : undefined}
+          summaryRows={
+            isBogo
+              ? [{ label: "العرض", value: "1 مدفوعة + 1 مجاناً" }]
+              : isShiatsu
+                ? [{ label: "الهدية", value: "كريم سنام الجمل مجاناً" }]
+                : undefined
+          }
           addonItems={selectedUpsells.map((item) => ({
             productId: item.id,
             variantId: item.variants[0]?.id || "",
@@ -772,6 +793,14 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             className="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-[#0a0a0f] border-t border-white/10 safe-area-pb"
           >
             <div className="px-4 py-3 max-w-lg mx-auto flex items-center gap-3">
+              <Image
+                src={resolveProductHero(product)}
+                alt=""
+                width={48}
+                height={48}
+                className="h-12 w-12 shrink-0 rounded-xl object-cover border border-white/10"
+                loading="lazy"
+              />
               {isBogo && (
                 <div className="min-w-0">
                   <p className="text-xs font-bold text-amber-200">1 + 1 مجاناً</p>
@@ -784,9 +813,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 className={cn(stickyCtaClass, "w-full h-14 rounded-2xl text-base active:scale-[0.98] transition-transform")}
               >
                 <ShoppingBag className="h-5 w-5" />
-                {isBogo
+              {isBogo
                   ? `اطلب جوج — ${formatPriceNumber(orderTotal, "ar")} درهم`
-                  : `اطلب الآن — ${formatPriceNumber(orderTotal, "ar")} درهم`}
+                  : `اطلب دابا — ${formatPriceNumber(orderTotal, "ar")} درهم`}
               </button>
             </div>
           </motion.div>

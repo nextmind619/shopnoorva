@@ -18,6 +18,8 @@ import {
 } from "@/lib/product-gallery-slides";
 import { cn } from "@/lib/utils";
 
+const SHIATSU_GIFT_IMAGE = "/products/camel-massage-cream-gift.jpg";
+
 interface PremiumProductGalleryProps {
   product: Product;
 }
@@ -273,6 +275,15 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
           {product.slug === "magnetic-car-phone-holder-1-plus-1" && (
             <div className="absolute top-4 start-4 z-20 rounded-full bg-amber-400 px-3.5 py-1.5 text-xs sm:text-sm font-black text-[#1a1200] shadow-lg">
               🎁 1 + 1 مجاناً
+            </div>
+          )}
+
+          {product.slug === "shiatsu-neck-shoulder-massager" && (
+            <div className="absolute top-4 start-4 z-20 flex max-w-[190px] items-center gap-2 rounded-2xl border border-amber-200/50 bg-[#211a12]/90 p-2 text-white shadow-xl backdrop-blur-md">
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-white">
+                <Image src={SHIATSU_GIFT_IMAGE} alt="كريم سنام الجمل هدية" fill sizes="48px" className="object-cover" loading="lazy" />
+              </div>
+              <span className="text-[10px] font-black leading-tight text-amber-100">🎁 الكريم هدية مجانية مع الطلب</span>
             </div>
           )}
 
