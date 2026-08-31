@@ -37,6 +37,7 @@ const ProductOrderForm = dynamic(
 
 const SLUG = "kids-art-set-easel-208";
 const GIFT_IMAGE = "/products/kids-art-set-easel-208/arabic-magic-book-gift.jpg";
+const ACCENT = "#0e7490";
 const CTA_ORDER = "🛒 أطلب الآن بـ299 DH";
 const CTA_ORDER_GIFT = "🛒 أطلب الآن بـ299 DH + الهدية مجانية";
 const CTA_OFFER = "أطلب العرض الآن 🎁";
@@ -148,7 +149,7 @@ function CtaButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "w-full h-14 sm:h-16 rounded-2xl bg-[#0891b2] hover:bg-[#0e7490] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-cyan-700/25 transition-colors",
+        "w-full h-14 sm:h-16 rounded-2xl bg-[#0e7490] hover:bg-[#155e75] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-cyan-800/25 transition-colors",
         className,
       )}
     >
@@ -162,6 +163,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
   const variant = product.variants[0];
   const price = variant.price;
   const priceLabel = `${formatPriceNumber(price, "ar")} DH`;
+  const priceFormatted = formatPriceNumber(price, "ar");
   const [sticky, setSticky] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
   const formSentinel = useRef<HTMLDivElement>(null);
@@ -203,7 +205,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
         quantity={1}
       />
 
-      <div className="bg-[#0891b2] text-white text-xs sm:text-sm py-2.5 px-4">
+      <div className="bg-[#0e7490] text-white text-xs sm:text-sm py-2.5 px-4">
         <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-x-5 gap-y-1 text-center">
           <span className="flex items-center gap-1.5">
             <Gift className="h-3.5 w-3.5 text-amber-200" /> Arabic Magic Book هدية مجانية
@@ -221,31 +223,33 @@ export function ProductPageKidsArtSet({ product }: Props) {
 
       <div className="max-w-3xl mx-auto px-4 pb-28 lg:pb-16 pt-4 space-y-10 sm:space-y-12 min-w-0 w-full">
         <nav className="flex items-center gap-2 text-xs text-[#5b6578]">
-          <Link href="/ar" className="hover:text-[#0891b2] transition-colors">
+          <Link href="/ar" className="hover:text-[#0e7490] transition-colors">
             نورڤا
           </Link>
           <ChevronLeft className="h-3 w-3" />
-          <Link href="/ar/products" className="hover:text-[#0891b2] transition-colors">
+          <Link href="/ar/products" className="hover:text-[#0e7490] transition-colors">
             المجموعة
           </Link>
           <ChevronLeft className="h-3 w-3" />
           <span className="font-medium truncate text-[#1c2333]">{product.name.ar}</span>
         </nav>
 
-        <section className="text-center space-y-5">
-          <div className="space-y-2">
-            <p className="text-lg sm:text-xl font-black text-[#1c2333]">🎨 مجموعة الرسم والتلوين للأطفال</p>
-            <p className="text-2xl font-black text-[#0891b2]">+</p>
-            <p className="text-lg sm:text-xl font-black text-[#1c2333]">🎁 Arabic Magic Book مجاناً</p>
-          </div>
-          <p className="text-4xl sm:text-5xl font-black tabular-nums leading-none text-[#0891b2]">
-            🔥 {priceLabel} <span className="text-xl sm:text-2xl">فقط</span>
+        <section className="text-center space-y-4">
+          <p className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200 px-3 py-1 text-xs font-bold text-amber-800">
+            🎁 Arabic Magic Book هدية مجانية مع الطلب
           </p>
-          <p className="text-sm text-[#5b6578]">🎁 Arabic Magic Book هدية مجانية مع الطلب</p>
-          <CtaButton onClick={scrollToOrder}>{CTA_ORDER_GIFT}</CtaButton>
+          <h1 className="text-2xl sm:text-4xl font-black leading-tight tracking-tight">
+            🎨 مجموعة الرسم والتلوين للأطفال
+          </h1>
+          <p className="text-base sm:text-lg text-[#5b6578] leading-relaxed max-w-xl mx-auto">
+            208 قطعة مع حامل مدمج + Arabic Magic Book مجاناً — ستوديو إبداع كامل فحقيبة وحدة.
+          </p>
           <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-[#5b6578]">
             <span className="inline-flex items-center gap-1 rounded-full bg-white border border-[#e6eaef] px-3 py-1">
-              🚚 الدفع عند الاستلام
+              الشحن مجاني 🚚
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-full bg-white border border-[#e6eaef] px-3 py-1">
+              الدفع عند الاستلام
             </span>
             <span className="inline-flex items-center gap-1 rounded-full bg-white border border-[#e6eaef] px-3 py-1">
               ⚡ تأكيد الطلب
@@ -255,6 +259,19 @@ export function ProductPageKidsArtSet({ product }: Props) {
 
         <section aria-label="صور المنتج">
           <PremiumProductGallery product={product} />
+        </section>
+
+        <section className="rounded-3xl border border-cyan-200/70 bg-white p-5 sm:p-7 text-center space-y-4 shadow-sm">
+          <p className="text-sm font-bold" style={{ color: ACCENT }}>
+            🎨 مجموعة الرسم والتلوين + 🎁 Arabic Magic Book مجاناً
+          </p>
+          <p className="text-4xl sm:text-5xl font-black tabular-nums leading-none" style={{ color: ACCENT }}>
+            🔥 {priceFormatted}{" "}
+            <span className="text-xl font-bold text-[#1c2333]">DH فقط</span>
+          </p>
+          <p className="text-sm text-[#5b6578]">🎁 Arabic Magic Book هدية مجانية مع الطلب</p>
+          <p className="text-base font-bold text-[#1c2333]">التوصيل مجاني 🚚 · الدفع عند الاستلام</p>
+          <CtaButton onClick={scrollToOrder}>{CTA_ORDER_GIFT}</CtaButton>
         </section>
 
         <section className="grid grid-cols-2 gap-3">
@@ -268,7 +285,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
               key={item.label}
               className="flex items-center gap-2 rounded-2xl border border-[#e6eaef] bg-white px-3 py-3 shadow-sm"
             >
-              <item.icon className="h-4 w-4 text-[#0891b2] shrink-0" />
+              <item.icon className="h-4 w-4 text-[#0e7490] shrink-0" />
               <span className="text-xs font-semibold">{item.label}</span>
             </div>
           ))}
@@ -278,7 +295,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
           <h2 className="text-xl sm:text-2xl font-black text-center">شنو غادي تاخد بـ{priceLabel}؟</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-2xl bg-white border border-[#e6eaef] overflow-hidden shadow-sm">
-              <div className="relative aspect-square bg-[#eef6f8]">
+              <div className="relative aspect-square bg-[#eef3f3]">
                 <Image
                   src={heroSrc}
                   alt="مجموعة الرسم والتلوين للأطفال 208 قطعة مع حامل مدمج"
@@ -313,7 +330,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
               </div>
             </div>
           </div>
-          <p className="text-center text-2xl sm:text-3xl font-black tabular-nums text-[#0891b2]">
+          <p className="text-center text-2xl sm:text-3xl font-black tabular-nums" style={{ color: ACCENT }}>
             🔥 العرض كامل بـ{priceLabel} فقط
           </p>
           <CtaButton onClick={scrollToOrder}>{CTA_OFFER}</CtaButton>
@@ -337,7 +354,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
             </ul>
           </div>
           <div className="rounded-3xl border border-cyan-200 bg-cyan-50/70 p-5 text-center space-y-2">
-            <p className="text-lg sm:text-xl font-black text-[#0891b2] leading-snug">
+            <p className="text-lg sm:text-xl font-black text-[#0e7490] leading-snug">
               ستوديو كامل: حامل + 208 قطعة + كل لون فبلاصتو
             </p>
             <p className="text-sm text-[#3d4554]">كيفتح، كيرسم، وطاوي. بلا فوضى فوق الطاولة.</p>
@@ -349,7 +366,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {BENEFITS.map((b) => (
               <div key={b.title} className="rounded-2xl border border-[#e6eaef] bg-white p-4 shadow-sm">
-                <b.icon className="h-5 w-5 text-[#0891b2] mb-2" />
+                <b.icon className="h-5 w-5 text-[#0e7490] mb-2" />
                 <p className="font-bold">☑️ {b.title}</p>
                 <p className="text-sm text-[#5b6578] mt-1 leading-relaxed">{b.desc}</p>
               </div>
@@ -365,7 +382,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
                 key={a.title}
                 className="rounded-2xl border border-[#e6eaef] bg-white p-4 text-center shadow-sm"
               >
-                <a.icon className="h-6 w-6 text-[#0891b2] mx-auto mb-2" />
+                <a.icon className="h-6 w-6 text-[#0e7490] mx-auto mb-2" />
                 <p className="font-bold text-sm">{a.title}</p>
                 <p className="text-xs text-[#5b6578] mt-1 leading-relaxed">{a.desc}</p>
               </div>
@@ -405,7 +422,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
               { n: "4", t: "طوي وكلشي يرجع", d: "كل أداة فتجويفها. طوي الحقيبة من المقبض — بلا فوضى." },
             ].map((s) => (
               <li key={s.n} className="flex gap-3 rounded-2xl border border-[#e6eaef] bg-white p-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0891b2] text-white font-black">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0e7490] text-white font-black">
                   {s.n}
                 </span>
                 <div>
@@ -439,7 +456,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
               "ممحاة ومبراة فتجويف خاص",
             ].map((line) => (
               <li key={line} className="flex items-center gap-2 rounded-xl bg-white border border-[#e6eaef] px-3 py-2.5">
-                <Check className="h-4 w-4 text-[#0891b2] shrink-0" />
+                <Check className="h-4 w-4 text-[#0e7490] shrink-0" />
                 {line}
               </li>
             ))}
@@ -478,6 +495,10 @@ export function ProductPageKidsArtSet({ product }: Props) {
             </p>
             <CtaButton onClick={scrollToOrder}>{CTA_ORDER}</CtaButton>
           </section>
+          <div className="mb-3 space-y-1 text-center">
+            <p className="font-black text-lg">🚚 التوصيل لباب دارك</p>
+            <p className="font-bold text-[#0e7490]">💵 خلّص عند الاستلام</p>
+          </div>
           <ProductOrderForm
             product={product}
             variant={variant}
@@ -534,7 +555,7 @@ export function ProductPageKidsArtSet({ product }: Props) {
               <ul className="space-y-2">
                 {(product.packageIncludes || []).map((item) => (
                   <li key={item.ar} className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-[#0891b2]" /> {item.ar}
+                    <Check className="h-4 w-4 text-[#0e7490]" /> {item.ar}
                   </li>
                 ))}
               </ul>
@@ -553,8 +574,8 @@ export function ProductPageKidsArtSet({ product }: Props) {
           </AccordionItem>
         </Accordion>
 
-        <section className="rounded-3xl border border-[#0891b2]/20 bg-white overflow-hidden shadow-sm">
-          <div className="relative aspect-square bg-[#eef6f8]">
+        <section className="rounded-3xl border border-[#0e7490]/20 bg-white overflow-hidden shadow-sm">
+          <div className="relative aspect-square bg-[#eef3f3]">
             <Image
               src={heroSrc}
               alt="مجموعة الرسم والتلوين للأطفال مع Arabic Magic Book هدية مجانية"
@@ -567,15 +588,16 @@ export function ProductPageKidsArtSet({ product }: Props) {
           <div className="p-6 sm:p-8 text-center space-y-4">
             <div className="space-y-1">
               <p className="text-lg font-black">🎨 مجموعة الرسم والتلوين</p>
-              <p className="text-xl font-black text-[#0891b2]">+</p>
+              <p className="text-xl font-black text-[#0e7490]">+</p>
               <p className="text-lg font-black">🎁 Arabic Magic Book مجاناً</p>
             </div>
-            <p className="text-3xl sm:text-4xl font-black tabular-nums text-[#0891b2]">
+            <p className="text-3xl sm:text-4xl font-black tabular-nums text-[#0e7490]">
               🔥 {priceLabel} فقط
             </p>
             <p className="text-base sm:text-lg font-bold text-[#1c2333]">
               خلي طفلك يكتشف عالم الإبداع ديالو 🎨
             </p>
+            <p className="text-sm font-semibold text-[#5b6578]">التوصيل مجاني · الدفع عند الاستلام</p>
             <CtaButton onClick={scrollToOrder}>{CTA_ORDER}</CtaButton>
           </div>
         </section>
@@ -592,12 +614,12 @@ export function ProductPageKidsArtSet({ product }: Props) {
             <div className="px-4 py-3 max-w-lg mx-auto flex items-center gap-3">
               <div className="min-w-0">
                 <p className="text-xs font-bold text-[#5b6578] truncate">🎨 + 🎁 Arabic Magic Book</p>
-                <p className="text-sm font-black tabular-nums text-[#0891b2]">{priceLabel}</p>
+                <p className="text-sm font-black tabular-nums text-[#0e7490]">{priceLabel}</p>
               </div>
               <button
                 type="button"
                 onClick={scrollToOrder}
-                className="flex-1 h-12 rounded-xl bg-[#0891b2] hover:bg-[#0e7490] text-white font-black text-sm"
+                className="flex-1 h-12 rounded-xl bg-[#0e7490] hover:bg-[#155e75] text-white font-black text-sm"
               >
                 {CTA_ORDER}
               </button>
