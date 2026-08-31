@@ -381,6 +381,32 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       clientRef: "/products/cordless-mini-vacuum-keyboard/product-reference.png",
     },
   },
+  {
+    id: "prod-kids-art-208",
+    slug: "kids-art-set-easel-208",
+    sku: "Kids-Art-Set-208",
+    name: "208-Piece Kids Art Set with Pop-up Easel",
+    type: "Portable children's art studio in a folding plastic case with built-in easel",
+    color: "Light cyan / sky-blue plastic case, white easel, rainbow art supplies",
+    category: "Kids Room",
+    categoryId: "cat-kids-room",
+    shortDescription:
+      "Light-cyan tri-fold plastic art briefcase — 208 pieces, white pop-up A-frame easel with black clips, markers, colored pencils, crayons, oil pastels, watercolor cakes",
+    visualIdentity:
+      "EXACT real product from client reference — large light cyan / sky-blue hard plastic tri-fold children's art set that opens into a portable studio. Center: white A-frame pop-up easel with two black plastic paper clips holding drawing paper. Top/back molded panels: thick colorful markers and multiple rows of sharpened colored pencils. Bottom/front panels: three large sections of crayons and oil pastels arranged in rainbow color gradients. Bottom-right accessories: round watercolor cake palette (~12 colors), thin paintbrush, white eraser, pencil sharpener, small white tube. Every tool has a dedicated molded slot. When closed it is a cyan plastic briefcase with a handle. NEVER redesign as a wooden easel-only, metal tin, or different color case. Preserve exact cyan plastic, white easel, black clips, and supply layout.",
+    dimensions: "Large folding briefcase art studio for a child at a table",
+    accessories: ["Pop-up easel with black clips", "Watercolor palette and brush", "Eraser and sharpener"],
+    packageItems: [
+      "Foldable cyan art case with built-in easel",
+      "Markers and colored pencils",
+      "Crayons and oil pastels",
+      "Watercolor palette and brush",
+      "Eraser and sharpener",
+    ],
+    sourceUrls: {
+      clientRef: "/products/kids-art-set-easel-208/product-reference.jpg",
+    },
+  },
 ];
 
 const PROFILE_SLUG_ALIASES: Record<string, string> = {

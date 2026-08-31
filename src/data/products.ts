@@ -12,7 +12,7 @@ const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-galaxy-lights": ["galaxy", "aurora", "laser", "star"],
   "cat-home-decor": ["decor", "cooler", "fan", "desk"],
   "cat-bedroom-lighting": ["bedroom"],
-  "cat-kids-room": ["kids"],
+  "cat-kids-room": ["kids", "art", "drawing"],
   "cat-relaxation": ["relaxation"],
   "cat-gift-ideas": ["gift"],
   "cat-study-office": ["calculator", "study", "vacuum", "keyboard"],
@@ -2369,6 +2369,128 @@ export const products: Product[] = [
         "مكنسة لاسلكية صغيرة 2 في 1 لتنظيف الكيبورد والإلكترونيات. شحن USB. عرض الإطلاق 149 درهم بدل 249. شحن مجاني والدفع عند الاستلام في المغرب.",
         "Mini aspirateur 2-en-1 sans fil pour clavier et électronique. USB. Offre 149 MAD au lieu de 249. Livraison gratuite et COD au Maroc.",
         "Cordless 2-in-1 mini vacuum for keyboards and electronics. USB charging. Launch price 149 MAD instead of 249. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-kids-art-208",
+    slug: "kids-art-set-easel-208",
+    name: L(
+      "طقم رسم للأطفال 208 قطعة مع حامل مدمج",
+      "Coffret dessin enfants 208 pièces avec chevalet intégré",
+      "208-Piece Kids Art Set with Built-in Pop-up Easel"
+    ),
+    shortDescription: L(
+      "مجموعة الرسم والتلوين للأطفال + Arabic Magic Book هدية مجانية · 208 قطعة · حامل ينفتح · 299 DH · شحن مجاني والدفع عند الاستلام",
+      "Coffret dessin enfants + Arabic Magic Book offert · 208 pièces · chevalet pop-up · 299 DH · livraison gratuite et COD",
+      "Kids art & coloring set + free Arabic Magic Book · 208 pieces · pop-up easel · 299 DH · free shipping and COD"
+    ),
+    description: L(
+      "عرض NOORVA: مجموعة الرسم والتلوين للأطفال بـ 208 قطعة داخل حقيبة بلاستيك زرقاء فاتحة قابلة للطي، مع حامل رسم أبيض ينفتح في الوسط. أقلام تلوين، ماركر، ألوان شمع، باستيل زيتي، ألوان مائية، فرشاة، ممحاة ومبراة — كل أداة فبلاصة مقولبة. مع الطلب: Arabic Magic Book هدية مجانية (4 كتب تعليمية + قلم سحري). السعر: 299 DH فقط. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Offre NOORVA : coffret dessin 208 pièces dans une mallette cyan pliable avec chevalet pop-up. Crayons, feutres, pastels, aquarelle — chaque outil à sa place. Avec la commande : Arabic Magic Book offert (4 livres + stylo magique). Prix : 299 DH. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA offer: 208-piece kids art set in a folding cyan case with pop-up easel. Pencils, markers, crayons, watercolors — each tool in its slot. With order: free Arabic Magic Book (4 workbooks + magic pen). Price: 299 DH. Free Morocco shipping with cash on delivery."
+    ),
+    categoryId: "cat-kids-room",
+    price: 299,
+    sku: "Kids-Art-Set-208",
+    stock: 84,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    warrantyMonths: 12,
+    problemEmoji: "🎨",
+    problem: L(
+      "الألوان كيتفرّقو والولد كيمل من الشاشات؟",
+      "Crayons partout et l'enfant collé aux écrans?",
+      "Art supplies everywhere and the child stuck on screens?"
+    ),
+    problemCause: L(
+      "كتشري أقلام وحدهم، ما كاينش حامل، وكلشي كيتبعثر فوق الطاولة",
+      "Crayons achetés séparément, pas de chevalet, tout s'éparpille",
+      "Supplies bought separately, no easel, everything scatters on the table"
+    ),
+    problemSolution: L(
+      "ستوديو كامل فحقيبة وحدة: 208 قطعة + حامل ينفتح + كل لون فبلاصتو",
+      "Un studio complet dans une mallette : 208 pièces + chevalet + chaque couleur à sa place",
+      "A full studio in one case: 208 pieces + pop-up easel + every color in its slot"
+    ),
+    deepDescription: L(
+      "حقيبة بلاستيك زرقاء فاتحة بثلاث طيات تنفتح لستوديو رسم محمول. في الوسط حامل أبيض بشكل A مع كلابين أسودين لتثبيت الورق. الألواح العلوية: ماركر سميك وأقلام تلوين مبراة في صفوف. الألواح السفلية: ثلاثة أقسام كبيرة من ألوان شمع وباستيل زيتي مرتبة حسب التدرج. زاوية الإكسسوارات: علبة ألوان مائية دائرية، فرشاة، ممحاة بيضاء، مبراة، وأنبوب صغير. كل أداة في تجويف مقولب باش تبقى منظمة بعد الاستعمال.",
+      "Mallette plastique cyan à trois volets qui s'ouvre en studio portable. Au centre, un chevalet blanc en A avec deux pinces noires. Panneaux du haut : feutres épais et crayons de couleur. Panneaux du bas : trois casiers de pastels/crayons en dégradé. Accessoires : aquarelle, pinceau, gomme, taille-crayon. Chaque outil a son logement moulé.",
+      "Light-cyan tri-fold plastic case that opens into a portable studio. Center: white A-frame easel with two black clips. Top panels: thick markers and sharpened colored pencils. Bottom panels: three crayon/oil-pastel sections in color gradients. Accessories: round watercolor cakes, brush, white eraser, sharpener, small tube. Every tool sits in a molded slot."
+    ),
+    tags: ["new", "kids", "gift", "art", "drawing", "easel", "school"],
+    benefits: [
+      L("208 قطعة فحقيبة وحدة", "208 pièces dans une seule mallette", "208 pieces in one case"),
+      L("حامل رسم ينفتح ويثبّت الورق", "Chevalet pop-up qui tient le papier", "Pop-up easel that holds the paper"),
+      L("كل لون فبلاصتو — بلا فوضى", "Chaque couleur à sa place — sans bazar", "Every color in its slot — no mess"),
+      L("كاتطوى وكتسافر بسهولة", "Se plie et se transporte facilement", "Folds and travels easily"),
+      L("ساعات ديال الرسم بلا شاشات", "Des heures de dessin sans écrans", "Hours of drawing without screens"),
+      L("هدية جاهزة لعيد الميلاد والدخول المدرسي", "Cadeau prêt pour anniversaire et rentrée", "Ready gift for birthdays and back-to-school"),
+    ],
+    features: [
+      L("حقيبة بلاستيك زرقاء قابلة للطي", "Mallette plastique cyan pliable", "Foldable cyan plastic case"),
+      L("حامل رسم أبيض مدمج مع كلابات", "Chevalet blanc intégré avec pinces", "Built-in white easel with clips"),
+      L("أقلام تلوين + ماركر", "Crayons de couleur + feutres", "Colored pencils + markers"),
+      L("ألوان شمع وباستيل زيتي", "Cires et pastels à l'huile", "Crayons and oil pastels"),
+      L("ألوان مائية وفرشاة", "Aquarelle et pinceau", "Watercolor cakes and brush"),
+      L("ممحاة ومبراة في تجويف خاص", "Gomme et taille-crayon", "Eraser and sharpener"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("طقم رسم للأطفال مع حامل", "Coffret dessin avec chevalet", "Kids art set with easel") },
+      { label: L("عدد القطع", "Pièces", "Pieces"), value: L("208 قطعة", "208 pièces", "208 pieces") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أزرق سماوي / سماوي فاتح", "Cyan / bleu ciel", "Light cyan / sky blue") },
+      { label: L("الحامل", "Chevalet", "Easel"), value: L("أبيض ينفتح مع كلابين أسودين", "Blanc pop-up, 2 pinces noires", "White pop-up with 2 black clips") },
+      { label: L("المحتويات", "Contenu", "Contents"), value: L("ماركر · أقلام · شمع · مائي · مبراة · ممحاة", "Feutres · crayons · cires · aquarelle · gomme", "Markers · pencils · crayons · watercolor · eraser") },
+      { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
+    ],
+    packageIncludes: [
+      L("حقيبة رسم زرقاء قابلة للطي مع حامل مدمج", "Mallette cyan pliable avec chevalet intégré", "Foldable cyan art case with built-in easel"),
+      L("أقلام تلوين وماركر", "Crayons de couleur et feutres", "Colored pencils and markers"),
+      L("ألوان شمع وباستيل زيتي", "Cires et pastels à l'huile", "Crayons and oil pastels"),
+      L("علبة ألوان مائية وفرشاة", "Palette aquarelle et pinceau", "Watercolor palette and brush"),
+      L("ممحاة ومبراة", "Gomme et taille-crayon", "Eraser and sharpener"),
+      L("Arabic Magic Book هدية مجانية (4 كتب + قلم سحري)", "Arabic Magic Book offert (4 livres + stylo magique)", "Free Arabic Magic Book (4 workbooks + magic pen)"),
+    ],
+    howToUse: L(
+      "افتح الحقيبة على الطاولة، أوقف الحامل الأبيض وثبّت الورقة بالكلابات. اختار ماركر أو قلم أو لون شمع أو ألوان مائية. بعد الرسم، أرجع كل أداة لتجويفها وطوي الحقيبة من المقبض.",
+      "Ouvrez la mallette, dressez le chevalet et clipsez la feuille. Choisissez feutre, crayon, pastel ou aquarelle. Rangez chaque outil dans son logement puis refermez la mallette.",
+      "Open the case on a table, stand the white easel and clip the paper. Choose marker, pencil, crayon or watercolor. Return each tool to its slot and fold the case shut."
+    ),
+    lifestyleScenes: [
+      { id: "home", emoji: "🏠", title: L("فالدار", "À la maison", "At home"), description: L("ستوديو صغير فوق الطاولة", "Petit studio sur la table", "A mini studio on the table") },
+      { id: "kids", emoji: "🧸", title: L("غرفة الأطفال", "Chambre enfant", "Kids room"), description: L("رسم منظم بلا فوضى", "Dessin rangé, sans bazar", "Organized drawing, no mess") },
+      { id: "school", emoji: "🎒", title: L("الدخول المدرسي", "Rentrée", "Back to school"), description: L("كل أدوات الرسم مجموعين", "Tous les outils au même endroit", "All drawing tools in one place") },
+      { id: "gift", emoji: "🎁", title: L("هدية جاهزة", "Cadeau prêt", "Ready gift"), description: L("عيد ميلاد، عيد، أو مفاجأة", "Anniversaire, fête ou surprise", "Birthday, holiday, or surprise") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-kids-art-208",
+        name: L("طقم 208 قطعة — أزرق", "Coffret 208 pièces — cyan", "208-piece set — cyan"),
+        price: 299,
+        sku: "Kids-Art-Set-208",
+        stock: 84,
+      },
+    ],
+    upsellIds: ["prod-rabbit", "prod-calc-tablet"],
+    crossSellIds: ["prod-shiatsu", "prod-mini-vacuum"],
+    seo: {
+      title: L(
+        "مجموعة الرسم والتلوين + Arabic Magic Book هدية | 299 DH",
+        "Coffret dessin enfants + Arabic Magic Book offert | 299 DH",
+        "Kids Art Set + Free Arabic Magic Book | 299 DH"
+      ),
+      description: L(
+        "مجموعة الرسم والتلوين للأطفال 208 قطعة مع حامل مدمج + Arabic Magic Book هدية مجانية. 299 DH فقط. شحن مجاني والدفع عند الاستلام في المغرب.",
+        "Coffret dessin 208 pièces avec chevalet + Arabic Magic Book offert. 299 DH. Livraison gratuite et COD au Maroc.",
+        "208-piece kids art set with easel + free Arabic Magic Book. 299 DH. Free shipping and COD in Morocco."
       ),
     },
   },

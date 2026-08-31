@@ -49,6 +49,8 @@ interface ProductOrderFormProps {
   orderNote?: string;
   /** Override full-name placeholder */
   fullNamePlaceholder?: string;
+  /** Override currency suffix in order summary (default: درهم / MAD) */
+  currencyLabel?: string;
   /** Extra catalog lines added from a PDP upsell. Server recalculates prices. */
   addonItems?: Array<{
     productId: string;
@@ -148,6 +150,7 @@ export function ProductOrderForm({
   summaryRows,
   orderNote,
   fullNamePlaceholder,
+  currencyLabel,
   addonItems = [],
 }: ProductOrderFormProps) {
   const router = useRouter();
@@ -156,6 +159,7 @@ export function ProductOrderForm({
   const pageLoadedAt = useRef(Date.now());
   const deviceRef = useRef<CollectedDeviceSignals | null>(null);
   const t = COPY[locale];
+  const currency = currencyLabel ?? t.currency;
   const isFr = locale === "fr";
 
   const [form, setForm] = useState<FormFields>({ fullName: "", phone: "", address: "", city: "", streetAddress: "" });
@@ -611,7 +615,7 @@ export function ProductOrderForm({
                 </p>
                 {addonItems.length > 0 && (
                   <p className="text-xs font-bold text-[#0F172A] mt-0.5 tabular-nums">
-                    {formatPriceNumber(variant.price * quantity, locale)} {t.currency}
+                    {formatPriceNumber(variant.price * quantity, locale)} {currency}
                   </p>
                 )}
               </div>
@@ -626,7 +630,7 @@ export function ProductOrderForm({
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-bold text-black line-clamp-2">{item.name}</p>
                   <p className="text-xs text-amber-700 font-black mt-0.5 tabular-nums">
-                    {formatPriceNumber(item.unitPrice, locale)} {t.currency}
+                    {formatPriceNumber(item.unitPrice, locale)} {currency}
                   </p>
                 </div>
               </div>
@@ -642,7 +646,7 @@ export function ProductOrderForm({
               </p>
               <p className={totalPriceClass}>
                 {totalFormatted}
-                <span className="text-sm ms-1 font-bold">{t.currency}</span>
+                <span className="text-sm ms-1 font-bold">{currency}</span>
               </p>
               <p className="mt-1 text-[11px] font-semibold text-[#64748B] flex items-center justify-center gap-1">
                 <Shield className="h-3 w-3" />

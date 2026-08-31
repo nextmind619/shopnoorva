@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T16:31:52.293Z",
+  "generatedAt": "2026-08-31T01:39:11.096Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3127,6 +3127,136 @@
         "10-features": "client-reference",
         "03-lifestyle": "client-reference",
         "20-social-media-banner": "client-reference"
+      }
+    },
+    "kids-art-set-easel-208": {
+      "slug": "kids-art-set-easel-208",
+      "sku": "Kids-Art-Set-208",
+      "name": "208-Piece Kids Art Set with Pop-up Easel",
+      "images": {
+        "02-premium-hero": {
+          "original": "/products/kids-art-set-easel-208/02-premium-hero.jpg",
+          "webp": "/products/kids-art-set-easel-208/02-premium-hero.webp",
+          "avif": "/products/kids-art-set-easel-208/02-premium-hero.avif",
+          "thumbnail": "/products/kids-art-set-easel-208/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/kids-art-set-easel-208/responsive/02-premium-hero-640.webp",
+            "md": "/products/kids-art-set-easel-208/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/kids-art-set-easel-208/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "01-hero-white-bg": {
+          "original": "/products/kids-art-set-easel-208/01-hero-white-bg.jpg",
+          "webp": "/products/kids-art-set-easel-208/01-hero-white-bg.webp",
+          "avif": "/products/kids-art-set-easel-208/01-hero-white-bg.avif",
+          "thumbnail": "/products/kids-art-set-easel-208/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/kids-art-set-easel-208/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/kids-art-set-easel-208/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/kids-art-set-easel-208/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/kids-art-set-easel-208/09-close-up.jpg",
+          "webp": "/products/kids-art-set-easel-208/09-close-up.webp",
+          "avif": "/products/kids-art-set-easel-208/09-close-up.avif",
+          "thumbnail": "/products/kids-art-set-easel-208/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/kids-art-set-easel-208/responsive/09-close-up-640.webp",
+            "md": "/products/kids-art-set-easel-208/responsive/09-close-up-1280.webp",
+            "lg": "/products/kids-art-set-easel-208/responsive/09-close-up-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/kids-art-set-easel-208/10-features.jpg",
+          "webp": "/products/kids-art-set-easel-208/10-features.webp",
+          "avif": "/products/kids-art-set-easel-208/10-features.avif",
+          "thumbnail": "/products/kids-art-set-easel-208/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/kids-art-set-easel-208/responsive/10-features-640.webp",
+            "md": "/products/kids-art-set-easel-208/responsive/10-features-1280.webp",
+            "lg": "/products/kids-art-set-easel-208/responsive/10-features-2000.webp"
+          }
+        },
+        "11-package-contents": {
+          "original": "/products/kids-art-set-easel-208/11-package-contents.jpg",
+          "webp": "/products/kids-art-set-easel-208/11-package-contents.webp",
+          "avif": "/products/kids-art-set-easel-208/11-package-contents.avif",
+          "thumbnail": "/products/kids-art-set-easel-208/thumbs/11-package-contents-400.webp",
+          "responsive": {
+            "sm": "/products/kids-art-set-easel-208/responsive/11-package-contents-640.webp",
+            "md": "/products/kids-art-set-easel-208/responsive/11-package-contents-1280.webp",
+            "lg": "/products/kids-art-set-easel-208/responsive/11-package-contents-2000.webp"
+          }
+        },
+        "16-packaging": {
+          "original": "/products/kids-art-set-easel-208/16-packaging.jpg",
+          "webp": "/products/kids-art-set-easel-208/16-packaging.webp",
+          "avif": "/products/kids-art-set-easel-208/16-packaging.avif",
+          "thumbnail": "/products/kids-art-set-easel-208/thumbs/16-packaging-400.webp",
+          "responsive": {
+            "sm": "/products/kids-art-set-easel-208/responsive/16-packaging-640.webp",
+            "md": "/products/kids-art-set-easel-208/responsive/16-packaging-1280.webp",
+            "lg": "/products/kids-art-set-easel-208/responsive/16-packaging-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/kids-art-set-easel-208/03-lifestyle.jpg",
+          "webp": "/lifestyle/kids-art-set-easel-208/03-lifestyle.webp",
+          "avif": "/lifestyle/kids-art-set-easel-208/03-lifestyle.avif",
+          "thumbnail": "/lifestyle/kids-art-set-easel-208/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/kids-art-set-easel-208/responsive/03-lifestyle-640.webp",
+            "md": "/lifestyle/kids-art-set-easel-208/responsive/03-lifestyle-1280.webp",
+            "lg": "/lifestyle/kids-art-set-easel-208/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "08-kids-room": {
+          "original": "/lifestyle/kids-art-set-easel-208/08-kids-room.jpg",
+          "webp": "/lifestyle/kids-art-set-easel-208/08-kids-room.webp",
+          "avif": "/lifestyle/kids-art-set-easel-208/08-kids-room.avif",
+          "thumbnail": "/lifestyle/kids-art-set-easel-208/thumbs/08-kids-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/kids-art-set-easel-208/responsive/08-kids-room-640.webp",
+            "md": "/lifestyle/kids-art-set-easel-208/responsive/08-kids-room-1280.webp",
+            "lg": "/lifestyle/kids-art-set-easel-208/responsive/08-kids-room-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/kids-art-set-easel-208/14-product-in-use.jpg",
+          "webp": "/lifestyle/kids-art-set-easel-208/14-product-in-use.webp",
+          "avif": "/lifestyle/kids-art-set-easel-208/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/kids-art-set-easel-208/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/kids-art-set-easel-208/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/kids-art-set-easel-208/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/kids-art-set-easel-208/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "20-social-media-banner": {
+          "original": "/banners/kids-art-set-easel-208/20-social-media-banner.jpg",
+          "webp": "/banners/kids-art-set-easel-208/20-social-media-banner.webp",
+          "avif": "/banners/kids-art-set-easel-208/20-social-media-banner.avif",
+          "thumbnail": "/banners/kids-art-set-easel-208/thumbs/20-social-media-banner-400.webp",
+          "responsive": {
+            "sm": "/banners/kids-art-set-easel-208/responsive/20-social-media-banner-640.webp",
+            "md": "/banners/kids-art-set-easel-208/responsive/20-social-media-banner-1280.webp",
+            "lg": "/banners/kids-art-set-easel-208/responsive/20-social-media-banner-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "02-premium-hero": "client-reference",
+        "01-hero-white-bg": "ai-generated",
+        "09-close-up": "ai-generated",
+        "10-features": "ai-generated",
+        "11-package-contents": "ai-generated",
+        "16-packaging": "ai-generated",
+        "03-lifestyle": "ai-generated",
+        "08-kids-room": "ai-generated",
+        "14-product-in-use": "ai-generated",
+        "20-social-media-banner": "ai-generated"
       }
     }
   }

@@ -15,6 +15,7 @@ export function generateStaticParams() {
 const SHIATSU_SLUG = "shiatsu-neck-shoulder-massager";
 const CALCULATOR_SLUG = "solar-calculator-lcd-notepad";
 const VACUUM_SLUG = "cordless-mini-vacuum-keyboard";
+const KIDS_ART_SLUG = "kids-art-set-easel-208";
 
 const SHIATSU_KEYWORDS = [
   "جهاز تدليك الرقبة",
@@ -52,6 +53,21 @@ const VACUUM_KEYWORDS = [
   "NOORVA",
 ];
 
+const KIDS_ART_KEYWORDS = [
+  "مجموعة الرسم والتلوين",
+  "Arabic Magic Book",
+  "طقم رسم للأطفال",
+  "طقم تلوين",
+  "حامل رسم",
+  "208 قطعة",
+  "أقلام تلوين",
+  "هدية أطفال",
+  "299 DH",
+  "الدخول المدرسي",
+  "الدفع عند الاستلام",
+  "NOORVA",
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -66,6 +82,7 @@ export async function generateMetadata({
   const isShiatsu = product.slug === SHIATSU_SLUG;
   const isCalculator = product.slug === CALCULATOR_SLUG;
   const isVacuum = product.slug === VACUUM_SLUG;
+  const isKidsArt = product.slug === KIDS_ART_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
@@ -74,7 +91,9 @@ export async function generateMetadata({
     ? "آلة حاسبة إلكترونية مع لوح كتابة إلكتروني وقلم للطالب والمكتب"
     : isVacuum
       ? "مكنسة لاسلكية صغيرة لتنظيف الكيبورد والإلكترونيات"
-      : name;
+      : isKidsArt
+        ? "طقم رسم للأطفال 208 قطعة مع حامل مدمج وحقيبة زرقاء"
+        : name;
 
   return {
     title,
@@ -85,7 +104,9 @@ export async function generateMetadata({
         ? [...CALCULATOR_KEYWORDS, ...product.tags]
         : isVacuum
           ? [...VACUUM_KEYWORDS, ...product.tags]
-          : product.tags,
+          : isKidsArt
+            ? [...KIDS_ART_KEYWORDS, ...product.tags]
+            : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
@@ -489,6 +510,51 @@ function getProductFaqs(slug: string, warrantyMonths: number) {
     ];
   }
 
+  if (slug === KIDS_ART_SLUG) {
+    return [
+      {
+        q: "شحال عدد القطع؟",
+        a: "208 قطعة داخل حقيبة وحدة: ماركر، أقلام تلوين، ألوان شمع، باستيل، ألوان مائية، فرشاة، ممحاة ومبراة.",
+      },
+      {
+        q: "واش فيه حامل رسم؟",
+        a: "نعم. حامل أبيض ينفتح فالوسط مع كلابين أسودين باش تثبّت الورقة وهو كيرسم.",
+      },
+      {
+        q: "لمن مناسب؟",
+        a: "مناسب للأطفال من سن الروض والابتدائي — هدية لعيد الميلاد، الدخول المدرسي، أو وقت الفراغ فالدار.",
+      },
+      {
+        q: "واش كيتفرّق الألوان؟",
+        a: "لا. كل أداة عندها تجويف مقولب. منين يسالي الرسم، كيرجع كل لون لبلاصتو وطاوي الحقيبة.",
+      },
+      {
+        q: "واش كاتطوى؟",
+        a: "نعم. حقيبة بلاستيك زرقاء قابلة للطي بمقبض. كتفتح لستوديو وكتطوى باش تتخزّن أو تسافر.",
+      },
+      {
+        q: "شنو كيجي فالعلبة؟",
+        a: "مجموعة الرسم والتلوين (208 قطعة مع حامل) + Arabic Magic Book هدية مجانية (4 كتب تعليمية + قلم سحري). السعر: 299 DH.",
+      },
+      {
+        q: "شحال ثمن العرض؟",
+        a: "299 DH فقط — مجموعة الرسم والتلوين + Arabic Magic Book هدية مجانية. التوصيل مجاني والدفع عند الاستلام.",
+      },
+      {
+        q: "شحال مدة التوصيل؟",
+        a: "24–48 ساعة للمدن الكبرى، و2–4 أيام لباقي المدن. التوصيل لجميع مدن المغرب.",
+      },
+      {
+        q: "واش كاين الدفع عند الاستلام؟",
+        a: "نعم. الدفع عند الاستلام فقط. ما كخلص والو دابا — كتخلص كاش ملي توصلك الطلبية.",
+      },
+      {
+        q: "واش التوصيل مجاني؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب.",
+      },
+    ];
+  }
+
   return [];
 }
 
@@ -512,6 +578,7 @@ export default async function ProductPage({
   const isShiatsu = product.slug === SHIATSU_SLUG;
   const isCalculator = product.slug === CALCULATOR_SLUG;
   const isVacuum = product.slug === VACUUM_SLUG;
+  const isKidsArt = product.slug === KIDS_ART_SLUG;
   const reviews = isShiatsu ? getReviewsForProduct(product.id) : [];
 
   return (
@@ -525,8 +592,14 @@ export default async function ProductPage({
           image: [hero],
           sku: product.sku,
           brand: { "@type": "Brand", name: "NOORVA" },
-          color: isShiatsu ? "أخضر غابة" : isCalculator || isVacuum ? "أسود مطفي" : undefined,
-          material: isShiatsu ? "ABS + جلد PU + سيليكون غذائي" : undefined,
+          color: isShiatsu
+            ? "أخضر غابة"
+            : isCalculator || isVacuum
+              ? "أسود مطفي"
+              : isKidsArt
+                ? "أزرق سماوي"
+                : undefined,
+          material: isShiatsu ? "ABS + جلد PU + سيليكون غذائي" : isKidsArt ? "بلاستيك ABS" : undefined,
           offers: {
             "@type": "Offer",
             price: defaultVariant.price,
@@ -536,7 +609,7 @@ export default async function ProductPage({
             priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
             itemCondition: "https://schema.org/NewCondition",
             shippingDetails:
-              isShiatsu || isCalculator || isVacuum
+              isShiatsu || isCalculator || isVacuum || isKidsArt
                 ? {
                     "@type": "OfferShippingDetails",
                     shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },

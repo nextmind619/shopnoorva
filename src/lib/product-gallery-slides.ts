@@ -121,6 +121,14 @@ const PRIMARY_GALLERY_OVERRIDES: Partial<Record<string, PremiumImageType[]>> = {
     "14-product-in-use",
     "11-package-contents",
   ],
+  "kids-art-set-easel-208": [
+    "02-premium-hero",
+    "01-hero-white-bg",
+    "14-product-in-use",
+    "09-close-up",
+    "10-features",
+    "08-kids-room",
+  ],
 };
 
 const PRIMARY_GALLERY_FALLBACKS: PremiumImageType[] = [

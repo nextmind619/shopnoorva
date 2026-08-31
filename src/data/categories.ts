@@ -91,12 +91,12 @@ export const categories: Category[] = [
     slug: "kids-room",
     name: { ar: "غرفة الأطفال", fr: "Chambre Enfant", en: "Kids Room" },
     description: {
-      ar: "إضاءة ناعمة وآمنة ومسلّية لغرفة أطفالك",
-      fr: "Éclairage doux, sûr et amusant pour enfants",
-      en: "Soft, safe and fun lighting for kids",
+      ar: "إضاءة ناعمة وأدوات إبداع آمنة ومسلّية لغرفة أطفالك",
+      fr: "Éclairage doux et coffrets créatifs sûrs et amusants pour enfants",
+      en: "Soft lighting and safe, fun creative kits for kids",
     },
-    image: getProductHeroUrl("rabbit-carousel-night-light"),
-    productCount: 2,
+    image: getProductHeroUrl("kids-art-set-easel-208"),
+    productCount: 3,
   },
   {
     id: "cat-relaxation",
@@ -132,7 +132,7 @@ export const categories: Category[] = [
       en: "Premium, original gifts for every occasion",
     },
     image: getProductHeroUrl("rabbit-carousel-night-light"),
-    productCount: 7,
+    productCount: 8,
   },
 ];
 

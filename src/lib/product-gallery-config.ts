@@ -1287,6 +1287,73 @@ const MINI_VACUUM_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const KIDS_ART_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🎨",
+    heading: "ستوديو رسم فحقيبة وحدة",
+    subtitle: "208 قطعة · حامل ينفتح · كل لون فبلاصتو",
+    objectFit: "cover",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "📦",
+    heading: "الحقيبة مفتوحة",
+    subtitle: "حامل أبيض · ماركر · أقلام · ألوان شمع ومائية",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "✏️",
+    heading: "كيفاش كيرسم",
+    subtitle: "الورقة ثابتة فالكلابات وهو كيبدع",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🔍",
+    heading: "الحامل والكلابات",
+    subtitle: "تفاصيل البلاستيك والأدوات",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    emoji: "🌈",
+    heading: "كلشي منظم",
+    subtitle: "208 قطعة فتجاويف مقولبة",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "08-kids-room",
+    emoji: "🧸",
+    heading: "فغرفة الأطفال",
+    subtitle: "نشاط إبداع بلا شاشات وبلا فوضى",
+    objectFit: "cover",
+  },
+  {
+    section: "package",
+    imageType: "11-package-contents",
+    emoji: "💼",
+    heading: "كاتطوى بالمقبض",
+    subtitle: "حقيبة زرقاء جاهزة للسفر والتخزين",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "01-hero-white-bg",
+    emoji: "🎁",
+    heading: "Arabic Magic Book هدية",
+    subtitle: "4 كتب تعليمية + قلم سحري — مجاناً مع الطلب",
+    objectFit: "contain",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
   "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
@@ -1305,6 +1372,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "solar-helicopter-car-air-freshener": HELI_FRESHENER_SLIDES,
   "foldable-car-windshield-sunshade": SUNSHADE_SLIDES,
   "cordless-mini-vacuum-keyboard": MINI_VACUUM_SLIDES,
+  "kids-art-set-easel-208": KIDS_ART_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {
