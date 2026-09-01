@@ -15,6 +15,8 @@ export type GallerySection =
 export interface GallerySlideConfig {
   section: GallerySection;
   imageType: PremiumImageType;
+  /** Override manifest lookup — e.g. gift or custom scene images */
+  imageUrl?: string;
   emoji: string;
   heading: string;
   subtitle: string;
@@ -1307,6 +1309,7 @@ const KIDS_ART_SLIDES: GallerySlideConfig[] = [
   {
     section: "lifestyle",
     imageType: "14-product-in-use",
+    imageUrl: "/products/kids-art-set-easel-208/landing-drawing.webp",
     emoji: "✏️",
     heading: "كيفاش كيرسم",
     subtitle: "الورقة ثابتة فالكلابات وهو كيبدع",
@@ -1315,6 +1318,7 @@ const KIDS_ART_SLIDES: GallerySlideConfig[] = [
   {
     section: "features",
     imageType: "09-close-up",
+    imageUrl: "/products/kids-art-set-easel-208/howto-02-clip-paper.webp",
     emoji: "🔍",
     heading: "الحامل والكلابات",
     subtitle: "تفاصيل البلاستيك والأدوات",
@@ -1323,6 +1327,7 @@ const KIDS_ART_SLIDES: GallerySlideConfig[] = [
   {
     section: "features",
     imageType: "10-features",
+    imageUrl: "/products/kids-art-set-easel-208/howto-03-choose-tool.webp",
     emoji: "🌈",
     heading: "كلشي منظم",
     subtitle: "208 قطعة فتجاويف مقولبة",
@@ -1331,6 +1336,7 @@ const KIDS_ART_SLIDES: GallerySlideConfig[] = [
   {
     section: "lifestyle",
     imageType: "08-kids-room",
+    imageUrl: "/products/kids-art-set-easel-208/landing-kids-room.webp",
     emoji: "🧸",
     heading: "فغرفة الأطفال",
     subtitle: "نشاط إبداع بلا شاشات وبلا فوضى",
@@ -1339,6 +1345,7 @@ const KIDS_ART_SLIDES: GallerySlideConfig[] = [
   {
     section: "package",
     imageType: "11-package-contents",
+    imageUrl: "/products/kids-art-set-easel-208/howto-04-fold-close.webp",
     emoji: "💼",
     heading: "كاتطوى بالمقبض",
     subtitle: "حقيبة زرقاء جاهزة للسفر والتخزين",
@@ -1347,6 +1354,7 @@ const KIDS_ART_SLIDES: GallerySlideConfig[] = [
   {
     section: "features",
     imageType: "01-hero-white-bg",
+    imageUrl: "/products/kids-art-set-easel-208/arabic-magic-book-gift.jpg",
     emoji: "🎁",
     heading: "Arabic Magic Book هدية",
     subtitle: "4 كتب تعليمية + قلم سحري — مجاناً مع الطلب",

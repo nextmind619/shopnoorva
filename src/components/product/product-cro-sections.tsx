@@ -241,7 +241,11 @@ export function ProductHowToSection({ product }: SectionProps) {
       </div>
       <ol className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {howTo.map((step) => {
-          const img = step.imageKey ? resolveProductImage(product.slug, step.imageKey, "webp") : null;
+          const img = step.imageUrl
+            ? step.imageUrl
+            : step.imageKey
+              ? resolveProductImage(product.slug, step.imageKey, "webp")
+              : null;
           return (
             <li key={step.step} className={cn("rounded-2xl bg-[#12121a]/80 border border-white/8 overflow-hidden")}>
               {img && (

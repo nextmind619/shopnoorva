@@ -32,6 +32,8 @@ export type CroHowToStep = {
   title: string;
   desc: string;
   imageKey: PremiumImageType | null;
+  /** Override manifest lookup when imageKey does not match the step scene */
+  imageUrl?: string;
 };
 
 export type CroComparison = {
@@ -974,25 +976,29 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         step: "1",
         title: "افتح الحقيبة",
         desc: "حطها فوق الطاولة وافتح الثلاث طيات. الحامل كيبان فالوسط.",
-        imageKey: "14-product-in-use",
+        imageKey: "01-hero-white-bg",
+        imageUrl: "/products/kids-art-set-easel-208/howto-01-open-bag.webp",
       },
       {
         step: "2",
         title: "ثبت الورقة",
         desc: "أوقف الحامل الأبيض وشد الورقة بالكلابات السوداء.",
         imageKey: "09-close-up",
+        imageUrl: "/products/kids-art-set-easel-208/howto-02-clip-paper.webp",
       },
       {
         step: "3",
         title: "اختار الأداة",
         desc: "ماركر، قلم تلوين، لون شمع، أو ألوان مائية مع الفرشاة.",
         imageKey: "10-features",
+        imageUrl: "/products/kids-art-set-easel-208/howto-03-choose-tool.webp",
       },
       {
         step: "4",
         title: "طوي وكلشي يرجع",
         desc: "كل أداة فتجويفها. طوي الحقيبة من المقبض — بلا فوضى.",
-        imageKey: "08-kids-room",
+        imageKey: "11-package-contents",
+        imageUrl: "/products/kids-art-set-easel-208/howto-04-fold-close.webp",
       },
     ],
     comparison: {
