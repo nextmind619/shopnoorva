@@ -17,10 +17,11 @@ import {
   BadgeCheck,
   Minus,
   Plus,
+  Gift,
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
-import { products, getProductById, getReviewsForProduct } from "@/data/products";
+import { products, getProductById, getReviewsForProduct, moroccanCities } from "@/data/products";
 import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
@@ -28,6 +29,7 @@ import { getProductCroContent } from "@/lib/product-cro-content";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
 import { ProductVariantPicker, isPackVariantSku } from "@/components/product/product-variant-picker";
 import { ShiatsuCroSections } from "@/components/product/shiatsu-cro-sections";
+import { KidsArtCroSections } from "@/components/product/kids-art-cro-sections";
 import { CarMountUpsell } from "@/components/product/car-mount-upsell";
 import {
   carMountUpsellOrderNote,
@@ -175,6 +177,20 @@ function getProductFaqs(product: Product) {
       { q: "كم مدة التوصيل وهل فيه ضمان؟", a: delivery },
     ];
   }
+  if (product.slug === "kids-art-set-easel-208") {
+    return [
+      { q: "شحال عدد القطع؟", a: "208 قطعة داخل حقيبة وحدة: ماركر، أقلام تلوين، ألوان شمع، باستيل، ألوان مائية، فرشاة، ممحاة ومبراة." },
+      { q: "واش فيه حامل رسم؟", a: "نعم. حامل أبيض ينفتح فالوسط مع كلابين أسودين باش تثبّت الورقة وهو كيرسم." },
+      { q: "لمن مناسب؟", a: "مناسب للأطفال من سن الروض والابتدائي — هدية لعيد الميلاد، الدخول المدرسي، أو وقت الفراغ فالدار." },
+      { q: "واش كيتفرّق الألوان؟", a: "لا. كل أداة عندها تجويف مقولب. منين يسالي الرسم، كيرجع كل لون لبلاصتو وطاوي الحقيبة." },
+      { q: "واش كاتطوى؟", a: "نعم. حقيبة بلاستيك زرقاء قابلة للطي بمقبض. كتفتح لستوديو وكتطوى باش تتخزّن أو تسافر." },
+      { q: "شنو كيجي فالعلبة؟", a: "مجموعة الرسم والتلوين (208 قطعة مع حامل) + Arabic Magic Book هدية مجانية (4 كتب تعليمية + قلم سحري)." },
+      { q: "شحال ثمن العرض؟", a: "299 DH فقط — مجموعة الرسم والتلوين + Arabic Magic Book هدية مجانية. التوصيل مجاني والدفع عند الاستلام." },
+      { q: "كم مدة التوصيل؟", a: delivery },
+      { q: "واش كاين الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
+      { q: "واش التوصيل مجاني؟", a: "نعم، التوصيل مجاني لجميع مدن المغرب." },
+    ];
+  }
   if (product.slug === "shiatsu-neck-shoulder-massager") {
     return [
       {
@@ -277,6 +293,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const orderQty = isPack ? 1 : qty;
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
+  const isKidsArt = product.slug === "kids-art-set-easel-208";
   const showCarMountUpsell = isCarMountUpsellHostSlug(product.slug);
   const carMountUpsells = useMemo(
     () => (showCarMountUpsell ? getCarMountUpsellProducts() : []),
@@ -291,6 +308,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const combinedOrderNote = [
     isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined,
     isShiatsu ? "هدية مجانية: كريم سنام الجمل للاستعمال الخارجي" : undefined,
+    isKidsArt ? "مجموعة رسم 208 قطعة + Arabic Magic Book هدية | 299 DH" : undefined,
     carMountUpsellOrderNote(upsellIds),
   ]
     .filter(Boolean)
@@ -314,7 +332,14 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         { icon: Shield, label: "ضمان 12 شهر" },
         { icon: MessageCircle, label: "خدمة تأكيد الطلب" },
       ]
-    : TRUST_BADGES;
+    : isKidsArt
+      ? [
+          { icon: Truck, label: "الشحن مجاني" },
+          { icon: Banknote, label: "الدفع عند الاستلام" },
+          { icon: Shield, label: "ضمان 12 شهر" },
+          { icon: Gift, label: "Arabic Magic Book 🎁" },
+        ]
+      : TRUST_BADGES;
 
   return (
     <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans w-full max-w-full overflow-x-clip min-w-0" dir="rtl">
@@ -347,6 +372,14 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             <>
               <span className="hidden sm:inline text-white/20">|</span>
               <span className="flex items-center gap-1.5">🎁 1 + 1 مجاناً</span>
+            </>
+          )}
+          {isKidsArt && (
+            <>
+              <span className="hidden sm:inline text-white/20">|</span>
+              <span className="flex items-center gap-1.5">
+                <Gift className="h-3.5 w-3.5 text-amber-300" /> Arabic Magic Book هدية مجانية
+              </span>
             </>
           )}
         </div>
@@ -389,19 +422,33 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white">
-            {isBogo ? "اشترِ 1 وخذ 1 مجاناً 🎁" : isShiatsu ? "راحة الرقبة والكتاف… فالوقت اللي تحتاجها" : name}
+            {isBogo
+              ? "اشترِ 1 وخذ 1 مجاناً 🎁"
+              : isShiatsu
+                ? "راحة الرقبة والكتاف… فالوقت اللي تحتاجها"
+                : isKidsArt
+                  ? "🎨 مجموعة الرسم والتلوين للأطفال"
+                  : name}
           </h1>
           {isBogo && (
             <p className="text-base font-semibold text-amber-200">المنتج الأصلي · جوج قطع في الطلب</p>
           )}
+          {isKidsArt && (
+            <p className="text-base font-semibold text-amber-200">+ 🎁 Arabic Magic Book مجاناً</p>
+          )}
           <p className="text-white/60 text-base leading-relaxed max-w-xl mx-auto sm:mx-0">
             {isBogo
               ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. الدفع عند الاستلام والتوصيل مجاني."
-              : headline.subtitle}
+              : isKidsArt
+                ? "208 قطعة مع حامل مدمج + Arabic Magic Book هدية مجانية — ستوديو إبداع كامل فحقيبة وحدة."
+                : headline.subtitle}
           </p>
         </section>
 
         {isShiatsu && <ShiatsuCroSections product={product} onOrderClick={scrollToOrder} />}
+        {isKidsArt && (
+          <KidsArtCroSections product={product} price={variant.price} onOrderClick={scrollToOrder} />
+        )}
 
         {/* 3. السعر */}
         <section className="rounded-3xl border border-white/10 bg-[#12121a] px-6 py-7 sm:px-8 sm:py-8 space-y-3">
@@ -411,11 +458,18 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               <p className="text-base font-bold text-white">قطعتان بسعر قطعة واحدة</p>
             </div>
           )}
+          {isKidsArt && (
+            <div className="text-center sm:text-start space-y-1 pb-2">
+              <p className="text-base font-bold text-amber-200">🎨 مجموعة الرسم والتلوين + 🎁 Arabic Magic Book مجاناً</p>
+            </div>
+          )}
           <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
             <span className="text-5xl sm:text-6xl font-black tabular-nums text-white leading-none tracking-tight">
               {formatPriceNumber(variant.price, "ar")}
             </span>
-            <span className="text-lg font-bold text-white/70 pb-1">درهم</span>
+            <span className="text-lg font-bold text-white/70 pb-1">
+              {isKidsArt ? "DH فقط" : "درهم"}
+            </span>
             {variant.compareAtPrice && variant.compareAtPrice > variant.price && (
               <span className="text-xl text-white/35 line-through tabular-nums pb-1.5 ms-1">
                 {formatPriceNumber(variant.compareAtPrice, "ar")}
@@ -441,6 +495,11 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           )}
           {isBogo && (
             <p className="text-sm font-bold text-emerald-300">🎁 الثانية مجاناً — كياوصلك جوج قطع أصلية</p>
+          )}
+          {isKidsArt && (
+            <p className="text-sm font-bold text-amber-200/90">
+              🎁 Arabic Magic Book هدية مجانية مع الطلب
+            </p>
           )}
         </section>
 
@@ -508,11 +567,25 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         {/* 5. زر اطلب الآن */}
         <button type="button" onClick={scrollToOrder} className={ctaClass}>
           <ShoppingBag className="h-5 w-5" />
-          {isBogo ? "اطلب 1 + 1 مجاناً" : "اطلب الآن"}
+          {isBogo
+            ? "اطلب 1 + 1 مجاناً"
+            : isKidsArt
+              ? "🛒 أطلب الآن بـ299 DH + الهدية مجانية"
+              : "اطلب الآن"}
         </button>
 
         {showCarMountUpsell && (
           <CarMountUpsell products={carMountUpsells} selectedIds={upsellIds} onToggle={toggleUpsell} />
+        )}
+
+        {isKidsArt && (
+          <section className="rounded-3xl border border-white/10 bg-[#12121a]/80 p-6 sm:p-8 text-center space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold text-white">جاهز تفرح طفلك؟ 🎨</h2>
+            <p className="text-sm sm:text-base text-white/60 leading-relaxed">
+              بـ{formatPriceNumber(variant.price, "ar")} DH فقط، غادي تحصل على مجموعة الرسم والتلوين + Arabic Magic
+              Book هدية مجانية.
+            </p>
+          </section>
         )}
 
         {/* 6. نموذج الطلب */}
@@ -522,15 +595,43 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           quantity={orderQty}
           quantityLabel={isBogo ? "2 قطع" : undefined}
           orderNote={combinedOrderNote}
-          submitLabel={isBogo ? "أكد طلب 1 + 1 مجاناً" : undefined}
-          formTitle={isBogo ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام" : undefined}
-          formSubtitle={isBogo ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا." : undefined}
+          submitLabel={
+            isBogo
+              ? "أكد طلب 1 + 1 مجاناً"
+              : isKidsArt
+                ? "🛒 أطلب الآن بـ299 DH"
+                : undefined
+          }
+          formTitle={
+            isBogo
+              ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام"
+              : isKidsArt
+                ? "اطلب الآن — الدفع عند الاستلام"
+                : undefined
+          }
+          formSubtitle={
+            isBogo
+              ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا."
+              : isKidsArt
+                ? "عمّر الاسم، الهاتف، المدينة والعنوان. ما كخلص والو حتى توصلك الطلبية."
+                : undefined
+          }
+          fullNamePlaceholder={isKidsArt ? "مثال: محمد أمين" : undefined}
+          currencyLabel={isKidsArt ? "DH" : undefined}
+          extendedAddress={isKidsArt}
+          cityOptions={isKidsArt ? moroccanCities : undefined}
           summaryRows={
             isBogo
               ? [{ label: "العرض", value: "1 مدفوعة + 1 مجاناً" }]
               : isShiatsu
                 ? [{ label: "الهدية", value: "كريم سنام الجمل مجاناً" }]
-                : undefined
+                : isKidsArt
+                  ? [
+                      { label: "مجموعة الرسم والتلوين", value: "208 قطعة" },
+                      { label: "Arabic Magic Book", value: "🎁 هدية مجانية" },
+                      { label: "السعر", value: `${formatPriceNumber(variant.price, "ar")} DH` },
+                    ]
+                  : undefined
           }
           addonItems={selectedUpsells.map((item) => ({
             productId: item.id,
@@ -546,7 +647,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         <ProductBenefitsSection
           product={product}
           onOrderClick={scrollToOrder}
-          ctaLabel={isBogo ? "اطلب 1 + 1 مجاناً" : undefined}
+          ctaLabel={
+            isBogo ? "اطلب 1 + 1 مجاناً" : isKidsArt ? "🛒 أطلب الآن بـ299 DH" : undefined
+          }
         />
 
         {/* 8. الفيديو */}
@@ -815,7 +918,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 <ShoppingBag className="h-5 w-5" />
               {isBogo
                   ? `اطلب جوج — ${formatPriceNumber(orderTotal, "ar")} درهم`
-                  : `اطلب دابا — ${formatPriceNumber(orderTotal, "ar")} درهم`}
+                  : isKidsArt
+                    ? `🛒 أطلب الآن — ${formatPriceNumber(orderTotal, "ar")} DH`
+                    : `اطلب دابا — ${formatPriceNumber(orderTotal, "ar")} درهم`}
               </button>
             </div>
           </motion.div>

@@ -6,7 +6,6 @@ import { ProductPageVintageLantern } from "@/components/product/product-page-vin
 import { ProductPageWarmLedDecorLamp } from "@/components/product/product-page-warm-led-decor-lamp";
 import { ProductPageSolarCalculator } from "@/components/product/product-page-solar-calculator";
 import { ProductPageMiniVacuum } from "@/components/product/product-page-mini-vacuum";
-import { ProductPageKidsArtSet } from "@/components/product/product-page-kids-art-set";
 
 interface ProductPageClientProps {
   product: Product;
@@ -32,10 +31,6 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
 
   if (product.slug === "cordless-mini-vacuum-keyboard") {
     return <ProductPageMiniVacuum product={product} />;
-  }
-
-  if (product.slug === "kids-art-set-easel-208") {
-    return <ProductPageKidsArtSet product={product} />;
   }
 
   return <ProductPageAr product={product} related={relatedProp} />;

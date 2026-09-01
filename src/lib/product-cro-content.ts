@@ -958,6 +958,77 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
       },
     ],
   },
+  "kids-art-set-easel-208": {
+    headline: {
+      title: "🎨 مجموعة الرسم والتلوين للأطفال",
+      subtitle:
+        "208 قطعة مع حامل مدمج + 🎁 Arabic Magic Book هدية مجانية — ستوديو إبداع كامل فحقيبة وحدة.",
+    },
+    midCtaLabels: [
+      "جاهز تفرح طفلك؟ 🎨",
+      "299 DH — مجموعة الرسم + Arabic Magic Book مجاناً",
+      "خلّص كاش عند الباب — بلا مخاطرة",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "افتح الحقيبة",
+        desc: "حطها فوق الطاولة وافتح الثلاث طيات. الحامل كيبان فالوسط.",
+        imageKey: "14-product-in-use",
+      },
+      {
+        step: "2",
+        title: "ثبت الورقة",
+        desc: "أوقف الحامل الأبيض وشد الورقة بالكلابات السوداء.",
+        imageKey: "09-close-up",
+      },
+      {
+        step: "3",
+        title: "اختار الأداة",
+        desc: "ماركر، قلم تلوين، لون شمع، أو ألوان مائية مع الفرشاة.",
+        imageKey: "10-features",
+      },
+      {
+        step: "4",
+        title: "طوي وكلشي يرجع",
+        desc: "كل أداة فتجويفها. طوي الحقيبة من المقبض — بلا فوضى.",
+        imageKey: "08-kids-room",
+      },
+    ],
+    comparison: {
+      oursLabel: "طقم رسم NOORVA + هدية",
+      rows: [
+        { label: "208 قطعة + حامل ينفتح", us: true, them: "أقلام منفصلة بلا حامل" },
+        { label: "كل لون فبلاصتو — بلا فوضى", us: true, them: false },
+        { label: "Arabic Magic Book هدية مجانية", us: true, them: false },
+        { label: "حقيبة قابلة للطي والسفر", us: true, them: "علبة عادية" },
+        { label: "299 DH — عرض كامل", us: true, them: "تشري وحدهم أغلى" },
+        ...SHARED_TRUST_ROWS,
+      ],
+    },
+    benefits: [
+      {
+        icon: Palette,
+        title: "ستوديو كامل فحقيبة وحدة",
+        desc: "208 قطعة: ما بقيتش تشري أقلام وحدهم وحامل وحدو.",
+      },
+      {
+        icon: Gift,
+        title: "Arabic Magic Book مجاناً",
+        desc: "4 كتب تعليمية + قلم سحري — هدية مع كل طلب.",
+      },
+      {
+        icon: Baby,
+        title: "مناسب للأطفال",
+        desc: "روض وابتدائي — هدية عيد ميلاد أو دخول مدرسي.",
+      },
+      {
+        icon: Sparkles,
+        title: "ساعات بلا شاشات",
+        desc: "الرسم كيخلي الولد منشغل ومبدع بدل التابلت.",
+      },
+    ],
+  },
 };
 
 export function getProductCroContent(slug: string): CroProductContent | null {
