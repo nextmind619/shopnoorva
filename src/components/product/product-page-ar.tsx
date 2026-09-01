@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
-import { products, getProductById, getReviewsForProduct, moroccanCities } from "@/data/products";
+import { products, getProductById, getReviewsForProduct } from "@/data/products";
 import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
@@ -593,41 +593,20 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           quantity={orderQty}
           quantityLabel={isBogo ? "2 قطع" : undefined}
           orderNote={combinedOrderNote}
-          submitLabel={
-            isBogo
-              ? "أكد طلب 1 + 1 مجاناً"
-              : isKidsArt
-                ? "🛒 أطلب الآن بـ299 درهم"
-                : undefined
-          }
-          formTitle={
-            isBogo
-              ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام"
-              : isKidsArt
-                ? "اطلب الآن — الدفع عند الاستلام"
-                : undefined
-          }
+          submitLabel={isBogo ? "أكد طلب 1 + 1 مجاناً" : undefined}
+          formTitle={isBogo ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام" : undefined}
           formSubtitle={
             isBogo
               ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا."
-              : isKidsArt
-                ? "عمّر الاسم، الهاتف، المدينة والعنوان. ما كخلص والو حتى توصلك الطلبية."
-                : undefined
+              : undefined
           }
-          fullNamePlaceholder={isKidsArt ? "مثال: محمد أمين" : undefined}
-          extendedAddress={isKidsArt}
-          cityOptions={isKidsArt ? moroccanCities : undefined}
           summaryRows={
             isBogo
               ? [{ label: "العرض", value: "1 مدفوعة + 1 مجاناً" }]
               : isShiatsu
                 ? [{ label: "الهدية", value: "كريم سنام الجمل مجاناً" }]
                 : isKidsArt
-                  ? [
-                      { label: "مجموعة الرسم والتلوين", value: "208 قطعة" },
-                      { label: "Arabic Magic Book", value: "🎁 هدية مجانية" },
-                      { label: "السعر", value: `${formatPriceNumber(variant.price, "ar")} درهم` },
-                    ]
+                  ? [{ label: "الهدية", value: "Arabic Magic Book مجاناً" }]
                   : undefined
           }
           addonItems={selectedUpsells.map((item) => ({
