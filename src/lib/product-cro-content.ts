@@ -966,7 +966,7 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
     },
     midCtaLabels: [
       "جاهز تفرح طفلك؟ 🎨",
-      "299 DH — مجموعة الرسم + Arabic Magic Book مجاناً",
+      "299 درهم — مجموعة الرسم + Arabic Magic Book مجاناً",
       "خلّص كاش عند الباب — بلا مخاطرة",
     ],
     howTo: [
@@ -1002,7 +1002,7 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         { label: "كل لون فبلاصتو — بلا فوضى", us: true, them: false },
         { label: "Arabic Magic Book هدية مجانية", us: true, them: false },
         { label: "حقيبة قابلة للطي والسفر", us: true, them: "علبة عادية" },
-        { label: "299 DH — عرض كامل", us: true, them: "تشري وحدهم أغلى" },
+        { label: "299 درهم — عرض كامل", us: true, them: "تشري وحدهم أغلى" },
         ...SHARED_TRUST_ROWS,
       ],
     },

@@ -17,7 +17,7 @@ interface KidsArtCroSectionsProps {
 
 export function KidsArtCroSections({ product, price, onOrderClick }: KidsArtCroSectionsProps) {
   const heroSrc = resolveProductImage(SLUG, "02-premium-hero", "webp");
-  const priceLabel = `${formatPriceNumber(price, "ar")} DH`;
+  const priceLabel = `${formatPriceNumber(price, "ar")} درهم`;
 
   return (
     <div className="space-y-8">

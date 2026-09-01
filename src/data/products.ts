@@ -2382,12 +2382,12 @@ export const products: Product[] = [
       "208-Piece Kids Art Set with Built-in Pop-up Easel"
     ),
     shortDescription: L(
-      "مجموعة الرسم والتلوين للأطفال + Arabic Magic Book هدية مجانية · 208 قطعة · حامل ينفتح · 299 DH · شحن مجاني والدفع عند الاستلام",
+      "مجموعة الرسم والتلوين للأطفال + Arabic Magic Book هدية مجانية · 208 قطعة · حامل ينفتح · 299 درهم · شحن مجاني والدفع عند الاستلام",
       "Coffret dessin enfants + Arabic Magic Book offert · 208 pièces · chevalet pop-up · 299 DH · livraison gratuite et COD",
       "Kids art & coloring set + free Arabic Magic Book · 208 pieces · pop-up easel · 299 DH · free shipping and COD"
     ),
     description: L(
-      "عرض NOORVA: مجموعة الرسم والتلوين للأطفال بـ 208 قطعة داخل حقيبة بلاستيك زرقاء فاتحة قابلة للطي، مع حامل رسم أبيض ينفتح في الوسط. أقلام تلوين، ماركر، ألوان شمع، باستيل زيتي، ألوان مائية، فرشاة، ممحاة ومبراة — كل أداة فبلاصة مقولبة. مع الطلب: Arabic Magic Book هدية مجانية (4 كتب تعليمية + قلم سحري). السعر: 299 DH فقط. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "عرض NOORVA: مجموعة الرسم والتلوين للأطفال بـ 208 قطعة داخل حقيبة بلاستيك زرقاء فاتحة قابلة للطي، مع حامل رسم أبيض ينفتح في الوسط. أقلام تلوين، ماركر، ألوان شمع، باستيل زيتي، ألوان مائية، فرشاة، ممحاة ومبراة — كل أداة فبلاصة مقولبة. مع الطلب: Arabic Magic Book هدية مجانية (4 كتب تعليمية + قلم سحري). السعر: 299 درهم فقط. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
       "Offre NOORVA : coffret dessin 208 pièces dans une mallette cyan pliable avec chevalet pop-up. Crayons, feutres, pastels, aquarelle — chaque outil à sa place. Avec la commande : Arabic Magic Book offert (4 livres + stylo magique). Prix : 299 DH. Livraison gratuite au Maroc, paiement à la livraison.",
       "NOORVA offer: 208-piece kids art set in a folding cyan case with pop-up easel. Pencils, markers, crayons, watercolors — each tool in its slot. With order: free Arabic Magic Book (4 workbooks + magic pen). Price: 299 DH. Free Morocco shipping with cash on delivery."
     ),
@@ -2483,12 +2483,12 @@ export const products: Product[] = [
     crossSellIds: ["prod-shiatsu", "prod-mini-vacuum"],
     seo: {
       title: L(
-        "مجموعة الرسم والتلوين + Arabic Magic Book هدية | 299 DH",
+        "مجموعة الرسم والتلوين + Arabic Magic Book هدية | 299 درهم",
         "Coffret dessin enfants + Arabic Magic Book offert | 299 DH",
         "Kids Art Set + Free Arabic Magic Book | 299 DH"
       ),
       description: L(
-        "مجموعة الرسم والتلوين للأطفال 208 قطعة مع حامل مدمج + Arabic Magic Book هدية مجانية. 299 DH فقط. شحن مجاني والدفع عند الاستلام في المغرب.",
+        "مجموعة الرسم والتلوين للأطفال 208 قطعة مع حامل مدمج + Arabic Magic Book هدية مجانية. 299 درهم فقط. شحن مجاني والدفع عند الاستلام في المغرب.",
         "Coffret dessin 208 pièces avec chevalet + Arabic Magic Book offert. 299 DH. Livraison gratuite et COD au Maroc.",
         "208-piece kids art set with easel + free Arabic Magic Book. 299 DH. Free shipping and COD in Morocco."
       ),
