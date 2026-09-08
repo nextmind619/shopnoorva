@@ -7,8 +7,7 @@ import { ShoppingBag, Check, X, Sparkles, Moon, Music2, Wifi, Gift, Play } from 
 import type { Product } from "@/types";
 import { cn } from "@/lib/utils";
 import { resolveProductImage } from "@/lib/product-images/resolve";
-import { getProductCroContent } from "@/lib/product-cro-content";
-import type { PremiumImageType } from "@/lib/product-images/types";
+import { getProductCroContent, type CroHowToStep } from "@/lib/product-cro-content";
 
 interface SectionProps {
   product: Product;
@@ -16,12 +15,7 @@ interface SectionProps {
   ctaLabel?: string;
 }
 
-function getGenericHowTo(product: Product): {
-  step: string;
-  title: string;
-  desc: string;
-  imageKey: PremiumImageType | null;
-}[] {
+function getGenericHowTo(product: Product): CroHowToStep[] {
   const text = product.howToUse?.ar || "";
   const parts = text.split(/[.。؟!]\s+/).filter(Boolean).slice(0, 4);
   if (parts.length >= 2) {
