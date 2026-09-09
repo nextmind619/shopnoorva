@@ -327,7 +327,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const selectedColor = isKidsArt ? getKidsArtColor(colorId) : undefined;
   const kidsArtGallerySlides = useMemo<GallerySlide[] | undefined>(() => {
     if (!isKidsArt) return undefined;
-    return KIDS_ART_COLORS.map((color) => ({
+    return KIDS_ART_COLORS.map((color): GallerySlide => ({
       id: `slide-${product.id}-color-${color.id}`,
       section: "hero",
       sectionLabel: "اللون",
