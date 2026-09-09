@@ -16,6 +16,7 @@ const SHIATSU_SLUG = "shiatsu-neck-shoulder-massager";
 const CALCULATOR_SLUG = "solar-calculator-lcd-notepad";
 const VACUUM_SLUG = "cordless-mini-vacuum-keyboard";
 const KIDS_ART_SLUG = "kids-art-set-easel-208";
+const EGG_BOILER_SLUG = "mini-egg-boiler";
 
 const SHIATSU_KEYWORDS = [
   "جهاز تدليك الرقبة",
@@ -68,6 +69,17 @@ const KIDS_ART_KEYWORDS = [
   "NOORVA",
 ];
 
+const EGG_BOILER_KEYWORDS = [
+  "جهاز طهي البيض",
+  "جهاز سلق البيض",
+  "طهي البيض الكهربائي",
+  "فطور الصباح",
+  "صباح المدرسة",
+  "الدفع عند الاستلام",
+  "المغرب",
+  "NOORVA",
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -83,6 +95,7 @@ export async function generateMetadata({
   const isCalculator = product.slug === CALCULATOR_SLUG;
   const isVacuum = product.slug === VACUUM_SLUG;
   const isKidsArt = product.slug === KIDS_ART_SLUG;
+  const isEggBoiler = product.slug === EGG_BOILER_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
@@ -93,7 +106,9 @@ export async function generateMetadata({
       ? "مكنسة لاسلكية صغيرة لتنظيف الكيبورد والإلكترونيات"
       : isKidsArt
         ? "طقم رسم للأطفال 208 قطعة مع حامل مدمج وحقيبة زرقاء"
-        : name;
+        : isEggBoiler
+          ? "جهاز كهربائي لطهي البيض أصفر مع غطاء شفاف وزر أحمر"
+          : name;
 
   return {
     title,
@@ -106,7 +121,9 @@ export async function generateMetadata({
           ? [...VACUUM_KEYWORDS, ...product.tags]
           : isKidsArt
             ? [...KIDS_ART_KEYWORDS, ...product.tags]
-            : product.tags,
+            : isEggBoiler
+              ? [...EGG_BOILER_KEYWORDS, ...product.tags]
+              : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
@@ -555,6 +572,39 @@ function getProductFaqs(slug: string, warrantyMonths: number) {
     ];
   }
 
+  if (slug === EGG_BOILER_SLUG) {
+    return [
+      {
+        q: "هل يوجد الدفع عند الاستلام؟",
+        a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب.",
+      },
+      {
+        q: "واش التوصيل مجاني؟",
+        a: "نعم، التوصيل مجاني لجميع مدن المغرب.",
+      },
+      {
+        q: "كيفاش كنستعملو؟",
+        a: "حط البيض فالصينية (حتى 7 بيضات)، شغّل الزر الأحمر فالواجهة، وخليه يكمل عملية الطهي حسب إعدادات الجهاز. الغطاء الشفاف كيخلّيك تشوف البيض.",
+      },
+      {
+        q: "شحال السعة؟",
+        a: "الصينية البيضاء ظاهرة فيها حتى 7 بيضات: واحدة فالوسط وستة من حولها.",
+      },
+      {
+        q: "شحال نقدر نشري؟",
+        a: "كاين عرض قطعة بـ199 درهم، جوج قطع بـ299 درهم، أو 3 قطع بـ399 درهم.",
+      },
+      {
+        q: "شنو كاين فالعلبة؟",
+        a: "جهاز طهي البيض الكهربائي وكأس قياس صغير ظاهر في صور المنتج.",
+      },
+      {
+        q: "كم مدة التوصيل وهل فيه ضمان؟",
+        a: `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${warrantyMonths} شهر واستبدال خلال 7 أيام عند وجود عيب.`,
+      },
+    ];
+  }
+
   return [];
 }
 
@@ -579,7 +629,46 @@ export default async function ProductPage({
   const isCalculator = product.slug === CALCULATOR_SLUG;
   const isVacuum = product.slug === VACUUM_SLUG;
   const isKidsArt = product.slug === KIDS_ART_SLUG;
+  const isEggBoiler = product.slug === EGG_BOILER_SLUG;
   const reviews = isShiatsu ? getReviewsForProduct(product.id) : [];
+  const eggOffers = isEggBoiler
+    ? {
+        "@type": "AggregateOffer",
+        lowPrice: "199",
+        highPrice: "399",
+        priceCurrency: "MAD",
+        offerCount: 3,
+        availability: defaultVariant.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+        url: productUrl,
+        priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
+        itemCondition: "https://schema.org/NewCondition",
+        offers: product.variants.map((v) => ({
+          "@type": "Offer",
+          name: v.name.ar,
+          sku: v.sku,
+          price: v.price,
+          priceCurrency: "MAD",
+          availability: v.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+          url: productUrl,
+        })),
+      }
+    : {
+        "@type": "Offer",
+        price: defaultVariant.price,
+        priceCurrency: "MAD",
+        availability: defaultVariant.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+        url: productUrl,
+        priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
+        itemCondition: "https://schema.org/NewCondition",
+        shippingDetails:
+          isShiatsu || isCalculator || isVacuum || isKidsArt || isEggBoiler
+            ? {
+                "@type": "OfferShippingDetails",
+                shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },
+                shippingDestination: { "@type": "DefinedRegion", addressCountry: "MA" },
+              }
+            : undefined,
+      };
 
   return (
     <>
@@ -598,25 +687,11 @@ export default async function ProductPage({
               ? "أسود مطفي"
               : isKidsArt
                 ? "أزرق سماوي"
-                : undefined,
+                : isEggBoiler
+                  ? "أصفر فاقع"
+                  : undefined,
           material: isShiatsu ? "ABS + جلد PU + سيليكون غذائي" : isKidsArt ? "بلاستيك ABS" : undefined,
-          offers: {
-            "@type": "Offer",
-            price: defaultVariant.price,
-            priceCurrency: "MAD",
-            availability: defaultVariant.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-            url: productUrl,
-            priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
-            itemCondition: "https://schema.org/NewCondition",
-            shippingDetails:
-              isShiatsu || isCalculator || isVacuum || isKidsArt
-                ? {
-                    "@type": "OfferShippingDetails",
-                    shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },
-                    shippingDestination: { "@type": "DefinedRegion", addressCountry: "MA" },
-                  }
-                : undefined,
-          },
+          offers: eggOffers,
           ...(product.reviewCount > 0
             ? {
                 aggregateRating: {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T01:39:11.096Z",
+  "generatedAt": "2026-09-08T15:58:57.769Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3257,6 +3257,136 @@
         "08-kids-room": "ai-generated",
         "14-product-in-use": "ai-generated",
         "20-social-media-banner": "ai-generated"
+      }
+    },
+    "mini-egg-boiler": {
+      "slug": "mini-egg-boiler",
+      "sku": "MiniEgg-Boiler",
+      "name": "Mini Electric Egg Boiler",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/mini-egg-boiler/01-hero-white-bg.jpg",
+          "webp": "/products/mini-egg-boiler/01-hero-white-bg.webp",
+          "avif": "/products/mini-egg-boiler/01-hero-white-bg.avif",
+          "thumbnail": "/products/mini-egg-boiler/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/mini-egg-boiler/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/mini-egg-boiler/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/mini-egg-boiler/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/mini-egg-boiler/02-premium-hero.jpg",
+          "webp": "/products/mini-egg-boiler/02-premium-hero.webp",
+          "avif": "/products/mini-egg-boiler/02-premium-hero.avif",
+          "thumbnail": "/products/mini-egg-boiler/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/mini-egg-boiler/responsive/02-premium-hero-640.webp",
+            "md": "/products/mini-egg-boiler/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/mini-egg-boiler/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/mini-egg-boiler/09-close-up.jpg",
+          "webp": "/products/mini-egg-boiler/09-close-up.webp",
+          "avif": "/products/mini-egg-boiler/09-close-up.avif",
+          "thumbnail": "/products/mini-egg-boiler/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/mini-egg-boiler/responsive/09-close-up-640.webp",
+            "md": "/products/mini-egg-boiler/responsive/09-close-up-1280.webp",
+            "lg": "/products/mini-egg-boiler/responsive/09-close-up-2000.webp"
+          }
+        },
+        "11-package-contents": {
+          "original": "/products/mini-egg-boiler/11-package-contents.jpg",
+          "webp": "/products/mini-egg-boiler/11-package-contents.webp",
+          "avif": "/products/mini-egg-boiler/11-package-contents.avif",
+          "thumbnail": "/products/mini-egg-boiler/thumbs/11-package-contents-400.webp",
+          "responsive": {
+            "sm": "/products/mini-egg-boiler/responsive/11-package-contents-640.webp",
+            "md": "/products/mini-egg-boiler/responsive/11-package-contents-1280.webp",
+            "lg": "/products/mini-egg-boiler/responsive/11-package-contents-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/mini-egg-boiler/03-lifestyle.jpg",
+          "webp": "/lifestyle/mini-egg-boiler/03-lifestyle.webp",
+          "avif": "/lifestyle/mini-egg-boiler/03-lifestyle.avif",
+          "thumbnail": "/lifestyle/mini-egg-boiler/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/mini-egg-boiler/responsive/03-lifestyle-640.webp",
+            "md": "/lifestyle/mini-egg-boiler/responsive/03-lifestyle-1280.webp",
+            "lg": "/lifestyle/mini-egg-boiler/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "04-bedroom": {
+          "original": "/lifestyle/mini-egg-boiler/04-bedroom.jpg",
+          "webp": "/lifestyle/mini-egg-boiler/04-bedroom.webp",
+          "avif": "/lifestyle/mini-egg-boiler/04-bedroom.avif",
+          "thumbnail": "/lifestyle/mini-egg-boiler/thumbs/04-bedroom-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/mini-egg-boiler/responsive/04-bedroom-640.webp",
+            "md": "/lifestyle/mini-egg-boiler/responsive/04-bedroom-1280.webp",
+            "lg": "/lifestyle/mini-egg-boiler/responsive/04-bedroom-2000.webp"
+          }
+        },
+        "06-gaming-room": {
+          "original": "/lifestyle/mini-egg-boiler/06-gaming-room.jpg",
+          "webp": "/lifestyle/mini-egg-boiler/06-gaming-room.webp",
+          "avif": "/lifestyle/mini-egg-boiler/06-gaming-room.avif",
+          "thumbnail": "/lifestyle/mini-egg-boiler/thumbs/06-gaming-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/mini-egg-boiler/responsive/06-gaming-room-640.webp",
+            "md": "/lifestyle/mini-egg-boiler/responsive/06-gaming-room-1280.webp",
+            "lg": "/lifestyle/mini-egg-boiler/responsive/06-gaming-room-2000.webp"
+          }
+        },
+        "07-romantic-room": {
+          "original": "/lifestyle/mini-egg-boiler/07-romantic-room.jpg",
+          "webp": "/lifestyle/mini-egg-boiler/07-romantic-room.webp",
+          "avif": "/lifestyle/mini-egg-boiler/07-romantic-room.avif",
+          "thumbnail": "/lifestyle/mini-egg-boiler/thumbs/07-romantic-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/mini-egg-boiler/responsive/07-romantic-room-640.webp",
+            "md": "/lifestyle/mini-egg-boiler/responsive/07-romantic-room-1280.webp",
+            "lg": "/lifestyle/mini-egg-boiler/responsive/07-romantic-room-2000.webp"
+          }
+        },
+        "08-kids-room": {
+          "original": "/lifestyle/mini-egg-boiler/08-kids-room.jpg",
+          "webp": "/lifestyle/mini-egg-boiler/08-kids-room.webp",
+          "avif": "/lifestyle/mini-egg-boiler/08-kids-room.avif",
+          "thumbnail": "/lifestyle/mini-egg-boiler/thumbs/08-kids-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/mini-egg-boiler/responsive/08-kids-room-640.webp",
+            "md": "/lifestyle/mini-egg-boiler/responsive/08-kids-room-1280.webp",
+            "lg": "/lifestyle/mini-egg-boiler/responsive/08-kids-room-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/mini-egg-boiler/14-product-in-use.jpg",
+          "webp": "/lifestyle/mini-egg-boiler/14-product-in-use.webp",
+          "avif": "/lifestyle/mini-egg-boiler/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/mini-egg-boiler/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/mini-egg-boiler/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/mini-egg-boiler/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/mini-egg-boiler/responsive/14-product-in-use-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "ai-generated",
+        "02-premium-hero": "ai-generated",
+        "09-close-up": "ai-generated",
+        "11-package-contents": "commercial",
+        "03-lifestyle": "ai-generated",
+        "04-bedroom": "ai-generated",
+        "06-gaming-room": "ai-generated",
+        "07-romantic-room": "ai-generated",
+        "08-kids-room": "ai-generated",
+        "14-product-in-use": "ai-generated"
       }
     }
   }

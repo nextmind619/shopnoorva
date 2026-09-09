@@ -4,7 +4,7 @@ import { Check, Tag } from "lucide-react";
 import type { ProductVariant } from "@/types";
 import type { Locale } from "@/types";
 import { cn, formatPriceNumber, calculateDiscount } from "@/lib/utils";
-import { isPackVariantSku } from "@/lib/catalog/pack-sku";
+import { isPackVariantSku, packUnitCount } from "@/lib/catalog/pack-sku";
 
 export { isPackVariantSku };
 
@@ -50,7 +50,7 @@ function getSingleVariant(variants: ProductVariant[]): ProductVariant | undefine
 
 function getPackSavings(variant: ProductVariant, single?: ProductVariant): number | null {
   if (!single || !isPackVariantSku(variant.sku)) return null;
-  const packQty = 2;
+  const packQty = packUnitCount(variant.sku);
   const vsSingles = single.price * packQty - variant.price;
   if (vsSingles > 0) return vsSingles;
   if (variant.compareAtPrice && variant.compareAtPrice > variant.price) {
@@ -83,7 +83,7 @@ export function ProductVariantPicker({ variants, selectedId, onSelect, locale, l
           const title = getVariantTitle(v.name[locale]);
           const savings = getPackSavings(v, single);
           const discount = calculateDiscount(v.price, v.compareAtPrice);
-          const perUnit = isPack ? Math.round(v.price / 2) : null;
+          const perUnit = isPack ? Math.round(v.price / packUnitCount(v.sku)) : null;
           const isRecommended = v.id === recommendedId;
 
           return (

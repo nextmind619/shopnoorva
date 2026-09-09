@@ -407,6 +407,26 @@ export const PRODUCT_PROFILES: ProductProfile[] = [
       clientRef: "/products/kids-art-set-easel-208/product-reference.jpg",
     },
   },
+  {
+    id: "prod-mini-egg-boiler",
+    slug: "mini-egg-boiler",
+    sku: "MiniEgg-Boiler",
+    name: "Compact Electric Egg Cooker",
+    type: "Compact electric egg boiler / steamer",
+    color: "Bright sunflower yellow with red switch, chrome rim, white tray, clear dome",
+    category: "Kitchen",
+    categoryId: "cat-kitchen",
+    shortDescription:
+      "Bright yellow bowl-shaped 7-egg electric cooker — one red rocker switch, chrome rim, white tray, clear dome lid",
+    visualIdentity:
+      "EXACT real product from client reference photos — compact tabletop electric egg cooker. Bright saturated sunflower-yellow glossy plastic hemispherical bowl-shaped base on small stubby integrated yellow feet. Front-center: ONE large circular RED rocker power switch with white I/O markings in a circular bezel. Thin polished stainless-steel chrome rim around the top of the yellow base. White plastic 7-egg tray (six in a ring + one in the center) with two small white wing-like side handles. Clear transparent plastic hemispherical dome lid with a small round lifting knob on top and a steam vent hole. Compact breakfast-bowl size; almost spherical with the lid on. Measuring cup accessory visible in product photos. NEVER add extra buttons, digital displays, or a different cooker body. NEVER change the yellow color, red switch, chrome rim, or dome shape.",
+    dimensions: "Compact tabletop / breakfast-bowl size",
+    accessories: ["Small translucent measuring cup"],
+    packageItems: ["Electric egg cooker", "Small measuring cup"],
+    sourceUrls: {
+      clientRef: "/products/mini-egg-boiler/01-hero-white-bg.webp",
+    },
+  },
 ];
 
 const PROFILE_SLUG_ALIASES: Record<string, string> = {

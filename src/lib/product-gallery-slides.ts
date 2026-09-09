@@ -131,6 +131,14 @@ const PRIMARY_GALLERY_OVERRIDES: Partial<Record<string, PremiumImageType[]>> = {
     "10-features",
     "08-kids-room",
   ],
+  "mini-egg-boiler": [
+    "01-hero-white-bg",
+    "09-close-up",
+    "14-product-in-use",
+    "08-kids-room",
+    "07-romantic-room",
+    "02-premium-hero",
+  ],
 };
 
 const PRIMARY_GALLERY_FALLBACKS: PremiumImageType[] = [

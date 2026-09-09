@@ -179,7 +179,7 @@ export function ProductComparisonSection({ product }: SectionProps) {
     >
       <div className="text-center">
         <h2 className="text-2xl font-bold text-white">لماذا هذا المنتج؟</h2>
-        <p className="text-sm text-white/55 mt-2">مقارنة سريعة مع الإضاءة العادية</p>
+        <p className="text-sm text-white/55 mt-2">مقارنة سريعة مع البدائل العادية</p>
       </div>
       <div className="overflow-x-auto rounded-2xl border border-white/8 bg-[#12121a]/60">
         <table className="w-full min-w-[300px] text-sm">
@@ -231,7 +231,7 @@ export function ProductHowToSection({ product }: SectionProps) {
     >
       <div className="text-center">
         <h2 className="text-2xl font-bold text-white">طريقة الاستخدام</h2>
-        <p className="text-sm text-white/55 mt-2">خطوات بسيطة من أول مساء</p>
+        <p className="text-sm text-white/55 mt-2">خطوات بسيطة من أول استعمال</p>
       </div>
       <ol className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {howTo.map((step) => {

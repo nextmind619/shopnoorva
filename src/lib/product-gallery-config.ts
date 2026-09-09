@@ -1362,6 +1362,73 @@ const KIDS_ART_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const EGG_BOILER_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    emoji: "🥚",
+    heading: "فطور الصباح ولى أسهل",
+    subtitle: "جهاز أصفر مدمج · زر أحمر واحد · غطاء شفاف",
+    objectFit: "cover",
+  },
+  {
+    section: "hero",
+    imageType: "01-hero-white-bg",
+    emoji: "📷",
+    heading: "المنتج الحقيقي",
+    subtitle: "نفس الشكل واللون والزر الأحمر",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "09-close-up",
+    emoji: "🔴",
+    heading: "زر واحد فالواجهة",
+    subtitle: "تشغيل بسيط بلا شاشة وبلا أزرار زيادة",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "14-product-in-use",
+    emoji: "🍳",
+    heading: "كيفاش كيتستعمل",
+    subtitle: "حط البيض، شغّل الجهاز، وكمل باقي الفطور",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "08-kids-room",
+    emoji: "🎒",
+    heading: "صباح المدرسة",
+    subtitle: "كل دقيقة فالصباح كتفرق",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "07-romantic-room",
+    emoji: "7️⃣",
+    heading: "حتى 7 بيضات",
+    subtitle: "السعة الظاهرة فالصينية: واحدة فالوسط وستة من حولها",
+    objectFit: "cover",
+  },
+  {
+    section: "accessories",
+    imageType: "11-package-contents",
+    emoji: "🥄",
+    heading: "كأس القياس",
+    subtitle: "ملحق ظاهر في صور المنتج الحقيقية",
+    objectFit: "cover",
+  },
+  {
+    section: "lifestyle",
+    imageType: "04-bedroom",
+    emoji: "❤️",
+    heading: "فطور العائلة",
+    subtitle: "عدة بيضات دفعة وحدة حسب سعة الجهاز",
+    objectFit: "cover",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
   "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
@@ -1381,6 +1448,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "foldable-car-windshield-sunshade": SUNSHADE_SLIDES,
   "cordless-mini-vacuum-keyboard": MINI_VACUUM_SLIDES,
   "kids-art-set-easel-208": KIDS_ART_SLIDES,
+  "mini-egg-boiler": EGG_BOILER_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

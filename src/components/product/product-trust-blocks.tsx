@@ -59,6 +59,16 @@ function getStory(slug: string) {
       ],
     };
   }
+  if (slug === "mini-egg-boiler") {
+    return {
+      eyebrow: "فطور الصباح",
+      title: "حضّر البيض بطريقة عملية… بلا ما تقف قدام البوطة",
+      paragraphs: [
+        "جهاز كهربائي مدمج لطهي البيض: قاعدة صفراء، زر تشغيل أحمر واحد، غطاء شفاف، وصينية حتى 7 بيضات. حط البيض، شغّل الجهاز، وكمل باقي الفطور.",
+        "قطعة بـ199 درهم، جوج بـ299 درهم، أو 3 بـ399 درهم. الدفع عند الاستلام في جميع مدن المغرب.",
+      ],
+    };
+  }
   if (slug.includes("astronaut")) {
     return {
       eyebrow: "التجربة",
@@ -83,6 +93,7 @@ function productNameHint(slug: string) {
   if (slug.includes("astronaut")) return "بروجيكتور رائد الفضاء";
   if (slug.includes("star")) return "بروجيكتور النجوم";
   if (slug.includes("magnetic-car-phone-mount")) return "الحامل المغناطيسي للسيارة";
+  if (slug === "mini-egg-boiler") return "جهاز طهي البيض";
   return "هاد المنتج";
 }
 

@@ -123,6 +123,18 @@ export const categories: Category[] = [
     productCount: 2,
   },
   {
+    id: "cat-kitchen",
+    slug: "cuisine",
+    name: { ar: "أدوات المطبخ", fr: "Cuisine", en: "Kitchen" },
+    description: {
+      ar: "أجهزة عملية للكوزينة وفطور الصباح، مع الدفع عند الاستلام داخل المغرب",
+      fr: "Appareils pratiques pour la cuisine et le petit-déjeuner, paiement à la livraison au Maroc",
+      en: "Practical kitchen appliances for breakfast, with cash on delivery in Morocco",
+    },
+    image: getProductHeroUrl("mini-egg-boiler"),
+    productCount: 1,
+  },
+  {
     id: "cat-gift-ideas",
     slug: "gift-ideas",
     name: { ar: "أفكار هدايا", fr: "Idées Cadeaux", en: "Gift Ideas" },
@@ -132,7 +144,7 @@ export const categories: Category[] = [
       en: "Premium, original gifts for every occasion",
     },
     image: getProductHeroUrl("rabbit-carousel-night-light"),
-    productCount: 8,
+    productCount: 9,
   },
 ];
 

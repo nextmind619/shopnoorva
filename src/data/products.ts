@@ -16,6 +16,7 @@ const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-relaxation": ["relaxation"],
   "cat-gift-ideas": ["gift"],
   "cat-study-office": ["calculator", "study", "vacuum", "keyboard"],
+  "cat-kitchen": ["kitchen", "eggs", "breakfast"],
 };
 
 export const products: Product[] = [
@@ -2491,6 +2492,136 @@ export const products: Product[] = [
         "مجموعة الرسم والتلوين للأطفال 208 قطعة مع حامل مدمج + Arabic Magic Book هدية مجانية. 299 درهم فقط. شحن مجاني والدفع عند الاستلام في المغرب.",
         "Coffret dessin 208 pièces avec chevalet + Arabic Magic Book offert. 299 DH. Livraison gratuite et COD au Maroc.",
         "208-piece kids art set with easel + free Arabic Magic Book. 299 DH. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+
+  {
+    id: "prod-mini-egg-boiler",
+    slug: "mini-egg-boiler",
+    warrantyMonths: 12,
+    name: L(
+      "جهاز كهربائي لطهي البيض",
+      "Cuiseur à œufs électrique compact",
+      "Compact Electric Egg Cooker"
+    ),
+    shortDescription: L(
+      "فطور الصباح ولى أسهل · حضّر عدة بيضات بطريقة عملية · 199 DH · جوج بـ299 · 3 بـ399 · الدفع عند الاستلام",
+      "Petit-déj plus simple · plusieurs œufs en une fois · 199 DH · 2 pour 299 · 3 pour 399 · COD",
+      "Easier breakfast · cook several eggs at once · 199 DH · 2 for 299 · 3 for 399 · COD"
+    ),
+    description: L(
+      "جهاز كهربائي مدمج لطهي البيض من NOORVA: قاعدة صفراء، زر تشغيل أحمر واحد، غطاء شفاف، وصينية حتى 7 بيضات. مناسب لفطور العائلة وصباح المدرسة. قطعة بـ199 درهم، جوج بـ299 درهم، أو 3 بـ399 درهم. الدفع عند الاستلام داخل المغرب.",
+      "Cuiseur à œufs compact NOORVA : base jaune, un bouton rouge, couvercle transparent, plateau jusqu’à 7 œufs. 199 DH l’unité, 2 pour 299 DH, 3 pour 399 DH. Paiement à la livraison au Maroc.",
+      "NOORVA compact electric egg cooker: yellow bowl base, one red power switch, clear dome lid, tray for up to 7 eggs. 199 DH each, 2 for 299 DH, 3 for 399 DH. Cash on delivery in Morocco."
+    ),
+    categoryId: "cat-kitchen",
+    price: 199,
+    sku: "MiniEgg-Boiler",
+    stock: 86,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    problemEmoji: "😩",
+    problem: L(
+      "كل صباح نفس الصداع؟",
+      "Le même stress chaque matin?",
+      "The same morning rush every day?"
+    ),
+    problemCause: L(
+      "مشكلتك ماشي فالبيض… المشكل هو ضيق الوقت فالصباح.",
+      "Le vrai problème n’est pas l’œuf — c’est le manque de temps le matin.",
+      "The problem isn’t the eggs — it’s the lack of time in the morning."
+    ),
+    problemSolution: L(
+      "حضّر البيض بطريقة عملية وسهلة، وخلي صباحك أكثر تنظيمًا.",
+      "Préparez les œufs simplement et gagnez du calme le matin.",
+      "Prepare eggs the simple way and keep your morning more organized."
+    ),
+    deepDescription: L(
+      "جهاز كهربائي مدمج لطهي البيض: قاعدة بلاستيك صفراء لامعة بشكل طاسة، أرجل صغيرة مدمجة، زر تشغيل أحمر دائري واحد فالواجهة مع رموز تشغيل/إيقاف، حافة معدنية فضية، صينية بيضاء حتى 7 بيضات (واحدة فالوسط وستة من حولها) بمقبضين جانبيين، وغطاء بلاستيك شفاف بقبة مع مقبض صغير وفتحة بخار. كيجي مع كأس قياس صغير ظاهر فصور المنتج.",
+      "Cuiseur compact : base plastique jaune brillante en forme de bol, un bouton rouge I/O, jante chrome, plateau blanc 7 œufs avec poignées, dôme transparent. Petit verre doseur visible sur les photos.",
+      "Compact cooker: glossy sunflower-yellow bowl base, one circular red I/O rocker, chrome rim, white 7-egg tray with side handles, clear dome lid with top knob and steam vent. Small measuring cup shown in product photos."
+    ),
+    tags: ["new", "kitchen", "eggs", "breakfast", "gift", "school"],
+    benefits: [
+      L("تحضير عدة بيضات", "Plusieurs œufs à la fois", "Cook several eggs at once"),
+      L("يساعدك تستغل وقت الصباح", "Vous aide à gagner du temps le matin", "Helps you use morning time better"),
+      L("مناسب لفطور العائلة", "Idéal pour le petit-déjeuner en famille", "Fits a family breakfast"),
+      L("مناسب للاستعمال اليومي", "Pour un usage quotidien", "Made for everyday use"),
+      L("تصميم عملي", "Design pratique", "Practical design"),
+      L("طريقة مخصصة لتحضير البيض", "Pensé pour les œufs", "Dedicated egg preparation"),
+    ],
+    features: [
+      L("قاعدة صفراء مدمجة بشكل طاسة", "Base jaune en forme de bol", "Compact yellow bowl-shaped base"),
+      L("زر تشغيل أحمر دائري واحد", "Un seul bouton rouge", "Single circular red power switch"),
+      L("غطاء شفاف بقبة", "Couvercle dôme transparent", "Clear dome lid"),
+      L("صينية حتى 7 بيضات", "Plateau jusqu’à 7 œufs", "Tray for up to 7 eggs"),
+      L("حافة معدنية فضية", "Jante métallique argentée", "Silver metallic rim"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("جهاز كهربائي لطهي البيض", "Cuiseur à œufs électrique", "Electric egg cooker") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أصفر فاقع", "Jaune vif", "Bright yellow") },
+      { label: L("السعة الظاهرة", "Capacité visible", "Visible capacity"), value: L("حتى 7 بيضات", "Jusqu’à 7 œufs", "Up to 7 eggs") },
+      { label: L("التحكم", "Commande", "Control"), value: L("زر أحمر واحد", "Un bouton rouge", "One red switch") },
+      { label: L("الغطاء", "Couvercle", "Lid"), value: L("قبة بلاستيك شفافة", "Dôme plastique transparent", "Clear plastic dome") },
+    ],
+    packageIncludes: [
+      L("جهاز طهي البيض الكهربائي", "Cuiseur à œufs électrique", "Electric egg cooker"),
+      L("كأس قياس صغير (ظاهر في صور المنتج)", "Petit verre doseur (visible sur les photos)", "Small measuring cup (shown in product photos)"),
+    ],
+    howToUse: L(
+      "حط البيض فالجهاز، شغّل الجهاز، خليه يكمل عملية الطهي حسب إعدادات الجهاز، وجد الفطور ديالك.",
+      "Placez les œufs, allumez l’appareil, laissez-le terminer la cuisson selon ses réglages, puis préparez le petit-déjeuner.",
+      "Place the eggs, switch the cooker on, let it finish according to its settings, then serve breakfast."
+    ),
+    lifestyleScenes: [
+      { id: "school", emoji: "🎒", title: L("صباح المدرسة", "Matin d’école", "School morning"), description: L("كل دقيقة كتفرق", "Chaque minute compte", "Every minute counts") },
+      { id: "family", emoji: "❤️", title: L("فطور العائلة", "Petit-déj famille", "Family breakfast"), description: L("عدة بيضات دفعة وحدة", "Plusieurs œufs d’un coup", "Several eggs in one go") },
+      { id: "work", emoji: "💼", title: L("قبل الخدمة", "Avant le travail", "Before work"), description: L("صباح مزروب بطريقة أسهل", "Matin pressé, plus simple", "A busy morning, made simpler") },
+      { id: "kitchen", emoji: "🍳", title: L("الكوزينة", "Cuisine", "Kitchen"), description: L("جهاز صغير فوق الطاولة", "Petit appareil sur le plan", "A compact countertop cooker") },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-mini-egg-1",
+        name: L("قطعة واحدة — 199 درهم", "1 pièce — 199 MAD", "1 unit — 199 MAD"),
+        price: 199,
+        sku: "MiniEgg-Boiler",
+        stock: 86,
+      },
+      {
+        id: "var-mini-egg-2pk",
+        name: L("جوج قطع — 299 درهم", "2 pièces — 299 MAD", "2 units — 299 MAD"),
+        price: 299,
+        sku: "MiniEgg-Boiler-2PK",
+        stock: 64,
+      },
+      {
+        id: "var-mini-egg-3pk",
+        name: L("3 قطع — 399 درهم", "3 pièces — 399 MAD", "3 units — 399 MAD"),
+        price: 399,
+        sku: "MiniEgg-Boiler-3PK",
+        stock: 48,
+      },
+    ],
+    upsellIds: ["prod-kids-art-208", "prod-calc-tablet"],
+    crossSellIds: ["prod-vintage-lantern", "prod-warm-led-lamp"],
+    seo: {
+      title: L(
+        "جهاز طهي البيض الكهربائي | فطور الصباح بطريقة أسهل | المغرب",
+        "Cuiseur à œufs électrique | Petit-déjeuner plus simple | Maroc",
+        "Electric Egg Cooker | Easier Morning Breakfast | Morocco"
+      ),
+      description: L(
+        "حضّر البيض بطريقة عملية وسهلة في المنزل. مناسب لفطور العائلة وصباح المدرسة. اطلب الآن بالدفع عند الاستلام داخل المغرب.",
+        "Préparez les œufs simplement à la maison. Idéal famille et matin d’école. Commandez en paiement à la livraison au Maroc.",
+        "Prepare eggs the practical way at home. Fits family breakfast and school mornings. Order now with cash on delivery in Morocco."
       ),
     },
   },
