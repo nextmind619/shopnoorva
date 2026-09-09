@@ -22,6 +22,7 @@ const SHIATSU_GIFT_IMAGE = "/products/camel-massage-cream-gift.jpg";
 
 interface PremiumProductGalleryProps {
   product: Product;
+  leadSlides?: GallerySlide[];
 }
 
 const SECTION_BG: Record<GallerySection, string> = {
@@ -149,8 +150,13 @@ function GalleryOverlay({ mode, current, active, total, onClose, onPrev, onNext 
   );
 }
 
-export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
-  const slides = useMemo(() => buildPrimaryGallerySlides(product, 6), [product]);
+export function PremiumProductGallery({ product, leadSlides }: PremiumProductGalleryProps) {
+  const slides = useMemo(() => {
+    const base = buildPrimaryGallerySlides(product, 6);
+    if (!leadSlides?.length) return base;
+    const seen = new Set(leadSlides.map((slide) => slide.imageUrl));
+    return [...leadSlides, ...base.filter((slide) => !seen.has(slide.imageUrl))].slice(0, 7);
+  }, [product, leadSlides]);
   const [active, setActive] = useState(0);
   const [zoomOpen, setZoomOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
@@ -168,6 +174,10 @@ export function PremiumProductGallery({ product }: PremiumProductGalleryProps) {
   );
   const next = useCallback(() => go(active + 1), [active, go]);
   const prev = useCallback(() => go(active - 1), [active, go]);
+
+  useEffect(() => {
+    setActive(0);
+  }, [leadSlides?.[0]?.id]);
 
   useEffect(() => {
     const container = thumbRef.current;

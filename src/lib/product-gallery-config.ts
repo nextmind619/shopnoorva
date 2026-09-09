@@ -1348,7 +1348,7 @@ const KIDS_ART_SLIDES: GallerySlideConfig[] = [
     imageUrl: "/products/kids-art-set-easel-208/howto-04-fold-close.webp",
     emoji: "💼",
     heading: "كاتطوى بالمقبض",
-    subtitle: "حقيبة زرقاء جاهزة للسفر والتخزين",
+    subtitle: "حقيبة جاهزة للسفر والتخزين — أزرق أو وردي",
     objectFit: "contain",
   },
   {

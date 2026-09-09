@@ -2387,9 +2387,9 @@ export const products: Product[] = [
       "Kids art & coloring set + free Arabic Magic Book · 208 pieces · pop-up easel · 299 DH · free shipping and COD"
     ),
     description: L(
-      "عرض NOORVA: مجموعة الرسم والتلوين للأطفال بـ 208 قطعة داخل حقيبة بلاستيك زرقاء فاتحة قابلة للطي، مع حامل رسم أبيض ينفتح في الوسط. أقلام تلوين، ماركر، ألوان شمع، باستيل زيتي، ألوان مائية، فرشاة، ممحاة ومبراة — كل أداة فبلاصة مقولبة. مع الطلب: Arabic Magic Book هدية مجانية (4 كتب تعليمية + قلم سحري). السعر: 299 درهم فقط. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
-      "Offre NOORVA : coffret dessin 208 pièces dans une mallette cyan pliable avec chevalet pop-up. Crayons, feutres, pastels, aquarelle — chaque outil à sa place. Avec la commande : Arabic Magic Book offert (4 livres + stylo magique). Prix : 299 DH. Livraison gratuite au Maroc, paiement à la livraison.",
-      "NOORVA offer: 208-piece kids art set in a folding cyan case with pop-up easel. Pencils, markers, crayons, watercolors — each tool in its slot. With order: free Arabic Magic Book (4 workbooks + magic pen). Price: 299 DH. Free Morocco shipping with cash on delivery."
+      "عرض NOORVA: مجموعة الرسم والتلوين للأطفال بـ 208 قطعة داخل حقيبة بلاستيك قابلة للطي، متوفرة بالأزرق أو الوردي حسب اختيارك، مع حامل رسم أبيض ينفتح في الوسط. أقلام تلوين، ماركر، ألوان شمع، باستيل زيتي، ألوان مائية، فرشاة، ممحاة ومبراة — كل أداة فبلاصة مقولبة. مع الطلب: Arabic Magic Book هدية مجانية (4 كتب تعليمية + قلم سحري). السعر: 299 درهم فقط. التوصيل مجاني لجميع مدن المغرب مع الدفع عند الاستلام.",
+      "Offre NOORVA : coffret dessin 208 pièces dans une mallette pliable, disponible en bleu ou rose, avec chevalet pop-up. Crayons, feutres, pastels, aquarelle — chaque outil à sa place. Avec la commande : Arabic Magic Book offert (4 livres + stylo magique). Prix : 299 DH. Livraison gratuite au Maroc, paiement à la livraison.",
+      "NOORVA offer: 208-piece kids art set in a folding case, available in blue or pink, with pop-up easel. Pencils, markers, crayons, watercolors — each tool in its slot. With order: free Arabic Magic Book (4 workbooks + magic pen). Price: 299 DH. Free Morocco shipping with cash on delivery."
     ),
     categoryId: "cat-kids-room",
     price: 299,
@@ -2434,7 +2434,7 @@ export const products: Product[] = [
       L("هدية جاهزة لعيد الميلاد والدخول المدرسي", "Cadeau prêt pour anniversaire et rentrée", "Ready gift for birthdays and back-to-school"),
     ],
     features: [
-      L("حقيبة بلاستيك زرقاء قابلة للطي", "Mallette plastique cyan pliable", "Foldable cyan plastic case"),
+      L("حقيبة بلاستيك قابلة للطي — أزرق أو وردي", "Mallette plastique pliable — bleu ou rose", "Foldable plastic case — blue or pink"),
       L("حامل رسم أبيض مدمج مع كلابات", "Chevalet blanc intégré avec pinces", "Built-in white easel with clips"),
       L("أقلام تلوين + ماركر", "Crayons de couleur + feutres", "Colored pencils + markers"),
       L("ألوان شمع وباستيل زيتي", "Cires et pastels à l'huile", "Crayons and oil pastels"),
@@ -2444,13 +2444,13 @@ export const products: Product[] = [
     specifications: [
       { label: L("النوع", "Type", "Type"), value: L("طقم رسم للأطفال مع حامل", "Coffret dessin avec chevalet", "Kids art set with easel") },
       { label: L("عدد القطع", "Pièces", "Pieces"), value: L("208 قطعة", "208 pièces", "208 pieces") },
-      { label: L("اللون", "Couleur", "Color"), value: L("أزرق سماوي / سماوي فاتح", "Cyan / bleu ciel", "Light cyan / sky blue") },
+      { label: L("اللون", "Couleur", "Color"), value: L("أزرق أو وردي — حسب اختيارك", "Bleu ou rose — au choix", "Blue or pink — your choice") },
       { label: L("الحامل", "Chevalet", "Easel"), value: L("أبيض ينفتح مع كلابين أسودين", "Blanc pop-up, 2 pinces noires", "White pop-up with 2 black clips") },
       { label: L("المحتويات", "Contenu", "Contents"), value: L("ماركر · أقلام · شمع · مائي · مبراة · ممحاة", "Feutres · crayons · cires · aquarelle · gomme", "Markers · pencils · crayons · watercolor · eraser") },
       { label: L("الضمان", "Garantie", "Warranty"), value: L("12 شهر", "12 mois", "12 months") },
     ],
     packageIncludes: [
-      L("حقيبة رسم زرقاء قابلة للطي مع حامل مدمج", "Mallette cyan pliable avec chevalet intégré", "Foldable cyan art case with built-in easel"),
+      L("حقيبة رسم قابلة للطي مع حامل مدمج — أزرق أو وردي", "Mallette pliable avec chevalet intégré — bleu ou rose", "Foldable art case with built-in easel — blue or pink"),
       L("أقلام تلوين وماركر", "Crayons de couleur et feutres", "Colored pencils and markers"),
       L("ألوان شمع وباستيل زيتي", "Cires et pastels à l'huile", "Crayons and oil pastels"),
       L("علبة ألوان مائية وفرشاة", "Palette aquarelle et pinceau", "Watercolor palette and brush"),

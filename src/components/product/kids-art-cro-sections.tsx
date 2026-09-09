@@ -6,17 +6,17 @@ import type { Product } from "@/types";
 import { formatPriceNumber } from "@/lib/utils";
 import { resolveProductImage } from "@/lib/product-images/resolve";
 
-const SLUG = "kids-art-set-easel-208";
 const GIFT_IMAGE = "/products/kids-art-set-easel-208/arabic-magic-book-gift.jpg";
 
 interface KidsArtCroSectionsProps {
   product: Product;
   price: number;
   onOrderClick: () => void;
+  colorImage?: string;
 }
 
-export function KidsArtCroSections({ product, price, onOrderClick }: KidsArtCroSectionsProps) {
-  const heroSrc = resolveProductImage(SLUG, "02-premium-hero", "webp");
+export function KidsArtCroSections({ product, price, onOrderClick, colorImage }: KidsArtCroSectionsProps) {
+  const heroSrc = colorImage || resolveProductImage(product.slug, "02-premium-hero", "webp");
   const priceLabel = `${formatPriceNumber(price, "ar")} درهم`;
 
   return (
@@ -94,7 +94,7 @@ export function KidsArtCroSections({ product, price, onOrderClick }: KidsArtCroS
         <div className="grid grid-cols-2 border-t border-white/10 bg-black/10 text-center text-xs font-semibold text-white/65">
           <div className="flex items-center justify-center gap-2 px-3 py-4">
             <Image
-              src={resolveProductImage(product.slug, "02-premium-hero", "webp")}
+              src={heroSrc}
               alt="مجموعة الرسم والتلوين"
               width={48}
               height={48}
@@ -121,7 +121,7 @@ export function KidsArtCroSections({ product, price, onOrderClick }: KidsArtCroS
         <h2 className="text-xl sm:text-2xl font-bold text-center text-white">📦 شنو غادي يوصلك؟</h2>
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {[
-            "حقيبة رسم زرقاء قابلة للطي مع حامل مدمج",
+            "حقيبة رسم قابلة للطي مع حامل مدمج — أزرق أو وردي",
             "208 قطعة: ماركر، أقلام، شمع، مائي",
             "🎁 Arabic Magic Book هدية مجانية (4 كتب + قلم سحري)",
             "ممحاة، مبراة، وفرشاة فتجويفات خاصة",

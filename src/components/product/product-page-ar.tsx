@@ -27,9 +27,18 @@ import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
+import { ProductColorPicker } from "@/components/product/product-color-picker";
 import { ProductVariantPicker, isPackVariantSku } from "@/components/product/product-variant-picker";
 import { ShiatsuCroSections } from "@/components/product/shiatsu-cro-sections";
 import { KidsArtCroSections } from "@/components/product/kids-art-cro-sections";
+import type { GallerySlide } from "@/lib/product-gallery-slides";
+import {
+  KIDS_ART_COLORS,
+  KIDS_ART_DEFAULT_COLOR,
+  getKidsArtColor,
+  kidsArtColorOrderNote,
+  type ProductColorId,
+} from "@/lib/catalog/product-colors";
 import { CarMountUpsell } from "@/components/product/car-mount-upsell";
 import {
   carMountUpsellOrderNote,
@@ -177,13 +186,25 @@ function getProductFaqs(product: Product) {
       { q: "كم مدة التوصيل وهل فيه ضمان؟", a: delivery },
     ];
   }
+  if (product.slug === "mini-egg-boiler") {
+    return [
+      { q: "هل يوجد الدفع عند الاستلام؟", a: "نعم، الدفع عند الاستلام فقط. تطلب بلا بطاقة بنكية وتخلّص كاش ملي يوصلك الطلب." },
+      { q: "واش التوصيل مجاني؟", a: "نعم، التوصيل مجاني لجميع مدن المغرب." },
+      { q: "كيفاش كنستعملو؟", a: "حط البيض فالصينية (حتى 7 بيضات)، شغّل الزر الأحمر فالواجهة، وخليه يكمل عملية الطهي حسب إعدادات الجهاز. الغطاء الشفاف كيخلّيك تشوف البيض." },
+      { q: "شحال السعة؟", a: "الصينية البيضاء ظاهرة فيها حتى 7 بيضات: واحدة فالوسط وستة من حولها." },
+      { q: "شحال نقدر نشري؟", a: "كاين عرض قطعة بـ199 درهم، جوج قطع بـ299 درهم، أو 3 قطع بـ399 درهم." },
+      { q: "شنو كاين فالعلبة؟", a: "جهاز طهي البيض الكهربائي وكأس قياس صغير ظاهر في صور المنتج." },
+      { q: "كم مدة التوصيل وهل فيه ضمان؟", a: delivery },
+    ];
+  }
   if (product.slug === "kids-art-set-easel-208") {
     return [
       { q: "شحال عدد القطع؟", a: "208 قطعة داخل حقيبة وحدة: ماركر، أقلام تلوين، ألوان شمع، باستيل، ألوان مائية، فرشاة، ممحاة ومبراة." },
       { q: "واش فيه حامل رسم؟", a: "نعم. حامل أبيض ينفتح فالوسط مع كلابين أسودين باش تثبّت الورقة وهو كيرسم." },
       { q: "لمن مناسب؟", a: "مناسب للأطفال من سن الروض والابتدائي — هدية لعيد الميلاد، الدخول المدرسي، أو وقت الفراغ فالدار." },
       { q: "واش كيتفرّق الألوان؟", a: "لا. كل أداة عندها تجويف مقولب. منين يسالي الرسم، كيرجع كل لون لبلاصتو وطاوي الحقيبة." },
-      { q: "واش كاتطوى؟", a: "نعم. حقيبة بلاستيك زرقاء قابلة للطي بمقبض. كتفتح لستوديو وكتطوى باش تتخزّن أو تسافر." },
+      { q: "واش كاتطوى؟", a: "نعم. حقيبة بلاستيك قابلة للطي بمقبض. كتفتح لستوديو وكتطوى باش تتخزّن أو تسافر." },
+      { q: "واش نقدر نختار اللون؟", a: "نعم. كاين أزرق ووردي. اختار اللون اللي بغيتي من الأزرار فوق نموذج الطلب، وغادي يوصل نفس اللون." },
       { q: "شنو كيجي فالعلبة؟", a: "مجموعة الرسم والتلوين (208 قطعة مع حامل) + Arabic Magic Book هدية مجانية (4 كتب تعليمية + قلم سحري)." },
       { q: "شحال ثمن العرض؟", a: "299 درهم فقط — مجموعة الرسم والتلوين + Arabic Magic Book هدية مجانية. التوصيل مجاني والدفع عند الاستلام." },
       { q: "كم مدة التوصيل؟", a: delivery },
@@ -238,19 +259,28 @@ interface ProductPageArProps {
   related?: Product[];
 }
 
+function getDefaultVariant(product: Product) {
+  return product.variants.find((v) => isPackVariantSku(v.sku) && v.sku.endsWith("-2PK")) ?? product.variants[0];
+}
+
 export function ProductPageAr({ product, related: relatedProp }: ProductPageArProps) {
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
   const recentlyViewedIds = useRecentlyViewedStore((s) => s.productIds);
 
-  const [variant, setVariant] = useState(product.variants[0]);
+  const [variant, setVariant] = useState(() => getDefaultVariant(product));
   const [qty, setQty] = useState(1);
+  const [colorId, setColorId] = useState<ProductColorId>(KIDS_ART_DEFAULT_COLOR);
   const [sticky, setSticky] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [upsellIds, setUpsellIds] = useState<string[]>([]);
 
   const name = product.name.ar;
   const discount = calculateDiscount(variant.price, variant.compareAtPrice);
-  const reviews = getReviewsForProduct(product.id);
+  const allReviews = getReviewsForProduct(product.id);
+  const reviews =
+    product.slug === "mini-egg-boiler"
+      ? allReviews.filter((r) => r.productId === product.id)
+      : allReviews;
   const headline = getBenefitHeadline(product);
   const productFaqs = getProductFaqs(product);
   const savedAmount =
@@ -294,6 +324,22 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
   const isKidsArt = product.slug === "kids-art-set-easel-208";
+  const selectedColor = isKidsArt ? getKidsArtColor(colorId) : undefined;
+  const kidsArtGallerySlides = useMemo<GallerySlide[] | undefined>(() => {
+    if (!isKidsArt) return undefined;
+    return KIDS_ART_COLORS.map((color) => ({
+      id: `slide-${product.id}-color-${color.id}`,
+      section: "hero",
+      sectionLabel: "اللون",
+      emoji: "🎨",
+      heading: `اللون ${color.label.ar}`,
+      subtitle: "اختار اللون اللي بغيتي — نفس المحتوى ونفس الثمن",
+      imageUrl: color.image,
+      imageType: "02-premium-hero",
+      objectFit: "contain",
+      objectPosition: "center",
+    })).sort((a, b) => (a.id.endsWith(colorId) ? -1 : b.id.endsWith(colorId) ? 1 : 0));
+  }, [isKidsArt, product.id, colorId]);
   const showCarMountUpsell = isCarMountUpsellHostSlug(product.slug);
   const carMountUpsells = useMemo(
     () => (showCarMountUpsell ? getCarMountUpsellProducts() : []),
@@ -308,7 +354,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const combinedOrderNote = [
     isBogo ? "عرض 1+1 مجاناً | قطعتان | مدفوعة 1 + مجانية 1" : undefined,
     isShiatsu ? "هدية مجانية: كريم سنام الجمل للاستعمال الخارجي" : undefined,
-    isKidsArt ? "مجموعة رسم 208 قطعة + Arabic Magic Book هدية | 299 درهم" : undefined,
+    isKidsArt
+      ? `مجموعة رسم 208 قطعة + Arabic Magic Book هدية | 299 درهم | ${kidsArtColorOrderNote(colorId)}`
+      : undefined,
     carMountUpsellOrderNote(upsellIds),
   ]
     .filter(Boolean)
@@ -400,7 +448,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
         {/* 1. الصور */}
         <section aria-label="صور المنتج">
-          <PremiumProductGallery product={product} />
+          <PremiumProductGallery product={product} leadSlides={kidsArtGallerySlides} />
         </section>
 
         {/* 2. اسم المنتج */}
@@ -418,7 +466,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               ))}
             </div>
             <span className="text-white/55 text-xs">
-              {product.rating} · {product.reviewCount.toLocaleString("ar-MA")}+ تقييم
+              {product.reviewCount > 0
+                ? `${product.rating} · ${product.reviewCount.toLocaleString("ar-MA")}+ تقييم`
+                : "منتج جديد"}
             </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white">
@@ -447,7 +497,12 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
         {isShiatsu && <ShiatsuCroSections product={product} onOrderClick={scrollToOrder} />}
         {isKidsArt && (
-          <KidsArtCroSections product={product} price={variant.price} onOrderClick={scrollToOrder} />
+          <KidsArtCroSections
+            product={product}
+            price={variant.price}
+            onOrderClick={scrollToOrder}
+            colorImage={selectedColor?.image}
+          />
         )}
 
         {/* 3. السعر */}
@@ -500,6 +555,15 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             </p>
           )}
         </section>
+
+        {isKidsArt && (
+          <ProductColorPicker
+            options={KIDS_ART_COLORS}
+            selectedId={colorId}
+            onSelect={(id) => setColorId(id as ProductColorId)}
+            label="اختار اللون"
+          />
+        )}
 
         {/* شريط توصيل مجاني */}
         <div className="rounded-2xl border border-emerald-500/25 bg-gradient-to-l from-emerald-500/15 to-transparent px-5 py-3.5 text-center sm:text-start">
@@ -606,7 +670,10 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               : isShiatsu
                 ? [{ label: "الهدية", value: "كريم سنام الجمل مجاناً" }]
                 : isKidsArt
-                  ? [{ label: "الهدية", value: "Arabic Magic Book مجاناً" }]
+                  ? [
+                      { label: "اللون", value: selectedColor?.label.ar ?? "أزرق" },
+                      { label: "الهدية", value: "Arabic Magic Book مجاناً" },
+                    ]
                   : undefined
           }
           addonItems={selectedUpsells.map((item) => ({
@@ -709,9 +776,16 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 ))}
               </div>
               <p className="text-white/55 text-sm">
-                {product.rating} من 5 · {product.reviewCount.toLocaleString("ar-MA")} تقييم
+                {product.reviewCount > 0
+                  ? `${product.rating} من 5 · ${product.reviewCount.toLocaleString("ar-MA")} تقييم`
+                  : "التقييمات غادي تظهر بعد استلام الطلبات"}
               </p>
             </div>
+            {reviews.length === 0 ? (
+              <p className="text-center text-sm text-white/45 leading-relaxed max-w-md mx-auto">
+                ما كاينش تقييمات بعد. أول الزبناء اللي غادي يستلمو الطلب يقدرو يشاركوا رأيهم هنا.
+              </p>
+            ) : (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {reviews.slice(0, reviewLimit).map((r) => (
                 <div key={r.id} className="rounded-2xl border border-white/8 bg-[#0a0a0f]/50 p-5 flex flex-col">
@@ -757,6 +831,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 </div>
               ))}
             </div>
+            )}
           </div>
         </section>
 
@@ -873,7 +948,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           >
             <div className="px-4 py-3 max-w-lg mx-auto flex items-center gap-3">
               <Image
-                src={resolveProductHero(product)}
+                src={selectedColor?.image ?? resolveProductHero(product)}
                 alt=""
                 width={48}
                 height={48}
