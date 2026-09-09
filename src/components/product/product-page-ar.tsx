@@ -260,6 +260,9 @@ interface ProductPageArProps {
 }
 
 function getDefaultVariant(product: Product) {
+  if (product.slug === "mini-egg-boiler") {
+    return product.variants[0];
+  }
   return product.variants.find((v) => isPackVariantSku(v.sku) && v.sku.endsWith("-2PK")) ?? product.variants[0];
 }
 
