@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
       success: result.success,
       order: result.order,
       invoiceUrl: result.invoiceUrl,
-      fulfillment: result.fulfillment || result.order.fulfillment,
+      fulfillment: result.fulfillment ?? result.order?.fulfillment,
     });
   } catch (error) {
     return NextResponse.json(

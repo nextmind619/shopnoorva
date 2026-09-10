@@ -144,7 +144,7 @@ export async function POST(request: NextRequest) {
       invoiceUrl: result.invoiceUrl,
       trackingNumber: result.order.trackingNumber,
       fraudScore: result.order.fraudScore,
-      fulfillment: result.fulfillment || result.order.fulfillment,
+      fulfillment: result.fulfillment ?? result.order?.fulfillment,
       couponCode,
     });
   } catch {
