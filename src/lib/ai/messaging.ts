@@ -147,46 +147,68 @@ export async function sendMessage(payload: MessagePayload): Promise<Notification
 async function sendWhatsApp(to: string, body: string): Promise<void> {
   const { evolution } = aiConfig;
   if (!isEvolutionReady()) {
-    await logIntegration("evolution", "whatsapp_send_dry_run", "ok", {
+    await logIntegration("evolution", "whatsapp_send_dry_run", "error", {
       to,
-      body,
       reason: "evolution_not_configured",
       baseUrl: evolution.baseUrl,
       instance: evolution.instance,
     });
-    return;
+    throw new Error("Evolution API not configured");
   }
 
   const number = normalizeWhatsApp(to);
-  const url = `${evolution.baseUrl.replace(/\/$/, "")}/message/sendText/${evolution.instance}`;
+  const bases = evolutionBaseUrls();
+  let lastError = "fetch_failed";
 
-  let res: Response;
-  try {
-    res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        apikey: evolution.apiKey,
-      },
-      body: JSON.stringify({ number, text: body }),
-    });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "fetch_failed";
-    await logIntegration("evolution", "whatsapp_send", "error", { to: number, url }, { message });
-    throw new Error(`Evolution API unreachable: ${message}`);
+  for (const base of bases) {
+    const url = `${base}/message/sendText/${evolution.instance}`;
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: evolution.apiKey,
+        },
+        signal: AbortSignal.timeout(8000),
+        body: JSON.stringify({ number, text: body }),
+      });
+      const data = await res.json().catch(() => ({}));
+      await logIntegration("evolution", "whatsapp_send", res.ok ? "ok" : "error", { to: number, url }, data);
+      if (res.ok) return;
+      const detail =
+        (data as { response?: { message?: unknown }; error?: string; message?: string })?.response
+          ?.message ??
+        (data as { error?: string }).error ??
+        (data as { message?: string }).message ??
+        res.statusText;
+      lastError = `HTTP ${res.status}: ${JSON.stringify(detail)}`;
+    } catch (error) {
+      lastError = error instanceof Error ? error.message : "fetch_failed";
+      await logIntegration("evolution", "whatsapp_send", "error", { to: number, url }, { message: lastError });
+    }
   }
 
-  const data = await res.json().catch(() => ({}));
-  await logIntegration("evolution", "whatsapp_send", res.ok ? "ok" : "error", { to: number, url }, data);
-  if (!res.ok) {
-    const detail =
-      (data as { response?: { message?: unknown }; error?: string; message?: string })?.response
-        ?.message ??
-      (data as { error?: string }).error ??
-      (data as { message?: string }).message ??
-      res.statusText;
-    throw new Error(`Evolution API WhatsApp send failed (${res.status}): ${JSON.stringify(detail)}`);
+  throw new Error(`Evolution API unreachable: ${lastError}`);
+}
+
+function evolutionBaseUrls(): string[] {
+  const primary = (aiConfig.evolution.baseUrl || "").replace(/\/$/, "");
+  const extras = [
+    process.env.EVOLUTION_API_FALLBACK_URL || "",
+    "http://shopnoorva_evolution-api:8080",
+    "http://evolution-api:8080",
+    "http://shopnoorva_evolution:8080",
+  ];
+  const seen = new Set<string>();
+  const urls: string[] = [];
+  for (const raw of [primary, ...extras]) {
+    const url = raw.trim().replace(/\/$/, "");
+    if (!url || seen.has(url)) continue;
+    if (/your[-_]?evolution|example\.com|change[_-]?me|CHANGE_EVOLUTION/i.test(url)) continue;
+    seen.add(url);
+    urls.push(url);
   }
+  return urls;
 }
 
 async function sendSms(to: string, body: string): Promise<void> {

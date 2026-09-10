@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { getAdminOrders } from "@/lib/orders-admin";
 import { getClientIp } from "@/lib/rate-limit";
-import { processIncomingOrder } from "@/lib/ai/orchestrator";
+import { processIncomingOrder, runOrderSideEffects } from "@/lib/ai/orchestrator";
 import { normalizeMoroccanPhoneLocal, validateMoroccanPhone } from "@/lib/fraud";
 import type { DeviceSignals } from "@/lib/fraud";
 import type { PaymentMethod, ShippingAddress } from "@/types";
@@ -133,6 +133,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (result.sideEffects) {
+      after(() => runOrderSideEffects(result.sideEffects!));
+    }
+
     return NextResponse.json({
       success: true,
       orderNumber: result.order.orderNumber,
@@ -140,6 +144,7 @@ export async function POST(request: NextRequest) {
       invoiceUrl: result.invoiceUrl,
       trackingNumber: result.order.trackingNumber,
       fraudScore: result.order.fraudScore,
+      fulfillment: result.fulfillment || result.order.fulfillment,
       couponCode,
     });
   } catch {

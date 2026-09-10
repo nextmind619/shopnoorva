@@ -89,15 +89,21 @@ async function sheetsFetch<T>(
   init?: RequestInit & { method?: "GET" | "POST" | "PUT" }
 ): Promise<T> {
   const client = getSheetsAuthClient();
-  const token = await client.getAccessToken();
-  if (!token.token) {
+  const timedToken = await Promise.race([
+    client.getAccessToken(),
+    new Promise<never>((_, reject) => {
+      setTimeout(() => reject(new Error("Google Sheets token timeout")), 8000);
+    }),
+  ]);
+  if (!timedToken.token) {
     throw new Error("Failed to obtain Google Sheets access token");
   }
 
   const res = await fetch(`${SHEETS_BASE}${path}`, {
     ...init,
+    signal: init?.signal ?? AbortSignal.timeout(10000),
     headers: {
-      Authorization: `Bearer ${token.token}`,
+      Authorization: `Bearer ${timedToken.token}`,
       "Content-Type": "application/json",
       ...(init?.headers || {}),
     },
@@ -160,13 +166,18 @@ async function orderIdExists(
   sheetName: string,
   orderNumber: string
 ): Promise<boolean> {
-  const range = encodeRange(sheetName, "H2:H");
-  const result = await sheetsFetch<{ values?: string[][] }>(
-    `/${spreadsheetId}/values/${encodeURIComponent(range)}`
-  );
+  try {
+    const range = encodeRange(sheetName, "H2:H");
+    const result = await sheetsFetch<{ values?: string[][] }>(
+      `/${spreadsheetId}/values/${encodeURIComponent(range)}`
+    );
 
-  const marker = orderMarker(orderNumber);
-  return (result.values || []).flat().some((value) => String(value).includes(marker));
+    const marker = orderMarker(orderNumber);
+    return (result.values || []).flat().some((value) => String(value).includes(marker));
+  } catch (error) {
+    console.error("[google-sheets] duplicate check skipped:", error instanceof Error ? error.message : error);
+    return false;
+  }
 }
 
 async function appendOrderRowViaApi(order: SheetOrderInput): Promise<void> {
@@ -205,6 +216,7 @@ async function appendOrderRowViaWebhook(order: SheetOrderInput): Promise<void> {
   const res = await fetch(webhook, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    signal: AbortSignal.timeout(10000),
     body: JSON.stringify({
       spreadsheetId: aiConfig.googleSheets.spreadsheetId,
       sheet: aiConfig.googleSheets.orderSheetName,

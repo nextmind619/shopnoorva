@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { processIncomingOrder, getAiDashboard } from "@/lib/ai/orchestrator";
+import { processIncomingOrder, runOrderSideEffects, getAiDashboard } from "@/lib/ai/orchestrator";
 import { getClientIp } from "@/lib/rate-limit";
 import { normalizeMoroccanPhoneLocal, validateMoroccanPhone } from "@/lib/fraud";
 
@@ -65,7 +65,15 @@ export async function POST(request: NextRequest) {
     if (!result.success) {
       return NextResponse.json(result, { status: 422 });
     }
-    return NextResponse.json(result);
+    if (result.sideEffects) {
+      after(() => runOrderSideEffects(result.sideEffects!));
+    }
+    return NextResponse.json({
+      success: result.success,
+      order: result.order,
+      invoiceUrl: result.invoiceUrl,
+      fulfillment: result.fulfillment || result.order.fulfillment,
+    });
   } catch (error) {
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Order processing failed" },

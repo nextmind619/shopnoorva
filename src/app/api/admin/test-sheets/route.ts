@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { appendOrderToSheets, diagnoseGoogleSheets } from "@/lib/ai/integrations/google-sheets";
 import { getGoogleSheetsConfigSummary } from "@/lib/ai/integrations/google-auth";
 import { getIntegrationLogs } from "@/lib/ai/integrations/logger";
-import { store } from "@/lib/ai/memory-store";
+import { loadRecentOrdersFromDb } from "@/lib/ai/integrations/db-orders";
+import { notifyAdminNewOrder } from "@/lib/ai/admin-notify";
+import { store, type StoredOrder } from "@/lib/ai/memory-store";
 
 function isAuthorized(request: NextRequest): boolean {
   const secret = request.headers.get("x-cron-secret") || request.nextUrl.searchParams.get("secret");
@@ -48,6 +50,40 @@ export async function POST(request: NextRequest) {
       config: getGoogleSheetsConfigSummary(),
       diagnosis,
       recentLogs: getIntegrationLogs(10).filter((l) => l.provider === "google_sheets"),
+    });
+  }
+
+  if (mode === "resync-db") {
+    const notifyWhatsApp = request.nextUrl.searchParams.get("notify") === "1";
+    const limit = Number(request.nextUrl.searchParams.get("limit") || 30);
+    const dbOrders = await loadRecentOrdersFromDb(limit);
+    const memoryOrders = store.orders.filter((o) => o.status === "confirmed" || o.status === "review");
+    const byNumber = new Map<string, StoredOrder>();
+    for (const order of [...dbOrders, ...memoryOrders]) {
+      byNumber.set(order.orderNumber, order);
+    }
+
+    const results: Array<{ orderNumber: string; sheets: unknown; whatsapp?: string }> = [];
+    for (const order of byNumber.values()) {
+      const payload = orderToSheetPayload(order);
+      const sheets = await appendOrderToSheets(payload);
+      let whatsapp = "skipped";
+      if (notifyWhatsApp) {
+        const customerName = [order.firstName, order.lastName].filter(Boolean).join(" ") || "عميل";
+        await notifyAdminNewOrder(order, customerName).catch(() => {
+          whatsapp = "failed";
+        });
+        if (whatsapp !== "failed") whatsapp = "sent";
+      }
+      results.push({ orderNumber: order.orderNumber, sheets, whatsapp });
+    }
+
+    return NextResponse.json({
+      ok: results.every((r) => (r.sheets as { ok?: boolean }).ok !== false),
+      config: getGoogleSheetsConfigSummary(),
+      diagnosis,
+      resynced: results.length,
+      results,
     });
   }
 

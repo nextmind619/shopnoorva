@@ -7,7 +7,7 @@ export async function triggerN8n(
 ): Promise<{ ok: boolean; dryRun?: boolean }> {
   const url = `${aiConfig.n8n.webhookBase}/${workflow}`;
 
-  if (!isConfigured(aiConfig.n8n.webhookBase)) {
+  if (!isConfigured(process.env.N8N_WEBHOOK_BASE || "") || !isConfigured(aiConfig.n8n.webhookBase)) {
     await logIntegration("n8n", workflow, "ok", payload, { dryRun: true });
     return { ok: true, dryRun: true };
   }
@@ -16,6 +16,7 @@ export async function triggerN8n(
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(5000),
       body: JSON.stringify({
         source: "noorva-ai",
         workflow,

@@ -78,6 +78,7 @@ export async function sendLeadToCodplus(lead: CodplusLeadInput): Promise<{
         "X-Webhook-Token": webhookToken,
         "X-Codplus-Webhook-Token": webhookToken,
       },
+      signal: AbortSignal.timeout(10000),
       body: JSON.stringify({
         ...payload,
         webhook_token: webhookToken,

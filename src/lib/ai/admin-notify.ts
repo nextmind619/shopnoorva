@@ -10,7 +10,7 @@ export async function notifyAdminNewOrder(
     .map((item) => `${item.name} × ${item.quantity}`)
     .join(" | ");
 
-  await sendMessage({
+  const record = await sendMessage({
     channel: "whatsapp",
     recipient: aiConfig.brand.adminWhatsApp,
     templateKey: "admin_new_order",
@@ -27,4 +27,7 @@ export async function notifyAdminNewOrder(
     relatedType: "order",
     relatedId: order.id,
   });
+  if (record.status === "failed") {
+    throw new Error(record.error || "whatsapp_admin_failed");
+  }
 }

@@ -76,3 +76,89 @@ export async function persistOrderToDb(order: StoredOrder): Promise<void> {
     client.release();
   }
 }
+
+function asNumber(value: unknown, fallback = 0): number {
+  const n = typeof value === "number" ? value : Number(value);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+export async function loadRecentOrdersFromDb(limit = 40): Promise<StoredOrder[]> {
+  if (!isDbConfigured()) return [];
+
+  const pool = getPool();
+  const result = await pool.query(
+    `SELECT
+        o.order_number,
+        o.phone,
+        o.email,
+        o.city,
+        o.address,
+        o.subtotal,
+        o.shipping,
+        o.discount,
+        o.total,
+        o.payment_method,
+        o.status,
+        o.fraud_score,
+        o.fraud_flags,
+        o.is_duplicate,
+        o.tracking_number,
+        o.invoice_url,
+        o.metadata,
+        o.created_at,
+        COALESCE(
+          json_agg(
+            json_build_object(
+              'sku', i.sku,
+              'name', i.name,
+              'quantity', i.quantity,
+              'unitPrice', i.unit_price,
+              'lineTotal', i.line_total
+            ) ORDER BY i.id
+          ) FILTER (WHERE i.id IS NOT NULL),
+          '[]'
+        ) AS items
+     FROM orders o
+     LEFT JOIN order_items i ON i.order_id = o.id
+     WHERE o.status IN ('confirmed', 'review', 'pending')
+     GROUP BY o.id
+     ORDER BY o.created_at DESC
+     LIMIT $1`,
+    [Math.min(100, Math.max(1, limit))]
+  );
+
+  return result.rows.map((row) => {
+    const meta =
+      row.metadata && typeof row.metadata === "object" ? (row.metadata as Record<string, unknown>) : {};
+    const items = Array.isArray(row.items) ? row.items : [];
+    return {
+      id: `db-${row.order_number}`,
+      orderNumber: String(row.order_number),
+      firstName: typeof meta.firstName === "string" ? meta.firstName : undefined,
+      lastName: typeof meta.lastName === "string" ? meta.lastName : undefined,
+      phone: String(row.phone || ""),
+      email: row.email || undefined,
+      city: String(row.city || ""),
+      address: String(row.address || ""),
+      items: items.map((item: { sku?: string; name?: string; quantity?: unknown; unitPrice?: unknown; lineTotal?: unknown }) => ({
+        sku: String(item.sku || ""),
+        name: String(item.name || item.sku || "Produit"),
+        quantity: asNumber(item.quantity, 1),
+        unitPrice: asNumber(item.unitPrice),
+        lineTotal: asNumber(item.lineTotal),
+      })),
+      subtotal: asNumber(row.subtotal),
+      shipping: asNumber(row.shipping),
+      discount: asNumber(row.discount),
+      total: asNumber(row.total),
+      paymentMethod: String(row.payment_method || "cod"),
+      status: String(row.status || "confirmed"),
+      fraudScore: asNumber(row.fraud_score),
+      fraudFlags: Array.isArray(row.fraud_flags) ? row.fraud_flags.map(String) : [],
+      isDuplicate: Boolean(row.is_duplicate),
+      trackingNumber: row.tracking_number || undefined,
+      invoiceUrl: row.invoice_url || undefined,
+      createdAt: row.created_at instanceof Date ? row.created_at.toISOString() : String(row.created_at),
+    };
+  });
+}

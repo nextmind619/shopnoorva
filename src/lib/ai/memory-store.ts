@@ -39,6 +39,12 @@ export interface StoredOrder {
   duplicateOf?: string;
   trackingNumber?: string;
   invoiceUrl?: string;
+  fulfillment?: {
+    sheets?: { ok: boolean; skipped?: string; error?: string };
+    codplus?: { ok: boolean; skipped?: string; error?: string };
+    whatsappAdmin?: { ok: boolean; error?: string };
+    whatsappCustomer?: { ok: boolean; error?: string };
+  };
   /** First-party ad attribution (UTM / gclid) captured at order time */
   attribution?: {
     utm_source?: string;

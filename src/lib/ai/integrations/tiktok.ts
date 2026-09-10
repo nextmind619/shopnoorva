@@ -32,6 +32,7 @@ export async function sendTikTokEvent(event: {
         "Content-Type": "application/json",
         "Access-Token": getTikTokAccessToken(),
       },
+      signal: AbortSignal.timeout(8000),
       body: JSON.stringify({
         pixel_code: getTikTokPixelId(),
         event: event.event,

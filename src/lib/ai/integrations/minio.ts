@@ -4,8 +4,18 @@ import { logIntegration } from "./logger";
 
 const memoryFiles = new Map<string, { contentType: string; data: Buffer | string }>();
 
+/** MinIO is optional. Do not treat the localhost config default as "configured". */
+export function isMinioConfigured(): boolean {
+  const endpoint = (process.env.MINIO_ENDPOINT || "").trim();
+  if (!isConfigured(endpoint) || !isConfigured(process.env.MINIO_ACCESS_KEY || "")) return false;
+  if (process.env.NODE_ENV === "production" && /^(localhost|127\.0\.0\.1)$/i.test(endpoint)) {
+    return false;
+  }
+  return true;
+}
+
 function getS3(): S3Client | null {
-  if (!aiConfig.minio.endpoint) return null;
+  if (!isMinioConfigured()) return null;
   return new S3Client({
     region: "us-east-1",
     endpoint: `${aiConfig.minio.useSSL ? "https" : "http"}://${aiConfig.minio.endpoint}:${aiConfig.minio.port}`,

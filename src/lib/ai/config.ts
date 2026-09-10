@@ -23,7 +23,9 @@ export const aiConfig = {
     instance: process.env.EVOLUTION_INSTANCE || "noorva",
   },
   n8n: {
-    webhookBase: process.env.N8N_WEBHOOK_BASE || "http://localhost:5678/webhook",
+    // Empty unless explicitly set — a localhost default would hang every order
+    // on EasyPanel when n8n is not running (optional service).
+    webhookBase: process.env.N8N_WEBHOOK_BASE || "",
   },
   googleSheets: {
     spreadsheetId: process.env.GOOGLE_SHEETS_ID || "",
