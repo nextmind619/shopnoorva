@@ -26,8 +26,13 @@ import {
   Umbrella,
   Egg,
   Users,
+  Lamp,
+  Smartphone,
+  FoldHorizontal,
+  Radio,
 } from "lucide-react";
 import type { PremiumImageType } from "@/lib/product-images/types";
+import { BT12_HERO_IMAGE, BT12_SLUG } from "@/data/bt12";
 
 export type CroHowToStep = {
   step: string;
@@ -1105,6 +1110,87 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         icon: Home,
         title: "مناسب للاستعمال اليومي",
         desc: "حجم صغير كيبقى فوق الكوزينة، وجاهز كل صباح.",
+      },
+    ],
+  },
+  [BT12_SLUG]: {
+    headline: {
+      title: "صوّر راسك، الصحاب، والليل… بعصا وحدة",
+      subtitle:
+        "عصا سيلفي قابلة للطي مع ترايبود وضوئين دائريين وريموت لاسلكي. 349 درهم والدفع عند الاستلام.",
+    },
+    midCtaLabels: [
+      "اطلب دابا والدفع عند الاستلام",
+      "349 درهم — والهدية مجانية",
+      "ما كخلص والو حتى يوصلك الطلب",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "ثبّت الهاتف",
+        desc: "حط الهاتف فالحامل اللي فوق العصا.",
+        imageKey: null,
+        imageUrl: BT12_HERO_IMAGE,
+      },
+      {
+        step: "2",
+        title: "مدّد ولا ركّز الترايبود",
+        desc: "مدّد العصا للسيلفي، أو ركّزها على رجليها باش تبقى ثابتة.",
+        imageKey: null,
+      },
+      {
+        step: "3",
+        title: "شغّل الضوئين",
+        desc: "الحلقتان الضوئيتان كيعطيو إضاءة أمامية للوجه.",
+        imageKey: null,
+      },
+      {
+        step: "4",
+        title: "صوّر بالريموت",
+        desc: "الريموت اللاسلكي كيخلّيك تطلق الصورة بلا ما تلمس الهاتف. من بعد طوي العصا وحملها معاك.",
+        imageKey: null,
+      },
+    ],
+    comparison: {
+      oursLabel: "BT12",
+      rows: [
+        { label: "سيلفي + ترايبود فجهاز واحد", us: true, them: "غالباً قطعة وحدة" },
+        { label: "حلقتان ضوئيتان", us: true, them: "غالباً بلا ضوء مزدوج" },
+        { label: "ريموت لاسلكي", us: true, them: "ماشي ديما" },
+        { label: "قابلة للطي", us: true, them: "كاين" },
+        { label: "الدفع عند الاستلام في المغرب", us: true, them: "نادر" },
+      ],
+    },
+    benefits: [
+      {
+        icon: Smartphone,
+        title: "سيلفي بلا ما تمد يدك",
+        desc: "مدّد العصا وصوّر راسك من زاوية مريحة.",
+      },
+      {
+        icon: FoldHorizontal,
+        title: "ترايبود ملي بغيتي تثبت الهاتف",
+        desc: "ركّزها على رجليها باش تصوّر بلا ما تمسكها.",
+      },
+      {
+        icon: Users,
+        title: "صورة جماعية أوسع",
+        desc: "الزاوية كتدخل الصحاب فالصورة معاك.",
+      },
+      {
+        icon: Lamp,
+        title: "ضوئين دائريين للوجه",
+        desc: "إضاءة أمامية باش الوجه يبان أوضح وقت التصوير.",
+      },
+      {
+        icon: Radio,
+        title: "ريموت لاسلكي",
+        desc: "تطلق الصورة وأنت بعيد على الهاتف.",
+      },
+      {
+        icon: Gift,
+        title: "هدية كابل مع الطلب",
+        desc: "كابل USB-C 240W مع حامل قابل للطي، بلا درهم زايد.",
       },
     ],
   },

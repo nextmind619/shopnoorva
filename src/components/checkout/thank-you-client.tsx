@@ -2,10 +2,12 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Check, Home, ShoppingBag, Phone } from "lucide-react";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import { FacebookThankYouTracker } from "@/components/facebook/facebook-trackers";
+import { getProductById } from "@/data/products";
 
 const STEPS = [
   { title: "تم استلام الطلب" },
@@ -26,6 +28,8 @@ export function ThankYouClient() {
   const total = searchParams.get("total") ? Number(searchParams.get("total")) : null;
   const productId = searchParams.get("productId") || undefined;
   const firstName = customerName !== "—" ? customerName.split(/\s+/)[0] : undefined;
+  const gift = productId ? getProductById(productId)?.gift : undefined;
+  const showGift = Boolean(gift?.enabled);
 
   return (
     <div className="min-h-screen bg-luxury-bg text-luxury-black pt-24 pb-16 px-4" dir="rtl">
@@ -117,6 +121,35 @@ export function ThankYouClient() {
             </span>
           </div>
         </motion.div>
+
+        {showGift && gift && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+            className="mt-6 overflow-hidden rounded-2xl border border-amber-200 bg-amber-50"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-[112px_1fr]">
+              {gift.giftImage && (
+                <div className="relative aspect-square sm:aspect-auto bg-white">
+                  <Image
+                    src={gift.giftImage}
+                    alt={gift.giftTitle.ar}
+                    fill
+                    sizes="112px"
+                    className="object-contain p-2"
+                  />
+                </div>
+              )}
+              <div className="p-5 space-y-2">
+                <p className="text-xs font-bold text-amber-800 tracking-wider">الهدية ديالك 🎁</p>
+                <p className="font-black text-base leading-snug">وزيد عليها هدية مجانية مفاجأة مع الطلب ديالك</p>
+                <p className="text-sm font-semibold">{gift.giftTitle.ar}</p>
+                <p className="text-sm text-emerald-800">{gift.giftDisclosure.ar}</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}

@@ -35,11 +35,18 @@ function storedToAdmin(order: StoredOrder): AdminOrderRow {
     status: order.status,
     paymentMethod: order.paymentMethod,
     createdAt: order.createdAt,
-    items: order.items.map((item) => ({
-      name: item.name,
-      quantity: item.quantity,
-      lineTotal: item.lineTotal,
-    })),
+    items: [
+      ...order.items.map((item) => ({
+        name: item.name,
+        quantity: item.quantity,
+        lineTotal: item.lineTotal,
+      })),
+      ...(order.gifts ?? []).map((gift) => ({
+        name: `🎁 ${gift.giftTitle} (مجاني)`,
+        quantity: gift.quantity,
+        lineTotal: 0,
+      })),
+    ],
     shippingAddress: {
       fullName: [firstName, lastName].filter(Boolean).join(" "),
       firstName,

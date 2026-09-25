@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T15:58:57.769Z",
+  "generatedAt": "2026-09-25T18:03:33.064Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3387,6 +3387,28 @@
         "07-romantic-room": "ai-generated",
         "08-kids-room": "ai-generated",
         "14-product-in-use": "ai-generated"
+      }
+    },
+    "bt12-4in1-selfie-stick-tripod": {
+      "slug": "bt12-4in1-selfie-stick-tripod",
+      "sku": "NRV-BT12-01",
+      "name": "BT12 4-in-1 Selfie Stick Tripod with Dual Light Ring",
+      "images": {
+        "02-premium-hero": {
+          "original": "/products/bt12-4in1-selfie-stick-tripod/02-premium-hero.jpg",
+          "webp": "/products/bt12-4in1-selfie-stick-tripod/02-premium-hero.webp",
+          "avif": "/products/bt12-4in1-selfie-stick-tripod/02-premium-hero.avif",
+          "thumbnail": "/products/bt12-4in1-selfie-stick-tripod/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/bt12-4in1-selfie-stick-tripod/responsive/02-premium-hero-640.webp",
+            "md": "/products/bt12-4in1-selfie-stick-tripod/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/bt12-4in1-selfie-stick-tripod/responsive/02-premium-hero-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "02-premium-hero": "commercial"
       }
     }
   }

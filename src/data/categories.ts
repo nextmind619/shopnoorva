@@ -144,7 +144,7 @@ export const categories: Category[] = [
       en: "Premium, original gifts for every occasion",
     },
     image: getProductHeroUrl("rabbit-carousel-night-light"),
-    productCount: 9,
+    productCount: 10,
   },
 ];
 

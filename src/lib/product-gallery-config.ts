@@ -1,4 +1,5 @@
 import type { PremiumImageType } from "@/lib/product-images/types";
+import { BT12_GIFT_IMAGE, BT12_HERO_IMAGE, BT12_SLUG } from "@/data/bt12";
 
 export type GallerySection =
   | "hero"
@@ -1429,6 +1430,27 @@ const EGG_BOILER_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const BT12_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    imageUrl: BT12_HERO_IMAGE,
+    emoji: "📸",
+    heading: "BT12 — عصا سيلفي 4 في 1",
+    subtitle: "ترايبود · ضوئين دائريين · ريموت لاسلكي · قابلة للطي",
+    objectFit: "contain",
+  },
+  {
+    section: "gift",
+    imageType: "11-package-contents",
+    imageUrl: BT12_GIFT_IMAGE,
+    emoji: "🎁",
+    heading: "هدية مجانية مع الطلب",
+    subtitle: "كابل USB-C إلى USB-C 240W مع حامل هاتف قابل للطي — بلا درهم زايد",
+    objectFit: "contain",
+  },
+];
+
 const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "astronaut-bt-speaker-projector": ASTRONAUT_SLIDES,
   "bluetooth-star-projector": STAR_PROJECTOR_SLIDES,
@@ -1449,6 +1471,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "cordless-mini-vacuum-keyboard": MINI_VACUUM_SLIDES,
   "kids-art-set-easel-208": KIDS_ART_SLIDES,
   "mini-egg-boiler": EGG_BOILER_SLIDES,
+  [BT12_SLUG]: BT12_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

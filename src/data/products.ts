@@ -1,6 +1,7 @@
 import type { Product, ProductReview, FAQ, Testimonial, InstagramPost, Coupon, Order, Customer } from "@/types";
 import { enrichProduct } from "@/lib/product-images/enrich-products";
 import { resolveProductImage } from "@/lib/product-images/resolve";
+import { BT12_GIFT_ID, BT12_GIFT_IMAGE, BT12_PRICE_MAD, BT12_SLUG } from "@/data/bt12";
 
 const flashEnd = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
 
@@ -2738,6 +2739,164 @@ export const products: Product[] = [
         "بروتين الشكل الأنثوي + كولاجين بحري هدية مجانية لإكمال الروتين. 399 درهم بدل 558. توصيل مجاني والدفع عند الاستلام في المغرب.",
         "Protéine curves + collagène marin offert. 399 DH au lieu de 558. Livraison gratuite et COD au Maroc.",
         "Curve protein + free marine collagen. 399 DH instead of 558. Free shipping and COD in Morocco."
+      ),
+    },
+  },
+  {
+    id: "prod-bt12",
+    slug: BT12_SLUG,
+    name: L(
+      "عصا سيلفي BT12 4 في 1 مع ترايبود وضوئين دائريين",
+      "Perche selfie BT12 4-en-1 avec trépied et double anneau lumineux",
+      "BT12 4-in-1 Selfie Stick Tripod with Dual Light Ring"
+    ),
+    shortDescription: L(
+      "عصا سيلفي قابلة للطي والتمديد، مع ترايبود وضوئين دائريين وريموت لاسلكي. 349 درهم والدفع عند الاستلام.",
+      "Perche selfie pliable et télescopique, trépied, double lumière et télécommande sans fil. 349 DH, paiement à la livraison.",
+      "Foldable, extendable selfie stick with tripod, dual fill lights and a wireless remote. 349 MAD, cash on delivery."
+    ),
+    description: L(
+      "BT12 عصا سيلفي 4 في 1: تصوّر راسك، تثبّتها كترايبود، تصوّر مع الصحاب، وتضيء الوجه بحلقتين ضوء. الارتفاع قابل للتمديد، والريموت لاسلكي باش تطلق الصورة بلا ما تلمس الهاتف. كتطوى وتتحط فالشنتة. الثمن 349 درهم، الدفع عند الاستلام، والتوصيل مجاني لجميع مدن المغرب. مع الطلب كتجي هدية مجانية: كابل USB-C سريع 240W فيه حامل هاتف قابل للطي، بلا درهم زايد.",
+      "BT12 perche selfie 4-en-1 : mode selfie, trépied, photo de groupe et double anneau lumineux. Hauteur télescopique, télécommande sans fil, format pliable. 349 DH, paiement à la livraison et livraison gratuite au Maroc. Cadeau inclus : câble USB-C 240W avec support téléphone pliable, sans supplément.",
+      "BT12 4-in-1 selfie stick: selfie mode, tripod mode, group photos and dual light rings. Extendable height, wireless remote, foldable. 349 MAD with cash on delivery and free Morocco shipping. A free USB-C 240W cable with a foldable phone holder is included at no extra charge."
+    ),
+    categoryId: "cat-gift-ideas",
+    price: BT12_PRICE_MAD,
+    sku: "NRV-BT12-01",
+    stock: 48,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: false,
+    isTikTokViral: false,
+    isFeatured: false,
+    problemEmoji: "📸",
+    problem: L(
+      "بغيتي تصوّر سيلفي أو صورة مع الصحاب والإضاءة ضعيفة؟",
+      "Selfie ou photo de groupe, mais la lumière est faible ?",
+      "Want a selfie or group photo when the light is poor?"
+    ),
+    problemCause: L(
+      "الهاتف وحدو ما كيعطيش زاوية مريحة، والإضاءة الداخلية كتخلي الوجه غامق.",
+      "Le téléphone seul ne donne pas le bon angle, et la lumière intérieure assombrit le visage.",
+      "The phone alone is an awkward angle, and indoor light leaves faces dark."
+    ),
+    problemSolution: L(
+      "عصا قابلة للتمديد + ترايبود + ضوئين دائريين + ريموت لاسلكي.",
+      "Perche télescopique + trépied + double lumière + télécommande sans fil.",
+      "Extendable stick + tripod + dual lights + wireless remote."
+    ),
+    deepDescription: L(
+      "حط الهاتف فالحامل، مدّد العصا على الطول اللي يناسبك، ولا ركّزها على رجليها كترايبود. الضوئين الدائريين كيعطيو إضاءة أمامية، والريموت اللاسلكي كيخلّيك تصوّر بلا ما تبقى واقف حدا الهاتف. من بعد كتطويها وتحملها معاك.",
+      "Fixez le téléphone, déployez la perche ou posez-la en trépied. Les deux anneaux éclairent le visage, la télécommande déclenche sans rester à côté du téléphone, puis ça se plie pour le sac.",
+      "Clamp the phone, extend the stick or stand it as a tripod. The two light rings fill the face, the wireless remote fires the shot, then it folds into a bag."
+    ),
+    tags: ["new", "gift", "selfie", "tripod", "phone", "light"],
+    benefits: [
+      L("سيلفي براحتك بلا ما تمد يدك بزاف", "Selfie confortable sans tendre le bras", "A comfortable selfie without stretching your arm"),
+      L("ترايبود باش تثبت الهاتف وتصوّر بلا ما تمسكو", "Trépied pour poser le téléphone", "Tripod so the phone stands on its own"),
+      L("صورة جماعية من زاوية أوسع", "Photo de groupe avec un angle plus large", "Group photos from a wider angle"),
+      L("ضوئين دائريين كينوّرو الوجه", "Double anneau pour éclairer le visage", "Dual light rings to light the face"),
+      L("ريموت لاسلكي باش تطلق الصورة", "Télécommande sans fil pour déclencher", "Wireless remote to take the shot"),
+      L("كتطوى وتتحط فالشنتة", "Se plie et se range dans le sac", "Folds away into a bag"),
+    ],
+    features: [
+      L("4 في 1: سيلفي، ترايبود، صورة جماعية، ضوء مزدوج", "4-en-1 : selfie, trépied, groupe, double lumière", "4-in-1: selfie, tripod, group photo, dual light"),
+      L("ارتفاع قابل للتمديد", "Hauteur télescopique", "Extendable height"),
+      L("ريموت لاسلكي", "Télécommande sans fil", "Wireless remote"),
+      L("قابلة للطي وسهلة الحمل", "Pliable et portable", "Foldable and portable"),
+      L("حلقتان ضوئيتان", "Double anneau lumineux", "Dual light ring"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("عصا سيلفي 4 في 1 مع ترايبود", "Perche selfie 4-en-1 avec trépied", "4-in-1 selfie stick with tripod") },
+      { label: L("الأوضاع", "Modes", "Modes"), value: L("سيلفي / ترايبود / صورة جماعية / ضوء مزدوج", "Selfie / trépied / groupe / double lumière", "Selfie / tripod / group / dual light") },
+      { label: L("الإضاءة", "Éclairage", "Lighting"), value: L("حلقتان ضوئيتان", "Double anneau lumineux", "Dual light ring") },
+      { label: L("التحكم", "Commande", "Control"), value: L("ريموت لاسلكي", "Télécommande sans fil", "Wireless remote") },
+      { label: L("الحمل", "Transport", "Carry"), value: L("قابلة للطي", "Pliable", "Foldable") },
+      { label: L("الثمن", "Prix", "Price"), value: L("349 درهم", "349 DH", "349 MAD") },
+      { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
+    ],
+    packageIncludes: [
+      L("عصا سيلفي مع ترايبود وضوئين دائريين", "Perche selfie avec trépied et double lumière", "Selfie stick with tripod and dual lights"),
+      L("ريموت لاسلكي", "Télécommande sans fil", "Wireless remote"),
+      L("هدية مجانية: كابل USB-C 240W مع حامل هاتف قابل للطي", "Cadeau : câble USB-C 240W avec support pliable", "Free gift: USB-C 240W cable with foldable phone holder"),
+    ],
+    howToUse: L(
+      "ثبّت الهاتف فالحامل. مدّد العصا على الطول اللي يناسبك، أو ركّزها على رجليها كترايبود. شغّل الضوئين إلا بغيتي إضاءة. استعمل الريموت اللاسلكي باش تصوّر. من بعد طويها وحملها معاك.",
+      "Fixez le téléphone. Déployez la perche ou posez-la en trépied. Allumez les anneaux si vous voulez de la lumière. Déclenchez avec la télécommande, puis pliez-la.",
+      "Clamp the phone. Extend the stick or stand it as a tripod. Turn on the lights if you want fill light. Shoot with the wireless remote, then fold it away."
+    ),
+    lifestyleScenes: [
+      {
+        id: "selfie",
+        emoji: "🤳",
+        title: L("وضع السيلفي", "Mode selfie", "Selfie mode"),
+        description: L("مدّد العصا وصوّر راسك بلا ما تمد يدك.", "Déployez la perche et photographiez-vous.", "Extend the stick and shoot yourself."),
+      },
+      {
+        id: "tripod",
+        emoji: "📐",
+        title: L("وضع الترايبود", "Mode trépied", "Tripod mode"),
+        description: L("ركّزها على رجليها باش الهاتف يبقى ثابت.", "Posez-la sur ses pieds pour un téléphone stable.", "Stand it on its legs so the phone stays put."),
+      },
+      {
+        id: "group",
+        emoji: "👥",
+        title: L("صورة جماعية", "Photo de groupe", "Group photo"),
+        description: L("زاوية أوسع باش تدخلو كاملين فالصورة.", "Un angle plus large pour tout le groupe.", "A wider angle so everyone fits."),
+      },
+      {
+        id: "lights",
+        emoji: "💡",
+        title: L("ضوئين دائريين", "Double lumière", "Dual light ring"),
+        description: L("إضاءة أمامية للوجه وقت التصوير.", "Éclairage frontal pour le visage.", "Front fill light for the face."),
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-bt12",
+        name: L("BT12 — 349 درهم", "BT12 — 349 DH", "BT12 — 349 MAD"),
+        price: BT12_PRICE_MAD,
+        sku: "NRV-BT12-01",
+        stock: 48,
+      },
+    ],
+    upsellIds: [],
+    crossSellIds: ["prod-car-mount-1plus1", "prod-mini-vacuum"],
+    gift: {
+      enabled: true,
+      giftProductId: BT12_GIFT_ID,
+      giftTitle: L(
+        "كابل USB-C سريع 240W مع حامل هاتف قابل للطي",
+        "Câble USB-C rapide 240W avec support téléphone pliable",
+        "USB-C 240W fast cable with foldable phone holder"
+      ),
+      giftDescription: L(
+        "كابل Type-C إلى Type-C للشحن السريع، وفي الكونكتور حامل كيتطوى باش تفرج فالمحتوى وأنت كتشحن.",
+        "Câble Type-C vers Type-C charge rapide, avec un support pliable dans le connecteur pour regarder en chargeant.",
+        "USB-C to USB-C fast cable with a foldable holder in the connector so you can watch while it charges."
+      ),
+      giftImage: BT12_GIFT_IMAGE,
+      giftDisclosure: L(
+        "الهدية مجانية وما غادي تخلص عليها حتى درهم زايد.",
+        "Le cadeau est offert : vous ne payez pas un dirham de plus.",
+        "The gift is free. You do not pay anything extra for it."
+      ),
+      stockControlled: false,
+    },
+    seo: {
+      title: L(
+        "عصا سيلفي BT12 4 في 1 مع ترايبود وضوء | 349 درهم | NOORVA المغرب",
+        "Perche selfie BT12 4-en-1 trépied et lumière | 349 DH | NOORVA Maroc",
+        "BT12 4-in-1 Selfie Stick Tripod with Dual Light | 349 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "عصا سيلفي BT12 قابلة للطي مع ترايبود وضوئين دائريين وريموت لاسلكي بـ 349 درهم. هدية مجانية: كابل USB-C 240W مع حامل هاتف. الدفع عند الاستلام والتوصيل مجاني في المغرب.",
+        "Perche selfie BT12 pliable, trépied, double lumière et télécommande à 349 DH. Cadeau : câble USB-C 240W avec support. Paiement à la livraison et livraison gratuite au Maroc.",
+        "Foldable BT12 selfie stick with tripod, dual lights and wireless remote for 349 MAD. Free USB-C 240W cable with phone holder. Cash on delivery and free shipping in Morocco."
       ),
     },
   },

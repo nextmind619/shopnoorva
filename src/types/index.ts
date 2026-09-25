@@ -68,6 +68,18 @@ export interface ProductSpec {
   value: LocalizedString;
 }
 
+/** Free gift shipped with a product. Price stays on the paid SKU. */
+export interface ProductGift {
+  enabled: boolean;
+  giftProductId?: string;
+  giftTitle: LocalizedString;
+  giftDescription?: LocalizedString;
+  giftImage?: string;
+  giftDisclosure: LocalizedString;
+  /** When true, fulfillment should decrement a separate gift SKU. Default false. */
+  stockControlled?: boolean;
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -109,6 +121,8 @@ export interface Product {
   problemSolution?: LocalizedString;
   problemEmoji?: string;
   deepDescription?: LocalizedString;
+  /** Surprise gift included with the order. Omitted when the SKU has no gift. */
+  gift?: ProductGift;
   seo: {
     title: LocalizedString;
     description: LocalizedString;

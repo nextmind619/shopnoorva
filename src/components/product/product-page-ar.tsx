@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
-import { products, getProductById, getReviewsForProduct } from "@/data/products";
+import { products, getProductById, getReviewsForProduct, moroccanCities } from "@/data/products";
 import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
@@ -46,6 +46,8 @@ import {
   getCarMountUpsellProducts,
   isCarMountUpsellHostSlug,
 } from "@/lib/catalog/car-mount-upsell";
+import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
+import { ProductSurpriseGift, ProductUsageModes } from "@/components/product/product-surprise-gift";
 
 const ProductOrderForm = dynamic(
   () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
@@ -92,6 +94,7 @@ function getBenefitHeadline(product: Product): { title: string; subtitle: string
 }
 
 function getProductFaqs(product: Product) {
+  if (product.slug === BT12_SLUG) return [...BT12_FAQS];
   const warranty = product.warrantyMonths || 12;
   const delivery =
     `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${warranty} شهر واستبدال خلال 7 أيام عند وجود عيب.`;
@@ -274,6 +277,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const [qty, setQty] = useState(1);
   const [colorId, setColorId] = useState<ProductColorId>(KIDS_ART_DEFAULT_COLOR);
   const [sticky, setSticky] = useState(false);
+  const [formInView, setFormInView] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [upsellIds, setUpsellIds] = useState<string[]>([]);
 
@@ -281,7 +285,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const discount = calculateDiscount(variant.price, variant.compareAtPrice);
   const allReviews = getReviewsForProduct(product.id);
   const reviews =
-    product.slug === "mini-egg-boiler"
+    product.slug === "mini-egg-boiler" || product.slug === BT12_SLUG
       ? allReviews.filter((r) => r.productId === product.id)
       : allReviews;
   const headline = getBenefitHeadline(product);
@@ -316,6 +320,26 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+    let timer: number | undefined;
+    const bind = () => {
+      const form = document.getElementById("order-form");
+      if (!form) return false;
+      observer = new IntersectionObserver(
+        ([entry]) => setFormInView(entry.isIntersecting),
+        { threshold: 0.12 }
+      );
+      observer.observe(form);
+      return true;
+    };
+    if (!bind()) timer = window.setTimeout(bind, 400);
+    return () => {
+      if (timer) window.clearTimeout(timer);
+      observer?.disconnect();
+    };
+  }, []);
+
   const scrollToOrder = useCallback(() => {
     document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
@@ -327,6 +351,8 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
   const isLaser = product.slug === "green-laser-pointer-303";
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
   const isKidsArt = product.slug === "kids-art-set-easel-208";
+  const isBt12 = product.slug === BT12_SLUG;
+  const activeGift = product.gift?.enabled ? product.gift : undefined;
   const selectedColor = isKidsArt ? getKidsArtColor(colorId) : undefined;
   const kidsArtGallerySlides = useMemo<GallerySlide[] | undefined>(() => {
     if (!isKidsArt) return undefined;
@@ -383,14 +409,21 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
         { icon: Shield, label: "ضمان 12 شهر" },
         { icon: MessageCircle, label: "خدمة تأكيد الطلب" },
       ]
-    : isKidsArt
+      : isKidsArt
       ? [
           { icon: Truck, label: "الشحن مجاني" },
           { icon: Banknote, label: "الدفع عند الاستلام" },
           { icon: Shield, label: "ضمان 12 شهر" },
           { icon: Gift, label: "Arabic Magic Book 🎁" },
         ]
-      : TRUST_BADGES;
+      : isBt12
+        ? [
+            { icon: Truck, label: "توصيل مجاني" },
+            { icon: Banknote, label: "الدفع عند الاستلام" },
+            { icon: Gift, label: "هدية كابل مجانية" },
+            { icon: Shield, label: "قابلة للطي" },
+          ]
+        : TRUST_BADGES;
 
   return (
     <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans w-full max-w-full overflow-x-clip min-w-0" dir="rtl">
@@ -430,6 +463,14 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
               <span className="hidden sm:inline text-white/20">|</span>
               <span className="flex items-center gap-1.5">
                 <Gift className="h-3.5 w-3.5 text-amber-300" /> Arabic Magic Book هدية مجانية
+              </span>
+            </>
+          )}
+          {isBt12 && (
+            <>
+              <span className="hidden sm:inline text-white/20">|</span>
+              <span className="flex items-center gap-1.5">
+                <Gift className="h-3.5 w-3.5 text-amber-300" /> هدية كابل مجانية
               </span>
             </>
           )}
@@ -481,13 +522,18 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 ? "راحة الرقبة والكتاف… فالوقت اللي تحتاجها"
                 : isKidsArt
                   ? "🎨 مجموعة الرسم والتلوين للأطفال"
-                  : name}
+                  : isBt12
+                    ? "عصا سيلفي BT12 — 4 في 1"
+                    : name}
           </h1>
           {isBogo && (
             <p className="text-base font-semibold text-amber-200">المنتج الأصلي · جوج قطع في الطلب</p>
           )}
           {isKidsArt && (
             <p className="text-base font-semibold text-amber-200">+ 🎁 Arabic Magic Book مجاناً</p>
+          )}
+          {isBt12 && (
+            <p className="text-base font-semibold text-amber-200">وزيد عليها هدية مجانية مفاجأة مع الطلب ديالك 🎁</p>
           )}
           <p className="text-white/60 text-base leading-relaxed max-w-xl mx-auto sm:mx-0">
             {isBogo
@@ -556,6 +602,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             <p className="text-sm font-bold text-amber-200/90">
               🎁 Arabic Magic Book هدية مجانية مع الطلب
             </p>
+          )}
+          {isBt12 && activeGift && (
+            <p className="text-sm font-bold text-amber-200/90">{activeGift.giftDisclosure.ar}</p>
           )}
         </section>
 
@@ -636,8 +685,13 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             ? "اطلب 1 + 1 مجاناً"
             : isKidsArt
               ? "🛒 أطلب الآن بـ299 درهم + الهدية مجانية"
-              : "اطلب الآن"}
+              : isBt12
+                ? "اطلب دابا والدفع عند الاستلام"
+                : "اطلب الآن"}
         </button>
+
+        {isBt12 && product.lifestyleScenes && <ProductUsageModes scenes={product.lifestyleScenes} />}
+        {activeGift && <ProductSurpriseGift gift={activeGift} />}
 
         {showCarMountUpsell && (
           <CarMountUpsell products={carMountUpsells} selectedIds={upsellIds} onToggle={toggleUpsell} />
@@ -658,14 +712,27 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           product={product}
           variant={variant}
           quantity={orderQty}
+          extendedAddress={isBt12}
+          cityOptions={isBt12 ? moroccanCities : undefined}
+          fullNamePlaceholder={isBt12 ? "الاسم الكامل" : undefined}
           quantityLabel={isBogo ? "2 قطع" : undefined}
           orderNote={combinedOrderNote}
-          submitLabel={isBogo ? "أكد طلب 1 + 1 مجاناً" : undefined}
-          formTitle={isBogo ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام" : undefined}
+          submitLabel={
+            isBogo ? "أكد طلب 1 + 1 مجاناً" : isBt12 ? "اطلب دابا والدفع عند الاستلام" : undefined
+          }
+          formTitle={
+            isBogo
+              ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام"
+              : isBt12
+                ? "اطلب دابا والدفع عند الاستلام"
+                : undefined
+          }
           formSubtitle={
             isBogo
               ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا."
-              : undefined
+              : isBt12
+                ? "349 درهم. ما كخلص والو دابا — كتخلص كاش ملي يوصلك الطلب."
+                : undefined
           }
           summaryRows={
             isBogo
@@ -694,7 +761,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
           product={product}
           onOrderClick={scrollToOrder}
           ctaLabel={
-            isBogo ? "اطلب 1 + 1 مجاناً" : isKidsArt ? "🛒 أطلب الآن بـ299 درهم" : undefined
+            isBogo ? "اطلب 1 + 1 مجاناً" : isKidsArt ? "🛒 أطلب الآن بـ299 درهم" : isBt12 ? "اطلب دابا والدفع عند الاستلام" : undefined
           }
         />
 
@@ -942,7 +1009,7 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
       {/* Sticky CTA — موبايل */}
       <AnimatePresence>
-        {sticky && (
+        {sticky && !formInView && (
           <motion.div
             initial={{ y: 88 }}
             animate={{ y: 0 }}
@@ -974,7 +1041,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                   ? `اطلب جوج — ${formatPriceNumber(orderTotal, "ar")} درهم`
                   : isKidsArt
                     ? `🛒 أطلب الآن — ${formatPriceNumber(orderTotal, "ar")} درهم`
-                    : `اطلب دابا — ${formatPriceNumber(orderTotal, "ar")} درهم`}
+                    : isBt12
+                      ? `اطلب دابا — ${formatPriceNumber(orderTotal, "ar")} درهم`
+                      : `اطلب دابا — ${formatPriceNumber(orderTotal, "ar")} درهم`}
               </button>
             </div>
           </motion.div>

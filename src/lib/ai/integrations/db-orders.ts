@@ -49,6 +49,7 @@ export async function persistOrderToDb(order: StoredOrder): Promise<void> {
           firstName: order.firstName,
           lastName: order.lastName,
           attribution: order.attribution || null,
+          gifts: order.gifts || null,
         }),
         order.createdAt,
       ]
@@ -116,6 +117,11 @@ function mapOrderRows(
       isDuplicate: Boolean(row.is_duplicate),
       trackingNumber: (row.tracking_number as string) || undefined,
       invoiceUrl: (row.invoice_url as string) || undefined,
+      attribution:
+        meta.attribution && typeof meta.attribution === "object"
+          ? (meta.attribution as StoredOrder["attribution"])
+          : undefined,
+      gifts: Array.isArray(meta.gifts) ? (meta.gifts as StoredOrder["gifts"]) : undefined,
       createdAt:
         row.created_at instanceof Date
           ? row.created_at.toISOString()

@@ -1,14 +1,18 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { WHATSAPP_URL } from "@/lib/site";
 import { fbContact } from "@/lib/facebook/events";
+import { cn } from "@/lib/utils";
 
 const PREFILL =
   "مرحباً NOORVA، أريد الاستفسار عن المنتجات والدفع عند الاستلام";
 
 export function WhatsAppFloat() {
   const t = useTranslations("nav");
+  const pathname = usePathname();
+  const onProductPage = /\/products\/[^/]+/.test(pathname ?? "");
   const href = `${WHATSAPP_URL}?text=${encodeURIComponent(PREFILL)}`;
 
   return (
@@ -20,7 +24,10 @@ export function WhatsAppFloat() {
       onClick={() => {
         fbContact({ contentName: "whatsapp_float" });
       }}
-      className="group fixed z-[70] bottom-5 end-5 sm:bottom-6 sm:end-6 flex items-center gap-2 rounded-full bg-[#25D366] text-white shadow-[0_8px_28px_rgba(37,211,102,0.45)] hover:bg-[#1ebe57] hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/ring-offset-2"
+      className={cn(
+        "group fixed z-[70] bottom-5 end-5 sm:bottom-6 sm:end-6 flex items-center gap-2 rounded-full bg-[#25D366] text-white shadow-[0_8px_28px_rgba(37,211,102,0.45)] hover:bg-[#1ebe57] hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/ring-offset-2",
+        onProductPage && "max-lg:bottom-24"
+      )}
     >
       <span className="flex h-14 w-14 items-center justify-center">
         <svg viewBox="0 0 32 32" className="h-7 w-7 fill-current" aria-hidden>

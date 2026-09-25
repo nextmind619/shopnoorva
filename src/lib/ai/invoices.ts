@@ -35,6 +35,17 @@ function buildInvoiceHtml(order: StoredOrder, invoiceNumber: string): string {
       </tr>`
     )
     .join("");
+  const giftRows = (order.gifts || [])
+    .map(
+      (gift) => `
+      <tr>
+        <td style="padding:8px;border-bottom:1px solid #eee">${gift.giftTitle}<br/><span style="color:#888;font-size:12px">${gift.giftProductId || "gift"} · free</span></td>
+        <td style="padding:8px;border-bottom:1px solid #eee;text-align:center">${gift.quantity}</td>
+        <td style="padding:8px;border-bottom:1px solid #eee;text-align:right">0.00 MAD</td>
+        <td style="padding:8px;border-bottom:1px solid #eee;text-align:right">0.00 MAD</td>
+      </tr>`
+    )
+    .join("");
 
   return `<!doctype html>
 <html>
@@ -77,7 +88,7 @@ function buildInvoiceHtml(order: StoredOrder, invoiceNumber: string): string {
         <th style="padding:10px;text-align:right">Total</th>
       </tr>
     </thead>
-    <tbody>${rows}</tbody>
+    <tbody>${rows}${giftRows}</tbody>
   </table>
 
   <div style="margin-left:auto;width:280px">

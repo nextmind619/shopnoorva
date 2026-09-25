@@ -198,6 +198,8 @@ export function ProductOrderForm({
 
   const productName = isFr ? product.name.fr : product.name.ar;
   const productImage = resolveProductHero(product);
+  const gift = product.gift?.enabled ? product.gift : undefined;
+  const giftTitle = gift ? (isFr ? gift.giftTitle.fr : gift.giftTitle.ar) : "";
   const shipping = 0;
   const addonTotal = addonItems.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
   const subtotal = variant.price * quantity + addonTotal;
@@ -424,7 +426,7 @@ export function ProductOrderForm({
     : "premium-checkout-cta w-full h-16 rounded-2xl text-lg font-black text-white disabled:opacity-60 flex items-center justify-center gap-3";
 
   return (
-    <section className="cod-checkout-isolated mt-0 w-full relative z-10" id="order-form" dir={isFr ? "ltr" : undefined}>
+    <section className="cod-checkout-isolated mt-0 w-full relative z-10 scroll-mt-28" id="order-form" dir={isFr ? "ltr" : undefined}>
       <FacebookCheckoutTracker
         productId={product.id}
         contentName={productName}
@@ -635,6 +637,21 @@ export function ProductOrderForm({
                 </div>
               </div>
             ))}
+            {gift && (
+              <div className="flex gap-3 items-center pt-1">
+                {gift.giftImage && (
+                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-[#E5E7EB] bg-white">
+                    <Image src={gift.giftImage} alt={giftTitle} fill className="object-contain p-0.5" sizes="48px" />
+                  </div>
+                )}
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-bold text-black line-clamp-2">{giftTitle}</p>
+                  <p className="text-xs text-emerald-700 font-black mt-0.5">
+                    {isFr ? "Offert — 0 MAD" : "مجاناً — 0 درهم"}
+                  </p>
+                </div>
+              </div>
+            )}
             <div className="flex justify-between text-sm font-semibold text-[#475569]">
               <span>{t.shipping}</span>
               <span className="text-emerald-600 font-bold">{t.free}</span>

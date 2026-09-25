@@ -17,6 +17,7 @@ import { aiConfig } from "./config";
 import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
 import { physicalUnitsForProduct } from "@/lib/catalog/pack-sku";
+import { formatGiftFulfillmentNote, resolveOrderGifts } from "@/lib/catalog/product-gift";
 import {
   getCarMountUpsellPrice,
   isEligibleCarMountUpsellProduct,
@@ -68,6 +69,10 @@ function buildLeadPayload(
   const noteParts: string[] = [];
   if (order.isDuplicate) noteParts.push("[DUPLICATE]");
   if (notes?.trim()) noteParts.push(notes.trim());
+  const giftNote = formatGiftFulfillmentNote(order.gifts);
+  if (giftNote && !noteParts.some((part) => part.includes("هدية مجانية"))) {
+    noteParts.push(giftNote);
+  }
   const upsellLines = lineItems.filter(
     (item) =>
       isEligibleCarMountUpsellProduct(item.productId) &&
@@ -330,6 +335,10 @@ export async function processIncomingOrder(input: {
   const shipping = getShippingCost(input.city, subtotal);
   const discount = input.discount || 0;
   const total = Math.max(0, subtotal + shipping - discount);
+  const gifts = resolveOrderGifts(
+    lineItems.map((item) => ({ productId: item.productId, quantity: item.quantity })),
+    locale === "en" ? "en" : locale === "fr" ? "fr" : "ar"
+  );
 
   const fullName = [input.firstName, input.lastName].filter(Boolean).join(" ").trim();
 
@@ -380,6 +389,7 @@ export async function processIncomingOrder(input: {
     fraudScore: 0,
     fraudFlags: [],
     isDuplicate: false,
+    gifts: gifts.length ? gifts : undefined,
     attribution: input.meta?.attribution
       ? {
           ...input.meta.attribution,
@@ -396,11 +406,14 @@ export async function processIncomingOrder(input: {
 
   const customerName = [input.firstName, input.lastName].filter(Boolean).join(" ") || "عميل";
   const productsLine = formatOrderProductsForMessage(order.items);
+  const giftLine = gifts.length
+    ? `\n🎁 ${gifts.map((gift) => `${gift.giftTitle} × ${gift.quantity} (مجاني)`).join(" | ")}`
+    : "";
   const confirmationVars = {
     name: customerFirst,
     store: aiConfig.brand.name,
     order: order.orderNumber,
-    products: productsLine,
+    products: `${productsLine}${giftLine}`,
     total: order.total,
     eta: etaLabel,
     payment: paymentLabel,

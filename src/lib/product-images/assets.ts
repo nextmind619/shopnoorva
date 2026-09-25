@@ -96,7 +96,8 @@ export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): 
     slug === "cordless-mini-vacuum-keyboard" ||
     slug === "solar-helicopter-car-air-freshener" ||
     slug === "foldable-car-windshield-sunshade" ||
-    slug === "kids-art-set-easel-208"
+    slug === "kids-art-set-easel-208" ||
+    slug === "bt12-4in1-selfie-stick-tripod"
   ) {
     return (
       getProductImageUrl(slug, "02-premium-hero", variant) ||

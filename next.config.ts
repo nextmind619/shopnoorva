@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "motion", "date-fns"],
   },
   images: {
+    qualities: [75, 80, 90, 95],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "i.pravatar.cc" },

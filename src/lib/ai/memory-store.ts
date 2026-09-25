@@ -3,6 +3,8 @@
  * Production uses DATABASE_URL + REDIS_URL; this keeps automation testable locally.
  */
 
+import type { OrderGiftRecord } from "@/lib/catalog/product-gift";
+
 export type JobStatus = "queued" | "running" | "done" | "failed";
 
 export interface AiJob {
@@ -56,6 +58,8 @@ export interface StoredOrder {
     landingPath?: string;
     capturedAt?: string;
   };
+  /** Free gifts resolved from product config at order time. unitPrice is always 0. */
+  gifts?: OrderGiftRecord[];
   createdAt: string;
 }
 

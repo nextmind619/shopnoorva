@@ -6,9 +6,11 @@ export async function notifyAdminNewOrder(
   order: StoredOrder,
   customerName: string
 ): Promise<void> {
-  const products = order.items
-    .map((item) => `${item.name} × ${item.quantity}`)
-    .join(" | ");
+  const products =
+    order.items.map((item) => `${item.name} × ${item.quantity}`).join(" | ") +
+    (order.gifts?.length
+      ? ` | 🎁 ${order.gifts.map((gift) => `${gift.giftTitle} × ${gift.quantity} مجاني`).join(" | ")}`
+      : "");
 
   const record = await sendMessage({
     channel: "whatsapp",

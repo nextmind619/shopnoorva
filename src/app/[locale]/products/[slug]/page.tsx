@@ -8,6 +8,7 @@ import { SITE_URL } from "@/lib/site";
 
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
+import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -82,6 +83,17 @@ const EGG_BOILER_KEYWORDS = [
   "NOORVA",
 ];
 
+const BT12_KEYWORDS = [
+  "عصا سيلفي",
+  "BT12",
+  "ترايبود",
+  "ضوء سيلفي",
+  "ريموت لاسلكي",
+  "349 درهم",
+  "الدفع عند الاستلام",
+  "NOORVA",
+];
+
 const CURVES_GLOW_KEYWORDS = [
   "بروتين الشكل الأنثوي",
   "بروتين curves",
@@ -112,6 +124,7 @@ export async function generateMetadata({
   const isKidsArt = product.slug === KIDS_ART_SLUG;
   const isEggBoiler = product.slug === EGG_BOILER_SLUG;
   const isCurvesGlow = product.slug === CURVES_GLOW_SLUG;
+  const isBt12 = product.slug === BT12_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
@@ -126,7 +139,9 @@ export async function generateMetadata({
           ? "جهاز كهربائي لطهي البيض أصفر مع غطاء شفاف وزر أحمر"
           : isCurvesGlow
             ? "Pack Curves & Glow — بروتين الشكل الأنثوي مع كولاجين بحري هدية"
-            : name;
+            : isBt12
+              ? "عصا سيلفي BT12 4 في 1 مع ترايبود وضوئين دائريين وريموت لاسلكي"
+              : name;
 
   return {
     title,
@@ -143,7 +158,9 @@ export async function generateMetadata({
               ? [...EGG_BOILER_KEYWORDS, ...product.tags]
               : isCurvesGlow
                 ? [...CURVES_GLOW_KEYWORDS, ...product.tags]
-                : product.tags,
+                : isBt12
+                  ? [...BT12_KEYWORDS, ...product.tags]
+                  : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
@@ -164,6 +181,10 @@ export async function generateMetadata({
 }
 
 function getProductFaqs(slug: string, warrantyMonths: number) {
+  if (slug === BT12_SLUG) {
+    return [...BT12_FAQS];
+  }
+
   if (slug === CURVES_GLOW_SLUG) {
     return CURVES_GLOW_FAQS;
   }
@@ -686,7 +707,7 @@ export default async function ProductPage({
         priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
         itemCondition: "https://schema.org/NewCondition",
         shippingDetails:
-          isShiatsu || isCalculator || isVacuum || isKidsArt || isEggBoiler
+          isShiatsu || isCalculator || isVacuum || isKidsArt || isEggBoiler || product.slug === BT12_SLUG
             ? {
                 "@type": "OfferShippingDetails",
                 shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },
@@ -714,7 +735,9 @@ export default async function ProductPage({
                 ? "أزرق سماوي"
                 : isEggBoiler
                   ? "أصفر فاقع"
-                  : undefined,
+                  : product.slug === BT12_SLUG
+                    ? "أسود"
+                    : undefined,
           material: isShiatsu ? "ABS + جلد PU + سيليكون غذائي" : isKidsArt ? "بلاستيك ABS" : undefined,
           offers: eggOffers,
           ...(product.reviewCount > 0
