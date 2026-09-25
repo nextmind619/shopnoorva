@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T18:03:33.064Z",
+  "generatedAt": "2026-09-25T20:44:35.187Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3404,11 +3404,70 @@
             "md": "/products/bt12-4in1-selfie-stick-tripod/responsive/02-premium-hero-1280.webp",
             "lg": "/products/bt12-4in1-selfie-stick-tripod/responsive/02-premium-hero-2000.webp"
           }
+        },
+        "10-features": {
+          "original": "/products/bt12-4in1-selfie-stick-tripod/10-features.jpg",
+          "webp": "/products/bt12-4in1-selfie-stick-tripod/10-features.webp",
+          "avif": "/products/bt12-4in1-selfie-stick-tripod/10-features.avif",
+          "thumbnail": "/products/bt12-4in1-selfie-stick-tripod/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/bt12-4in1-selfie-stick-tripod/responsive/10-features-640.webp",
+            "md": "/products/bt12-4in1-selfie-stick-tripod/responsive/10-features-1280.webp",
+            "lg": "/products/bt12-4in1-selfie-stick-tripod/responsive/10-features-2000.webp"
+          }
+        },
+        "17-infographic": {
+          "original": "/products/bt12-4in1-selfie-stick-tripod/17-infographic.jpg",
+          "webp": "/products/bt12-4in1-selfie-stick-tripod/17-infographic.webp",
+          "avif": "/products/bt12-4in1-selfie-stick-tripod/17-infographic.avif",
+          "thumbnail": "/products/bt12-4in1-selfie-stick-tripod/thumbs/17-infographic-400.webp",
+          "responsive": {
+            "sm": "/products/bt12-4in1-selfie-stick-tripod/responsive/17-infographic-640.webp",
+            "md": "/products/bt12-4in1-selfie-stick-tripod/responsive/17-infographic-1280.webp",
+            "lg": "/products/bt12-4in1-selfie-stick-tripod/responsive/17-infographic-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/products/bt12-4in1-selfie-stick-tripod/03-lifestyle.jpg",
+          "webp": "/products/bt12-4in1-selfie-stick-tripod/03-lifestyle.webp",
+          "avif": "/products/bt12-4in1-selfie-stick-tripod/03-lifestyle.avif",
+          "thumbnail": "/products/bt12-4in1-selfie-stick-tripod/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/products/bt12-4in1-selfie-stick-tripod/responsive/03-lifestyle-640.webp",
+            "md": "/products/bt12-4in1-selfie-stick-tripod/responsive/03-lifestyle-1280.webp",
+            "lg": "/products/bt12-4in1-selfie-stick-tripod/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/products/bt12-4in1-selfie-stick-tripod/14-product-in-use.jpg",
+          "webp": "/products/bt12-4in1-selfie-stick-tripod/14-product-in-use.webp",
+          "avif": "/products/bt12-4in1-selfie-stick-tripod/14-product-in-use.avif",
+          "thumbnail": "/products/bt12-4in1-selfie-stick-tripod/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/products/bt12-4in1-selfie-stick-tripod/responsive/14-product-in-use-640.webp",
+            "md": "/products/bt12-4in1-selfie-stick-tripod/responsive/14-product-in-use-1280.webp",
+            "lg": "/products/bt12-4in1-selfie-stick-tripod/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "gift-usbc-240w": {
+          "original": "/products/bt12-4in1-selfie-stick-tripod/gift-usbc-240w.jpg",
+          "webp": "/products/bt12-4in1-selfie-stick-tripod/gift-usbc-240w.webp",
+          "avif": "/products/bt12-4in1-selfie-stick-tripod/gift-usbc-240w.avif",
+          "thumbnail": "/products/bt12-4in1-selfie-stick-tripod/thumbs/gift-usbc-240w-400.webp",
+          "responsive": {
+            "sm": "/products/bt12-4in1-selfie-stick-tripod/responsive/gift-usbc-240w-640.webp",
+            "md": "/products/bt12-4in1-selfie-stick-tripod/responsive/gift-usbc-240w-1280.webp",
+            "lg": "/products/bt12-4in1-selfie-stick-tripod/responsive/gift-usbc-240w-2000.webp"
+          }
         }
       },
       "prompts": {},
       "sources": {
-        "02-premium-hero": "commercial"
+        "02-premium-hero": "commercial",
+        "10-features": "commercial",
+        "17-infographic": "commercial",
+        "03-lifestyle": "commercial",
+        "14-product-in-use": "commercial"
       }
     }
   }

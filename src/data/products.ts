@@ -1,7 +1,16 @@
 import type { Product, ProductReview, FAQ, Testimonial, InstagramPost, Coupon, Order, Customer } from "@/types";
 import { enrichProduct } from "@/lib/product-images/enrich-products";
 import { resolveProductImage } from "@/lib/product-images/resolve";
-import { BT12_GIFT_ID, BT12_GIFT_IMAGE, BT12_PRICE_MAD, BT12_SLUG } from "@/data/bt12";
+import {
+  BT12_FEATURES_IMAGE,
+  BT12_GIFT_ID,
+  BT12_GIFT_IMAGE,
+  BT12_HERO_IMAGE,
+  BT12_LIFESTYLE_GROUP_IMAGE,
+  BT12_PRICE_MAD,
+  BT12_SLUG,
+  BT12_SOLO_REMOTE_IMAGE,
+} from "@/data/bt12";
 
 const flashEnd = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
 
@@ -2833,24 +2842,28 @@ export const products: Product[] = [
         emoji: "🤳",
         title: L("وضع السيلفي", "Mode selfie", "Selfie mode"),
         description: L("مدّد العصا وصوّر راسك بلا ما تمد يدك.", "Déployez la perche et photographiez-vous.", "Extend the stick and shoot yourself."),
+        imageUrl: BT12_HERO_IMAGE,
       },
       {
         id: "tripod",
         emoji: "📐",
         title: L("وضع الترايبود", "Mode trépied", "Tripod mode"),
         description: L("ركّزها على رجليها باش الهاتف يبقى ثابت.", "Posez-la sur ses pieds pour un téléphone stable.", "Stand it on its legs so the phone stays put."),
+        imageUrl: BT12_SOLO_REMOTE_IMAGE,
       },
       {
         id: "group",
         emoji: "👥",
         title: L("صورة جماعية", "Photo de groupe", "Group photo"),
         description: L("زاوية أوسع باش تدخلو كاملين فالصورة.", "Un angle plus large pour tout le groupe.", "A wider angle so everyone fits."),
+        imageUrl: BT12_LIFESTYLE_GROUP_IMAGE,
       },
       {
         id: "lights",
         emoji: "💡",
         title: L("ضوئين دائريين", "Double lumière", "Dual light ring"),
         description: L("إضاءة أمامية للوجه وقت التصوير.", "Éclairage frontal pour le visage.", "Front fill light for the face."),
+        imageUrl: BT12_FEATURES_IMAGE,
       },
     ],
     images: [],

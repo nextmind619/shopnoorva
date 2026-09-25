@@ -32,7 +32,14 @@ import {
   Radio,
 } from "lucide-react";
 import type { PremiumImageType } from "@/lib/product-images/types";
-import { BT12_HERO_IMAGE, BT12_SLUG } from "@/data/bt12";
+import {
+  BT12_FEATURES_IMAGE,
+  BT12_HERO_IMAGE,
+  BT12_INFOGRAPHIC_IMAGE,
+  BT12_LIFESTYLE_GROUP_IMAGE,
+  BT12_SLUG,
+  BT12_SOLO_REMOTE_IMAGE,
+} from "@/data/bt12";
 
 export type CroHowToStep = {
   step: string;
@@ -60,6 +67,8 @@ export type CroProductContent = {
   howTo: CroHowToStep[];
   comparison: CroComparison;
   benefits: CroBenefitBlock[];
+  /** Full-width image above the comparison table */
+  comparisonBannerImageUrl?: string;
   videoSrc?: string;
   videoAspect?: "9/16" | "16/9";
 };
@@ -1137,20 +1146,24 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         title: "مدّد ولا ركّز الترايبود",
         desc: "مدّد العصا للسيلفي، أو ركّزها على رجليها باش تبقى ثابتة.",
         imageKey: null,
+        imageUrl: BT12_FEATURES_IMAGE,
       },
       {
         step: "3",
-        title: "شغّل الضوئين",
-        desc: "الحلقتان الضوئيتان كيعطيو إضاءة أمامية للوجه.",
+        title: "شغّل الضوئين وصوّر",
+        desc: "الحلقتان الضوئيتان كيعطيو إضاءة أمامية. ثبّت الهاتف وصوّري بالريموت بلا ما تلمسيه.",
         imageKey: null,
+        imageUrl: BT12_SOLO_REMOTE_IMAGE,
       },
       {
         step: "4",
-        title: "صوّر بالريموت",
-        desc: "الريموت اللاسلكي كيخلّيك تطلق الصورة بلا ما تلمس الهاتف. من بعد طوي العصا وحملها معاك.",
+        title: "شارك اللحظة مع الصحاب",
+        desc: "مدّد العصا ولا ركّزها كترايبود باش تدخلو كاملين فالصورة.",
         imageKey: null,
+        imageUrl: BT12_LIFESTYLE_GROUP_IMAGE,
       },
     ],
+    comparisonBannerImageUrl: BT12_INFOGRAPHIC_IMAGE,
     comparison: {
       oursLabel: "BT12",
       rows: [

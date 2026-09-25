@@ -115,7 +115,14 @@ const PRIMARY_GALLERY_OVERRIDES: Partial<Record<string, PremiumImageType[]>> = {
     "09-close-up",
     "11-package-contents",
   ],
-  "bt12-4in1-selfie-stick-tripod": ["02-premium-hero", "11-package-contents"],
+  "bt12-4in1-selfie-stick-tripod": [
+    "02-premium-hero",
+    "10-features",
+    "03-lifestyle",
+    "14-product-in-use",
+    "17-infographic",
+    "11-package-contents",
+  ],
   "cordless-mini-vacuum-keyboard": [
     "02-premium-hero",
     "01-hero-white-bg",

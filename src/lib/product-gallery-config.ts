@@ -1,5 +1,13 @@
 import type { PremiumImageType } from "@/lib/product-images/types";
-import { BT12_GIFT_IMAGE, BT12_HERO_IMAGE, BT12_SLUG } from "@/data/bt12";
+import {
+  BT12_FEATURES_IMAGE,
+  BT12_GIFT_IMAGE,
+  BT12_HERO_IMAGE,
+  BT12_INFOGRAPHIC_IMAGE,
+  BT12_LIFESTYLE_GROUP_IMAGE,
+  BT12_SLUG,
+  BT12_SOLO_REMOTE_IMAGE,
+} from "@/data/bt12";
 
 export type GallerySection =
   | "hero"
@@ -1436,8 +1444,44 @@ const BT12_SLIDES: GallerySlideConfig[] = [
     imageType: "02-premium-hero",
     imageUrl: BT12_HERO_IMAGE,
     emoji: "📸",
-    heading: "BT12 — عصا سيلفي 4 في 1",
-    subtitle: "ترايبود · ضوئين دائريين · ريموت لاسلكي · قابلة للطي",
+    heading: "ستيك سيلفي 4 في 1",
+    subtitle: "صوّر بوحدك وبإضاءة أحسن · إضاءة مزدوجة · ريموت لاسلكي · حامل ثلاثي",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    imageUrl: BT12_FEATURES_IMAGE,
+    emoji: "✨",
+    heading: "4 في 1 للتصوير بسهولة",
+    subtitle: "كلشي فحامل واحد: سيلفي، ترايبود، صورة جماعية، وضوئين دائريين",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "03-lifestyle",
+    imageUrl: BT12_LIFESTYLE_GROUP_IMAGE,
+    emoji: "👥",
+    heading: "صوّر لحظاتك بلا ما تحتاج شي حد",
+    subtitle: "ستيك سيلفي بإضاءة مزدوجة وحامل ثلاثي — مناسب للصحاب والعائلة",
+    objectFit: "cover",
+  },
+  {
+    section: "projection",
+    imageType: "14-product-in-use",
+    imageUrl: BT12_SOLO_REMOTE_IMAGE,
+    emoji: "🎬",
+    heading: "بغيتي تصوّري بوحدك؟",
+    subtitle: "خلي التليفون ثابت وصوّري براحتك بالريموت اللاسلكي",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "17-infographic",
+    imageUrl: BT12_INFOGRAPHIC_IMAGE,
+    emoji: "💡",
+    heading: "المميزات فصورة واحدة",
+    subtitle: "إضاءة مزدوجة · ارتفاع قابل للتمديد · ريموت · قابل للطي",
     objectFit: "contain",
   },
   {

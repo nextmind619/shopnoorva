@@ -181,6 +181,18 @@ export function ProductComparisonSection({ product }: SectionProps) {
         <h2 className="text-2xl font-bold text-white">لماذا هذا المنتج؟</h2>
         <p className="text-sm text-white/55 mt-2">مقارنة سريعة مع البدائل العادية</p>
       </div>
+      {cro?.comparisonBannerImageUrl && (
+        <div className="relative aspect-[16/10] sm:aspect-[2/1] overflow-hidden rounded-2xl border border-white/10 bg-[#12121a]">
+          <Image
+            src={cro.comparisonBannerImageUrl}
+            alt="مميزات BT12"
+            fill
+            className="object-contain p-2 sm:p-4"
+            sizes="(max-width: 768px) 100vw, 720px"
+            loading="lazy"
+          />
+        </div>
+      )}
       <div className="overflow-x-auto rounded-2xl border border-white/8 bg-[#12121a]/60">
         <table className="w-full min-w-[300px] text-sm">
           <thead>

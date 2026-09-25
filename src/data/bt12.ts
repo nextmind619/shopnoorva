@@ -2,7 +2,12 @@
 
 export const BT12_SLUG = "bt12-4in1-selfie-stick-tripod";
 export const BT12_PRICE_MAD = 349;
+
 export const BT12_HERO_IMAGE = "/products/bt12-4in1-selfie-stick-tripod/02-premium-hero.webp";
+export const BT12_FEATURES_IMAGE = "/products/bt12-4in1-selfie-stick-tripod/10-features.webp";
+export const BT12_INFOGRAPHIC_IMAGE = "/products/bt12-4in1-selfie-stick-tripod/17-infographic.webp";
+export const BT12_LIFESTYLE_GROUP_IMAGE = "/products/bt12-4in1-selfie-stick-tripod/03-lifestyle.webp";
+export const BT12_SOLO_REMOTE_IMAGE = "/products/bt12-4in1-selfie-stick-tripod/14-product-in-use.webp";
 export const BT12_GIFT_IMAGE = "/products/bt12-4in1-selfie-stick-tripod/gift-usbc-240w.webp";
 export const BT12_GIFT_ID = "gift-usbc-240w-holder";
 

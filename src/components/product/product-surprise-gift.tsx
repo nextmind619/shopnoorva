@@ -59,14 +59,28 @@ export function ProductUsageModes({ scenes }: { scenes: LifestyleScene[] }) {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {scenes.map((scene) => (
-          <div key={scene.id} className="rounded-2xl border border-white/10 bg-[#12121a]/80 px-4 py-4">
-            <p className="text-base font-black text-white">
-              <span className="me-2" aria-hidden>
-                {scene.emoji}
-              </span>
-              {scene.title.ar}
-            </p>
-            <p className="mt-1.5 text-sm leading-relaxed text-white/60">{scene.description.ar}</p>
+          <div key={scene.id} className="overflow-hidden rounded-2xl border border-white/10 bg-[#12121a]/80">
+            {scene.imageUrl && (
+              <div className="relative aspect-[4/3] bg-[#0a0a0f]">
+                <Image
+                  src={scene.imageUrl}
+                  alt={scene.title.ar}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div className="px-4 py-4">
+              <p className="text-base font-black text-white">
+                <span className="me-2" aria-hidden>
+                  {scene.emoji}
+                </span>
+                {scene.title.ar}
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-white/60">{scene.description.ar}</p>
+            </div>
           </div>
         ))}
       </div>

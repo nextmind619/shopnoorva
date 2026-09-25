@@ -46,6 +46,8 @@ export interface LifestyleScene {
   emoji: string;
   title: LocalizedString;
   description: LocalizedString;
+  /** Optional marketing scene image (BT12 and other PDPs) */
+  imageUrl?: string;
 }
 
 export interface ProductQuestion {
