@@ -82,12 +82,49 @@ function asNumber(value: unknown, fallback = 0): number {
   return Number.isFinite(n) ? n : fallback;
 }
 
-export async function loadRecentOrdersFromDb(limit = 40): Promise<StoredOrder[]> {
-  if (!isDbConfigured()) return [];
+function mapOrderRows(
+  rows: Array<Record<string, unknown>>
+): StoredOrder[] {
+  return rows.map((row) => {
+    const meta =
+      row.metadata && typeof row.metadata === "object" ? (row.metadata as Record<string, unknown>) : {};
+    const items = Array.isArray(row.items) ? row.items : [];
+    return {
+      id: `db-${row.order_number}`,
+      orderNumber: String(row.order_number),
+      firstName: typeof meta.firstName === "string" ? meta.firstName : undefined,
+      lastName: typeof meta.lastName === "string" ? meta.lastName : undefined,
+      phone: String(row.phone || ""),
+      email: (row.email as string) || undefined,
+      city: String(row.city || ""),
+      address: String(row.address || ""),
+      items: items.map((item: { sku?: string; name?: string; quantity?: unknown; unitPrice?: unknown; lineTotal?: unknown }) => ({
+        sku: String(item.sku || ""),
+        name: String(item.name || item.sku || "Produit"),
+        quantity: asNumber(item.quantity, 1),
+        unitPrice: asNumber(item.unitPrice),
+        lineTotal: asNumber(item.lineTotal),
+      })),
+      subtotal: asNumber(row.subtotal),
+      shipping: asNumber(row.shipping),
+      discount: asNumber(row.discount),
+      total: asNumber(row.total),
+      paymentMethod: String(row.payment_method || "cod"),
+      status: String(row.status || "confirmed"),
+      fraudScore: asNumber(row.fraud_score),
+      fraudFlags: Array.isArray(row.fraud_flags) ? row.fraud_flags.map(String) : [],
+      isDuplicate: Boolean(row.is_duplicate),
+      trackingNumber: (row.tracking_number as string) || undefined,
+      invoiceUrl: (row.invoice_url as string) || undefined,
+      createdAt:
+        row.created_at instanceof Date
+          ? row.created_at.toISOString()
+          : String(row.created_at || new Date().toISOString()),
+    };
+  });
+}
 
-  const pool = getPool();
-  const result = await pool.query(
-    `SELECT
+const ORDER_SELECT = `SELECT
         o.order_number,
         o.phone,
         o.email,
@@ -119,7 +156,40 @@ export async function loadRecentOrdersFromDb(limit = 40): Promise<StoredOrder[]>
           '[]'
         ) AS items
      FROM orders o
-     LEFT JOIN order_items i ON i.order_id = o.id
+     LEFT JOIN order_items i ON i.order_id = o.id`;
+
+export async function findOrdersByPhone(phoneOrOrder: string, limit = 5): Promise<StoredOrder[]> {
+  if (!isDbConfigured()) return [];
+
+  const digits = phoneOrOrder.replace(/\D/g, "");
+  if (!digits && !phoneOrOrder.trim()) return [];
+
+  const pool = getPool();
+  const isLikelyOrder = /[A-Za-z]/.test(phoneOrOrder) || digits.length < 9;
+  const phoneTail = digits.slice(-9) || "___nomatch___";
+  const orderNeedle = isLikelyOrder ? phoneOrOrder.trim() : phoneTail;
+
+  const result = await pool.query(
+    `${ORDER_SELECT}
+     WHERE (
+       ($1 <> '___nomatch___' AND regexp_replace(COALESCE(o.phone, ''), '\\D', '', 'g') LIKE '%' || $1)
+       OR o.order_number ILIKE '%' || $2 || '%'
+     )
+     GROUP BY o.id
+     ORDER BY o.created_at DESC
+     LIMIT $3`,
+    [phoneTail, orderNeedle, Math.min(20, Math.max(1, limit))]
+  );
+
+  return mapOrderRows(result.rows as Array<Record<string, unknown>>);
+}
+
+export async function loadRecentOrdersFromDb(limit = 40): Promise<StoredOrder[]> {
+  if (!isDbConfigured()) return [];
+
+  const pool = getPool();
+  const result = await pool.query(
+    `${ORDER_SELECT}
      WHERE o.status IN ('confirmed', 'review', 'pending')
      GROUP BY o.id
      ORDER BY o.created_at DESC
@@ -127,38 +197,5 @@ export async function loadRecentOrdersFromDb(limit = 40): Promise<StoredOrder[]>
     [Math.min(100, Math.max(1, limit))]
   );
 
-  return result.rows.map((row) => {
-    const meta =
-      row.metadata && typeof row.metadata === "object" ? (row.metadata as Record<string, unknown>) : {};
-    const items = Array.isArray(row.items) ? row.items : [];
-    return {
-      id: `db-${row.order_number}`,
-      orderNumber: String(row.order_number),
-      firstName: typeof meta.firstName === "string" ? meta.firstName : undefined,
-      lastName: typeof meta.lastName === "string" ? meta.lastName : undefined,
-      phone: String(row.phone || ""),
-      email: row.email || undefined,
-      city: String(row.city || ""),
-      address: String(row.address || ""),
-      items: items.map((item: { sku?: string; name?: string; quantity?: unknown; unitPrice?: unknown; lineTotal?: unknown }) => ({
-        sku: String(item.sku || ""),
-        name: String(item.name || item.sku || "Produit"),
-        quantity: asNumber(item.quantity, 1),
-        unitPrice: asNumber(item.unitPrice),
-        lineTotal: asNumber(item.lineTotal),
-      })),
-      subtotal: asNumber(row.subtotal),
-      shipping: asNumber(row.shipping),
-      discount: asNumber(row.discount),
-      total: asNumber(row.total),
-      paymentMethod: String(row.payment_method || "cod"),
-      status: String(row.status || "confirmed"),
-      fraudScore: asNumber(row.fraud_score),
-      fraudFlags: Array.isArray(row.fraud_flags) ? row.fraud_flags.map(String) : [],
-      isDuplicate: Boolean(row.is_duplicate),
-      trackingNumber: row.tracking_number || undefined,
-      invoiceUrl: row.invoice_url || undefined,
-      createdAt: row.created_at instanceof Date ? row.created_at.toISOString() : String(row.created_at),
-    };
-  });
+  return mapOrderRows(result.rows as Array<Record<string, unknown>>);
 }

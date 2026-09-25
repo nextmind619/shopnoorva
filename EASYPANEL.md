@@ -96,7 +96,12 @@ Test: `https://shopnoorva.shop/api/admin/test-codplus?secret=CRON_SECRET`
 - [ ] Instance `noorva` connected
 - [ ] `web` has **one** set of `EVOLUTION_*` (no placeholders, no duplicates)
 - [ ] Save + restart `web`
+- [ ] In Evolution → instance `noorva` → Webhook URL:
+      `https://shopnoorva.shop/api/ai/webhooks/evolution`
+      Events: `MESSAGES_UPSERT` (or `messages.upsert`)
+- [ ] `OPENAI_API_KEY` set on `web` (required for Darija auto-replies)
 - [ ] Test COD order → admin gets WhatsApp `طلب جديد — NOORVA`
+- [ ] Test customer WhatsApp message → auto-reply in الدارجة المغربية
 
 ## 6) MinIO (optional)
 Image `minio/minio`, command: `server /data --console-address ":9001"`, ports `9000`/`9001`.

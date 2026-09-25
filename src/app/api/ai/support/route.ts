@@ -34,7 +34,14 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    return NextResponse.json({ success: true, ...result });
+    return NextResponse.json({
+      success: true,
+      conversationId: result.conversationId,
+      reply: result.reply,
+      aiGenerated: result.aiGenerated,
+      escalate: result.escalate,
+      escalateReason: result.escalateReason,
+    });
   } catch (error) {
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Support failed" },

@@ -88,7 +88,7 @@ export interface Conversation {
   email?: string;
   locale: string;
   messages: ConversationMessage[];
-  status: "open" | "closed";
+  status: "open" | "closed" | "escalated";
   createdAt: string;
 }
 

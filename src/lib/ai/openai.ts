@@ -35,6 +35,7 @@ export async function generateText(
 
 function fallbackGenerate(system: string, user: string): string {
   const lower = `${system}\n${user}`.toLowerCase();
+  const hasArabic = /[\u0600-\u06FF]/.test(`${system}\n${user}`);
 
   if (lower.includes("fraud") || lower.includes("fake")) {
     return JSON.stringify({
@@ -50,27 +51,41 @@ function fallbackGenerate(system: string, user: string): string {
       upsells: ["NRV-STARBT-01", "NRV-AURORA-01"],
       crossSells: ["NRV-RABBIT-01"],
       message_fr: "Complétez votre ambiance avec le projecteur aurores boréales — -10% aujourd'hui.",
-      message_ar: "أكمل أجواء غرفتك مع بروجيكتور الأورورا الشمالية — خصم 10% اليوم.",
+      message_ar: "كمّل الأجواء ديال الغرفة مع بروجيكتور الأورورا — خصم 10% اليوم.",
       message_en: "Complete your room vibe with the Northern Lights projector — 10% off today.",
     });
   }
 
-  if (lower.includes("whatsapp") || lower.includes("customer") || lower.includes("support")) {
-    if (lower.includes("livraison") || lower.includes("shipping") || lower.includes("توصيل")) {
-      return "Votre commande est en préparation. Livraison estimée 24–48h dans les grandes villes. Besoin du numéro de suivi ?";
+  if (
+    lower.includes("whatsapp") ||
+    lower.includes("customer") ||
+    lower.includes("support") ||
+    lower.includes("وكيل دعم") ||
+    lower.includes("noorva")
+  ) {
+    if (/توصيل|livraison|shipping|تتبع|suivi|tracking/.test(lower)) {
+      return hasArabic || /[\u0600-\u06FF]/.test(user)
+        ? "الطلب ديالك كيتوجد دابا 📦 التوصيل عادة 24–48 ساعة فالمدن الكبرى و2–4 أيام فباقي المدن. عافاك عطيني رقم الطلب إلا عندك.\n\nESCALATE: لا"
+        : "Votre commande est en préparation. Livraison 24–48h grandes villes, 2–4 jours ailleurs. Envoyez votre n° de commande si vous l'avez.\n\nESCALATE: لا";
     }
-    if (lower.includes("prix") || lower.includes("price") || lower.includes("سعر")) {
-      return "Tous nos prix sont en MAD, livraison gratuite partout au Maroc. Paiement à la livraison disponible.";
+    if (/سعر|ثمن|prix|price|شحال|كام/.test(lower)) {
+      return "جميع الأثمان بالدرهم، التوصيل مجاني فكل المغرب، والدفع عند الاستلام ✅ شنو المنتوج اللي بغيتي ثمنو؟\n\nESCALATE: لا";
     }
-    return "Merci de contacter NOORVA. Je peux vous aider pour le suivi, le paiement COD, les retours ou le choix d'un projecteur. Que souhaitez-vous ?";
+    if (/رجوع|إرجاع|garantie|ضمان|retour|return|warranty/.test(lower)) {
+      return "كاين ضمان 12 شهر، ويمكن الإرجاع خلال 14 يوم إلا كان عيب مصنعي — كتب لينا التفاصيل ونعاونوك 🙏\n\nESCALATE: لا";
+    }
+    if (/استرجاع|نصب|arnaque|rembours|refund|scam/.test(lower)) {
+      return "فهمتك 🙏 غادي نحوّل الملف لفريق الدعم دابا ويرجعو ليك ف أقرب وقت.\n\nESCALATE: نعم\nسبب: طلب حساس";
+    }
+    return "مرحبا بيك ف NOORVA 👋 نقدر نعاونك فالطلب، التتبع، الأثمان، أو اختيار منتوج. شنو بغيتي؟\n\nESCALATE: لا";
   }
 
   if (lower.includes("email")) {
-    return "Votre lumière NOORVA est confirmée. Nous préparons votre colis avec soin.";
+    return "تم تأكيد طلبك ف NOORVA. كنوجدو الطرد بعناية.";
   }
 
   if (lower.includes("sms")) {
-    return "NOORVA: Commande confirmée. Livraison 24-48h. COD disponible.";
+    return "NOORVA: تم تأكيد الطلب. توصيل 24-48س. الدفع عند الاستلام.";
   }
 
   if (lower.includes("report") || lower.includes("analytics")) {
@@ -81,5 +96,5 @@ function fallbackGenerate(system: string, user: string): string {
     });
   }
 
-  return "NOORVA AI automation ready. Configure OPENAI_API_KEY for full generative responses.";
+  return "مرحبا بيك ف NOORVA. فعّل OPENAI_API_KEY باش الردود تكون أقوى.\n\nESCALATE: لا";
 }

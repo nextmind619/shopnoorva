@@ -1,18 +1,47 @@
 import { generateText } from "./openai";
 import { store, uid, type Conversation } from "./memory-store";
-import { getProductById, products } from "@/data/products";
+import { getProductById, products, faqs } from "@/data/products";
+import { aiConfig } from "./config";
+import { findOrdersByPhone } from "./integrations/db-orders";
 
-const SYSTEM_PROMPT = `You are NOORVA AI Support for a premium Moroccan lighting ecommerce brand.
-Languages: answer in the customer's language (Arabic, French, or English).
-Products: astronaut Bluetooth speaker projector (MX003), multi-color galaxy star projector night light with Bluetooth speaker and remote (21 light modes), white geometric Dream Aurora star/moon projector with Bluetooth speaker and remote, rabbit carousel music-box night light.
-Policies:
-- Currency MAD
-- Cash on Delivery available nationwide
-- Free shipping nationwide in Morocco
-- Delivery 24-48h major cities, 2-4 days elsewhere
-- 14-day returns for unopened products
-- 12-month warranty
-Be concise, premium, helpful. Never invent tracking numbers. If unknown, ask for order number.`;
+const SYSTEM_PROMPT = `نتا وكيل دعم زبائن NOORVA على واتساب — متجر مغربي كيوصل منتجات للدار فجميع المدن.
+
+## اللهجة (مهم بزاف)
+- جاوب دائماً بالدارجة المغربية أولاً، طبيعية ودافئة وقصيرة.
+- إلا كتب الزبون بالفصحى، جاوب فصحى بسيطة قريبة للمغربية.
+- إلا كتب بالفرنسية أو الإنجليزية، جاوب بنفس اللغة بلهجة ودّية قصيرة.
+- ممنوع اللهجة الخليجية أو المصرية. ممنوع ردود روبوتية طويلة.
+
+## أسلوب الرد
+- جملة أو جملتين، حد أقصى ~4 أسطر إلا احتاج توضيح طلب.
+- كن واضح: الأثمان بالدرهم (MAD)، التوصيل، الدفع عند الاستلام.
+- ما تخترعشي أرقام تتبع ولا وعود مزيفة.
+- إلا ما عرفتيش شي حاجة: قول بصراحة وطلب رقم الطلب أو رقم الهاتف، أو قول غادي نحوّلك لفريق الدعم.
+- ما تذكرش أنك AI إلا سألوك مباشرة.
+
+## سياسات المتجر
+- العملة: درهم مغربي (MAD)
+- الدفع عند الاستلام (COD) فجميع المغرب
+- التوصيل مجاني لجميع المدن
+- المدة: 24–48 ساعة فالمدن الكبرى، 2–4 أيام فباقي المدن
+- بعد الطلب كيعيّط الفريق باش يأكّد العنوان
+- ضمان 12 شهر (إلا ما ذُكر غير ذلك فالمنتج)
+- إرجاع خلال 14 يوم إلا كان عيب مصنعي — عبر واتساب
+- الموقع: ${aiConfig.brand.siteUrl}/ar
+- واتساب الدعم: ${aiConfig.brand.supportWhatsApp}
+
+## متى تصعّد للإنسان (escalation)
+إلا الرسالة فيها غضب شديد، طلب استرجاع فلوس، شكاية نصب/خداع، تهديد، مشكل قانوني، أو طلب صريح باش يهضر مع شخص — جاوب بجملة قصيرة طمّن فيها الزبون وكتب فآخر السطر بالضبط:
+ESCALATE: نعم
+سبب قصير
+وإلا:
+ESCALATE: لا
+
+## المنتوجات
+استعمل كتالوج المنتجات والأسعار اللي غادي يتوفر ليك. ما تبدّلش الأثمان.`;
+
+const ESCALATION_PATTERNS =
+  /استرجاع|رجعو?\s*ليا\s*(لفلوس|الفلوس)|نصب|خداع|نصاب|محامي|شكاية|بلاغ|تهديد|ساخط|زفت|حرام|scandale|arnaque|rembours|avocat|fraud|scam|refund|lawsuit|أريد التحدث|بغيت نهضر مع|human|agent|responsable|مسؤول/i;
 
 export async function answerCustomer(input: {
   channel: "whatsapp" | "email" | "sms" | "web";
@@ -21,24 +50,14 @@ export async function answerCustomer(input: {
   email?: string;
   locale?: string;
   conversationId?: string;
-}): Promise<{ conversationId: string; reply: string; aiGenerated: boolean }> {
-  let conversation = input.conversationId
-    ? store.conversations.find((c) => c.id === input.conversationId)
-    : undefined;
-
-  if (!conversation) {
-    conversation = {
-      id: uid("conv"),
-      channel: input.channel,
-      phone: input.phone,
-      email: input.email,
-      locale: input.locale || detectLocale(input.message),
-      messages: [],
-      status: "open",
-      createdAt: new Date().toISOString(),
-    };
-    store.conversations.push(conversation);
-  }
+}): Promise<{
+  conversationId: string;
+  reply: string;
+  aiGenerated: boolean;
+  escalate: boolean;
+  escalateReason?: string;
+}> {
+  let conversation = resolveConversation(input);
 
   conversation.messages.push({
     role: "customer",
@@ -46,39 +65,34 @@ export async function answerCustomer(input: {
     createdAt: new Date().toISOString(),
   });
 
-  const orderContext = input.phone
-    ? store.orders
-        .filter((o) => o.phone.replace(/\D/g, "").endsWith(input.phone!.replace(/\D/g, "").slice(-9)))
-        .slice(-3)
-        .map((o) => ({
-          orderNumber: o.orderNumber,
-          status: o.status,
-          total: o.total,
-          trackingNumber: o.trackingNumber,
-        }))
-    : [];
-
-  const catalog = products.slice(0, 8).map((p) => ({
-    name: p.name.fr,
-    price: p.price,
-    slug: p.slug,
+  const orderContext = await buildOrderContext(input.phone, input.message);
+  const catalog = buildCatalogContext();
+  const faqContext = faqs.map((f) => ({
+    q: f.question.ar,
+    a: f.answer.ar,
   }));
 
   const history = conversation.messages
-    .slice(-8)
+    .slice(-10)
     .map((m) => `${m.role}: ${m.content}`)
     .join("\n");
 
-  const reply = await generateText(
+  const locale = conversation.locale || detectLocale(input.message);
+  conversation.locale = locale;
+
+  const raw = await generateText(
     SYSTEM_PROMPT,
-    `Locale hint: ${conversation.locale}
-Recent orders: ${JSON.stringify(orderContext)}
-Catalog sample: ${JSON.stringify(catalog)}
-Conversation:
+    `لغة الزبون المتوقعة: ${locale}
+طلبات مرتبطة: ${JSON.stringify(orderContext)}
+كتالوج: ${JSON.stringify(catalog)}
+أسئلة شائعة: ${JSON.stringify(faqContext)}
+المحادثة:
 ${history}
 
-Reply to the latest customer message only.`
+جاوب على آخر رسالة للزبون فقط، وذيّل الرد بـ ESCALATE كما في التعليمات.`
   );
+
+  const { reply, escalate, escalateReason } = parseSupportReply(raw, input.message);
 
   conversation.messages.push({
     role: "assistant",
@@ -87,21 +101,181 @@ Reply to the latest customer message only.`
     createdAt: new Date().toISOString(),
   });
 
+  if (escalate) {
+    conversation.status = "escalated";
+  }
+
   return {
     conversationId: conversation.id,
     reply,
     aiGenerated: true,
+    escalate,
+    escalateReason,
+  };
+}
+
+function resolveConversation(input: {
+  channel: "whatsapp" | "email" | "sms" | "web";
+  phone?: string;
+  email?: string;
+  locale?: string;
+  conversationId?: string;
+  message: string;
+}): Conversation {
+  if (input.conversationId) {
+    const byId = store.conversations.find((c) => c.id === input.conversationId);
+    if (byId) return byId;
+  }
+
+  if (input.phone) {
+    const needle = normalizePhoneDigits(input.phone);
+    const existing = [...store.conversations]
+      .reverse()
+      .find(
+        (c) =>
+          c.channel === input.channel &&
+          c.phone &&
+          normalizePhoneDigits(c.phone).endsWith(needle.slice(-9)) &&
+          (c.status === "open" || c.status === "escalated")
+      );
+    if (existing) return existing;
+  }
+
+  const conversation: Conversation = {
+    id: uid("conv"),
+    channel: input.channel,
+    phone: input.phone,
+    email: input.email,
+    locale: input.locale || detectLocale(input.message),
+    messages: [],
+    status: "open",
+    createdAt: new Date().toISOString(),
+  };
+  store.conversations.push(conversation);
+  return conversation;
+}
+
+async function buildOrderContext(phone?: string, message?: string) {
+  const fromMessage = message?.match(/(?:NRV|NV|CMD)[-_]?\d{4,}|\b\d{6,}\b/i)?.[0];
+  const memoryOrders = phone
+    ? store.orders.filter((o) => phonesMatch(o.phone, phone)).slice(-5)
+    : [];
+
+  let dbOrders: Awaited<ReturnType<typeof findOrdersByPhone>> = [];
+  try {
+    if (phone) dbOrders = await findOrdersByPhone(phone, 5);
+  } catch {
+    dbOrders = [];
+  }
+
+  const merged = [...memoryOrders, ...dbOrders]
+    .filter((o, i, arr) => arr.findIndex((x) => x.orderNumber === o.orderNumber) === i)
+    .slice(-5)
+    .map((o) => ({
+      orderNumber: o.orderNumber,
+      status: o.status,
+      total: o.total,
+      city: o.city,
+      trackingNumber: o.trackingNumber || null,
+      items: o.items.map((it) => `${it.name} × ${it.quantity}`).join("، "),
+    }));
+
+  if (fromMessage && !merged.some((o) => o.orderNumber.includes(fromMessage))) {
+    const hit =
+      store.orders.find((o) => o.orderNumber.includes(fromMessage)) ||
+      (await findOrdersByPhone(fromMessage, 1).catch(() => []))[0];
+    if (hit) {
+      merged.push({
+        orderNumber: hit.orderNumber,
+        status: hit.status,
+        total: hit.total,
+        city: hit.city,
+        trackingNumber: hit.trackingNumber || null,
+        items: hit.items.map((it) => `${it.name} × ${it.quantity}`).join("، "),
+      });
+    }
+  }
+
+  return merged;
+}
+
+function buildCatalogContext() {
+  return products.slice(0, 24).map((p) => ({
+    name: p.name.ar,
+    price: p.price,
+    compareAt: p.compareAtPrice || null,
+    sku: p.sku,
+    slug: p.slug,
+    warranty: p.warrantyMonths ?? 12,
+    blurb: p.shortDescription.ar.slice(0, 120),
+  }));
+}
+
+function parseSupportReply(
+  raw: string,
+  customerMessage: string
+): { reply: string; escalate: boolean; escalateReason?: string } {
+  const escalateMatch = raw.match(/ESCALATE:\s*(نعم|لا|yes|no|true|false)/i);
+  const forceEscalate = ESCALATION_PATTERNS.test(customerMessage);
+  const escalateFlag = escalateMatch
+    ? /نعم|yes|true/i.test(escalateMatch[1])
+    : false;
+  const escalate = forceEscalate || escalateFlag;
+
+  let reply = raw
+    .replace(/\n*ESCALATE:\s*(نعم|لا|yes|no|true|false)[\s\S]*$/im, "")
+    .replace(/\n*سبب\s*[:：][^\n]*/gi, "")
+    .trim();
+
+  if (!reply) {
+    reply = escalate
+      ? "فهمتك خويا/ختي 🙏 غادي نحوّل الملف ديالك لفريق الدعم دابا ويرجعو ليك ف أقرب وقت."
+      : "مرحبا بيك ف NOORVA 👋 كيفاش نقدر نعاونك؟ طلب، تتبع، أو استفسار على منتوج؟";
+  }
+
+  if (escalate && !/فريق الدعم|نحولو|نحوّل|responsable|équipe/i.test(reply)) {
+    reply += "\n\nغادي نحوّل الملف لفريق الدعم باش يجاوبوك شخصياً 🙏";
+  }
+
+  const reasonMatch = raw.match(/سبب\s*[:：]\s*(.+)/i);
+  return {
+    reply: reply.slice(0, 1200),
+    escalate,
+    escalateReason: reasonMatch?.[1]?.trim() || (forceEscalate ? "sensitive_keywords" : undefined),
   };
 }
 
 function detectLocale(message: string): string {
   if (/[\u0600-\u06FF]/.test(message)) return "ar";
-  if (/bonjour|merci|commande|livraison|prix/i.test(message)) return "fr";
+  if (/bonjour|merci|commande|livraison|prix|salut|svp/i.test(message)) return "fr";
   return "en";
+}
+
+function normalizePhoneDigits(phone: string): string {
+  return phone.replace(/\D/g, "");
+}
+
+function phonesMatch(a: string, b: string): boolean {
+  const da = normalizePhoneDigits(a);
+  const db = normalizePhoneDigits(b);
+  if (!da || !db) return false;
+  return da.endsWith(db.slice(-9)) || db.endsWith(da.slice(-9));
 }
 
 export function getConversation(id: string): Conversation | undefined {
   return store.conversations.find((c) => c.id === id);
+}
+
+export function findOpenConversationByPhone(phone: string): Conversation | undefined {
+  const needle = normalizePhoneDigits(phone);
+  return [...store.conversations]
+    .reverse()
+    .find(
+      (c) =>
+        c.phone &&
+        normalizePhoneDigits(c.phone).endsWith(needle.slice(-9)) &&
+        (c.status === "open" || c.status === "escalated")
+    );
 }
 
 export async function suggestUpsells(input: {
@@ -119,7 +293,10 @@ export async function suggestUpsells(input: {
 
   const raw = await generateText(
     "You are a CRO upsell engine for NOORVA lighting. Return JSON: upsells (sku/id[]), crossSells (id[]), message_fr, message_ar, message_en.",
-    JSON.stringify({ cart: selected, catalog: products.map((p) => ({ id: p.id, name: p.name.fr, price: p.price, tags: p.tags })) }),
+    JSON.stringify({
+      cart: selected,
+      catalog: products.map((p) => ({ id: p.id, name: p.name.fr, price: p.price, tags: p.tags })),
+    }),
     { json: true, temperature: 0.5 }
   );
 
@@ -150,7 +327,7 @@ export async function suggestUpsells(input: {
     return {
       upsells: fallbackUpsells,
       crossSells: fallbackCross,
-      message: "Complétez votre ambiance NOORVA avec un accessoire assorti.",
+      message: "كمّل الأجواء ديالك مع منتوج NOORVA مناسب — استفد من العرض اليوم.",
     };
   }
 }

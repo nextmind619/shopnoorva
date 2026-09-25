@@ -31,3 +31,36 @@ export async function notifyAdminNewOrder(
     throw new Error(record.error || "whatsapp_admin_failed");
   }
 }
+
+/** Alert admin when WhatsApp support needs a human. */
+export async function notifyAdminEscalation(input: {
+  phone: string;
+  customerMessage: string;
+  aiReply?: string;
+  reason?: string;
+  conversationId?: string;
+}): Promise<void> {
+  const body = [
+    "🚨 *تصعيد دعم واتساب — NOORVA*",
+    "",
+    `📱 الزبون: ${input.phone}`,
+    input.conversationId ? `💬 المحادثة: ${input.conversationId}` : null,
+    input.reason ? `⚠️ السبب: ${input.reason}` : null,
+    "",
+    `📩 رسالة الزبون:\n${input.customerMessage.slice(0, 500)}`,
+    input.aiReply ? `\n🤖 رد البوت:\n${input.aiReply.slice(0, 400)}` : null,
+    "",
+    "✅ جاوب الزبون من نفس رقم واتساب المتجر دابا",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  await sendMessage({
+    channel: "whatsapp",
+    recipient: aiConfig.brand.adminWhatsApp,
+    body,
+    locale: "ar",
+    relatedType: "support_escalation",
+    relatedId: input.conversationId,
+  });
+}
