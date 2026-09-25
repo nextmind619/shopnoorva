@@ -14,7 +14,7 @@ const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-bedroom-lighting": ["bedroom"],
   "cat-kids-room": ["kids", "art", "drawing"],
   "cat-relaxation": ["relaxation"],
-  "cat-gift-ideas": ["gift"],
+  "cat-gift-ideas": ["gift", "beauty", "protein", "collagen", "curves"],
   "cat-study-office": ["calculator", "study", "vacuum", "keyboard"],
   "cat-kitchen": ["kitchen", "eggs", "breakfast"],
 };
@@ -2625,6 +2625,122 @@ export const products: Product[] = [
       ),
     },
   },
+
+  {
+    id: "prod-curves-glow",
+    slug: "proteine-curve-collagen-glow",
+    warrantyMonths: 0,
+    name: L(
+      "Pack Curves & Glow — بروتين الشكل الأنثوي + كولاجين بحري هدية",
+      "Pack Curves & Glow — Protéine curves + collagène marin offert",
+      "Pack Curves & Glow — Curve protein + free marine collagen"
+    ),
+    shortDescription: L(
+      "بروتين Curves لشكل أنثوي + كولاجين بحري هدية مجانية لإكمال الروتين · 399 درهم · توصيل مجاني · الدفع عند الاستلام",
+      "Protéine Curves + collagène marin offert pour compléter la routine · 399 DH · livraison gratuite · COD",
+      "Curve protein + free marine collagen to complete the routine · 399 DH · free shipping · COD"
+    ),
+    description: L(
+      "عرض Pack Curves & Glow: خذي بروتين الشكل الأنثوي (ورك وصدر بدون زيادة وزن عامة) ومعاه كولاجين بحري هدية مجانية باش تكمّلي الروتين — بشرة، شعر، وأظافر. الثمن 399 درهم بدل 558 درهم. التوصيل مجاني لجميع مدن المغرب والدفع عند الاستلام.",
+      "Offre Pack Curves & Glow : protéine curves (hanches & poitrine sans prise de poids globale) + collagène marin offert pour compléter la routine peau/cheveux. 399 DH au lieu de 558 DH. Livraison gratuite au Maroc, paiement à la livraison.",
+      "Pack Curves & Glow: feminine curve protein (hips & bust without overall weight gain) + free marine collagen to complete the skin/hair routine. 399 DH instead of 558 DH. Free Morocco shipping, cash on delivery."
+    ),
+    categoryId: "cat-gift-ideas",
+    price: 399,
+    compareAtPrice: 558,
+    sku: "NRV-CURVES-GLOW-399",
+    stock: 120,
+    rating: 4.9,
+    reviewCount: 186,
+    soldCount: 940,
+    isBestSeller: true,
+    isTrending: true,
+    isTikTokViral: true,
+    isFeatured: true,
+    flashSaleEndsAt: flashEnd,
+    images: [],
+    problemEmoji: "💔",
+    problem: L(
+      "بغيتي شكل أنثوي… وما بغيتيش تزيد الوزن كامل؟",
+      "Tu veux des curves… sans prendre du poids partout?",
+      "Want feminine curves… without gaining weight everywhere?"
+    ),
+    problemCause: L(
+      "التمارين وحدها بطيئة، والمكمّلات العشوائية ما كتكملش الروتين ديال البشرة والشعر.",
+      "Le sport seul est lent, et les compléments au hasard n’achèvent pas la routine beauté.",
+      "Exercise alone is slow, and random supplements don’t finish the beauty routine."
+    ),
+    problemSolution: L(
+      "بروتين Curves للشكل + كولاجين بحري هدية لإكمال الروتين من الداخل.",
+      "Protéine Curves pour la silhouette + collagène marin offert pour compléter la routine.",
+      "Curve protein for shape + free marine collagen to complete the routine."
+    ),
+    deepDescription: L(
+      "روتين يومي بسيط: شيك بروتين Curves باش تدعي الشكل الأنثوي (ورك وصدر)، وكولاجين بحري هدية باش تكمّلي البشرة والشعر والأظافر. جوج منتجات — ثمن واحد 399 درهم.",
+      "Routine simple: shake protéine Curves pour la silhouette, collagène marin offert pour peau, cheveux et ongles. Deux produits — un seul prix 399 DH.",
+      "Simple routine: Curves protein shake for silhouette, free marine collagen for skin, hair and nails. Two products — one price 399 DH."
+    ),
+    tags: ["new", "beauty", "protein", "collagen", "curves", "gift", "bestseller", "women"],
+    benefits: [
+      L("شكل أنثوي مستهدف — ورك وصدر", "Silhouette féminine ciblée — hanches & poitrine", "Targeted feminine shape — hips & bust"),
+      L("بدون زيادة وزن عامة", "Sans prise de poids globale", "Without overall weight gain"),
+      L("كولاجين بحري هدية لإكمال الروتين", "Collagène marin offert pour finir la routine", "Free marine collagen to complete the routine"),
+      L("بشرة أكثر إشراقاً ومرونة", "Peau plus lumineuse et souple", "Brighter, more elastic-looking skin"),
+      L("دعم الشعر والأظافر", "Soutien cheveux & ongles", "Supports hair and nails"),
+      L("روتين يومي سهل — شيك + كولاجين", "Routine quotidienne simple", "Easy daily routine — shake + collagen"),
+    ],
+    features: [
+      L("بروتين طبيعي للشكل الأنثوي", "Protéine naturelle curves", "Natural feminine curve protein"),
+      L("كولاجين بحري هدية مجانية", "Collagène marin offert", "Free marine collagen gift"),
+      L("روتين Curves + Glow", "Routine Curves + Glow", "Curves + Glow routine"),
+      L("تعبئة وتوصيل داخل المغرب", "Conditionnement & livraison Maroc", "Packed and delivered in Morocco"),
+    ],
+    specifications: [
+      { label: L("العرض", "Offre", "Offer"), value: L("بروتين + كولاجين هدية", "Protéine + collagène offert", "Protein + free collagen") },
+      { label: L("الثمن", "Prix", "Price"), value: L("399 درهم", "399 DH", "399 DH") },
+      { label: L("القيمة", "Valeur", "Value"), value: L("558 درهم", "558 DH", "558 DH") },
+      { label: L("الاستخدام", "Usage", "Usage"), value: L("يومي — شيك + كولاجين", "Quotidien — shake + collagène", "Daily — shake + collagen") },
+      { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
+    ],
+    packageIncludes: [
+      L("1× بروتين الشكل الأنثوي Curves", "1× Protéine Curves", "1× Curves feminine protein"),
+      L("1× كولاجين بحري — هدية مجانية", "1× Collagène marin — offert", "1× Marine collagen — free gift"),
+    ],
+    howToUse: L(
+      "1) حضّري شيك البروتين يومياً حسب التعليمات على العلبة. 2) خذي الكولاجين البحري يومياً لإكمال روتين البشرة والشعر. 3) كمّلي بأكل متوازن ونشاط خفيف باش تشوفي نتيجة أوضح.",
+      "1) Préparez le shake protéine chaque jour selon la boîte. 2) Prenez le collagène marin quotidiennement pour la routine beauté. 3) Complétez avec une alimentation équilibrée et une activité légère.",
+      "1) Prepare the protein shake daily as labeled. 2) Take marine collagen daily to complete the beauty routine. 3) Pair with balanced eating and light activity for clearer results."
+    ),
+    ingredients: L(
+      "تركيبة بروتين طبيعية للشكل الأنثوي + كولاجين بحري لدعم البشرة والشعر والأظافر. التفاصيل الكاملة على علب المنتجات.",
+      "Mélange protéiné naturel pour la silhouette féminine + collagène marin pour peau, cheveux et ongles. Détails complets sur les boîtes.",
+      "Natural protein blend for feminine shape + marine collagen for skin, hair and nails. Full details on product labels."
+    ),
+    variants: [
+      {
+        id: "var-curves-glow-pack",
+        name: L("Pack Curves & Glow — 399 درهم", "Pack Curves & Glow — 399 DH", "Pack Curves & Glow — 399 DH"),
+        price: 399,
+        compareAtPrice: 558,
+        sku: "NRV-CURVES-GLOW-399",
+        stock: 120,
+      },
+    ],
+    upsellIds: [],
+    crossSellIds: [],
+    seo: {
+      title: L(
+        "Pack Curves & Glow | بروتين + كولاجين هدية | 399 درهم المغرب",
+        "Pack Curves & Glow | Protéine + collagène offert | 399 DH Maroc",
+        "Pack Curves & Glow | Protein + Free Collagen | 399 DH Morocco"
+      ),
+      description: L(
+        "بروتين الشكل الأنثوي + كولاجين بحري هدية مجانية لإكمال الروتين. 399 درهم بدل 558. توصيل مجاني والدفع عند الاستلام في المغرب.",
+        "Protéine curves + collagène marin offert. 399 DH au lieu de 558. Livraison gratuite et COD au Maroc.",
+        "Curve protein + free marine collagen. 399 DH instead of 558. Free shipping and COD in Morocco."
+      ),
+    },
+  },
 ];
 
 export const reviews: ProductReview[] = [
@@ -2636,6 +2752,15 @@ export const reviews: ProductReview[] = [
   { id: "r6", productId: "prod-mx003", author: "محمد برادة", city: "أكادير", rating: 5, title: L("أجواء سينمائية", "Ambiance cinéma", "Cinema vibe"), content: L("شريت جوج بروجيكتورات MX003. الغرفة ولاّت سينما بصوت البلوتوث.", "Deux projecteurs MX003 = ambiance cinéma avec le Bluetooth.", "Two MX003 projectors = cinema vibe with Bluetooth sound."), date: "2026-05-25", verified: true, hasVideo: true },
   { id: "r7", productId: "prod-starbt", author: "نور الهدى", city: "الدار البيضاء", rating: 5, title: L("أحسن شراء", "Meilleur achat", "Best purchase"), content: L("21 وضع إضاءة والموسيقى مع البلوتوث كتهنّي بنتي قبل النوم.", "21 modes et la musique Bluetooth calment ma fille avant de dormir.", "21 light modes and Bluetooth music calm my daughter before sleep."), date: "2026-05-18", verified: true, images: [resolveProductImage("bluetooth-star-projector", "05-living-room", "thumbnail")] },
   { id: "r8", productId: "prod-rabbit", author: "كريم بنعيسى", city: "الرباط", rating: 4, title: L("كيوت وفاخر", "Mignon et premium", "Cute and premium"), content: L("كاروسيل الأرانب كيوت بزاف. الهدية ممتازة لبنتي.", "Le carrousel lapin est trop mignon. Cadeau parfait pour ma fille.", "The rabbit carousel is super cute. Perfect gift for my daughter."), date: "2026-05-10", verified: true },
+  // Pack Curves & Glow
+  { id: "rcg1", productId: "prod-curves-glow", author: "سارة بنعلي", city: "الدار البيضاء", rating: 5, title: L("الهدية هي اللي فرّحتني", "Le cadeau m’a surprise", "The gift made my day"), content: L("طلبت البروتين ولقيت الكولاجين هدية. الروتين ولى كامل: شكل + بشرة. التوصيل سريع والدفع عند الاستلام مريح.", "J’ai pris la protéine et j’ai eu le collagène offert. Routine complète silhouette + peau. Livraison rapide, COD pratique.", "Ordered the protein and got free collagen. Full routine for shape + skin. Fast delivery, easy COD."), date: "2026-09-18", verified: true },
+  { id: "rcg2", productId: "prod-curves-glow", author: "إيمان العلوي", city: "الرباط", rating: 5, title: L("الشكل باين بلا زيادة عامة", "Curves sans prise globale", "Curves without overall gain"), content: L("بعد أسابيع حسّيت بالفرق فالورك. ما زيدتش وزن كامل بحال قبل. الكولاجين خلات بشرتي أنعم.", "Après quelques semaines, différence sur les hanches sans prise de poids générale. Collagène: peau plus douce.", "After a few weeks, hips looked better without overall weight gain. Collagen softened my skin."), date: "2026-09-12", verified: true },
+  { id: "rcg3", productId: "prod-curves-glow", author: "نادية الفاسي", city: "فاس", rating: 5, title: L("أوفر واضح يستاهل", "Offre claire et rentable", "Clear offer worth it"), content: L("399 درهم على جوج منتجات أحسن من نشري كل واحد وحدو. الطلب ساهل وخلّصت عند الباب.", "399 DH pour deux produits, mieux que d’acheter séparément. Commande simple, payé à la porte.", "399 DH for two products beats buying separately. Easy order, paid at the door."), date: "2026-09-08", verified: true },
+  { id: "rcg4", productId: "prod-curves-glow", author: "مريم التازي", city: "طنجة", rating: 5, title: L("روتين ساهل كل نهار", "Routine facile chaque jour", "Easy daily routine"), content: L("شيك الصباح + كولاجين. ما فيهش تعقيد. الشعر ديالي بان أقوى شوية بعد الاستمرار.", "Shake le matin + collagène. Simple. Cheveux un peu plus résistants avec la régularité.", "Morning shake + collagen. No complexity. Hair felt stronger with consistency."), date: "2026-09-02", verified: true },
+  { id: "rcg5", productId: "prod-curves-glow", author: "خديجة الوردي", city: "مراكش", rating: 5, title: L("ثقة والدفع عند الاستلام", "Confiance + COD", "Trust + COD"), content: L("خفت نطلب أونلاين، لكن الدفع عند الاستلام ريّحني. العلب وصلت محكمة والعرض بحال ما مكتوب.", "J’avais peur d’acheter en ligne, le COD m’a rassurée. Colis bien emballé, offre conforme.", "Was nervous ordering online — COD reassured me. Well packed, offer as described."), date: "2026-08-28", verified: true },
+  { id: "rcg6", productId: "prod-curves-glow", author: "أسماء بنجلون", city: "أكادير", rating: 5, title: L("البشرة والشّكل مع بعض", "Peau et silhouette ensemble", "Skin and shape together"), content: L("ما بقيتش نشري حاجة للبشرة وحاجة للشكل. هاد الأوفر جمع الروتين فثمن واحد.", "Plus besoin d’acheter peau et silhouette séparément. Cette offre réunit la routine en un prix.", "No more buying skin and shape separately. This offer joins the routine in one price."), date: "2026-08-22", verified: true },
+  { id: "rcg7", productId: "prod-curves-glow", author: "ليلى الحسني", city: "وجدة", rating: 4, title: L("نتيجة تدريجية وزوينة", "Résultat progressif et beau", "Gradual nice result"), content: L("ماشي سحر فـ 3 أيام، ولكن مع الاستمرار الشكل ولى أنعم والكولاجين حسّنت الإشراقة.", "Pas magique en 3 jours, mais avec la régularité silhouette plus douce et teint plus lumineux.", "Not magic in 3 days, but with consistency softer shape and brighter glow."), date: "2026-08-16", verified: true },
+  { id: "rcg8", productId: "prod-curves-glow", author: "هند المرابط", city: "سلا", rating: 5, title: L("هدية للكولاجين فرّحتني", "Collagène offert = coup de cœur", "Free collagen won me over"), content: L("دخلت على البروتين، والكولاجين هدية هو اللي خلّاني نكمّل الطلب دابا بلا تردد.", "Je venais pour la protéine; le collagène offert m’a fait commander tout de suite.", "Came for the protein; the free collagen made me order immediately."), date: "2026-08-10", verified: true },
   // Green Laser Pointer 303 — 25 Moroccan reviews
   { id: "rl1", productId: "prod-laser303", author: "ياسين الإدريسي", city: "الدار البيضاء", rating: 5, title: L("شعاع قوي بزاف", "Faisceau ultra puissant", "Very powerful beam"), content: L("الليزر الأخضر قوي وواضح حتى من بعيد. جودة الألومنيوم ممتازة والتوصيل سريع.", "Le laser vert est puissant et visible de loin. Aluminium top, livraison rapide.", "The green laser is powerful and visible from afar. Great aluminum quality, fast delivery."), date: "2026-07-22", verified: true, images: [resolveProductImage("green-laser-pointer-303", "02-premium-hero", "thumbnail")] },
   { id: "rl2", productId: "prod-laser303", author: "سارة بناني", city: "الرباط", rating: 5, title: L("مثالي للفلك", "Parfait pour l'astronomie", "Perfect for astronomy"), content: L("كنستعملوه باش نشير للنجوم مع ولادي. ساهل وخفيف والدفع عند الاستلام مريح.", "Je l'utilise pour montrer les étoiles aux enfants. Léger, simple, COD pratique.", "I use it to point at stars with my kids. Light, simple, COD is convenient."), date: "2026-07-20", verified: true },

@@ -106,6 +106,9 @@ export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): 
       `/products/${slug.replace(/-projector$|-night-light$|-303$/, "")}.svg`
     );
   }
+  if (slug === "proteine-curve-collagen-glow") {
+    return `/products/proteine-curve-collagen-glow.svg`;
+  }
   return (
     getProductImageUrl(slug, "01-hero-white-bg", variant) ||
     getProductImageUrl(slug, "01-hero-white-bg", "webp") ||

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-label="Pack Curves &amp; Glow">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7ebe6"/>
+      <stop offset="55%" stop-color="#f3e0d8"/>
+      <stop offset="100%" stop-color="#e8cfc4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect x="120" y="280" width="360" height="520" rx="28" fill="#ffffff" fill-opacity="0.72" stroke="#8b3a4a" stroke-opacity="0.18" stroke-width="3"/>
+  <rect x="600" y="320" width="360" height="440" rx="28" fill="#ffffff" fill-opacity="0.55" stroke="#8b3a4a" stroke-opacity="0.22" stroke-width="3" stroke-dasharray="14 10"/>
+  <text x="540" y="180" text-anchor="middle" fill="#8b3a4a" font-family="Georgia, serif" font-size="52" font-weight="700">Curves &amp; Glow</text>
+  <text x="300" y="560" text-anchor="middle" fill="#5c3a3a" font-family="Arial, sans-serif" font-size="36" font-weight="700">Protéine</text>
+  <text x="780" y="560" text-anchor="middle" fill="#8b3a4a" font-family="Arial, sans-serif" font-size="34" font-weight="700">Collagène</text>
+  <text x="780" y="610" text-anchor="middle" fill="#8b3a4a" font-family="Arial, sans-serif" font-size="28">G/J) E,'FJ)</text>
+  <text x="540" y="920" text-anchor="middle" fill="#7a5555" font-family="Arial, sans-serif" font-size="28">5H1) E$B*)  :'/J **9HQ6</text>
+</svg>

@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL } from "@/lib/site";
 
 import { resolveProductHero } from "@/lib/product-images/resolve";
+import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -17,6 +18,7 @@ const CALCULATOR_SLUG = "solar-calculator-lcd-notepad";
 const VACUUM_SLUG = "cordless-mini-vacuum-keyboard";
 const KIDS_ART_SLUG = "kids-art-set-easel-208";
 const EGG_BOILER_SLUG = "mini-egg-boiler";
+const CURVES_GLOW_SLUG = "proteine-curve-collagen-glow";
 
 const SHIATSU_KEYWORDS = [
   "جهاز تدليك الرقبة",
@@ -80,6 +82,19 @@ const EGG_BOILER_KEYWORDS = [
   "NOORVA",
 ];
 
+const CURVES_GLOW_KEYWORDS = [
+  "بروتين الشكل الأنثوي",
+  "بروتين curves",
+  "كولاجين بحري",
+  "كولاجين هدية",
+  "Pack Curves & Glow",
+  "روتين جمال",
+  "399 درهم",
+  "الدفع عند الاستلام",
+  "المغرب",
+  "NOORVA",
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -96,6 +111,7 @@ export async function generateMetadata({
   const isVacuum = product.slug === VACUUM_SLUG;
   const isKidsArt = product.slug === KIDS_ART_SLUG;
   const isEggBoiler = product.slug === EGG_BOILER_SLUG;
+  const isCurvesGlow = product.slug === CURVES_GLOW_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
@@ -108,7 +124,9 @@ export async function generateMetadata({
         ? "طقم رسم للأطفال 208 قطعة مع حامل مدمج وحقيبة زرقاء"
         : isEggBoiler
           ? "جهاز كهربائي لطهي البيض أصفر مع غطاء شفاف وزر أحمر"
-          : name;
+          : isCurvesGlow
+            ? "Pack Curves & Glow — بروتين الشكل الأنثوي مع كولاجين بحري هدية"
+            : name;
 
   return {
     title,
@@ -123,7 +141,9 @@ export async function generateMetadata({
             ? [...KIDS_ART_KEYWORDS, ...product.tags]
             : isEggBoiler
               ? [...EGG_BOILER_KEYWORDS, ...product.tags]
-              : product.tags,
+              : isCurvesGlow
+                ? [...CURVES_GLOW_KEYWORDS, ...product.tags]
+                : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
@@ -144,6 +164,10 @@ export async function generateMetadata({
 }
 
 function getProductFaqs(slug: string, warrantyMonths: number) {
+  if (slug === CURVES_GLOW_SLUG) {
+    return CURVES_GLOW_FAQS;
+  }
+
   if (slug === SHIATSU_SLUG) {
     return [
       {
@@ -630,7 +654,8 @@ export default async function ProductPage({
   const isVacuum = product.slug === VACUUM_SLUG;
   const isKidsArt = product.slug === KIDS_ART_SLUG;
   const isEggBoiler = product.slug === EGG_BOILER_SLUG;
-  const reviews = isShiatsu ? getReviewsForProduct(product.id) : [];
+  const reviews =
+    isShiatsu || product.slug === CURVES_GLOW_SLUG ? getReviewsForProduct(product.id) : [];
   const eggOffers = isEggBoiler
     ? {
         "@type": "AggregateOffer",

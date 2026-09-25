@@ -6,6 +6,7 @@ import { ProductPageVintageLantern } from "@/components/product/product-page-vin
 import { ProductPageWarmLedDecorLamp } from "@/components/product/product-page-warm-led-decor-lamp";
 import { ProductPageSolarCalculator } from "@/components/product/product-page-solar-calculator";
 import { ProductPageMiniVacuum } from "@/components/product/product-page-mini-vacuum";
+import { ProductPageCurvesGlow } from "@/components/product/product-page-curves-glow";
 
 interface ProductPageClientProps {
   product: Product;
@@ -31,6 +32,10 @@ export function ProductPageClient({ product, upsells, crossSells }: ProductPageC
 
   if (product.slug === "cordless-mini-vacuum-keyboard") {
     return <ProductPageMiniVacuum product={product} />;
+  }
+
+  if (product.slug === "proteine-curve-collagen-glow") {
+    return <ProductPageCurvesGlow product={product} />;
   }
 
   return <ProductPageAr product={product} related={relatedProp} />;
