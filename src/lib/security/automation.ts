@@ -19,7 +19,41 @@ const PLAYWRIGHT = /playwright|Playwright/i;
 const HEADLESS = /HeadlessChrome|PhantomJS|SlimerJS|Electron\/\d/i;
 const FAKE_BROWSER =
   /curl\/|wget\/|python-requests|aiohttp|scrapy|httpclient|Go-http-client|Java\/|okhttp|libwww|node-fetch|undici|postman|insomnia|httpie|axios\//i;
-const REALISH = /Mozilla\/5\.0.*(Chrome|Firefox|Safari|Edg|Mobile|SamsungBrowser)/i;
+const REALISH = /Mozilla\/5\.0.*(Chrome|Firefox|Safari|Edg|Mobile|SamsungBrowser|AppleWebKit|Gecko)/i;
+
+/**
+ * Real desktop and mobile browsers.
+ * Chrome on Windows is sometimes reduced to
+ * `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36`
+ * (privacy tools, or a proxy that drops the `Chrome/` + `Safari/` tokens).
+ * That string used to miss the old Chrome|Safari check, score as fake_browser,
+ * and hard-307 to /access-denied. Product tokens are enough when present;
+ * Mozilla/5.0 plus AppleWebKit or Gecko on a real OS is enough when they are not.
+ * Client Hints (`sec-ch-ua`) count too. curl, headless, and automation UAs do not.
+ */
+export function isRealBrowserUa(
+  userAgent: string,
+  headers?: Record<string, string | null | undefined>
+): boolean {
+  const ua = userAgent || "";
+  if (!ua.trim()) return false;
+  if (HEADLESS.test(ua) || SELENIUM.test(ua) || PLAYWRIGHT.test(ua)) return false;
+  if (PUPPETEER.test(ua) && !/Edg\//i.test(ua)) return false;
+  if (FAKE_BROWSER.test(ua)) return false;
+
+  const hints = headers?.["sec-ch-ua"] || "";
+  if (
+    hints &&
+    /Chromium|Google Chrome|Microsoft Edge|Opera|Firefox/i.test(hints) &&
+    !/HeadlessChrome/i.test(hints)
+  ) {
+    return true;
+  }
+
+  const hasEngine = /(AppleWebKit|Gecko|Chrome|Firefox|Safari|Edg|OPR|SamsungBrowser)\//i.test(ua);
+  const hasDevice = /(Windows NT|Macintosh|Linux|Android|iPhone|iPad|CrOS|Mobile)/i.test(ua);
+  return /Mozilla\/5\.0/i.test(ua) && hasEngine && hasDevice;
+}
 
 export function detectAutomation(
   userAgent: string,
@@ -32,7 +66,9 @@ export function detectAutomation(
   const puppeteer = PUPPETEER.test(ua) && !/Edg\//i.test(ua);
   const playwright = PLAYWRIGHT.test(ua);
   const isHeadless = HEADLESS.test(ua);
-  const fakeBrowser = FAKE_BROWSER.test(ua) || (ua.length > 0 && !REALISH.test(ua) && !/bot/i.test(ua));
+  const realBrowser = isRealBrowserUa(ua, headers);
+  const declaredBot = /bot|crawler|spider|facebookexternalhit|meta-external/i.test(ua);
+  const fakeBrowser = !realBrowser && !declaredBot;
 
   if (selenium) {
     reasons.push("selenium");

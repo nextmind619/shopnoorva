@@ -113,8 +113,11 @@ export function InvisibleChallenge({
       }
     };
 
-    // Defer so LCP / checkout stay fast
-    if ("requestIdleCallback" in window) {
+    // Forced recovery (Access Denied → storefront) must run now. requestIdleCallback
+    // can sit on "Verifying browser…" long enough that a real customer looks hard-blocked.
+    if (force) {
+      setTimeout(() => void run(), 0);
+    } else if ("requestIdleCallback" in window) {
       (window as Window & { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(() => {
         void run();
       });
