@@ -11,6 +11,15 @@ export interface Category {
   productCount: number;
 }
 
+/** Minimal product row for related / recently-viewed (client bundle) */
+export interface ProductCardSummary {
+  id: string;
+  slug: string;
+  nameAr: string;
+  price: number;
+  hero: string;
+}
+
 export interface ProductVariant {
   id: string;
   name: LocalizedString;

@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types";
 import { getReviewsForProduct, moroccanCities } from "@/data/products";
-import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
@@ -131,14 +130,6 @@ export function ProductPageCurvesGlow({ product }: Props) {
         } as CSSProperties
       }
     >
-      <FacebookProductTracker
-        productId={product.id}
-        contentName={product.name.ar}
-        value={price}
-        currency="MAD"
-        quantity={1}
-      />
-
       {/* Top bar */}
       <div className="bg-[#8b3a4a] text-white text-xs sm:text-sm py-2.5 px-4">
         <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-x-5 gap-y-1 text-center">

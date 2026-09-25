@@ -22,8 +22,8 @@ import {
 } from "lucide-react";
 import type { Product, ProductVariant } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
-import { products } from "@/data/products";
-import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
+import type { ProductCardSummary } from "@/types";
+import { getFallbackRelatedCards } from "@/data/product-cards";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import { resolveProductImage } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
@@ -71,7 +71,7 @@ function resolveLampImage(imageType: PremiumImageType) {
 
 interface Props {
   product: Product;
-  related?: Product[];
+  related?: ProductCardSummary[];
 }
 
 function OfferCard({
@@ -199,7 +199,7 @@ export function ProductPageWarmLedDecorLamp({ product, related: relatedProp }: P
   const maxQty = Math.min(variant.stock || 3, 3);
 
   const related = useMemo(
-    () => (relatedProp && relatedProp.length > 0 ? relatedProp : products.filter((p) => p.id !== product.id)).slice(0, 4),
+    () => (relatedProp && relatedProp.length > 0 ? relatedProp : getFallbackRelatedCards(product.id, 4)),
     [relatedProp, product.id],
   );
 
@@ -231,14 +231,6 @@ export function ProductPageWarmLedDecorLamp({ product, related: relatedProp }: P
 
   return (
     <div className="min-h-screen bg-[#f7f3ed] text-[#2c2419] font-sans w-full max-w-full overflow-x-clip" dir="rtl">
-      <FacebookProductTracker
-        productId={product.id}
-        contentName={product.name.ar}
-        value={variant.price}
-        currency="MAD"
-        quantity={orderQty}
-      />
-
       {/* Trust strip */}
       <div className="bg-[#2c2419] text-[#f5ead8] text-xs sm:text-sm py-2.5 px-4">
         <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-1 text-center">
@@ -576,8 +568,8 @@ export function ProductPageWarmLedDecorLamp({ product, related: relatedProp }: P
                 >
                   <div className="relative aspect-square">
                     <Image
-                      src={resolveProductImage(p.slug, "02-premium-hero", "webp")}
-                      alt={p.name.ar}
+                      src={p.hero}
+                      alt={p.nameAr}
                       fill
                       className="object-cover"
                       sizes="40vw"
@@ -585,7 +577,7 @@ export function ProductPageWarmLedDecorLamp({ product, related: relatedProp }: P
                     />
                   </div>
                   <div className="p-3 text-center">
-                    <p className="text-xs font-bold line-clamp-2 text-[#2c2419] mb-1">{p.name.ar}</p>
+                    <p className="text-xs font-bold line-clamp-2 text-[#2c2419] mb-1">{p.nameAr}</p>
                     <p className="text-sm font-bold text-[#8b6914]">{formatPriceNumber(p.price, "ar")} درهم</p>
                   </div>
                 </Link>

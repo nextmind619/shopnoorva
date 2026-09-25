@@ -56,7 +56,7 @@ function SlideImage({ slide, priority }: { slide: GallerySlide; priority?: boole
           fill
           priority={priority}
           loading={priority ? undefined : "lazy"}
-          quality={crisp ? 95 : priority ? 90 : 80}
+          quality={crisp ? 90 : priority ? 75 : 75}
           unoptimized={crisp}
           sizes="(max-width: 768px) 100vw, 800px"
           className={cn(

@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import { products, getProductBySlug, getProductById, getReviewsForProduct } from "@/data/products";
+import { products, getProductBySlug, getReviewsForProduct } from "@/data/products";
 import { ProductPageClient } from "@/components/product/product-page-client";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL } from "@/lib/site";
+import { buildRelatedProductCards } from "@/lib/catalog/to-product-cards";
 
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
@@ -13,6 +14,9 @@ import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
 }
+
+/** SSG + long CDN cache — product copy changes redeploy via build */
+export const revalidate = 86400;
 
 const SHIATSU_SLUG = "shiatsu-neck-shoulder-massager";
 const CALCULATOR_SLUG = "solar-calculator-lcd-notepad";
@@ -664,10 +668,14 @@ export default async function ProductPage({
   const product = getProductBySlug(slug);
   if (!product) notFound();
 
-  const upsells = (product.upsellIds || []).map((id) => getProductById(id)).filter(Boolean) as typeof products;
-  const crossSells = (product.crossSellIds || []).map((id) => getProductById(id)).filter(Boolean) as typeof products;
+  const relatedCards = buildRelatedProductCards(product, 4);
   const defaultVariant = product.variants[0];
   const hero = resolveProductHero(product);
+  const reviewPool = getReviewsForProduct(product.id);
+  const clientReviews =
+    product.slug === "mini-egg-boiler" || product.slug === BT12_SLUG
+      ? reviewPool.filter((r) => r.productId === product.id)
+      : reviewPool;
   const productUrl = `${SITE_URL}/ar/products/${product.slug}`;
   const productFaqs = getProductFaqs(product.slug, product.warrantyMonths || 12);
   const isShiatsu = product.slug === SHIATSU_SLUG;
@@ -718,6 +726,7 @@ export default async function ProductPage({
 
   return (
     <>
+      <link rel="preload" as="image" href={hero} fetchPriority="high" />
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -786,7 +795,7 @@ export default async function ProductPage({
           }}
         />
       )}
-      <ProductPageClient product={product} upsells={upsells} crossSells={crossSells} />
+      <ProductPageClient product={product} relatedCards={relatedCards} reviews={clientReviews} />
     </>
   );
 }

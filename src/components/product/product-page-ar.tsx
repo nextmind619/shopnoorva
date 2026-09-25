@@ -21,8 +21,8 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
-import { products, getProductById, getReviewsForProduct } from "@/data/products";
-import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
+import type { ProductCardSummary, ProductReview } from "@/types";
+import { getProductCardById } from "@/data/product-cards";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { getProductCroContent } from "@/lib/product-cro-content";
@@ -259,7 +259,8 @@ function getProductFaqs(product: Product) {
 
 interface ProductPageArProps {
   product: Product;
-  related?: Product[];
+  related?: ProductCardSummary[];
+  reviews?: ProductReview[];
 }
 
 function getDefaultVariant(product: Product) {
@@ -269,7 +270,7 @@ function getDefaultVariant(product: Product) {
   return product.variants.find((v) => isPackVariantSku(v.sku) && v.sku.endsWith("-2PK")) ?? product.variants[0];
 }
 
-export function ProductPageAr({ product, related: relatedProp }: ProductPageArProps) {
+export function ProductPageAr({ product, related: relatedProp, reviews: reviewsProp }: ProductPageArProps) {
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
   const recentlyViewedIds = useRecentlyViewedStore((s) => s.productIds);
 
@@ -283,11 +284,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
   const name = product.name.ar;
   const discount = calculateDiscount(variant.price, variant.compareAtPrice);
-  const allReviews = getReviewsForProduct(product.id);
   const reviews =
-    product.slug === "mini-egg-boiler" || product.slug === BT12_SLUG
-      ? allReviews.filter((r) => r.productId === product.id)
-      : allReviews;
+    reviewsProp ??
+    (product.slug === "mini-egg-boiler" || product.slug === BT12_SLUG ? [] : []);
   const headline = getBenefitHeadline(product);
   const productFaqs = getProductFaqs(product);
   const savedAmount =
@@ -295,17 +294,14 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
       ? variant.compareAtPrice - variant.price
       : 0;
 
-  const related = useMemo(
-    () => (relatedProp && relatedProp.length > 0 ? relatedProp : products.filter((p) => p.id !== product.id)).slice(0, 4),
-    [relatedProp, product.id],
-  );
+  const related = relatedProp ?? [];
 
   const recentlyViewed = useMemo(
     () =>
       recentlyViewedIds
         .filter((id) => id !== product.id)
-        .map((id) => getProductById(id))
-        .filter((p): p is Product => Boolean(p))
+        .map((id) => getProductCardById(id))
+        .filter((p): p is ProductCardSummary => Boolean(p))
         .slice(0, 8),
     [recentlyViewedIds, product.id],
   );
@@ -427,13 +423,6 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
 
   return (
     <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans w-full max-w-full overflow-x-clip min-w-0" dir="rtl">
-      <FacebookProductTracker
-        productId={product.id}
-        contentName={product.name.ar}
-        value={variant.price}
-        currency="MAD"
-        quantity={orderQty}
-      />
       {/* شريط ثقة علوي */}
       <div className="bg-[#12121a] border-b border-white/10 text-white/80 text-xs sm:text-sm py-2.5 px-4">
         <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-x-6 gap-y-1 text-center">
@@ -960,10 +949,10 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                   className="group rounded-2xl overflow-hidden border border-white/8 bg-[#12121a] hover:border-[#6366f1]/40 transition-colors"
                 >
                   <div className="relative aspect-square">
-                    <Image src={resolveProductHero(p)} alt={p.name.ar} fill className="object-cover" sizes="40vw" loading="lazy" />
+                    <Image src={p.hero} alt={p.nameAr} fill className="object-cover" sizes="40vw" loading="lazy" />
                   </div>
                   <div className="p-3 text-center">
-                    <p className="text-xs font-bold line-clamp-2 text-white mb-1">{p.name.ar}</p>
+                    <p className="text-xs font-bold line-clamp-2 text-white mb-1">{p.nameAr}</p>
                     <p className="text-sm font-bold text-[#818cf8]">{formatPriceNumber(p.price, "ar")} درهم</p>
                   </div>
                 </Link>
@@ -983,9 +972,9 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                   className="shrink-0 w-28 rounded-xl overflow-hidden border border-white/8 bg-[#12121a]"
                 >
                   <div className="relative aspect-square">
-                    <Image src={resolveProductHero(p)} alt={p.name.ar} fill className="object-cover" sizes="112px" />
+                    <Image src={p.hero} alt={p.nameAr} fill className="object-cover" sizes="112px" loading="lazy" />
                   </div>
-                  <p className="text-[10px] font-medium line-clamp-2 text-white/70 p-2 text-center">{p.name.ar}</p>
+                  <p className="text-[10px] font-medium line-clamp-2 text-white/70 p-2 text-center">{p.nameAr}</p>
                 </Link>
               ))}
             </div>

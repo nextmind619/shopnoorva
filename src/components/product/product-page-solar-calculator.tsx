@@ -25,7 +25,6 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types";
 import { moroccanCities } from "@/data/products";
-import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductImage } from "@/lib/product-images/resolve";
 import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
@@ -193,14 +192,6 @@ export function ProductPageSolarCalculator({ product }: Props) {
 
   return (
     <div className="min-h-screen bg-[#f4f6f8] text-[#1c2333] font-sans w-full max-w-full overflow-x-clip" dir="rtl">
-      <FacebookProductTracker
-        productId={product.id}
-        contentName={product.name.ar}
-        value={price}
-        currency="MAD"
-        quantity={1}
-      />
-
       <div className="bg-[#0f766e] text-white text-xs sm:text-sm py-2.5 px-4">
         <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-x-5 gap-y-1 text-center">
           <span className="flex items-center gap-1.5">
