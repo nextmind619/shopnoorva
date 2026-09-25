@@ -49,6 +49,10 @@ interface ProductOrderFormProps {
   orderNote?: string;
   /** Override full-name placeholder */
   fullNamePlaceholder?: string;
+  /** Override single-line city/address label (simple COD flow) */
+  addressLabel?: string;
+  /** Override single-line city/address placeholder */
+  addressPlaceholder?: string;
   /** Override currency suffix in order summary (default: درهم / MAD) */
   currencyLabel?: string;
   /** Extra catalog lines added from a PDP upsell. Server recalculates prices. */
@@ -150,6 +154,8 @@ export function ProductOrderForm({
   summaryRows,
   orderNote,
   fullNamePlaceholder,
+  addressLabel,
+  addressPlaceholder,
   currencyLabel,
   addonItems = [],
 }: ProductOrderFormProps) {
@@ -574,7 +580,7 @@ export function ProductOrderForm({
             ) : (
               <>
                 <label htmlFor="address" className="premium-field-label">
-                  {t.address}
+                  {addressLabel ?? t.address}
                 </label>
                 <div className="relative">
                   <MapPin className={cn("pointer-events-none absolute top-1/2 -translate-y-1/2 start-5 h-5 w-5", iconClass)} aria-hidden />
@@ -585,8 +591,8 @@ export function ProductOrderForm({
                     onChange={(e) => updateField("address", e.target.value)}
                     onBlur={() => blurField("address")}
                     className={cn("premium-checkout-input ps-14", fieldBorder("address"))}
-                    placeholder={t.addressPh}
-                    autoComplete="address-level2"
+                    placeholder={addressPlaceholder ?? t.addressPh}
+                    autoComplete="street-address"
                     disabled={loading}
                   />
                 </div>

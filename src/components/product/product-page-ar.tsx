@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types";
 import { useRecentlyViewedStore } from "@/lib/store/recently-viewed-store";
-import { products, getProductById, getReviewsForProduct, moroccanCities } from "@/data/products";
+import { products, getProductById, getReviewsForProduct } from "@/data/products";
 import { FacebookProductTracker } from "@/components/facebook/facebook-trackers";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
@@ -690,31 +690,16 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
                 : "اطلب الآن"}
         </button>
 
-        {isBt12 && product.lifestyleScenes && <ProductUsageModes scenes={product.lifestyleScenes} />}
-        {activeGift && <ProductSurpriseGift gift={activeGift} />}
-
-        {showCarMountUpsell && (
-          <CarMountUpsell products={carMountUpsells} selectedIds={upsellIds} onToggle={toggleUpsell} />
-        )}
-
-        {isKidsArt && (
-          <section className="rounded-3xl border border-white/10 bg-[#12121a]/80 p-6 sm:p-8 text-center space-y-3">
-            <h2 className="text-xl sm:text-2xl font-bold text-white">جاهز تفرح طفلك؟ 🎨</h2>
-            <p className="text-sm sm:text-base text-white/60 leading-relaxed">
-              بـ{formatPriceNumber(variant.price, "ar")} درهم فقط، غادي تحصل على مجموعة الرسم والتلوين + Arabic Magic
-              Book هدية مجانية.
-            </p>
-          </section>
-        )}
-
-        {/* 6. نموذج الطلب */}
+        {/* 6. نموذج الطلب — BT12: مباشرة تحت زر الطلب (مثل mini-egg-boiler) */}
         <ProductOrderForm
           product={product}
           variant={variant}
           quantity={orderQty}
-          extendedAddress={isBt12}
-          cityOptions={isBt12 ? moroccanCities : undefined}
           fullNamePlaceholder={isBt12 ? "الاسم الكامل" : undefined}
+          addressLabel={isBt12 ? "المدينة أو العنوان" : undefined}
+          addressPlaceholder={
+            isBt12 ? "مثال: الدار البيضاء — الحي، الشارع أو علامة قريبة" : undefined
+          }
           quantityLabel={isBogo ? "2 قطع" : undefined}
           orderNote={combinedOrderNote}
           submitLabel={
@@ -755,6 +740,23 @@ export function ProductPageAr({ product, related: relatedProp }: ProductPageArPr
             unitPrice: getCarMountUpsellPrice(item.id),
           }))}
         />
+
+        {isBt12 && product.lifestyleScenes && <ProductUsageModes scenes={product.lifestyleScenes} />}
+        {activeGift && <ProductSurpriseGift gift={activeGift} />}
+
+        {showCarMountUpsell && (
+          <CarMountUpsell products={carMountUpsells} selectedIds={upsellIds} onToggle={toggleUpsell} />
+        )}
+
+        {isKidsArt && (
+          <section className="rounded-3xl border border-white/10 bg-[#12121a]/80 p-6 sm:p-8 text-center space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold text-white">جاهز تفرح طفلك؟ 🎨</h2>
+            <p className="text-sm sm:text-base text-white/60 leading-relaxed">
+              بـ{formatPriceNumber(variant.price, "ar")} درهم فقط، غادي تحصل على مجموعة الرسم والتلوين + Arabic Magic
+              Book هدية مجانية.
+            </p>
+          </section>
+        )}
 
         {/* 7. الفوائد */}
         <ProductBenefitsSection
