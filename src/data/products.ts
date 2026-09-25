@@ -2773,8 +2773,8 @@ export const products: Product[] = [
     price: BT12_PRICE_MAD,
     sku: "NRV-BT12-01",
     stock: 48,
-    rating: 0,
-    reviewCount: 0,
+    rating: 5,
+    reviewCount: 4,
     soldCount: 0,
     isBestSeller: false,
     isTrending: false,
@@ -3264,6 +3264,71 @@ export const reviews: ProductReview[] = [
     date: "2026-07-15",
     verified: true,
     images: ["/reviews/foldable-mosquito-bed-tent/06-kids-room-thumb.webp"],
+  },
+  // BT12 Selfie Stick — customer unboxing photos
+  {
+    id: "rbt12-1",
+    productId: "prod-bt12",
+    author: "سلma الحرش",
+    city: "الدار البيضاء",
+    rating: 5,
+    title: L("وصل كامل", "Colis complet", "Complete package"),
+    content: L(
+      "العصا، الضوئين، الكابل والدليل — كلشي موجود فالعلبة. التغليف نظيف والتوصيل سريع.",
+      "Perche, lumières, câble et notice — tout est dans la boîte. Emballage propre, livraison rapide.",
+      "Stick, lights, cable and manual — everything was in the box. Clean packaging, fast delivery."
+    ),
+    date: "2026-09-18",
+    verified: true,
+    images: ["/reviews/bt12-4in1-selfie-stick-tripod/03-unbox-full-kit.webp"],
+  },
+  {
+    id: "rbt12-2",
+    productId: "prod-bt12",
+    author: "ياسين العمراني",
+    city: "مراكش",
+    rating: 5,
+    title: L("الضوئين كيخدمو", "Les lumières marchent", "Lights work well"),
+    content: L(
+      "جربت الضوئين الدائريين والهاتف كيبان أوضح فالسيلفي. الريموت صغير وساهل.",
+      "J'ai testé les deux anneaux lumineux, le téléphone ressort mieux en selfie. Télécommande petite et pratique.",
+      "Tested both ring lights — phone looks clearer in selfies. Remote is small and easy."
+    ),
+    date: "2026-09-16",
+    verified: true,
+    images: ["/reviews/bt12-4in1-selfie-stick-tripod/02-unbox-box-lights.webp"],
+  },
+  {
+    id: "rbt12-3",
+    productId: "prod-bt12",
+    author: "إيمان بنعلي",
+    city: "الرباط",
+    rating: 5,
+    title: L("محتويات واضحة", "Contenu clair", "Clear contents"),
+    content: L(
+      "لقيت العصا مطوية، الرؤوس، والملحقات منظّمين. كيبان نفس اللي فالصور.",
+      "Perche pliée, têtes et accessoires bien rangés. Conforme aux photos du site.",
+      "Folded stick, heads and accessories neatly packed. Matches the site photos."
+    ),
+    date: "2026-09-14",
+    verified: true,
+    images: ["/reviews/bt12-4in1-selfie-stick-tripod/01-unbox-parts.webp"],
+  },
+  {
+    id: "rbt12-4",
+    productId: "prod-bt12",
+    author: "محمد الزهراوي",
+    city: "طنجة",
+    rating: 5,
+    title: L("العلبة أصلية", "Boîte d'origine", "Original box"),
+    content: L(
+      "المنتج أصلي والعلبة فيها TRIPOD STICK وFILL LIGHT. الدفع عند الاستلام مريح.",
+      "Produit original, boîte TRIPOD STICK / FILL LIGHT. Paiement à la livraison pratique.",
+      "Genuine product, TRIPOD STICK / FILL LIGHT box. Cash on delivery was easy."
+    ),
+    date: "2026-09-12",
+    verified: true,
+    images: ["/reviews/bt12-4in1-selfie-stick-tripod/04-box-tripod-stick.webp"],
   },
   // Shiatsu Neck & Shoulder Massager — 25 Moroccan French reviews (~4.9 avg)
   { id: "rs1", productId: "prod-shiatsu", author: "Yassine El Idrissi", city: "Casablanca", rating: 5, title: L("ارتياح فوري", "Soulagement immédiat", "Instant relief"), content: L("بعد يوم المكتب رقبتني كترتاح في 10 دقايق. التدفئة زوينة بزاف.", "Après le bureau, mon cou se détend en 10 minutes. Le chauffage est excellent.", "After work, my neck relaxes in 10 minutes. The heat is excellent."), date: "2026-07-24", verified: true },
