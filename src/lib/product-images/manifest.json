@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T13:50:39.143Z",
+  "generatedAt": "2026-09-26T14:58:05.395Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3557,12 +3557,12 @@
       "prompts": {},
       "sources": {
         "01-hero-white-bg": "placeholder",
-        "02-premium-hero": "placeholder",
-        "10-features": "placeholder",
-        "03-lifestyle": "placeholder",
-        "14-product-in-use": "placeholder",
-        "17-infographic": "placeholder",
-        "gift-crossbody-bag": "placeholder"
+        "02-premium-hero": "upload",
+        "10-features": "upload",
+        "03-lifestyle": "upload",
+        "14-product-in-use": "upload",
+        "17-infographic": "upload",
+        "gift-crossbody-bag": "upload"
       }
     }
   }
