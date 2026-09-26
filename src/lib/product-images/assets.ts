@@ -125,6 +125,21 @@ function pickFirstHeroUrl(slug: string, variant: HeroVariant): string | undefine
   return undefined;
 }
 
+/** Responsive preload URLs for product LCP (gallery hero slide). */
+export function getProductLcpPreloadUrls(slug: string): { mobile: string; desktop: string } {
+  const key = resolveImageSlug(slug);
+  const heroType = heroImageTypeOrder(slug)[0];
+  const mobile =
+    getProductImageUrl(slug, heroType, "sm") ||
+    getProductImageUrl(slug, heroType, "webp") ||
+    getProductHeroUrl(slug, "sm");
+  const desktop =
+    getProductImageUrl(slug, heroType, "md") ||
+    getProductImageUrl(slug, heroType, "webp") ||
+    getProductHeroUrl(slug);
+  return { mobile, desktop };
+}
+
 export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): string {
   if (slug === "proteine-curve-collagen-glow") {
     return `/products/proteine-curve-collagen-glow.svg`;

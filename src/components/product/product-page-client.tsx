@@ -2,7 +2,12 @@
 
 import dynamic from "next/dynamic";
 import type { Product, ProductCardSummary, ProductReview } from "@/types";
-import { ProductPageAr } from "@/components/product/product-page-ar";
+import type { GallerySlide } from "@/lib/product-gallery-slides";
+
+const ProductPageAr = dynamic(
+  () => import("@/components/product/product-page-ar").then((m) => m.ProductPageAr),
+  { ssr: true, loading: () => <ProductPageShell /> },
+);
 
 const ProductPageVintageLantern = dynamic(
   () => import("@/components/product/product-page-vintage-lantern").then((m) => m.ProductPageVintageLantern),
@@ -38,9 +43,19 @@ interface ProductPageClientProps {
   product: Product;
   relatedCards: ProductCardSummary[];
   reviews?: ProductReview[];
+  gallerySlides?: GallerySlide[];
+  benefitHeadline?: { title: string; subtitle: string };
+  heroImage?: string;
 }
 
-export function ProductPageClient({ product, relatedCards, reviews }: ProductPageClientProps) {
+export function ProductPageClient({
+  product,
+  relatedCards,
+  reviews,
+  gallerySlides,
+  benefitHeadline,
+  heroImage,
+}: ProductPageClientProps) {
   const defaultVariant = product.variants[0];
 
   return (
@@ -63,7 +78,14 @@ export function ProductPageClient({ product, relatedCards, reviews }: ProductPag
       ) : product.slug === "proteine-curve-collagen-glow" ? (
         <ProductPageCurvesGlow product={product} />
       ) : (
-        <ProductPageAr product={product} related={relatedCards} reviews={reviews} />
+        <ProductPageAr
+          product={product}
+          related={relatedCards}
+          reviews={reviews}
+          gallerySlides={gallerySlides}
+          benefitHeadline={benefitHeadline}
+          heroImage={heroImage}
+        />
       )}
     </>
   );

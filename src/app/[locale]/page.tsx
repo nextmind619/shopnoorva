@@ -6,6 +6,8 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 /** Below-fold sections: separate chunk — not in First Load JS */
+export const revalidate = 3600;
+
 const HomeBelowFold = dynamic(
   () => import("@/components/home/home-below-fold").then((m) => m.HomeBelowFold),
   {

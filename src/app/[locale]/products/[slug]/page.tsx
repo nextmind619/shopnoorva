@@ -7,7 +7,10 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL } from "@/lib/site";
 import { buildRelatedProductCards } from "@/lib/catalog/to-product-cards";
 
+import { getProductLcpPreloadUrls } from "@/lib/product-images/assets";
 import { resolveProductHero } from "@/lib/product-images/resolve";
+import { buildProductGallerySlides, type GallerySlide } from "@/lib/product-gallery-slides";
+import { getProductBenefitHeadline } from "@/lib/catalog/product-benefit-headline";
 import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
 import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
 import { FOLDABLE_WASHER_FAQS, FOLDABLE_WASHER_SLUG } from "@/data/foldable-washer";
@@ -694,6 +697,9 @@ export default async function ProductPage({
   const relatedCards = buildRelatedProductCards(product, 4);
   const defaultVariant = product.variants[0];
   const hero = resolveProductHero(product);
+  const lcpPreload = getProductLcpPreloadUrls(product.slug);
+  const gallerySlides: GallerySlide[] = buildProductGallerySlides(product);
+  const benefitHeadline = getProductBenefitHeadline(product);
   const reviewPool = getReviewsForProduct(product.id);
   const clientReviews =
     product.slug === "mini-egg-boiler" || product.slug === BT12_SLUG
@@ -755,7 +761,8 @@ export default async function ProductPage({
 
   return (
     <>
-      <link rel="preload" as="image" href={hero} fetchPriority="high" />
+      <link rel="preload" as="image" href={lcpPreload.mobile} media="(max-width: 768px)" fetchPriority="high" />
+      <link rel="preload" as="image" href={lcpPreload.desktop} media="(min-width: 769px)" fetchPriority="high" />
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -824,7 +831,14 @@ export default async function ProductPage({
           }}
         />
       )}
-      <ProductPageClient product={product} relatedCards={relatedCards} reviews={clientReviews} />
+      <ProductPageClient
+        product={product}
+        relatedCards={relatedCards}
+        reviews={clientReviews}
+        gallerySlides={gallerySlides}
+        benefitHeadline={benefitHeadline}
+        heroImage={hero}
+      />
     </>
   );
 }

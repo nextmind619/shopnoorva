@@ -63,9 +63,20 @@ export function FacebookPixelScript() {
       }
     }
 
-    void boot();
+    const run = () => {
+      if (!cancelled) void boot();
+    };
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(run, { timeout: 4000 });
+      return () => {
+        cancelled = true;
+        window.cancelIdleCallback(idleId);
+      };
+    }
+    const timer = window.setTimeout(run, 1200);
     return () => {
       cancelled = true;
+      window.clearTimeout(timer);
     };
   }, []);
 

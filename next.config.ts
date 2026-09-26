@@ -57,6 +57,24 @@ const nextConfig: NextConfig = {
         },
       ],
     },
+    {
+      source: "/ar/products/:slug*",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, s-maxage=86400, stale-while-revalidate=604800",
+        },
+      ],
+    },
+    {
+      source: "/ar",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, s-maxage=3600, stale-while-revalidate=86400",
+        },
+      ],
+    },
   ],
 };
 

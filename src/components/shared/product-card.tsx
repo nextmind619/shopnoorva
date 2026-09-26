@@ -11,16 +11,19 @@ import { PriceDisplay } from "@/components/shared/price-display";
 
 interface ProductCardProps {
   product: Product;
+  /** Resolved on the server for catalog grids (avoids manifest on the client). */
+  heroImage?: string;
   priority?: boolean;
   className?: string;
 }
 
-export function ProductCard({ product, priority = false, className }: ProductCardProps) {
+export function ProductCard({ product, heroImage, priority = false, className }: ProductCardProps) {
   const locale = useLocale() as Locale;
   const defaultVariant = product.variants[0];
   const discount = calculateDiscount(defaultVariant.price, defaultVariant.compareAtPrice);
   /** Prefer prebuilt sm WebP — lighter than full hero + optimizer round-trip */
-  const imageUrl = resolveProductHero(product, "sm");
+  const imageUrl = heroImage ?? resolveProductHero(product, "sm");
+  const preoptimized = imageUrl.startsWith("/products/") && /\.(webp|avif)$/i.test(imageUrl);
 
   return (
     <div className={cn("group", className)}>
@@ -31,7 +34,8 @@ export function ProductCard({ product, priority = false, className }: ProductCar
             alt={getLocalized(product.images[0]?.alt || product.name, locale)}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            quality={70}
+            quality={preoptimized ? 75 : 70}
+            unoptimized={preoptimized}
             className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
             priority={priority}
             loading={priority ? undefined : "lazy"}

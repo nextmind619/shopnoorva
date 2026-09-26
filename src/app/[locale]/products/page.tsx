@@ -3,7 +3,11 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { products } from "@/data/products";
 import { enrichProduct } from "@/lib/product-images/enrich-products";
+import { getProductImageUrl } from "@/lib/product-images/assets";
+import { resolveProductHero } from "@/lib/product-images/resolve";
 import { ProductCard, SectionHeader } from "@/components/shared/product-card";
+
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "المتجر | NOORVA",
@@ -41,9 +45,20 @@ export default async function ProductsPage({
       <SectionHeader title={t("bestSellers")} subtitle="NOORVA" />
       <p className="text-neutral-500 text-sm mb-8">{filtered.length} products</p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        {filtered.map((product) => (
-          <ProductCard key={product.id} product={enrichProduct(product)} />
-        ))}
+        {filtered.map((product, index) => {
+          const enriched = enrichProduct(product);
+          const heroImage =
+            getProductImageUrl(product.slug, "02-premium-hero", "sm") ||
+            resolveProductHero(enriched, "sm");
+          return (
+            <ProductCard
+              key={product.id}
+              product={enriched}
+              heroImage={heroImage}
+              priority={index < 4}
+            />
+          );
+        })}
       </div>
     </div>
   );

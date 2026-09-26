@@ -22,6 +22,8 @@ const SHIATSU_GIFT_IMAGE = "/products/camel-massage-cream-gift.jpg";
 
 interface PremiumProductGalleryProps {
   product: Product;
+  /** Prebuilt on the server — skips heavy gallery config on the client. */
+  slides?: GallerySlide[];
   leadSlides?: GallerySlide[];
 }
 
@@ -38,9 +40,14 @@ const SECTION_BG: Record<GallerySection, string> = {
   specifications: "bg-gradient-to-b from-neutral-900 via-[#0d1220] to-neutral-900",
 };
 
+function isPreoptimizedAsset(url: string): boolean {
+  return url.startsWith("/products/") && /\.(webp|avif)$/i.test(url);
+}
+
 function SlideImage({ slide, priority }: { slide: GallerySlide; priority?: boolean }) {
   const isLight = ["hero", "package", "accessories", "dimensions"].includes(slide.section);
   const crisp = /\.(jpe?g|png)$/i.test(slide.imageUrl);
+  const preoptimized = isPreoptimizedAsset(slide.imageUrl);
 
   return (
     <div className={cn("relative w-full h-full overflow-hidden", SECTION_BG[slide.section])}>
@@ -56,8 +63,9 @@ function SlideImage({ slide, priority }: { slide: GallerySlide; priority?: boole
           fill
           priority={priority}
           loading={priority ? undefined : "lazy"}
-          quality={crisp ? 90 : priority ? 75 : 75}
-          unoptimized={crisp}
+          fetchPriority={priority ? "high" : "auto"}
+          quality={preoptimized ? 80 : crisp ? 90 : 75}
+          unoptimized={crisp || preoptimized}
           sizes="(max-width: 768px) 100vw, 800px"
           className={cn(
             slide.objectFit === "contain" ? "object-contain" : "object-cover",
@@ -150,13 +158,16 @@ function GalleryOverlay({ mode, current, active, total, onClose, onPrev, onNext 
   );
 }
 
-export function PremiumProductGallery({ product, leadSlides }: PremiumProductGalleryProps) {
+export function PremiumProductGallery({ product, slides: serverSlides, leadSlides }: PremiumProductGalleryProps) {
   const slides = useMemo(() => {
-    const base = buildPrimaryGallerySlides(product, 6);
+    const base =
+      serverSlides?.length ?
+        serverSlides
+      : buildPrimaryGallerySlides(product, 6);
     if (!leadSlides?.length) return base;
     const seen = new Set(leadSlides.map((slide) => slide.imageUrl));
     return [...leadSlides, ...base.filter((slide) => !seen.has(slide.imageUrl))].slice(0, 7);
-  }, [product, leadSlides]);
+  }, [product, serverSlides, leadSlides]);
   const [active, setActive] = useState(0);
   const [zoomOpen, setZoomOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
@@ -212,10 +223,10 @@ export function PremiumProductGallery({ product, leadSlides }: PremiumProductGal
         <AnimatePresence mode="wait">
           <motion.div
             key={current.id}
-            initial={{ opacity: 0, y: 10 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-center sm:text-start"
           >
             <p className="text-[10px] font-bold tracking-[0.25em] text-[#6366f1] uppercase mb-1.5">
@@ -235,7 +246,7 @@ export function PremiumProductGallery({ product, leadSlides }: PremiumProductGal
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
-              initial={{ opacity: 0 }}
+              initial={false}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}

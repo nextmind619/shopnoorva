@@ -49,6 +49,7 @@ export default async function LocaleLayout({
       <head>
         <meta name="facebook-domain-verification" content="gsg759rql91jkxu1wywq1fibppl2tl" />
         {/* Hero uses next/image priority — avoid double-fetching the raw WebP */}
+        <link rel="preconnect" href={process.env.NEXT_PUBLIC_SITE_URL || "https://shopnoorva.shop"} crossOrigin="" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://analytics.tiktok.com" />

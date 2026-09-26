@@ -25,13 +25,11 @@ import type { ProductCardSummary, ProductReview } from "@/types";
 import { getProductCardById } from "@/data/product-cards";
 import { formatPriceNumber, calculateDiscount, cn } from "@/lib/utils";
 import { resolveProductHero } from "@/lib/product-images/resolve";
-import { getProductCroContent } from "@/lib/product-cro-content";
-import { PremiumProductGallery } from "@/components/product/product-gallery-premium";
+import type { GallerySlide } from "@/lib/product-gallery-slides";
 import { ProductColorPicker } from "@/components/product/product-color-picker";
 import { ProductVariantPicker, isPackVariantSku } from "@/components/product/product-variant-picker";
 import { ShiatsuCroSections } from "@/components/product/shiatsu-cro-sections";
 import { KidsArtCroSections } from "@/components/product/kids-art-cro-sections";
-import type { GallerySlide } from "@/lib/product-gallery-slides";
 import {
   KIDS_ART_COLORS,
   KIDS_ART_DEFAULT_COLOR,
@@ -83,21 +81,24 @@ const ProductHowToSection = dynamic(
   () => import("@/components/product/product-cro-sections").then((m) => m.ProductHowToSection),
   { ssr: true }
 );
+const PremiumProductGallery = dynamic(
+  () => import("@/components/product/product-gallery-premium").then((m) => m.PremiumProductGallery),
+  {
+    ssr: true,
+    loading: () => (
+      <div
+        className="aspect-[4/5] sm:aspect-square rounded-[1.75rem] bg-[#12121a] border border-white/10 animate-pulse"
+        aria-hidden
+      />
+    ),
+  }
+);
 const TRUST_BADGES = [
   { icon: Truck, label: "توصيل مجاني" },
   { icon: Banknote, label: "الدفع عند الاستلام" },
   { icon: Shield, label: "جودة فاخرة" },
   { icon: MessageCircle, label: "رضا مضمون" },
 ] as const;
-
-function getBenefitHeadline(product: Product): { title: string; subtitle: string } {
-  const cro = getProductCroContent(product.slug);
-  if (cro?.headline) return cro.headline;
-  if (product.problemSolution) {
-    return { title: product.problemSolution.ar, subtitle: product.shortDescription.ar };
-  }
-  return { title: product.name.ar, subtitle: product.shortDescription.ar };
-}
 
 function getProductFaqs(product: Product) {
   if (product.slug === BT12_SLUG) return [...BT12_FAQS];
@@ -269,6 +270,9 @@ interface ProductPageArProps {
   product: Product;
   related?: ProductCardSummary[];
   reviews?: ProductReview[];
+  gallerySlides?: GallerySlide[];
+  benefitHeadline?: { title: string; subtitle: string };
+  heroImage?: string;
 }
 
 function getDefaultVariant(product: Product) {
@@ -278,7 +282,13 @@ function getDefaultVariant(product: Product) {
   return product.variants.find((v) => isPackVariantSku(v.sku) && v.sku.endsWith("-2PK")) ?? product.variants[0];
 }
 
-export function ProductPageAr({ product, related: relatedProp, reviews: reviewsProp }: ProductPageArProps) {
+export function ProductPageAr({
+  product,
+  related: relatedProp,
+  reviews: reviewsProp,
+  gallerySlides,
+  benefitHeadline: benefitHeadlineProp,
+}: ProductPageArProps) {
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addProduct);
   const recentlyViewedIds = useRecentlyViewedStore((s) => s.productIds);
 
@@ -293,7 +303,11 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
   const name = product.name.ar;
   const discount = calculateDiscount(variant.price, variant.compareAtPrice);
   const reviews = reviewsProp ?? [];
-  const headline = getBenefitHeadline(product);
+  const headline =
+    benefitHeadlineProp ??
+    (product.problemSolution
+      ? { title: product.problemSolution.ar, subtitle: product.shortDescription.ar }
+      : { title: product.name.ar, subtitle: product.shortDescription.ar });
   const productFaqs = getProductFaqs(product);
   const savedAmount =
     variant.compareAtPrice && variant.compareAtPrice > variant.price
@@ -524,7 +538,11 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
 
         {/* 1. الصور */}
         <section aria-label="صور المنتج">
-          <PremiumProductGallery product={product} leadSlides={kidsArtGallerySlides} />
+          <PremiumProductGallery
+            product={product}
+            slides={gallerySlides}
+            leadSlides={kidsArtGallerySlides}
+          />
         </section>
 
         {/* 2. اسم المنتج */}
