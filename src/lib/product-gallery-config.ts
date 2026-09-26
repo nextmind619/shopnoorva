@@ -13,7 +13,6 @@ import {
   LAPTOP_DESK_GIFT_IMAGE,
   LAPTOP_DESK_HERO_IMAGE,
   LAPTOP_DESK_IN_USE_IMAGE,
-  LAPTOP_DESK_INFOGRAPHIC_IMAGE,
   LAPTOP_DESK_LIFESTYLE_IMAGE,
   LAPTOP_DESK_SLUG,
 } from "@/data/laptop-desk";
@@ -1483,15 +1482,6 @@ const LAPTOP_DESK_SLIDES: GallerySlideConfig[] = [
     heading: "من السرير بلا تعب",
     subtitle: "القاعدة C-shape كتدخل تحت السرير",
     objectFit: "cover",
-  },
-  {
-    section: "features",
-    imageType: "17-infographic",
-    imageUrl: LAPTOP_DESK_INFOGRAPHIC_IMAGE,
-    emoji: "📋",
-    heading: "كل شيء واضح",
-    subtitle: "399 درهم · COD · توصيل مجاني",
-    objectFit: "contain",
   },
   {
     section: "gift",
