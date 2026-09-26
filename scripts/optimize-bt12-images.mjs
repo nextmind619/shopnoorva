@@ -29,10 +29,52 @@ function rel(filePath) {
   return `/${path.relative(PUBLIC, filePath).replace(/\\/g, "/")}`;
 }
 
-async function optimize(inputPath, baseName) {
+const NOTO_ARABIC_BOLD = "/usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf";
+let cachedArabicFontB64;
+
+async function arabicFontBase64() {
+  if (!cachedArabicFontB64) {
+    cachedArabicFontB64 = (await fs.readFile(NOTO_ARABIC_BOLD)).toString("base64");
+  }
+  return cachedArabicFontB64;
+}
+
+/** Amber «هدية مجانية» pill — baked into gift product photos for gallery + gift module. */
+async function renderGiftBadgePng(width, height) {
+  const fontB64 = await arabicFontBase64();
+  const fontSize = Math.round(height * 0.43);
+  const rx = Math.round(height / 2);
+  const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>@font-face{font-family:N;src:url('data:font/ttf;base64,${fontB64}') format('truetype');}</style>
+<filter id="s" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-opacity="0.35"/></filter>
+</defs>
+<rect width="${width}" height="${height}" rx="${rx}" fill="#fbbf24" filter="url(#s)"/>
+<text x="${width / 2}" y="${height / 2 + 1}" dominant-baseline="middle" text-anchor="middle" font-family="N" font-size="${fontSize}" fill="#1a1200">🎁 هدية مجانية</text>
+</svg>`;
+  return sharp(Buffer.from(svg)).png().toBuffer();
+}
+
+async function applyGiftBadge(inputBuffer) {
+  const rotated = await sharp(inputBuffer).rotate().toBuffer();
+  const { width: w } = await sharp(rotated).metadata();
+  const scale = w / 1024;
+  const badgeW = Math.round(300 * scale);
+  const badgeH = Math.round(56 * scale);
+  const pad = Math.round(20 * scale);
+  const badge = await renderGiftBadgePng(badgeW, badgeH);
+  return sharp(rotated)
+    .composite([{ input: badge, top: pad, left: w - badgeW - pad }])
+    .toBuffer();
+}
+
+async function optimize(inputPath, baseName, { withGiftBadge = false } = {}) {
   await fs.mkdir(path.join(OUT, "thumbs"), { recursive: true });
   await fs.mkdir(path.join(OUT, "responsive"), { recursive: true });
-  const buffer = await fs.readFile(inputPath);
+  let buffer = await fs.readFile(inputPath);
+  if (withGiftBadge) {
+    buffer = await applyGiftBadge(buffer);
+  }
   const jpg = path.join(OUT, `${baseName}.jpg`);
   const webp = path.join(OUT, `${baseName}.webp`);
   const avif = path.join(OUT, `${baseName}.avif`);
@@ -93,7 +135,8 @@ const giftSrc = await firstExisting([
   path.join(ROOT, "shopnoorva-bt12/gift-usbc-240w.jpg"),
   "/opt/cursor/artifacts/assets/gift-usbc-240w.png",
 ]);
-images["gift-usbc-240w"] = await optimize(giftSrc, "gift-usbc-240w");
+images["gift-usbc-240w"] = await optimize(giftSrc, "gift-usbc-240w", { withGiftBadge: true });
+sources["gift-usbc-240w"] = "commercial";
 
 const manifest = JSON.parse(await fs.readFile(MANIFEST, "utf8"));
 manifest.generatedAt = new Date().toISOString();
