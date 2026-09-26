@@ -105,6 +105,44 @@ export function isBlockedCustomerAutoWhatsApp(templateKey?: string): boolean {
   return !isCustomerWhatsAppEnabled();
 }
 
+/** Morocco WhatsApp digits for comparison (212…). */
+export function normalizeWhatsAppDigits(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.startsWith("212")) return digits;
+  if (digits.startsWith("0")) return `212${digits.slice(1)}`;
+  if (digits.length >= 9) return `212${digits}`;
+  return digits;
+}
+
+const ADMIN_WHATSAPP_NUMBERS = (): Set<string> => {
+  const nums = new Set<string>();
+  for (const raw of [aiConfig.brand.adminWhatsApp, aiConfig.brand.supportWhatsApp]) {
+    const n = normalizeWhatsAppDigits(raw);
+    if (n.length >= 9) nums.add(n);
+  }
+  return nums;
+};
+
+export function isAdminWhatsAppRecipient(recipient: string): boolean {
+  const n = normalizeWhatsAppDigits(recipient);
+  return ADMIN_WHATSAPP_NUMBERS().has(n);
+}
+
+/**
+ * Any outbound WhatsApp to customer phones (bot replies, templates, manual API).
+ * Default OFF — only admin numbers receive WhatsApp unless both force env vars are set.
+ */
+export function isWhatsAppOutboundToCustomersAllowed(): boolean {
+  return isCustomerWhatsAppEnabled();
+}
+
+export function isBlockedWhatsAppToCustomer(recipient: string, templateKey?: string): boolean {
+  if (isAdminWhatsAppRecipient(recipient)) return false;
+  if (isBlockedCustomerAutoWhatsApp(templateKey)) return true;
+  if (templateKey === "admin_new_order") return true;
+  return !isWhatsAppOutboundToCustomersAllowed();
+}
+
 export function isConfigured(value: string): boolean {
   return Boolean(value && value.trim().length > 0);
 }

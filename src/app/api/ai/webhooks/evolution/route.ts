@@ -3,9 +3,12 @@ import { answerCustomer, findOpenConversationByPhone } from "@/lib/ai/support";
 import { sendMessage } from "@/lib/ai/messaging";
 import { notifyAdminEscalation } from "@/lib/ai/admin-notify";
 import { logIntegration } from "@/lib/ai/integrations/logger";
+import { isWhatsAppOutboundToCustomersAllowed } from "@/lib/ai/config";
 
 /** Dedup Evolution retries (same WhatsApp message id). */
 const recentMessageIds = new Map<string, number>();
+/** Dedup when Evolution omits message id (same phone + text within 60s). */
+const recentInboundFingerprint = new Map<string, number>();
 
 function alreadyHandled(messageId: string): boolean {
   const now = Date.now();
@@ -15,6 +18,17 @@ function alreadyHandled(messageId: string): boolean {
   if (!messageId) return false;
   if (recentMessageIds.has(messageId)) return true;
   recentMessageIds.set(messageId, now);
+  return false;
+}
+
+function alreadyHandledFingerprint(phone: string, text: string): boolean {
+  const key = `${phone}:${text.slice(0, 200)}`;
+  const now = Date.now();
+  for (const [id, ts] of recentInboundFingerprint) {
+    if (now - ts > 60_000) recentInboundFingerprint.delete(id);
+  }
+  if (recentInboundFingerprint.has(key)) return true;
+  recentInboundFingerprint.set(key, now);
   return false;
 }
 
@@ -94,6 +108,22 @@ export async function POST(request: NextRequest) {
 
     if (alreadyHandled(inbound.messageId)) {
       return NextResponse.json({ success: true, ignored: true, reason: "duplicate" });
+    }
+
+    if (alreadyHandledFingerprint(inbound.phone, inbound.text)) {
+      return NextResponse.json({ success: true, ignored: true, reason: "duplicate_fingerprint" });
+    }
+
+    if (!isWhatsAppOutboundToCustomersAllowed()) {
+      await logIntegration("evolution", "inbound_webhook", "ok", {
+        phone: inbound.phone,
+        skipped: "customer_whatsapp_bot_disabled",
+      });
+      return NextResponse.json({
+        success: true,
+        ignored: true,
+        reason: "customer_whatsapp_bot_disabled",
+      });
     }
 
     const existing = findOpenConversationByPhone(inbound.phone);

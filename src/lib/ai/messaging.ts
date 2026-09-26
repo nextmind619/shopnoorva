@@ -1,5 +1,10 @@
 import { generateText } from "./openai";
-import { aiConfig, isBlockedCustomerAutoWhatsApp, isConfigured, isEvolutionReady } from "./config";
+import {
+  aiConfig,
+  isBlockedWhatsAppToCustomer,
+  isConfigured,
+  isEvolutionReady,
+} from "./config";
 import { store, uid, type NotificationRecord } from "./memory-store";
 import { logIntegration } from "./integrations/logger";
 
@@ -113,16 +118,19 @@ function defaultSubject(key: string, locale: string): string {
 }
 
 export async function sendMessage(payload: MessagePayload): Promise<NotificationRecord> {
-  if (payload.channel === "whatsapp" && isBlockedCustomerAutoWhatsApp(payload.templateKey)) {
+  if (
+    payload.channel === "whatsapp" &&
+    isBlockedWhatsAppToCustomer(payload.recipient, payload.templateKey)
+  ) {
     const record: NotificationRecord = {
       id: uid("notif"),
       channel: payload.channel,
       recipient: payload.recipient,
       templateKey: payload.templateKey,
       subject: payload.subject,
-      body: "[customer auto WhatsApp disabled]",
+      body: "[customer WhatsApp outbound disabled]",
       status: "failed",
-      error: "customer_auto_whatsapp_disabled",
+      error: "customer_whatsapp_outbound_disabled",
       createdAt: new Date().toISOString(),
     };
     store.notifications.push(record);

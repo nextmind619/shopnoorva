@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { answerCustomer } from "@/lib/ai/support";
 import { sendMessage } from "@/lib/ai/messaging";
+import { isWhatsAppOutboundToCustomersAllowed } from "@/lib/ai/config";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 
 const schema = z.object({
@@ -25,7 +26,12 @@ export async function POST(request: NextRequest) {
     const body = schema.parse(await request.json());
     const result = await answerCustomer(body);
 
-    if (body.autoReplyChannel && body.channel === "whatsapp" && body.phone) {
+    if (
+      body.autoReplyChannel &&
+      body.channel === "whatsapp" &&
+      body.phone &&
+      isWhatsAppOutboundToCustomersAllowed()
+    ) {
       await sendMessage({
         channel: "whatsapp",
         recipient: body.phone,
