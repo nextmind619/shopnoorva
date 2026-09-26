@@ -30,6 +30,10 @@ import {
   Smartphone,
   FoldHorizontal,
   Radio,
+  Laptop,
+  MoveVertical,
+  Lock,
+  Usb,
 } from "lucide-react";
 import type { PremiumImageType } from "@/lib/product-images/types";
 import {
@@ -40,6 +44,14 @@ import {
   BT12_SLUG,
   BT12_SOLO_REMOTE_IMAGE,
 } from "@/data/bt12";
+import {
+  LAPTOP_DESK_FEATURES_IMAGE,
+  LAPTOP_DESK_GIFT_IMAGE,
+  LAPTOP_DESK_HERO_IMAGE,
+  LAPTOP_DESK_IN_USE_IMAGE,
+  LAPTOP_DESK_LIFESTYLE_IMAGE,
+  LAPTOP_DESK_SLUG,
+} from "@/data/laptop-desk";
 
 export type CroHowToStep = {
   step: string;
@@ -1119,6 +1131,91 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         icon: Home,
         title: "مناسب للاستعمال اليومي",
         desc: "حجم صغير كيبقى فوق الكوزينة، وجاهز كل صباح.",
+      },
+    ],
+  },
+  [LAPTOP_DESK_SLUG]: {
+    headline: {
+      title: "اشتغل مرتاح من الكنبة أو السرير",
+      subtitle:
+        "طاولة لابتوب متحركة: ارتفاع قابل للتعديل، عجلات بقفل، وسطح واسع. 399 درهم COD + حقيبة USB هدية.",
+    },
+    midCtaLabels: [
+      "اطلب دابا — 399 درهم COD",
+      "حقيبة USB مقاومة للماء هدية",
+      "توصيل مجاني لجميع المدن",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "ركّب السطح والعجلات",
+        desc: "اتبع الدليل — العملية سريعة وبلا تعقيد.",
+        imageKey: null,
+        imageUrl: LAPTOP_DESK_HERO_IMAGE,
+      },
+      {
+        step: "2",
+        title: "عدّل الارتفاع",
+        desc: "اختر الارتفاع اللي يناسب الكرسي، الكنبة، أو السرير.",
+        imageKey: null,
+        imageUrl: LAPTOP_DESK_FEATURES_IMAGE,
+      },
+      {
+        step: "3",
+        title: "حرّك وثبّت",
+        desc: "دفع الطاولة للبلاصة اللي بغيت وفعّل قفل العجلات.",
+        imageKey: null,
+        imageUrl: LAPTOP_DESK_LIFESTYLE_IMAGE,
+      },
+      {
+        step: "4",
+        title: "استمتع + الهدية",
+        desc: "حط اللابتوب وخدم براحتك. الحقيبة المقاومة للماء مع USB كتجي مجاناً.",
+        imageKey: null,
+        imageUrl: LAPTOP_DESK_GIFT_IMAGE,
+      },
+    ],
+    comparisonBannerImageUrl: LAPTOP_DESK_IN_USE_IMAGE,
+    comparison: {
+      oursLabel: "طاولة NOORVA",
+      rows: [
+        { label: "ارتفاع قابل للتعديل", us: true, them: "ثابت غالباً" },
+        { label: "عجلات + قفل", us: true, them: "بلا عجلات" },
+        { label: "قاعدة C تحت الكنبة/السرير", us: true, them: "رجلية عادية" },
+        { label: "هدية حقيبة USB", us: true, them: "لا" },
+        { label: "الدفع عند الاستلام", us: true, them: "نادر" },
+      ],
+    },
+    benefits: [
+      {
+        icon: Laptop,
+        title: "زاوية مريحة للابتوب",
+        desc: "بلا ما تحمل الجهاز على الركب أو وسادة.",
+      },
+      {
+        icon: MoveVertical,
+        title: "ارتفاع قابل للتعديل",
+        desc: "عدّل حسب وضعيتك — جالس، مائل، أو على السرير.",
+      },
+      {
+        icon: Lock,
+        title: "عجلات 360° + قفل",
+        desc: "تحرك بسهولة و تثبت فبلاصتك.",
+      },
+      {
+        icon: Gift,
+        title: "سطح واسع",
+        desc: "لابتوب + ماوس + هاتف فنفس الوقت.",
+      },
+      {
+        icon: Usb,
+        title: "هدية حقيبة USB",
+        desc: "حقيبة كتف مقاومة للماء مع منفذ شحن — مجاناً.",
+      },
+      {
+        icon: Shield,
+        title: "COD + توصيل مجاني",
+        desc: "399 درهم. ما كخلص والو دابا.",
       },
     ],
   },

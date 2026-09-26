@@ -162,6 +162,13 @@ export const PRODUCT_CARDS: ProductCardSummary[] = [
     "nameAr": "عصا سيلفي BT12 4 في 1 مع ترايبود وضوئين دائريين",
     "price": 349,
     "hero": "/products/bt12-4in1-selfie-stick-tripod/02-premium-hero.webp"
+  },
+  {
+    "id": "prod-laptop-desk",
+    "slug": "mobile-laptop-desk-with-wheels",
+    "nameAr": "طاولة لابتوب متحركة بارتفاع قابل للتعديل وعجلات",
+    "price": 399,
+    "hero": "/products/mobile-laptop-desk-with-wheels/02-premium-hero.webp"
   }
 ];
 

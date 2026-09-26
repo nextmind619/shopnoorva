@@ -8,6 +8,15 @@ import {
   BT12_SLUG,
   BT12_SOLO_REMOTE_IMAGE,
 } from "@/data/bt12";
+import {
+  LAPTOP_DESK_FEATURES_IMAGE,
+  LAPTOP_DESK_GIFT_IMAGE,
+  LAPTOP_DESK_HERO_IMAGE,
+  LAPTOP_DESK_IN_USE_IMAGE,
+  LAPTOP_DESK_INFOGRAPHIC_IMAGE,
+  LAPTOP_DESK_LIFESTYLE_IMAGE,
+  LAPTOP_DESK_SLUG,
+} from "@/data/laptop-desk";
 
 export type GallerySection =
   | "hero"
@@ -1438,6 +1447,63 @@ const EGG_BOILER_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const LAPTOP_DESK_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    imageUrl: LAPTOP_DESK_HERO_IMAGE,
+    emoji: "💻",
+    heading: "طاولة لابتوب متحركة",
+    subtitle: "ارتفاع قابل للتعديل · عجلات بقفل · سطح واسع",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    imageUrl: LAPTOP_DESK_FEATURES_IMAGE,
+    emoji: "✨",
+    heading: "4 مميزات فصورة واحدة",
+    subtitle: "سطح واسع · ارتفاع · عجلات 360° · استعمال متعدد",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "03-lifestyle",
+    imageUrl: LAPTOP_DESK_LIFESTYLE_IMAGE,
+    emoji: "🛋️",
+    heading: "اشتغل من الكنبة",
+    subtitle: "زاوية مريحة للعمل عن بُعد أو الدراسة",
+    objectFit: "cover",
+  },
+  {
+    section: "projection",
+    imageType: "14-product-in-use",
+    imageUrl: LAPTOP_DESK_IN_USE_IMAGE,
+    emoji: "🛏️",
+    heading: "من السرير بلا تعب",
+    subtitle: "القاعدة C-shape كتدخل تحت السرير",
+    objectFit: "cover",
+  },
+  {
+    section: "features",
+    imageType: "17-infographic",
+    imageUrl: LAPTOP_DESK_INFOGRAPHIC_IMAGE,
+    emoji: "📋",
+    heading: "كل شيء واضح",
+    subtitle: "399 درهم · COD · توصيل مجاني",
+    objectFit: "contain",
+  },
+  {
+    section: "gift",
+    imageType: "11-package-contents",
+    imageUrl: LAPTOP_DESK_GIFT_IMAGE,
+    emoji: "🎁",
+    heading: "هدية مجانية مع الطلب",
+    subtitle: "حقيبة كتف مقاومة للماء مع منفذ USB — بلا درهم زايد",
+    objectFit: "contain",
+  },
+];
+
 const BT12_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
@@ -1516,6 +1582,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "kids-art-set-easel-208": KIDS_ART_SLIDES,
   "mini-egg-boiler": EGG_BOILER_SLIDES,
   [BT12_SLUG]: BT12_SLIDES,
+  [LAPTOP_DESK_SLUG]: LAPTOP_DESK_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {

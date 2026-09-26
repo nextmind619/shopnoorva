@@ -47,6 +47,7 @@ import {
   isCarMountUpsellHostSlug,
 } from "@/lib/catalog/car-mount-upsell";
 import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
+import { LAPTOP_DESK_FAQS, LAPTOP_DESK_PRICE_MAD, LAPTOP_DESK_SLUG } from "@/data/laptop-desk";
 import { ProductSurpriseGift, ProductUsageModes } from "@/components/product/product-surprise-gift";
 
 const ProductOrderForm = dynamic(
@@ -95,6 +96,7 @@ function getBenefitHeadline(product: Product): { title: string; subtitle: string
 
 function getProductFaqs(product: Product) {
   if (product.slug === BT12_SLUG) return [...BT12_FAQS];
+  if (product.slug === LAPTOP_DESK_SLUG) return [...LAPTOP_DESK_FAQS];
   const warranty = product.warrantyMonths || 12;
   const delivery =
     `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${warranty} شهر واستبدال خلال 7 أيام عند وجود عيب.`;
@@ -346,6 +348,8 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
   const isShiatsu = product.slug === "shiatsu-neck-shoulder-massager";
   const isKidsArt = product.slug === "kids-art-set-easel-208";
   const isBt12 = product.slug === BT12_SLUG;
+  const isLaptopDesk = product.slug === LAPTOP_DESK_SLUG;
+  const isCompactCodForm = isBt12 || isLaptopDesk;
   const activeGift = product.gift?.enabled ? product.gift : undefined;
   const selectedColor = isKidsArt ? getKidsArtColor(colorId) : undefined;
   const kidsArtGallerySlides = useMemo<GallerySlide[] | undefined>(() => {
@@ -410,14 +414,21 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           { icon: Shield, label: "ضمان 12 شهر" },
           { icon: Gift, label: "Arabic Magic Book 🎁" },
         ]
-      : isBt12
+      : isLaptopDesk
         ? [
             { icon: Truck, label: "توصيل مجاني" },
             { icon: Banknote, label: "الدفع عند الاستلام" },
-            { icon: Gift, label: "هدية كابل مجانية" },
-            { icon: Shield, label: "قابلة للطي" },
+            { icon: Gift, label: "حقيبة USB هدية" },
+            { icon: Shield, label: "ارتفاع قابل للتعديل" },
           ]
-        : TRUST_BADGES;
+        : isBt12
+          ? [
+              { icon: Truck, label: "توصيل مجاني" },
+              { icon: Banknote, label: "الدفع عند الاستلام" },
+              { icon: Gift, label: "هدية كابل مجانية" },
+              { icon: Shield, label: "قابلة للطي" },
+            ]
+          : TRUST_BADGES;
 
   return (
     <div className="product-luxury bg-[#0a0a0f] text-white min-h-screen font-sans w-full max-w-full overflow-x-clip min-w-0" dir="rtl">
@@ -450,6 +461,14 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
               <span className="hidden sm:inline text-white/20">|</span>
               <span className="flex items-center gap-1.5">
                 <Gift className="h-3.5 w-3.5 text-amber-300" /> Arabic Magic Book هدية مجانية
+              </span>
+            </>
+          )}
+          {isLaptopDesk && (
+            <>
+              <span className="hidden sm:inline text-white/20">|</span>
+              <span className="flex items-center gap-1.5">
+                <Gift className="h-3.5 w-3.5 text-amber-300" /> حقيبة USB هدية مجانية
               </span>
             </>
           )}
@@ -509,9 +528,11 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
                 ? "راحة الرقبة والكتاف… فالوقت اللي تحتاجها"
                 : isKidsArt
                   ? "🎨 مجموعة الرسم والتلوين للأطفال"
-                  : isBt12
-                    ? "عصا سيلفي BT12 — 4 في 1"
-                    : name}
+                  : isLaptopDesk
+                    ? "طاولة لابتوب متحركة — اشتغل براحتك"
+                    : isBt12
+                      ? "عصا سيلفي BT12 — 4 في 1"
+                      : name}
           </h1>
           {isBogo && (
             <p className="text-base font-semibold text-amber-200">المنتج الأصلي · جوج قطع في الطلب</p>
@@ -519,7 +540,7 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           {isKidsArt && (
             <p className="text-base font-semibold text-amber-200">+ 🎁 Arabic Magic Book مجاناً</p>
           )}
-          {isBt12 && (
+          {(isBt12 || isLaptopDesk) && (
             <p className="text-base font-semibold text-amber-200">وزيد عليها هدية مجانية مفاجأة مع الطلب ديالك 🎁</p>
           )}
           <p className="text-white/60 text-base leading-relaxed max-w-xl mx-auto sm:mx-0">
@@ -590,7 +611,7 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
               🎁 Arabic Magic Book هدية مجانية مع الطلب
             </p>
           )}
-          {isBt12 && activeGift && (
+          {(isBt12 || isLaptopDesk) && activeGift && (
             <p className="text-sm font-bold text-amber-200/90">{activeGift.giftDisclosure.ar}</p>
           )}
         </section>
@@ -672,7 +693,7 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
             ? "اطلب 1 + 1 مجاناً"
             : isKidsArt
               ? "🛒 أطلب الآن بـ299 درهم + الهدية مجانية"
-              : isBt12
+              : isCompactCodForm
                 ? "اطلب دابا والدفع عند الاستلام"
                 : "اطلب الآن"}
         </button>
@@ -682,29 +703,31 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           product={product}
           variant={variant}
           quantity={orderQty}
-          fullNamePlaceholder={isBt12 ? "الاسم الكامل" : undefined}
-          addressLabel={isBt12 ? "المدينة أو العنوان" : undefined}
+          fullNamePlaceholder={isCompactCodForm ? "الاسم الكامل" : undefined}
+          addressLabel={isCompactCodForm ? "المدينة أو العنوان" : undefined}
           addressPlaceholder={
-            isBt12 ? "مثال: الدار البيضاء — الحي، الشارع أو علامة قريبة" : undefined
+            isCompactCodForm ? "مثال: الدار البيضاء — الحي، الشارع أو علامة قريبة" : undefined
           }
           quantityLabel={isBogo ? "2 قطع" : undefined}
           orderNote={combinedOrderNote}
           submitLabel={
-            isBogo ? "أكد طلب 1 + 1 مجاناً" : isBt12 ? "اطلب دابا والدفع عند الاستلام" : undefined
+            isBogo ? "أكد طلب 1 + 1 مجاناً" : isCompactCodForm ? "اطلب دابا والدفع عند الاستلام" : undefined
           }
           formTitle={
             isBogo
               ? "اطلب العرض 1 + 1 مجاناً — الدفع عند الاستلام"
-              : isBt12
+              : isCompactCodForm
                 ? "اطلب دابا والدفع عند الاستلام"
                 : undefined
           }
           formSubtitle={
             isBogo
               ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا."
-              : isBt12
-                ? "349 درهم. ما كخلص والو دابا — كتخلص كاش ملي يوصلك الطلب."
-                : undefined
+              : isLaptopDesk
+                ? `${LAPTOP_DESK_PRICE_MAD} درهم + حقيبة USB هدية. ما كخلص والو دابا — كتخلص كاش ملي يوصلك الطلب.`
+                : isBt12
+                  ? "349 درهم. ما كخلص والو دابا — كتخلص كاش ملي يوصلك الطلب."
+                  : undefined
           }
           summaryRows={
             isBogo
@@ -728,7 +751,9 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           }))}
         />
 
-        {isBt12 && product.lifestyleScenes && <ProductUsageModes scenes={product.lifestyleScenes} />}
+        {(isBt12 || isLaptopDesk) && product.lifestyleScenes && (
+          <ProductUsageModes scenes={product.lifestyleScenes} />
+        )}
         {activeGift && <ProductSurpriseGift gift={activeGift} />}
 
         {showCarMountUpsell && (
@@ -750,7 +775,13 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           product={product}
           onOrderClick={scrollToOrder}
           ctaLabel={
-            isBogo ? "اطلب 1 + 1 مجاناً" : isKidsArt ? "🛒 أطلب الآن بـ299 درهم" : isBt12 ? "اطلب دابا والدفع عند الاستلام" : undefined
+            isBogo
+              ? "اطلب 1 + 1 مجاناً"
+              : isKidsArt
+                ? "🛒 أطلب الآن بـ299 درهم"
+                : isCompactCodForm
+                  ? "اطلب دابا والدفع عند الاستلام"
+                  : undefined
           }
         />
 

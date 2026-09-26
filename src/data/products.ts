@@ -11,6 +11,17 @@ import {
   BT12_SLUG,
   BT12_SOLO_REMOTE_IMAGE,
 } from "@/data/bt12";
+import {
+  LAPTOP_DESK_FEATURES_IMAGE,
+  LAPTOP_DESK_GIFT_ID,
+  LAPTOP_DESK_GIFT_IMAGE,
+  LAPTOP_DESK_HERO_IMAGE,
+  LAPTOP_DESK_IN_USE_IMAGE,
+  LAPTOP_DESK_INFOGRAPHIC_IMAGE,
+  LAPTOP_DESK_LIFESTYLE_IMAGE,
+  LAPTOP_DESK_PRICE_MAD,
+  LAPTOP_DESK_SLUG,
+} from "@/data/laptop-desk";
 
 const flashEnd = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
 
@@ -20,7 +31,7 @@ const L = (ar: string, fr: string, en: string) => ({ ar, fr, en });
  *  are populated by tag match in addition to the product's primary categoryId. */
 const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-galaxy-lights": ["galaxy", "aurora", "laser", "star"],
-  "cat-home-decor": ["decor", "cooler", "fan", "desk"],
+  "cat-home-decor": ["decor", "cooler", "fan", "desk", "laptop-desk", "office"],
   "cat-bedroom-lighting": ["bedroom"],
   "cat-kids-room": ["kids", "art", "drawing"],
   "cat-relaxation": ["relaxation"],
@@ -2910,6 +2921,167 @@ export const products: Product[] = [
         "عصا سيلفي BT12 قابلة للطي مع ترايبود وضوئين دائريين وريموت لاسلكي بـ 349 درهم. هدية مجانية: كابل USB-C 240W مع حامل هاتف. الدفع عند الاستلام والتوصيل مجاني في المغرب.",
         "Perche selfie BT12 pliable, trépied, double lumière et télécommande à 349 DH. Cadeau : câble USB-C 240W avec support. Paiement à la livraison et livraison gratuite au Maroc.",
         "Foldable BT12 selfie stick with tripod, dual lights and wireless remote for 349 MAD. Free USB-C 240W cable with phone holder. Cash on delivery and free shipping in Morocco."
+      ),
+    },
+  },
+  {
+    id: "prod-laptop-desk",
+    slug: LAPTOP_DESK_SLUG,
+    name: L(
+      "طاولة لابتوب متحركة بارتفاع قابل للتعديل وعجلات",
+      "Bureau laptop mobile réglable avec roues",
+      "Mobile adjustable laptop desk with wheels"
+    ),
+    shortDescription: L(
+      "اشتغل من السofa أو السرير: سطح واسع، ارتفاع قابل للتعديل، وعجلات بقفل. 399 درهم والدفع عند الاستلام.",
+      "Travaillez du canapé ou du lit : plateau spacieux, hauteur réglable, roues verrouillables. 399 DH, paiement à la livraison.",
+      "Work from the sofa or bed: spacious top, adjustable height, lockable wheels. 399 MAD, cash on delivery."
+    ),
+    description: L(
+      "طاولة لابتوب متحركة على شكل C: تدخل تحت الكنبة أو السرير، تعلّي أو تنقّص الارتفاع، وتحرّكها بالعجلات وتقفلها فبلاصتك. سطح خشبي واسع للابتوب والماوس. الثمن 399 درهم، الدفع عند الاستلام، والتوصيل مجاني في المغرب. مع الطلب هدية مجانية: حقيبة كتف رجالية مقاومة للماء مع منفذ USB، بلا درهم زايد.",
+      "Bureau mobile en C : glisse sous canapé/lit, hauteur réglable, roues avec frein. Plateau bois pour laptop et souris. 399 DH, COD et livraison gratuite au Maroc. Cadeau : sac bandoulière étanche avec port USB, sans supplément.",
+      "C-shaped mobile desk: slides under sofa or bed, adjustable height, lockable casters. Wood-style top for laptop and mouse. 399 MAD, COD and free Morocco shipping. Free gift: waterproof crossbody bag with USB port, at no extra charge."
+    ),
+    categoryId: "cat-home-decor",
+    price: LAPTOP_DESK_PRICE_MAD,
+    sku: "NRV-LPD-01",
+    stock: 36,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    problemEmoji: "💻",
+    problem: L(
+      "كتشتغل من الكنبة أو السرير والظهر كيتعب؟",
+      "Vous travaillez depuis le canapé et le dos fatigue ?",
+      "Working from the sofa and your back hurts?"
+    ),
+    problemCause: L(
+      "اللابتوب على الركب أو على وسادة ما كيعطيش زاوية مريحة، والطاولة الثابتة ما كتمشيش مع كل بلاصة.",
+      "Le PC sur les genoux ou un coussin = mauvaise posture ; un bureau fixe ne suit pas chaque pièce.",
+      "Laptop on your lap means bad posture; a fixed desk does not move with you."
+    ),
+    problemSolution: L(
+      "طاولة C-shape متحركة: ارتفاع قابل للتعديل، عجلات، وسطح واسع.",
+      "Bureau mobile en C : hauteur réglable, roues, grand plateau.",
+      "Mobile C-desk: adjustable height, wheels, wide top."
+    ),
+    deepDescription: L(
+      "ثبّت الطاولة على الارتفاع اللي يناسبك، حط اللابتوب والماوس، ودفع القاعدة تحت الكنبة أو السرير. العجلات كتسهّل التنقل بين الغرف، والقفل كيثبتها ملي تلقى البلاصة المناسبة. مناسبة للعمل عن بُعد، الدراسة، أو مشاهدة المحتوى وأنت مرتاح.",
+      "Réglez la hauteur, posez laptop et souris, glissez la base sous canapé ou lit. Roues pour déplacer, freins pour stabiliser. Idéal télétravail, études ou streaming confortable.",
+      "Set the height, place laptop and mouse, slide the base under sofa or bed. Wheels to move, locks to stay put. Great for remote work, study, or comfortable streaming."
+    ),
+    tags: ["new", "gift", "desk", "laptop-desk", "office", "home"],
+    benefits: [
+      L("اشتغل مرتاح من الكنبة أو السرير", "Travaillez confortablement du canapé ou du lit", "Work comfortably from sofa or bed"),
+      L("ارتفاع قابل للتعديل حسب وضعيتك", "Hauteur réglable selon votre posture", "Adjustable height for your posture"),
+      L("عجلات 360° مع قفل للثبات", "Roues 360° avec verrouillage", "360° wheels with lock"),
+      L("سطح واسع للابتوب والإكسسوارات", "Grand plateau pour laptop et accessoires", "Spacious top for laptop and accessories"),
+      L("تتحرك بسهولة بين الغرف", "Se déplace facilement entre les pièces", "Moves easily between rooms"),
+      L("هدية حقيبة USB مقاومة للماء", "Cadeau : sac étanche avec USB", "Free waterproof USB crossbody bag"),
+    ],
+    features: [
+      L("هيكل C-shape يدخل تحت الأثاث", "Structure en C sous le mobilier", "C-frame slides under furniture"),
+      L("ارتفاع قابل للتعديل", "Hauteur réglable", "Adjustable height"),
+      L("4 عجلات مع قفل", "4 roues avec frein", "4 lockable casters"),
+      L("سطح خشبي واسع", "Plateau bois spacieux", "Wide wood-style top"),
+      L("مناسبة للابتوب والتابلت", "Pour laptop et tablette", "Fits laptop and tablet"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("طاولة لابتوب متحركة", "Bureau laptop mobile", "Mobile laptop desk") },
+      { label: L("الإطار", "Structure", "Frame"), value: L("معدن أبيض على شكل C", "Métal blanc forme C", "White C-shaped metal frame") },
+      { label: L("السطح", "Plateau", "Top"), value: L("خشبي (مظهر oak)", "Aspect bois chêne", "Oak-style wood grain top") },
+      { label: L("الحركة", "Mobilité", "Mobility"), value: L("4 عجلات + قفل", "4 roues + frein", "4 casters + lock") },
+      { label: L("الثمن", "Prix", "Price"), value: L("399 درهم", "399 DH", "399 MAD") },
+      { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
+    ],
+    packageIncludes: [
+      L("طاولة لابتوب متحركة (سطح + هيكل + عجلات)", "Bureau mobile (plateau + structure + roues)", "Mobile desk (top + frame + wheels)"),
+      L("دليل التركيب", "Notice de montage", "Assembly guide"),
+      L("هدية: حقيبة كتف مقاومة للماء مع USB", "Cadeau : sac bandoulière étanche USB", "Gift: waterproof USB shoulder bag"),
+    ],
+    howToUse: L(
+      "ركّب العجلات والسطح حسب الدليل. عدّل الارتفاع بالمقبض. حرّك الطاولة للبلاصة اللي بغيت وفعّل قفل العجلات. دفع القاعدة تحت الكنبة أو السرير واستعمل اللابتوب بزاوية مريحة.",
+      "Montez roues et plateau. Réglez la hauteur. Déplacez, verrouillez les roues, glissez sous canapé/lit.",
+      "Assemble wheels and top. Set height. Move, lock wheels, slide under sofa/bed."
+    ),
+    lifestyleScenes: [
+      {
+        id: "sofa",
+        emoji: "🛋️",
+        title: L("من الكنبة", "Depuis le canapé", "From the sofa"),
+        description: L("اشتغل أو تفرج وأنت مرتاح.", "Travaillez ou stream confortablement.", "Work or stream comfortably."),
+        imageUrl: LAPTOP_DESK_LIFESTYLE_IMAGE,
+      },
+      {
+        id: "bed",
+        emoji: "🛏️",
+        title: L("من السرير", "Depuis le lit", "From bed"),
+        description: L("زاوية مريحة بلا ما تحمل اللابتوب على الركب.", "Sans PC sur les genoux.", "No laptop on your lap."),
+        imageUrl: LAPTOP_DESK_IN_USE_IMAGE,
+      },
+      {
+        id: "height",
+        emoji: "📏",
+        title: L("ارتفاع قابل للتعديل", "Hauteur réglable", "Adjustable height"),
+        description: L("عدّل الارتفاع حسب الكرسي أو الوضعية.", "Adaptez à la chaise ou posture.", "Match your chair or posture."),
+        imageUrl: LAPTOP_DESK_FEATURES_IMAGE,
+      },
+      {
+        id: "wheels",
+        emoji: "🛞",
+        title: L("عجلات + قفل", "Roues + frein", "Wheels + lock"),
+        description: L("حرّكها بين الغرف وثبّتها فبلاصتك.", "Déplacez puis verrouillez.", "Roll between rooms, then lock."),
+        imageUrl: LAPTOP_DESK_HERO_IMAGE,
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-laptop-desk",
+        name: L("طاولة لابتوب — 399 درهم", "Bureau laptop — 399 DH", "Laptop desk — 399 MAD"),
+        price: LAPTOP_DESK_PRICE_MAD,
+        sku: "NRV-LPD-01",
+        stock: 36,
+      },
+    ],
+    upsellIds: [],
+    crossSellIds: ["prod-mini-vacuum", "prod-calc-tablet"],
+    gift: {
+      enabled: true,
+      giftProductId: LAPTOP_DESK_GIFT_ID,
+      giftTitle: L(
+        "حقيبة كتف رجالية مقاومة للماء مع منفذ USB",
+        "Sac bandoulière étanche homme avec port USB",
+        "Waterproof men's crossbody bag with USB port"
+      ),
+      giftDescription: L(
+        "حقيبة sling أنيقة: قماش مقاوم للماء، جيوب منظمة، ومنفذ USB خارجي باش تشحن من power bank داخل الحقيبة.",
+        "Sac sling élégant, tissu résistant à l'eau, port USB externe pour power bank interne.",
+        "Sleek sling bag, water-resistant fabric, external USB port for an internal power bank."
+      ),
+      giftImage: LAPTOP_DESK_GIFT_IMAGE,
+      giftDisclosure: L(
+        "الهدية مجانية وما غادي تخلص عليها حتى درهم زايد.",
+        "Cadeau offert sans supplément.",
+        "The gift is free — no extra charge."
+      ),
+      stockControlled: false,
+    },
+    seo: {
+      title: L(
+        "طاولة لابتوب متحركة بعجلات | 399 درهم | هدية حقيبة USB | NOORVA",
+        "Bureau laptop mobile roues | 399 DH | sac USB offert | NOORVA",
+        "Mobile laptop desk with wheels | 399 MAD | free USB bag | NOORVA"
+      ),
+      description: L(
+        "طاولة لابتوب C-shape بارتفاع قابل للتعديل وعجلات بقفل. 399 درهم، توصيل مجاني والدفع عند الاستلام. هدية: حقيبة كتف مقاومة للماء مع USB.",
+        "Bureau laptop réglable avec roues. 399 DH, livraison gratuite, COD. Cadeau sac étanche USB.",
+        "Adjustable C-shape laptop desk with lockable wheels. 399 MAD, free shipping, COD. Free waterproof USB bag."
       ),
     },
   },
