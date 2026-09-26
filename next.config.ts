@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
   },
   images: {
     qualities: [75, 80, 90, 95],
+    /** Allow cache-bust query strings on static product assets (Next 16). */
+    localPatterns: [{ pathname: "/products/**" }, { pathname: "/reviews/**" }],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "i.pravatar.cc" },

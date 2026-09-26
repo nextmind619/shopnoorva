@@ -54,6 +54,19 @@ function normalizePublicPath(url: string | undefined): string | undefined {
   return url.replace(/\\/g, "/");
 }
 
+/** Same filenames were reused after placeholder → real photos; bust immutable browser cache. */
+const PRODUCT_ASSET_VERSION: Partial<Record<string, string>> = {
+  "foldable-9l-mini-washing-machine": "20250926-real",
+};
+
+function withProductAssetVersion(slug: string, url: string | undefined): string | undefined {
+  if (!url) return undefined;
+  const version = PRODUCT_ASSET_VERSION[resolveImageSlug(slug)];
+  if (!version || url.includes("v=")) return url;
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}v=${version}`;
+}
+
 export function getProductImageUrl(
   slug: string,
   imageType: PremiumImageType,
@@ -62,24 +75,33 @@ export function getProductImageUrl(
   const entry = manifest.products[resolveImageSlug(slug)]?.images[imageType];
   if (!entry) return undefined;
 
+  let url: string | undefined;
   switch (variant) {
     case "original":
-      return normalizePublicPath(entry.original);
+      url = normalizePublicPath(entry.original);
+      break;
     case "webp":
-      return normalizePublicPath(entry.webp);
+      url = normalizePublicPath(entry.webp);
+      break;
     case "avif":
-      return normalizePublicPath(entry.avif);
+      url = normalizePublicPath(entry.avif);
+      break;
     case "thumbnail":
-      return normalizePublicPath(entry.thumbnail);
+      url = normalizePublicPath(entry.thumbnail);
+      break;
     case "sm":
-      return normalizePublicPath(entry.responsive.sm);
+      url = normalizePublicPath(entry.responsive.sm);
+      break;
     case "md":
-      return normalizePublicPath(entry.responsive.md);
+      url = normalizePublicPath(entry.responsive.md);
+      break;
     case "lg":
-      return normalizePublicPath(entry.responsive.lg);
+      url = normalizePublicPath(entry.responsive.lg);
+      break;
     default:
-      return normalizePublicPath(entry.webp);
+      url = normalizePublicPath(entry.webp);
   }
+  return withProductAssetVersion(slug, url);
 }
 
 type HeroVariant = "webp" | "avif" | "original" | "thumbnail" | "sm" | "md" | "lg";

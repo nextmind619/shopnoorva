@@ -14,12 +14,19 @@ export const FOLDABLE_WASHER_CODPLUS_PACK_SKU = "FoldableWasher ShowerFilter Pac
 
 const BASE = `/products/${FOLDABLE_WASHER_SLUG}`;
 
-export const FOLDABLE_WASHER_HERO_IMAGE = `${BASE}/02-premium-hero.webp`;
-export const FOLDABLE_WASHER_FEATURES_IMAGE = `${BASE}/10-features.webp`;
-export const FOLDABLE_WASHER_LIFESTYLE_IMAGE = `${BASE}/03-lifestyle.webp`;
-export const FOLDABLE_WASHER_IN_USE_IMAGE = `${BASE}/14-product-in-use.webp`;
-export const FOLDABLE_WASHER_INFOGRAPHIC_IMAGE = `${BASE}/17-infographic.webp`;
-export const FOLDABLE_WASHER_GIFT_IMAGE = `${BASE}/gift-filtered-shower-head.webp`;
+/** Bust long-lived immutable cache after replacing placeholder JPGs with real photos. */
+export const FOLDABLE_WASHER_ASSET_VERSION = "20250926-real";
+
+function foldableWasherAsset(file: string): string {
+  return `${BASE}/${file}?v=${FOLDABLE_WASHER_ASSET_VERSION}`;
+}
+
+export const FOLDABLE_WASHER_HERO_IMAGE = foldableWasherAsset("02-premium-hero.webp");
+export const FOLDABLE_WASHER_FEATURES_IMAGE = foldableWasherAsset("10-features.webp");
+export const FOLDABLE_WASHER_LIFESTYLE_IMAGE = foldableWasherAsset("03-lifestyle.webp");
+export const FOLDABLE_WASHER_IN_USE_IMAGE = foldableWasherAsset("14-product-in-use.webp");
+export const FOLDABLE_WASHER_INFOGRAPHIC_IMAGE = foldableWasherAsset("17-infographic.webp");
+export const FOLDABLE_WASHER_GIFT_IMAGE = foldableWasherAsset("gift-filtered-shower-head.webp");
 
 export const FOLDABLE_WASHER_FAQS = [
   {
