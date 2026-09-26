@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T15:43:12.271Z",
+  "generatedAt": "2026-09-26T15:59:10.758Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3563,6 +3563,100 @@
         "14-product-in-use": "upload",
         "17-infographic": "upload",
         "gift-crossbody-bag": "upload"
+      }
+    },
+    "foldable-9l-mini-washing-machine": {
+      "slug": "foldable-9l-mini-washing-machine",
+      "sku": "NRV-FWM-01",
+      "name": "Foldable 9L Mini Washing Machine with Drying",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/foldable-9l-mini-washing-machine/01-hero-white-bg.jpg",
+          "webp": "/products/foldable-9l-mini-washing-machine/01-hero-white-bg.webp",
+          "avif": "/products/foldable-9l-mini-washing-machine/01-hero-white-bg.avif",
+          "thumbnail": "/products/foldable-9l-mini-washing-machine/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-9l-mini-washing-machine/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/foldable-9l-mini-washing-machine/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/foldable-9l-mini-washing-machine/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/foldable-9l-mini-washing-machine/02-premium-hero.jpg",
+          "webp": "/products/foldable-9l-mini-washing-machine/02-premium-hero.webp",
+          "avif": "/products/foldable-9l-mini-washing-machine/02-premium-hero.avif",
+          "thumbnail": "/products/foldable-9l-mini-washing-machine/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-9l-mini-washing-machine/responsive/02-premium-hero-640.webp",
+            "md": "/products/foldable-9l-mini-washing-machine/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/foldable-9l-mini-washing-machine/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/foldable-9l-mini-washing-machine/10-features.jpg",
+          "webp": "/products/foldable-9l-mini-washing-machine/10-features.webp",
+          "avif": "/products/foldable-9l-mini-washing-machine/10-features.avif",
+          "thumbnail": "/products/foldable-9l-mini-washing-machine/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-9l-mini-washing-machine/responsive/10-features-640.webp",
+            "md": "/products/foldable-9l-mini-washing-machine/responsive/10-features-1280.webp",
+            "lg": "/products/foldable-9l-mini-washing-machine/responsive/10-features-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/products/foldable-9l-mini-washing-machine/03-lifestyle.jpg",
+          "webp": "/products/foldable-9l-mini-washing-machine/03-lifestyle.webp",
+          "avif": "/products/foldable-9l-mini-washing-machine/03-lifestyle.avif",
+          "thumbnail": "/products/foldable-9l-mini-washing-machine/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-9l-mini-washing-machine/responsive/03-lifestyle-640.webp",
+            "md": "/products/foldable-9l-mini-washing-machine/responsive/03-lifestyle-1280.webp",
+            "lg": "/products/foldable-9l-mini-washing-machine/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/products/foldable-9l-mini-washing-machine/14-product-in-use.jpg",
+          "webp": "/products/foldable-9l-mini-washing-machine/14-product-in-use.webp",
+          "avif": "/products/foldable-9l-mini-washing-machine/14-product-in-use.avif",
+          "thumbnail": "/products/foldable-9l-mini-washing-machine/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-9l-mini-washing-machine/responsive/14-product-in-use-640.webp",
+            "md": "/products/foldable-9l-mini-washing-machine/responsive/14-product-in-use-1280.webp",
+            "lg": "/products/foldable-9l-mini-washing-machine/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "17-infographic": {
+          "original": "/products/foldable-9l-mini-washing-machine/17-infographic.jpg",
+          "webp": "/products/foldable-9l-mini-washing-machine/17-infographic.webp",
+          "avif": "/products/foldable-9l-mini-washing-machine/17-infographic.avif",
+          "thumbnail": "/products/foldable-9l-mini-washing-machine/thumbs/17-infographic-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-9l-mini-washing-machine/responsive/17-infographic-640.webp",
+            "md": "/products/foldable-9l-mini-washing-machine/responsive/17-infographic-1280.webp",
+            "lg": "/products/foldable-9l-mini-washing-machine/responsive/17-infographic-2000.webp"
+          }
+        },
+        "gift-filtered-shower-head": {
+          "original": "/products/foldable-9l-mini-washing-machine/gift-filtered-shower-head.jpg",
+          "webp": "/products/foldable-9l-mini-washing-machine/gift-filtered-shower-head.webp",
+          "avif": "/products/foldable-9l-mini-washing-machine/gift-filtered-shower-head.avif",
+          "thumbnail": "/products/foldable-9l-mini-washing-machine/thumbs/gift-filtered-shower-head-400.webp",
+          "responsive": {
+            "sm": "/products/foldable-9l-mini-washing-machine/responsive/gift-filtered-shower-head-640.webp",
+            "md": "/products/foldable-9l-mini-washing-machine/responsive/gift-filtered-shower-head-1280.webp",
+            "lg": "/products/foldable-9l-mini-washing-machine/responsive/gift-filtered-shower-head-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "placeholder",
+        "02-premium-hero": "placeholder",
+        "10-features": "placeholder",
+        "03-lifestyle": "placeholder",
+        "14-product-in-use": "placeholder",
+        "17-infographic": "placeholder",
+        "gift-filtered-shower-head": "placeholder"
       }
     }
   }

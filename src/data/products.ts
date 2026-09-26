@@ -17,11 +17,21 @@ import {
   LAPTOP_DESK_GIFT_IMAGE,
   LAPTOP_DESK_HERO_IMAGE,
   LAPTOP_DESK_IN_USE_IMAGE,
-  LAPTOP_DESK_INFOGRAPHIC_IMAGE,
   LAPTOP_DESK_LIFESTYLE_IMAGE,
   LAPTOP_DESK_PRICE_MAD,
   LAPTOP_DESK_SLUG,
 } from "@/data/laptop-desk";
+import {
+  FOLDABLE_WASHER_FEATURES_IMAGE,
+  FOLDABLE_WASHER_GIFT_ID,
+  FOLDABLE_WASHER_GIFT_IMAGE,
+  FOLDABLE_WASHER_HERO_IMAGE,
+  FOLDABLE_WASHER_IN_USE_IMAGE,
+  FOLDABLE_WASHER_LIFESTYLE_IMAGE,
+  FOLDABLE_WASHER_COMPARE_MAD,
+  FOLDABLE_WASHER_PRICE_MAD,
+  FOLDABLE_WASHER_SLUG,
+} from "@/data/foldable-washer";
 
 const flashEnd = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
 
@@ -31,7 +41,7 @@ const L = (ar: string, fr: string, en: string) => ({ ar, fr, en });
  *  are populated by tag match in addition to the product's primary categoryId. */
 const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-galaxy-lights": ["galaxy", "aurora", "laser", "star"],
-  "cat-home-decor": ["decor", "cooler", "fan", "desk", "laptop-desk", "office"],
+  "cat-home-decor": ["decor", "cooler", "fan", "desk", "laptop-desk", "office", "washer", "laundry"],
   "cat-bedroom-lighting": ["bedroom"],
   "cat-kids-room": ["kids", "art", "drawing"],
   "cat-relaxation": ["relaxation"],
@@ -3082,6 +3092,169 @@ export const products: Product[] = [
         "طاولة لابتوب C-shape بارتفاع قابل للتعديل وعجلات بقفل. 399 درهم، توصيل مجاني والدفع عند الاستلام. هدية: حقيبة كتف مقاومة للماء مع USB.",
         "Bureau laptop réglable avec roues. 399 DH, livraison gratuite, COD. Cadeau sac étanche USB.",
         "Adjustable C-shape laptop desk with lockable wheels. 399 MAD, free shipping, COD. Free waterproof USB bag."
+      ),
+    },
+  },
+  {
+    id: "prod-foldable-washer",
+    slug: FOLDABLE_WASHER_SLUG,
+    name: L(
+      "غسالة كهربائية صغيرة أوتوماتيكية 9 لتر قابلة للطي مع تجفيف",
+      "Mini lave-linge pliable 9L avec séchage",
+      "Foldable 9L automatic mini washing machine with drying"
+    ),
+    shortDescription: L(
+      "غسّي وجفّف الملابس الخفيفة فالبيت: 9 لتر، قابلة للطي، وتوفّر اللافomat. 449 درهم COD + رأس دش بفلتر هدية.",
+      "Lavez et séchez à la maison : 9 L, pliable, pratique. 449 DH COD + douche filtrée offerte.",
+      "Wash and dry light laundry at home: 9L, foldable. 449 MAD COD + free filtered shower head."
+    ),
+    description: L(
+      "غسالة كهربائية صغيرة أوتوماتيكية بسعة 9 لتر: جوارب، ملابس رياضية، ملابس أطفال، ومناشف صغيرة. كتطوى باش ما تشغلش بلاصة، فيها غسيل قوي ووضع تجفيف. 449 درهم، الدفع عند الاستلام، والتوصيل مجاني في المغرب. مع الطلب هدية مجانية: رأس دش يدوي بفلتر لتنقية المياه وزيادة ضغط الماء.",
+      "Mini lave-linge 9 L pliable pour linge léger, avec séchage. 449 DH, COD, livraison gratuite au Maroc. Cadeau : pommeau de douche filtré.",
+      "Foldable 9L mini washer for light laundry with dry mode. 449 MAD, COD, free Morocco shipping. Free filtered handheld shower head gift."
+    ),
+    categoryId: "cat-home-decor",
+    price: FOLDABLE_WASHER_PRICE_MAD,
+    sku: "NRV-FWM-01",
+    stock: 42,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    problemEmoji: "🧺",
+    problem: L(
+      "ما عندكش غسالة كبيرة أو كتضيع الوقت فالlavomat؟",
+      "Pas de grosse machine ou perte de temps au lavomat ?",
+      "No full-size washer or wasting time at the laundromat?"
+    ),
+    problemCause: L(
+      "الملابس الخفيفة كتتراكم، والغسيل باليد مرهق — والlavomat بعيد وكياخذ وقت.",
+      "Le linge léger s'accumule ; la laverie est loin et chronophage.",
+      "Light laundry piles up; hand wash is tiring and laundromats take time."
+    ),
+    problemSolution: L(
+      "غسالة 9L قابلة للطي: غسيل + تجفيف فبلاصة صغيرة فالبيت.",
+      "Lave-linge 9 L pliable : lavage + séchage chez vous.",
+      "Foldable 9L washer: wash + dry in a small space at home."
+    ),
+    deepDescription: L(
+      "حط الملابس، اختار البرنامج من اللوحة السهلة، وخلّي الغسالة تخدم. من بعد فعّل التجفيف باش تلبس غداً بلا انتظار. ملي ما كتحتاجش، طوّيها وخزّنها — مثالية للشقق، الطلبة، والسكن المؤقت.",
+      "Chargez le linge, choisissez le cycle, laissez tourner puis séchez. Repliez quand vous n'en avez plus besoin.",
+      "Load clothes, pick a cycle, wash then dry. Fold away when done — ideal for apartments and students."
+    ),
+    tags: ["new", "gift", "washer", "laundry", "foldable", "home"],
+    benefits: [
+      L("9 لتر — ملابس خفيفة يومياً", "9 L — linge léger quotidien", "9L — daily light laundry"),
+      L("قابلة للطي — بلاصة صغيرة", "Pliable — encombrement minimal", "Foldable — small footprint"),
+      L("غسيل + تجفيف", "Lavage + séchage", "Wash + dry modes"),
+      L("لوحة تحكم سهلة", "Panneau tactile simple", "Easy touch panel"),
+      L("هدية رأس دش بفلتر", "Cadeau pommeau filtré", "Free filtered shower head"),
+      L("COD + توصيل مجاني", "COD + livraison gratuite", "COD + free shipping"),
+    ],
+    features: [
+      L("سعة 9 لتر", "Capacité 9 L", "9 liter capacity"),
+      L("هيكل سيليكون قابل للطي", "Corps silicone pliable", "Collapsible silicone body"),
+      L("وضع تجفيف", "Mode séchage", "Drying mode"),
+      L("غسيل أوتوماتيكي", "Lavage automatique", "Automatic wash cycle"),
+      L("مناسبة للجوارب والملابس الرياضية", "Chaussettes & sport", "Socks & gym wear"),
+    ],
+    specifications: [
+      { label: L("السعة", "Capacité", "Capacity"), value: L("9 لتر", "9 L", "9 liters") },
+      { label: L("النوع", "Type", "Type"), value: L("غسالة صغيرة قابلة للطي", "Mini pliable", "Foldable mini washer") },
+      { label: L("الوظائف", "Fonctions", "Functions"), value: L("غسيل + تجفيف", "Lavage + séchage", "Wash + dry") },
+      { label: L("اللون", "Couleur", "Color"), value: L("بنفسجي lavender", "Violet lavender", "Lavender purple") },
+      { label: L("الثمن", "Prix", "Price"), value: L("449 درهم", "449 DH", "449 MAD") },
+      { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
+    ],
+    packageIncludes: [
+      L("غسالة 9L قابلة للطي", "Lave-linge pliable 9 L", "Foldable 9L washer"),
+      L("كابل الطاقة", "Câble d'alimentation", "Power cable"),
+      L("دليل الاستعمال", "Notice", "User manual"),
+      L("هدية: رأس دش يدوي بفلتر", "Cadeau : pommeau douche filtré", "Gift: filtered shower head"),
+    ],
+    howToUse: L(
+      "فتح الغسالة، حط الملابس والماء/المنظف حسب الدليل، اختار البرنامج من اللوحة، وشغّل. من بعد الغسيل فعّل التجفيف. ملي تكمّل، طوّي الغسالة وخزّنها.",
+      "Ouvrez, chargez linge et produit, choisissez le cycle, lancez puis séchez. Repliez pour ranger.",
+      "Open, load clothes and detergent, select cycle, run wash then dry. Fold to store."
+    ),
+    lifestyleScenes: [
+      {
+        id: "bath",
+        emoji: "🛁",
+        title: L("فالحمام أو الكوزينة", "Salle de bain / cuisine", "Bathroom or kitchen nook"),
+        description: L("بلاصة صغيرة، نتيجة كبيرة.", "Petit espace, grand confort.", "Small space, big convenience."),
+        imageUrl: FOLDABLE_WASHER_LIFESTYLE_IMAGE,
+      },
+      {
+        id: "socks",
+        emoji: "🧦",
+        title: L("جوارب ورياضة", "Chaussettes & sport", "Socks & gym"),
+        description: L("غسيل سريع كل نهار.", "Lavage rapide quotidien.", "Quick daily loads."),
+        imageUrl: FOLDABLE_WASHER_IN_USE_IMAGE,
+      },
+      {
+        id: "fold",
+        emoji: "📦",
+        title: L("تطوية وتخزين", "Pliage & rangement", "Fold & store"),
+        description: L("ما تشغلش بلاصة.", "Encombrement minimal.", "Minimal footprint."),
+        imageUrl: FOLDABLE_WASHER_FEATURES_IMAGE,
+      },
+      {
+        id: "gift",
+        emoji: "🚿",
+        title: L("هدية الدش", "Cadeau douche", "Shower gift"),
+        description: L("فلتر + ضغط أقوى — مجاناً.", "Filtre + pression — offert.", "Filter + pressure — free."),
+        imageUrl: FOLDABLE_WASHER_GIFT_IMAGE,
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-foldable-washer",
+        name: L("غسالة 9L — 449 درهم", "Lave-linge 9 L — 449 DH", "9L washer — 449 MAD"),
+        price: FOLDABLE_WASHER_PRICE_MAD,
+        compareAtPrice: FOLDABLE_WASHER_COMPARE_MAD,
+        sku: "NRV-FWM-01",
+        stock: 42,
+      },
+    ],
+    upsellIds: [],
+    crossSellIds: ["prod-laptop-desk", "prod-mini-vacuum"],
+    gift: {
+      enabled: true,
+      giftProductId: FOLDABLE_WASHER_GIFT_ID,
+      giftTitle: L(
+        "رأس دش يدوي بفلتر لتنقية المياه",
+        "Pommeau de douche filtré",
+        "Filtered handheld shower head"
+      ),
+      giftDescription: L(
+        "فلتر 3mm يقلّل الشوائب، ضغط أقوى، وزر إيقاف سريع — هدية مجانية مع الغسالة.",
+        "Filtre 3 mm, meilleure pression, bouton stop — offert avec le lave-linge.",
+        "3mm filter, stronger pressure, stop button — free with the washer."
+      ),
+      giftImage: FOLDABLE_WASHER_GIFT_IMAGE,
+      giftDisclosure: L(
+        "🎁 رأس الدش بالفلتر هدية مجانية — ما غادي تخلص عليها حتى درهم زايد.",
+        "🎁 Pommeau filtré offert — sans supplément.",
+        "🎁 Filtered shower head is free — no extra charge."
+      ),
+      stockControlled: false,
+    },
+    seo: {
+      title: L(
+        "غسالة 9L قابلة للطي مع تجفيف | 449 درهم | هدية دش | NOORVA",
+        "Mini lave-linge 9L pliable | 449 DH | douche offerte | NOORVA",
+        "Foldable 9L washer with dry | 449 MAD | free shower head | NOORVA"
+      ),
+      description: L(
+        "غسالة كهربائية صغيرة 9 لتر قابلة للطي مع تجفيف. 449 درهم، توصيل مجاني والدفع عند الاستلام. هدية: رأس دش بفلتر.",
+        "Mini lave-linge pliable 9 L avec séchage. 449 DH, livraison gratuite, COD. Cadeau pommeau filtré.",
+        "Foldable 9L mini washer with drying. 449 MAD, free shipping, COD. Free filtered shower head gift."
       ),
     },
   },

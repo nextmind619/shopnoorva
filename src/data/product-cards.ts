@@ -169,6 +169,13 @@ export const PRODUCT_CARDS: ProductCardSummary[] = [
     "nameAr": "طاولة لابتوب متحركة بارتفاع قابل للتعديل وعجلات",
     "price": 399,
     "hero": "/products/mobile-laptop-desk-with-wheels/02-premium-hero.webp"
+  },
+  {
+    "id": "prod-foldable-washer",
+    "slug": "foldable-9l-mini-washing-machine",
+    "nameAr": "غسالة كهربائية صغيرة 9 لتر قابلة للطي مع تجفيف",
+    "price": 449,
+    "hero": "/products/foldable-9l-mini-washing-machine/02-premium-hero.webp"
   }
 ];
 

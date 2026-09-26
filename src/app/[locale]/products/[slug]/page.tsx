@@ -10,6 +10,7 @@ import { buildRelatedProductCards } from "@/lib/catalog/to-product-cards";
 import { resolveProductHero } from "@/lib/product-images/resolve";
 import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
 import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
+import { FOLDABLE_WASHER_FAQS, FOLDABLE_WASHER_SLUG } from "@/data/foldable-washer";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -98,6 +99,19 @@ const BT12_KEYWORDS = [
   "NOORVA",
 ];
 
+const FOLDABLE_WASHER_KEYWORDS = [
+  "غسالة صغيرة",
+  "غسالة قابلة للطي",
+  "9 لتر",
+  "تجفيف",
+  "lavomat",
+  "449 درهم",
+  "رأس دش فلتر",
+  "هدية مجانية",
+  "الدفع عند الاستلام",
+  "NOORVA",
+];
+
 const CURVES_GLOW_KEYWORDS = [
   "بروتين الشكل الأنثوي",
   "بروتين curves",
@@ -129,6 +143,7 @@ export async function generateMetadata({
   const isEggBoiler = product.slug === EGG_BOILER_SLUG;
   const isCurvesGlow = product.slug === CURVES_GLOW_SLUG;
   const isBt12 = product.slug === BT12_SLUG;
+  const isFoldableWasher = product.slug === FOLDABLE_WASHER_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
@@ -145,7 +160,9 @@ export async function generateMetadata({
             ? "Pack Curves & Glow — بروتين الشكل الأنثوي مع كولاجين بحري هدية"
             : isBt12
               ? "عصا سيلفي BT12 4 في 1 مع ترايبود وضوئين دائريين وريموت لاسلكي"
-              : name;
+              : isFoldableWasher
+                ? "غسالة كهربائية 9 لتر قابلة للطي مع تجفيف — هدية رأس دش بفلتر"
+                : name;
 
   return {
     title,
@@ -164,7 +181,9 @@ export async function generateMetadata({
                 ? [...CURVES_GLOW_KEYWORDS, ...product.tags]
                 : isBt12
                   ? [...BT12_KEYWORDS, ...product.tags]
-                  : product.tags,
+                  : isFoldableWasher
+                    ? [...FOLDABLE_WASHER_KEYWORDS, ...product.tags]
+                    : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
@@ -187,6 +206,10 @@ export async function generateMetadata({
 function getProductFaqs(slug: string, warrantyMonths: number) {
   if (slug === BT12_SLUG) {
     return [...BT12_FAQS];
+  }
+
+  if (slug === FOLDABLE_WASHER_SLUG) {
+    return [...FOLDABLE_WASHER_FAQS];
   }
 
   if (slug === CURVES_GLOW_SLUG) {
@@ -715,7 +738,13 @@ export default async function ProductPage({
         priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
         itemCondition: "https://schema.org/NewCondition",
         shippingDetails:
-          isShiatsu || isCalculator || isVacuum || isKidsArt || isEggBoiler || product.slug === BT12_SLUG
+          isShiatsu ||
+          isCalculator ||
+          isVacuum ||
+          isKidsArt ||
+          isEggBoiler ||
+          product.slug === BT12_SLUG ||
+          product.slug === FOLDABLE_WASHER_SLUG
             ? {
                 "@type": "OfferShippingDetails",
                 shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },
