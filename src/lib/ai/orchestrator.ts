@@ -172,7 +172,7 @@ export async function dispatchOrderFulfillment(
       })
     );
   } else {
-    fulfillment.whatsappCustomer = { ok: true, error: "disabled" };
+    fulfillment.whatsappCustomer = { ok: true, error: "customer_auto_whatsapp_disabled" };
   }
 
   await Promise.allSettled(tasks);

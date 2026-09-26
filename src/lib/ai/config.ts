@@ -78,14 +78,31 @@ export const aiConfig = {
     lowStockMultiplier: 1.2,
   },
   messaging: {
-    /** Order confirm / shipped / cart recovery via Evolution — off unless WHATSAPP_CUSTOMER_MESSAGES=true */
+    /** Legacy env — ignored unless WHATSAPP_FORCE_CUSTOMER_AUTO=true (see isCustomerWhatsAppEnabled). */
     customerWhatsApp: process.env.WHATSAPP_CUSTOMER_MESSAGES === "true",
   },
 } as const;
 
-/** Auto WhatsApp to shoppers (not admin alerts). */
+const CUSTOMER_AUTO_WHATSAPP_TEMPLATES = new Set([
+  "order_confirmed",
+  "shipped",
+  "abandoned_cart_1",
+  "abandoned_cart_2",
+]);
+
+/** Auto WhatsApp after order / shipment / cart — hard off for NOORVA (admin alerts unchanged). */
 export function isCustomerWhatsAppEnabled(): boolean {
-  return aiConfig.messaging.customerWhatsApp;
+  if (process.env.WHATSAPP_FORCE_CUSTOMER_AUTO !== "true") {
+    return false;
+  }
+  return process.env.WHATSAPP_CUSTOMER_MESSAGES === "true";
+}
+
+export function isBlockedCustomerAutoWhatsApp(templateKey?: string): boolean {
+  if (!templateKey || !CUSTOMER_AUTO_WHATSAPP_TEMPLATES.has(templateKey)) {
+    return false;
+  }
+  return !isCustomerWhatsAppEnabled();
 }
 
 export function isConfigured(value: string): boolean {
