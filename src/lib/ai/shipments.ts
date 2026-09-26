@@ -1,3 +1,4 @@
+import { isCustomerWhatsAppEnabled } from "./config";
 import { store, type StoredOrder } from "./memory-store";
 import { sendMessage } from "./messaging";
 import { triggerN8n } from "./integrations/n8n";
@@ -18,17 +19,19 @@ export async function createShipment(order: StoredOrder): Promise<{
   order.trackingNumber = trackingNumber;
   order.status = order.status === "cancelled" || order.status === "review" ? order.status : "shipped";
 
-  await sendMessage({
-    channel: "whatsapp",
-    recipient: order.phone,
-    templateKey: "shipped",
-    variables: {
-      order: order.orderNumber,
-      tracking: trackingNumber,
-      city: order.city,
-    },
-    locale: "ar",
-  });
+  if (isCustomerWhatsAppEnabled()) {
+    await sendMessage({
+      channel: "whatsapp",
+      recipient: order.phone,
+      templateKey: "shipped",
+      variables: {
+        order: order.orderNumber,
+        tracking: trackingNumber,
+        city: order.city,
+      },
+      locale: "ar",
+    });
+  }
 
   if (order.email) {
     await sendMessage({

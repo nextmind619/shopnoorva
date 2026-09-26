@@ -77,7 +77,16 @@ export const aiConfig = {
     duplicateWindowMinutes: 30,
     lowStockMultiplier: 1.2,
   },
+  messaging: {
+    /** Order confirm / shipped / cart recovery via Evolution — off unless WHATSAPP_CUSTOMER_MESSAGES=true */
+    customerWhatsApp: process.env.WHATSAPP_CUSTOMER_MESSAGES === "true",
+  },
 } as const;
+
+/** Auto WhatsApp to shoppers (not admin alerts). */
+export function isCustomerWhatsAppEnabled(): boolean {
+  return aiConfig.messaging.customerWhatsApp;
+}
 
 export function isConfigured(value: string): boolean {
   return Boolean(value && value.trim().length > 0);

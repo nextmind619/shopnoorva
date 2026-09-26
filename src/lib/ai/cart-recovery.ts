@@ -1,7 +1,7 @@
 import { store, uid, type AbandonedCart } from "./memory-store";
 import { sendMessage } from "./messaging";
 import { suggestUpsells } from "./support";
-import { aiConfig } from "./config";
+import { aiConfig, isCustomerWhatsAppEnabled } from "./config";
 import { getProductById } from "@/data/products";
 import { SITE_URL } from "@/lib/site";
 
@@ -69,7 +69,7 @@ export async function processAbandonedCarts(): Promise<{
     const productIds = cart.items.map((i) => i.productId);
     const upsell = await suggestUpsells({ productIds, locale: "fr" });
 
-    if (cart.phone) {
+    if (cart.phone && isCustomerWhatsAppEnabled()) {
       await sendMessage({
         channel: "whatsapp",
         recipient: cart.phone,

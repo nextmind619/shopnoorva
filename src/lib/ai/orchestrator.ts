@@ -13,7 +13,7 @@ import { triggerN8n } from "./integrations/n8n";
 import { persistOrderToDb } from "./integrations/db-orders";
 import { getIntegrationLogs } from "./integrations/logger";
 import { notifyAdminNewOrder } from "./admin-notify";
-import { aiConfig } from "./config";
+import { aiConfig, isCustomerWhatsAppEnabled } from "./config";
 import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
 import { physicalUnitsForProduct } from "@/lib/catalog/pack-sku";
@@ -151,25 +151,29 @@ export async function dispatchOrderFulfillment(
         console.error("[whatsapp] admin notify failed:", message);
       })
   );
-  tasks.push(
-    sendMessage({
-      channel: "whatsapp",
-      recipient: order.phone,
-      templateKey: "order_confirmed",
-      variables: confirmationVars,
-      locale: "ar",
-      relatedType: "order",
-      relatedId: order.id,
-    }).then((record) => {
-      fulfillment.whatsappCustomer = {
-        ok: record.status === "sent",
-        error: record.error,
-      };
-      if (record.status === "failed") {
-        console.error("[whatsapp] customer confirm failed:", record.error);
-      }
-    })
-  );
+  if (isCustomerWhatsAppEnabled()) {
+    tasks.push(
+      sendMessage({
+        channel: "whatsapp",
+        recipient: order.phone,
+        templateKey: "order_confirmed",
+        variables: confirmationVars,
+        locale: "ar",
+        relatedType: "order",
+        relatedId: order.id,
+      }).then((record) => {
+        fulfillment.whatsappCustomer = {
+          ok: record.status === "sent",
+          error: record.error,
+        };
+        if (record.status === "failed") {
+          console.error("[whatsapp] customer confirm failed:", record.error);
+        }
+      })
+    );
+  } else {
+    fulfillment.whatsappCustomer = { ok: true, error: "disabled" };
+  }
 
   await Promise.allSettled(tasks);
   order.fulfillment = fulfillment;
