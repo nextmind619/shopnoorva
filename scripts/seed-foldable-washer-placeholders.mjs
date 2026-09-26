@@ -75,7 +75,7 @@ async function main() {
   manifest.generatedAt = new Date().toISOString();
   manifest.products[SLUG] = {
     slug: SLUG,
-    sku: "NRV-FWM-01",
+    sku: "FoldableWasher",
     name: "Foldable 9L Mini Washing Machine with Drying",
     images,
     prompts: {},

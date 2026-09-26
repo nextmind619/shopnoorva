@@ -3,7 +3,12 @@
 export const FOLDABLE_WASHER_SLUG = "foldable-9l-mini-washing-machine";
 export const FOLDABLE_WASHER_PRICE_MAD = 399;
 export const FOLDABLE_WASHER_COMPARE_MAD = 649;
+/** CodPlus marketplace SKU (PRD-A08247F9). */
+export const FOLDABLE_WASHER_SKU = "FoldableWasher";
+/** Internal gift key for order grouping; CodPlus SKU is {@link FOLDABLE_WASHER_GIFT_SKU}. */
 export const FOLDABLE_WASHER_GIFT_ID = "gift-filtered-shower-head";
+/** CodPlus marketplace SKU for the free shower head gift (PRD-9A095FB2). */
+export const FOLDABLE_WASHER_GIFT_SKU = "ShowerFilter";
 
 const BASE = `/products/${FOLDABLE_WASHER_SLUG}`;
 

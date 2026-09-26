@@ -4,6 +4,7 @@ import { getProductById } from "@/data/products";
 /** Snapshot stored on the order so fulfillment sees the free gift even if catalog copy changes later. */
 export interface OrderGiftRecord {
   giftProductId?: string;
+  giftSku?: string;
   giftTitle: string;
   giftDescription?: string;
   giftImage?: string;
@@ -33,6 +34,7 @@ export function resolveOrderGifts(
 
     grouped.set(key, {
       giftProductId: gift.giftProductId,
+      giftSku: gift.giftSku,
       giftTitle: gift.giftTitle[locale] || gift.giftTitle.ar,
       giftDescription: gift.giftDescription?.[locale] || gift.giftDescription?.ar,
       giftImage: gift.giftImage,
@@ -51,8 +53,9 @@ export function formatGiftFulfillmentNote(gifts: OrderGiftRecord[] | undefined):
   if (!gifts?.length) return undefined;
   return gifts
     .map((gift) => {
-      const id = gift.giftProductId ? `${gift.giftProductId} | ` : "";
-      return `هدية مجانية × ${gift.quantity}: ${id}${gift.giftTitle} | ${gift.giftDisclosure} | الثمن 0 درهم`;
+      const sku = gift.giftSku ? `SKU ${gift.giftSku} | ` : "";
+      const id = !gift.giftSku && gift.giftProductId ? `${gift.giftProductId} | ` : "";
+      return `هدية مجانية × ${gift.quantity}: ${sku}${id}${gift.giftTitle} | ${gift.giftDisclosure} | الثمن 0 درهم`;
     })
     .join(" || ");
 }

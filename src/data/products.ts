@@ -29,7 +29,9 @@ import {
   FOLDABLE_WASHER_IN_USE_IMAGE,
   FOLDABLE_WASHER_LIFESTYLE_IMAGE,
   FOLDABLE_WASHER_COMPARE_MAD,
+  FOLDABLE_WASHER_GIFT_SKU,
   FOLDABLE_WASHER_PRICE_MAD,
+  FOLDABLE_WASHER_SKU,
   FOLDABLE_WASHER_SLUG,
 } from "@/data/foldable-washer";
 
@@ -3104,18 +3106,18 @@ export const products: Product[] = [
       "Foldable 9L automatic mini washing machine with drying"
     ),
     shortDescription: L(
-      "غسّي وجفّف الملابس الخفيفة فالبيت: 9 لتر، قابلة للطي، وتوفّر اللافomat. 449 درهم COD + رأس دش بفلتر هدية.",
-      "Lavez et séchez à la maison : 9 L, pliable, pratique. 449 DH COD + douche filtrée offerte.",
-      "Wash and dry light laundry at home: 9L, foldable. 449 MAD COD + free filtered shower head."
+      "غسّي وجفّف الملابس الخفيفة فالبيت: 9 لتر، قابلة للطي، وتوفّر اللافomat. 399 درهم COD + رأس دش بفلتر هدية.",
+      "Lavez et séchez à la maison : 9 L, pliable, pratique. 399 DH COD + douche filtrée offerte.",
+      "Wash and dry light laundry at home: 9L, foldable. 399 MAD COD + free filtered shower head."
     ),
     description: L(
-      "غسالة كهربائية صغيرة أوتوماتيكية بسعة 9 لتر: جوارب، ملابس رياضية، ملابس أطفال، ومناشف صغيرة. كتطوى باش ما تشغلش بلاصة، فيها غسيل قوي ووضع تجفيف. 449 درهم، الدفع عند الاستلام، والتوصيل مجاني في المغرب. مع الطلب هدية مجانية: رأس دش يدوي بفلتر لتنقية المياه وزيادة ضغط الماء.",
-      "Mini lave-linge 9 L pliable pour linge léger, avec séchage. 449 DH, COD, livraison gratuite au Maroc. Cadeau : pommeau de douche filtré.",
-      "Foldable 9L mini washer for light laundry with dry mode. 449 MAD, COD, free Morocco shipping. Free filtered handheld shower head gift."
+      "غسالة كهربائية صغيرة أوتوماتيكية بسعة 9 لتر: جوارب، ملابس رياضية، ملابس أطفال، ومناشف صغيرة. كتطوى باش ما تشغلش بلاصة، فيها غسيل قوي ووضع تجفيف. 399 درهم، الدفع عند الاستلام، والتوصيل مجاني في المغرب. مع الطلب هدية مجانية: رأس دش يدوي بفلتر لتنقية المياه وزيادة ضغط الماء.",
+      "Mini lave-linge 9 L pliable pour linge léger, avec séchage. 399 DH, COD, livraison gratuite au Maroc. Cadeau : pommeau de douche filtré.",
+      "Foldable 9L mini washer for light laundry with dry mode. 399 MAD, COD, free Morocco shipping. Free filtered handheld shower head gift."
     ),
     categoryId: "cat-home-decor",
     price: FOLDABLE_WASHER_PRICE_MAD,
-    sku: "NRV-FWM-01",
+    sku: FOLDABLE_WASHER_SKU,
     stock: 42,
     rating: 0,
     reviewCount: 0,
@@ -3166,7 +3168,7 @@ export const products: Product[] = [
       { label: L("النوع", "Type", "Type"), value: L("غسالة صغيرة قابلة للطي", "Mini pliable", "Foldable mini washer") },
       { label: L("الوظائف", "Fonctions", "Functions"), value: L("غسيل + تجفيف", "Lavage + séchage", "Wash + dry") },
       { label: L("اللون", "Couleur", "Color"), value: L("بنفسجي lavender", "Violet lavender", "Lavender purple") },
-      { label: L("الثمن", "Prix", "Price"), value: L("449 درهم", "449 DH", "449 MAD") },
+      { label: L("الثمن", "Prix", "Price"), value: L("399 درهم", "399 DH", "399 MAD") },
       { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
     ],
     packageIncludes: [
@@ -3215,10 +3217,10 @@ export const products: Product[] = [
     variants: [
       {
         id: "var-foldable-washer",
-        name: L("غسالة 9L — 449 درهم", "Lave-linge 9 L — 449 DH", "9L washer — 449 MAD"),
+        name: L("غسالة 9L — 399 درهم", "Lave-linge 9 L — 399 DH", "9L washer — 399 MAD"),
         price: FOLDABLE_WASHER_PRICE_MAD,
         compareAtPrice: FOLDABLE_WASHER_COMPARE_MAD,
-        sku: "NRV-FWM-01",
+        sku: FOLDABLE_WASHER_SKU,
         stock: 42,
       },
     ],
@@ -3227,6 +3229,7 @@ export const products: Product[] = [
     gift: {
       enabled: true,
       giftProductId: FOLDABLE_WASHER_GIFT_ID,
+      giftSku: FOLDABLE_WASHER_GIFT_SKU,
       giftTitle: L(
         "رأس دش يدوي بفلتر لتنقية المياه",
         "Pommeau de douche filtré",
@@ -3247,14 +3250,14 @@ export const products: Product[] = [
     },
     seo: {
       title: L(
-        "غسالة 9L قابلة للطي مع تجفيف | 449 درهم | هدية دش | NOORVA",
-        "Mini lave-linge 9L pliable | 449 DH | douche offerte | NOORVA",
-        "Foldable 9L washer with dry | 449 MAD | free shower head | NOORVA"
+        "غسالة 9L قابلة للطي مع تجفيف | 399 درهم | هدية دش | NOORVA",
+        "Mini lave-linge 9L pliable | 399 DH | douche offerte | NOORVA",
+        "Foldable 9L washer with dry | 399 MAD | free shower head | NOORVA"
       ),
       description: L(
-        "غسالة كهربائية صغيرة 9 لتر قابلة للطي مع تجفيف. 449 درهم، توصيل مجاني والدفع عند الاستلام. هدية: رأس دش بفلتر.",
-        "Mini lave-linge pliable 9 L avec séchage. 449 DH, livraison gratuite, COD. Cadeau pommeau filtré.",
-        "Foldable 9L mini washer with drying. 449 MAD, free shipping, COD. Free filtered shower head gift."
+        "غسالة كهربائية صغيرة 9 لتر قابلة للطي مع تجفيف. 399 درهم، توصيل مجاني والدفع عند الاستلام. هدية: رأس دش بفلتر.",
+        "Mini lave-linge pliable 9 L avec séchage. 399 DH, livraison gratuite, COD. Cadeau pommeau filtré.",
+        "Foldable 9L mini washer with drying. 399 MAD, free shipping, COD. Free filtered shower head gift."
       ),
     },
   },

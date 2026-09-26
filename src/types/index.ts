@@ -83,6 +83,8 @@ export interface ProductSpec {
 export interface ProductGift {
   enabled: boolean;
   giftProductId?: string;
+  /** CodPlus / warehouse SKU for the free gift line (price 0). */
+  giftSku?: string;
   giftTitle: LocalizedString;
   giftDescription?: LocalizedString;
   giftImage?: string;

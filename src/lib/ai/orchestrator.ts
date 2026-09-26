@@ -91,16 +91,25 @@ function buildLeadPayload(
     city: order.city,
     address: order.address,
     notes: noteParts.length ? noteParts.join(" ") : undefined,
-    items: lineItems.map((item, index, arr) => ({
-      sku: item.sku,
-      quantity: physicalUnitsForProduct(item.productId, item.sku, item.quantity),
-      price:
-        arr.length === 1
-          ? order.total
-          : index === 0
-            ? item.lineTotal + order.shipping - order.discount
-            : item.lineTotal,
-    })),
+    items: [
+      ...lineItems.map((item, index, arr) => ({
+        sku: item.sku,
+        quantity: physicalUnitsForProduct(item.productId, item.sku, item.quantity),
+        price:
+          arr.length === 1 && !(order.gifts?.some((g) => g.giftSku))
+            ? order.total
+            : index === 0
+              ? item.lineTotal + order.shipping - order.discount
+              : item.lineTotal,
+      })),
+      ...(order.gifts
+        ?.filter((gift) => gift.giftSku)
+        .map((gift) => ({
+          sku: gift.giftSku!,
+          quantity: gift.quantity,
+          price: 0,
+        })) ?? []),
+    ],
   };
 }
 
