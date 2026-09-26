@@ -24,7 +24,7 @@ export interface ProductImageManifest {
       name: string;
       images: Partial<Record<PremiumImageType, OptimizedImageSet>>;
       prompts: Partial<Record<PremiumImageType, Record<string, string>>>;
-      sources: Partial<Record<PremiumImageType, "commercial" | "ai-generated">>;
+      sources: Partial<Record<PremiumImageType, "commercial" | "ai-generated" | "placeholder" | "upload">>;
     }
   >;
 }
@@ -98,6 +98,7 @@ const PREMIUM_HERO_FIRST_SLUGS = new Set([
   "kids-art-set-easel-208",
   "bt12-4in1-selfie-stick-tripod",
   "mobile-laptop-desk-with-wheels",
+  "foldable-9l-mini-washing-machine",
 ]);
 
 function heroImageTypeOrder(slug: string): PremiumImageType[] {
