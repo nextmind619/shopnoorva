@@ -82,40 +82,53 @@ export function getProductImageUrl(
 
 type HeroVariant = "webp" | "avif" | "original" | "thumbnail" | "sm" | "md" | "lg";
 
-export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): string {
-  // Astronaut + Laser + car mount use premium marketing composite as hero
-  if (
-    slug === "astronaut-bt-speaker-projector" ||
-    slug === "green-laser-pointer-303" ||
-    slug === "magnetic-car-phone-mount-maidsail" ||
-    slug === "magnetic-car-phone-mount" ||
-    slug === "magnetic-car-phone-holder-1-plus-1" ||
-    slug === "car-dual-fan-foldable-sunshade-2in1-pack" ||
-    slug === "star-galaxy-projector-rgb-gift" ||
-    slug === "solar-calculator-lcd-notepad" ||
-    slug === "cordless-mini-vacuum-keyboard" ||
-    slug === "solar-helicopter-car-air-freshener" ||
-    slug === "foldable-car-windshield-sunshade" ||
-    slug === "kids-art-set-easel-208" ||
-    slug === "bt12-4in1-selfie-stick-tripod"
-  ) {
-    return (
-      getProductImageUrl(slug, "02-premium-hero", variant) ||
-      getProductImageUrl(slug, "02-premium-hero", "webp") ||
-      getProductImageUrl(slug, "01-hero-white-bg", variant) ||
-      getProductImageUrl(slug, "01-hero-white-bg", "webp") ||
-      `/products/${slug.replace(/-projector$|-night-light$|-303$/, "")}.svg`
-    );
+/** Catalog / cards prefer 02-premium-hero when white-bg slot is still a placeholder. */
+const PREMIUM_HERO_FIRST_SLUGS = new Set([
+  "astronaut-bt-speaker-projector",
+  "green-laser-pointer-303",
+  "magnetic-car-phone-mount-maidsail",
+  "magnetic-car-phone-mount",
+  "magnetic-car-phone-holder-1-plus-1",
+  "car-dual-fan-foldable-sunshade-2in1-pack",
+  "star-galaxy-projector-rgb-gift",
+  "solar-calculator-lcd-notepad",
+  "cordless-mini-vacuum-keyboard",
+  "solar-helicopter-car-air-freshener",
+  "foldable-car-windshield-sunshade",
+  "kids-art-set-easel-208",
+  "bt12-4in1-selfie-stick-tripod",
+  "mobile-laptop-desk-with-wheels",
+]);
+
+function heroImageTypeOrder(slug: string): PremiumImageType[] {
+  const key = resolveImageSlug(slug);
+  const sources = manifest.products[key]?.sources;
+  if (PREMIUM_HERO_FIRST_SLUGS.has(slug) || PREMIUM_HERO_FIRST_SLUGS.has(key)) {
+    return ["02-premium-hero", "01-hero-white-bg"];
   }
+  if (sources?.["01-hero-white-bg"] === "placeholder") {
+    return ["02-premium-hero", "01-hero-white-bg"];
+  }
+  return ["01-hero-white-bg", "02-premium-hero"];
+}
+
+function pickFirstHeroUrl(slug: string, variant: HeroVariant): string | undefined {
+  for (const imageType of heroImageTypeOrder(slug)) {
+    const url =
+      getProductImageUrl(slug, imageType, variant) ||
+      getProductImageUrl(slug, imageType, "webp");
+    if (url && !url.endsWith(".svg")) return url;
+  }
+  return undefined;
+}
+
+export function getProductHeroUrl(slug: string, variant: HeroVariant = "webp"): string {
   if (slug === "proteine-curve-collagen-glow") {
     return `/products/proteine-curve-collagen-glow.svg`;
   }
   return (
-    getProductImageUrl(slug, "01-hero-white-bg", variant) ||
-    getProductImageUrl(slug, "01-hero-white-bg", "webp") ||
-    getProductImageUrl(slug, "02-premium-hero", variant) ||
-    getProductImageUrl(slug, "02-premium-hero", "webp") ||
-    `/products/${slug.replace(/-projector$|-night-light$/, "")}.svg`
+    pickFirstHeroUrl(slug, variant) ||
+    `/products/${slug.replace(/-projector$|-night-light$|-303$/, "")}.svg`
   );
 }
 
