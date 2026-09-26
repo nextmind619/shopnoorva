@@ -24,7 +24,9 @@ export interface ProductImageManifest {
       name: string;
       images: Partial<Record<PremiumImageType, OptimizedImageSet>>;
       prompts: Partial<Record<PremiumImageType, Record<string, string>>>;
-      sources: Partial<Record<PremiumImageType, "commercial" | "ai-generated">>;
+      sources: Partial<
+        Record<PremiumImageType, "commercial" | "ai-generated" | "placeholder" | "upload">
+      >;
     }
   >;
 }
