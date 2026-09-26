@@ -8,6 +8,8 @@ export const LAPTOP_DESK_SKU = "LaptopTable - Adjustable";
 export const LAPTOP_DESK_GIFT_ID = "gift-waterproof-messenger-bag-usb";
 /** CodPlus marketplace SKU for the free crossbody bag (PRD-3C126546). */
 export const LAPTOP_DESK_GIFT_SKU = "Crossbody-Bag";
+/** CodPlus pack name: 1× desk + 1× bag — must match seller Packs → Name exactly. */
+export const LAPTOP_DESK_CODPLUS_PACK_SKU = "LaptopTable CrossbodyBag Pack";
 
 const BASE = `/products/${LAPTOP_DESK_SLUG}`;
 

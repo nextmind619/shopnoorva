@@ -15,6 +15,7 @@ import {
   LAPTOP_DESK_FEATURES_IMAGE,
   LAPTOP_DESK_GIFT_ID,
   LAPTOP_DESK_GIFT_IMAGE,
+  LAPTOP_DESK_CODPLUS_PACK_SKU,
   LAPTOP_DESK_GIFT_SKU,
   LAPTOP_DESK_HERO_IMAGE,
   LAPTOP_DESK_IN_USE_IMAGE,
@@ -3070,6 +3071,7 @@ export const products: Product[] = [
       enabled: true,
       giftProductId: LAPTOP_DESK_GIFT_ID,
       giftSku: LAPTOP_DESK_GIFT_SKU,
+      codplusPackSku: LAPTOP_DESK_CODPLUS_PACK_SKU,
       giftTitle: L(
         "حقيبة كتف رجالية مقاومة للماء مع منفذ USB",
         "Sac bandoulière étanche homme avec port USB",
