@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { buildLeadPayloadFromStoredOrder } from "@/lib/catalog/lead-payload";
 import { appendOrderToSheets, diagnoseGoogleSheets } from "@/lib/ai/integrations/google-sheets";
 import { getGoogleSheetsConfigSummary } from "@/lib/ai/integrations/google-auth";
 import { getIntegrationLogs } from "@/lib/ai/integrations/logger";
@@ -9,30 +10,6 @@ import { store, type StoredOrder } from "@/lib/ai/memory-store";
 function isAuthorized(request: NextRequest): boolean {
   const secret = request.headers.get("x-cron-secret") || request.nextUrl.searchParams.get("secret");
   return Boolean(secret && secret === process.env.CRON_SECRET);
-}
-
-function orderToSheetPayload(order: (typeof store.orders)[number]) {
-  const noteParts: string[] = [];
-  if (order.isDuplicate) noteParts.push("[DUPLICATE]");
-
-  return {
-    orderNumber: order.orderNumber,
-    customerName: [order.firstName, order.lastName].filter(Boolean).join(" ") || "Client",
-    phone: order.phone,
-    city: order.city,
-    address: order.address,
-    notes: noteParts.length ? noteParts.join(" ") : undefined,
-    items: order.items.map((item, index, arr) => ({
-      sku: item.sku,
-      quantity: item.quantity,
-      price:
-        arr.length === 1
-          ? order.total
-          : index === 0
-            ? item.lineTotal + order.shipping - order.discount
-            : item.lineTotal,
-    })),
-  };
 }
 
 export async function POST(request: NextRequest) {
@@ -65,7 +42,7 @@ export async function POST(request: NextRequest) {
 
     const results: Array<{ orderNumber: string; sheets: unknown; whatsapp?: string }> = [];
     for (const order of byNumber.values()) {
-      const payload = orderToSheetPayload(order);
+      const payload = buildLeadPayloadFromStoredOrder(order);
       const sheets = await appendOrderToSheets(payload);
       let whatsapp = "skipped";
       if (notifyWhatsApp) {
@@ -96,7 +73,7 @@ export async function POST(request: NextRequest) {
     if (order.status !== "confirmed" && order.status !== "review") {
       return NextResponse.json({ error: "Order status not eligible for sheet sync", status: order.status }, { status: 400 });
     }
-    appendResult = await appendOrderToSheets(orderToSheetPayload(order));
+    appendResult = await appendOrderToSheets(buildLeadPayloadFromStoredOrder(order));
   } else {
     appendResult = await appendOrderToSheets({
       orderNumber,

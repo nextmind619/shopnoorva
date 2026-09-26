@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { buildLeadPayloadFromStoredOrder } from "@/lib/catalog/lead-payload";
 import { dispatchOrderFulfillment } from "@/lib/ai/orchestrator";
 import { loadRecentOrdersFromDb } from "@/lib/ai/integrations/db-orders";
 import { store, type StoredOrder } from "@/lib/ai/memory-store";
@@ -8,26 +9,6 @@ import { formatOrderProductsForMessage } from "@/lib/ai/messaging";
 function isAuthorized(request: NextRequest): boolean {
   const secret = request.headers.get("x-cron-secret") || request.nextUrl.searchParams.get("secret");
   return Boolean(secret && secret === process.env.CRON_SECRET);
-}
-
-function toLeadPayload(order: StoredOrder) {
-  return {
-    orderNumber: order.orderNumber,
-    customerName: [order.firstName, order.lastName].filter(Boolean).join(" ") || "Client",
-    phone: order.phone,
-    city: order.city,
-    address: order.address,
-    items: order.items.map((item, index, arr) => ({
-      sku: item.sku,
-      quantity: item.quantity,
-      price:
-        arr.length === 1
-          ? order.total
-          : index === 0
-            ? item.lineTotal + order.shipping - order.discount
-            : item.lineTotal,
-    })),
-  };
 }
 
 async function findOrder(orderNumber: string): Promise<StoredOrder | undefined> {
@@ -79,7 +60,7 @@ export async function POST(request: NextRequest) {
   }
 
   const customerName = [order.firstName, order.lastName].filter(Boolean).join(" ") || "عميل";
-  const fulfillment = await dispatchOrderFulfillment(order, toLeadPayload(order), customerName, {
+  const fulfillment = await dispatchOrderFulfillment(order, buildLeadPayloadFromStoredOrder(order), customerName, {
     name: customerName,
     store: aiConfig.brand.name,
     order: order.orderNumber,

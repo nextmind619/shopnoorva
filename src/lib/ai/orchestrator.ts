@@ -16,34 +16,20 @@ import { notifyAdminNewOrder } from "./admin-notify";
 import { aiConfig, isCustomerWhatsAppEnabled } from "./config";
 import { generateOrderNumber, getShippingCost } from "@/lib/utils";
 import { getProductById } from "@/data/products";
-import { buildCodplusLeadItems } from "@/lib/catalog/codplus-lead-items";
-import { formatGiftFulfillmentNote, resolveOrderGifts } from "@/lib/catalog/product-gift";
 import {
-  getCarMountUpsellPrice,
+  buildLeadPayloadFromOrder,
+  type FulfillmentLineItem,
+  type LeadPayload,
+} from "@/lib/catalog/lead-payload";
+import { resolveOrderGifts } from "@/lib/catalog/product-gift";
+import {
   isEligibleCarMountUpsellProduct,
   orderHasCarMountUpsellHost,
   resolveCarMountUpsellQuantity,
   resolveCarMountUpsellUnitPrice,
 } from "@/lib/catalog/car-mount-upsell";
 
-type LeadPayload = {
-  orderNumber: string;
-  customerName: string;
-  phone: string;
-  city: string;
-  address: string;
-  notes?: string;
-  items: Array<{ sku: string; quantity: number; price: number }>;
-};
-
-type LineItem = {
-  sku: string;
-  name: string;
-  quantity: number;
-  unitPrice: number;
-  lineTotal: number;
-  productId: string;
-};
+type LineItem = FulfillmentLineItem;
 
 export type OrderSideEffectsContext = {
   order: StoredOrder;
@@ -60,40 +46,6 @@ export type OrderSideEffectsContext = {
     referrerUrl?: string;
   };
 };
-
-function buildLeadPayload(
-  order: StoredOrder,
-  lineItems: LineItem[],
-  notes?: string
-): LeadPayload {
-  const noteParts: string[] = [];
-  if (order.isDuplicate) noteParts.push("[DUPLICATE]");
-  if (notes?.trim()) noteParts.push(notes.trim());
-  const giftNote = formatGiftFulfillmentNote(order.gifts);
-  if (giftNote && !noteParts.some((part) => part.includes("هدية مجانية"))) {
-    noteParts.push(giftNote);
-  }
-  const upsellLines = lineItems.filter(
-    (item) =>
-      isEligibleCarMountUpsellProduct(item.productId) &&
-      item.unitPrice === getCarMountUpsellPrice(item.productId)
-  );
-  if (upsellLines.length > 0 && !notes?.includes("عرض Upsell")) {
-    noteParts.push(
-      `عرض Upsell: ${upsellLines.map((item) => `${item.name} (${item.unitPrice} درهم)`).join(" + ")}`
-    );
-  }
-
-  return {
-    orderNumber: order.orderNumber,
-    customerName: [order.firstName, order.lastName].filter(Boolean).join(" ") || "Client",
-    phone: order.phone,
-    city: order.city,
-    address: order.address,
-    notes: noteParts.length ? noteParts.join(" ") : undefined,
-    items: buildCodplusLeadItems(order, lineItems),
-  };
-}
 
 /** Sheets + WhatsApp + Codplus in parallel — never block one on the other. */
 export async function dispatchOrderFulfillment(
@@ -416,7 +368,7 @@ export async function processIncomingOrder(input: {
 
   const leadPayload =
     order.status === "confirmed" || order.status === "review"
-      ? buildLeadPayload(order, lineItems, input.notes)
+      ? buildLeadPayloadFromOrder(order, lineItems, input.notes)
       : null;
 
   // Sheets + WhatsApp must not wait on Postgres / MinIO / pixels.
