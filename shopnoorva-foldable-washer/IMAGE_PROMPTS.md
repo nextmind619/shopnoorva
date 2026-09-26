@@ -68,7 +68,7 @@ Lifestyle product-in-use photograph. Same lavender foldable 9L washer in bedroom
 ## 5) `17-infographic.jpg` — المعرض 5/6 · ملخص العرض (عربي)
 
 ```
-Clean Arabic RTL infographic poster NOORVA Morocco, deep purple background #2e1064, accents #a78bfa and amber #fbbf24. Central photo or illustration of lavender foldable 9L washer. Icons + short Arabic labels: 9 لتر، قابلة للطي، غسيل + تجفيف، 449 درهم، الدفع عند الاستلام، توصيل مجاني، هدية رأس دش بفلتر. Modern Arabic sans-serif, premium minimal, NO fake 5-star reviews, high resolution square or 4:5.
+Clean Arabic RTL infographic poster NOORVA Morocco, deep purple background #2e1064, accents #a78bfa and amber #fbbf24. Central photo or illustration of lavender foldable 9L washer. Icons + short Arabic labels: 9 لتر، قابلة للطي، غسيل + تجفيف، 399 درهم، الدفع عند الاستلام، توصيل مجاني، هدية رأس دش بفلتر. Modern Arabic sans-serif, premium minimal, NO fake 5-star reviews, high resolution square or 4:5.
 ```
 
 **Negative:** `USD price, Amazon logo, cluttered flyer, fake review count`

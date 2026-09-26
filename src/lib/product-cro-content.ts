@@ -1233,10 +1233,10 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
     headline: {
       title: "غسّي وجفّف فالبيت — بلا lavomat",
       subtitle:
-        "غسالة 9L قابلة للطي: غسيل أوتوماتيكي + تجفيف. 449 درهم COD + رأس دش بفلتر هدية.",
+        "غسالة 9L قابلة للطي: غسيل أوتوماتيكي + تجفيف. 399 درهم COD + رأس دش بفلتر هدية.",
     },
     midCtaLabels: [
-      "اطلب دابا — 449 درهم COD",
+      "اطلب دابا — 399 درهم COD",
       "🎁 رأس دش بفلتر مجاني",
       "توصيل مجاني لجميع المدن",
     ],
@@ -1310,7 +1310,7 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
       {
         icon: Shield,
         title: "COD + توصيل مجاني",
-        desc: "449 درهم. ما كخلص والو دابا.",
+        desc: "399 درهم. ما كخلص والو دابا.",
       },
     ],
   },

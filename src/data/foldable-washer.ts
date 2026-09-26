@@ -1,7 +1,7 @@
 /** Foldable 9L mini washing machine + filtered shower head gift — PDP constants. */
 
 export const FOLDABLE_WASHER_SLUG = "foldable-9l-mini-washing-machine";
-export const FOLDABLE_WASHER_PRICE_MAD = 449;
+export const FOLDABLE_WASHER_PRICE_MAD = 399;
 export const FOLDABLE_WASHER_COMPARE_MAD = 649;
 export const FOLDABLE_WASHER_GIFT_ID = "gift-filtered-shower-head";
 
@@ -17,7 +17,7 @@ export const FOLDABLE_WASHER_GIFT_IMAGE = `${BASE}/gift-filtered-shower-head.web
 export const FOLDABLE_WASHER_FAQS = [
   {
     q: "شحال ثمن الغسالة؟",
-    a: "449 درهم. الدفع عند الاستلام والتوصيل مجاني لجميع مدن المغرب. رأس الدش بالفلتر هدية مجانية بلا درهم زايد.",
+    a: "399 درهم. الدفع عند الاستلام والتوصيل مجاني لجميع مدن المغرب. رأس الدش بالفلتر هدية مجانية بلا درهم زايد.",
   },
   {
     q: "واش فعلاً 9 لتر وقابلة للطي؟",
