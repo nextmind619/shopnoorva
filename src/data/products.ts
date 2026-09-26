@@ -15,10 +15,12 @@ import {
   LAPTOP_DESK_FEATURES_IMAGE,
   LAPTOP_DESK_GIFT_ID,
   LAPTOP_DESK_GIFT_IMAGE,
+  LAPTOP_DESK_GIFT_SKU,
   LAPTOP_DESK_HERO_IMAGE,
   LAPTOP_DESK_IN_USE_IMAGE,
   LAPTOP_DESK_LIFESTYLE_IMAGE,
   LAPTOP_DESK_PRICE_MAD,
+  LAPTOP_DESK_SKU,
   LAPTOP_DESK_SLUG,
 } from "@/data/laptop-desk";
 import {
@@ -2957,7 +2959,7 @@ export const products: Product[] = [
     ),
     categoryId: "cat-home-decor",
     price: LAPTOP_DESK_PRICE_MAD,
-    sku: "NRV-LPD-01",
+    sku: LAPTOP_DESK_SKU,
     stock: 36,
     rating: 0,
     reviewCount: 0,
@@ -3058,7 +3060,7 @@ export const products: Product[] = [
         id: "var-laptop-desk",
         name: L("طاولة لابتوب — 399 درهم", "Bureau laptop — 399 DH", "Laptop desk — 399 MAD"),
         price: LAPTOP_DESK_PRICE_MAD,
-        sku: "NRV-LPD-01",
+        sku: LAPTOP_DESK_SKU,
         stock: 36,
       },
     ],
@@ -3067,6 +3069,7 @@ export const products: Product[] = [
     gift: {
       enabled: true,
       giftProductId: LAPTOP_DESK_GIFT_ID,
+      giftSku: LAPTOP_DESK_GIFT_SKU,
       giftTitle: L(
         "حقيبة كتف رجالية مقاومة للماء مع منفذ USB",
         "Sac bandoulière étanche homme avec port USB",

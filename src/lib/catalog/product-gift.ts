@@ -56,7 +56,7 @@ export function formatGiftFulfillmentNote(gifts: OrderGiftRecord[] | undefined):
   return gifts
     .map((gift) => {
       if (gift.codplusPackSku) {
-        return `بك CodPlus × ${gift.quantity}: ${gift.codplusPackSku} (غسالة + ${gift.giftTitle} مضمنة) | ${gift.giftDisclosure}`;
+        return `بك CodPlus × ${gift.quantity}: ${gift.codplusPackSku} (${gift.giftTitle} مضمنة) | ${gift.giftDisclosure}`;
       }
       const sku = gift.giftSku ? `SKU ${gift.giftSku} | ` : "";
       const id = !gift.giftSku && gift.giftProductId ? `${gift.giftProductId} | ` : "";

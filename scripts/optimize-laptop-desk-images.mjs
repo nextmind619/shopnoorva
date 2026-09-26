@@ -93,7 +93,7 @@ for (const base of FILES) {
 
 manifest.products[SLUG] = {
   slug: SLUG,
-  sku: "NRV-LPD-01",
+  sku: "LaptopTable - Adjustable",
   name: "Mobile Adjustable Laptop Desk with Wheels",
   ...entry,
 };

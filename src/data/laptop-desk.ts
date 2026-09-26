@@ -2,7 +2,12 @@
 
 export const LAPTOP_DESK_SLUG = "mobile-laptop-desk-with-wheels";
 export const LAPTOP_DESK_PRICE_MAD = 399;
+/** CodPlus marketplace SKU (PRD-BFC0C11B). */
+export const LAPTOP_DESK_SKU = "LaptopTable - Adjustable";
+/** Internal gift key; CodPlus SKU is {@link LAPTOP_DESK_GIFT_SKU}. */
 export const LAPTOP_DESK_GIFT_ID = "gift-waterproof-messenger-bag-usb";
+/** CodPlus marketplace SKU for the free crossbody bag (PRD-3C126546). */
+export const LAPTOP_DESK_GIFT_SKU = "Crossbody-Bag";
 
 const BASE = `/products/${LAPTOP_DESK_SLUG}`;
 

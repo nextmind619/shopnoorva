@@ -73,7 +73,7 @@ async function main() {
   manifest.generatedAt = new Date().toISOString();
   manifest.products[SLUG] = {
     slug: SLUG,
-    sku: "NRV-LPD-01",
+    sku: "LaptopTable - Adjustable",
     name: "Mobile Adjustable Laptop Desk with Wheels",
     images,
     prompts: {},
