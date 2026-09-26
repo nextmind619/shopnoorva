@@ -29,6 +29,7 @@ import {
   FOLDABLE_WASHER_IN_USE_IMAGE,
   FOLDABLE_WASHER_LIFESTYLE_IMAGE,
   FOLDABLE_WASHER_COMPARE_MAD,
+  FOLDABLE_WASHER_CODPLUS_PACK_SKU,
   FOLDABLE_WASHER_GIFT_SKU,
   FOLDABLE_WASHER_PRICE_MAD,
   FOLDABLE_WASHER_SKU,
@@ -3230,6 +3231,7 @@ export const products: Product[] = [
       enabled: true,
       giftProductId: FOLDABLE_WASHER_GIFT_ID,
       giftSku: FOLDABLE_WASHER_GIFT_SKU,
+      codplusPackSku: FOLDABLE_WASHER_CODPLUS_PACK_SKU,
       giftTitle: L(
         "رأس دش يدوي بفلتر لتنقية المياه",
         "Pommeau de douche filtré",

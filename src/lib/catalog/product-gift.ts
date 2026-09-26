@@ -5,6 +5,7 @@ import { getProductById } from "@/data/products";
 export interface OrderGiftRecord {
   giftProductId?: string;
   giftSku?: string;
+  codplusPackSku?: string;
   giftTitle: string;
   giftDescription?: string;
   giftImage?: string;
@@ -35,6 +36,7 @@ export function resolveOrderGifts(
     grouped.set(key, {
       giftProductId: gift.giftProductId,
       giftSku: gift.giftSku,
+      codplusPackSku: gift.codplusPackSku,
       giftTitle: gift.giftTitle[locale] || gift.giftTitle.ar,
       giftDescription: gift.giftDescription?.[locale] || gift.giftDescription?.ar,
       giftImage: gift.giftImage,
@@ -53,6 +55,9 @@ export function formatGiftFulfillmentNote(gifts: OrderGiftRecord[] | undefined):
   if (!gifts?.length) return undefined;
   return gifts
     .map((gift) => {
+      if (gift.codplusPackSku) {
+        return `بك CodPlus × ${gift.quantity}: ${gift.codplusPackSku} (غسالة + ${gift.giftTitle} مضمنة) | ${gift.giftDisclosure}`;
+      }
       const sku = gift.giftSku ? `SKU ${gift.giftSku} | ` : "";
       const id = !gift.giftSku && gift.giftProductId ? `${gift.giftProductId} | ` : "";
       return `هدية مجانية × ${gift.quantity}: ${sku}${id}${gift.giftTitle} | ${gift.giftDisclosure} | الثمن 0 درهم`;

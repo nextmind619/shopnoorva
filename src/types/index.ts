@@ -85,6 +85,8 @@ export interface ProductGift {
   giftProductId?: string;
   /** CodPlus / warehouse SKU for the free gift line (price 0). */
   giftSku?: string;
+  /** CodPlus pack SKU when the gift ships as one registered pack (washer + gift). */
+  codplusPackSku?: string;
   giftTitle: LocalizedString;
   giftDescription?: LocalizedString;
   giftImage?: string;
