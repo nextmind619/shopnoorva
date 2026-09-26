@@ -48,6 +48,11 @@ import {
 } from "@/lib/catalog/car-mount-upsell";
 import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
 import { LAPTOP_DESK_FAQS, LAPTOP_DESK_PRICE_MAD, LAPTOP_DESK_SLUG } from "@/data/laptop-desk";
+import {
+  FOLDABLE_WASHER_FAQS,
+  FOLDABLE_WASHER_PRICE_MAD,
+  FOLDABLE_WASHER_SLUG,
+} from "@/data/foldable-washer";
 import { ProductSurpriseGift, ProductUsageModes } from "@/components/product/product-surprise-gift";
 
 const ProductOrderForm = dynamic(
@@ -97,6 +102,7 @@ function getBenefitHeadline(product: Product): { title: string; subtitle: string
 function getProductFaqs(product: Product) {
   if (product.slug === BT12_SLUG) return [...BT12_FAQS];
   if (product.slug === LAPTOP_DESK_SLUG) return [...LAPTOP_DESK_FAQS];
+  if (product.slug === FOLDABLE_WASHER_SLUG) return [...FOLDABLE_WASHER_FAQS];
   const warranty = product.warrantyMonths || 12;
   const delivery =
     `24-48 ساعة للمدن الكبرى، 2-4 أيام لباقي المدن. ضمان ${warranty} شهر واستبدال خلال 7 أيام عند وجود عيب.`;
@@ -349,7 +355,8 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
   const isKidsArt = product.slug === "kids-art-set-easel-208";
   const isBt12 = product.slug === BT12_SLUG;
   const isLaptopDesk = product.slug === LAPTOP_DESK_SLUG;
-  const isCompactCodForm = isBt12 || isLaptopDesk;
+  const isFoldableWasher = product.slug === FOLDABLE_WASHER_SLUG;
+  const isCompactCodForm = isBt12 || isLaptopDesk || isFoldableWasher;
   const activeGift = product.gift?.enabled ? product.gift : undefined;
   const selectedColor = isKidsArt ? getKidsArtColor(colorId) : undefined;
   const kidsArtGallerySlides = useMemo<GallerySlide[] | undefined>(() => {
@@ -396,10 +403,14 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
   const reviewLimit = isBt12 ? 4 : 3;
   const ctaClass = isLaser
     ? "w-full h-14 sm:h-16 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-500/35 transition-colors"
-    : "w-full h-14 sm:h-16 rounded-2xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-500/30 transition-colors";
+    : isFoldableWasher
+      ? "w-full h-14 sm:h-16 rounded-2xl bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-violet-500/35 transition-colors"
+      : "w-full h-14 sm:h-16 rounded-2xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-base sm:text-lg flex items-center justify-center gap-2.5 shadow-lg shadow-indigo-500/30 transition-colors";
   const stickyCtaClass = isLaser
     ? "flex-1 h-12 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#06140c] font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/30"
-    : "flex-1 h-12 rounded-xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30";
+    : isFoldableWasher
+      ? "flex-1 h-12 rounded-xl bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-violet-500/30"
+      : "flex-1 h-12 rounded-xl bg-[#6366f1] hover:bg-[#4f46e5] text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/30";
   const trustBadges = isShiatsu
     ? [
         { icon: Truck, label: "توصيل مجاني في المغرب" },
@@ -414,7 +425,14 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           { icon: Shield, label: "ضمان 12 شهر" },
           { icon: Gift, label: "Arabic Magic Book 🎁" },
         ]
-      : isLaptopDesk
+      : isFoldableWasher
+        ? [
+            { icon: Truck, label: "توصيل مجاني" },
+            { icon: Banknote, label: "الدفع عند الاستلام" },
+            { icon: Gift, label: "دش بفلتر هدية" },
+            { icon: Shield, label: "9L · طي · تجفيف" },
+          ]
+        : isLaptopDesk
         ? [
             { icon: Truck, label: "توصيل مجاني" },
             { icon: Banknote, label: "الدفع عند الاستلام" },
@@ -461,6 +479,14 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
               <span className="hidden sm:inline text-white/20">|</span>
               <span className="flex items-center gap-1.5">
                 <Gift className="h-3.5 w-3.5 text-amber-300" /> Arabic Magic Book هدية مجانية
+              </span>
+            </>
+          )}
+          {isFoldableWasher && (
+            <>
+              <span className="hidden sm:inline text-white/20">|</span>
+              <span className="flex items-center gap-1.5">
+                <Gift className="h-3.5 w-3.5 text-violet-300" /> رأس دش بفلتر — هدية مجانية
               </span>
             </>
           )}
@@ -528,7 +554,9 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
                 ? "راحة الرقبة والكتاف… فالوقت اللي تحتاجها"
                 : isKidsArt
                   ? "🎨 مجموعة الرسم والتلوين للأطفال"
-                  : isLaptopDesk
+                  : isFoldableWasher
+                    ? "غسالة 9L قابلة للطي — غسّي وجفّف فالبيت"
+                    : isLaptopDesk
                     ? "طاولة لابتوب متحركة — اشتغل براحتك"
                     : isBt12
                       ? "عصا سيلفي BT12 — 4 في 1"
@@ -540,8 +568,17 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           {isKidsArt && (
             <p className="text-base font-semibold text-amber-200">+ 🎁 Arabic Magic Book مجاناً</p>
           )}
-          {(isBt12 || isLaptopDesk) && (
-            <p className="text-base font-semibold text-amber-200">وزيد عليها هدية مجانية مفاجأة مع الطلب ديالك 🎁</p>
+          {(isBt12 || isLaptopDesk || isFoldableWasher) && (
+            <p
+              className={cn(
+                "text-base font-semibold",
+                isFoldableWasher ? "text-violet-200" : "text-amber-200",
+              )}
+            >
+              {isFoldableWasher
+                ? "🎁 رأس دش يدوي بفلتر — هدية مجانية مع الطلب"
+                : "وزيد عليها هدية مجانية مفاجأة مع الطلب ديالك 🎁"}
+            </p>
           )}
           <p className="text-white/60 text-base leading-relaxed max-w-xl mx-auto sm:mx-0">
             {isBogo
@@ -611,8 +648,15 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
               🎁 Arabic Magic Book هدية مجانية مع الطلب
             </p>
           )}
-          {(isBt12 || isLaptopDesk) && activeGift && (
-            <p className="text-sm font-bold text-amber-200/90">{activeGift.giftDisclosure.ar}</p>
+          {(isBt12 || isLaptopDesk || isFoldableWasher) && activeGift && (
+            <p
+              className={cn(
+                "text-sm font-bold",
+                isFoldableWasher ? "text-violet-200/90" : "text-amber-200/90",
+              )}
+            >
+              {activeGift.giftDisclosure.ar}
+            </p>
           )}
         </section>
 
@@ -723,7 +767,9 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           formSubtitle={
             isBogo
               ? "كتخلص ثمن قطعة وحدة وكياوصلك جوج حاملات أصلية. ما كخلص والو دابا."
-              : isLaptopDesk
+              : isFoldableWasher
+                ? `${FOLDABLE_WASHER_PRICE_MAD} درهم + رأس دش بفلتر هدية. ما كخلص والو دابا — كتخلص كاش ملي يوصلك الطلب.`
+                : isLaptopDesk
                 ? `${LAPTOP_DESK_PRICE_MAD} درهم + حقيبة USB هدية. ما كخلص والو دابا — كتخلص كاش ملي يوصلك الطلب.`
                 : isBt12
                   ? "349 درهم. ما كخلص والو دابا — كتخلص كاش ملي يوصلك الطلب."
@@ -751,7 +797,7 @@ export function ProductPageAr({ product, related: relatedProp, reviews: reviewsP
           }))}
         />
 
-        {(isBt12 || isLaptopDesk) && product.lifestyleScenes && (
+        {(isBt12 || isLaptopDesk || isFoldableWasher) && product.lifestyleScenes && (
           <ProductUsageModes scenes={product.lifestyleScenes} />
         )}
         {activeGift && <ProductSurpriseGift gift={activeGift} />}

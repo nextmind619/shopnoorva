@@ -130,6 +130,13 @@ const PRIMARY_GALLERY_OVERRIDES: Partial<Record<string, PremiumImageType[]>> = {
     "14-product-in-use",
     "11-package-contents",
   ],
+  "foldable-9l-mini-washing-machine": [
+    "02-premium-hero",
+    "10-features",
+    "03-lifestyle",
+    "14-product-in-use",
+    "11-package-contents",
+  ],
   "cordless-mini-vacuum-keyboard": [
     "02-premium-hero",
     "01-hero-white-bg",

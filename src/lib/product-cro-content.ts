@@ -34,6 +34,8 @@ import {
   MoveVertical,
   Lock,
   Usb,
+  Droplets,
+  Shirt,
 } from "lucide-react";
 import type { PremiumImageType } from "@/lib/product-images/types";
 import {
@@ -52,6 +54,14 @@ import {
   LAPTOP_DESK_LIFESTYLE_IMAGE,
   LAPTOP_DESK_SLUG,
 } from "@/data/laptop-desk";
+import {
+  FOLDABLE_WASHER_FEATURES_IMAGE,
+  FOLDABLE_WASHER_GIFT_IMAGE,
+  FOLDABLE_WASHER_HERO_IMAGE,
+  FOLDABLE_WASHER_IN_USE_IMAGE,
+  FOLDABLE_WASHER_LIFESTYLE_IMAGE,
+  FOLDABLE_WASHER_SLUG,
+} from "@/data/foldable-washer";
 
 export type CroHowToStep = {
   step: string;
@@ -1216,6 +1226,91 @@ export const PRODUCT_CRO: Record<string, CroProductContent> = {
         icon: Shield,
         title: "COD + توصيل مجاني",
         desc: "399 درهم. ما كخلص والو دابا.",
+      },
+    ],
+  },
+  [FOLDABLE_WASHER_SLUG]: {
+    headline: {
+      title: "غسّي وجفّف فالبيت — بلا lavomat",
+      subtitle:
+        "غسالة 9L قابلة للطي: غسيل أوتوماتيكي + تجفيف. 449 درهم COD + رأس دش بفلتر هدية.",
+    },
+    midCtaLabels: [
+      "اطلب دابا — 449 درهم COD",
+      "🎁 رأس دش بفلتر مجاني",
+      "توصيل مجاني لجميع المدن",
+    ],
+    howTo: [
+      {
+        step: "1",
+        title: "فتح وتحميل",
+        desc: "فتح الغسالة، حط الملابس الخفيفة والمنظف حسب الدليل.",
+        imageKey: null,
+        imageUrl: FOLDABLE_WASHER_HERO_IMAGE,
+      },
+      {
+        step: "2",
+        title: "اختر البرنامج",
+        desc: "من اللوحة السهلة: غسيل، شطف، أو تجفيف.",
+        imageKey: null,
+        imageUrl: FOLDABLE_WASHER_FEATURES_IMAGE,
+      },
+      {
+        step: "3",
+        title: "غسيل + تجفيف",
+        desc: "خلّيها تخدم وارجع للملابس نظيفة وجافة.",
+        imageKey: null,
+        imageUrl: FOLDABLE_WASHER_IN_USE_IMAGE,
+      },
+      {
+        step: "4",
+        title: "طوّي + الهدية",
+        desc: "طوّي الغسالة للتخزين. رأس الدش بالفلتر كيجي مجاناً.",
+        imageKey: null,
+        imageUrl: FOLDABLE_WASHER_GIFT_IMAGE,
+      },
+    ],
+    comparisonBannerImageUrl: FOLDABLE_WASHER_LIFESTYLE_IMAGE,
+    comparison: {
+      oursLabel: "غسالة NOORVA 9L",
+      rows: [
+        { label: "قابلة للطي", us: true, them: "حجم ثابت" },
+        { label: "غسيل + تجفيف", us: true, them: "غسيل فقط غالباً" },
+        { label: "9 لتر — يومي", us: true, them: "غسالة كبيرة أو يد" },
+        { label: "هدية دش بفلتر", us: true, them: "لا" },
+        { label: "الدفع عند الاستلام", us: true, them: "نادر" },
+      ],
+    },
+    benefits: [
+      {
+        icon: Shirt,
+        title: "ملابس خفيفة يومياً",
+        desc: "جوارب، رياضة، أطفال — بلا انتظار lavomat.",
+      },
+      {
+        icon: FoldHorizontal,
+        title: "قابلة للطي",
+        desc: "تولّي compact وتخزّن فبلاصة صغيرة.",
+      },
+      {
+        icon: Wind,
+        title: "وضع تجفيف",
+        desc: "من بعد الغسيل — جاهزة للبس أسرع.",
+      },
+      {
+        icon: Zap,
+        title: "لوحة سهلة",
+        desc: "برامج واضحة — بلا تعقيد.",
+      },
+      {
+        icon: Droplets,
+        title: "هدية دش بفلتر",
+        desc: "مياه أنظف وضغط أقوى — مجاناً.",
+      },
+      {
+        icon: Shield,
+        title: "COD + توصيل مجاني",
+        desc: "449 درهم. ما كخلص والو دابا.",
       },
     ],
   },

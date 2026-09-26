@@ -100,6 +100,7 @@ const PREMIUM_HERO_FIRST_SLUGS = new Set([
   "kids-art-set-easel-208",
   "bt12-4in1-selfie-stick-tripod",
   "mobile-laptop-desk-with-wheels",
+  "foldable-9l-mini-washing-machine",
 ]);
 
 function heroImageTypeOrder(slug: string): PremiumImageType[] {

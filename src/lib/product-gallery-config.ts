@@ -16,6 +16,14 @@ import {
   LAPTOP_DESK_LIFESTYLE_IMAGE,
   LAPTOP_DESK_SLUG,
 } from "@/data/laptop-desk";
+import {
+  FOLDABLE_WASHER_FEATURES_IMAGE,
+  FOLDABLE_WASHER_GIFT_IMAGE,
+  FOLDABLE_WASHER_HERO_IMAGE,
+  FOLDABLE_WASHER_IN_USE_IMAGE,
+  FOLDABLE_WASHER_LIFESTYLE_IMAGE,
+  FOLDABLE_WASHER_SLUG,
+} from "@/data/foldable-washer";
 
 export type GallerySection =
   | "hero"
@@ -1446,6 +1454,54 @@ const EGG_BOILER_SLIDES: GallerySlideConfig[] = [
   },
 ];
 
+const FOLDABLE_WASHER_SLIDES: GallerySlideConfig[] = [
+  {
+    section: "hero",
+    imageType: "02-premium-hero",
+    imageUrl: FOLDABLE_WASHER_HERO_IMAGE,
+    emoji: "🧺",
+    heading: "غسالة 9L قابلة للطي",
+    subtitle: "غسيل أوتوماتيكي · تجفيف · compact",
+    objectFit: "contain",
+  },
+  {
+    section: "features",
+    imageType: "10-features",
+    imageUrl: FOLDABLE_WASHER_FEATURES_IMAGE,
+    emoji: "✨",
+    heading: "4 مميزات فصورة واحدة",
+    subtitle: "طي · تنظيف · سهولة · 9 لتر",
+    objectFit: "contain",
+  },
+  {
+    section: "lifestyle",
+    imageType: "03-lifestyle",
+    imageUrl: FOLDABLE_WASHER_LIFESTYLE_IMAGE,
+    emoji: "🏠",
+    heading: "فالبيت بلا lavomat",
+    subtitle: "حمام، كوزينة، أو غرفة صغيرة",
+    objectFit: "cover",
+  },
+  {
+    section: "projection",
+    imageType: "14-product-in-use",
+    imageUrl: FOLDABLE_WASHER_IN_USE_IMAGE,
+    emoji: "🌀",
+    heading: "غسيل + تجفيف",
+    subtitle: "جوارب، رياضة، أطفال — يومياً",
+    objectFit: "cover",
+  },
+  {
+    section: "gift",
+    imageType: "11-package-contents",
+    imageUrl: FOLDABLE_WASHER_GIFT_IMAGE,
+    emoji: "🎁",
+    heading: "هدية: رأس دش بفلتر",
+    subtitle: "مياه أنظف · ضغط أقوى — مجاناً",
+    objectFit: "contain",
+  },
+];
+
 const LAPTOP_DESK_SLIDES: GallerySlideConfig[] = [
   {
     section: "hero",
@@ -1573,6 +1629,7 @@ const PRODUCT_SLIDE_CONFIGS: Record<string, GallerySlideConfig[]> = {
   "mini-egg-boiler": EGG_BOILER_SLIDES,
   [BT12_SLUG]: BT12_SLIDES,
   [LAPTOP_DESK_SLUG]: LAPTOP_DESK_SLIDES,
+  [FOLDABLE_WASHER_SLUG]: FOLDABLE_WASHER_SLIDES,
 };
 
 export function getGallerySlideConfigs(productSlug: string): GallerySlideConfig[] {
