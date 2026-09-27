@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,6 +21,20 @@ const STEPS = [
 export function ThankYouClient() {
   const searchParams = useSearchParams();
 
+  useEffect(() => {
+    document.documentElement.removeAttribute("data-pdp-checkout");
+    const scrollTop = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      document.getElementById("thank-you-success")?.scrollIntoView({ block: "start" });
+    };
+    scrollTop();
+    requestAnimationFrame(scrollTop);
+    const t = window.setTimeout(scrollTop, 100);
+    return () => window.clearTimeout(t);
+  }, []);
+
   const orderNumber = searchParams.get("order") || "—";
   const customerName = searchParams.get("name") || "—";
   const phone = searchParams.get("phone") || "—";
@@ -32,7 +47,11 @@ export function ThankYouClient() {
   const showGift = Boolean(gift?.enabled);
 
   return (
-    <div className="min-h-screen bg-luxury-bg text-luxury-black pt-24 pb-16 px-4" dir="rtl">
+    <div
+      id="thank-you-success"
+      className="min-h-screen bg-luxury-bg text-luxury-black pt-24 pb-16 px-4 scroll-mt-20"
+      dir="rtl"
+    >
       <FacebookThankYouTracker
         orderNumber={orderNumber !== "—" ? orderNumber : undefined}
         value={total ?? undefined}

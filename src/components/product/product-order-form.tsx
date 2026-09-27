@@ -393,7 +393,7 @@ export function ProductOrderForm({
           total: String(total),
           productId: product.id,
         });
-        router.push(`/ar/thank-you?${params.toString()}`);
+        router.push(`/ar/thank-you?${params.toString()}`, { scroll: true });
         return;
       }
 
