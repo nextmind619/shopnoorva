@@ -1,4 +1,5 @@
 import { getProductById } from "@/data/products";
+import { normalizeCodplusSku, resolveCodplusMarketplaceSku } from "@/lib/catalog/codplus-marketplace-sku";
 import { physicalUnitsForProduct } from "@/lib/catalog/pack-sku";
 import type { StoredOrder } from "@/lib/ai/memory-store";
 
@@ -46,7 +47,9 @@ export function buildCodplusLeadItems(
   const productLines = lineItems.map((item, index) => {
     const gift = getProductById(item.productId)?.gift;
     const packSku = usePackSkus && gift?.enabled ? gift.codplusPackSku : undefined;
-    const sku = packSku || item.sku;
+    const sku = normalizeCodplusSku(
+      packSku || resolveCodplusMarketplaceSku(item.productId, item.sku)
+    );
     const quantity = physicalUnitsForProduct(item.productId, item.sku, item.quantity);
 
     const price =
@@ -67,7 +70,7 @@ export function buildCodplusLeadItems(
     order.gifts
       ?.filter((gift) => gift.giftSku && !giftSkusInPack.has(gift.giftSku))
       .map((gift) => ({
-        sku: gift.giftSku!,
+        sku: normalizeCodplusSku(gift.giftSku!),
         quantity: gift.quantity,
         price: 0,
       })) ?? [];

@@ -51,7 +51,15 @@ export function buildLeadPayloadFromOrder(
   if (order.isDuplicate) noteParts.push("[DUPLICATE]");
   if (notes?.trim()) noteParts.push(notes.trim());
   const giftNote = formatGiftFulfillmentNote(order.gifts);
-  if (giftNote && !noteParts.some((part) => part.includes("هدية مجانية") || part.includes("بك CodPlus"))) {
+  if (
+    giftNote &&
+    !noteParts.some(
+      (part) =>
+        part.includes("هدية مجانية") ||
+        part.includes("CodPlus SKU") ||
+        part.includes("بك CodPlus")
+    )
+  ) {
     noteParts.push(giftNote);
   }
   const upsellLines = lineItems.filter(

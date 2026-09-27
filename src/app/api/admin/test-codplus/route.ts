@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const sku = request.nextUrl.searchParams.get("sku")?.trim() || "FoldableWasher";
   const orderNumber = `TEST-CODPLUS-${Date.now()}`;
   const result = await sendLeadToCodplus({
     orderNumber,
@@ -19,8 +20,8 @@ export async function POST(request: NextRequest) {
     phone: "+212600000000",
     city: "Casablanca",
     address: "123 Test Street",
-    notes: "Codplus webhook test — safe to delete",
-    items: [{ sku: "FoldableWasher", quantity: 1, price: 399 }],
+    notes: `Codplus webhook test SKU=${sku} — safe to delete | CodPlus gift SKU ShowerFilter (test note)`,
+    items: [{ sku, quantity: 1, price: 399 }],
   });
 
   return NextResponse.json({

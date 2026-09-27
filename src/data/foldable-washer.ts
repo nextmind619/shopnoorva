@@ -9,12 +9,6 @@ export const FOLDABLE_WASHER_SKU = "FoldableWasher";
 export const FOLDABLE_WASHER_GIFT_ID = "gift-filtered-shower-head";
 /** CodPlus marketplace SKU for the free shower head gift (PRD-9A095FB2). */
 export const FOLDABLE_WASHER_GIFT_SKU = "ShowerFilter";
-/**
- * CodPlus seller Packs → Name (1× FoldableWasher + 1× ShowerFilter).
- * Must match exactly — Sheets/CodPlus reject unknown pack names.
- */
-export const FOLDABLE_WASHER_CODPLUS_PACK_SKU = "Combo winter set";
-
 const BASE = `/products/${FOLDABLE_WASHER_SLUG}`;
 
 /** Bust long-lived immutable cache after replacing placeholder JPGs with real photos. */

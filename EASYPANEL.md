@@ -74,7 +74,7 @@ CODPLUS_WEBHOOK_TOKEN=your-webhook-token
 
 Test: `https://shopnoorva.shop/api/admin/test-codplus?secret=CRON_SECRET`
 
-**SKU column (Sheets / CodPlus):** by default the site sends the **main marketplace SKU** only (e.g. `FoldableWasher`, `LaptopTable - Adjustable`) with the COD total; free gifts are in the Note column. Pack names are **not** used unless you set `CODPLUS_USE_PACK_SKUS=true` on `web` **and** the pack exists + is approved under CodPlus → Packs.
+**SKU column (Sheets / CodPlus):** must match **Marketplace → SKU** exactly (foldable washer: `FoldableWasher`, shower gift in Note: `CodPlus SKU ShowerFilter`). Do **not** set `CODPLUS_USE_PACK_SKUS=true` unless a seller Pack is approved. Test webhook: `/api/admin/test-codplus?secret=CRON_SECRET&sku=FoldableWasher`.
 
 ## 3) Add Postgres
 1. Add service → **Postgres** (or App named `noorva`)

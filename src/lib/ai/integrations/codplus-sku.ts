@@ -1,3 +1,4 @@
+import { normalizeCodplusSku } from "@/lib/catalog/codplus-marketplace-sku";
 import { baseSkuFromPack, isPackVariantSku, packUnitCount } from "@/lib/catalog/pack-sku";
 
 export type CodplusLineItem = {
@@ -22,13 +23,14 @@ export type CollapsedCodplusLead = {
  * and keep `price` as the COD amount for the row.
  */
 export function toCodplusLineItem(item: CodplusLineItem): CodplusLineItem {
-  if (!isPackVariantSku(item.sku)) {
-    return { sku: item.sku, quantity: item.quantity, price: item.price };
+  const sku = normalizeCodplusSku(item.sku);
+  if (!isPackVariantSku(sku)) {
+    return { sku, quantity: item.quantity, price: item.price };
   }
 
-  const units = packUnitCount(item.sku);
+  const units = packUnitCount(sku);
   return {
-    sku: baseSkuFromPack(item.sku),
+    sku: normalizeCodplusSku(baseSkuFromPack(sku)),
     // Orchestrator may already send physical units; only expand a 1-pack line.
     quantity: item.quantity < units ? item.quantity * units : item.quantity,
     price: item.price,
