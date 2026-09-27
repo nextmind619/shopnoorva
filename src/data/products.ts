@@ -5,9 +5,11 @@ import {
   BT12_FEATURES_IMAGE,
   BT12_GIFT_ID,
   BT12_GIFT_IMAGE,
+  BT12_GIFT_SKU,
   BT12_HERO_IMAGE,
   BT12_LIFESTYLE_GROUP_IMAGE,
   BT12_PRICE_MAD,
+  BT12_SKU,
   BT12_SLUG,
   BT12_SOLO_REMOTE_IMAGE,
 } from "@/data/bt12";
@@ -2796,7 +2798,7 @@ export const products: Product[] = [
     ),
     categoryId: "cat-gift-ideas",
     price: BT12_PRICE_MAD,
-    sku: "NRV-BT12-01",
+    sku: BT12_SKU,
     stock: 48,
     rating: 5,
     reviewCount: 4,
@@ -2898,7 +2900,7 @@ export const products: Product[] = [
         id: "var-bt12",
         name: L("BT12 — 349 درهم", "BT12 — 349 DH", "BT12 — 349 MAD"),
         price: BT12_PRICE_MAD,
-        sku: "NRV-BT12-01",
+        sku: BT12_SKU,
         stock: 48,
       },
     ],
@@ -2907,6 +2909,7 @@ export const products: Product[] = [
     gift: {
       enabled: true,
       giftProductId: BT12_GIFT_ID,
+      giftSku: BT12_GIFT_SKU,
       giftTitle: L(
         "كابل USB-C سريع 240W مع حامل هاتف قابل للطي",
         "Câble USB-C rapide 240W avec support téléphone pliable",
