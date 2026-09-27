@@ -432,7 +432,11 @@ export function ProductOrderForm({
     : "premium-checkout-cta w-full h-16 rounded-2xl text-lg font-black text-white disabled:opacity-60 flex items-center justify-center gap-3";
 
   return (
-    <section className="cod-checkout-isolated mt-0 w-full relative z-10 scroll-mt-28" id="order-form" dir={isFr ? "ltr" : undefined}>
+    <section
+      className="cod-checkout-isolated mt-0 w-full relative z-10 scroll-mt-28 max-lg:scroll-mt-36 max-lg:pb-[env(safe-area-inset-bottom,0px)]"
+      id="order-form"
+      dir={isFr ? "ltr" : undefined}
+    >
       <FacebookCheckoutTracker
         productId={product.id}
         contentName={productName}
@@ -684,7 +688,7 @@ export function ProductOrderForm({
             </div>
           )}
 
-          <button type="submit" disabled={loading} className={ctaClass}>
+          <button type="submit" id="order-form-submit" disabled={loading} className={ctaClass}>
             {loading ? (
               <>
                 <Loader2 className="h-6 w-6 animate-spin" />

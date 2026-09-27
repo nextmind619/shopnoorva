@@ -337,27 +337,78 @@ export function ProductPageAr({
   }, []);
 
   useEffect(() => {
-    let observer: IntersectionObserver | null = null;
+    const STICKY_BAR_PX = 96;
     let timer: number | undefined;
+
+    const evaluateFormZone = () => {
+      const form = document.getElementById("order-form");
+      const submit = document.getElementById("order-form-submit");
+      if (!form) {
+        setFormInView(false);
+        return;
+      }
+
+      const vv = window.visualViewport;
+      const keyboardLikelyOpen =
+        vv != null && vv.height < window.innerHeight * 0.82;
+      if (keyboardLikelyOpen || form.contains(document.activeElement)) {
+        setFormInView(true);
+        return;
+      }
+
+      if (!submit) {
+        setFormInView(false);
+        return;
+      }
+
+      const viewportBottom = vv ? vv.offsetTop + vv.height : window.innerHeight;
+      const rect = submit.getBoundingClientRect();
+      const submitVisibleAboveSticky =
+        rect.top < viewportBottom - STICKY_BAR_PX - 8 && rect.bottom > 8;
+      setFormInView(submitVisibleAboveSticky);
+    };
+
     const bind = () => {
       const form = document.getElementById("order-form");
       if (!form) return false;
-      observer = new IntersectionObserver(
-        ([entry]) => setFormInView(entry.isIntersecting),
-        { threshold: 0.12 }
-      );
-      observer.observe(form);
+      evaluateFormZone();
       return true;
     };
+
     if (!bind()) timer = window.setTimeout(bind, 400);
+
+    window.addEventListener("scroll", evaluateFormZone, { passive: true });
+    window.visualViewport?.addEventListener("resize", evaluateFormZone);
+    window.visualViewport?.addEventListener("scroll", evaluateFormZone);
+    const formEl = document.getElementById("order-form");
+    const onFocusOut = () => window.setTimeout(evaluateFormZone, 150);
+    formEl?.addEventListener("focusin", evaluateFormZone);
+    formEl?.addEventListener("focusout", onFocusOut);
+
     return () => {
       if (timer) window.clearTimeout(timer);
-      observer?.disconnect();
+      window.removeEventListener("scroll", evaluateFormZone);
+      window.visualViewport?.removeEventListener("resize", evaluateFormZone);
+      window.visualViewport?.removeEventListener("scroll", evaluateFormZone);
+      formEl?.removeEventListener("focusin", evaluateFormZone);
+      formEl?.removeEventListener("focusout", onFocusOut);
     };
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    if (formInView) root.setAttribute("data-pdp-checkout", "1");
+    else root.removeAttribute("data-pdp-checkout");
+    return () => root.removeAttribute("data-pdp-checkout");
+  }, [formInView]);
+
   const scrollToOrder = useCallback(() => {
-    document.getElementById("order-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setFormInView(true);
+    requestAnimationFrame(() => {
+      const submit = document.getElementById("order-form-submit");
+      const target = submit ?? document.getElementById("order-form");
+      target?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
   }, []);
 
   const maxQty = Math.min(variant.stock || 3, 3);
