@@ -342,7 +342,6 @@ export function ProductPageAr({
 
     const evaluateFormZone = () => {
       const form = document.getElementById("order-form");
-      const submit = document.getElementById("order-form-submit");
       if (!form) {
         setFormInView(false);
         return;
@@ -356,16 +355,11 @@ export function ProductPageAr({
         return;
       }
 
-      if (!submit) {
-        setFormInView(false);
-        return;
-      }
-
       const viewportBottom = vv ? vv.offsetTop + vv.height : window.innerHeight;
-      const rect = submit.getBoundingClientRect();
-      const submitVisibleAboveSticky =
-        rect.top < viewportBottom - STICKY_BAR_PX - 8 && rect.bottom > 8;
-      setFormInView(submitVisibleAboveSticky);
+      const formRect = form.getBoundingClientRect();
+      const checkoutInView =
+        formRect.top < viewportBottom - STICKY_BAR_PX - 8 && formRect.bottom > 48;
+      setFormInView(checkoutInView);
     };
 
     const bind = () => {
@@ -405,9 +399,12 @@ export function ProductPageAr({
   const scrollToOrder = useCallback(() => {
     setFormInView(true);
     requestAnimationFrame(() => {
-      const submit = document.getElementById("order-form-submit");
-      const target = submit ?? document.getElementById("order-form");
-      target?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const fields =
+        document.getElementById("order-form-fields") ?? document.getElementById("order-form");
+      fields?.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.setTimeout(() => {
+        document.getElementById("fullName")?.focus({ preventScroll: true });
+      }, 480);
     });
   }, []);
 

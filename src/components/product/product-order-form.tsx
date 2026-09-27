@@ -473,7 +473,13 @@ export function ProductOrderForm({
           )}
         </header>
 
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 relative" noValidate>
+        <form
+          ref={formRef}
+          id="order-form-fields"
+          onSubmit={handleSubmit}
+          className="space-y-5 relative scroll-mt-32 max-lg:scroll-mt-36"
+          noValidate
+        >
           <FraudHoneypotFields />
 
           <div>
