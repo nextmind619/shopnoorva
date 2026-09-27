@@ -14,6 +14,7 @@
     "images:generate": "node scripts/generate-product-images.mjs",
     "images:force": "node scripts/generate-product-images.mjs --force",
     "video:astronaut-watch-result": "node scripts/generate-astronaut-watch-result.mjs",
+    "video:laptop-desk-reel": "node scripts/generate-laptop-desk-reel-ad.mjs",
     "test:google-sheets": "node --env-file=.env.local scripts/test-google-sheets-order.mjs"
   },
   "dependencies": {
