@@ -74,6 +74,8 @@ CODPLUS_WEBHOOK_TOKEN=your-webhook-token
 
 Test: `https://shopnoorva.shop/api/admin/test-codplus?secret=CRON_SECRET`
 
+Pack SKUs in `src/data/*-desk.ts` / `foldable-washer.ts` (`codplusPackSku`) must match **CodPlus → Packs → Name** exactly (e.g. foldable washer pack: `Combo winter set`). A mismatch shows in Google Sheets column Status as “Product/pack … not found”.
+
 ## 3) Add Postgres
 1. Add service → **Postgres** (or App named `noorva`)
 2. User: `noorva`
