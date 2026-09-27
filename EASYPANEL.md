@@ -74,7 +74,7 @@ CODPLUS_WEBHOOK_TOKEN=your-webhook-token
 
 Test: `https://shopnoorva.shop/api/admin/test-codplus?secret=CRON_SECRET`
 
-Pack SKUs in `src/data/*-desk.ts` / `foldable-washer.ts` (`codplusPackSku`) must match **CodPlus → Packs → Name** exactly (e.g. foldable washer pack: `Combo winter set`). A mismatch shows in Google Sheets column Status as “Product/pack … not found”.
+**SKU column (Sheets / CodPlus):** by default the site sends the **main marketplace SKU** only (e.g. `FoldableWasher`, `LaptopTable - Adjustable`) with the COD total; free gifts are in the Note column. Pack names are **not** used unless you set `CODPLUS_USE_PACK_SKUS=true` on `web` **and** the pack exists + is approved under CodPlus → Packs.
 
 ## 3) Add Postgres
 1. Add service → **Postgres** (or App named `noorva`)

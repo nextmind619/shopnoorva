@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     city: "Casablanca",
     address: "123 Test Street",
     notes: "Codplus webhook test — safe to delete",
-    items: [{ sku: "Portable-air-cooler", quantity: 1, price: 199 }],
+    items: [{ sku: "FoldableWasher", quantity: 1, price: 399 }],
   });
 
   return NextResponse.json({

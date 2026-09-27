@@ -55,8 +55,8 @@ export function formatGiftFulfillmentNote(gifts: OrderGiftRecord[] | undefined):
   if (!gifts?.length) return undefined;
   return gifts
     .map((gift) => {
-      if (gift.codplusPackSku) {
-        return `بك CodPlus × ${gift.quantity}: ${gift.codplusPackSku} (${gift.giftTitle} مضمنة) | ${gift.giftDisclosure}`;
+      if (gift.codplusPackSku && gift.giftSku) {
+        return `هدية CodPlus × ${gift.quantity}: ${gift.giftSku} (${gift.giftTitle} مضمنة) | ${gift.giftDisclosure}`;
       }
       const sku = gift.giftSku ? `SKU ${gift.giftSku} | ` : "";
       const id = !gift.giftSku && gift.giftProductId ? `${gift.giftProductId} | ` : "";
