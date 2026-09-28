@@ -7,7 +7,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, Banknote, Truck, Heart, Home, Gift } from "lucide-react";
 import type { Product } from "@/types";
-import { moroccanCities } from "@/data/products";
 import { ROOSTER_CLOCK_PRICE_MAD } from "@/data/rooster-analog-table-clock";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import { resolveProductImage } from "@/lib/product-images/resolve";
@@ -322,12 +321,12 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
               product={product}
               variant={variant}
               quantity={1}
-              extendedAddress
-              cityOptions={moroccanCities}
               formTitle="بغيتها ترجع لدارك؟ ❤️"
-              formSubtitle="عمر المعلومات ديالك وغادي نتاصلو بك لتأكيد الطلب."
+              formSubtitle="الاسم الكامل، رقم الهاتف، والمدينة أو العنوان — وغادي نتاصلو بك للتأكيد."
               submitLabel={`❤️ اطلب الآن بـ ${formatPriceNumber(PRICE, "ar")} درهم`}
-              fullNamePlaceholder="الاسم الكامل"
+              fullNamePlaceholder="مثال: محمد أمين"
+              addressLabel="المدينة أو العنوان"
+              addressPlaceholder="مثال: الدار البيضاء — الحي، الشارع، رقم المنزل"
               summaryRows={[
                 { label: "المنتج", value: "ساعة الفروج 🐓" },
                 { label: "الثمن", value: `${formatPriceNumber(PRICE, "ar")} درهم` },
