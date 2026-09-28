@@ -112,10 +112,10 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
   const memorySrc = img("03-lifestyle");
   const productSrc = img("09-close-up");
   const decorImages = [
-    { src: img("05-living-room"), alt: "ساعة الفروج فصالون مغربي دافئ" },
-    { src: img("14-product-in-use"), alt: "ساعة الفروج فمدخل دار أنيق" },
-    { src: img("02-premium-hero"), alt: "ساعة الفروج فوق طاولة خشبية" },
-    { src: img("03-lifestyle"), alt: "ساعة الفروج فجو دار الجدود" },
+    { src: img("05-living-room"), alt: "ساعة الفروج فصالون مغربي تقليدي" },
+    { src: img("14-product-in-use"), alt: "ساعة الفروج فوق طاولة جانبية بضوء طبيعي" },
+    { src: img("03-lifestyle"), alt: "ساعة الفروج فجو دار الجدود والذكريات" },
+    { src: img("02-premium-hero"), alt: "ساعة الفروج فديكور مغربي أنيق" },
   ];
 
   const showSticky = sticky && !formVisible;
