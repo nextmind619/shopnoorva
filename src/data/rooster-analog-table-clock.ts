@@ -17,6 +17,14 @@ export const ROOSTER_CLOCK_PRODUCT_IMAGE =
 export const ROOSTER_CLOCK_IMAGE_PROMPTS_PATH =
   "/products/rooster-analog-table-clock/IMAGE_PROMPTS.md";
 
+/** Single SKU finish — shown on LP so customers know what arrives. */
+export const ROOSTER_CLOCK_FRAME_COLOR = {
+  labelAr: "فضي كروم",
+  detailAr: "إطار معدني لامع (فضي كروم)",
+  swatchCss:
+    "linear-gradient(135deg, #eceff3 0%, #b4bcc8 38%, #f8f9fb 52%, #8f98a8 100%)",
+} as const;
+
 export const ROOSTER_CLOCK_FAQS = [
   {
     q: "شحال الثمن؟",
@@ -33,5 +41,9 @@ export const ROOSTER_CLOCK_FAQS = [
   {
     q: "كيفاش نطلب؟",
     a: "عمر الفورم بالمعلومات ديالك وغادي نتاصلو بك لتأكيد الطلب.",
+  },
+  {
+    q: "شنو اللون ديال الساعة؟",
+    a: "إطار واحد: فضي كروم معدني لامع — نفس اللون اللي كيبان فالصورة.",
   },
 ] as const;

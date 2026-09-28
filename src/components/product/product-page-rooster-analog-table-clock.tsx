@@ -9,6 +9,8 @@ import { ChevronLeft, Banknote, Truck, Heart, Home, Gift, Star, Check } from "lu
 import type { Product, ProductVariant } from "@/types";
 import { getReviewsForProduct } from "@/data/products";
 import {
+  ROOSTER_CLOCK_FRAME_COLOR,
+  ROOSTER_CLOCK_FAQS,
   ROOSTER_CLOCK_PACK_PRICE_MAD,
   ROOSTER_CLOCK_PACK_SAVINGS_MAD,
   ROOSTER_CLOCK_PRICE_MAD,
@@ -28,12 +30,31 @@ const SINGLE_PRICE = ROOSTER_CLOCK_PRICE_MAD;
 const PACK_PRICE = ROOSTER_CLOCK_PACK_PRICE_MAD;
 const PACK_SAVINGS = ROOSTER_CLOCK_PACK_SAVINGS_MAD;
 
-const FAQ_ITEMS = [
-  { q: "شحال الثمن؟", a: "ساعة وحدة بـ 199 درهم، أو جوج ساعات بـ 299 درهم." },
-  { q: "كيفاش كنخلص؟", a: "الدفع عند الاستلام، كتخلص ملي توصلك الطلبية." },
-  { q: "فين كتوصلو؟", a: "التوصيل داخل المغرب." },
-  { q: "كيفاش نطلب؟", a: "عمر الفورم بالمعلومات ديالك وغادي نتاصلو بك لتأكيد الطلب." },
-];
+const FAQ_ITEMS = ROOSTER_CLOCK_FAQS.map((item) => ({ q: item.q, a: item.a }));
+
+function FrameColorUnderPhoto({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "flex items-center justify-center gap-3 border-t border-[#d4c4b0]/80 bg-[#ebe4d8] px-4 py-3",
+        className,
+      )}
+    >
+      <span
+        className="h-9 w-9 shrink-0 rounded-full border-2 border-[#a89888]/60 shadow-inner ring-2 ring-white/70"
+        style={{ background: ROOSTER_CLOCK_FRAME_COLOR.swatchCss }}
+        aria-hidden
+      />
+      <div className="min-w-0 text-start">
+        <p className="text-[11px] font-semibold uppercase tracking-wide text-[#6b5d4d]">اللون</p>
+        <p className="text-sm font-bold leading-snug text-[#2c2419]">
+          {ROOSTER_CLOCK_FRAME_COLOR.detailAr}
+        </p>
+        <p className="text-xs text-[#6b5d4d] mt-0.5">نفس اللون اللي فالصورة — ما كاينش ألوان أخرى</p>
+      </div>
+    </div>
+  );
+}
 
 interface Props {
   product: Product;
@@ -235,6 +256,7 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
         summaryRows={[
           { label: "العرض", value: offerLabel },
           { label: "المنتج", value: "ساعة الفروج 🐓" },
+          { label: "اللون", value: ROOSTER_CLOCK_FRAME_COLOR.labelAr },
           { label: "الإجمالي", value: `${formatPriceNumber(variant.price, "ar")} درهم` },
         ]}
         orderNote={
@@ -298,20 +320,33 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
             </p>
           </motion.div>
 
-          <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-[#e8ddd0] bg-[#faf6f0] shadow-xl shadow-[#3d2f28]/10">
-            <Image
-              src={heroSrc}
-              alt="ساعة الفروج الكلاسيكية — المنتج"
-              fill
-              priority
-              sizes="(max-width: 512px) 100vw, 480px"
-              className="object-contain p-3"
-            />
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#2c2419]/35 to-transparent pointer-events-none" />
+          <div className="overflow-hidden rounded-3xl border border-[#e8ddd0] bg-[#faf6f0] shadow-xl shadow-[#3d2f28]/10">
+            <div className="relative aspect-square w-full">
+              <Image
+                src={heroSrc}
+                alt="ساعة الفروج الكلاسيكية — المنتج"
+                fill
+                priority
+                sizes="(max-width: 512px) 100vw, 480px"
+                className="object-contain p-3"
+              />
+            </div>
+            <FrameColorUnderPhoto />
           </div>
 
           <div className="space-y-2">
             <p className="text-xl font-bold">ساعة الفروج 🐓</p>
+            <p className="inline-flex items-center justify-center gap-2 text-sm text-[#5c4f42]">
+              <span
+                className="inline-block h-4 w-4 rounded-full border border-[#a89888]/50 shadow-sm"
+                style={{ background: ROOSTER_CLOCK_FRAME_COLOR.swatchCss }}
+                aria-hidden
+              />
+              <span>
+                اللون:{" "}
+                <span className="font-bold text-[#2c2419]">{ROOSTER_CLOCK_FRAME_COLOR.labelAr}</span>
+              </span>
+            </p>
             <p className="text-3xl font-black tabular-nums text-[#7a3e48]">
               {formatPriceNumber(SINGLE_PRICE, "ar")} درهم
             </p>

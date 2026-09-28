@@ -3013,6 +3013,10 @@ export const products: Product[] = [
     ],
     specifications: [
       { label: L("النوع", "Type", "Type"), value: L("ساعة طاولة analogique", "Horloge de table analogique", "Analog table clock") },
+      {
+        label: L("اللون", "Couleur", "Color"),
+        value: L("فضي كروم (إطار معدني)", "Argent chromé (cadre métallique)", "Silver chrome (metal frame)"),
+      },
       { label: L("الثمن", "Prix", "Price"), value: L("199 درهم", "199 DH", "199 MAD") },
       { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
     ],
@@ -3823,6 +3827,7 @@ export const reviews: ProductReview[] = [
     ),
     date: "2026-09-22",
     verified: true,
+    images: ["/reviews/rooster-analog-table-clock/02-customer-dial.webp"],
   },
   {
     id: "rrooster-2",
@@ -3853,6 +3858,7 @@ export const reviews: ProductReview[] = [
     ),
     date: "2026-09-18",
     verified: true,
+    images: ["/reviews/rooster-analog-table-clock/01-customer-unbox.webp"],
   },
   {
     id: "rrooster-4",
