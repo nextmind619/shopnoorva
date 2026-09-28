@@ -265,6 +265,7 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
             : "ساعة الفروج | 199 | ذكرى أيام زمان"
         }
       />
+      <FrameColorUnderPhoto className="rounded-2xl border border-[#d4c4b0]/90 shadow-sm" />
       <p className="text-center text-sm text-[#6b5d4d]">💵 خلّص غير ملي توصلك</p>
     </div>
   );
@@ -366,7 +367,10 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
         </section>
 
         {/* Order form — directly under hero title & image */}
-        <section id="order-form" className="scroll-mt-20 -mt-6">
+        <section
+          id="order-form"
+          className="scroll-mt-20 -mt-6 rounded-3xl border-2 border-[#7a3e48]/15 bg-gradient-to-b from-[#faf6f0] via-[#f5ead8]/90 to-[#ebe4d8] p-4 sm:p-5 shadow-lg shadow-[#3d2f28]/8"
+        >
           {orderFormBlock}
         </section>
 
