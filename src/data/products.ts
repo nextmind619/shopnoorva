@@ -14,6 +14,12 @@ import {
   BT12_SOLO_REMOTE_IMAGE,
 } from "@/data/bt12";
 import {
+  ROOSTER_CLOCK_HERO_IMAGE,
+  ROOSTER_CLOCK_PRICE_MAD,
+  ROOSTER_CLOCK_SKU,
+  ROOSTER_CLOCK_SLUG,
+} from "@/data/rooster-analog-table-clock";
+import {
   LAPTOP_DESK_FEATURES_IMAGE,
   LAPTOP_DESK_GIFT_ID,
   LAPTOP_DESK_GIFT_IMAGE,
@@ -2938,6 +2944,114 @@ export const products: Product[] = [
         "عصا سيلفي BT12 قابلة للطي مع ترايبود وضوئين دائريين وريموت لاسلكي بـ 349 درهم. هدية مجانية: كابل USB-C 240W مع حامل هاتف. الدفع عند الاستلام والتوصيل مجاني في المغرب.",
         "Perche selfie BT12 pliable, trépied, double lumière et télécommande à 349 DH. Cadeau : câble USB-C 240W avec support. Paiement à la livraison et livraison gratuite au Maroc.",
         "Foldable BT12 selfie stick with tripod, dual lights and wireless remote for 349 MAD. Free USB-C 240W cable with phone holder. Cash on delivery and free shipping in Morocco."
+      ),
+    },
+  },
+  {
+    id: "prod-rooster-clock",
+    slug: ROOSTER_CLOCK_SLUG,
+    name: L(
+      "ساعة الفروج الكلاسيكية — ذكرى أيام زمان",
+      "Horloge analogique coq rétro — souvenir du bon vieux temps",
+      "Classic rooster analog table clock — nostalgia"
+    ),
+    shortDescription: L(
+      "ساعة طاولة كلاسيكية بتصميم الفروج كتفكرك بدار الجدود والصالون القديم. 199 درهم والدفع عند الاستلام.",
+      "Horloge de table rétro au motif coq, souvenir de la maison des grands-parents. 199 DH, paiement à la livraison.",
+      "Classic rooster table clock that recalls grandparents' home and old salon days. 199 MAD, cash on delivery."
+    ),
+    description: L(
+      "ساعة طاولة analogique بإطار معدني لامع ووجه أبيض بأرقام واضحة ورسم الفروج — لمسة من أيام زمان للصالون أو الطاولة الجانبية. 199 درهم، الدفع عند الاستلام، والتوصيل داخل المغرب.",
+      "Horloge de table analogique, cadre métallique, cadran blanc avec chiffres et motif coq — une touche d'autrefois pour le salon. 199 DH, COD, livraison au Maroc.",
+      "Analog table clock with chrome frame, white dial, Arabic numerals and rooster illustration — a touch of old days for your salon. 199 MAD, COD, Morocco delivery."
+    ),
+    categoryId: "cat-home-decor",
+    price: ROOSTER_CLOCK_PRICE_MAD,
+    sku: ROOSTER_CLOCK_SKU,
+    stock: 40,
+    rating: 0,
+    reviewCount: 0,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: false,
+    isTikTokViral: false,
+    isFeatured: false,
+    warrantyMonths: 6,
+    problemEmoji: "🐓",
+    problem: L(
+      "بغيتي شي حاجة فالدار كترجعك لذكريات زمان؟",
+      "Envie d'un objet qui rappelle le bon vieux temps?",
+      "Want something at home that brings back old memories?"
+    ),
+    problemCause: L(
+      "الدار مزيانة... ولكن ناقصها داك الإحساس ديال اللمة والبساطة",
+      "La maison est belle, mais il manque cette chaleur d'autrefois",
+      "The home is fine, but it misses that warm, simple feeling of the past"
+    ),
+    problemSolution: L(
+      "ساعة فروج كلاسيكية — ذكرى صغيرة كتبان فالصالون",
+      "Horloge coq classique — un petit souvenir visible au salon",
+      "Classic rooster clock — a small memory on display in the salon"
+    ),
+    deepDescription: L(
+      "ساعة طاولة analogique بإطار دائري معدني وstand مدمج، وجه أبيض بأرقام عربية وعلامات خضراء وعقارب سوداء مع عقرب ثواني أحمر، ورسم الفروج فالوسط — نفس الطابع اللي كان كاين فبيوت زمان.",
+      "Horloge de table analogique, cadre rond métallique avec pied intégré, cadran blanc, chiffres arabes, motif coq — le charme des maisons d'autrefois.",
+      "Analog table clock with round metal frame and integrated stand, white dial, Arabic numerals, rooster center art — the charm of old family homes."
+    ),
+    tags: ["decor", "gift", "nostalgia", "home", "clock"],
+    benefits: [
+      L("تصميم كيرجعك لأيام زمان", "Design qui rappelle autrefois", "Design that takes you back"),
+      L("لمسة دافئة للدار", "Touche chaleureuse à la maison", "Warm touch for home"),
+      L("فكرة هدية بسيطة ومميزة", "Cadeau simple et touchant", "Simple, meaningful gift"),
+    ],
+    features: [
+      L("ساعة analogique طاولة", "Horloge analogique de table", "Analog table clock"),
+      L("وجه بأرقام واضحة ورسم الفروج", "Cadran avec chiffres et motif coq", "Dial with numerals and rooster art"),
+      L("إطار معدني لامع مع stand", "Cadre métallique avec pied", "Metal frame with stand"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("ساعة طاولة analogique", "Horloge de table analogique", "Analog table clock") },
+      { label: L("الثمن", "Prix", "Price"), value: L("199 درهم", "199 DH", "199 MAD") },
+      { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
+    ],
+    packageIncludes: [L("ساعة الفروج الكلاسيكية", "Horloge coq classique", "Classic rooster clock")],
+    howToUse: L(
+      "حطها فوق طاولة أو رف فالصالون، غرفة النوم، أو المدخل — بلاصة كتشوفها كل نهار.",
+      "Posez-la sur une table ou étagère au salon, chambre ou entrée.",
+      "Place it on a side table, shelf in the salon, bedroom, or entryway."
+    ),
+    lifestyleScenes: [
+      {
+        id: "salon",
+        emoji: "🛋️",
+        title: L("الصالون", "Salon", "Salon"),
+        description: L("ذكرى دافئة فوسط الدار", "Souvenir chaleureux au centre de la maison", "Warm memory in the heart of home"),
+        imageUrl: ROOSTER_CLOCK_HERO_IMAGE,
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-rooster-clock",
+        name: L("ساعة الفروج — 199 درهم", "Horloge coq — 199 DH", "Rooster clock — 199 MAD"),
+        price: ROOSTER_CLOCK_PRICE_MAD,
+        sku: ROOSTER_CLOCK_SKU,
+        stock: 40,
+      },
+    ],
+    upsellIds: [],
+    crossSellIds: ["prod-vintage-lantern", "prod-warm-led-lamp"],
+    seo: {
+      title: L(
+        "ساعة الفروج الكلاسيكية | ذكرى أيام زمان | 199 درهم | NOORVA",
+        "Horloge coq rétro | 199 DH | NOORVA Maroc",
+        "Classic rooster table clock | 199 MAD | NOORVA Morocco"
+      ),
+      description: L(
+        "ساعة طاولة analogique بتصميم الفروج — كتفكرك بدار الجدود والصالون القديم. 199 درهم، الدفع عند الاستلام والتوصيل داخل المغرب.",
+        "Horloge de table coq rétro — souvenir du salon d'autrefois. 199 DH, paiement à la livraison au Maroc.",
+        "Classic rooster analog table clock — nostalgia for old family homes. 199 MAD, cash on delivery in Morocco."
       ),
     },
   },

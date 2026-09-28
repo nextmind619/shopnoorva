@@ -13,6 +13,7 @@ import { buildProductGallerySlides, type GallerySlide } from "@/lib/product-gall
 import { getProductBenefitHeadline } from "@/lib/catalog/product-benefit-headline";
 import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
 import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
+import { ROOSTER_CLOCK_FAQS, ROOSTER_CLOCK_SLUG } from "@/data/rooster-analog-table-clock";
 import { FOLDABLE_WASHER_FAQS, FOLDABLE_WASHER_SLUG } from "@/data/foldable-washer";
 
 export function generateStaticParams() {
@@ -102,6 +103,18 @@ const BT12_KEYWORDS = [
   "NOORVA",
 ];
 
+const ROOSTER_CLOCK_KEYWORDS = [
+  "ساعة الفروج",
+  "ساعة كلاسيكية",
+  "ذكريات",
+  "دار الجدود",
+  "أيام زمان",
+  "ديكور مغربي",
+  "199 درهم",
+  "الدفع عند الاستلام",
+  "NOORVA",
+];
+
 const FOLDABLE_WASHER_KEYWORDS = [
   "غسالة صغيرة",
   "غسالة قابلة للطي",
@@ -147,6 +160,7 @@ export async function generateMetadata({
   const isCurvesGlow = product.slug === CURVES_GLOW_SLUG;
   const isBt12 = product.slug === BT12_SLUG;
   const isFoldableWasher = product.slug === FOLDABLE_WASHER_SLUG;
+  const isRoosterClock = product.slug === ROOSTER_CLOCK_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
@@ -165,7 +179,9 @@ export async function generateMetadata({
               ? "عصا سيلفي BT12 4 في 1 مع ترايبود وضوئين دائريين وريموت لاسلكي"
               : isFoldableWasher
                 ? "غسالة كهربائية 9 لتر قابلة للطي مع تجفيف — هدية رأس دش بفلتر"
-                : name;
+                : isRoosterClock
+                  ? "ساعة الفروج الكلاسيكية analogique — ذكرى أيام زمان ودار الجدود"
+                  : name;
 
   return {
     title,
@@ -186,7 +202,9 @@ export async function generateMetadata({
                   ? [...BT12_KEYWORDS, ...product.tags]
                   : isFoldableWasher
                     ? [...FOLDABLE_WASHER_KEYWORDS, ...product.tags]
-                    : product.tags,
+                    : isRoosterClock
+                      ? [...ROOSTER_CLOCK_KEYWORDS, ...product.tags]
+                      : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
@@ -209,6 +227,10 @@ export async function generateMetadata({
 function getProductFaqs(slug: string, warrantyMonths: number) {
   if (slug === BT12_SLUG) {
     return [...BT12_FAQS];
+  }
+
+  if (slug === ROOSTER_CLOCK_SLUG) {
+    return [...ROOSTER_CLOCK_FAQS];
   }
 
   if (slug === FOLDABLE_WASHER_SLUG) {
@@ -746,7 +768,8 @@ export default async function ProductPage({
           isKidsArt ||
           isEggBoiler ||
           product.slug === BT12_SLUG ||
-          product.slug === FOLDABLE_WASHER_SLUG
+          product.slug === FOLDABLE_WASHER_SLUG ||
+          product.slug === ROOSTER_CLOCK_SLUG
             ? {
                 "@type": "OfferShippingDetails",
                 shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },

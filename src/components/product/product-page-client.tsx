@@ -29,14 +29,21 @@ const ProductPageCurvesGlow = dynamic(
   () => import("@/components/product/product-page-curves-glow").then((m) => m.ProductPageCurvesGlow),
   { ssr: true, loading: () => <ProductPageShell /> },
 );
+const ProductPageRoosterAnalogTableClock = dynamic(
+  () =>
+    import("@/components/product/product-page-rooster-analog-table-clock").then(
+      (m) => m.ProductPageRoosterAnalogTableClock,
+    ),
+  { ssr: true, loading: () => <ProductPageShell className="bg-[#f7f3ed]" /> },
+);
 
 const FacebookProductTracker = dynamic(
   () => import("@/components/facebook/facebook-trackers").then((m) => m.FacebookProductTracker),
   { ssr: false },
 );
 
-function ProductPageShell() {
-  return <div className="min-h-[70vh] bg-[#0a0a0f]" aria-hidden />;
+function ProductPageShell({ className }: { className?: string }) {
+  return <div className={className ?? "min-h-[70vh] bg-[#0a0a0f]"} aria-hidden />;
 }
 
 interface ProductPageClientProps {
@@ -77,6 +84,8 @@ export function ProductPageClient({
         <ProductPageMiniVacuum product={product} />
       ) : product.slug === "proteine-curve-collagen-glow" ? (
         <ProductPageCurvesGlow product={product} />
+      ) : product.slug === "rooster-analog-table-clock" ? (
+        <ProductPageRoosterAnalogTableClock product={product} />
       ) : (
         <ProductPageAr
           product={product}

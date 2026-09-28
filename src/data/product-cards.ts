@@ -164,6 +164,13 @@ export const PRODUCT_CARDS: ProductCardSummary[] = [
     "hero": "/products/bt12-4in1-selfie-stick-tripod/02-premium-hero.webp"
   },
   {
+    "id": "prod-rooster-clock",
+    "slug": "rooster-analog-table-clock",
+    "nameAr": "ساعة الفروج الكلاسيقية — ذكرى أيام زمان",
+    "price": 199,
+    "hero": "/products/rooster-analog-table-clock/02-premium-hero.webp"
+  },
+  {
     "id": "prod-laptop-desk",
     "slug": "mobile-laptop-desk-with-wheels",
     "nameAr": "طاولة لابتوب متحركة بارتفاع قابل للتعديل وعجلات",

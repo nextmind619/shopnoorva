@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T19:46:03.865Z",
+  "generatedAt": "2026-09-28T19:56:46.406Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3657,6 +3657,88 @@
         "14-product-in-use": "upload",
         "17-infographic": "upload",
         "gift-filtered-shower-head": "upload"
+      }
+    },
+    "rooster-analog-table-clock": {
+      "slug": "rooster-analog-table-clock",
+      "sku": "Rooster-Analog-Table-Clock",
+      "name": "Rooster Analog Table Clock",
+      "images": {
+        "02-premium-hero": {
+          "original": "/products/rooster-analog-table-clock/02-premium-hero.jpg",
+          "webp": "/products/rooster-analog-table-clock/02-premium-hero.webp",
+          "avif": "/products/rooster-analog-table-clock/02-premium-hero.avif",
+          "thumbnail": "/products/rooster-analog-table-clock/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/rooster-analog-table-clock/responsive/02-premium-hero-640.webp",
+            "md": "/products/rooster-analog-table-clock/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/rooster-analog-table-clock/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/lifestyle/rooster-analog-table-clock/03-lifestyle.jpg",
+          "webp": "/lifestyle/rooster-analog-table-clock/03-lifestyle.webp",
+          "avif": "/lifestyle/rooster-analog-table-clock/03-lifestyle.avif",
+          "thumbnail": "/lifestyle/rooster-analog-table-clock/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/rooster-analog-table-clock/responsive/03-lifestyle-640.webp",
+            "md": "/lifestyle/rooster-analog-table-clock/responsive/03-lifestyle-1280.webp",
+            "lg": "/lifestyle/rooster-analog-table-clock/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "05-living-room": {
+          "original": "/lifestyle/rooster-analog-table-clock/05-living-room.jpg",
+          "webp": "/lifestyle/rooster-analog-table-clock/05-living-room.webp",
+          "avif": "/lifestyle/rooster-analog-table-clock/05-living-room.avif",
+          "thumbnail": "/lifestyle/rooster-analog-table-clock/thumbs/05-living-room-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/rooster-analog-table-clock/responsive/05-living-room-640.webp",
+            "md": "/lifestyle/rooster-analog-table-clock/responsive/05-living-room-1280.webp",
+            "lg": "/lifestyle/rooster-analog-table-clock/responsive/05-living-room-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/lifestyle/rooster-analog-table-clock/14-product-in-use.jpg",
+          "webp": "/lifestyle/rooster-analog-table-clock/14-product-in-use.webp",
+          "avif": "/lifestyle/rooster-analog-table-clock/14-product-in-use.avif",
+          "thumbnail": "/lifestyle/rooster-analog-table-clock/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/lifestyle/rooster-analog-table-clock/responsive/14-product-in-use-640.webp",
+            "md": "/lifestyle/rooster-analog-table-clock/responsive/14-product-in-use-1280.webp",
+            "lg": "/lifestyle/rooster-analog-table-clock/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "01-hero-white-bg": {
+          "original": "/products/rooster-analog-table-clock/01-hero-white-bg.jpg",
+          "webp": "/products/rooster-analog-table-clock/01-hero-white-bg.webp",
+          "avif": "/products/rooster-analog-table-clock/01-hero-white-bg.avif",
+          "thumbnail": "/products/rooster-analog-table-clock/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/rooster-analog-table-clock/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/rooster-analog-table-clock/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/rooster-analog-table-clock/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "09-close-up": {
+          "original": "/products/rooster-analog-table-clock/09-close-up.jpg",
+          "webp": "/products/rooster-analog-table-clock/09-close-up.webp",
+          "avif": "/products/rooster-analog-table-clock/09-close-up.avif",
+          "thumbnail": "/products/rooster-analog-table-clock/thumbs/09-close-up-400.webp",
+          "responsive": {
+            "sm": "/products/rooster-analog-table-clock/responsive/09-close-up-640.webp",
+            "md": "/products/rooster-analog-table-clock/responsive/09-close-up-1280.webp",
+            "lg": "/products/rooster-analog-table-clock/responsive/09-close-up-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "02-premium-hero": "ai-lifestyle-reference",
+        "03-lifestyle": "ai-lifestyle-reference",
+        "05-living-room": "ai-lifestyle-reference",
+        "14-product-in-use": "ai-lifestyle-reference",
+        "01-hero-white-bg": "client-reference",
+        "09-close-up": "client-reference"
       }
     }
   }
