@@ -102,6 +102,28 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
   const showSticky = sticky && !formVisible;
   const priceLabel = `${formatPriceNumber(PRICE, "ar")} DH`;
 
+  const orderFormBlock = (
+    <div ref={formSentinel} className="space-y-3">
+      <ProductOrderForm
+        product={product}
+        variant={variant}
+        quantity={1}
+        formTitle="بغيتها ترجع لدارك؟ ❤️"
+        formSubtitle="الاسم الكامل، رقم الهاتف، والمدينة أو العنوان — وغادي نتاصلو بك للتأكيد."
+        submitLabel={`❤️ اطلب الآن بـ ${formatPriceNumber(PRICE, "ar")} درهم`}
+        fullNamePlaceholder="الاسم الكامل"
+        addressLabel="المدينة أو العنوان"
+        addressPlaceholder="مثال: أكادير — الحي، الشارع، رقم المنزل"
+        summaryRows={[
+          { label: "المنتج", value: "ساعة الفروج 🐓" },
+          { label: "الثمن", value: `${formatPriceNumber(PRICE, "ar")} درهم` },
+        ]}
+        orderNote="ساعة الفروج | ذكرى أيام زمان"
+      />
+      <p className="text-center text-sm text-[#6b5d4d]">💵 خلّص غير ملي توصلك</p>
+    </div>
+  );
+
   return (
     <div
       className="min-h-screen bg-[#f7f3ed] text-[#2c2419] font-sans w-full max-w-full overflow-x-clip pb-24"
@@ -172,8 +194,11 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
             </p>
             <p className="text-sm text-[#6b5d4d]">💵 الدفع عند الاستلام</p>
           </div>
+        </section>
 
-          <NostalgiaButton onClick={scrollToOrder}>بغيت نرجع هاد الذكرى لدارنا ❤️</NostalgiaButton>
+        {/* Order form — directly under hero title & image */}
+        <section id="order-form" className="scroll-mt-20 -mt-6">
+          {orderFormBlock}
         </section>
 
         {/* Section 2 — The memory */}
@@ -308,36 +333,7 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
           <NostalgiaButton onClick={scrollToOrder}>اطلب الساعة ديالك</NostalgiaButton>
         </section>
 
-        {/* Section 8 — COD form */}
-        <section id="order-form" className="scroll-mt-20 space-y-4">
-          <div className="text-center space-y-2">
-            <h2 className="text-2xl font-bold">بغيتها ترجع لدارك؟ ❤️</h2>
-            <p className="text-[#5c4f42] text-sm leading-relaxed">
-              عمر المعلومات ديالك وغادي نتاصلو بك لتأكيد الطلب.
-            </p>
-          </div>
-          <div ref={formSentinel}>
-            <ProductOrderForm
-              product={product}
-              variant={variant}
-              quantity={1}
-              formTitle="بغيتها ترجع لدارك؟ ❤️"
-              formSubtitle="الاسم الكامل، رقم الهاتف، والمدينة أو العنوان — وغادي نتاصلو بك للتأكيد."
-              submitLabel={`❤️ اطلب الآن بـ ${formatPriceNumber(PRICE, "ar")} درهم`}
-              fullNamePlaceholder="مثال: محمد أمين"
-              addressLabel="المدينة أو العنوان"
-              addressPlaceholder="مثال: الدار البيضاء — الحي، الشارع، رقم المنزل"
-              summaryRows={[
-                { label: "المنتج", value: "ساعة الفروج 🐓" },
-                { label: "الثمن", value: `${formatPriceNumber(PRICE, "ar")} درهم` },
-              ]}
-              orderNote="ساعة الفروج | ذكرى أيام زمان"
-            />
-          </div>
-          <p className="text-center text-sm text-[#6b5d4d]">💵 خلّص غير ملي توصلك</p>
-        </section>
-
-        {/* Section 9 — Final message */}
+        {/* Section 8 — Final message (was section 9) */}
         <section className="space-y-6 text-center">
           <h2 className="text-xl sm:text-2xl font-bold leading-snug">
             بعض الأشياء ما كتحتاجش تكون جديدة...
