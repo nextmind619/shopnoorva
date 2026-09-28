@@ -700,11 +700,7 @@ export default async function ProductPage({
   const lcpPreload = getProductLcpPreloadUrls(product.slug);
   const gallerySlides: GallerySlide[] = buildProductGallerySlides(product);
   const benefitHeadline = getProductBenefitHeadline(product);
-  const reviewPool = getReviewsForProduct(product.id);
-  const clientReviews =
-    product.slug === "mini-egg-boiler" || product.slug === BT12_SLUG
-      ? reviewPool.filter((r) => r.productId === product.id)
-      : reviewPool;
+  const clientReviews = getReviewsForProduct(product.id);
   const productUrl = `${SITE_URL}/ar/products/${product.slug}`;
   const productFaqs = getProductFaqs(product.slug, product.warrantyMonths || 12);
   const isShiatsu = product.slug === SHIATSU_SLUG;

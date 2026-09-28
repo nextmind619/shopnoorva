@@ -3784,8 +3784,7 @@ export function getNewArrivals() {
 }
 export function getFlashSaleProducts() { return products.filter((p) => p.flashSaleEndsAt).map(enrichProduct); }
 export function getReviewsForProduct(productId: string) {
-  const matched = reviews.filter((r) => r.productId === productId);
-  return matched.length > 0 ? matched : reviews.slice(0, 4);
+  return reviews.filter((r) => r.productId === productId);
 }
 
 export function validateCoupon(code: string, subtotal: number) {
