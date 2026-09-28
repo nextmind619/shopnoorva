@@ -5,10 +5,15 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronLeft, Banknote, Truck, Heart, Home, Gift, Star } from "lucide-react";
-import type { Product } from "@/types";
+import { ChevronLeft, Banknote, Truck, Heart, Home, Gift, Star, Check } from "lucide-react";
+import type { Product, ProductVariant } from "@/types";
 import { getReviewsForProduct } from "@/data/products";
-import { ROOSTER_CLOCK_PRICE_MAD } from "@/data/rooster-analog-table-clock";
+import {
+  ROOSTER_CLOCK_PACK_PRICE_MAD,
+  ROOSTER_CLOCK_PACK_SAVINGS_MAD,
+  ROOSTER_CLOCK_PRICE_MAD,
+} from "@/data/rooster-analog-table-clock";
+import { isPackVariantSku } from "@/components/product/product-variant-picker";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import { resolveProductImage } from "@/lib/product-images/resolve";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -19,10 +24,12 @@ const ProductOrderForm = dynamic(
 );
 
 const SLUG = "rooster-analog-table-clock";
-const PRICE = ROOSTER_CLOCK_PRICE_MAD;
+const SINGLE_PRICE = ROOSTER_CLOCK_PRICE_MAD;
+const PACK_PRICE = ROOSTER_CLOCK_PACK_PRICE_MAD;
+const PACK_SAVINGS = ROOSTER_CLOCK_PACK_SAVINGS_MAD;
 
 const FAQ_ITEMS = [
-  { q: "شحال الثمن؟", a: "الثمن هو 199 درهم." },
+  { q: "شحال الثمن؟", a: "ساعة وحدة بـ 199 درهم، أو جوج ساعات بـ 299 درهم." },
   { q: "كيفاش كنخلص؟", a: "الدفع عند الاستلام، كتخلص ملي توصلك الطلبية." },
   { q: "فين كتوصلو؟", a: "التوصيل داخل المغرب." },
   { q: "كيفاش نطلب؟", a: "عمر الفورم بالمعلومات ديالك وغادي نتاصلو بك لتأكيد الطلب." },
@@ -34,6 +41,72 @@ interface Props {
 
 function img(type: Parameters<typeof resolveProductImage>[1]) {
   return resolveProductImage(SLUG, type, "webp");
+}
+
+function OfferCard({
+  active,
+  recommended,
+  title,
+  price,
+  subtitle,
+  savings,
+  badge,
+  onSelect,
+}: {
+  active: boolean;
+  recommended?: boolean;
+  title: string;
+  price: number;
+  subtitle: string;
+  savings?: number;
+  badge?: string;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-pressed={active}
+      className={cn(
+        "relative w-full rounded-2xl border-2 px-5 py-5 text-start transition-all duration-200",
+        active
+          ? "border-[#7a3e48] bg-[#faf0f0] shadow-lg shadow-[#7a3e48]/15 ring-2 ring-[#7a3e48]/20"
+          : "border-[#e8ddd0] bg-white hover:border-[#c4a574]/60 hover:shadow-md",
+      )}
+    >
+      {recommended && (
+        <span className="absolute -top-3 start-4 rounded-full bg-[#7a3e48] px-3 py-0.5 text-[11px] font-bold text-[#fff8f0] shadow-md">
+          {badge ?? "🔥 الأكثر طلباً"}
+        </span>
+      )}
+      <div className="flex items-start gap-3">
+        <span
+          className={cn(
+            "mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
+            active ? "border-[#7a3e48] bg-[#7a3e48] text-white" : "border-[#d4c4b0] bg-white",
+          )}
+          aria-hidden
+        >
+          {active && <Check className="h-3.5 w-3.5 stroke-[3]" />}
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="text-lg font-bold text-[#2c2419]">{title}</p>
+          <p className="text-sm text-[#6b5d4d] mt-0.5">{subtitle}</p>
+          {savings != null && savings > 0 && (
+            <p className="text-sm font-semibold text-emerald-700 mt-2">
+              كتوفر {formatPriceNumber(savings, "ar")} درهم
+            </p>
+          )}
+        </div>
+        <div className="text-end shrink-0">
+          <p className="text-2xl sm:text-3xl font-black tabular-nums text-[#7a3e48] leading-none">
+            {formatPriceNumber(price, "ar")}{" "}
+            <span className="text-base sm:text-lg font-bold text-[#2c2419]">درهم</span>
+          </p>
+        </div>
+      </div>
+    </button>
+  );
 }
 
 function NostalgiaButton({
@@ -82,7 +155,11 @@ function StarRow({ rating }: { rating: number }) {
 }
 
 export function ProductPageRoosterAnalogTableClock({ product }: Props) {
-  const variant = product.variants[0];
+  const packVariant =
+    product.variants.find((v) => isPackVariantSku(v.sku)) ?? product.variants[1];
+  const singleVariant =
+    product.variants.find((v) => !isPackVariantSku(v.sku)) ?? product.variants[0];
+  const [variant, setVariant] = useState<ProductVariant>(packVariant ?? product.variants[0]);
   const reviews = getReviewsForProduct(product.id);
   const [sticky, setSticky] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
@@ -115,29 +192,56 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
     { src: img("05-living-room"), alt: "ساعة الفروج فصالون مغربي تقليدي" },
     { src: img("14-product-in-use"), alt: "ساعة الفروج فوق طاولة جانبية بضوء طبيعي" },
     { src: img("03-lifestyle"), alt: "ساعة الفروج فجو دار الجدود والذكريات" },
-    { src: img("02-premium-hero"), alt: "ساعة الفروج فديكور مغربي أنيق" },
+    { src: img("01-hero-white-bg"), alt: "ساعة الفروج — صورة المنتج" },
   ];
 
   const showSticky = sticky && !formVisible;
-  const priceLabel = `${formatPriceNumber(PRICE, "ar")} DH`;
+  const isPack = isPackVariantSku(variant.sku);
+  const priceLabel = `${formatPriceNumber(variant.price, "ar")} DH`;
+  const offerLabel = isPack ? "جوج ساعات — 299 درهم" : "ساعة واحدة — 199 درهم";
 
   const orderFormBlock = (
-    <div ref={formSentinel} className="space-y-3">
+    <div ref={formSentinel} className="space-y-4">
+      <section id="offers" className="scroll-mt-20 space-y-3">
+        <p className="text-center font-bold text-[#2c2419]">اختار العرض المناسب ليك 👇</p>
+        <OfferCard
+          active={variant.id === singleVariant.id}
+          title="ساعة واحدة 🐓"
+          price={SINGLE_PRICE}
+          subtitle="199 درهم — قطعة وحدة"
+          onSelect={() => setVariant(singleVariant)}
+        />
+        <OfferCard
+          active={variant.id === packVariant.id}
+          recommended
+          title="جوج ساعات 🐓🐓"
+          price={PACK_PRICE}
+          subtitle="299 درهم — للدار أو كهدية"
+          savings={PACK_SAVINGS}
+          badge="🔥 الأكثر طلباً"
+          onSelect={() => setVariant(packVariant)}
+        />
+      </section>
       <ProductOrderForm
         product={product}
         variant={variant}
         quantity={1}
         formTitle="بغيتها ترجع لدارك؟ ❤️"
         formSubtitle="الاسم الكامل، رقم الهاتف، والمدينة أو العنوان — وغادي نتاصلو بك للتأكيد."
-        submitLabel={`❤️ اطلب الآن بـ ${formatPriceNumber(PRICE, "ar")} درهم`}
+        submitLabel={`❤️ اطلب الآن بـ ${formatPriceNumber(variant.price, "ar")} درهم`}
         fullNamePlaceholder="الاسم الكامل"
         addressLabel="المدينة أو العنوان"
         addressPlaceholder="مثال: أكادير — الحي، الشارع، رقم المنزل"
         summaryRows={[
+          { label: "العرض", value: offerLabel },
           { label: "المنتج", value: "ساعة الفروج 🐓" },
-          { label: "الثمن", value: `${formatPriceNumber(PRICE, "ar")} درهم` },
+          { label: "الإجمالي", value: `${formatPriceNumber(variant.price, "ar")} درهم` },
         ]}
-        orderNote="ساعة الفروج | ذكرى أيام زمان"
+        orderNote={
+          isPack
+            ? "ساعة الفروج | عرض جوج ب299 | ذكرى أيام زمان"
+            : "ساعة الفروج | 199 | ذكرى أيام زمان"
+        }
       />
       <p className="text-center text-sm text-[#6b5d4d]">💵 خلّص غير ملي توصلك</p>
     </div>
@@ -209,7 +313,11 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
           <div className="space-y-2">
             <p className="text-xl font-bold">ساعة الفروج 🐓</p>
             <p className="text-3xl font-black tabular-nums text-[#7a3e48]">
-              {formatPriceNumber(PRICE, "ar")} درهم فقط
+              {formatPriceNumber(SINGLE_PRICE, "ar")} درهم
+            </p>
+            <p className="text-lg font-bold text-[#2c2419]">
+              🔥 جوج بـ{" "}
+              <span className="text-[#7a3e48] tabular-nums">{formatPriceNumber(PACK_PRICE, "ar")} درهم</span>
             </p>
             <p className="text-sm text-[#6b5d4d]">💵 الدفع عند الاستلام</p>
             {product.reviewCount > 0 && (
@@ -282,10 +390,15 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
             />
           </div>
           <div className="text-center space-y-1">
-            <p className="text-3xl font-black text-[#7a3e48] tabular-nums">{priceLabel}</p>
+            <p className="text-xl font-black text-[#7a3e48] tabular-nums">
+              {formatPriceNumber(SINGLE_PRICE, "ar")} درهم · ساعة واحدة
+            </p>
+            <p className="text-xl font-black text-[#7a3e48] tabular-nums">
+              {formatPriceNumber(PACK_PRICE, "ar")} درهم · جوج ساعات
+            </p>
             <p className="text-sm text-[#6b5d4d]">خلص غير ملي توصلك</p>
           </div>
-          <NostalgiaButton onClick={scrollToOrder}>اطلبها دابا</NostalgiaButton>
+          <NostalgiaButton onClick={scrollToOrder}>اختار العرض واطلب</NostalgiaButton>
         </section>
 
         {/* Section 4 — Who is it for */}
@@ -385,14 +498,19 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
           <h2 className="text-xl sm:text-2xl font-bold leading-snug">
             خلي شي حاجة من أيام زمان ترجع لدارك ❤️
           </h2>
-          <p className="text-4xl font-black tabular-nums text-[#7a3e48]">
-            {formatPriceNumber(PRICE, "ar")} درهم فقط
-          </p>
+          <div className="space-y-1">
+            <p className="text-2xl font-black tabular-nums text-[#7a3e48]">
+              {formatPriceNumber(SINGLE_PRICE, "ar")} درهم — ساعة واحدة
+            </p>
+            <p className="text-2xl font-black tabular-nums text-[#7a3e48]">
+              {formatPriceNumber(PACK_PRICE, "ar")} درهم — جوج ساعات
+            </p>
+          </div>
           <div className="text-sm text-[#5c4f42] space-y-1">
             <p>🚚 التوصيل داخل المغرب</p>
             <p>💵 الدفع عند الاستلام</p>
           </div>
-          <NostalgiaButton onClick={scrollToOrder}>اطلب الساعة ديالك</NostalgiaButton>
+          <NostalgiaButton onClick={scrollToOrder}>اختار العرض واطلب</NostalgiaButton>
         </section>
 
         {/* Section 8 — Final message (was section 9) */}

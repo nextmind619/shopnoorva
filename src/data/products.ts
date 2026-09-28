@@ -15,6 +15,8 @@ import {
 } from "@/data/bt12";
 import {
   ROOSTER_CLOCK_HERO_IMAGE,
+  ROOSTER_CLOCK_PACK_PRICE_MAD,
+  ROOSTER_CLOCK_PACK_SKU,
   ROOSTER_CLOCK_PRICE_MAD,
   ROOSTER_CLOCK_SKU,
   ROOSTER_CLOCK_SLUG,
@@ -3034,9 +3036,17 @@ export const products: Product[] = [
     variants: [
       {
         id: "var-rooster-clock",
-        name: L("ساعة الفروج — 199 درهم", "Horloge coq — 199 DH", "Rooster clock — 199 MAD"),
+        name: L("ساعة واحدة — 199 درهم", "1 horloge — 199 DH", "1 clock — 199 MAD"),
         price: ROOSTER_CLOCK_PRICE_MAD,
         sku: ROOSTER_CLOCK_SKU,
+        stock: 40,
+      },
+      {
+        id: "var-rooster-clock-2pk",
+        name: L("جوج ساعات — 299 درهم", "2 horloges — 299 DH", "2 clocks — 299 MAD"),
+        price: ROOSTER_CLOCK_PACK_PRICE_MAD,
+        compareAtPrice: ROOSTER_CLOCK_PRICE_MAD * 2,
+        sku: ROOSTER_CLOCK_PACK_SKU,
         stock: 40,
       },
     ],

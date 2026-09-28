@@ -2,8 +2,11 @@
 
 export const ROOSTER_CLOCK_SLUG = "rooster-analog-table-clock";
 export const ROOSTER_CLOCK_PRICE_MAD = 199;
+export const ROOSTER_CLOCK_PACK_PRICE_MAD = 299;
+export const ROOSTER_CLOCK_PACK_SAVINGS_MAD = ROOSTER_CLOCK_PRICE_MAD * 2 - ROOSTER_CLOCK_PACK_PRICE_MAD;
 /** CodPlus / warehouse SKU placeholder until marketplace id is confirmed. */
 export const ROOSTER_CLOCK_SKU = "Rooster-Analog-Table-Clock";
+export const ROOSTER_CLOCK_PACK_SKU = "Rooster-Analog-Table-Clock-2PK";
 
 export const ROOSTER_CLOCK_HERO_IMAGE =
   "/products/rooster-analog-table-clock/02-premium-hero.webp";
@@ -17,7 +20,7 @@ export const ROOSTER_CLOCK_IMAGE_PROMPTS_PATH =
 export const ROOSTER_CLOCK_FAQS = [
   {
     q: "شحال الثمن؟",
-    a: "الثمن هو 199 درهم.",
+    a: "ساعة وحدة بـ 199 درهم، أو جوج ساعات بـ 299 درهم.",
   },
   {
     q: "كيفاش كنخلص؟",
