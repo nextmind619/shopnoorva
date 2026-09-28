@@ -2969,8 +2969,8 @@ export const products: Product[] = [
     price: ROOSTER_CLOCK_PRICE_MAD,
     sku: ROOSTER_CLOCK_SKU,
     stock: 40,
-    rating: 0,
-    reviewCount: 0,
+    rating: 4.9,
+    reviewCount: 4,
     soldCount: 0,
     isBestSeller: false,
     isTrending: false,
@@ -3797,6 +3797,67 @@ export const reviews: ProductReview[] = [
     date: "2026-09-12",
     verified: true,
     images: ["/reviews/bt12-4in1-selfie-stick-tripod/04-box-tripod-stick.webp"],
+  },
+  // Rooster analog table clock — nostalgia / decor reviews (text)
+  {
+    id: "rrooster-1",
+    productId: "prod-rooster-clock",
+    author: "خديجة بنشقرون",
+    city: "فاس",
+    rating: 5,
+    title: L("كتفكرني بصالون جدّتي", "Rappelle le salon de ma grand-mère", "Reminds me of grandma's salon"),
+    content: L(
+      "منين حطيتها فالصالون، أمي قالت: هادي كتشبه لساعة ديال زمان. التصميم ديال الفروج بسيط ودافئ.",
+      "Depuis qu'on l'a posée au salon, maman a dit que ça rappelle l'horloge d'autrefois. Motif coq simple et chaleureux.",
+      "Since we put it in the salon, my mom said it looks like the old clock. The rooster design feels simple and warm."
+    ),
+    date: "2026-09-22",
+    verified: true,
+  },
+  {
+    id: "rrooster-2",
+    productId: "prod-rooster-clock",
+    author: "عبد الرحيم السعدي",
+    city: "مراكش",
+    rating: 5,
+    title: L("هدية لوالدية", "Cadeau pour mes parents", "Gift for my parents"),
+    content: L(
+      "شريتها كهدية بسيطة لدار الوالدين. عجباتهم البساطة والإطار المعدني. التوصيل وصل وخلصت عند الاستلام.",
+      "Offerte en cadeau simple aux parents. Ils aiment la simplicité et le cadre métallique. Livraison OK, paiement à la livraison.",
+      "Bought as a simple gift for my parents' home. They liked the simplicity and metal frame. Delivery fine, paid on arrival."
+    ),
+    date: "2026-09-20",
+    verified: true,
+  },
+  {
+    id: "rrooster-3",
+    productId: "prod-rooster-clock",
+    author: "سناء العثماني",
+    city: "الدار البيضاء",
+    rating: 5,
+    title: L("نفس اللي فالصورة", "Comme sur la photo", "Same as the photos"),
+    content: L(
+      "وصلتني نفس الساعة اللي فالصور — وجه أبيض، الفروج فالوسط، الإطار لامع. حطيتها فوق طاولة صغيرة فالمدخل.",
+      "Reçue comme sur le site — cadran blanc, coq au centre, cadre brillant. Posée sur une petite table dans l'entrée.",
+      "Arrived like the site photos — white face, rooster in the center, shiny frame. Placed on a small entry table."
+    ),
+    date: "2026-09-18",
+    verified: true,
+  },
+  {
+    id: "rrooster-4",
+    productId: "prod-rooster-clock",
+    author: "حسن الزكري",
+    city: "أكادير",
+    rating: 4,
+    title: L("لمسة زوينة فالدار", "Belle touche à la maison", "Nice touch at home"),
+    content: L(
+      "ما كتحتاجش حاجة معقدة — غير شي حاجة كتفرح العين. الثمن مناسب والطلبية تأكدات بالتليفون.",
+      "Pas besoin de compliqué — juste quelque chose qui fait plaisir. Prix correct, commande confirmée par téléphone.",
+      "Doesn't need to be complicated — just something pleasing. Fair price, order confirmed by phone."
+    ),
+    date: "2026-09-15",
+    verified: true,
   },
   // Shiatsu Neck & Shoulder Massager — 25 Moroccan French reviews (~4.9 avg)
   { id: "rs1", productId: "prod-shiatsu", author: "Yassine El Idrissi", city: "Casablanca", rating: 5, title: L("ارتياح فوري", "Soulagement immédiat", "Instant relief"), content: L("بعد يوم المكتب رقبتني كترتاح في 10 دقايق. التدفئة زوينة بزاف.", "Après le bureau, mon cou se détend en 10 minutes. Le chauffage est excellent.", "After work, my neck relaxes in 10 minutes. The heat is excellent."), date: "2026-07-24", verified: true },

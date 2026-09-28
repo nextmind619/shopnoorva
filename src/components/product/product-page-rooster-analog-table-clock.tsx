@@ -5,8 +5,9 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronLeft, Banknote, Truck, Heart, Home, Gift } from "lucide-react";
+import { ChevronLeft, Banknote, Truck, Heart, Home, Gift, Star } from "lucide-react";
 import type { Product } from "@/types";
+import { getReviewsForProduct } from "@/data/products";
 import { ROOSTER_CLOCK_PRICE_MAD } from "@/data/rooster-analog-table-clock";
 import { formatPriceNumber, cn } from "@/lib/utils";
 import { resolveProductImage } from "@/lib/product-images/resolve";
@@ -63,8 +64,26 @@ function NostalgiaButton({
   );
 }
 
+function StarRow({ rating }: { rating: number }) {
+  return (
+    <span className="inline-flex items-center gap-0.5" aria-label={`${rating} من 5`}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          className={cn(
+            "h-4 w-4",
+            i < Math.round(rating) ? "fill-amber-400 text-amber-400" : "fill-[#e8ddd0] text-[#e8ddd0]",
+          )}
+          aria-hidden
+        />
+      ))}
+    </span>
+  );
+}
+
 export function ProductPageRoosterAnalogTableClock({ product }: Props) {
   const variant = product.variants[0];
+  const reviews = getReviewsForProduct(product.id);
   const [sticky, setSticky] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
   const formSentinel = useRef<HTMLDivElement>(null);
@@ -193,6 +212,13 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
               {formatPriceNumber(PRICE, "ar")} درهم فقط
             </p>
             <p className="text-sm text-[#6b5d4d]">💵 الدفع عند الاستلام</p>
+            {product.reviewCount > 0 && (
+              <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-sm text-[#6b5d4d]">
+                <StarRow rating={product.rating} />
+                <span className="font-semibold tabular-nums text-[#2c2419]">{product.rating.toFixed(1)}</span>
+                <span>({product.reviewCount} تقييم)</span>
+              </div>
+            )}
           </div>
         </section>
 
@@ -317,6 +343,42 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
             </p>
           ))}
         </section>
+
+        {/* Reviews */}
+        {reviews.length > 0 && (
+          <section id="reviews" className="scroll-mt-20 space-y-4">
+            <div className="text-center space-y-2">
+              <h2 className="text-xl sm:text-2xl font-bold">شنو قالو اللي خداوها؟</h2>
+              <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-[#6b5d4d]">
+                <StarRow rating={product.rating} />
+                <span className="font-bold text-[#2c2419] tabular-nums">{product.rating.toFixed(1)} / 5</span>
+                <span>· {product.reviewCount} تقييم</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-3">
+              {reviews.map((r) => (
+                <article
+                  key={r.id}
+                  className="rounded-2xl border border-[#e8ddd0] bg-white p-5 shadow-sm text-start"
+                >
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <StarRow rating={r.rating} />
+                    {r.verified && (
+                      <span className="text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                        ✓ طلب مؤكد
+                      </span>
+                    )}
+                  </div>
+                  <p className="font-bold text-[#2c2419] mb-1">{r.title.ar}</p>
+                  <p className="text-sm text-[#5c4f42] leading-relaxed">{r.content.ar}</p>
+                  <p className="text-xs text-[#8b7355] mt-3">
+                    {r.author} · {r.city}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Section 7 — Offer */}
         <section className="rounded-3xl border-2 border-[#7a3e48]/30 bg-gradient-to-b from-[#faf6f0] to-[#f5ead8] p-6 sm:p-8 space-y-5 text-center shadow-lg">

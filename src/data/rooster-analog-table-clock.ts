@@ -10,6 +10,10 @@ export const ROOSTER_CLOCK_HERO_IMAGE =
 export const ROOSTER_CLOCK_PRODUCT_IMAGE =
   "/products/rooster-analog-table-clock/09-close-up.webp";
 
+/** Image prompt doc for regenerating LP assets */
+export const ROOSTER_CLOCK_IMAGE_PROMPTS_PATH =
+  "/products/rooster-analog-table-clock/IMAGE_PROMPTS.md";
+
 export const ROOSTER_CLOCK_FAQS = [
   {
     q: "شحال الثمن؟",
