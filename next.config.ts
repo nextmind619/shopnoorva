@@ -9,31 +9,28 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
-  /**
-   * Tree-shake icon/motion barrels → smaller client chunks.
-   * @see https://nextjs.org/docs/app/api-reference/config/next-config-js/optimizePackageImports
-   */
   experimental: {
     optimizePackageImports: ["lucide-react", "motion", "date-fns"],
   },
   images: {
     qualities: [75, 80, 90, 95],
-    /** Allow cache-bust query strings on static product assets (Next 16). */
-    localPatterns: [{ pathname: "/products/**" }, { pathname: "/reviews/**" }],
+    localPatterns: [
+      { pathname: "/products/**" },
+      { pathname: "/lifestyle/**" },
+      { pathname: "/products/**", search: "?v=*" },
+      { pathname: "/lifestyle/**", search: "?v=*" },
+    ],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "i.pravatar.cc" },
       { protocol: "https", hostname: "image.pollinations.ai" },
     ],
     formats: ["image/avif", "image/webp"],
-    /** Longer optimizer cache → fewer origin transforms */
     minimumCacheTTL: 60 * 60 * 24 * 30,
-    /** Mobile-first device widths (PageSpeed / real phones) */
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   poweredByHeader: false,
-  /** gzip at Node; Brotli/HTTP2/3 served by Cloudflare / reverse proxy */
   compress: true,
   headers: async () => [
     {

@@ -57,7 +57,7 @@ function normalizePublicPath(url: string | undefined): string | undefined {
 /** Same filenames were reused after placeholder → real photos; bust immutable browser cache. */
 const PRODUCT_ASSET_VERSION: Partial<Record<string, string>> = {
   "foldable-9l-mini-washing-machine": "20250926-real",
-  "rooster-analog-table-clock": "20250928-user-photos",
+  "rooster-analog-table-clock": "20250928-products-path",
 };
 
 function withProductAssetVersion(slug: string, url: string | undefined): string | undefined {

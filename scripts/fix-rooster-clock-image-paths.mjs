@@ -1,6 +1,6 @@
 /**
- * Import user-provided rooster clock photos into product/lifestyle slots.
- * Usage: node scripts/import-rooster-clock-user-photos.mjs
+ * Store ALL rooster LP images under /products/ (Next.js image optimizer allows this path).
+ * Usage: node scripts/fix-rooster-clock-image-paths.mjs
  */
 
 import fs from "fs/promises";
@@ -11,21 +11,8 @@ import sharp from "sharp";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
 const PUBLIC = path.join(ROOT, "public");
-
 const SLUG = "rooster-analog-table-clock";
-const SKU = "Rooster-Analog-Table-Clock";
-
-const ASSETS = "/home/ubuntu/.cursor/projects/workspace/assets";
-
-/** All assets under public/products/ — required for Next.js Image on production */
-const MAP = [
-  { src: "62026473-fd08-46c5-b1f2-c375478a9c89.jpg", type: "01-hero-white-bg" },
-  { src: "bef9cf5c-1fff-4d6f-bd09-b05a9c4c033b.jpg", type: "09-close-up" },
-  { src: "5d9b8cec-855f-4dd4-8f6c-eea64f4b1389.jpg", type: "02-premium-hero" },
-  { src: "63aad518-7a74-48ba-a6bf-fff9728ae2d6.jpg", type: "03-lifestyle" },
-  { src: "dbc8a156-4444-4681-9fc0-595d5da84772.jpg", type: "05-living-room" },
-  { src: "03094714-a98b-479d-a211-c849327fa717.jpg", type: "14-product-in-use" },
-];
+const TYPES = ["03-lifestyle", "05-living-room", "14-product-in-use"];
 
 async function optimizeImage(inputBuffer, outDir, baseName) {
   const originalPath = path.join(outDir, `${baseName}.jpg`);
@@ -72,36 +59,30 @@ async function optimizeImage(inputBuffer, outDir, baseName) {
 }
 
 async function main() {
+  const outDir = path.join(PUBLIC, "products", SLUG);
   const manifestPath = path.join(ROOT, "src/lib/product-images/manifest.json");
   const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
-  const productManifest = manifest.products[SLUG] ?? {
-    slug: SLUG,
-    sku: SKU,
-    name: "Rooster Analog Table Clock",
-    images: {},
-    prompts: {},
-    sources: {},
-  };
+  const entry = manifest.products[SLUG];
+  if (!entry) throw new Error("Missing manifest entry");
 
-  for (const { src, type } of MAP) {
-    const inputPath = path.join(ASSETS, src);
-    const buf = await fs.readFile(inputPath);
-    const outDir = path.join(PUBLIC, "products", SLUG);
-    await fs.mkdir(outDir, { recursive: true });
-    console.log(`✓ ${type} ← ${src}`);
-    productManifest.images[type] = await optimizeImage(buf, outDir, type);
-    productManifest.sources[type] = "client-upload";
+  for (const type of TYPES) {
+    const lifestyleWebp = path.join(PUBLIC, "lifestyle", SLUG, `${type}.webp`);
+    let buf;
+    try {
+      buf = await fs.readFile(lifestyleWebp);
+    } catch {
+      const legacy = entry.images[type]?.webp?.replace(/^\//, "");
+      if (legacy) buf = await fs.readFile(path.join(PUBLIC, legacy));
+      else throw new Error(`Missing ${type}`);
+    }
+    console.log(`✓ products/${SLUG}/${type}`);
+    entry.images[type] = await optimizeImage(buf, outDir, type);
+    entry.sources[type] = entry.sources[type] ?? "client-upload";
   }
 
-  manifest.products[SLUG] = productManifest;
-  manifest.generatedAt = new Date().toISOString();
+  manifest.products[SLUG] = entry;
   await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
-
-  // Also save copies as product-reference from white-bg hero
-  const refBuf = await fs.readFile(path.join(ASSETS, "62026473-fd08-46c5-b1f2-c375478a9c89.jpg"));
-  await fs.writeFile(path.join(PUBLIC, "products", SLUG, "product-reference.jpg"), refBuf);
-
-  console.log("\n✅ All 6 images imported and manifest updated.");
+  console.log("\n✅ Lifestyle slots now point to /products/rooster-analog-table-clock/");
 }
 
 main().catch((e) => {
