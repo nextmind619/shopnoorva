@@ -484,6 +484,18 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
                   </div>
                   <p className="font-bold text-[#2c2419] mb-1">{r.title.ar}</p>
                   <p className="text-sm text-[#5c4f42] leading-relaxed">{r.content.ar}</p>
+                  {r.images?.[0] && (
+                    <div className="relative mt-4 aspect-square w-full max-w-xs overflow-hidden rounded-xl border border-[#e8ddd0] bg-[#faf6f0]">
+                      <Image
+                        src={r.images[0]}
+                        alt={`صورة من ${r.author} — ساعة الفروج`}
+                        fill
+                        className="object-contain p-2"
+                        sizes="320px"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   <p className="text-xs text-[#8b7355] mt-3">
                     {r.author} · {r.city}
                   </p>
