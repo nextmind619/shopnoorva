@@ -194,14 +194,14 @@ export function ProductPageRoosterAnalogTableClock({ product }: Props) {
             </p>
           </motion.div>
 
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-[#e8ddd0] shadow-xl shadow-[#3d2f28]/10">
+          <div className="relative aspect-square w-full overflow-hidden rounded-3xl border border-[#e8ddd0] bg-[#faf6f0] shadow-xl shadow-[#3d2f28]/10">
             <Image
               src={heroSrc}
-              alt="ساعة الفروج الكلاسيكية فصالون مغربي دافئ"
+              alt="ساعة الفروج الكلاسيكية — المنتج"
               fill
               priority
               sizes="(max-width: 512px) 100vw, 480px"
-              className="object-cover"
+              className="object-contain p-3"
             />
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#2c2419]/35 to-transparent pointer-events-none" />
           </div>
