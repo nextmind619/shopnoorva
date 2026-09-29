@@ -2,6 +2,8 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { defaultLocale } from "./i18n/config";
 import { evaluateVisitor, readTrustCookie } from "@/lib/security";
+import { applyOwnerBypass, isAllowlistedIp } from "@/lib/security/allowlist";
+import { isRealBrowserUa } from "@/lib/security/automation";
 import { SECURITY_CONFIG } from "@/lib/security/config";
 import { extractClientIp } from "@/lib/security/client-ip";
 import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
@@ -149,6 +151,8 @@ export default function proxy(request: NextRequest) {
   const ownerPreview =
     Boolean(previewToken) &&
     (previewQuery === previewToken || previewCookie === previewToken);
+  // SECURITY_ALLOW_IPS: owner desktop/VPN, including when the preview cookie is unset.
+  const ownerBypass = ownerPreview || isAllowlistedIp(ip);
 
   const evaluation = evaluateVisitor({
     ip,
@@ -170,22 +174,38 @@ export default function proxy(request: NextRequest) {
     priorScore: trust.valid ? trust.score : undefined,
   });
 
-  // Soft bump for Cloudflare Morocco: never Access Denied a real browser in MA
+  // cf-ipcountry is absent on Coolify/nginx (no Cloudflare). evaluateVisitor
+  // already allows a normal desktop or mobile browser in that case.
+  // Do not 307 those visitors to /access-denied, and do not require an ad referrer.
+  // Owner preview token / allowlisted IP always opens the full storefront.
   const country = (request.headers.get("cf-ipcountry") || "").toUpperCase();
-  const realBrowser = /Mozilla\/5\.0.*(Chrome|Firefox|Safari|Edg|Mobile)/i.test(ua);
+  const realBrowser = isRealBrowserUa(ua, {
+    "sec-ch-ua": request.headers.get("sec-ch-ua"),
+  });
   if (
     evaluation.decision === "block" &&
     realBrowser &&
-    (country === "MA" || evaluation.likelyMoroccanCustomer) &&
+    !ownerBypass &&
+    (country === "MA" || evaluation.likelyMoroccanCustomer || !country) &&
     evaluation.ipRisk !== "tor" &&
+    evaluation.ipRisk !== "datacenter" &&
+    evaluation.ipRisk !== "vpn" &&
+    evaluation.ipRisk !== "proxy" &&
     !evaluation.reasons.includes("selenium") &&
     !evaluation.reasons.includes("puppeteer") &&
-    !evaluation.reasons.includes("playwright")
+    !evaluation.reasons.includes("playwright") &&
+    !evaluation.reasons.includes("headless") &&
+    !evaluation.reasons.includes("headless_chrome") &&
+    !evaluation.reasons.includes("facebook_ad_library") &&
+    !evaluation.reasons.includes("ad_library") &&
+    !evaluation.reasons.includes("blacklisted")
   ) {
-    evaluation.decision = "challenge";
+    evaluation.decision = "allow";
   }
 
-  if (evaluation.decision === "block" && !ownerPreview) {
+  evaluation.decision = applyOwnerBypass(evaluation.decision, ownerBypass);
+
+  if (evaluation.decision === "block") {
     const denied = NextResponse.redirect(new URL("/access-denied", request.url));
     return applySecurityHeaders(denied);
   }

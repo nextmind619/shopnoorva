@@ -32,13 +32,13 @@ export default function AccessDeniedPage() {
           <p style={{ letterSpacing: "0.3em", fontSize: 12, opacity: 0.6, marginBottom: 16 }}>NOORVA</p>
           <h1 style={{ fontSize: 32, margin: "0 0 12px", fontWeight: 700 }}>Access Denied</h1>
           <p style={{ opacity: 0.75, lineHeight: 1.6, marginBottom: 28 }}>
-            This request was blocked by our store protection system. If you are a real customer in
-            Morocco, please open the site from your Facebook, Instagram, or TikTok ad, disable VPN,
-            and try again in a normal mobile browser.
+            This request was blocked by our store protection system. If you are a real customer,
+            turn off any VPN and open the site again in your normal browser — desktop or mobile.
+            You do not need to arrive from an ad.
           </p>
           <p style={{ opacity: 0.75, lineHeight: 1.6, marginBottom: 28, direction: "rtl" }}>
-            تم حظر هذا الطلب بواسطة نظام حماية المتجر. إذا كنت زبوناً حقيقياً من المغرب، افتح الموقع من
-            إعلان فيسبوك أو إنستغرام أو تيك توك، عطّل VPN، وحاول مجدداً من متصفح الهاتف العادي.
+            تم حظر هذا الطلب بواسطة نظام حماية المتجر. إذا كنت زبوناً حقيقياً، عطّل VPN وافتح الموقع
+            مجدداً من متصفحك العادي على الحاسوب أو الهاتف. لا تحتاج إلى الدخول من إعلان.
           </p>
           <Link
             href="/ar"
