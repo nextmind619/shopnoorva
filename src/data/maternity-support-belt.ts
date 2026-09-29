@@ -12,12 +12,19 @@ export const MATERNITY_BELT_GIFT_SKU = "Digital - Thermometer";
 
 const BASE = `/products/${MATERNITY_BELT_SLUG}`;
 
-export const MATERNITY_BELT_HERO_IMAGE = `${BASE}/02-premium-hero.webp`;
-export const MATERNITY_BELT_FEATURES_IMAGE = `${BASE}/10-features.webp`;
-export const MATERNITY_BELT_LIFESTYLE_IMAGE = `${BASE}/03-lifestyle.webp`;
-export const MATERNITY_BELT_IN_USE_IMAGE = `${BASE}/14-product-in-use.webp`;
-export const MATERNITY_BELT_INFOGRAPHIC_IMAGE = `${BASE}/17-infographic.webp`;
-export const MATERNITY_BELT_GIFT_IMAGE = `${BASE}/gift-digital-thermometer.webp`;
+/** Bust CDN/browser cache after replacing placeholders with real photos. */
+export const MATERNITY_BELT_ASSET_VERSION = "20250929-user";
+
+function maternityAsset(file: string): string {
+  return `${BASE}/${file}?v=${MATERNITY_BELT_ASSET_VERSION}`;
+}
+
+export const MATERNITY_BELT_HERO_IMAGE = maternityAsset("02-premium-hero.webp");
+export const MATERNITY_BELT_FEATURES_IMAGE = maternityAsset("10-features.webp");
+export const MATERNITY_BELT_LIFESTYLE_IMAGE = maternityAsset("03-lifestyle.webp");
+export const MATERNITY_BELT_IN_USE_IMAGE = maternityAsset("14-product-in-use.webp");
+export const MATERNITY_BELT_INFOGRAPHIC_IMAGE = maternityAsset("17-infographic.webp");
+export const MATERNITY_BELT_GIFT_IMAGE = maternityAsset("gift-digital-thermometer.webp");
 
 export const MATERNITY_BELT_FAQS = [
   {

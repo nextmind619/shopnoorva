@@ -189,7 +189,7 @@ export const PRODUCT_CARDS: ProductCardSummary[] = [
     "slug": "adjustable-maternity-support-belt",
     "nameAr": "حزام دعم الحمل القابل للتعديل لدعم البطن والظهر",
     "price": 299,
-    "hero": "/products/adjustable-maternity-support-belt/02-premium-hero.webp"
+    "hero": "/products/adjustable-maternity-support-belt/02-premium-hero.webp?v=20250929-user"
   }
 ];
 

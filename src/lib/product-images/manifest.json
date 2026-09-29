@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T13:29:26.257Z",
+  "generatedAt": "2026-09-29T14:12:11.861Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3746,17 +3746,6 @@
       "sku": "Maternity-SupportBelt",
       "name": "Adjustable Maternity Support Belt + Digital Thermometer Gift",
       "images": {
-        "01-hero-white-bg": {
-          "original": "/products/adjustable-maternity-support-belt/01-hero-white-bg.jpg",
-          "webp": "/products/adjustable-maternity-support-belt/01-hero-white-bg.webp",
-          "avif": "/products/adjustable-maternity-support-belt/01-hero-white-bg.avif",
-          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/01-hero-white-bg-400.webp",
-          "responsive": {
-            "sm": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-640.webp",
-            "md": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-1280.webp",
-            "lg": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-2000.webp"
-          }
-        },
         "02-premium-hero": {
           "original": "/products/adjustable-maternity-support-belt/02-premium-hero.jpg",
           "webp": "/products/adjustable-maternity-support-belt/02-premium-hero.webp",
@@ -3766,6 +3755,17 @@
             "sm": "/products/adjustable-maternity-support-belt/responsive/02-premium-hero-640.webp",
             "md": "/products/adjustable-maternity-support-belt/responsive/02-premium-hero-1280.webp",
             "lg": "/products/adjustable-maternity-support-belt/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "01-hero-white-bg": {
+          "original": "/products/adjustable-maternity-support-belt/01-hero-white-bg.jpg",
+          "webp": "/products/adjustable-maternity-support-belt/01-hero-white-bg.webp",
+          "avif": "/products/adjustable-maternity-support-belt/01-hero-white-bg.avif",
+          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-2000.webp"
           }
         },
         "10-features": {
@@ -3826,13 +3826,13 @@
       },
       "prompts": {},
       "sources": {
-        "01-hero-white-bg": "placeholder",
-        "02-premium-hero": "placeholder",
-        "10-features": "placeholder",
-        "03-lifestyle": "placeholder",
-        "14-product-in-use": "placeholder",
-        "17-infographic": "placeholder",
-        "gift-digital-thermometer": "placeholder"
+        "02-premium-hero": "upload",
+        "01-hero-white-bg": "upload",
+        "10-features": "upload",
+        "03-lifestyle": "upload",
+        "14-product-in-use": "upload",
+        "17-infographic": "upload",
+        "gift-digital-thermometer": "upload"
       }
     }
   }

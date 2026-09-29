@@ -24,6 +24,7 @@ import {
   MATERNITY_BELT_COMPARE_MAD,
   MATERNITY_BELT_FAQS,
   MATERNITY_BELT_GIFT_IMAGE,
+  MATERNITY_BELT_INFOGRAPHIC_IMAGE,
   MATERNITY_BELT_PRICE_MAD,
 } from "@/data/maternity-support-belt";
 import { formatPriceNumber, cn, calculateDiscount } from "@/lib/utils";
@@ -95,11 +96,15 @@ function ImageSlot({
   src,
   alt,
   priority,
+  loading,
+  sizes = "(max-width: 512px) 100vw, 480px",
   aspect = "aspect-square",
 }: {
   src: string;
   alt: string;
   priority?: boolean;
+  loading?: "lazy" | "eager";
+  sizes?: string;
   aspect?: string;
 }) {
   return (
@@ -114,7 +119,8 @@ function ImageSlot({
         alt={alt}
         fill
         priority={priority}
-        sizes="(max-width: 512px) 100vw, 480px"
+        loading={priority ? undefined : loading ?? "lazy"}
+        sizes={sizes}
         className="object-contain p-2"
       />
     </div>
@@ -157,6 +163,7 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
   const featuresSrc = resolveProductImage(SLUG, "10-features");
   const lifestyleSrc = resolveProductImage(SLUG, "03-lifestyle");
   const inUseSrc = resolveProductImage(SLUG, "14-product-in-use");
+  const infographicSrc = resolveProductImage(SLUG, "17-infographic");
   const giftSrc = gift?.giftImage ?? MATERNITY_BELT_GIFT_IMAGE;
   const discount = calculateDiscount(PRICE, COMPARE);
   const showSticky = sticky && !formVisible;
@@ -261,7 +268,19 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
             </p>
           </motion.div>
 
-          <ImageSlot src={heroSrc} alt="حزام دعم الحمل — صورة المنتج" priority />
+          <ImageSlot
+            src={heroSrc}
+            alt="حامله ترتدي حزام دعم الحمل — راحة ودعم في كل خطوة"
+            priority
+            sizes="(max-width: 512px) 100vw, 512px"
+          />
+
+          <ImageSlot
+            src={infographicSrc || MATERNITY_BELT_INFOGRAPHIC_IMAGE}
+            alt="عرض 299 درهم — حزام دعم الحمل + ميزان حرارة هدية"
+            aspect="aspect-square"
+            sizes="(max-width: 512px) 100vw, 512px"
+          />
 
           <div className="space-y-1">
             <p className="text-3xl font-black tabular-nums text-rose-700">
@@ -307,7 +326,8 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
                   src={giftSrc}
                   alt={gift.giftTitle.ar}
                   fill
-                  sizes="160px"
+                  sizes="(max-width: 640px) 50vw, 160px"
+                  loading="lazy"
                   className="object-contain p-3"
                 />
               </div>
@@ -378,7 +398,12 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
               </div>
             ))}
           </div>
-          <ImageSlot src={featuresSrc} alt="مميزات حزام دعم الحمل" aspect="aspect-[4/5]" />
+          <ImageSlot
+            src={featuresSrc}
+            alt="مميزات حزام دعم الحمل — بطن، ظهر، قماش، تعديل"
+            aspect="aspect-[4/5]"
+            sizes="(max-width: 512px) 100vw, 480px"
+          />
         </section>
 
         <section className="space-y-4">
@@ -400,8 +425,18 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
             ))}
           </ol>
           <div className="grid grid-cols-1 gap-3">
-            <ImageSlot src={inUseSrc} alt="لبس الحزام — دعم أسفل البطن" aspect="aspect-[4/3]" />
-            <ImageSlot src={lifestyleSrc} alt="حامله تستعمل الحزام" aspect="aspect-[4/3]" />
+            <ImageSlot
+              src={inUseSrc}
+              alt="دعم الظهر — منظر خلفي للحزام"
+              aspect="aspect-[4/3]"
+              sizes="(max-width: 512px) 100vw, 480px"
+            />
+            <ImageSlot
+              src={lifestyleSrc}
+              alt="حامله مرتاحة فالدار مع حزام الدعم"
+              aspect="aspect-[4/3]"
+              sizes="(max-width: 512px) 100vw, 480px"
+            />
           </div>
           <p className="text-xs text-center text-rose-900/55">
             ⚕️ هاد المنتج دعم راحة وليس بديلاً عن استشارة الطبيب أو القابلة.
