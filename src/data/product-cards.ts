@@ -180,7 +180,7 @@ export const PRODUCT_CARDS: ProductCardSummary[] = [
   {
     "id": "prod-foldable-washer",
     "slug": "foldable-9l-mini-washing-machine",
-    "nameAr": "غسالة كهربائية صغيرة 9L قابلة للطي مع تجفيف",
+    "nameAr": "غسالة كهربائية صغيرة 9 لتر قابلة للطي مع تجفيف",
     "price": 399,
     "hero": "/products/foldable-9l-mini-washing-machine/02-premium-hero.webp?v=20250926-real"
   },
