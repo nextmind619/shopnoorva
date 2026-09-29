@@ -46,6 +46,19 @@ import {
   FOLDABLE_WASHER_SKU,
   FOLDABLE_WASHER_SLUG,
 } from "@/data/foldable-washer";
+import {
+  MATERNITY_BELT_COMPARE_MAD,
+  MATERNITY_BELT_GIFT_ID,
+  MATERNITY_BELT_GIFT_IMAGE,
+  MATERNITY_BELT_GIFT_SKU,
+  MATERNITY_BELT_HERO_IMAGE,
+  MATERNITY_BELT_IN_USE_IMAGE,
+  MATERNITY_BELT_LIFESTYLE_IMAGE,
+  MATERNITY_BELT_FEATURES_IMAGE,
+  MATERNITY_BELT_PRICE_MAD,
+  MATERNITY_BELT_SKU,
+  MATERNITY_BELT_SLUG,
+} from "@/data/maternity-support-belt";
 
 const flashEnd = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
 
@@ -59,7 +72,7 @@ const CATEGORY_TAG_MAP: Record<string, string[]> = {
   "cat-bedroom-lighting": ["bedroom"],
   "cat-kids-room": ["kids", "art", "drawing"],
   "cat-relaxation": ["relaxation"],
-  "cat-gift-ideas": ["gift", "beauty", "protein", "collagen", "curves"],
+  "cat-gift-ideas": ["gift", "beauty", "protein", "collagen", "curves", "maternity", "pregnancy"],
   "cat-study-office": ["calculator", "study", "vacuum", "keyboard"],
   "cat-kitchen": ["kitchen", "eggs", "breakfast"],
 };
@@ -3395,6 +3408,156 @@ export const products: Product[] = [
       ),
     },
   },
+  {
+    id: "prod-maternity-belt",
+    slug: MATERNITY_BELT_SLUG,
+    name: L(
+      "حزام دعم الحمل القابل للتعديل لدعم البطن والظهر",
+      "Ceinture de grossesse réglable ventre et dos",
+      "Adjustable maternity support belt for belly and back"
+    ),
+    shortDescription: L(
+      "حزام دعم متعدد الطبقات للحوامل — راحة، وضعية أحسن، وأشرطة قابلة للتعديل. 299 درهم + ميزان حرارة رقمي هدية.",
+      "Ceinture de soutien grossesse réglable. 299 DH + thermomètre digital offert.",
+      "Adjustable layered maternity belt. 299 MAD + free digital thermometer gift."
+    ),
+    description: L(
+      "حزام دعم الحمل القابل للتعديل: يدعم أسفل البطن، يخفّف الضغط، ويساعد على تحسين وضعية الظهر. قماش مريح، أشرطة وخطافات آمنة. 299 درهم للطلب الكامل (حزام + هدية). الدفع عند الاستلام والتوصيل مجاني في المغرب. هدية مجانية: ميزان حرارة رقمي سريع القياس.",
+      "Ceinture grossesse réglable, soutien ventre et dos. 299 DH tout compris avec thermomètre offert. COD, livraison gratuite Maroc.",
+      "Adjustable maternity belt for belly and back support. 299 MAD bundle with free fast-read digital thermometer. COD, free Morocco shipping."
+    ),
+    categoryId: "cat-gift-ideas",
+    price: MATERNITY_BELT_PRICE_MAD,
+    sku: MATERNITY_BELT_SKU,
+    stock: 130,
+    rating: 4.9,
+    reviewCount: 6,
+    soldCount: 0,
+    isBestSeller: false,
+    isTrending: true,
+    isTikTokViral: false,
+    isFeatured: true,
+    problemEmoji: "🤰",
+    problem: L(
+      "البطن كيكبر والظهر كيتعب؟",
+      "Ventre qui pèse et dos qui fatigue ?",
+      "Growing belly and tired back?"
+    ),
+    problemCause: L(
+      "وزن البطن كيزيد الضغط على الظهر والحوض فالمشي والوقوف.",
+      "Le poids du ventre augmente la pression sur le dos et le bassin.",
+      "Belly weight adds pressure on back and pelvis when walking or standing."
+    ),
+    problemSolution: L(
+      "حزام دعم قابل للتعديل + هدية ميزان حرارة — عرض واحد 299 درهم.",
+      "Ceinture réglable + thermomètre offert — 299 DH.",
+      "Adjustable support belt + thermometer gift — 299 MAD."
+    ),
+    deepDescription: L(
+      "الحزام كيلف أسفل البطن ويثبت من الخلف باش توزّع الوزن. تقدري تزيدي أو تنقصي الشد حسب الشهر. مع الطلب كيجي ميزان حرارة رقمي هدية — مفيد فالدار.",
+      "La ceinture soutient sous le ventre et stabilise le dos. Thermomètre digital offert avec la commande.",
+      "The belt lifts and supports under the belly and stabilizes the back. Free digital thermometer with your order."
+    ),
+    tags: ["new", "gift", "maternity", "pregnancy", "health", "women"],
+    benefits: [
+      L("يدعم البطن ويخفّف الضغط", "Soutient le ventre", "Supports the belly"),
+      L("يحسّن وضعية الظهر", "Meilleure posture", "Better back posture"),
+      L("قابل للتعديل — كل مراحل الحمل", "Réglable — toute la grossesse", "Adjustable through pregnancy"),
+      L("ميزان حرارة هدية", "Thermomètre offert", "Free thermometer gift"),
+    ],
+    features: [
+      L("دعم متعدد الطبقات", "Soutien multicouche", "Multi-layer support"),
+      L("أشرطة وخطافات قابلة للتعديل", "Sangles et crochets réglables", "Adjustable straps and hooks"),
+      L("قماش مريح وقابل للتنفس", "Tissu respirant", "Breathable comfortable fabric"),
+      L("دعم أسفل البطن ومن الخلف", "Sous-ventre et dos", "Under-belly and back support"),
+    ],
+    specifications: [
+      { label: L("النوع", "Type", "Type"), value: L("حزام دعم حمل", "Ceinture grossesse", "Maternity support belt") },
+      { label: L("الثمن", "Prix", "Price"), value: L("299 درهم (حزام + هدية)", "299 DH (ceinture + cadeau)", "299 MAD (belt + gift)") },
+      { label: L("الهدية", "Cadeau", "Gift"), value: L("ميزان حرارة رقمي", "Thermomètre digital", "Digital thermometer") },
+      { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
+    ],
+    packageIncludes: [
+      L("حزام دعم الحمل القابل للتعديل", "Ceinture de grossesse réglable", "Adjustable maternity belt"),
+      L("هدية: ميزان حرارة رقمي سريع القياس", "Cadeau : thermomètre digital", "Gift: fast digital thermometer"),
+    ],
+    howToUse: L(
+      "لبسي الحزام واقفة، ثبّتي الدعم تحت البطن، وشدّي الأشرطة من الخلف براحتك. عدّلي كل ما احتجتي.",
+      "Debout, placez le soutien sous le ventre, ajustez les sangles dans le dos.",
+      "Stand naturally, position support under belly, adjust back straps comfortably."
+    ),
+    lifestyleScenes: [
+      {
+        id: "belly",
+        emoji: "🤰",
+        title: L("دعم أسفل البطن", "Sous le ventre", "Under-belly support"),
+        description: L("يخفّف الضغط", "Réduit la pression", "Relieves pressure"),
+        imageUrl: MATERNITY_BELT_IN_USE_IMAGE,
+      },
+      {
+        id: "back",
+        emoji: "💪",
+        title: L("من الخلف", "Soutien dorsal", "Back support"),
+        description: L("وضعية أحسن", "Meilleure posture", "Better posture"),
+        imageUrl: MATERNITY_BELT_FEATURES_IMAGE,
+      },
+      {
+        id: "gift",
+        emoji: "🌡️",
+        title: L("هدية ميزان الحرارة", "Thermomètre offert", "Thermometer gift"),
+        description: L("مجاني مع الطلب", "Gratuit", "Free with order"),
+        imageUrl: MATERNITY_BELT_GIFT_IMAGE,
+      },
+    ],
+    images: [],
+    lifestyleImages: [],
+    variants: [
+      {
+        id: "var-maternity-belt",
+        name: L("حزام + هدية — 299 درهم", "Ceinture + cadeau — 299 DH", "Belt + gift — 299 MAD"),
+        price: MATERNITY_BELT_PRICE_MAD,
+        compareAtPrice: MATERNITY_BELT_COMPARE_MAD,
+        sku: MATERNITY_BELT_SKU,
+        stock: 130,
+      },
+    ],
+    upsellIds: [],
+    crossSellIds: ["prod-shiatsu", "prod-curves-glow"],
+    gift: {
+      enabled: true,
+      giftProductId: MATERNITY_BELT_GIFT_ID,
+      giftSku: MATERNITY_BELT_GIFT_SKU,
+      giftTitle: L(
+        "ميزان حرارة رقمي سريع القياس (DARCARE)",
+        "Thermomètre digital lecture rapide",
+        "Fast-read digital thermometer (DARCARE)"
+      ),
+      giftDescription: L(
+        "شاشة LCD، قراءة سريعة، سهل الاستعمال — هدية مجانية مع حزام دعم الحمل.",
+        "Écran LCD, lecture rapide — offert avec la ceinture.",
+        "LCD display, fast reading — free with the maternity belt order."
+      ),
+      giftImage: MATERNITY_BELT_GIFT_IMAGE,
+      giftDisclosure: L(
+        "🎁 ميزان الحرارة هدية مجانية — ما غادي تخلصي عليه حتى درهم زايد.",
+        "🎁 Thermomètre offert — sans supplément.",
+        "🎁 Thermometer is free — no extra charge."
+      ),
+      stockControlled: false,
+    },
+    seo: {
+      title: L(
+        "حزام دعم الحمل + ميزان حرارة هدية | 299 درهم | NOORVA",
+        "Ceinture grossesse + thermomètre offert | 299 DH | NOORVA",
+        "Maternity belt + free thermometer | 299 MAD | NOORVA"
+      ),
+      description: L(
+        "حزام دعم الحمل القابل للتعديل لدعم البطن والظهر. 299 درهم، هدية ميزان حرارة رقمي، الدفع عند الاستلام والتوصيل مجاني في المغرب.",
+        "Ceinture de grossesse réglable. 299 DH, thermomètre offert, COD, livraison gratuite Maroc.",
+        "Adjustable maternity support belt. 299 MAD, free digital thermometer, COD, free Morocco shipping."
+      ),
+    },
+  },
 ];
 
 export const reviews: ProductReview[] = [
@@ -3873,6 +4036,97 @@ export const reviews: ProductReview[] = [
       "Doesn't need to be complicated — just something pleasing. Fair price, order confirmed by phone."
     ),
     date: "2026-09-15",
+    verified: true,
+  },
+  // Maternity support belt + thermometer gift
+  {
+    id: "rmat-1",
+    productId: "prod-maternity-belt",
+    author: "سلمى الإدريسي",
+    city: "الدار البيضاء",
+    rating: 5,
+    title: L("راحة فالشهر السابع", "Confort au 7e mois", "Comfort at 7 months"),
+    content: L(
+      "منين بديت نلبس الحزام، المشي فالسوق ولى أخف. الهدية ديال ميزان الحرارة عجباتني بزاف.",
+      "Depuis la ceinture, les courses sont plus faciles. Le thermomètre offert est un plus.",
+      "Since wearing the belt, walking is easier. Loved the free thermometer too."
+    ),
+    date: "2026-09-20",
+    verified: true,
+  },
+  {
+    id: "rmat-2",
+    productId: "prod-maternity-belt",
+    author: "نadia العلوي",
+    city: "الرباط",
+    rating: 5,
+    title: L("ظهري كيارتاح", "Mon dos va mieux", "My back feels better"),
+    content: L(
+      "كنت كتحسّي بثقل فأسفل البطن. الحزام كيدعم مزيان وقابل للتعديل كل نهار.",
+      "Lourdeur sous le ventre — la ceinture soutient bien et se règle chaque jour.",
+      "Heavy lower belly feeling — belt supports well and adjusts daily."
+    ),
+    date: "2026-09-18",
+    verified: true,
+  },
+  {
+    id: "rmat-3",
+    productId: "prod-maternity-belt",
+    author: "إيمان بنجلون",
+    city: "مراكش",
+    rating: 5,
+    title: L("عرض 299 يستاهل", "Offre 299 DH top", "299 offer worth it"),
+    content: L(
+      "حزام + ميزان حرارة فثمن واحد. الدفع عند الاستلام وتوصلت فـ 48 ساعة.",
+      "Ceinture + thermomètre pour un prix. COD, reçu en 48h.",
+      "Belt + thermometer for one price. COD, arrived in 48h."
+    ),
+    date: "2026-09-16",
+    verified: true,
+  },
+  {
+    id: "rmat-4",
+    productId: "prod-maternity-belt",
+    author: "ليلى الحسني",
+    city: "فاس",
+    rating: 5,
+    title: L("ساهل فاللبس", "Facile à mettre", "Easy to put on"),
+    content: L(
+      "التعليمات واضحة: تحت البطن ومن الخلف. ما كيضغطش بزاف إلا شديتي براحتك.",
+      "Instructions claires : sous le ventre et dans le dos. Pas serré si on ajuste doucement.",
+      "Clear how to wear: under belly and back. Not tight if adjusted gently."
+    ),
+    date: "2026-09-14",
+    verified: true,
+  },
+  {
+    id: "rmat-5",
+    productId: "prod-maternity-belt",
+    author: "مريم التازي",
+    city: "طنجة",
+    rating: 5,
+    title: L("هدية مفيدة", "Cadeau utile", "Useful gift"),
+    content: L(
+      "ميزان الحرارة جا مع الطلبية مجاني. الحزام كيخدم فالخدمة فالبيت.",
+      "Thermomètre gratuit avec la commande. La ceinture aide à la maison.",
+      "Thermometer came free. Belt helps around the house."
+    ),
+    date: "2026-09-12",
+    verified: true,
+  },
+  {
+    id: "rmat-6",
+    productId: "prod-maternity-belt",
+    author: "خديجة الوردي",
+    city: "أكادير",
+    rating: 4,
+    title: L("نتيجة تدريجية", "Résultat progressif", "Gradual result"),
+    content: L(
+      "ما هو سحر فـ يوم واحد، ولكن من بعد أسبوع حسّيت فرق فالظهر. نصيحة: شدّي براحتك.",
+      "Pas magique en un jour, mais après une semaine le dos va mieux. Ajuster doucement.",
+      "Not magic in one day, but after a week my back improved. Adjust gently."
+    ),
+    date: "2026-09-10",
     verified: true,
   },
   // Shiatsu Neck & Shoulder Massager — 25 Moroccan French reviews (~4.9 avg)

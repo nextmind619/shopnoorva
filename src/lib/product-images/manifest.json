@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T21:06:20.308Z",
+  "generatedAt": "2026-09-29T13:29:26.257Z",
   "products": {
     "astronaut-bt-speaker-projector": {
       "slug": "astronaut-bt-speaker-projector",
@@ -3739,6 +3739,100 @@
         "14-product-in-use": "client-upload",
         "01-hero-white-bg": "client-upload",
         "09-close-up": "client-upload"
+      }
+    },
+    "adjustable-maternity-support-belt": {
+      "slug": "adjustable-maternity-support-belt",
+      "sku": "Maternity-SupportBelt",
+      "name": "Adjustable Maternity Support Belt + Digital Thermometer Gift",
+      "images": {
+        "01-hero-white-bg": {
+          "original": "/products/adjustable-maternity-support-belt/01-hero-white-bg.jpg",
+          "webp": "/products/adjustable-maternity-support-belt/01-hero-white-bg.webp",
+          "avif": "/products/adjustable-maternity-support-belt/01-hero-white-bg.avif",
+          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/01-hero-white-bg-400.webp",
+          "responsive": {
+            "sm": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-640.webp",
+            "md": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-1280.webp",
+            "lg": "/products/adjustable-maternity-support-belt/responsive/01-hero-white-bg-2000.webp"
+          }
+        },
+        "02-premium-hero": {
+          "original": "/products/adjustable-maternity-support-belt/02-premium-hero.jpg",
+          "webp": "/products/adjustable-maternity-support-belt/02-premium-hero.webp",
+          "avif": "/products/adjustable-maternity-support-belt/02-premium-hero.avif",
+          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/02-premium-hero-400.webp",
+          "responsive": {
+            "sm": "/products/adjustable-maternity-support-belt/responsive/02-premium-hero-640.webp",
+            "md": "/products/adjustable-maternity-support-belt/responsive/02-premium-hero-1280.webp",
+            "lg": "/products/adjustable-maternity-support-belt/responsive/02-premium-hero-2000.webp"
+          }
+        },
+        "10-features": {
+          "original": "/products/adjustable-maternity-support-belt/10-features.jpg",
+          "webp": "/products/adjustable-maternity-support-belt/10-features.webp",
+          "avif": "/products/adjustable-maternity-support-belt/10-features.avif",
+          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/10-features-400.webp",
+          "responsive": {
+            "sm": "/products/adjustable-maternity-support-belt/responsive/10-features-640.webp",
+            "md": "/products/adjustable-maternity-support-belt/responsive/10-features-1280.webp",
+            "lg": "/products/adjustable-maternity-support-belt/responsive/10-features-2000.webp"
+          }
+        },
+        "03-lifestyle": {
+          "original": "/products/adjustable-maternity-support-belt/03-lifestyle.jpg",
+          "webp": "/products/adjustable-maternity-support-belt/03-lifestyle.webp",
+          "avif": "/products/adjustable-maternity-support-belt/03-lifestyle.avif",
+          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/03-lifestyle-400.webp",
+          "responsive": {
+            "sm": "/products/adjustable-maternity-support-belt/responsive/03-lifestyle-640.webp",
+            "md": "/products/adjustable-maternity-support-belt/responsive/03-lifestyle-1280.webp",
+            "lg": "/products/adjustable-maternity-support-belt/responsive/03-lifestyle-2000.webp"
+          }
+        },
+        "14-product-in-use": {
+          "original": "/products/adjustable-maternity-support-belt/14-product-in-use.jpg",
+          "webp": "/products/adjustable-maternity-support-belt/14-product-in-use.webp",
+          "avif": "/products/adjustable-maternity-support-belt/14-product-in-use.avif",
+          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/14-product-in-use-400.webp",
+          "responsive": {
+            "sm": "/products/adjustable-maternity-support-belt/responsive/14-product-in-use-640.webp",
+            "md": "/products/adjustable-maternity-support-belt/responsive/14-product-in-use-1280.webp",
+            "lg": "/products/adjustable-maternity-support-belt/responsive/14-product-in-use-2000.webp"
+          }
+        },
+        "17-infographic": {
+          "original": "/products/adjustable-maternity-support-belt/17-infographic.jpg",
+          "webp": "/products/adjustable-maternity-support-belt/17-infographic.webp",
+          "avif": "/products/adjustable-maternity-support-belt/17-infographic.avif",
+          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/17-infographic-400.webp",
+          "responsive": {
+            "sm": "/products/adjustable-maternity-support-belt/responsive/17-infographic-640.webp",
+            "md": "/products/adjustable-maternity-support-belt/responsive/17-infographic-1280.webp",
+            "lg": "/products/adjustable-maternity-support-belt/responsive/17-infographic-2000.webp"
+          }
+        },
+        "gift-digital-thermometer": {
+          "original": "/products/adjustable-maternity-support-belt/gift-digital-thermometer.jpg",
+          "webp": "/products/adjustable-maternity-support-belt/gift-digital-thermometer.webp",
+          "avif": "/products/adjustable-maternity-support-belt/gift-digital-thermometer.avif",
+          "thumbnail": "/products/adjustable-maternity-support-belt/thumbs/gift-digital-thermometer-400.webp",
+          "responsive": {
+            "sm": "/products/adjustable-maternity-support-belt/responsive/gift-digital-thermometer-640.webp",
+            "md": "/products/adjustable-maternity-support-belt/responsive/gift-digital-thermometer-1280.webp",
+            "lg": "/products/adjustable-maternity-support-belt/responsive/gift-digital-thermometer-2000.webp"
+          }
+        }
+      },
+      "prompts": {},
+      "sources": {
+        "01-hero-white-bg": "placeholder",
+        "02-premium-hero": "placeholder",
+        "10-features": "placeholder",
+        "03-lifestyle": "placeholder",
+        "14-product-in-use": "placeholder",
+        "17-infographic": "placeholder",
+        "gift-digital-thermometer": "placeholder"
       }
     }
   }

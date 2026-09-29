@@ -15,6 +15,7 @@ import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
 import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
 import { ROOSTER_CLOCK_FAQS, ROOSTER_CLOCK_SLUG } from "@/data/rooster-analog-table-clock";
 import { FOLDABLE_WASHER_FAQS, FOLDABLE_WASHER_SLUG } from "@/data/foldable-washer";
+import { MATERNITY_BELT_FAQS, MATERNITY_BELT_SLUG } from "@/data/maternity-support-belt";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -115,6 +116,18 @@ const ROOSTER_CLOCK_KEYWORDS = [
   "NOORVA",
 ];
 
+const MATERNITY_BELT_KEYWORDS = [
+  "حزام دعم الحمل",
+  "حوامل",
+  "دعم البطن",
+  "آلام الظهر",
+  "ميزان حرارة",
+  "هدية مجانية",
+  "299 درهم",
+  "الدفع عند الاستلام",
+  "NOORVA",
+];
+
 const FOLDABLE_WASHER_KEYWORDS = [
   "غسالة صغيرة",
   "غسالة قابلة للطي",
@@ -161,6 +174,7 @@ export async function generateMetadata({
   const isBt12 = product.slug === BT12_SLUG;
   const isFoldableWasher = product.slug === FOLDABLE_WASHER_SLUG;
   const isRoosterClock = product.slug === ROOSTER_CLOCK_SLUG;
+  const isMaternityBelt = product.slug === MATERNITY_BELT_SLUG;
   const title = product.seo.title.ar;
   const description = product.seo.description.ar;
   const ogLocale = "ar_MA";
@@ -181,7 +195,9 @@ export async function generateMetadata({
                 ? "غسالة كهربائية 9 لتر قابلة للطي مع تجفيف — هدية رأس دش بفلتر"
                 : isRoosterClock
                   ? "ساعة الفروج الكلاسيكية analogique — ذكرى أيام زمان ودار الجدود"
-                  : name;
+                  : isMaternityBelt
+                    ? "حزام دعم الحمل القابل للتعديل — 299 درهم + ميزان حرارة هدية"
+                    : name;
 
   return {
     title,
@@ -204,7 +220,9 @@ export async function generateMetadata({
                     ? [...FOLDABLE_WASHER_KEYWORDS, ...product.tags]
                     : isRoosterClock
                       ? [...ROOSTER_CLOCK_KEYWORDS, ...product.tags]
-                      : product.tags,
+                      : isMaternityBelt
+                        ? [...MATERNITY_BELT_KEYWORDS, ...product.tags]
+                        : product.tags,
     alternates: { canonical },
     openGraph: {
       title,
@@ -235,6 +253,10 @@ function getProductFaqs(slug: string, warrantyMonths: number) {
 
   if (slug === FOLDABLE_WASHER_SLUG) {
     return [...FOLDABLE_WASHER_FAQS];
+  }
+
+  if (slug === MATERNITY_BELT_SLUG) {
+    return [...MATERNITY_BELT_FAQS];
   }
 
   if (slug === CURVES_GLOW_SLUG) {
@@ -769,7 +791,8 @@ export default async function ProductPage({
           isEggBoiler ||
           product.slug === BT12_SLUG ||
           product.slug === FOLDABLE_WASHER_SLUG ||
-          product.slug === ROOSTER_CLOCK_SLUG
+          product.slug === ROOSTER_CLOCK_SLUG ||
+          product.slug === MATERNITY_BELT_SLUG
             ? {
                 "@type": "OfferShippingDetails",
                 shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },

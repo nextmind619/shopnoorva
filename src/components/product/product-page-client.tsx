@@ -36,6 +36,13 @@ const ProductPageRoosterAnalogTableClock = dynamic(
     ),
   { ssr: true, loading: () => <ProductPageShell className="bg-[#f7f3ed]" /> },
 );
+const ProductPageMaternitySupportBelt = dynamic(
+  () =>
+    import("@/components/product/product-page-maternity-support-belt").then(
+      (m) => m.ProductPageMaternitySupportBelt,
+    ),
+  { ssr: true, loading: () => <ProductPageShell className="bg-[#fff5f7]" /> },
+);
 
 const FacebookProductTracker = dynamic(
   () => import("@/components/facebook/facebook-trackers").then((m) => m.FacebookProductTracker),
@@ -86,6 +93,8 @@ export function ProductPageClient({
         <ProductPageCurvesGlow product={product} />
       ) : product.slug === "rooster-analog-table-clock" ? (
         <ProductPageRoosterAnalogTableClock product={product} />
+      ) : product.slug === "adjustable-maternity-support-belt" ? (
+        <ProductPageMaternitySupportBelt product={product} />
       ) : (
         <ProductPageAr
           product={product}

@@ -125,6 +125,7 @@ const PREMIUM_HERO_FIRST_SLUGS = new Set([
   "mobile-laptop-desk-with-wheels",
   "foldable-9l-mini-washing-machine",
   "rooster-analog-table-clock",
+  "adjustable-maternity-support-belt",
 ]);
 
 function heroImageTypeOrder(slug: string): PremiumImageType[] {
