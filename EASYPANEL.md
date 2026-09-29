@@ -74,7 +74,11 @@ CODPLUS_WEBHOOK_TOKEN=your-webhook-token
 
 Test: `https://shopnoorva.shop/api/admin/test-codplus?secret=CRON_SECRET`
 
-**SKU column (Sheets / CodPlus):** must match **Marketplace → SKU** exactly (foldable washer: `FoldableWasher`, shower gift in Note: `CodPlus SKU ShowerFilter`; BT12: `SelfieStick`, gift in Note: `CodPlus SKU TypeC-240W-Cable`). Do **not** set `CODPLUS_USE_PACK_SKUS=true` unless a seller Pack is approved. Test webhook: `/api/admin/test-codplus?secret=CRON_SECRET&sku=SelfieStick`.
+**SKU column (Sheets / CodPlus):** must match **Marketplace → SKU** exactly (foldable washer: `FoldableWasher`, shower gift in Note: `CodPlus SKU ShowerFilter`; BT12: `SelfieStick`, gift in Note: `CodPlus SKU TypeC-240W-Cable`; maternity belt: `Maternity-SupportBelt`, gift: `Digital - Thermometer`).
+
+**Maternity belt + thermometer pack (one lead line):** create seller Pack **`Maternity-SupportBelt Digital-Thermometer Pack`** with 1× `Maternity-SupportBelt` + 1× `Digital - Thermometer`, min price **187 DH**, Active. Then set `CODPLUS_USE_PACK_SKUS=true` on `web` and redeploy. Test: `/api/admin/test-codplus?secret=CRON_SECRET&sku=Maternity-SupportBelt%20Digital-Thermometer%20Pack`.
+
+Do **not** set `CODPLUS_USE_PACK_SKUS=true` until the matching seller Pack is approved. Test single SKU: `/api/admin/test-codplus?secret=CRON_SECRET&sku=SelfieStick`.
 
 ## 3) Add Postgres
 1. Add service → **Postgres** (or App named `noorva`)

@@ -48,6 +48,7 @@ import {
 } from "@/data/foldable-washer";
 import {
   MATERNITY_BELT_COMPARE_MAD,
+  MATERNITY_BELT_CODPLUS_PACK_SKU,
   MATERNITY_BELT_GIFT_ID,
   MATERNITY_BELT_GIFT_IMAGE,
   MATERNITY_BELT_GIFT_SKU,
@@ -3526,6 +3527,7 @@ export const products: Product[] = [
       enabled: true,
       giftProductId: MATERNITY_BELT_GIFT_ID,
       giftSku: MATERNITY_BELT_GIFT_SKU,
+      codplusPackSku: MATERNITY_BELT_CODPLUS_PACK_SKU,
       giftTitle: L(
         "ميزان حرارة رقمي سريع القياس (DARCARE)",
         "Thermomètre digital lecture rapide",

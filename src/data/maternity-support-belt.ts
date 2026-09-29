@@ -9,6 +9,13 @@ export const MATERNITY_BELT_SKU = "Maternity-SupportBelt";
 export const MATERNITY_BELT_GIFT_ID = "gift-digital-thermometer";
 /** CodPlus marketplace SKU — must match Marketplace → SKU exactly. */
 export const MATERNITY_BELT_GIFT_SKU = "Digital - Thermometer";
+/**
+ * CodPlus seller Pack → Name (must match exactly; CodPlus may append unit count in UI).
+ * Products in pack: 1× {@link MATERNITY_BELT_SKU} + 1× {@link MATERNITY_BELT_GIFT_SKU}.
+ */
+export const MATERNITY_BELT_CODPLUS_PACK_SKU = "Maternity-SupportBelt Digital-Thermometer Pack";
+/** Sum of Marketplace min. selling prices (belt 122 DH + thermometer 65 DH) — pack floor in CodPlus. */
+export const MATERNITY_BELT_CODPLUS_PACK_MIN_DH = 187;
 
 const BASE = `/products/${MATERNITY_BELT_SLUG}`;
 
