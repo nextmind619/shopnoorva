@@ -58,7 +58,7 @@ function normalizePublicPath(url: string | undefined): string | undefined {
 const PRODUCT_ASSET_VERSION: Partial<Record<string, string>> = {
   "foldable-9l-mini-washing-machine": "20250926-real",
   "rooster-analog-table-clock": "20250928-hero-white",
-  "adjustable-maternity-support-belt": "20250929-user",
+  "adjustable-maternity-support-belt": "20250930-promo",
 };
 
 function withProductAssetVersion(slug: string, url: string | undefined): string | undefined {

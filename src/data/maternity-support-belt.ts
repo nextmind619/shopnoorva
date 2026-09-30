@@ -20,13 +20,13 @@ export const MATERNITY_BELT_CODPLUS_PACK_MIN_DH = 187;
 const BASE = `/products/${MATERNITY_BELT_SLUG}`;
 
 /** Bust CDN/browser cache after replacing placeholders with real photos. */
-export const MATERNITY_BELT_ASSET_VERSION = "20250929-user";
+export const MATERNITY_BELT_ASSET_VERSION = "20250930-promo";
 
 function maternityAsset(file: string): string {
   return `${BASE}/${file}?v=${MATERNITY_BELT_ASSET_VERSION}`;
 }
 
-export const MATERNITY_BELT_HERO_IMAGE = maternityAsset("02-premium-hero.webp");
+export const MATERNITY_BELT_HERO_IMAGE = maternityAsset("17-infographic.webp");
 export const MATERNITY_BELT_FEATURES_IMAGE = maternityAsset("10-features.webp");
 export const MATERNITY_BELT_LIFESTYLE_IMAGE = maternityAsset("03-lifestyle.webp");
 export const MATERNITY_BELT_IN_USE_IMAGE = maternityAsset("14-product-in-use.webp");
