@@ -159,7 +159,6 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
     return () => io.disconnect();
   }, []);
 
-  const heroSrc = resolveProductImage(SLUG, "02-premium-hero");
   const featuresSrc = resolveProductImage(SLUG, "10-features");
   const lifestyleSrc = resolveProductImage(SLUG, "03-lifestyle");
   const inUseSrc = resolveProductImage(SLUG, "14-product-in-use");
@@ -269,16 +268,9 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
           </motion.div>
 
           <ImageSlot
-            src={heroSrc}
-            alt="حامله ترتدي حزام دعم الحمل — راحة ودعم في كل خطوة"
-            priority
-            sizes="(max-width: 512px) 100vw, 512px"
-          />
-
-          <ImageSlot
             src={infographicSrc || MATERNITY_BELT_INFOGRAPHIC_IMAGE}
-            alt={`عرض ${formatPriceNumber(PRICE, "ar")} درهم — حزام دعم الحمل + ميزان حرارة هدية`}
-            aspect="aspect-square"
+            alt="تعبتي من ثقل الكرش؟ ارتاحي مع حزام الدعم NOORVA"
+            priority
             sizes="(max-width: 512px) 100vw, 512px"
           />
 
