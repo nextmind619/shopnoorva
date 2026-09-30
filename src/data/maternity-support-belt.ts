@@ -1,7 +1,7 @@
 /** Adjustable maternity support belt + free digital thermometer — PDP constants. */
 
 export const MATERNITY_BELT_SLUG = "adjustable-maternity-support-belt";
-export const MATERNITY_BELT_PRICE_MAD = 299;
+export const MATERNITY_BELT_PRICE_MAD = 249;
 /** Value anchor: belt + thermometer typical retail reference. */
 export const MATERNITY_BELT_COMPARE_MAD = 427;
 /** CodPlus marketplace SKU (PRD from Marketplace). */
@@ -36,7 +36,7 @@ export const MATERNITY_BELT_GIFT_IMAGE = maternityAsset("gift-digital-thermomete
 export const MATERNITY_BELT_FAQS = [
   {
     q: "شحال الثمن وشنو كيجي فالطلب؟",
-    a: "299 درهم — حزام دعم الحمل + ميزان حرارة رقمي هدية مجانية. الدفع عند الاستلام والتوصيل مجاني لجميع مدن المغرب.",
+    a: "249 درهم — حزام دعم الحمل + ميزان حرارة رقمي هدية مجانية. الدفع عند الاستلام والتوصيل مجاني لجميع مدن المغرب.",
   },
   {
     q: "واش الحزام قابل للتعديل؟",
@@ -56,7 +56,7 @@ export const MATERNITY_BELT_FAQS = [
   },
   {
     q: "واش كاين الدفع عند الاستلام؟",
-    a: "نعم. ما كخلص والو دابا. كتخلص 299 درهم كاش ملي يوصلك الطلب.",
+    a: "نعم. ما كخلص والو دابا. كتخلص 249 درهم كاش ملي يوصلك الطلب.",
   },
   {
     q: "كم مدة التوصيل؟",

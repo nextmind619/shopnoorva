@@ -207,7 +207,7 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
           { label: "الهدية", value: "ميزان حرارة رقمي — مجاني 🎁" },
           { label: "الإجمالي", value: `${formatPriceNumber(PRICE, "ar")} درهم` },
         ]}
-        orderNote="حزام دعم الحمل | 299 | هدية ميزان حرارة"
+        orderNote={`حزام دعم الحمل | ${PRICE} | هدية ميزان حرارة`}
       />
       <p className="text-center text-sm text-rose-900/65">💵 خلّصي غير ملي توصلك الطلبية</p>
     </div>
@@ -277,7 +277,7 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
 
           <ImageSlot
             src={infographicSrc || MATERNITY_BELT_INFOGRAPHIC_IMAGE}
-            alt="عرض 299 درهم — حزام دعم الحمل + ميزان حرارة هدية"
+            alt={`عرض ${formatPriceNumber(PRICE, "ar")} درهم — حزام دعم الحمل + ميزان حرارة هدية`}
             aspect="aspect-square"
             sizes="(max-width: 512px) 100vw, 512px"
           />
