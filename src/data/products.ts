@@ -3417,14 +3417,14 @@ export const products: Product[] = [
       "Adjustable maternity support belt for belly and back"
     ),
     shortDescription: L(
-      "حزام دعم متعدد الطبقات للحوامل — راحة، وضعية أحسن، وأشرطة قابلة للتعديل. 249 درهم + ميزان حرارة رقمي هدية.",
-      "Ceinture de soutien grossesse réglable. 249 DH + thermomètre digital offert.",
-      "Adjustable layered maternity belt. 249 MAD + free digital thermometer gift."
+      "حزام دعم متعدد الطبقات للحوامل — راحة، وضعية أحسن، وأشرطة قابلة للتعديل. 199 درهم + ميزان حرارة رقمي هدية.",
+      "Ceinture de soutien grossesse réglable. 199 DH + thermomètre digital offert.",
+      "Adjustable layered maternity belt. 199 MAD + free digital thermometer gift."
     ),
     description: L(
-      "حزام دعم الحمل القابل للتعديل: يدعم أسفل البطن، يخفّف الضغط، ويساعد على تحسين وضعية الظهر. قماش مريح، أشرطة وخطافات آمنة. 249 درهم للطلب الكامل (حزام + هدية). الدفع عند الاستلام والتوصيل مجاني في المغرب. هدية مجانية: ميزان حرارة رقمي سريع القياس.",
-      "Ceinture grossesse réglable, soutien ventre et dos. 249 DH tout compris avec thermomètre offert. COD, livraison gratuite Maroc.",
-      "Adjustable maternity belt for belly and back support. 249 MAD bundle with free fast-read digital thermometer. COD, free Morocco shipping."
+      "حزام دعم الحمل القابل للتعديل: يدعم أسفل البطن، يخفّف الضغط، ويساعد على تحسين وضعية الظهر. قماش مريح، أشرطة وخطافات آمنة. 199 درهم للطلب الكامل (حزام + هدية). الدفع عند الاستلام والتوصيل مجاني في المغرب. هدية مجانية: ميزان حرارة رقمي سريع القياس.",
+      "Ceinture grossesse réglable, soutien ventre et dos. 199 DH tout compris avec thermomètre offert. COD, livraison gratuite Maroc.",
+      "Adjustable maternity belt for belly and back support. 199 MAD bundle with free fast-read digital thermometer. COD, free Morocco shipping."
     ),
     categoryId: "cat-gift-ideas",
     price: MATERNITY_BELT_PRICE_MAD,
@@ -3449,9 +3449,9 @@ export const products: Product[] = [
       "Belly weight adds pressure on back and pelvis when walking or standing."
     ),
     problemSolution: L(
-      "حزام دعم قابل للتعديل + هدية ميزان حرارة — عرض واحد 249 درهم.",
-      "Ceinture réglable + thermomètre offert — 249 DH.",
-      "Adjustable support belt + thermometer gift — 249 MAD."
+      "حزام دعم قابل للتعديل + هدية ميزان حرارة — عرض واحد 199 درهم.",
+      "Ceinture réglable + thermomètre offert — 199 DH.",
+      "Adjustable support belt + thermometer gift — 199 MAD."
     ),
     deepDescription: L(
       "الحزام كيلف أسفل البطن ويثبت من الخلف باش توزّع الوزن. تقدري تزيدي أو تنقصي الشد حسب الشهر. مع الطلب كيجي ميزان حرارة رقمي هدية — مفيد فالدار.",
@@ -3473,7 +3473,7 @@ export const products: Product[] = [
     ],
     specifications: [
       { label: L("النوع", "Type", "Type"), value: L("حزام دعم حمل", "Ceinture grossesse", "Maternity support belt") },
-      { label: L("الثمن", "Prix", "Price"), value: L("249 درهم (حزام + هدية)", "249 DH (ceinture + cadeau)", "249 MAD (belt + gift)") },
+      { label: L("الثمن", "Prix", "Price"), value: L("199 درهم (حزام + هدية)", "199 DH (ceinture + cadeau)", "199 MAD (belt + gift)") },
       { label: L("الهدية", "Cadeau", "Gift"), value: L("ميزان حرارة رقمي", "Thermomètre digital", "Digital thermometer") },
       { label: L("الدفع", "Paiement", "Payment"), value: L("عند الاستلام", "À la livraison", "Cash on delivery") },
     ],
@@ -3514,7 +3514,7 @@ export const products: Product[] = [
     variants: [
       {
         id: "var-maternity-belt",
-        name: L("حزام + هدية — 249 درهم", "Ceinture + cadeau — 249 DH", "Belt + gift — 249 MAD"),
+        name: L("حزام + هدية — 199 درهم", "Ceinture + cadeau — 199 DH", "Belt + gift — 199 MAD"),
         price: MATERNITY_BELT_PRICE_MAD,
         compareAtPrice: MATERNITY_BELT_COMPARE_MAD,
         sku: MATERNITY_BELT_SKU,
@@ -3548,14 +3548,14 @@ export const products: Product[] = [
     },
     seo: {
       title: L(
-        "حزام دعم الحمل + ميزان حرارة هدية | 249 درهم | NOORVA",
-        "Ceinture grossesse + thermomètre offert | 249 DH | NOORVA",
-        "Maternity belt + free thermometer | 249 MAD | NOORVA"
+        "حزام دعم الحمل + ميزان حرارة هدية | 199 درهم | NOORVA",
+        "Ceinture grossesse + thermomètre offert | 199 DH | NOORVA",
+        "Maternity belt + free thermometer | 199 MAD | NOORVA"
       ),
       description: L(
-        "حزام دعم الحمل القابل للتعديل لدعم البطن والظهر. 249 درهم، هدية ميزان حرارة رقمي، الدفع عند الاستلام والتوصيل مجاني في المغرب.",
-        "Ceinture de grossesse réglable. 249 DH, thermomètre offert, COD, livraison gratuite Maroc.",
-        "Adjustable maternity support belt. 249 MAD, free digital thermometer, COD, free Morocco shipping."
+        "حزام دعم الحمل القابل للتعديل لدعم البطن والظهر. 199 درهم، هدية ميزان حرارة رقمي، الدفع عند الاستلام والتوصيل مجاني في المغرب.",
+        "Ceinture de grossesse réglable. 199 DH, thermomètre offert, COD, livraison gratuite Maroc.",
+        "Adjustable maternity support belt. 199 MAD, free digital thermometer, COD, free Morocco shipping."
       ),
     },
   },
@@ -4076,7 +4076,7 @@ export const reviews: ProductReview[] = [
     author: "إيمان بنجلون",
     city: "مراكش",
     rating: 5,
-    title: L("عرض 249 يستاهل", "Offre 249 DH top", "249 offer worth it"),
+    title: L("عرض 199 يستاهل", "Offre 199 DH top", "199 offer worth it"),
     content: L(
       "حزام + ميزان حرارة فثمن واحد. الدفع عند الاستلام وتوصلت فـ 48 ساعة.",
       "Ceinture + thermomètre pour un prix. COD, reçu en 48h.",
