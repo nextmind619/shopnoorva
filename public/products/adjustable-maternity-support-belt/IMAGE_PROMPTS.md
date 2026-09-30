@@ -2,7 +2,7 @@
 
 **الصفحة:** https://shopnoorva.shop/ar/products/adjustable-maternity-support-belt
 
-**العرض:** 299 درهم — حزام + ميزان حرارة رقمي هدية (CodPlus).
+**العرض:** 199 درهم — حزام + ميزان حرارة رقمي هدية (CodPlus).
 
 ---
 
@@ -175,7 +175,7 @@ front-only glamour shot hiding back support, wrong strap layout, sports belt, wa
 
 **Prompt:**
 ```
-Square infographic 1:1, soft pink and beige gradient background, RTL-friendly layout. Center: pregnant woman wearing EXACT belt from belt-reference. Small product cutout bottom corner: DARCARE digital thermometer from thermometer-reference (white body, purple cap) labeled visually as gift with ribbon icon only — no fake brand redesign. Large clear Arabic typography areas (you will add in Canva if Gemini text fails): headline placeholder blocks only OR generate with Arabic: "حزام دعم الحمل", "299 درهم", "ميزان حرارة هدية". Icons: belly support, back posture, adjustable straps, breathable fabric. Clean Meta ad style, high contrast, no watermark.
+Square infographic 1:1, soft pink and beige gradient background, RTL-friendly layout. Center: pregnant woman wearing EXACT belt from belt-reference. Small product cutout bottom corner: DARCARE digital thermometer from thermometer-reference (white body, purple cap) labeled visually as gift with ribbon icon only — no fake brand redesign. Empty placeholder strips only for Canva — do NOT generate Arabic or any text in the image. Icons: belly support, back posture, adjustable straps. Clean Meta ad style, high contrast, no watermark.
 ```
 
 **Negative:**
@@ -184,6 +184,23 @@ English-only wall of text, illegible Arabic, wrong belt, wrong thermometer shape
 ```
 
 **ملاحظة:** Gemini أحياناً كيغلط فالعربي — **الأفضل:** صورة بلا نص + تزيد النص فـ Canva.
+
+---
+
+## 6b) إنفو «شنو غادي يوصلك» — **مرأة لابسة الحزام** (صحيح)
+
+**أخطاء الصورة الخاطئة:** حزام posture (X فالظهر) flat-lay + عربي مشوه (Gemini).
+
+**مرفقات:** `belt-reference.jpg` + `thermometer-reference.jpg` · **1:1**
+
+**Prompt:**
+```
+Square 1:1, soft pink-beige gradient. MAIN: pregnant woman (7–8 mo) WEARING EXACT maternity belt from belt-reference — beige ribbed, shoulder suspenders, band under belly, back straps; NOT posture X-brace, NOT flat lay. SECONDARY corner: EXACT DARCARE thermometer+box from thermometer-reference, small gift ribbon. Three icon placeholders OR icons with NO text. Empty top banner — NO Arabic/English in image. Photorealistic, no watermark.
+```
+
+**Negative:** `flat lay belt, posture corrector, X back brace, Arabic text, gibberish letters, wrong belt, DAQCARE typo`
+
+**Canva (RTL):** عنوان **شنو غادي يوصلك فالطلبية؟** · **199 درهم** · **🎁 ميزان حرارة — هدية** · أيقونات: **يدعم البطن** · **يرتاح الظهر** · **قابل للتعديل** · **توصيل مجاني** · **الدفع عند الاستلام**
 
 ---
 
