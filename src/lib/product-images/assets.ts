@@ -131,6 +131,9 @@ const PREMIUM_HERO_FIRST_SLUGS = new Set([
 
 function heroImageTypeOrder(slug: string): PremiumImageType[] {
   const key = resolveImageSlug(slug);
+  if (slug === "adjustable-maternity-support-belt" || key === "adjustable-maternity-support-belt") {
+    return ["17-infographic", "02-premium-hero", "01-hero-white-bg"];
+  }
   const sources = manifest.products[key]?.sources;
   if (PREMIUM_HERO_FIRST_SLUGS.has(slug) || PREMIUM_HERO_FIRST_SLUGS.has(key)) {
     return ["02-premium-hero", "01-hero-white-bg"];
