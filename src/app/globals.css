@@ -310,19 +310,6 @@ body {
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* Product PDP: keep WhatsApp above sticky bar; move to top when checkout form is active */
-@media (max-width: 1023px) {
-  .whatsapp-float.whatsapp-float--product {
-    bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
-  }
-
-  html[data-pdp-checkout="1"] .whatsapp-float.whatsapp-float--product {
-    bottom: auto;
-    top: calc(4.5rem + env(safe-area-inset-top, 0px));
-  }
-}
-
-
 .price-display .text-price {
   color: var(--price);
 }

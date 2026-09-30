@@ -8,16 +8,10 @@ const StoreSecurity = dynamic(
   { ssr: false }
 );
 
-const WhatsAppFloat = dynamic(
-  () => import("@/components/layout/whatsapp-float").then((m) => m.WhatsAppFloat),
-  { ssr: false }
-);
-
 export function DeferredClientChrome() {
   return (
     <>
       <StoreSecurity />
-      <WhatsAppFloat />
     </>
   );
 }

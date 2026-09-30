@@ -5,12 +5,9 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { WHATSAPP_URL } from "@/lib/site";
-
 const TRUST_PILLS = ["cod", "morocco", "quality", "warranty", "shipping"] as const;
 /** Pre-converted WebP source — Next also serves AVIF via image optimizer */
 const HERO_IMAGE = "/hero/collection-banner.webp";
-const WA_HREF = `${WHATSAPP_URL}?text=${encodeURIComponent("مرحباً NOORVA، أريد الاستفسار عن المنتجات")}`;
 
 export function HeroSection() {
   const t = useTranslations("hero");
@@ -41,15 +38,6 @@ export function HeroSection() {
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Button variant="gold" size="lg" className="rounded-full px-8" asChild>
                 <Link href={`/${locale}/products`}>{t("cta")}</Link>
-              </Button>
-              <Button
-                size="lg"
-                className="rounded-full px-8 bg-[#25D366] hover:bg-[#1ebe57] text-white border-0"
-                asChild
-              >
-                <a href={WA_HREF} target="_blank" rel="noopener noreferrer">
-                  {t("whatsapp")}
-                </a>
               </Button>
             </div>
           </motion.div>
