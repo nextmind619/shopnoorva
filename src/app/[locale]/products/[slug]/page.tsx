@@ -15,7 +15,11 @@ import { CURVES_GLOW_FAQS } from "@/data/curves-glow-faqs";
 import { BT12_FAQS, BT12_SLUG } from "@/data/bt12";
 import { ROOSTER_CLOCK_FAQS, ROOSTER_CLOCK_SLUG } from "@/data/rooster-analog-table-clock";
 import { FOLDABLE_WASHER_FAQS, FOLDABLE_WASHER_SLUG } from "@/data/foldable-washer";
-import { MATERNITY_BELT_FAQS, MATERNITY_BELT_SLUG } from "@/data/maternity-support-belt";
+import {
+  MATERNITY_BELT_FAQS,
+  MATERNITY_BELT_PRICE_MAD,
+  MATERNITY_BELT_SLUG,
+} from "@/data/maternity-support-belt";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -196,7 +200,7 @@ export async function generateMetadata({
                 : isRoosterClock
                   ? "ساعة الفروج الكلاسيكية analogique — ذكرى أيام زمان ودار الجدود"
                   : isMaternityBelt
-                    ? "حزام دعم الحمل القابل للتعديل — 299 درهم + ميزان حرارة هدية"
+                    ? `حزام دعم الحمل القابل للتعديل — ${MATERNITY_BELT_PRICE_MAD} درهم + ميزان حرارة هدية`
                     : name;
 
   return {
