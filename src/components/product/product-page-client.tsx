@@ -94,7 +94,7 @@ export function ProductPageClient({
       ) : product.slug === "rooster-analog-table-clock" ? (
         <ProductPageRoosterAnalogTableClock product={product} />
       ) : product.slug === "adjustable-maternity-support-belt" ? (
-        <ProductPageMaternitySupportBelt product={product} />
+        <ProductPageMaternitySupportBelt product={product} reviews={reviews ?? []} />
       ) : (
         <ProductPageAr
           product={product}

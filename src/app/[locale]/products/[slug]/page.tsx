@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { products, getProductBySlug, getReviewsForProduct } from "@/data/products";
 import { ProductPageClient } from "@/components/product/product-page-client";
+import { ProductPageMaternitySupportBelt } from "@/components/product/product-page-maternity-support-belt";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SITE_URL } from "@/lib/site";
 import { buildRelatedProductCards } from "@/lib/catalog/to-product-cards";
@@ -741,6 +742,69 @@ export default async function ProductPage({
 
   const product = getProductBySlug(slug);
   if (!product) notFound();
+
+  if (product.slug === MATERNITY_BELT_SLUG) {
+    const defaultVariant = product.variants[0];
+    const hero = resolveProductHero(product);
+    const lcpPreload = getProductLcpPreloadUrls(product.slug);
+    const maternityReviews = getReviewsForProduct(product.id);
+    const productUrl = `${SITE_URL}/ar/products/${product.slug}`;
+    const productFaqs = getProductFaqs(product.slug, product.warrantyMonths || 12);
+
+    return (
+      <>
+        <link rel="preload" as="image" href={lcpPreload.mobile} media="(max-width: 768px)" fetchPriority="high" />
+        <link rel="preload" as="image" href={lcpPreload.desktop} media="(min-width: 769px)" fetchPriority="high" />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name.ar,
+            description: product.description.ar,
+            image: [hero],
+            sku: product.sku,
+            brand: { "@type": "Brand", name: "NOORVA" },
+            offers: {
+              "@type": "Offer",
+              price: defaultVariant.price,
+              priceCurrency: "MAD",
+              availability:
+                defaultVariant.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+              url: productUrl,
+              priceValidUntil: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString().slice(0, 10),
+              itemCondition: "https://schema.org/NewCondition",
+              shippingDetails: {
+                "@type": "OfferShippingDetails",
+                shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "MAD" },
+                shippingDestination: { "@type": "DefinedRegion", addressCountry: "MA" },
+              },
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: product.rating,
+              reviewCount: product.reviewCount,
+              bestRating: "5",
+              worstRating: "1",
+            },
+          }}
+        />
+        {productFaqs.length > 0 && (
+          <JsonLd
+            data={{
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: productFaqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.q,
+                acceptedAnswer: { "@type": "Answer", text: faq.a },
+              })),
+            }}
+          />
+        )}
+        <ProductPageMaternitySupportBelt product={product} reviews={maternityReviews} />
+      </>
+    );
+  }
 
   const relatedCards = buildRelatedProductCards(product, 4);
   const defaultVariant = product.variants[0];

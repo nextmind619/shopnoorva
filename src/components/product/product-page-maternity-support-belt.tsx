@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
 import {
   ChevronLeft,
   Banknote,
@@ -18,25 +17,25 @@ import {
   Thermometer,
   Activity,
 } from "lucide-react";
-import type { Product } from "@/types";
-import { getReviewsForProduct } from "@/data/products";
+import type { Product, ProductReview } from "@/types";
 import {
   MATERNITY_BELT_COMPARE_MAD,
   MATERNITY_BELT_FAQS,
+  MATERNITY_BELT_FEATURES_IMAGE,
   MATERNITY_BELT_GIFT_IMAGE,
+  MATERNITY_BELT_IN_USE_IMAGE,
   MATERNITY_BELT_INFOGRAPHIC_IMAGE,
+  MATERNITY_BELT_LIFESTYLE_IMAGE,
   MATERNITY_BELT_PRICE_MAD,
 } from "@/data/maternity-support-belt";
 import { formatPriceNumber, cn, calculateDiscount } from "@/lib/utils";
-import { resolveProductImage } from "@/lib/product-images/resolve";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const ProductOrderForm = dynamic(
   () => import("@/components/product/product-order-form").then((m) => m.ProductOrderForm),
-  { ssr: true, loading: () => <div className="min-h-[420px]" aria-hidden /> },
+  { ssr: false, loading: () => <div className="min-h-[320px] animate-pulse rounded-2xl bg-rose-100/40" aria-hidden /> },
 );
 
-const SLUG = "adjustable-maternity-support-belt";
 const PRICE = MATERNITY_BELT_PRICE_MAD;
 const COMPARE = MATERNITY_BELT_COMPARE_MAD;
 
@@ -129,11 +128,11 @@ function ImageSlot({
 
 interface Props {
   product: Product;
+  reviews: ProductReview[];
 }
 
-export function ProductPageMaternitySupportBelt({ product }: Props) {
+export function ProductPageMaternitySupportBelt({ product, reviews }: Props) {
   const variant = product.variants[0];
-  const reviews = getReviewsForProduct(product.id);
   const gift = product.gift?.enabled ? product.gift : undefined;
   const [sticky, setSticky] = useState(false);
   const [formVisible, setFormVisible] = useState(false);
@@ -159,10 +158,10 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
     return () => io.disconnect();
   }, []);
 
-  const featuresSrc = resolveProductImage(SLUG, "10-features");
-  const lifestyleSrc = resolveProductImage(SLUG, "03-lifestyle");
-  const inUseSrc = resolveProductImage(SLUG, "14-product-in-use");
-  const infographicSrc = resolveProductImage(SLUG, "17-infographic");
+  const featuresSrc = MATERNITY_BELT_FEATURES_IMAGE;
+  const lifestyleSrc = MATERNITY_BELT_LIFESTYLE_IMAGE;
+  const inUseSrc = MATERNITY_BELT_IN_USE_IMAGE;
+  const infographicSrc = MATERNITY_BELT_INFOGRAPHIC_IMAGE;
   const giftSrc = gift?.giftImage ?? MATERNITY_BELT_GIFT_IMAGE;
   const discount = calculateDiscount(PRICE, COMPARE);
   const showSticky = sticky && !formVisible;
@@ -248,11 +247,7 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
 
       <main className="max-w-lg mx-auto px-4 sm:px-5 space-y-12 sm:space-y-14 pt-6">
         <section className="space-y-5 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-3"
-          >
+          <div className="space-y-3">
             <p className="inline-flex items-center gap-1.5 rounded-full bg-rose-100 border border-rose-200 px-3 py-1 text-xs font-bold text-rose-800">
               <Baby className="h-3.5 w-3.5" /> للحوامل — راحة ودعم في كل خطوة
             </p>
@@ -265,10 +260,10 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
               أمومة أكثر راحة ❤️ — دعم أسفل البطن، وضعية أحسن، ومع الطلب{" "}
               <strong className="text-rose-800">ميزان حرارة رقمي هدية</strong>.
             </p>
-          </motion.div>
+          </div>
 
           <ImageSlot
-            src={infographicSrc || MATERNITY_BELT_INFOGRAPHIC_IMAGE}
+            src={infographicSrc}
             alt="تعبتي من ثقل الكرش؟ ارتاحي مع حزام الدعم NOORVA"
             priority
             sizes="(max-width: 512px) 100vw, 512px"
@@ -496,26 +491,19 @@ export function ProductPageMaternitySupportBelt({ product }: Props) {
         </Accordion>
       </main>
 
-      <AnimatePresence>
-        {showSticky && (
-          <motion.div
-            initial={{ y: 80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 80, opacity: 0 }}
-            className="fixed bottom-0 inset-x-0 z-50 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-gradient-to-t from-[#fff5f7] via-[#fff5f7] to-transparent"
-          >
-            <div className="max-w-lg mx-auto">
-              <button
-                type="button"
-                onClick={scrollToOrder}
-                className="w-full min-h-[3.25rem] rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-base shadow-xl shadow-rose-600/30"
-              >
-                🤰 {formatPriceNumber(PRICE, "ar")} درهم + هدية · اطلبي
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {showSticky && (
+        <div className="fixed bottom-0 inset-x-0 z-50 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-gradient-to-t from-[#fff5f7] via-[#fff5f7] to-transparent animate-in slide-in-from-bottom-4 duration-200">
+          <div className="max-w-lg mx-auto">
+            <button
+              type="button"
+              onClick={scrollToOrder}
+              className="w-full min-h-[3.25rem] rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-base shadow-xl shadow-rose-600/30"
+            >
+              🤰 {formatPriceNumber(PRICE, "ar")} درهم + هدية · اطلبي
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
