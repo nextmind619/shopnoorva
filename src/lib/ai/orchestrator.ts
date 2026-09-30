@@ -36,6 +36,8 @@ export type OrderSideEffectsContext = {
   locale: string;
   confirmationVars: Record<string, string | number>;
   lineItems: LineItem[];
+  leadPayload: LeadPayload | null;
+  customerName: string;
   ip?: string;
   userAgent?: string;
   meta?: {
@@ -124,9 +126,19 @@ export async function dispatchOrderFulfillment(
 }
 
 export async function runOrderSideEffects(ctx: OrderSideEffectsContext): Promise<void> {
-  const { order, locale, confirmationVars, lineItems } = ctx;
+  const { order, locale, confirmationVars, lineItems, leadPayload, customerName } = ctx;
 
   try {
+    await Promise.allSettled([
+      persistOrderToDb(order).catch((error) => {
+        console.error(
+          "[order] db persist failed:",
+          error instanceof Error ? error.message : error
+        );
+      }),
+      dispatchOrderFulfillment(order, leadPayload, customerName, confirmationVars),
+    ]);
+
     const invoice = await generateInvoice(order);
     order.invoiceUrl = invoice.invoiceUrl;
 
@@ -371,14 +383,6 @@ export async function processIncomingOrder(input: {
       ? buildLeadPayloadFromOrder(order, lineItems, input.notes)
       : null;
 
-  // Sheets + WhatsApp must not wait on Postgres / MinIO / pixels.
-  await Promise.allSettled([
-    persistOrderToDb(order).catch(() => {
-      /* memory-store remains the admin fallback */
-    }),
-    dispatchOrderFulfillment(order, leadPayload, customerName, confirmationVars),
-  ]);
-
   for (const item of lineItems) {
     decrementStock(item.sku, item.quantity);
   }
@@ -390,6 +394,8 @@ export async function processIncomingOrder(input: {
     locale,
     confirmationVars,
     lineItems,
+    leadPayload,
+    customerName,
     ip: input.ip,
     userAgent: input.userAgent,
     meta: input.meta,
@@ -400,7 +406,6 @@ export async function processIncomingOrder(input: {
     order,
     invoiceUrl: order.invoiceUrl,
     sideEffects,
-    fulfillment: order.fulfillment,
   };
 }
 

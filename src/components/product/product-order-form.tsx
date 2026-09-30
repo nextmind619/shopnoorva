@@ -327,60 +327,6 @@ export function ProductOrderForm({
       const data = await res.json();
 
       if (data.success && data.orderNumber) {
-        const purchaseEventId = `purchase_${data.orderNumber}`;
-
-        fbPurchase({
-          eventId: purchaseEventId,
-          contentIds: [product.id, ...addonItems.map((item) => item.productId)],
-          value: total,
-          currency: "MAD",
-          orderId: data.orderNumber,
-          numItems: quantity + addonItems.reduce((sum, item) => sum + item.quantity, 0),
-          userData: {
-            phone,
-            firstName,
-            lastName,
-            city: cityValue,
-            country: "ma",
-            fbp: clickIds.fbp,
-            fbc: clickIds.fbc,
-          },
-          sendToServer: false,
-        });
-
-        ttCompletePayment({
-          eventId: purchaseEventId,
-          contentIds: [product.id, ...addonItems.map((item) => item.productId)],
-          value: total,
-          currency: "MAD",
-          orderId: data.orderNumber,
-          numItems: quantity + addonItems.reduce((sum, item) => sum + item.quantity, 0),
-        });
-
-        trackPurchase({
-          transactionId: data.orderNumber,
-          value: total,
-          currency: "MAD",
-          items: [
-            {
-              itemId: product.id,
-              itemName: productName,
-              price: variant.price,
-              quantity,
-              currency: "MAD",
-            },
-            ...addonItems.map((item) => ({
-              itemId: item.productId,
-              itemName: item.name,
-              price: item.unitPrice,
-              quantity: item.quantity,
-              currency: "MAD",
-            })),
-          ],
-          adsSendTo: getClientAdsSendTo(),
-          phone,
-        });
-
         const params = new URLSearchParams({
           order: data.orderNumber,
           name: form.fullName.trim(),
@@ -394,6 +340,62 @@ export function ProductOrderForm({
           productId: product.id,
         });
         router.push(`/ar/thank-you?${params.toString()}`, { scroll: true });
+
+        const purchaseEventId = `purchase_${data.orderNumber}`;
+        queueMicrotask(() => {
+          fbPurchase({
+            eventId: purchaseEventId,
+            contentIds: [product.id, ...addonItems.map((item) => item.productId)],
+            value: total,
+            currency: "MAD",
+            orderId: data.orderNumber,
+            numItems: quantity + addonItems.reduce((sum, item) => sum + item.quantity, 0),
+            userData: {
+              phone,
+              firstName,
+              lastName,
+              city: cityValue,
+              country: "ma",
+              fbp: clickIds.fbp,
+              fbc: clickIds.fbc,
+            },
+            sendToServer: false,
+          });
+
+          ttCompletePayment({
+            eventId: purchaseEventId,
+            contentIds: [product.id, ...addonItems.map((item) => item.productId)],
+            value: total,
+            currency: "MAD",
+            orderId: data.orderNumber,
+            numItems: quantity + addonItems.reduce((sum, item) => sum + item.quantity, 0),
+          });
+
+          trackPurchase({
+            transactionId: data.orderNumber,
+            value: total,
+            currency: "MAD",
+            items: [
+              {
+                itemId: product.id,
+                itemName: productName,
+                price: variant.price,
+                quantity,
+                currency: "MAD",
+              },
+              ...addonItems.map((item) => ({
+                itemId: item.productId,
+                itemName: item.name,
+                price: item.unitPrice,
+                quantity: item.quantity,
+                currency: "MAD",
+              })),
+            ],
+            adsSendTo: getClientAdsSendTo(),
+            phone,
+          });
+        });
+
         return;
       }
 
