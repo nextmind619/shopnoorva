@@ -113,8 +113,9 @@ export function InvisibleChallenge({
       }
     };
 
-    // Defer so LCP / checkout stay fast
-    if ("requestIdleCallback" in window) {
+    if (force) {
+      setTimeout(() => void run(), 0);
+    } else if ("requestIdleCallback" in window) {
       (window as Window & { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(() => {
         void run();
       });

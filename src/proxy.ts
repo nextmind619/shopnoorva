@@ -2,6 +2,8 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { defaultLocale } from "./i18n/config";
 import { evaluateVisitor, readTrustCookie } from "@/lib/security";
+import { applyOwnerBypass, isAllowlistedIp } from "@/lib/security/allowlist";
+import { isRealBrowserUa } from "@/lib/security/automation";
 import { SECURITY_CONFIG } from "@/lib/security/config";
 import { extractClientIp } from "@/lib/security/client-ip";
 import { SITE_DOMAIN, SITE_URL } from "@/lib/site";
@@ -149,6 +151,7 @@ export default function proxy(request: NextRequest) {
   const ownerPreview =
     Boolean(previewToken) &&
     (previewQuery === previewToken || previewCookie === previewToken);
+  const ownerBypass = ownerPreview || isAllowlistedIp(ip);
 
   const evaluation = evaluateVisitor({
     ip,
@@ -170,22 +173,31 @@ export default function proxy(request: NextRequest) {
     priorScore: trust.valid ? trust.score : undefined,
   });
 
-  // Soft bump for Cloudflare Morocco: never Access Denied a real browser in MA
+  // Never hard-redirect Moroccan / real-browser shoppers to Access Denied.
   const country = (request.headers.get("cf-ipcountry") || "").toUpperCase();
-  const realBrowser = /Mozilla\/5\.0.*(Chrome|Firefox|Safari|Edg|Mobile)/i.test(ua);
+  const realBrowser = isRealBrowserUa(ua, {
+    "sec-ch-ua": request.headers.get("sec-ch-ua"),
+  });
   if (
     evaluation.decision === "block" &&
     realBrowser &&
-    (country === "MA" || evaluation.likelyMoroccanCustomer) &&
+    !ownerBypass &&
     evaluation.ipRisk !== "tor" &&
     !evaluation.reasons.includes("selenium") &&
     !evaluation.reasons.includes("puppeteer") &&
-    !evaluation.reasons.includes("playwright")
+    !evaluation.reasons.includes("playwright") &&
+    !evaluation.reasons.includes("headless") &&
+    !evaluation.reasons.includes("facebook_ad_library") &&
+    !evaluation.reasons.includes("ad_library") &&
+    !evaluation.reasons.includes("blacklisted")
   ) {
-    evaluation.decision = "challenge";
+    evaluation.decision =
+      country === "MA" || evaluation.likelyMoroccanCustomer ? "allow" : "challenge";
   }
 
-  if (evaluation.decision === "block" && !ownerPreview) {
+  evaluation.decision = applyOwnerBypass(evaluation.decision, ownerBypass);
+
+  if (evaluation.decision === "block") {
     const denied = NextResponse.redirect(new URL("/access-denied", request.url));
     return applySecurityHeaders(denied);
   }

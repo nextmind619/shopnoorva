@@ -65,8 +65,17 @@ export async function POST(request: NextRequest) {
       flags.push("fake_browser");
     }
 
+    const hardAutomation =
+      Boolean(body.webdriver) ||
+      Boolean(body.automationTool) ||
+      body.headlessHints?.some((h) => h === "headless_ua" || h === "webdriver" || h === "selenium_hooks");
     const severity = body.severity || (reasons.length >= 2 ? "high" : reasons.length === 1 ? "medium" : "low");
-    const decision = severity === "high" ? "block" : severity === "medium" ? "challenge" : "allow";
+    // Log soft signals (DevTools, image drag) but do not kick real shoppers to Access Denied.
+    const decision = hardAutomation
+      ? "block"
+      : severity === "high" && reasons.length >= 3
+        ? "challenge"
+        : "allow";
     const score = decision === "block" ? 20 : decision === "challenge" ? 40 : 70;
 
     if (decision !== "allow") {
